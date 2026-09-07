@@ -160,7 +160,9 @@ Packrat appears only in campaign contracts **2–3**. There is exactly **one** c
 | Nest reached | Automatically drop; protect dropped cargo from re-theft for 8 seconds |
 | End/restart/disconnection | Drop and restore cargo state before reset |
 
-While claimed, ordinary pickup, cargo update, conveyor transport, Clinger acquisition and sneeze cargo push exclude that package. The claim cannot strand a frozen invisible object. Every drop restores layer, mask and freeze behavior consistently. Final 0.7 tuning: patrol/carry speed 2.7 m/s, theft radius 1.4 m; waypoints (X,Z) (10,-3.2), (13.5,-8), (9,-14), (13,-17), nest (13,-5). These remain provisional balance values. Carried-cargo obstacle checks allow 6 mm of vertical contact tolerance per side to accommodate settled rigid bodies; they retain near-full horizontal dimensions and block wall passage.
+While claimed, ordinary pickup, cargo update, conveyor transport, Clinger acquisition and sneeze cargo push exclude that package. The claim cannot strand a frozen invisible object. Every drop restores layer, mask and freeze behavior consistently. Final 0.7 tuning: patrol/carry speed 2.7 m/s, theft radius 1.4 m; waypoints (X,Z) (10,-3.2), (10,-8), (10,-14), (13,-17), nest (13,-5). These remain provisional balance values. Carried-cargo obstacle checks allow 6 mm of vertical contact tolerance per side to accommodate settled rigid bodies; they retain near-full horizontal dimensions and block wall passage.
+
+**0.7.1 correction:** Search for visible free grounded cargo within 6 m in the right-side activity bounds (X 8.5–14.5, Z -19–0), approach, then start the existing 0.9-second warning within 1.4 m. Pickup, attachment, lost sight or range cancels pursuit. After 1.25 seconds without progress, ignore the target for three seconds and resume patrol. The host simulates `seek`, replicates it in the existing creature packet, and both UIs show approach status. This does not add pursuit into the left lane or intake area.
 
 ## 18. Airhorn decisions and readability
 

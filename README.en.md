@@ -52,4 +52,9 @@ Twenty-one behavior tests, six real two-process scenarios, the four-process scen
 
 ## Version control
 
-Local Git retains the 0.5/0.6 baselines. This change is identified by `v0.7.0`; no GitHub remote is connected. See [version history and recovery](docs/development/version-control.en.md) and [documentation rules](AGENTS.md).
+Local Git retains the 0.5/0.6 baselines. This change is identified by `v0.7.1`; no GitHub remote is connected. See [version history and recovery](docs/development/version-control.en.md) and [documentation rules](AGENTS.md).
+
+
+## 0.7.1 Packrat fix
+
+Fixed ignoring nearby visible cargo: search within 6 m in the right lane, approach, then warn within 1.4 m before stealing. Active from contract 2. Existing 0.7 executable/ZIP paths now contain the fix; the settings folder is unchanged. [Fix record](docs/development/2026-09-07-packrat-search.en.md).

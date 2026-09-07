@@ -76,7 +76,7 @@ Roles are not locked classes. Switch between intake, throwing, receiving and cha
 
 Night Shift Depot measures 32 × 36 m. Carry around either side of the 3.4 m central sorting wall to northern A/B dispatch. The right bypass has a 6 m floor belt moving workers and grounded packages at 2 m/s. Face its lever and press F to reverse; walls block interaction. Shared cooldown is 0.5 seconds. The left bypass is a belt-free carrying route. Lights are 6.5 m high.
 
-Packrat patrols the right side and gives a 0.9-second warning before stealing free grounded cargo within 1.4 m. It never steals worker-held or attached cargo. It moves at 2.7 m/s, carries toward the eastern nest and drops there. Walls or obstacles cause a safe drop. Returned cargo receives eight seconds of protection from theft.
+Packrat spots visible free grounded cargo within 6 m in the right lane and approaches it. Within 1.4 m it warns for 0.9 seconds before stealing. A worker pickup during approach cancels pursuit. It does not pursue cargo behind walls or in the left lane. It never steals worker-held or attached cargo. It moves at 2.7 m/s, carries toward the eastern nest and drops there. Walls or obstacles cause a safe drop. Returned cargo receives eight seconds of protection from theft.
 
 R works within 4 m and clear sight. The rat drops cargo and flees for three seconds. Base per-worker cooldown is eight seconds; a miss also consumes it, so get close first. Ending, restarting or disconnecting releases creature ownership. There is no health, attack or death system.
 
@@ -97,3 +97,8 @@ Practice retains 180 seconds and quotas of 5/6/8/10 for 1/2/3/4 workers. Unanimo
 This is a development playtest with a complete cooperative run. Steamworks enrollment and actual App/Depot IDs, Steam invite/relay integration, separate PCs/external networks, target-hardware performance, independent newcomer/friend-group fun testing, final art/store imagery/trailer/rights review, Steam installation and Valve review remain open. Automated passes do not complete those gates.
 
 When reporting issues, include build 0.7, worker count, contract stage, shipment seed, triggering actions, expected result and actual result. Observe whether newcomers know what to do, relay catches help, theft causes are readable and the crew wants another run.
+
+
+## 0.7.1 fix
+
+Added active cargo search and approach. Patrol waypoints moved to the lane center to avoid the nest. If an approach makes no progress for 1.25 seconds, the target is ignored for three seconds before another search. The in-game version is 0.7.1; existing executable/ZIP paths and the user-settings folder remain stable.

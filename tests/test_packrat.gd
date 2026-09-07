@@ -171,7 +171,48 @@ func run() -> void:
 
 	world.queue_free()
 	await process_frame
+	await test_depot_search()
 	for failure in failures:
 		push_error(failure)
 	print("PACKRAT %s" % ("PASS" if failures.is_empty() else "FAIL"))
 	quit(0 if failures.is_empty() else 1)
+
+func test_depot_search() -> void:
+	var game = load("res://scenes/main.tscn").instantiate()
+	root.add_child(game)
+	game.practice_game(true)
+	game.set_physics_process(false)
+	game.set_process(false)
+	for item in game.cargos.values(): item.cancel()
+	var box = game.cargos[1]
+	box.reset_shift()
+	box.body.position = Vector3(13.5, 0.5, -1.5)
+	game.packrat.reset(game.cargos)
+	for frame in range(30): await physics_frame
+	game.packrat.start(1)
+	var start: Vector3 = game.packrat.position
+	game.packrat.step(1.0 / 60.0, game.workers, game.cargos)
+	check(game.packrat.phase == "seek", "visible cargo four metres away triggers active approach in real depot")
+	for frame in range(300):
+		await physics_frame
+		game.packrat.step(1.0 / 60.0, game.workers, game.cargos)
+		if box.creature_held: break
+	check(box.creature_held, "rat approaches and steals distant settled cargo without teleporting")
+	check(game.packrat.position.distance_to(start) > 1.0, "theft requires rat movement")
+	game.packrat.reset(game.cargos)
+	box.body.position = Vector3(13.5, 0.5, -1.5)
+	box.rules.holder_id = 1
+	game.packrat.start(1)
+	game.packrat.step(0.01, game.workers, game.cargos)
+	check(game.packrat.target_id == 0, "held cargo does not attract searching rat")
+	box.rules.holder_id = 0
+	for frame in range(30): await physics_frame
+	game.packrat.step(0.01, game.workers, game.cargos)
+	check(game.packrat.phase == "seek", "released cargo can be approached again")
+	box.rules.holder_id = 1
+	game.packrat.step(0.01, game.workers, game.cargos)
+	check(game.packrat.phase == "patrol" and game.packrat.target_id == 0, "pickup during approach cancels pursuit")
+	box.rules.holder_id = 0
+	game.leave_game()
+	game.queue_free()
+	await process_frame

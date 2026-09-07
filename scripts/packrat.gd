@@ -4,13 +4,15 @@ const Layout = preload("res://scripts/depot_layout.gd")
 const Copy = preload("res://scripts/copy.gd")
 const START := Vector3(10.0, 0.05, -3.2)
 const STEAL_RADIUS := 1.4
+const SEARCH_RADIUS := 6.0
+const STUCK_SECONDS := 1.25
 const WARNING_SECONDS := 0.9
 const FLEE_SECONDS := 3.0
 const HORN_RANGE := 4.0
 const HORN_COOLDOWN := 8.0
 const PROTECTION_SECONDS := 8.0
 const SPEED := 2.7
-const PATROL := [Vector3(10, 0.05, -3.2), Vector3(13.5, 0.05, -8), Vector3(9, 0.05, -14), Vector3(13, 0.05, -17)]
+const PATROL := [Vector3(10, 0.05, -3.2), Vector3(10, 0.05, -8), Vector3(10, 0.05, -14), Vector3(13, 0.05, -17)]
 
 var active := false
 var phase := "off"
@@ -20,6 +22,7 @@ var carried_id := 0
 var facing := 0.0
 var target_position := START
 var patrol_index := 0
+var stuck_time := 0.0
 var protections: Dictionary = {}
 var horn_cooldowns: Dictionary = {}
 var horn_cooldown_seconds := HORN_COOLDOWN
@@ -88,6 +91,7 @@ func reset(cargos: Dictionary) -> void:
 	carry_offset = Vector3.ZERO
 	last_safe_cargo_position = Vector3.ZERO
 	patrol_index = 0
+	stuck_time = 0.0
 	protections.clear()
 	horn_cooldowns.clear()
 	position = START
@@ -123,6 +127,26 @@ func step(delta: float, workers: Dictionary, cargos: Dictionary) -> void:
 	if not active:
 		return
 	match phase:
+		"seek":
+			var cargo = cargos.get(target_id)
+			if not _eligible(cargo) or position.distance_to(cargo.body.global_position) > SEARCH_RADIUS:
+				target_id = 0
+				phase = "patrol"
+				stuck_time = 0.0
+			elif position.distance_to(cargo.body.global_position) <= STEAL_RADIUS:
+				phase = "warning"
+				remaining = WARNING_SECONDS
+				stuck_time = 0.0
+			else:
+				var before := position
+				_move_toward(cargo.body.global_position, delta)
+				stuck_time = stuck_time + delta if position.distance_to(before) < SPEED * delta * 0.1 else 0.0
+				if stuck_time >= STUCK_SECONDS:
+					protections[target_id] = 3.0
+					target_id = 0
+					phase = "patrol"
+					stuck_time = 0.0
+					patrol_index = (patrol_index + 1) % PATROL.size()
 		"warning":
 			var cargo = cargos.get(target_id)
 			if not _eligible(cargo) or position.distance_to(cargo.body.global_position) > STEAL_RADIUS:
@@ -154,8 +178,9 @@ func step(delta: float, workers: Dictionary, cargos: Dictionary) -> void:
 			var candidate = _nearest(cargos)
 			if candidate:
 				target_id = candidate.cargo_id
-				phase = "warning"
-				remaining = WARNING_SECONDS
+				phase = "warning" if position.distance_to(candidate.body.global_position) <= STEAL_RADIUS else "seek"
+				remaining = WARNING_SECONDS if phase == "warning" else 0.0
+				stuck_time = 0.0
 			else:
 				var goal: Vector3 = PATROL[patrol_index]
 				_move_toward(goal, delta)
@@ -231,10 +256,12 @@ func _clear_sight(cargo) -> bool:
 
 func _nearest(cargos: Dictionary):
 	var nearest = null
-	var distance := STEAL_RADIUS + 0.001
+	var distance := SEARCH_RADIUS + 0.001
 	for cargo in cargos.values():
 		if not _eligible(cargo):
 			continue
+		var at: Vector3 = cargo.body.global_position
+		if at.x < 8.5 or at.x > 14.5 or at.z < -19.0 or at.z > 0.0: continue
 		var candidate: float = position.distance_to(cargo.body.global_position)
 		if candidate < distance:
 			distance = candidate
@@ -367,9 +394,10 @@ func _present() -> void:
 	label.modulate = Color("ff746c") if phase == "warning" else Color("f3dfad")
 	match phase:
 		"warning": label.text = _localized("STEAL IN %.1fs!", "%.1f초 뒤 훔쳐요!") % remaining
+		"seek": label.text = _localized("PACKAGE SPOTTED!", "상자 발견!")
 		"carry": label.text = _localized("STOLEN!", "도둑맞음!")
 		"flee": label.text = _localized("FLEE %.1fs", "도망 %.1f초") % remaining
-		_: label.text = _localized("PACKRAT", "팩랫")
+		_: label.text = _localized("PACKRAT", "포장쥐")
 
 func _localized(english: String, korean: String) -> String:
 	return korean if Copy.language == "ko" else english

@@ -1,6 +1,7 @@
 extends "res://tests/test_expanded_network.gd"
 
 var requested_at := 0
+var saw_approach := false
 
 func begin() -> void:
 	checkpoint = Checkpoint.new()
@@ -28,6 +29,7 @@ func complete_contract() -> void:
 	print("CAMPAIGN CHECK stage=%d bank=%d earned=%d relays=%d score=%d quota=%d" % [game.contracts.stage,game.contracts.credits,game.contracts.earned,game.contracts.relays,game.score,game.round_state.quota])
 
 func host_step() -> void:
+	if game.packrat.phase == "seek": saw_approach = true
 	match stage:
 		0:
 			if checkpoint.guest_id == 0 or game.workers.size() != 2: return
@@ -51,7 +53,7 @@ func host_step() -> void:
 				return
 			var cargo = game.cargos[1]
 			cargo.body.freeze = false
-			cargo.body.position = game.packrat.position + Vector3(0.7, 0.4, 0)
+			cargo.body.position = game.packrat.position + Vector3(3.5, 0.4, 1.7)
 			cargo.body.linear_velocity = Vector3.ZERO
 			game.workers[checkpoint.guest_id].position = game.packrat.position + Vector3(2, 0, 1)
 			stage = 3
@@ -79,7 +81,7 @@ func host_step() -> void:
 			stage = 7
 		7:
 			if not checkpoint.acknowledged: return
-			if not game.contracts.finished or game.contracts.credits != 280 or game.profile.runs != 1:
+			if not game.contracts.finished or game.contracts.credits != 280 or game.profile.runs != 1 or not saw_approach:
 				fail("host completed run differs")
 				return
 			print("PASS network host: campaign bank, permissions, shared upgrade/readiness, theft/rescue, all contracts")
@@ -87,6 +89,7 @@ func host_step() -> void:
 			quit(0)
 
 func guest_step() -> void:
+	if game.packrat.phase == "seek": saw_approach = true
 	if game.session.mode != "guest":
 		if sent == "finished":
 			print("PASS network guest: campaign metadata, shared upgrades, claimed cargo, horn rescue and completion")
@@ -119,7 +122,7 @@ func guest_step() -> void:
 			request_next()
 			ack()
 		"finished":
-			if not game.contracts.finished or game.contracts.credits != 280 or game.profile.runs != 1: return
+			if not game.contracts.finished or game.contracts.credits != 280 or game.profile.runs != 1 or not saw_approach: return
 			ack()
 
 func request_next() -> void:

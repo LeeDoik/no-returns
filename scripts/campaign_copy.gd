@@ -34,6 +34,7 @@ const STRINGS := {
 	"horn_wait": ["AIRHORN  %.1fs", "경적  %.1f초"],
 	"packrat_off": ["", ""],
 	"packrat_patrol": ["PACKRAT / PATROLLING", "포장쥐 / 순찰 중"],
+	"packrat_seek": ["PACKRAT / APPROACHING CARGO!", "포장쥐 / 상자에 접근 중!"],
 	"packrat_warning": ["PACKRAT / STEALING!", "포장쥐 / 훔치려는 중!"],
 	"packrat_carry": ["PACKRAT / CARRYING CARGO", "포장쥐 / 화물 운반 중"],
 	"packrat_flee": ["PACKRAT / FLEEING", "포장쥐 / 도망치는 중"],
