@@ -30,6 +30,7 @@ WASD 이동, 마우스 시점, Space 점프, E 집기·받기·놓기, 왼쪽 �
 | [0.5 플레이 안내](docs/prototype/05-expanded.ko.md) | [Play guide](docs/prototype/05-expanded.en.md) |
 | [확장 구현 계획과 완료 기록](docs/superpowers/plans/2026-09-07-expanded.ko.md) | [Implementation plan](docs/superpowers/plans/2026-09-07-expanded.en.md) |
 | [기획서](docs/superpowers/specs/2026-09-06-no-returns-design.ko.md) | [Design](docs/superpowers/specs/2026-09-06-no-returns-design.md) |
+| [창고 설비·포장쥐 기획 메모](docs/superpowers/specs/2026-09-07-depot-creature-design.ko.md) | [Equipment and creature proposals](docs/superpowers/specs/2026-09-07-depot-creature-design.en.md) |
 | [출시 로드맵·계정 등록](docs/steam/01-release-roadmap.ko.md) | [Roadmap](docs/steam/01-release-roadmap.md) |
 | [상점 소개 초안](docs/steam/02-store-page.ko.md) | [Store draft](docs/steam/02-store-page.en.md) |
 | [이미지·트레일러 계획](docs/steam/03-assets-and-trailer.ko.md) | [Assets and trailer](docs/steam/03-assets-and-trailer.en.md) |

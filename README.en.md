@@ -30,6 +30,7 @@ WASD moves, mouse looks, Space jumps, E picks up/catches/puts down, left click t
 | [0.5 play guide](docs/prototype/05-expanded.en.md) | [플레이 안내](docs/prototype/05-expanded.ko.md) |
 | [Expanded plan and completion record](docs/superpowers/plans/2026-09-07-expanded.en.md) | [구현 계획](docs/superpowers/plans/2026-09-07-expanded.ko.md) |
 | [Design](docs/superpowers/specs/2026-09-06-no-returns-design.md) | [기획서](docs/superpowers/specs/2026-09-06-no-returns-design.ko.md) |
+| [Equipment and Packrat design notes](docs/superpowers/specs/2026-09-07-depot-creature-design.en.md) | [창고 설비·포장쥐 제안](docs/superpowers/specs/2026-09-07-depot-creature-design.ko.md) |
 | [Roadmap and enrollment](docs/steam/01-release-roadmap.md) | [로드맵](docs/steam/01-release-roadmap.ko.md) |
 | [Store draft](docs/steam/02-store-page.en.md) | [상점 초안](docs/steam/02-store-page.ko.md) |
 | [Assets and trailer](docs/steam/03-assets-and-trailer.en.md) | [이미지·트레일러](docs/steam/03-assets-and-trailer.ko.md) |
