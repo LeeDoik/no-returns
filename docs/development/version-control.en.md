@@ -1,0 +1,39 @@
+# Local Git version control
+
+[한국어](version-control.ko.md)
+
+September 7, 2026. The creator chose **local Git only**. No GitHub repository or remote connection is created.
+
+## Baseline
+
+Record expanded prototype 0.5 as the first commit and mark it with `v0.5.0`. This identifies the same baseline as the existing 0.5 UI; it does not represent a feature change or a new build. The default branch is `main`. Earlier 0.1–0.4 work had no separate commits, so it is not represented as recoverable Git history. Existing documents remain development records.
+
+The baseline includes four cargo types, A/B destinations, crew quotas, pings, overtime, saved settings, cargo-facing fixes, worker/cargo collisions, Korean/English documents, tests and build tools.
+
+## Tracked files
+
+- Code, scenes, Godot project/export settings and `.gd.uid` identity files.
+- Korean/English documents, tests, launch/build tools and license notices.
+- `.gitignore`, `.gitattributes` and project working rules.
+
+Exclude Godot cache `.godot/`, downloaded engine/templates `.tools/`, test artifacts `artifacts/`, executable/ZIP output `build/`, temporary files and logs. Environment secrets, export credentials, development Steam App ID files and certificates are also excluded. Rebuild executables using the build tools instead of committing them. Consider Git LFS separately when large original art assets become necessary.
+
+Text is normalized to LF in the repository; Windows `.cmd`/`.bat` launchers use CRLF in the working folder.
+
+## Future workflow
+
+1. Inspect current changes before adding or fixing a feature. Use work branches named `codex/short-task-name`.
+2. Update related code and both documentation languages together.
+3. Run checks appropriate to the change and inspect the results. The complete game suite is `python tools/run_tests.py`.
+4. Review and commit one coherent task. Do not mix unrelated user changes into it.
+5. Integrate verified work into `main`. Add a new tag only for a distribution baseline.
+
+Do not move an existing tag to another commit. Use versions such as `v0.5.1` for a patch distribution and `v0.6.0` for the next feature group. Tags identify internal prototypes and do not promise a commercial release.
+
+## Inspect and recover
+
+From the project terminal, use `git status` for uncommitted changes and `git log --oneline --decorate` for history. `git show v0.5.0` displays the first baseline. Committing records a group of changes separately from saving a file. [Official Git explanation](https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control)
+
+To roll back, specify the desired version. Preserve current work first, then use a separate recovery branch or a revert commit. Local history is not backed up to another computer or cloud; external backup is a separate protection against disk failure.
+
+Restoring source into another folder or PC requires preparing Godot first. `tools/setup_godot.ps1` restores the pinned engine; Windows export also requires the matching templates described in the [build handoff](../steam/07-build-handoff.en.md).

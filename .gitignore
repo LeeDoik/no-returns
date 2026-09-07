@@ -1,0 +1,14 @@
+.godot/
+.tools/
+artifacts/
+build/
+*.tmp
+*.log
+__pycache__/
+.env
+.env.*
+!.env.example
+export_credentials.cfg
+steam_appid.txt
+*.pfx
+*.p12

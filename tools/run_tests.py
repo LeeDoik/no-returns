@@ -1,0 +1,100 @@
+"""Run behavior regressions plus bounded two- and four-process ENet tests."""
+from pathlib import Path
+import subprocess
+import sys
+import time
+
+if __package__:
+    from .run_four_test import run as run_four
+else:
+    from run_four_test import run as run_four
+
+ROOT = Path(__file__).resolve().parents[1]
+ENGINE = ROOT / ".tools/godot/Godot_v4.7.2-stable_win64_console.exe"
+OUT = ROOT / "artifacts"
+
+
+def command(script, role=None):
+    args = [str(ENGINE), "--headless", "--path", str(ROOT),
+            "--log-file", str(OUT / f"{role or 'rules'}-engine.log"),
+            "--script", script]
+    if role:
+        args += ["--", f"--role={role}"]
+    return args
+
+
+def main():
+    OUT.mkdir(exist_ok=True)
+    if not ENGINE.is_file():
+        print(f"Missing runtime: {ENGINE}")
+        return 1
+    for script, role, success in (
+        ("tests/test_cargo_rules.gd", None, b"PASS:"),
+        ("tests/test_physics.gd", "physics", b"PHYSICS PASS"),
+        ("tests/test_shift.gd", "shift", b"PASS shift"),
+        ("tests/test_sneeze_rules.gd", "sneeze-rules", b"PASS:"),
+        ("tests/test_sneeze_scene.gd", "sneeze-scene", b"SNEEZE SCENE PASS"),
+        ("tests/test_cargo_wire.gd", "wire", b"WIRE PASS"),
+        ("tests/test_cargo_facing.gd", "facing", b"CARGO FACING PASS"),
+        ("tests/test_worker_cargo_collision.gd", "collision", b"WORKER CARGO COLLISION PASS"),
+        ("tests/test_clinger.gd", "clinger", b"PASS: clinger"),
+        ("tests/test_clinger_integration.gd", "clinger-integration", b"CLINGER INTEGRATION PASS"),
+        ("tests/test_roster.gd", "roster", b"ROSTER PASS"),
+        ("tests/test_round_rules.gd", "round-rules", b"ROUND RULES PASS"),
+        ("tests/test_preferences.gd", "preferences", b"PREFERENCES PASS"),
+        ("tests/test_hopper.gd", "hopper", b"HOPPER PASS"),
+        ("tests/test_expanded.gd", "expanded", b"EXPANDED PASS"),
+    ):
+        result = subprocess.run(command(script, role), cwd=ROOT,
+                                capture_output=True, timeout=30)
+        output = result.stdout + result.stderr
+        (OUT / f"{role or 'rules'}-test.log").write_bytes(output)
+        print(output.decode("utf-8", errors="replace"))
+        if result.returncode or success not in output or b"SCRIPT ERROR" in output:
+            return 1
+    for script, prefix in (("tests/test_network.gd", "network"),
+                           ("tests/test_sneeze_network.gd", "sneeze-network"),
+                           ("tests/test_clinger_network.gd", "clinger-network"),
+                           ("tests/test_expanded_network.gd", "expanded-network")):
+        if run_pair(script, prefix):
+            return 1
+    return run_four()
+
+
+def run_pair(script, prefix):
+    processes = []
+    logs = []
+    try:
+        for role in ("host", "guest"):
+            stream = (OUT / f"{prefix}-{role}.log").open("wb")
+            logs.append(stream)
+            processes.append(subprocess.Popen(
+                command(script, role), cwd=ROOT,
+                stdout=stream, stderr=subprocess.STDOUT,
+                creationflags=subprocess.CREATE_NO_WINDOW if sys.platform == "win32" else 0))
+            if role == "host":
+                time.sleep(1)
+        deadline = time.monotonic() + 32
+        for process in processes:
+            process.wait(timeout=max(1, deadline - time.monotonic()))
+    except subprocess.TimeoutExpired:
+        print("FAIL: network process exceeded its deadline")
+        return 1
+    finally:
+        for process in processes:
+            if process.poll() is None:
+                process.kill()
+                process.wait()
+        for stream in logs:
+            stream.close()
+    failed = False
+    for role, process in zip(("host", "guest"), processes):
+        output = (OUT / f"{prefix}-{role}.log").read_text(encoding="utf-8", errors="replace")
+        print(output)
+        if process.returncode or f"PASS network {role}" not in output or "SCRIPT ERROR" in output:
+            failed = True
+    return int(failed)
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

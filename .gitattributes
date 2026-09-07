@@ -1,0 +1,10 @@
+* text=auto eol=lf
+*.cmd text eol=crlf
+*.bat text eol=crlf
+*.md whitespace=-blank-at-eol
+THIRD_PARTY_NOTICES.txt whitespace=-blank-at-eof
+*.png binary
+*.jpg binary
+*.ogg binary
+*.wav binary
+*.glb binary
