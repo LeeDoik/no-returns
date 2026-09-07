@@ -2,7 +2,7 @@
 
 [한국어](map-editing.ko.md)
 
-For Godot 4.7.2 and NO RETURNS 0.7.3 · September 8, 2026.
+For Godot 4.7.2 and NO RETURNS 0.7.4 · September 8, 2026.
 
 ## First edit: move the central low wall
 
@@ -45,7 +45,7 @@ Importing a decorative mesh alone does not automatically create collision. Reuse
 - Delivery volume: edit `DispatchA/B → DeliveryZone → CollisionShape3D → Shape → Size`. The transparent editor shape is the detection volume. Delivery occurs when a package's center enters it. Enlarging the tongue appearance alone does not enlarge detection.
 - Rat: `PackratTerritory/StartPoint` is its initial position; `ReturnPoint` is where stolen cargo is dropped. Keep the return point clear of walls and nest decorations. `PatrolPoints/Point1…4` are visited in tree order. `ActivityZone/CollisionShape3D/Shape/Size` controls the movement/search region. Packrat appears from contract 2. Its current AI has no complex wall-routing pathfinder, so connect waypoints through open passages.
 - Spawns: default worker Y is `0.05`; cargo Y is `0.55`. Adjust both if floor height changes, and avoid overlapping workers or packages.
-- Expansion: enlarge Floor Dimensions and move OuterWalls first. Then adjust `PlayableBounds/CollisionShape3D/Shape/Size` and position to include the new area. Cargo outside these bounds resets. The default floor is 32×36 m, with some extra margin in the detection bounds. Adjust lights, spawns and patrol points to match.
+- Expansion: enlarge Floor Dimensions and move OuterWalls first. Then adjust `PlayableBounds/CollisionShape3D/Shape/Size` and position to include the new area. Cargo outside these bounds resets. The default floor is 48×60 m, with some extra margin in the detection bounds. Adjust lights, spawns and patrol points to match.
 - Belt: default size is 2.2×6 m. Prefer moving/rotating the whole object. Changing length requires matching its bed, stripes and TransportZone; the stripe animation length remains in code.
 
 ## Signs and lighting
@@ -58,7 +58,7 @@ Raise a ceiling light's Position Y or reduce its Light Energy to reduce glare. T
 
 **Ctrl+S → F5** tests the latest source map. An existing EXE does not update automatically. Close game windows and double-click [BUILD.cmd](../../BUILD.cmd). Successful checks display the new EXE and ZIP paths. This uses Python, Godot and export templates already prepared on this PC. For another PC, see [build handoff](../steam/07-build-handoff.en.md).
 
-Send the new `build/NO_RETURNS_0.7_Windows.zip` to friends and have everyone extract the same ZIP. Do not mix source runs with exported builds. Network protocol 8 compares fingerprints of the saved map and dependent resources, rejecting a mismatch. Automatic map downloads and live editing replication are not supported.
+Send the new `build/NO_RETURNS_0.7_Windows.zip` to friends and have everyone extract the same ZIP. Do not mix source runs with exported builds. Network protocol 9 compares fingerprints of the saved map and dependent resources, rejecting a mismatch. Automatic map downloads and live editing replication are not supported.
 
 ## Troubleshooting
 
@@ -75,3 +75,22 @@ Before large changes, copy the scene outside the project as a backup or record i
 The runtime-generated map is now a saved PackedScene. Appearance and gameplay detection read the same scene. The previous generator remains only for one-time conversion and older tests; normal gameplay does not use it. Automated checks cover translated/rotated bays and belts, save/reload, worker/cargo spawn integration, actual delivery earnings, matched block mesh/collision dimensions and instance independence, and rejection of online guests with another map.
 
 The [official Godot PackedScene reference](https://docs.godotengine.org/en/4.3/classes/class_packedscene.html) describes scene saving, instantiation and ownership-based persistence. See the [conversion plan](../superpowers/plans/2026-09-07-editable-map.en.md).
+
+
+## 0.7.4 Expanded map and new mechanisms
+
+The floor is now **48×60 m**, **2.5 times** the previous area. Dispatch is at the northern end, X±15, Z-43. After the existing intake and rat territory, gather or pass packages at the central relay lounge, then choose a route.
+
+| Route | Behavior and choice |
+| --- | --- |
+| Left: Scenic Overtime | A permanently open bypass for carrying without mechanism timing. |
+| Center: Unpaid Doorman | Stand on either yellow plate or place a free package on it to open the door. It stays open for 6 seconds after leaving, allowing solo passage. Workers/packages inside prevent closure. |
+| Right: Express Air Mail | 5 seconds idle, 1.5 seconds amber warning, 2.5 seconds cyan gust. Pushes grounded workers and free cargo in the arrow direction. Send a package ahead for another worker to catch. Held, creature-claimed and attached cargo are not independently pushed. |
+
+No new key is required: simply stand on a plate. Sidestep the airflow or wait for it to end; airborne workers do not receive the grounded wind drift. Existing F conveyor reversal and R rat horn remain. New contracts reset the gate and gust clock; lobby/results do not advance them. Contracts remain 240 seconds. Tune difficulty and fun after human play over the longer routes.
+
+To edit, select `Gameplay/RouteChallenges`. Change Gate Hold Seconds, Wind Idle/Warning/Burst Seconds and Worker/Cargo Wind Speed in the Inspector. Move the **Gate parent** to move its door, plates, anti-crush zone and signs together. Move or rotate the **AirMail parent** around Y to change its airflow volume, direction and signs together. To move an individual plate, select Gate/PlateFront or PlateBack. Adjust WindZone/CollisionShape3D Shape/Size for the airflow region.
+
+`Gate/Status` and `AirMail/Status` are dynamic runtime labels. Edit English/Korean on the other signs. Duplicating additional gates or gust mechanisms is not supported yet: this structure edits the placement/settings of the existing pair. Preserve Door/CollisionShape3D, Clearance and PlateFront/Back names under Gate.
+
+Rebuild edited executables with BUILD.cmd. **Protocol 9** requires everyone to run the same 0.7.4 ZIP. [Expansion design and validation](../superpowers/plans/2026-09-08-shrine-expansion.en.md).

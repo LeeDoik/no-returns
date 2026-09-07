@@ -65,7 +65,7 @@ func _run_host() -> void:
 	elif stage == 2 and game.cargos[1].rules.holder_id == 0:
 		# Arrange a physical arrival; dispatch still runs through the real world tick.
 		game.cargos[1].body.linear_velocity = Vector3.ZERO
-		game.cargos[1].body.position = Layout.bay(1)
+		game.cargos[1].body.position = game.depot.bay(1)
 		stage = 3
 	elif stage == 3 and game.score == 1:
 		print("TEST host: delivered exactly once")
@@ -114,7 +114,7 @@ func _run_guest() -> void:
 		game.session.send_action("interact")
 		if game.cargos[1].rules.holder_id == game.local_id:
 			if game.workers[game.local_id].position.x < initial_x + 0.15:
-				_fail("Guest did not observe movement")
+				_fail("Guest did not observe movement: start=%f current=%f" % [initial_x, game.workers[game.local_id].position.x])
 				return
 			print("TEST guest: authoritative pickup observed")
 			stage_time = Time.get_ticks_msec()

@@ -17,11 +17,11 @@ func run() -> void:
 	await physics_frame
 	await physics_frame
 	var space: PhysicsDirectSpaceState3D = game.get_world_3d().direct_space_state
-	for at in [Vector3(14, 2, -24), Vector3(-14, 2, -24), Vector3(14, 2, 7)]:
+	for at in [Vector3(23, 2, -46), Vector3(-23, 2, -46), Vector3(23, 2, 10)]:
 		check(not space.intersect_ray(PhysicsRayQueryParameters3D.create(at, at + Vector3.DOWN * 4, 1)).is_empty(), "expanded floor exists at " + str(at))
 	for cargo in game.cargos.values():
 		for id in [1,2]:
-			var target := Layout.bay(id)
+			var target: Vector3 = game.depot.bay(id)
 			var start: Vector3 = cargo.home + Vector3.UP * 0.5
 			check(start.distance_to(target) > 20, "intake is separated from dispatch")
 			check(not space.intersect_ray(PhysicsRayQueryParameters3D.create(start, target, 1)).is_empty(), "central partition blocks direct dispatch sightline")
@@ -30,12 +30,12 @@ func run() -> void:
 	for source in game.cargos.values():
 		for id in [1, 2]:
 			var start: Vector3 = source.home + Vector3.UP * 0.5
-			var direction: Vector3 = Layout.bay(id) - start
+			var direction: Vector3 = game.depot.bay(id) - start
 			direction.y = 0
 			var hit: Dictionary = source.predict_contact(start, direction.normalized() * source.THROW_SPEED + Vector3.UP * source.THROW_LIFT)
 			check(not hit.is_empty(), "intake throw finds a solid contact")
 			if not hit.is_empty():
-				check(Vector2(hit.center.x, hit.center.z).distance_to(Vector2(Layout.bay(id).x, Layout.bay(id).z)) > 3, "intake throw cannot reach dispatch in one flight")
+				check(Vector2(hit.center.x, hit.center.z).distance_to(Vector2(game.depot.bay(id).x, game.depot.bay(id).z)) > 3, "intake throw cannot reach dispatch in one flight")
 	# The belt must transport packages across the sorting wall's depth, not into it.
 	var belt_start := Layout.BELT_CENTER + Vector3(0, 0.45, 2.5)
 	var belt_end := Layout.BELT_CENTER + Vector3(0, 0.45, -2.5)
@@ -48,7 +48,7 @@ func run() -> void:
 	capsule.radius = 0.32
 	capsule.height = 1.65
 	for side in [-1,1]:
-		var route := [Vector3(0, 0, 6.5), Vector3(side * 10, 0, 6.5), Vector3(side * 10, 0, -22.0)]
+		var route := [Vector3(0, 0, 6.5), Vector3(side * 21, 0, 6.5), Vector3(side * 21, 0, -43.0), Vector3(side * 15, 0, -43.0)]
 		for index in range(route.size() - 1):
 			for held in [false,true]:
 				var request := PhysicsShapeQueryParameters3D.new()
@@ -63,14 +63,14 @@ func run() -> void:
 	cargo.body.position = Vector3(14, 0.55, -24)
 	cargo.step(0.01, game.workers)
 	check(cargo.recovery_left == 0, "expanded playable corner does not recover")
-	cargo.body.position = Vector3(18, 0.55, -24)
+	cargo.body.position = Vector3(26, 0.55, -24)
 	cargo.step(0.01, game.workers)
 	check(cargo.recovery_left > 0, "outside expanded boundary recovers")
 	for id in [1,2]:
 		cargo.reset_crate()
 		cargo.rules.destination = id
 		cargo.body.freeze = true
-		cargo.body.position = Layout.bay(id)
+		cargo.body.position = game.depot.bay(id)
 		var previous: int = cargo.rules.score
 		cargo.step(0.01, game.workers)
 		check(cargo.rules.score == previous + 1, "new dispatch scores at bay " + str(id))

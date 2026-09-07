@@ -23,7 +23,7 @@ func complete_contract() -> void:
 		cargo.reset_crate()
 		game.contracts.replace_cargo(1)
 		cargo.body.freeze = true
-		cargo.body.position = Layout.bay(cargo.rules.destination)
+		cargo.body.position = game.depot.bay(cargo.rules.destination)
 		cargo.step(0.01, game.workers)
 	game._physics_process(0.001)
 	print("CAMPAIGN CHECK stage=%d bank=%d earned=%d relays=%d score=%d quota=%d" % [game.contracts.stage,game.contracts.credits,game.contracts.earned,game.contracts.relays,game.score,game.round_state.quota])

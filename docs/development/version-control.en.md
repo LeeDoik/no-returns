@@ -51,3 +51,8 @@ Restoring source into another folder or PC requires preparing Godot first. `tool
 ## 0.7.3 Editable map record
 
 `v0.7.3` adds a saved map scene, solid block prefab, editing/build launchers, placement-driven gameplay and protocol 8 map matching. Validated on `codex/editable-map` and integrated into main. [Map editing guide](map-editing.en.md).
+
+
+## 0.7.4 Shipping Shrine expansion
+
+Implement and validate the 48×60 m map, pressure shortcut and periodic airflow on `codex/shrine-expansion`, then integrate into main. Preserve `v0.7.4` as the new local baseline. The previous map remains in `v0.7.3` history. [Expansion record](../superpowers/plans/2026-09-08-shrine-expansion.en.md).

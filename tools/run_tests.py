@@ -51,6 +51,7 @@ def main():
         ("tests/test_packrat.gd", "packrat", b"PACKRAT PASS"),
         ("tests/test_relay_flight.gd", "relay-flight", b"RELAY FLIGHT PASS"),
         ("tests/test_editable_map.gd", "editable-map", b"EDITABLE MAP PASS"),
+        ("tests/test_route_challenges.gd", "route-challenges", b"ROUTE CHALLENGES PASS"),
     ):
         result = subprocess.run(command(script, role), cwd=ROOT,
                                 capture_output=True, timeout=30)
@@ -65,7 +66,8 @@ def main():
                            ("tests/test_expanded_network.gd", "expanded-network"),
                            ("tests/test_campaign_network.gd", "campaign-network"),
                            ("tests/test_protocol_network.gd", "protocol-network"),
-                           ("tests/test_map_network.gd", "map-network")):
+                           ("tests/test_map_network.gd", "map-network"),
+                           ("tests/test_routes_network.gd", "routes-network")):
         if run_pair(script, prefix):
             return 1
     return run_four()

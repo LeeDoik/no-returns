@@ -81,7 +81,7 @@ func map_fingerprint() -> String:
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings := PackedStringArray()
-	for path in ["Environment/Overview","ThrowMarker","Gameplay/DispatchA/DeliveryZone/CollisionShape3D","Gameplay/DispatchB/DeliveryZone/CollisionShape3D","Gameplay/Conveyor/TransportZone/CollisionShape3D","Gameplay/Conveyor/Lever/Handle","Gameplay/PackratTerritory/StartPoint","Gameplay/PackratTerritory/ReturnPoint","Gameplay/PackratTerritory/ActivityZone/CollisionShape3D","Gameplay/PlayableBounds/CollisionShape3D"]:
+	for path in ["Environment/Overview","ThrowMarker","Gameplay/DispatchA/DeliveryZone/CollisionShape3D","Gameplay/DispatchB/DeliveryZone/CollisionShape3D","Gameplay/Conveyor/TransportZone/CollisionShape3D","Gameplay/Conveyor/Lever/Handle","Gameplay/PackratTerritory/StartPoint","Gameplay/PackratTerritory/ReturnPoint","Gameplay/PackratTerritory/ActivityZone/CollisionShape3D","Gameplay/PlayableBounds/CollisionShape3D","Gameplay/RouteChallenges/Gate/Door/CollisionShape3D","Gameplay/RouteChallenges/Gate/PlateFront/CollisionShape3D","Gameplay/RouteChallenges/Gate/PlateBack/CollisionShape3D","Gameplay/RouteChallenges/AirMail/WindZone/CollisionShape3D"]:
 		if not has_node(path): warnings.append("필수 맵 항목 / Required map node: " + path)
 	for id in range(1,5):
 		for path in ["Gameplay/WorkerSpawns/Worker%d"%id,"Gameplay/CargoSpawns/Cargo%d"%id]:

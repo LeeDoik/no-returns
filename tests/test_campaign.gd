@@ -37,7 +37,7 @@ func run() -> void:
 	check(cargo.pickup(receiver) and cargo.relay_ready, "different crew member catches valid airborne relay")
 	cargo.release(receiver, false)
 	cargo.body.freeze = true
-	cargo.body.position = Layout.bay(1)
+	cargo.body.position = game.depot.bay(1)
 	cargo.step(0.01, game.workers)
 	check(game.contracts.earned == 15 and game.contracts.relays == 1, "correct delivery rewards one relay")
 	check(not cargo.relay_ready, "dispatch consumes relay provenance")
@@ -59,7 +59,7 @@ func run() -> void:
 			cargo.reset_crate()
 			game.contracts.replace_cargo(1)
 			cargo.body.freeze = true
-			cargo.body.position = Layout.bay(cargo.rules.destination)
+			cargo.body.position = game.depot.bay(cargo.rules.destination)
 			cargo.step(0.01, game.workers)
 		game._physics_process(0.01)
 		check(game.phase == "won" and game.contracts.won, "physical shipments complete contract %d" % stage)

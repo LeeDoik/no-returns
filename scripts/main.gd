@@ -32,6 +32,7 @@ var participation := 0
 var round_state = Round.new()
 var pings: Node3D
 var conveyor: Node3D
+var routes: Node3D
 var replacements: Dictionary = {}
 var replay_seed := -1
 
@@ -77,6 +78,7 @@ func _ready() -> void:
 	add_child(feedback)
 	depot = get_node("Map")
 	conveyor = depot.get_node("Gameplay/Conveyor")
+	routes = depot.get_node("Gameplay/RouteChallenges")
 	for id in [1, 2, 3, 4]:
 		var cargo = Cargo.new()
 		cargo.cargo_id = id
@@ -190,6 +192,7 @@ func leave_game() -> void:
 	replacements.clear()
 	if pings: pings.clear()
 	if conveyor: conveyor.reset()
+	if routes: routes.reset()
 	phase = "menu"
 	time_left = SHIFT_SECONDS
 	notice_key = ""
@@ -276,6 +279,7 @@ func start_shift() -> void:
 	replacements.clear()
 	if pings: pings.clear()
 	if conveyor: conveyor.reset()
+	if routes: routes.reset()
 	round_state.start(workers.size(), replay_seed)
 	if contracts.enabled:
 		if contracts.finished: contracts.begin()
@@ -470,12 +474,13 @@ func _physics_process(delta: float) -> void:
 		time_left = maxf(0, time_left - delta)
 		for member in horn_cooldowns: horn_cooldowns[member] = maxf(0, float(horn_cooldowns[member]) - delta)
 		if contracts.enabled: packrat.step(delta, workers, cargos)
+		routes.step(delta, workers, cargos)
 		for id in workers:
 			workers[id].speed_scale = 0.7 if cargos[3].cling.target_kind == "worker" and cargos[3].cling.target_id == id else 1.0
 			if contracts.enabled: workers[id].speed_scale *= 1.0 + contracts.boots * 0.08
 			var sample: Dictionary = inputs.get(id, {})
 			var fresh: bool = Time.get_ticks_msec() - int(sample.get("at", -10000)) < 300
-			var belt_drift: Vector3 = conveyor.worker_drift(workers[id])
+			var belt_drift: Vector3 = conveyor.worker_drift(workers[id]) + routes.worker_drift(workers[id])
 			workers[id].simulate(sample.get("move", Vector2.ZERO) if fresh else Vector2.ZERO, float(sample.get("yaw", workers[id].heading)), bool(sample.get("jump", false)) if fresh else false, delta, belt_drift)
 			if inputs.has(id):
 				inputs[id]["jump"] = false
@@ -684,7 +689,7 @@ func _feedback(kind: String) -> void:
 func _metadata_snapshot() -> Dictionary:
 	var clocks := {}
 	for id in horn_cooldowns: clocks[id] = ceili(float(horn_cooldowns[id]))
-	return {"campaign":contracts.snapshot(), "horn":clocks, "lessons":lessons.duplicate(), "event":ui_event, "sound":ui_event_kind}
+	return {"campaign":contracts.snapshot(), "horn":clocks, "lessons":lessons.duplicate(), "event":ui_event, "sound":ui_event_kind, "routes":routes.snapshot()}
 
 func _publish_metadata(force: bool = false) -> void:
 	if not session or session.mode not in ["host", "practice"]: return
@@ -696,6 +701,7 @@ func _publish_metadata(force: bool = false) -> void:
 
 func _receive_metadata(data: Dictionary) -> void:
 	contracts.apply_snapshot(data.get("campaign", {}))
+	routes.apply_snapshot(data.get("routes", PackedFloat32Array()))
 	if contracts.enabled:
 		if observed_run != contracts.run_id:
 			observed_run = contracts.run_id

@@ -112,3 +112,10 @@ The Shipping Shrine adds a huge cardboard boss, hungry A/B altars and Packrat as
 ## 0.7.3 Map editing support
 
 The map is now a saved scene editable directly in Godot. Moving bays, belt, nest and spawns also updates gameplay locations. Protocol 8 rejects guests with different maps. After editing, rebuild and have everyone use the same ZIP. Existing EXE/ZIP paths remain; the game version is 0.7.3.
+
+
+## 0.7.4 A larger Shipping Shrine
+
+The map is 48×60 m, 2.5 times the previous area. Dispatch moves farther back, with a relay lounge, permanently open left bypass, central pressure-plate shortcut and periodic right-side airflow. Stand a worker or free package on a plate to open the door, with 6 seconds of grace after leaving. An occupied doorway prevents closure. Airflow repeats 5 seconds idle, 1.5 seconds warning and 2.5 seconds active, pushing workers and free cargo in the arrow direction. Solo players can weigh the plate with a package or run through during the grace period. Mechanism clocks stop in lobby/results and reset each contract.
+
+Controls are unchanged. Contracts remain 240 seconds. Everyone must use the same 0.7.4 ZIP with protocol 9. Difficulty and fun on the enlarged map still need human playtesting.

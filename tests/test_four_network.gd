@@ -170,7 +170,7 @@ func host_step() -> void:
 				return
 			standard.body.freeze = true
 			standard.body.linear_velocity = Vector3.ZERO
-			standard.body.position = Layout.bay(1)
+			standard.body.position = game.depot.bay(1)
 			stage = 6
 		6:
 			if game.score != 1:

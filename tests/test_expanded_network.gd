@@ -123,7 +123,7 @@ func host_step() -> void:
 			if not checkpoint.acknowledged:
 				return
 			var cargo = game.cargos[1]
-			cargo.body.position = Layout.bay(2)
+			cargo.body.position = game.depot.bay(2)
 			stage = 5
 		5:
 			if game.score != 1:
