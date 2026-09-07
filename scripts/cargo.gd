@@ -4,6 +4,7 @@ signal sneezed(cargo: Node3D)
 signal notice(key: String)
 signal relay_caught(peer_id: int)
 
+var map_layout = null
 const Layout = preload("res://scripts/depot_layout.gd")
 const Rules = preload("res://scripts/cargo_rules.gd")
 const Sneeze = preload("res://scripts/sneeze_rules.gd")
@@ -242,11 +243,11 @@ func step(delta: float, workers: Dictionary) -> void:
 	if rules.holder_id != 0 and workers.has(rules.holder_id):
 		move_held(workers[rules.holder_id])
 	else:
-		if Layout.outside(body.position):
+		if (map_layout.outside(body.position) if is_instance_valid(map_layout) else Layout.outside(body.position)):
 			recover("recovered")
 			return
-		if Layout.dock_at(body.position) != 0:
-			var dock := Layout.dock_at(body.position)
+		var dock: int = map_layout.dock_at(body.position) if is_instance_valid(map_layout) else Layout.dock_at(body.position)
+		if dock != 0:
 			if dock != 0:
 				recover("shipped" if rules.try_dispatch(dock) else "wrong_bay")
 				return

@@ -11,5 +11,27 @@ func _initialize() -> void:
 			push_error("Missing packed script: " + script)
 			quit(1)
 			return
-	print("PACK AUDIT PASS: 23 compiled gameplay scripts available")
+	for script in ["editable_map", "editable_block", "map_sign", "map_zone"]:
+		if not FileAccess.file_exists("res://scripts/%s.gdc" % script):
+			push_error("Missing packed editor runtime: " + script)
+			quit(1)
+			return
+	var scene_path := "res://scenes/maps/shipping_shrine.tscn"
+	var remap := ConfigFile.new()
+	if remap.load(scene_path + ".remap") != OK:
+		push_error("Saved map missing from exported pack")
+		quit(1)
+		return
+	var scene = load(scene_path)
+	if not scene is PackedScene:
+		quit(1)
+		return
+	var map = scene.instantiate()
+	var identity: String = map.map_fingerprint()
+	if identity.length() != 64 or not FileAccess.file_exists(str(remap.get_value("remap", "path", ""))):
+		push_error("Exported map identity failed")
+		quit(1)
+		return
+	map.free()
+	print("PACK AUDIT PASS: 27 compiled gameplay scripts and saved map identity available: " + identity)
 	quit(0)

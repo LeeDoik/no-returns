@@ -1,5 +1,6 @@
 extends Node3D
 
+const Zone = preload("res://scripts/map_zone.gd")
 const Layout = preload("res://scripts/depot_layout.gd")
 const SPEED := 2.0
 const USE_DISTANCE := 2.4
@@ -10,8 +11,16 @@ var cooldown := 0.0
 var active := false
 var stripes: Array[MeshInstance3D] = []
 var handle: MeshInstance3D
+var edited := false
 
 func _ready() -> void:
+	edited = has_node("Bed")
+	if edited:
+		for child in get_children():
+			if child is MeshInstance3D and str(child.name).begins_with("Stripe"): stripes.append(child)
+		handle = get_node("Lever/Handle")
+		_present()
+		return
 	var bed := MeshInstance3D.new()
 	var bed_mesh := BoxMesh.new()
 	bed_mesh.size = Vector3(2.2, 0.08, 6.0)
@@ -57,6 +66,9 @@ func reset() -> void:
 	_present()
 
 func drift_at(at: Vector3) -> Vector3:
+	if edited:
+		if not Zone.contains(get_node("TransportZone"),at): return Vector3.ZERO
+		return global_basis.orthonormalized() * Vector3(0,0,direction*SPEED)
 	if absf(at.x - Layout.BELT_CENTER.x) > 1.1 or absf(at.z - Layout.BELT_CENTER.z) > 3.0:
 		return Vector3.ZERO
 	return Vector3(0, 0, direction * SPEED)
@@ -75,7 +87,8 @@ func try_reverse(peer_id: int, workers: Dictionary, phase: String) -> bool:
 func can_use(worker: Node3D) -> bool:
 	if not is_instance_valid(worker):
 		return false
-	var offset: Vector3 = Layout.LEVER - worker.position
+	var lever_position: Vector3 = get_node("Lever").global_position if edited else Layout.LEVER
+	var offset: Vector3 = lever_position - worker.position
 	offset.y = 0
 	if offset.length() > USE_DISTANCE or offset.is_zero_approx():
 		return false
@@ -83,7 +96,7 @@ func can_use(worker: Node3D) -> bool:
 	facing.y = 0
 	if facing.normalized().dot(offset.normalized()) < 0.5:
 		return false
-	var ray := PhysicsRayQueryParameters3D.create(worker.position + Vector3.UP, Layout.LEVER + Vector3.UP * 0.7, 1, [worker.get_rid()])
+	var ray := PhysicsRayQueryParameters3D.create(worker.position + Vector3.UP, lever_position + Vector3.UP * 0.7, 1, [worker.get_rid()])
 	if not get_world_3d().direct_space_state.intersect_ray(ray).is_empty():
 		return false
 	return true
@@ -123,11 +136,17 @@ func _present() -> void:
 		handle.rotation.x = direction * 0.55
 
 func _process(delta: float) -> void:
+	var center_z: float = 0.0 if edited else Layout.BELT_CENTER.z
 	if not active:
 		return
 	for stripe in stripes:
 		stripe.position.z += direction * SPEED * delta
-		if stripe.position.z < Layout.BELT_CENTER.z - 2.7:
+		if stripe.position.z < center_z - 2.7:
 			stripe.position.z += 5.4
-		elif stripe.position.z > Layout.BELT_CENTER.z + 2.7:
+		elif stripe.position.z > center_z + 2.7:
 			stripe.position.z -= 5.4
+
+func worker_drift(worker: Node3D) -> Vector3:
+	var relative: Vector3 = to_local(worker.global_position) if edited else worker.global_position
+	if relative.y < -0.1 or relative.y > 0.15: return Vector3.ZERO
+	return drift_at(worker.global_position)

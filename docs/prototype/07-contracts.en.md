@@ -107,3 +107,8 @@ Added active cargo search and approach. Patrol waypoints moved to the lane cente
 ## 0.7.2 map retheme
 
 The Shipping Shrine adds a huge cardboard boss, hungry A/B altars and Packrat as employee of the month. Deliver matching cargo to the A/B tongue-shaped pads. Small mouth motion is decorative, with no damage or timed-delivery requirement. Dimensions, routes, theft and contract rules remain. Existing executable paths now contain 0.7.2.
+
+
+## 0.7.3 Map editing support
+
+The map is now a saved scene editable directly in Godot. Moving bays, belt, nest and spawns also updates gameplay locations. Protocol 8 rejects guests with different maps. After editing, rebuild and have everyone use the same ZIP. Existing EXE/ZIP paths remain; the game version is 0.7.3.

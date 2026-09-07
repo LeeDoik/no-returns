@@ -46,3 +46,8 @@ Godot 캐시 `.godot/`, 내려받은 엔진·템플릿 `.tools/`, 검사 기록 
 ## 0.7 협동 계약 기록
 
 `v0.7.0`은 세 계약, 공동 금고와 장비, 릴레이 보상, 포장쥐, 안내/설정, 프로토콜 7을 묶은 개발 기준점입니다. `codex/cooperative-contracts`의 검증한 변경을 `main`에 반영합니다. 0.5/0.6 태그와 기존 배포 폴더는 보존합니다. [0.7 구현·검증 기록](../superpowers/plans/2026-09-07-release-polish.ko.md), [플레이 안내](../prototype/07-contracts.ko.md)를 참고하세요. Steam 출시 완료를 뜻하지 않습니다.
+
+
+## 0.7.3 편집 가능한 맵 기록
+
+`v0.7.3`은 저장된 맵 씬, 기본 벽 예제, 편집·빌드 바로가기, 실제 배치 기반 판정과 프로토콜 8 맵 일치 검사를 추가합니다. `codex/editable-map`에서 검증하고 main에 반영합니다. [맵 편집 안내](map-editing.ko.md).

@@ -2,7 +2,6 @@ extends Node3D
 
 const Rules = preload("res://scripts/cargo_rules.gd")
 const Session = preload("res://scripts/session.gd")
-const Depot = preload("res://scripts/depot.gd")
 const Worker = preload("res://scripts/worker.gd")
 const Interface = preload("res://scripts/interface.gd")
 const Copy = preload("res://scripts/copy.gd")
@@ -76,15 +75,14 @@ func _ready() -> void:
 	profile.load_record()
 	feedback = Feedback.new()
 	add_child(feedback)
-	depot = Depot.new()
-	add_child(depot)
-	conveyor = Conveyor.new()
-	add_child(conveyor)
+	depot = get_node("Map")
+	conveyor = depot.get_node("Gameplay/Conveyor")
 	for id in [1, 2, 3, 4]:
 		var cargo = Cargo.new()
 		cargo.cargo_id = id
 		cargo.kind = {1: "standard", 2: "sneezer", 3: "clinger", 4: "hopper"}[id]
-		cargo.home = {1: Vector3(0, 0.55, 1.1), 2: Vector3(-2, 0.55, 4), 3: Vector3(2, 0.55, 4), 4: Vector3(4, 0.55, 1)}[id]
+		cargo.map_layout = depot
+		cargo.home = depot.cargo_spawn(id)
 		cargo.name = "Cargo_%d" % id
 		add_child(cargo)
 		cargo.sneezed.connect(_apply_sneeze)
@@ -98,6 +96,7 @@ func _ready() -> void:
 		cargo.relay_caught.connect(func(_peer: int): _set_notice("relay", 3); _feedback("relay"))
 		cargos[id] = cargo
 	packrat = Packrat.new()
+	packrat.map_layout = depot
 	add_child(packrat)
 	packrat.reset(cargos)
 	pings = Pings.new()
@@ -106,6 +105,7 @@ func _ready() -> void:
 	worker_root.name = "Workers"
 	add_child(worker_root)
 	session = Session.new()
+	session.map_id = depot.map_fingerprint()
 	session.name = "Session"
 	add_child(session)
 	session.joined.connect(_joined)
@@ -253,6 +253,7 @@ func _add_worker(peer_id: int, assigned_slot: int = -1) -> void:
 				assigned_slot = candidate
 				break
 	var worker = Worker.new()
+	worker.map_layout = depot
 	worker.peer_id = peer_id
 	worker.slot = assigned_slot
 	worker.name = "Worker_%d" % peer_id
@@ -474,7 +475,7 @@ func _physics_process(delta: float) -> void:
 			if contracts.enabled: workers[id].speed_scale *= 1.0 + contracts.boots * 0.08
 			var sample: Dictionary = inputs.get(id, {})
 			var fresh: bool = Time.get_ticks_msec() - int(sample.get("at", -10000)) < 300
-			var belt_drift: Vector3 = conveyor.drift_at(workers[id].position) if workers[id].position.y >= -0.1 and workers[id].position.y <= 0.15 else Vector3.ZERO
+			var belt_drift: Vector3 = conveyor.worker_drift(workers[id])
 			workers[id].simulate(sample.get("move", Vector2.ZERO) if fresh else Vector2.ZERO, float(sample.get("yaw", workers[id].heading)), bool(sample.get("jump", false)) if fresh else false, delta, belt_drift)
 			if inputs.has(id):
 				inputs[id]["jump"] = false

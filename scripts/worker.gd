@@ -2,13 +2,14 @@ extends CharacterBody3D
 
 const Preferences = preload("res://scripts/preferences.gd")
 
+var map_layout = null
 var peer_id := 0
 var slot := 1
 const SUITS := [Color("eda941"), Color("5ccbc2"), Color("b99ee7"), Color("ef8f91")]
 const SPAWNS := [Vector3(-1, 0.05, 3), Vector3(0.8, 0.05, 3), Vector3(-1, 0.05, 5.3), Vector3(0.8, 0.05, 5.3)]
 
 func spawn_position() -> Vector3:
-	return SPAWNS[clampi(slot, 1, 4) - 1]
+	return map_layout.worker_spawn(slot) if is_instance_valid(map_layout) else SPAWNS[clampi(slot, 1, 4) - 1]
 var heading := 0.0
 var look_yaw := 0.0
 var look_pitch := -0.22

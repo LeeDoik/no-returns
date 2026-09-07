@@ -12,8 +12,9 @@ signal creature_received(state: Array)
 
 const DEFAULT_PORT := 27842
 const MAX_WORKERS := 4
-const PROTOCOL := 7
+const PROTOCOL := 8
 var protocol := PROTOCOL
+var map_id := ""
 var pending: Dictionary = {}
 var admitted: Dictionary = {}
 var confirmed := false
@@ -90,7 +91,7 @@ func _on_peer_connected(peer_id: int) -> void:
 		# Let the reliable rejection arrive; the rejected guest closes its connection.
 		return
 	pending[peer_id] = Time.get_ticks_msec() + 6000
-	_hello.rpc_id(peer_id, protocol)
+	_hello.rpc_id(peer_id, protocol, map_id)
 
 func _on_peer_disconnected(peer_id: int) -> void:
 	last_action.erase(peer_id)
@@ -149,15 +150,18 @@ func _receive_snapshot(snapshot: Dictionary) -> void:
 		snapshot_received.emit(snapshot)
 
 @rpc("authority", "call_remote", "reliable")
-func _hello(expected: int) -> void:
+func _hello(expected: int, expected_map: String) -> void:
 	if mode != "guest": return
 	if expected != protocol:
 		close("version_mismatch")
 		return
-	_identify.rpc_id(1, protocol)
+	if expected_map != map_id:
+		close("map_mismatch")
+		return
+	_identify.rpc_id(1, protocol, map_id)
 
 @rpc("any_peer", "call_remote", "reliable")
-func _identify(version: int) -> void:
+func _identify(version: int, guest_map: String) -> void:
 	if mode != "host": return
 	var id := multiplayer.get_remote_sender_id()
 	if not pending.has(id): return
@@ -167,6 +171,9 @@ func _identify(version: int) -> void:
 		return
 	if in_shift:
 		_reject.rpc_id(id)
+		return
+	if guest_map != map_id:
+		_map_reject.rpc_id(id)
 		return
 	admitted[id] = true
 	_accepted.rpc_id(id, protocol)
@@ -197,3 +204,7 @@ func _accepted(version: int) -> void:
 	if mode != "guest" or version != protocol: return
 	confirmed = true
 	joined.emit()
+
+@rpc("authority", "call_remote", "reliable")
+func _map_reject() -> void:
+	close("map_mismatch")

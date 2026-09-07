@@ -46,3 +46,8 @@ Restoring source into another folder or PC requires preparing Godot first. `tool
 ## 0.7 cooperative contracts record
 
 `v0.7.0` is the development baseline for three contracts, shared bank/equipment, relay rewards, Packrat, help/settings and protocol 7. Validated changes from `codex/cooperative-contracts` are integrated into `main`. The 0.5/0.6 tags and old export folders remain. See [implementation/evidence](../superpowers/plans/2026-09-07-release-polish.en.md) and [play guide](../prototype/07-contracts.en.md). This does not mean Steam release completion.
+
+
+## 0.7.3 Editable map record
+
+`v0.7.3` adds a saved map scene, solid block prefab, editing/build launchers, placement-driven gameplay and protocol 8 map matching. Validated on `codex/editable-map` and integrated into main. [Map editing guide](map-editing.en.md).

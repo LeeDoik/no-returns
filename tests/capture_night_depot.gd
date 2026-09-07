@@ -7,7 +7,7 @@ func _run() -> void:
 	game.test_mode = true
 	game.set_physics_process(false)
 	await settle(25)
-	for landmark in ["SortingWall", "DispatchA", "DispatchB", "PackratNest"]:
+	for landmark in ["Geometry/SortingWall", "Gameplay/DispatchA", "Gameplay/DispatchB", "Gameplay/PackratTerritory"]:
 		if game.depot.get_node_or_null(landmark) == null:
 			failures += 1
 			push_error("Night depot landmark missing: %s" % landmark)

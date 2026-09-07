@@ -4,7 +4,7 @@
 
 > The packages are alive. Ship them anyway.
 
-**Current version: Shipping Shrine playtest 0.7.2 · September 7, 2026**
+**Current version: Shipping Shrine playtest 0.7.3 · September 8, 2026**
 
 A Godot third-person delivery game for solo play or 2–4 cooperating workers. Complete three contracts in an absurd shrine that receives parcels as offerings, buy equipment with shared earnings, relay packages and recover cargo stolen by Packrat. The target is a Windows Steam release; this is a development build using primitive art.
 
@@ -46,13 +46,13 @@ The detailed design separates official reference facts from our interpretation. 
 
 ## Validation and remaining release work
 
-Twenty-one behavior tests, six real two-process scenarios, the four-process scenario and the SteamPipe generator test passed. Coverage includes campaign completion, shared purchases/readiness, theft/horn rescue, actual-flight relay, settled-floor cargo transport to the nest, first-launch settings and duplicate/late-join completion records. Worst tested motion snapshot is 1,280 bytes; separate campaign metadata stays ≤2,048 and creature state ≤256 bytes.
+Twenty-two behavior tests, seven real two-process scenarios, the four-process scenario and the SteamPipe generator test passed. Coverage includes campaign completion, shared purchases/readiness, theft/horn rescue, actual-flight relay, settled-floor cargo transport to the nest, first-launch settings and duplicate/late-join completion records. Worst tested motion snapshot is 1,280 bytes; separate campaign metadata stays ≤2,048 and creature state ≤256 bytes.
 
 **This is not a Steam release.** Steamworks enrollment and real App/Depot IDs are unavailable. Current transport is direct-address ENet with the host PC as server; Steam friend invites and relay are absent. Separate PCs/external networks, target-hardware performance, independent friend-group fun testing, final art/store imagery/trailer/rights review, Steam installation and Valve review remain open. Automated passes do not establish fun or internet connection quality.
 
 ## Version control
 
-Local Git retains the 0.5/0.6 baselines. This change is identified by `v0.7.2`; no GitHub remote is connected. See [version history and recovery](docs/development/version-control.en.md) and [documentation rules](AGENTS.md).
+Local Git retains the 0.5/0.6 baselines. This change is identified by `v0.7.3`; no GitHub remote is connected. See [version history and recovery](docs/development/version-control.en.md) and [documentation rules](AGENTS.md).
 
 
 ## 0.7.1 Packrat fix
@@ -63,3 +63,10 @@ Fixed ignoring nearby visible cargo: search within 6 m in the right lane, approa
 ## 0.7.2 The Shipping Shrine
 
 A giant cardboard boss watches over the rethemed shrine. A/B bays are hungry faces, and the rat nest is an employee-of-the-month display. Intake receives offerings and the belt is the path to promotion. Added bilingual deadpan signs, purple/gold surroundings and small decorative motion. Both carrying routes and delivery rules remain. [Concept and implementation record](docs/superpowers/plans/2026-09-07-shipping-shrine.en.md).
+
+
+## 0.7.3 Visually editable map
+
+Double-click **[EDIT_MAP.cmd](EDIT_MAP.cmd)** to open the editable map. Place walls, lights, bays, the belt, rat territory and spawns, then Ctrl+S → F5 to test. The wall prefab keeps mesh and collision dimensions aligned. **[Map editing guide](docs/development/map-editing.en.md)** covers your first wall move through map expansion.
+
+Before sharing with friends, rebuild using **[BUILD.cmd](BUILD.cmd)** and use the same ZIP. Protocol 8 rejects different maps. The saved map is not regenerated at runtime.

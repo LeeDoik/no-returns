@@ -14,6 +14,7 @@ const PROTECTION_SECONDS := 8.0
 const SPEED := 2.7
 const PATROL := [Vector3(10, 0.05, -3.2), Vector3(10, 0.05, -8), Vector3(10, 0.05, -14), Vector3(13, 0.05, -17)]
 
+var map_layout = null
 var active := false
 var phase := "off"
 var remaining := 0.0
@@ -64,7 +65,7 @@ func _ready() -> void:
 	label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 	label.position.y = 1.25
 	add_child(label)
-	position = START
+	position = _start_point()
 	target_position = position
 	_present()
 
@@ -94,7 +95,7 @@ func reset(cargos: Dictionary) -> void:
 	stuck_time = 0.0
 	protections.clear()
 	horn_cooldowns.clear()
-	position = START
+	position = _start_point()
 	target_position = position
 	velocity = Vector3.ZERO
 	_present()
@@ -146,7 +147,7 @@ func step(delta: float, workers: Dictionary, cargos: Dictionary) -> void:
 					target_id = 0
 					phase = "patrol"
 					stuck_time = 0.0
-					patrol_index = (patrol_index + 1) % PATROL.size()
+					patrol_index = (patrol_index + 1) % _patrol_points().size()
 		"warning":
 			var cargo = cargos.get(target_id)
 			if not _eligible(cargo) or position.distance_to(cargo.body.global_position) > STEAL_RADIUS:
@@ -163,15 +164,15 @@ func step(delta: float, workers: Dictionary, cargos: Dictionary) -> void:
 				carried_id = 0
 				phase = "patrol"
 			else:
-				if not _move_carried(cargo, Layout.NEST, delta):
+				if not _move_carried(cargo, _nest_point(), delta):
 					_drop_carried(cargos, false)
 					_present()
 					return
-				if global_position.distance_to(Layout.NEST) <= 1.2:
+				if global_position.distance_to(_nest_point()) <= 1.2:
 					_drop_carried(cargos, true)
 		"flee":
 			remaining = maxf(0, remaining - delta)
-			_move_toward(PATROL[(patrol_index + 2) % PATROL.size()], delta)
+			_move_toward(_patrol_points()[(patrol_index + 2) % _patrol_points().size()], delta)
 			if remaining <= 0:
 				phase = "patrol"
 		"patrol":
@@ -182,10 +183,10 @@ func step(delta: float, workers: Dictionary, cargos: Dictionary) -> void:
 				remaining = WARNING_SECONDS if phase == "warning" else 0.0
 				stuck_time = 0.0
 			else:
-				var goal: Vector3 = PATROL[patrol_index]
+				var goal: Vector3 = _patrol_points()[patrol_index]
 				_move_toward(goal, delta)
 				if position.distance_to(goal) < 0.25:
-					patrol_index = (patrol_index + 1) % PATROL.size()
+					patrol_index = (patrol_index + 1) % _patrol_points().size()
 	_present()
 
 func scare(worker: Node3D, cargos: Dictionary) -> bool:
@@ -261,7 +262,7 @@ func _nearest(cargos: Dictionary):
 		if not _eligible(cargo):
 			continue
 		var at: Vector3 = cargo.body.global_position
-		if at.x < 8.5 or at.x > 14.5 or at.z < -19.0 or at.z > 0.0: continue
+		if not _searchable(at): continue
 		var candidate: float = position.distance_to(cargo.body.global_position)
 		if candidate < distance:
 			distance = candidate
@@ -303,7 +304,7 @@ func _drop_carried(cargos: Dictionary, protect: bool) -> void:
 		cargo.body.collision_layer = 4
 		cargo.body.collision_mask = 7
 		if protect:
-			cargo.body.global_position = Layout.NEST + Vector3(0, 0.55, 1.35)
+			cargo.body.global_position = _drop_point()
 			protections[carried_id] = PROTECTION_SECONDS
 	carried_id = 0
 	carry_offset = Vector3.ZERO
@@ -377,8 +378,11 @@ func _move_toward(goal: Vector3, delta: float) -> void:
 	facing = atan2(-direction.x, -direction.z)
 	velocity = direction * SPEED
 	move_and_collide(direction * minf(offset.length(), SPEED * delta))
-	position.x = clampf(position.x, 8.5, 14.5)
-	position.z = clampf(position.z, -19.0, 0.0)
+	if is_instance_valid(map_layout):
+		global_position = map_layout.rat_clamp(global_position)
+	else:
+		position.x = clampf(position.x, 8.5, 14.5)
+		position.z = clampf(position.z, -19.0, 0.0)
 
 func _process(delta: float) -> void:
 	if multiplayer.has_multiplayer_peer() and not multiplayer.is_server():
@@ -401,3 +405,14 @@ func _present() -> void:
 
 func _localized(english: String, korean: String) -> String:
 	return korean if Copy.language == "ko" else english
+
+func _nest_point() -> Vector3:
+	return map_layout.rat_nest() if is_instance_valid(map_layout) else Layout.NEST
+func _start_point() -> Vector3:
+	return map_layout.rat_start() if is_instance_valid(map_layout) else START
+func _drop_point() -> Vector3:
+	return map_layout.rat_drop() if is_instance_valid(map_layout) else Layout.NEST + Vector3(0,0.55,1.35)
+func _patrol_points() -> Array:
+	return map_layout.rat_patrol() if is_instance_valid(map_layout) else PATROL
+func _searchable(at: Vector3) -> bool:
+	return map_layout.rat_can_search(at) if is_instance_valid(map_layout) else at.x >= 8.5 and at.x <= 14.5 and at.z >= -19 and at.z <= 0
