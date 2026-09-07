@@ -113,7 +113,7 @@ func _receive_action(action: String) -> void:
 		_accept_action(multiplayer.get_remote_sender_id(), action)
 
 func _accept_action(peer_id: int, action: String) -> void:
-	if action not in ["interact", "throw", "start", "restart", "ping", "overtime"]:
+	if action not in ["interact", "throw", "start", "restart", "ping", "overtime", "lever"]:
 		return
 	var now := Time.get_ticks_msec()
 	if now - int(last_action.get(peer_id, -1000)) < 150:

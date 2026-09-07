@@ -44,6 +44,8 @@ def main():
         ("tests/test_preferences.gd", "preferences", b"PREFERENCES PASS"),
         ("tests/test_hopper.gd", "hopper", b"HOPPER PASS"),
         ("tests/test_expanded.gd", "expanded", b"EXPANDED PASS"),
+        ("tests/test_night_depot.gd", "night-depot", b"NIGHT DEPOT PASS"),
+        ("tests/test_conveyor.gd", "conveyor", b"CONVEYOR PASS"),
     ):
         result = subprocess.run(command(script, role), cwd=ROOT,
                                 capture_output=True, timeout=30)

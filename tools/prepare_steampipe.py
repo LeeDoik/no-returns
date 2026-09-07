@@ -26,7 +26,7 @@ def create(app_id: int, depot_id: int, content: Path, output: Path):
                          for name in sorted(allowed) if (content / name).is_file())
     depot = f'"DepotBuildConfig"\n{{\n\t"DepotID" "{depot_id}"\n{mappings}\n}}\n'
     app = (f'"AppBuild"\n{{\n\t"AppID" "{app_id}"\n'
-           f'\t"Desc" "NO RETURNS 0.5 private playtest"\n'
+           f'\t"Desc" "NO RETURNS 0.6 private playtest"\n'
            f'\t"ContentRoot" "{content.as_posix()}"\n'
            f'\t"BuildOutput" "{(output.resolve() / "logs").as_posix()}"\n'
            f'\t"Preview" "1"\n\t"Depots" {{ "{depot_id}" "depot_build.vdf" }}\n}}\n')
@@ -39,7 +39,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--app-id', type=int, required=True)
     parser.add_argument('--depot-id', type=int, required=True)
-    parser.add_argument('--content', type=Path, default=ROOT / 'build/NO_RETURNS_0.5')
+    parser.add_argument('--content', type=Path, default=ROOT / 'build/NO_RETURNS_0.6')
     parser.add_argument('--output', type=Path, default=ROOT / 'build/steampipe')
     args = parser.parse_args()
     print(create(args.app_id, args.depot_id, args.content, args.output))

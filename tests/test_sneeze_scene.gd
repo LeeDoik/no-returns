@@ -1,5 +1,7 @@
 extends SceneTree
 
+const Layout = preload("res://scripts/depot_layout.gd")
+
 var game: Node
 var failures := 0
 
@@ -118,7 +120,7 @@ func _run() -> void:
 	# Delivering Sneezer must add to the shared quota without resetting the other slot.
 	ordinary.rules.holder_id = 2
 	var score_before: int = game.score
-	source.body.position = Vector3(-4.5, 0.55, -7)
+	source.body.position = Layout.bay(1) - Vector3(0, 0.1, 0)
 	source.step(1.0 / 60.0, game.workers)
 	check(source.recovery_left > 0 and game.score == score_before + 1 and ordinary.rules.holder_id == 2, "Sneezer delivery increments shared quota and preserves other ownership")
 	source.step(0.1, game.workers)

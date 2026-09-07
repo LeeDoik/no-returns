@@ -7,7 +7,7 @@ import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
 ENGINE = ROOT / '.tools/godot/Godot_v4.7.2-stable_win64_console.exe'
-OUT = ROOT / 'build/NO_RETURNS_0.5'
+OUT = ROOT / 'build/NO_RETURNS_0.6'
 
 
 def main():
@@ -30,11 +30,11 @@ def main():
                                [b'SCRIPT ERROR', b'Failed to load', b'Aborting', b'No main scene']):
         raise RuntimeError(smoke_log.decode('utf-8', errors='replace'))
     files = [OUT / 'NO_RETURNS.exe', OUT / 'NO_RETURNS.pck']
-    for source, target in [('docs/prototype/05-expanded.ko.md', 'README.ko.md'),
-                           ('docs/prototype/05-expanded.en.md', 'README.en.md'),
+    for source, target in [('docs/prototype/06-night-depot.ko.md', 'README.ko.md'),
+                           ('docs/prototype/06-night-depot.en.md', 'README.en.md'),
                            ('THIRD_PARTY_NOTICES.txt', 'THIRD_PARTY_NOTICES.txt')]:
         text = (ROOT / source).read_text(encoding='utf-8')
-        text = text.replace('05-expanded.en.md', 'README.en.md').replace('05-expanded.ko.md', 'README.ko.md')
+        text = text.replace('06-night-depot.en.md', 'README.en.md').replace('06-night-depot.ko.md', 'README.ko.md')
         destination = OUT / target
         destination.write_text(text, encoding='utf-8')
         files.append(destination)
@@ -44,10 +44,10 @@ def main():
     manifest = {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in files}
     (OUT / 'SHA256.json').write_text(json.dumps(manifest, indent=2), encoding='ascii')
     files.append(OUT / 'SHA256.json')
-    archive = ROOT / 'build/NO_RETURNS_0.5_Windows.zip'
+    archive = ROOT / 'build/NO_RETURNS_0.6_Windows.zip'
     with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED) as zip_file:
         for file in files:
-            zip_file.write(file, f'NO_RETURNS_0.5/{file.name}')
+            zip_file.write(file, f'NO_RETURNS_0.6/{file.name}')
     print(f'PACKAGED {archive} ({archive.stat().st_size} bytes)')
 
 

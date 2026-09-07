@@ -3,6 +3,7 @@ extends Node3D
 signal sneezed(cargo: Node3D)
 signal notice(key: String)
 
+const Layout = preload("res://scripts/depot_layout.gd")
 const Rules = preload("res://scripts/cargo_rules.gd")
 const Sneeze = preload("res://scripts/sneeze_rules.gd")
 const Cues = preload("res://scripts/sneeze_cues.gd")
@@ -219,11 +220,11 @@ func step(delta: float, workers: Dictionary) -> void:
 	if rules.holder_id != 0 and workers.has(rules.holder_id):
 		move_held(workers[rules.holder_id])
 	else:
-		if body.position.y < -4 or absf(body.position.x) > 13 or absf(body.position.z) > 15:
+		if Layout.outside(body.position):
 			recover("recovered")
 			return
-		if body.position.y < 1.7 and absf(body.position.z + 7) < 1.3:
-			var dock := 1 if absf(body.position.x + 4.5) < 1.5 else (2 if absf(body.position.x - 4.5) < 1.5 else 0)
+		if Layout.dock_at(body.position) != 0:
+			var dock := Layout.dock_at(body.position)
 			if dock != 0:
 				recover("shipped" if rules.try_dispatch(dock) else "wrong_bay")
 				return

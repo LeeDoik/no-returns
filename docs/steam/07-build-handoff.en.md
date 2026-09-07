@@ -2,12 +2,12 @@
 
 [한국어](07-build-handoff.ko.md)
 
-September 7, 2026 · Prototype 0.5. A local export is distinct from a Steam-uploaded and reviewed release.
+September 7, 2026 · Prototype 0.6. A local export is distinct from a Steam-uploaded and reviewed release.
 
 ## Prepared locally
 
 - `export_presets.cfg` includes gameplay resources (including script preloads), excludes development tests/documents/tools, and exports unsigned Windows x64 executable plus game pack.
-- Run `python tools/build_windows.py` from the project root to export and create `build/NO_RETURNS_0.5_Windows.zip`. The archive contains the executable, `.pck`, full Korean/English play guides, official Godot third-party notices and a SHA256 manifest. The allowlist excludes editor caches, test scripts and account data.
+- Run `python tools/build_windows.py` from the project root to export and create `build/NO_RETURNS_0.6_Windows.zip`. The archive contains the executable, `.pck`, full Korean/English play guides, official Godot third-party notices and a SHA256 manifest. The allowlist excludes editor caches, test scripts and account data.
 - The pinned official Godot 4.7.2 template archive has SHA256 `f298490b8d44d934be425a5a65a51bf15f422428b229a06a6e11d9ffea248011`. Its matching Windows templates were installed under the project's portable editor data. Restore matching templates before rebuilding on another machine. [Official release](https://github.com/godotengine/godot-builds/releases/tag/4.7.2-stable)
 - Engine license and third-party notices come from the matching official source release and are retained verbatim. This does not settle the eventual game title or future asset rights. [Godot license](https://github.com/godotengine/godot/blob/4.7.2-stable/LICENSE.txt), [third-party notices](https://github.com/godotengine/godot/blob/4.7.2-stable/COPYRIGHT.txt)
 

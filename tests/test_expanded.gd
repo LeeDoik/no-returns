@@ -1,5 +1,7 @@
 extends SceneTree
 
+const Layout = preload("res://scripts/depot_layout.gd")
+
 var game
 var failures := 0
 func _initialize() -> void:
@@ -20,13 +22,13 @@ func run() -> void:
 	var cargo = game.cargos[1]
 	cargo.rules.destination = 2
 	cargo.body.freeze = true
-	cargo.body.position = Vector3(-4.5, 0.5, -7)
+	cargo.body.position = Layout.bay(1)
 	cargo.step(0.01, game.workers)
 	check(game.score == 0 and game.notice_key == "wrong_bay", "B label rejects A bay")
 	cargo.step(1.3, game.workers)
 	check(cargo.rules.destination == 2, "wrong-bay recovery keeps destination")
 	cargo.body.freeze = true
-	cargo.body.position = Vector3(4.5, 0.5, -7)
+	cargo.body.position = Layout.bay(2)
 	cargo.step(0.01, game.workers)
 	check(game.score == 1 and cargo.rules.delivered, "B label scores in B bay")
 	cargo.step(0.01, game.workers)

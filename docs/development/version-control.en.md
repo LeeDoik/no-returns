@@ -37,3 +37,7 @@ From the project terminal, use `git status` for uncommitted changes and `git log
 To roll back, specify the desired version. Preserve current work first, then use a separate recovery branch or a revert commit. Local history is not backed up to another computer or cloud; external backup is a separate protection against disk failure.
 
 Restoring source into another folder or PC requires preparing Godot first. `tools/setup_godot.ps1` restores the pinned engine; Windows export also requires the matching templates described in the [build handoff](../steam/07-build-handoff.en.md).
+
+## 0.6 night-map history
+
+`v0.6.0` identifies the 32 × 36 m night depot and reversing conveyor update. Implement and verify on `codex/night-depot`, then integrate into `main`. Preserve the previous `v0.5.0` and 0.5 distribution folder. See the [0.6 play guide](../prototype/06-night-depot.en.md).

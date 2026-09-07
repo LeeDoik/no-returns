@@ -1,5 +1,7 @@
 extends SceneTree
 
+const Layout = preload("res://scripts/depot_layout.gd")
+
 var game: Node
 var role := ""
 var deadline := 0
@@ -63,7 +65,7 @@ func _run_host() -> void:
 	elif stage == 2 and game.cargos[1].rules.holder_id == 0:
 		# Arrange a physical arrival; dispatch still runs through the real world tick.
 		game.cargos[1].body.linear_velocity = Vector3.ZERO
-		game.cargos[1].body.position = Vector3(-4.5, 0.65, -7.0)
+		game.cargos[1].body.position = Layout.bay(1)
 		stage = 3
 	elif stage == 3 and game.score == 1:
 		print("TEST host: delivered exactly once")

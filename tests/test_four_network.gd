@@ -1,5 +1,7 @@
 extends SceneTree
 
+const Layout = preload("res://scripts/depot_layout.gd")
+
 # This node only synchronizes assertions. Fixture mutations occur on the host.
 class Checkpoint extends Node:
 	var phase := ""
@@ -168,7 +170,7 @@ func host_step() -> void:
 				return
 			standard.body.freeze = true
 			standard.body.linear_velocity = Vector3.ZERO
-			standard.body.position = Vector3(-4.5, 0.65, -7)
+			standard.body.position = Layout.bay(1)
 			stage = 6
 		6:
 			if game.score != 1:

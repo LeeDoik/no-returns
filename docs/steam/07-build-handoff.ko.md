@@ -2,12 +2,12 @@
 
 [English](07-build-handoff.en.md)
 
-2026년 9월 7일 · 프로토타입 0.5. 로컬 내보내기와 Steam 업로드·심사를 완료한 출시는 서로 다릅니다.
+2026년 9월 7일 · 프로토타입 0.6. 로컬 내보내기와 Steam 업로드·심사를 완료한 출시는 서로 다릅니다.
 
 ## 로컬에서 준비한 것
 
 - `export_presets.cfg`가 스크립트 사전 참조를 포함한 게임 리소스를 포함하고 개발 테스트·문서·도구를 제외하여 서명 없는 Windows x64 실행 파일과 게임 팩을 내보냅니다.
-- 프로젝트 루트에서 `python tools/build_windows.py`를 실행하면 내보내기 후 `build/NO_RETURNS_0.5_Windows.zip`을 만듭니다. 실행 파일·`.pck`·전체 한국어/영어 플레이 안내·공식 Godot 제3자 고지·SHA256 목록이 들어갑니다. 포함 허용 목록으로 에디터 캐시·테스트 스크립트·계정 데이터를 제외합니다.
+- 프로젝트 루트에서 `python tools/build_windows.py`를 실행하면 내보내기 후 `build/NO_RETURNS_0.6_Windows.zip`을 만듭니다. 실행 파일·`.pck`·전체 한국어/영어 플레이 안내·공식 Godot 제3자 고지·SHA256 목록이 들어갑니다. 포함 허용 목록으로 에디터 캐시·테스트 스크립트·계정 데이터를 제외합니다.
 - 고정한 공식 Godot 4.7.2 템플릿 압축파일의 SHA256은 `f298490b8d44d934be425a5a65a51bf15f422428b229a06a6e11d9ffea248011`입니다. 대응 Windows 템플릿을 프로젝트의 포터블 에디터 데이터 아래 설치했습니다. 다른 PC에서 다시 빌드하려면 같은 템플릿을 복원해야 합니다. [공식 릴리스](https://github.com/godotengine/godot-builds/releases/tag/4.7.2-stable)
 - 엔진 라이선스와 제3자 고지는 같은 공식 소스 릴리스에서 가져와 원문으로 유지합니다. 이것으로 최종 게임 이름이나 앞으로 사용할 에셋 권리까지 정리되는 것은 아닙니다. [Godot 라이선스](https://github.com/godotengine/godot/blob/4.7.2-stable/LICENSE.txt), [제3자 고지](https://github.com/godotengine/godot/blob/4.7.2-stable/COPYRIGHT.txt)
 

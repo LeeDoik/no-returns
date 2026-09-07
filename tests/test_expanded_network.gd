@@ -1,5 +1,7 @@
 extends SceneTree
 
+const Layout = preload("res://scripts/depot_layout.gd")
+
 class Checkpoint extends Node:
 	var phase := ""
 	var data: Dictionary = {}
@@ -121,7 +123,7 @@ func host_step() -> void:
 			if not checkpoint.acknowledged:
 				return
 			var cargo = game.cargos[1]
-			cargo.body.position = Vector3(4.5, 0.65, -7)
+			cargo.body.position = Layout.bay(2)
 			stage = 5
 		5:
 			if game.score != 1:
@@ -146,12 +148,26 @@ func host_step() -> void:
 		8:
 			if not checkpoint.acknowledged or Time.get_ticks_msec() - announced_at < 250:
 				return
+			if game.conveyor.direction != -1:
+				fail("conveyor did not start in its reset direction")
+				return
+			game.workers[checkpoint.guest_id].position = Layout.LEVER + Vector3(0, 0.05, 1)
+			announce("request_conveyor")
+			stage = 9
+		9:
+			if game.conveyor.direction != 1:
+				return
+			announce("conveyor")
+			stage = 10
+		10:
+			if not checkpoint.acknowledged or Time.get_ticks_msec() - announced_at < 250:
+				return
 			game.phase = "won"
 			game.round_state.base_won = true
 			game.cargos[1].rules.score = game.round_state.quota
 			announce("request_overtime")
-			stage = 9
-		9:
+			stage = 11
+		11:
 			if not game.round_state.votes.has(checkpoint.guest_id):
 				return
 			game._receive_action(1, "overtime")
@@ -159,17 +175,17 @@ func host_step() -> void:
 				fail("overtime state differs: score %d quota %d base_won %s bonus %s" % [game.score, game.round_state.quota, game.round_state.base_won, game.round_state.bonus])
 				return
 			announce("overtime")
-			stage = 10
-		10:
+			stage = 12
+		12:
 			if not checkpoint.acknowledged:
 				return
 			game.leave_game()
-			print("PASS network host: Hopper pause/hop, B delivery, ping and overtime")
+			print("PASS network host: Hopper pause/hop, B delivery, ping, conveyor and overtime")
 			quit(0)
 
 func guest_step() -> void:
 	if sent == "overtime" and game.phase == "menu":
-		print("PASS network guest: replicated Hopper, B destination, ping and overtime")
+		print("PASS network guest: replicated Hopper, B destination, ping, conveyor and overtime")
 		quit(0)
 		return
 	if game.session.mode != "guest" or not game.workers.has(game.local_id):
@@ -196,6 +212,13 @@ func guest_step() -> void:
 				sent = "request_ping"
 		"ping":
 			if game.pings.remaining > 0 and game.pings.slot == game.workers[game.local_id].slot:
+				ack()
+		"request_conveyor":
+			if sent != "request_conveyor" and game.conveyor.direction == -1:
+				game.session.send_action("lever")
+				sent = "request_conveyor"
+		"conveyor":
+			if game.conveyor.direction == 1:
 				ack()
 		"request_overtime":
 			if sent != "request_overtime":

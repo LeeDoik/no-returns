@@ -1,5 +1,7 @@
 extends SceneTree
 
+const Layout = preload("res://scripts/depot_layout.gd")
+
 var errors: Array[String] = []
 func _initialize() -> void:
 	call_deferred("run")
@@ -37,8 +39,8 @@ func run() -> void:
 	check(sticky.body.position.x > before.x + 0.1, "attached companion follows held target")
 	normal.release(worker, false)
 	normal.body.freeze = true
-	normal.body.position = Vector3(-4.5,0.55,-7)
-	sticky.body.position = Vector3(-3.65,0.55,-7)
+	normal.body.position = Layout.bay(1) - Vector3(0, 0.1, 0)
+	sticky.body.position = Layout.bay(1) + Vector3(0.85, -0.1, 0)
 	normal.step(0.01, game.workers)
 	sticky.step(0.01, game.workers)
 	sticky.cling.step(0.01, game.workers, game.cargos)

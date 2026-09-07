@@ -97,12 +97,13 @@ func update_look() -> void:
 	if rig:
 		rig.rotation = Vector3(look_pitch, look_yaw, 0)
 
-func simulate(movement: Vector2, yaw: float, jump: bool, delta: float) -> void:
+func simulate(movement: Vector2, yaw: float, jump: bool, delta: float, drift: Vector3 = Vector3.ZERO) -> void:
 	heading = yaw
 	var wish := Vector3(movement.x, 0, movement.y).rotated(Vector3.UP, yaw) * 4.5 * speed_scale
 	walk_velocity = walk_velocity.move_toward(wish, 24.0 * delta)
-	velocity.x = walk_velocity.x + push_velocity.x
-	velocity.z = walk_velocity.z + push_velocity.z
+	var grounded_drift := drift if is_on_floor() else Vector3.ZERO
+	velocity.x = walk_velocity.x + push_velocity.x + grounded_drift.x
+	velocity.z = walk_velocity.z + push_velocity.z + grounded_drift.z
 	push_velocity = push_velocity.move_toward(Vector3.ZERO, 14.0 * delta)
 	stagger = maxf(0, stagger - delta)
 	if not is_on_floor():

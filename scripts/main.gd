@@ -12,8 +12,10 @@ const SHIFT_SECONDS := 180.0
 const Preferences = preload("res://scripts/preferences.gd")
 const Round = preload("res://scripts/round_rules.gd")
 const Pings = preload("res://scripts/pings.gd")
+const Conveyor = preload("res://scripts/conveyor.gd")
 var round_state = Round.new()
 var pings: Node3D
+var conveyor: Node3D
 var replacements: Dictionary = {}
 var replay_seed := -1
 
@@ -55,6 +57,8 @@ func _ready() -> void:
 	Preferences.load_settings()
 	depot = Depot.new()
 	add_child(depot)
+	conveyor = Conveyor.new()
+	add_child(conveyor)
 	for id in [1, 2, 3, 4]:
 		var cargo = Cargo.new()
 		cargo.cargo_id = id
@@ -97,11 +101,11 @@ func _ready() -> void:
 	_render_ui()
 
 func _configure_input() -> void:
-	for key in {"left": KEY_A, "right": KEY_D, "forward": KEY_W, "back": KEY_S, "jump": KEY_SPACE, "interact": KEY_E, "menu": KEY_ESCAPE, "ping": KEY_Q}:
+	for key in {"left": KEY_A, "right": KEY_D, "forward": KEY_W, "back": KEY_S, "jump": KEY_SPACE, "interact": KEY_E, "menu": KEY_ESCAPE, "ping": KEY_Q, "lever": KEY_F}:
 		if not InputMap.has_action(key):
 			InputMap.add_action(key)
 			var event := InputEventKey.new()
-			event.physical_keycode = {"left": KEY_A, "right": KEY_D, "forward": KEY_W, "back": KEY_S, "jump": KEY_SPACE, "interact": KEY_E, "menu": KEY_ESCAPE, "ping": KEY_Q}[key]
+			event.physical_keycode = {"left": KEY_A, "right": KEY_D, "forward": KEY_W, "back": KEY_S, "jump": KEY_SPACE, "interact": KEY_E, "menu": KEY_ESCAPE, "ping": KEY_Q, "lever": KEY_F}[key]
 			InputMap.action_add_event(key, event)
 	if not InputMap.has_action("throw"):
 		InputMap.add_action("throw")
@@ -143,6 +147,7 @@ func leave_game() -> void:
 	last_blast.clear()
 	replacements.clear()
 	if pings: pings.clear()
+	if conveyor: conveyor.reset()
 	phase = "menu"
 	time_left = SHIFT_SECONDS
 	notice_key = ""
@@ -181,6 +186,7 @@ func _player_left(peer_id: int) -> void:
 	inputs.clear()
 	pings.clear()
 	phase = "waiting"
+	conveyor.active = false
 	session.in_shift = false
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	_set_notice("guest_left", 8)
@@ -215,6 +221,7 @@ func start_shift() -> void:
 	last_blast.clear()
 	replacements.clear()
 	if pings: pings.clear()
+	if conveyor: conveyor.reset()
 	round_state.start(workers.size(), replay_seed)
 	time_left = round_state.duration
 	for cargo in cargos.values():
@@ -223,6 +230,7 @@ func start_shift() -> void:
 		workers[id].position = workers[id].spawn_position()
 		workers[id].reset_motion()
 	phase = "playing"
+	conveyor.active = true
 	session.in_shift = true
 	notice_key = ""
 	ui.paused = false
@@ -257,6 +265,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		session.send_action("interact")
 	if event.is_action_pressed("ping") and not event.is_echo():
 		session.send_action("ping")
+	if event.is_action_pressed("lever") and not event.is_echo():
+		session.send_action("lever")
 	if event.is_action_pressed("throw"):
 		session.send_action("throw")
 
@@ -288,6 +298,9 @@ func _receive_action(peer_id: int, action: String) -> void:
 	var held = held_cargo(peer_id)
 	if action == "ping":
 		pings.mark(worker, cargos)
+		return
+	if action == "lever":
+		conveyor.try_reverse(peer_id, workers, phase)
 		return
 	if action == "interact":
 		if held:
@@ -360,7 +373,8 @@ func _physics_process(delta: float) -> void:
 			workers[id].speed_scale = 0.7 if cargos[3].cling.target_kind == "worker" and cargos[3].cling.target_id == id else 1.0
 			var sample: Dictionary = inputs.get(id, {})
 			var fresh: bool = Time.get_ticks_msec() - int(sample.get("at", -10000)) < 300
-			workers[id].simulate(sample.get("move", Vector2.ZERO) if fresh else Vector2.ZERO, float(sample.get("yaw", workers[id].heading)), bool(sample.get("jump", false)) if fresh else false, delta)
+			var belt_drift: Vector3 = conveyor.drift_at(workers[id].position) if workers[id].position.y >= -0.1 and workers[id].position.y <= 0.15 else Vector3.ZERO
+			workers[id].simulate(sample.get("move", Vector2.ZERO) if fresh else Vector2.ZERO, float(sample.get("yaw", workers[id].heading)), bool(sample.get("jump", false)) if fresh else false, delta, belt_drift)
 			if inputs.has(id):
 				inputs[id]["jump"] = false
 		pings.step(delta)
@@ -369,6 +383,7 @@ func _physics_process(delta: float) -> void:
 			if replacements.has(cargo.cargo_id) and cargo.recovery_left <= 0:
 				cargo.rules.destination = round_state.next_destination()
 				replacements.erase(cargo.cargo_id)
+		conveyor.step(delta, cargos)
 		cargos[3].cling.step(delta, workers, cargos)
 		if score >= round_state.quota:
 			_finish("won")
@@ -390,6 +405,7 @@ func _begin_bonus() -> void:
 		cargo.reset_crate()
 		cargo.rules.destination = round_state.next_destination()
 	phase = "playing"
+	conveyor.active = true
 	ui.paused = false
 	if not test_mode: Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
@@ -401,6 +417,7 @@ func _finish(result: String) -> void:
 	for cargo in cargos.values():
 		cargo.cancel()
 	phase = result
+	conveyor.active = false
 	inputs.clear()
 	ui.paused = false
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -414,12 +431,13 @@ func _snapshot() -> Dictionary:
 		cargo_states[id] = cargos[id].wire_snapshot()
 	return {"workers": poses, "phase": phase, "time": time_left, "cargos": cargo_states,
 		"blast": [] if last_blast.is_empty() else [last_blast.source, last_blast.event, PackedInt32Array(last_blast.workers), PackedInt32Array(last_blast.cargos)],
-		"round": [round_state.quota, round_state.duration, round_state.bonus, round_state.base_won, PackedInt32Array(round_state.votes), round_state.seed_value],
+		"round": [round_state.quota, round_state.duration, round_state.bonus, round_state.base_won, PackedInt32Array(round_state.votes), round_state.seed_value, conveyor.direction],
 		"ping": pings.snapshot(), "notice": notice_key if Time.get_ticks_msec() < notice_until else ""}
 
 func _receive_snapshot(state: Dictionary) -> void:
 	var old_phase := phase
 	phase = state.phase
+	conveyor.active = phase == "playing"
 	time_left = state.time
 	last_blast = {} if state.blast.is_empty() else {"source": state.blast[0], "event": state.blast[1], "workers": Array(state.blast[2]), "cargos": Array(state.blast[3])}
 	round_state.quota = state.round[0]
@@ -428,6 +446,7 @@ func _receive_snapshot(state: Dictionary) -> void:
 	round_state.base_won = state.round[3]
 	round_state.votes = Array(state.round[4])
 	round_state.seed_value = state.round[5]
+	conveyor.apply_direction(state.round[6])
 	pings.apply_snapshot(state.ping)
 	for id in cargos:
 		cargos[id].apply_wire(state.cargos[id])
@@ -513,6 +532,8 @@ func _render_ui() -> void:
 		if nearest:
 			prompt_key = "near"
 			cargo_name = Copy.get_text(nearest.kind + "_name") + (" / A ↑↑" if nearest.rules.destination == 1 else " / B ◆")
+		elif conveyor.can_use(workers[local_id]):
+			prompt_key = "lever"
 	var warning := ""
 	var source = cargos[2]
 	if phase == "playing" and source.sneeze.phase == "windup":

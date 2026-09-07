@@ -1,5 +1,7 @@
 extends SceneTree
 
+const Layout = preload("res://scripts/depot_layout.gd")
+
 var game: Node
 var failures := 0
 
@@ -15,7 +17,7 @@ func _run() -> void:
 	game.session.send_input(Vector2(INF, 0), 0.0, false)
 	check(not game.inputs.has(1), "invalid movement is rejected before simulation")
 	game.cargos[1].body.freeze = true
-	game.cargos[1].body.position = Vector3(4.5, 0.65, -7.0)
+	game.cargos[1].body.position = Layout.bay(2)
 	await _frames(3)
 	check(game.score == 0 and not game.cargos[1].body.visible and game.notice_key == "wrong_bay", "wrong bay returns without scoring")
 	await create_timer(1.4).timeout
@@ -27,7 +29,7 @@ func _run() -> void:
 	await create_timer(1.4).timeout
 	for index in range(5):
 		game.cargos[1].body.freeze = true
-		game.cargos[1].body.position = Vector3(-4.5 if game.cargos[1].rules.destination == 1 else 4.5, 0.65, -7.0)
+		game.cargos[1].body.position = Layout.bay(game.cargos[1].rules.destination)
 		await _frames(3)
 		check(game.score == index + 1, "physical delivery %d scores once" % (index + 1))
 		if index < 4:
