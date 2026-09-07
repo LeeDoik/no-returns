@@ -6,7 +6,7 @@ September 7, 2026 · Aligned with the 0.7 development design. Unpublished draft;
 
 ## Short description
 
-Run a night depot where the packages refuse to behave. Carry, throw and relay four kinds of living cargo, outsmart a thieving Packrat, and spend shared earnings between three increasingly demanding contracts. Play solo or coordinate a crew of up to four.
+Work at a ridiculous shipping shrine where the packages refuse to behave. Carry, throw and relay four kinds of living cargo, outsmart a thieving Packrat, and spend shared earnings between three increasingly demanding contracts. Play solo or coordinate a crew of up to four.
 
 ## About this game
 

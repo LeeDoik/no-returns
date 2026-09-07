@@ -10,6 +10,8 @@ This is a detailed design for a playable development build, not a statement that
 
 The implementation plan controls numerical conflicts. The 0.6 depot is the foundation; 0.7 adds a complete contract run, shared purchases, relay rewards, Packrat, onboarding, settings and protocol admission. This document does not certify the current checkout or ZIP. No price, release date, sales expectation or external multiplayer reliability is approved here.
 
+**0.7.2 map theme update:** The earlier night-warehouse presentation in this document is superseded by The Shipping Shrine: a giant cardboard boss, hungry A/B face altars, Packrat employee-of-the-month display and bilingual company slogans. Dimensions, carrying, dispatch and contract rules are unchanged. [Concept and implementation record](../plans/2026-09-07-shipping-shrine.en.md).
+
 ## 02. Player promise and intended audience
 
 The player is a worker in a night depot. Living packages interfere with ordinary delivery, and workers learn to turn those behaviors into useful routes and catches. A successful run should leave the crew able to describe who threw, who caught, what caused a mishap and how they recovered. The target audience is friends who enjoy physical coordination and short cooperative sessions; solo campaign provides a complete alternative with lower quotas.

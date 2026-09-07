@@ -74,7 +74,7 @@ Roles are not locked classes. Switch between intake, throwing, receiving and cha
 
 ## Depot and Packrat
 
-Night Shift Depot measures 32 × 36 m. Carry around either side of the 3.4 m central sorting wall to northern A/B dispatch. The right bypass has a 6 m floor belt moving workers and grounded packages at 2 m/s. Face its lever and press F to reverse; walls block interaction. Shared cooldown is 0.5 seconds. The left bypass is a belt-free carrying route. Lights are 6.5 m high.
+The Shipping Shrine measures 32 × 36 m. Carry around either side of the 3.4 m central sorting wall to northern A/B dispatch. The right bypass has a 6 m floor belt moving workers and grounded packages at 2 m/s. Face its lever and press F to reverse; walls block interaction. Shared cooldown is 0.5 seconds. The left bypass is a belt-free carrying route. Lights are 6.5 m high.
 
 Packrat spots visible free grounded cargo within 6 m in the right lane and approaches it. Within 1.4 m it warns for 0.9 seconds before stealing. A worker pickup during approach cancels pursuit. It does not pursue cargo behind walls or in the left lane. It never steals worker-held or attached cargo. It moves at 2.7 m/s, carries toward the eastern nest and drops there. Walls or obstacles cause a safe drop. Returned cargo receives eight seconds of protection from theft.
 
@@ -102,3 +102,8 @@ When reporting issues, include build 0.7, worker count, contract stage, shipment
 ## 0.7.1 fix
 
 Added active cargo search and approach. Patrol waypoints moved to the lane center to avoid the nest. If an approach makes no progress for 1.25 seconds, the target is ignored for three seconds before another search. The in-game version is 0.7.1; existing executable/ZIP paths and the user-settings folder remain stable.
+
+
+## 0.7.2 map retheme
+
+The Shipping Shrine adds a huge cardboard boss, hungry A/B altars and Packrat as employee of the month. Deliver matching cargo to the A/B tongue-shaped pads. Small mouth motion is decorative, with no damage or timed-delivery requirement. Dimensions, routes, theft and contract rules remain. Existing executable paths now contain 0.7.2.

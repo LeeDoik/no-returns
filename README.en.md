@@ -4,9 +4,9 @@
 
 > The packages are alive. Ship them anyway.
 
-**Current version: Cooperative Contracts playtest 0.7 · September 7, 2026**
+**Current version: Shipping Shrine playtest 0.7.2 · September 7, 2026**
 
-A Godot third-person delivery game for solo play or 2–4 cooperating workers. Complete three contracts in one depot, buy equipment with shared earnings, relay packages and recover cargo stolen by Packrat. The target is a Windows Steam release; this is a development build using primitive art.
+A Godot third-person delivery game for solo play or 2–4 cooperating workers. Complete three contracts in an absurd shrine that receives parcels as offerings, buy equipment with shared earnings, relay packages and recover cargo stolen by Packrat. The target is a Windows Steam release; this is a development build using primitive art.
 
 ## Run now
 
@@ -52,9 +52,14 @@ Twenty-one behavior tests, six real two-process scenarios, the four-process scen
 
 ## Version control
 
-Local Git retains the 0.5/0.6 baselines. This change is identified by `v0.7.1`; no GitHub remote is connected. See [version history and recovery](docs/development/version-control.en.md) and [documentation rules](AGENTS.md).
+Local Git retains the 0.5/0.6 baselines. This change is identified by `v0.7.2`; no GitHub remote is connected. See [version history and recovery](docs/development/version-control.en.md) and [documentation rules](AGENTS.md).
 
 
 ## 0.7.1 Packrat fix
 
 Fixed ignoring nearby visible cargo: search within 6 m in the right lane, approach, then warn within 1.4 m before stealing. Active from contract 2. Existing 0.7 executable/ZIP paths now contain the fix; the settings folder is unchanged. [Fix record](docs/development/2026-09-07-packrat-search.en.md).
+
+
+## 0.7.2 The Shipping Shrine
+
+A giant cardboard boss watches over the rethemed shrine. A/B bays are hungry faces, and the rat nest is an employee-of-the-month display. Intake receives offerings and the belt is the path to promotion. Added bilingual deadpan signs, purple/gold surroundings and small decorative motion. Both carrying routes and delivery rules remain. [Concept and implementation record](docs/superpowers/plans/2026-09-07-shipping-shrine.en.md).

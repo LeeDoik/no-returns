@@ -8,11 +8,11 @@
 
 영어 배포 원문:
 
-Run a night depot where the packages refuse to behave. Carry, throw and relay four kinds of living cargo, outsmart a thieving Packrat, and spend shared earnings between three increasingly demanding contracts. Play solo or coordinate a crew of up to four.
+Work at a ridiculous shipping shrine where the packages refuse to behave. Carry, throw and relay four kinds of living cargo, outsmart a thieving Packrat, and spend shared earnings between three increasingly demanding contracts. Play solo or coordinate a crew of up to four.
 
 한국어 대응본:
 
-말을 듣지 않는 택배가 모인 야간 물류센터에서 일하세요. 살아 있는 네 종류 화물을 들고 던지고 이어받으며 포장쥐의 절도에 대처하세요. 점점 어려워지는 세 계약 사이에 공동 수입으로 장비를 구매합니다. 혼자 또는 최대 네 명의 팀으로 근무할 수 있습니다.
+말을 듣지 않는 택배가 모인 황당한 배송 신전에서 일하세요. 살아 있는 네 종류 화물을 들고 던지고 이어받으며 포장쥐의 절도에 대처하세요. 점점 어려워지는 세 계약 사이에 공동 수입으로 장비를 구매합니다. 혼자 또는 최대 네 명의 팀으로 근무할 수 있습니다.
 
 ## 게임 소개
 

@@ -2,8 +2,8 @@ extends RefCounted
 
 const Copy = preload("res://scripts/copy.gd")
 const STRINGS := {
-	"edition": ["07 / CONTRACT DESK", "07 / 계약 데스크"],
-	"menu_intro": ["Three contracts. One shared bank.\nGet every package across the line.", "세 번의 계약, 하나의 공동 금고.\n모든 화물을 출고선 너머로 보내세요."],
+	"edition": ["THE SHIPPING SHRINE", "배송 신전"],
+	"menu_intro": ["The gods demand next-day delivery.\nYour lunch break has been sacrificed.", "신께서 익일 배송을 원하십니다.\n당신의 점심시간은 제물로 바쳤습니다."],
 	"campaign": ["START SOLO CAMPAIGN", "혼자 캠페인 시작"],
 	"host_campaign": ["HOST CO-OP CAMPAIGN", "협동 캠페인 방 만들기"],
 	"practice_short": ["SHORT PRACTICE", "짧은 연습"],

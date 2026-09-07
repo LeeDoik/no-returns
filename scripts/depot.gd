@@ -1,11 +1,12 @@
 extends Node3D
 
 const Copy = preload("res://scripts/copy.gd")
+const Shrine = preload("res://scripts/shrine_decor.gd")
 const Layout = preload("res://scripts/depot_layout.gd")
 const TEXT := {
-	"sort": ["SORTING / NO RETURNS", "분류 / 반품 금지"], "route": ["KEEP ROUTE CLEAR", "통로 확보"],
-	"intake": ["INTAKE / RECOVERY", "입고 / 회수"], "dispatch_a": ["01  DISPATCH A", "01  출고 A"],
-	"dispatch_b": ["02  DISPATCH B", "02  출고 B"], "nest": ["PACKRAT NEST", "팩랫 둥지"],
+	"sort": ["SACRED PAPERWORK", "신성한 서류 작업"], "route": ["WALK WITH PURPOSE", "경건하게 뛰세요"],
+	"intake": ["OFFERING RECEPTION", "제물 접수처"], "dispatch_a": ["01  DISPATCH A", "01  출고 A"],
+	"dispatch_b": ["02  DISPATCH B", "02  출고 B"], "nest": ["EXECUTIVE SUITE", "임원 전용실"],
 	"table_a": ["A / ↑↑", "A / ↑↑"], "table_b": ["B / ◆", "B / ◆"]}
 
 var overview: Camera3D
@@ -16,41 +17,42 @@ var shown_language := ""
 func _ready() -> void:
 	_build_environment(); _build_shell(); _build_routes(); _build_sorting_area()
 	_build_dispatch(); _build_intake(); _build_nest(); _build_lighting(); _build_camera_and_marker(); _refresh_labels()
+	add_child(Shrine.new())
 
 func _process(_delta: float) -> void:
 	if shown_language != Copy.language: _refresh_labels()
 
 func _build_environment() -> void:
 	var world := WorldEnvironment.new(); var settings := Environment.new()
-	settings.background_mode = Environment.BG_COLOR; settings.background_color = Color("09131d")
-	settings.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR; settings.ambient_light_color = Color("7b9eb5")
-	settings.ambient_light_energy = 0.43; settings.reflected_light_source = Environment.REFLECTION_SOURCE_DISABLED
+	settings.background_mode = Environment.BG_COLOR; settings.background_color = Color("2e2341")
+	settings.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR; settings.ambient_light_color = Color("bac5d2")
+	settings.ambient_light_energy = 0.34; settings.reflected_light_source = Environment.REFLECTION_SOURCE_DISABLED
 	settings.tonemap_mode = Environment.TONE_MAPPER_FILMIC; world.environment = settings; add_child(world)
 	var moon := DirectionalLight3D.new(); moon.rotation_degrees = Vector3(-58, -32, 0)
-	moon.light_color = Color("accde8"); moon.light_energy = 0.62; moon.shadow_enabled = true; add_child(moon)
+	moon.light_color = Color("ffe6be"); moon.light_energy = 0.52; moon.shadow_enabled = true; add_child(moon)
 
 func _build_shell() -> void:
-	box(Vector3(Layout.FLOOR_SIZE.x, 0.5, Layout.FLOOR_SIZE.y), Layout.FLOOR_CENTER, Color("28343b"), true)
-	box(Vector3(32, 3.8, 0.45), Vector3(0, 1.9, -27), Color("182832"), true)
-	box(Vector3(0.45, 3.8, 36), Vector3(-16, 1.9, -9), Color("1b2b34"), true)
-	box(Vector3(0.45, 3.8, 36), Vector3(16, 1.9, -9), Color("1b2b34"), true)
-	box(Vector3(32, 1.2, 0.45), Vector3(0, 0.6, 9), Color("1d3039"), true)
+	box(Vector3(Layout.FLOOR_SIZE.x, 0.5, Layout.FLOOR_SIZE.y), Layout.FLOOR_CENTER, Color("51465f"), true)
+	box(Vector3(32, 3.8, 0.45), Vector3(0, 1.9, -27), Color("493452"), true)
+	box(Vector3(0.45, 3.8, 36), Vector3(-16, 1.9, -9), Color("574362"), true)
+	box(Vector3(0.45, 3.8, 36), Vector3(16, 1.9, -9), Color("574362"), true)
+	box(Vector3(32, 1.2, 0.45), Vector3(0, 0.6, 9), Color("574362"), true)
 	for side in [-1, 1]:
 		for z in [-18.0, -13.0, -2.0, 3.0]: _shelf(Vector3(side * 15.25, 0, z), side)
 
 func _build_routes() -> void:
-	for x in [-12, -8, -4, 4, 8, 12]: box(Vector3(0.035, 0.012, 34), Vector3(x, 0.012, -9), Color("46545b"))
-	for z in range(-24, 9, 4): box(Vector3(30, 0.012, 0.035), Vector3(0, 0.013, z), Color("46545b"))
+	for x in [-12, -8, -4, 4, 8, 12]: box(Vector3(0.035, 0.012, 34), Vector3(x, 0.012, -9), Color("8c7c98"))
+	for z in range(-24, 9, 4): box(Vector3(30, 0.012, 0.035), Vector3(0, 0.013, z), Color("8c7c98"))
 	for x in [-10.0, 10.0]:
-		box(Vector3(2.8, 0.025, 27), Vector3(x, 0.025, -8.5), Color("314b52"))
+		box(Vector3(2.8, 0.025, 27), Vector3(x, 0.025, -8.5), Color("746983"))
 		for z in [-19.0, -14.0, -9.0, -4.0, 1.0, 6.0]: _floor_arrow(Vector3(x, 0.05, z), Color("8fc6bf"))
 		_local_label("route", Vector3(x, 0.065, 6.4), Color("b8ddd7"), 24, -90)
 
 func _build_sorting_area() -> void:
-	var wall := box(Vector3(16, 3.4, 0.5), Vector3(0, 1.7, -10), Color("24343d"), true); wall.name = "SortingWall"
+	var wall := box(Vector3(16, 3.4, 0.5), Vector3(0, 1.7, -10), Color("65516e"), true); wall.name = "SortingWall"
 	box(Vector3(16.2, 0.12, 0.68), Vector3(0, 3.43, -10), Color("d5963e"))
 	for x in [-6.0, -3.0, 0.0, 3.0, 6.0]: box(Vector3(0.09, 2.7, 0.03), Vector3(x, 1.7, -9.73), Color("40525b"))
-	_local_label("sort", Vector3(0, 2.45, -9.72), Color("f5c96b"), 66)
+	_local_label("sort", Vector3(0, 1.65, -9.72), Color("f5c96b"), 34)
 	_worktable(Vector3(-5.4, 0, -12.1), "table_a", Color("55b6ac")); _worktable(Vector3(5.4, 0, -12.1), "table_b", Color("d7865f"))
 	box(Vector3(7, 1.0, 0.5), Vector3(1.0, 0.5, -1.5), Color("9e8b5d"), true)
 	box(Vector3(7.1, 0.08, 0.6), Vector3(1.0, 1.04, -1.5), Color("e4a542"))
@@ -64,11 +66,7 @@ func _dispatch_bay(id: int, center: Vector3, accent: Color) -> void:
 	box(Vector3(3, 0.035, 2.6), Vector3(center.x, 0.02, center.z), accent.darkened(0.42))
 	for edge in [-1.55, 1.55]: box(Vector3(0.11, 0.05, 2.8), Vector3(center.x + edge, 0.05, center.z), accent)
 	box(Vector3(3.2, 0.05, 0.11), Vector3(center.x, 0.05, center.z + 1.4), accent); box(Vector3(3.2, 0.05, 0.11), Vector3(center.x, 0.05, center.z - 1.4), accent)
-	box(Vector3(4.6, 3.15, 0.18), Vector3(center.x, 1.58, -26.72), Color("334650"))
-	for y in [0.35, 0.78, 1.21, 1.64, 2.07, 2.5, 2.93]: box(Vector3(4.45, 0.055, 0.04), Vector3(center.x, y, -26.6), Color("70818a"))
-	box(Vector3(4.8, 0.16, 0.32), Vector3(center.x, 3.2, -26.65), accent)
-	_local_label("dispatch_a" if id == 1 else "dispatch_b", Vector3(center.x, 2.56, -26.48), accent.lightened(0.2), 46)
-	label("A / ↑↑" if id == 1 else "B / ◆", Vector3(center.x, 0.08, center.z), Color.WHITE, 88, -90)
+	label("A / ↑↑" if id == 1 else "B / ◆", Vector3(center.x, 0.11, center.z), Color.WHITE, 88, -90)
 
 func _build_intake() -> void:
 	box(Vector3(5.2, 0.03, 3.0), Vector3(0, 0.02, 2.3), Color("5d563f")); _local_label("intake", Vector3(0, 0.07, 2.25), Color("f5cf75"), 34, -90)
@@ -83,7 +81,7 @@ func _build_nest() -> void:
 	box(Vector3(1.2, 0.8, 0.9), Vector3(13, 0.48, -5), Color("263a40")); _local_label("nest", Vector3(13, 1.25, -5), Color("e4b970"), 27)
 
 func _build_lighting() -> void:
-	for data in [[Vector3(-10, 6.5, -21), Color("9fe8dc"), 1.4], [Vector3(10, 6.5, -21), Color("ffd0a3"), 1.4], [Vector3(-7, 6.5, -5), Color("b8dced"), 1.2], [Vector3(7, 6.5, -5), Color("b8dced"), 1.2], [Vector3(0, 6.5, 3), Color("ffe0ad"), 1.0]]:
+	for data in [[Vector3(-10, 6.5, -21), Color("9fe8dc"), 0.55], [Vector3(10, 6.5, -21), Color("ffd0a3"), 0.55], [Vector3(-7, 6.5, -5), Color("b8dced"), 0.45], [Vector3(7, 6.5, -5), Color("b8dced"), 0.45], [Vector3(0, 6.5, 3), Color("ffe0ad"), 0.4]]:
 		var light := OmniLight3D.new(); light.position = data[0]; light.light_color = data[1]; light.light_energy = data[2]
 		light.omni_range = 11.0; light.shadow_enabled = true; add_child(light); box(Vector3(0.8, 0.08, 0.8), data[0], data[1])
 
