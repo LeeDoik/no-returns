@@ -41,3 +41,8 @@ Restoring source into another folder or PC requires preparing Godot first. `tool
 ## 0.6 night-map history
 
 `v0.6.0` identifies the 32 × 36 m night depot and reversing conveyor update. Implement and verify on `codex/night-depot`, then integrate into `main`. Preserve the previous `v0.5.0` and 0.5 distribution folder. See the [0.6 play guide](../prototype/06-night-depot.en.md).
+
+
+## 0.7 cooperative contracts record
+
+`v0.7.0` is the development baseline for three contracts, shared bank/equipment, relay rewards, Packrat, help/settings and protocol 7. Validated changes from `codex/cooperative-contracts` are integrated into `main`. The 0.5/0.6 tags and old export folders remain. See [implementation/evidence](../superpowers/plans/2026-09-07-release-polish.en.md) and [play guide](../prototype/07-contracts.en.md). This does not mean Steam release completion.

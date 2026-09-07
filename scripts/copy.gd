@@ -2,6 +2,13 @@ extends RefCounted
 
 static var language := "ko"
 const STRINGS := {
+	"lesson_0": ["WASD: move · Mouse: look · Space: jump · H: help", "WASD: 이동 · 마우스: 둘러보기 · Space: 점프 · H: 도움말"],
+	"lesson_1": ["Approach a package and press E to pick it up.", "상자에 다가가 E를 눌러 들어 보세요."],
+	"lesson_2": ["Left click: throw · E: put down / catch · Q: ping", "왼쪽 클릭: 던지기 · E: 내려놓기 / 받기 · Q: 위치 알림"],
+	"lesson_3": ["Read the A/B label and deliver to its matching bay.", "상자의 A/B 라벨과 같은 배송구에 넣으세요."],
+	"lesson_4": ["Try a team relay · F: reverse belt · H: help · Esc: settings", "동료와 릴레이에 도전하세요 · F: 벨트 전환 · H: 도움말 · Esc: 설정"],
+	"version_mismatch": ["Different game versions. Update every player to the same build.", "게임 버전이 다릅니다. 모두 같은 최신 빌드로 갱신하세요."],
+	"relay": ["TEAM RELAY! Deliver this package for a bonus.", "팀 릴레이! 이 상자를 배송하면 추가 보상을 받습니다."],
 	"hopper_name": ["HOPPER", "점프 상자"],
 	"hopper_rest": ["HOP IN %.1fs", "%.1f초 뒤 점프 준비"],
 	"hopper_windup": ["JUMP IN %.1fs!", "%.1f초 뒤 점프!"],
@@ -26,7 +33,7 @@ const STRINGS := {
 	"host": ["HOST / 2–4 WORKERS", "방 만들기 / 2~4인"],
 	"join": ["JOIN DEPOT", "창고 참가하기"],
 	"address": ["Host address (same PC: 127.0.0.1)", "방장 주소 (같은 PC: 127.0.0.1)"],
-	"development": ["DEVELOPMENT PROTOTYPE / 0.6\nLocal / LAN connection · Steam invites not connected", "개발용 프로토타입 / 0.6\n로컬·LAN 연결 · Steam 친구 초대 미연결"],
+	"development": ["DEVELOPMENT PROTOTYPE / 0.7\nLocal / LAN connection · Steam invites not connected", "개발용 프로토타입 / 0.7\n로컬·LAN 연결 · Steam 친구 초대 미연결"],
 	"menu_note": ["Read the A / B label.\nWrong bay? Back to intake.", "A / B 라벨을 확인하세요.\n잘못 보내면 입고 구역으로!"],
 	"controls": ["WASD  Move    MOUSE  Look    SPACE  Jump    Q  Ping    F  Reverse belt\nE  Pick up / catch / put down    LEFT CLICK  Throw    ESC  Menu", "WASD  이동    마우스  둘러보기    SPACE  점프    Q  위치 알림    F  벨트 전환\nE  집기 / 받기 / 내려놓기    왼쪽 클릭  던지기    ESC  메뉴"],
 	"waiting": ["WAITING FOR CREW", "동료를 기다리는 중"],
@@ -58,7 +65,7 @@ const STRINGS := {
 	"shift_running": ["This shift already started. Join the next lobby.", "이미 근무 중이에요. 다음 대기실에 참가하세요."],
 	"recovery": ["Returning the crate…", "화물을 돌려보내는 중…"],
 	"cancel": ["CANCEL CONNECTION", "연결 취소"],
-	"prototype": ["NO RETURNS / DEVELOPMENT 0.6", "반품 불가 / 개발용 0.6"],
+	"prototype": ["NO RETURNS / DEVELOPMENT 0.7", "반품 불가 / 개발용 0.7"],
 	"clinger_name": ["CLINGER", "접착 상자"],
 	"clinger_attached": ["STUCK! %.1fs / Sneeze to release.", "붙었어요! %.1f초 / 재채기로 떼어내세요."],
 	"clinger_cooldown": ["UNSTUCK / Ready in %.1fs", "떨어졌어요 / %.1f초 뒤 다시 접착"],

@@ -97,7 +97,7 @@ func step(delta: float, cargos: Dictionary) -> void:
 	if is_finite(delta) and delta > 0:
 		cooldown = maxf(0, cooldown - delta)
 	for cargo in cargos.values():
-		if not is_instance_valid(cargo) or not cargo.active or cargo.recovery_left > 0 or not cargo.body.visible:
+		if not is_instance_valid(cargo) or cargo.creature_held or not cargo.active or cargo.recovery_left > 0 or not cargo.body.visible:
 			continue
 		if cargo.rules.holder_id != 0 or (cargo.cling and not cargo.cling.target_kind.is_empty()):
 			continue

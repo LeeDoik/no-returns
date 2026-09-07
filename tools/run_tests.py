@@ -46,6 +46,10 @@ def main():
         ("tests/test_expanded.gd", "expanded", b"EXPANDED PASS"),
         ("tests/test_night_depot.gd", "night-depot", b"NIGHT DEPOT PASS"),
         ("tests/test_conveyor.gd", "conveyor", b"CONVEYOR PASS"),
+        ("tests/test_contracts.gd", "contracts", b"CONTRACTS PASS"),
+        ("tests/test_campaign.gd", "campaign", b"CAMPAIGN PASS"),
+        ("tests/test_packrat.gd", "packrat", b"PACKRAT PASS"),
+        ("tests/test_relay_flight.gd", "relay-flight", b"RELAY FLIGHT PASS"),
     ):
         result = subprocess.run(command(script, role), cwd=ROOT,
                                 capture_output=True, timeout=30)
@@ -57,7 +61,9 @@ def main():
     for script, prefix in (("tests/test_network.gd", "network"),
                            ("tests/test_sneeze_network.gd", "sneeze-network"),
                            ("tests/test_clinger_network.gd", "clinger-network"),
-                           ("tests/test_expanded_network.gd", "expanded-network")):
+                           ("tests/test_expanded_network.gd", "expanded-network"),
+                           ("tests/test_campaign_network.gd", "campaign-network"),
+                           ("tests/test_protocol_network.gd", "protocol-network")):
         if run_pair(script, prefix):
             return 1
     return run_four()

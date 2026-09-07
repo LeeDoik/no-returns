@@ -2,6 +2,7 @@ extends Node3D
 
 signal sneezed(cargo: Node3D)
 signal notice(key: String)
+signal relay_caught(peer_id: int)
 
 const Layout = preload("res://scripts/depot_layout.gd")
 const Rules = preload("res://scripts/cargo_rules.gd")
@@ -36,6 +37,11 @@ var burst_facing := 0.0
 var target_position := Vector3.ZERO
 var authority_epoch := ""
 var carrier: PhysicsBody3D
+var creature_held := false
+var relay_ready := false
+var throw_peer := 0
+var throw_origin := Vector3.ZERO
+var flight_left := 0.0
 
 func _ready() -> void:
 	body = RigidBody3D.new()
@@ -44,6 +50,9 @@ func _ready() -> void:
 	body.collision_layer = 4
 	body.collision_mask = 7
 	body.continuous_cd = true
+	body.contact_monitor = true
+	body.max_contacts_reported = 8
+	body.body_entered.connect(func(_other: Node): flight_left = 0.0)
 	body.linear_damp_mode = RigidBody3D.DAMP_MODE_REPLACE
 	body.linear_damp = 0
 	body.angular_damp_mode = RigidBody3D.DAMP_MODE_REPLACE
@@ -116,6 +125,8 @@ func reset_shift() -> void:
 	reset_crate()
 
 func reset_crate() -> void:
+	creature_held = false
+	clear_relay()
 	_set_carrier(null)
 	rules.reset_crate()
 	if cling:
@@ -139,6 +150,7 @@ func reset_crate() -> void:
 	target_position = home
 
 func cancel() -> void:
+	clear_relay()
 	active = false
 	if cling:
 		cling.detach()
@@ -149,13 +161,19 @@ func cancel() -> void:
 		cues.cancel()
 
 func pickup(worker: Node3D) -> bool:
-	if not active or recovery_left > 0 or not body.visible or (cling and not cling.target_kind.is_empty()):
+	if creature_held or not active or recovery_left > 0 or not body.visible or (cling and not cling.target_kind.is_empty()):
 		return false
 	var ray := PhysicsRayQueryParameters3D.create(worker.position + Vector3.UP, body.position, 1)
 	if not get_world_3d().direct_space_state.intersect_ray(ray).is_empty():
 		return false
 	if not rules.try_pickup(worker.peer_id, worker.position, body.position):
 		return false
+	if flight_left > 0 and throw_peer != 0 and throw_peer != worker.peer_id and body.position.distance_to(throw_origin) >= 3.0:
+		var floor_ray := PhysicsRayQueryParameters3D.create(body.position, body.position + Vector3.DOWN * 0.48, 1)
+		if get_world_3d().direct_space_state.intersect_ray(floor_ray).is_empty():
+			relay_ready = true
+			relay_caught.emit(worker.peer_id)
+	flight_left = 0.0
 	_set_carrier(worker)
 	body.freeze = true
 	body.linear_velocity = Vector3.ZERO
@@ -173,6 +191,9 @@ func release(worker: Node3D, throwing: bool) -> void:
 	body.freeze = false
 	body.sleeping = false
 	body.linear_velocity = throw_velocity(worker) if throwing else Vector3.ZERO
+	throw_peer = worker.peer_id if throwing else 0
+	throw_origin = body.position
+	flight_left = 3.0 if throwing else 0.0
 	body.angular_velocity = Vector3.ZERO
 
 func throw_velocity(worker: Node3D) -> Vector3:
@@ -208,7 +229,8 @@ func move_held(worker: Node3D) -> void:
 	facing = worker.heading
 
 func step(delta: float, workers: Dictionary) -> void:
-	if not active:
+	flight_left = maxf(0, flight_left - delta)
+	if creature_held or not active:
 		return
 	if cling and not cling.target_kind.is_empty():
 		return
@@ -250,12 +272,14 @@ func recover(reason: String) -> void:
 	body.visible = false
 	_set_collision_enabled(false)
 	notice.emit(reason)
+	clear_relay()
 
 func _set_collision_enabled(enabled: bool) -> void:
 	body.collision_layer = 4 if enabled else 0
 	body.collision_mask = 7 if enabled else 0
 
 func push(direction: Vector3, workers: Dictionary) -> void:
+	if creature_held: return
 	if rules.holder_id != 0 and workers.has(rules.holder_id):
 		release(workers[rules.holder_id], false)
 	body.freeze = false
@@ -372,3 +396,8 @@ func _present() -> void:
 		tag.text = destination_text
 	if cues:
 		cues.present(sneeze, facing, burst_origin, burst_facing, active and body.visible and recovery_left <= 0)
+
+func clear_relay() -> void:
+	relay_ready = false
+	throw_peer = 0
+	flight_left = 0.0

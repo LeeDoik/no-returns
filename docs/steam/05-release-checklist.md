@@ -125,3 +125,14 @@ Test a hotfix on a private branch before promoting it. If a new build breaks sta
 | Ratings, rights, data notices | Cannot finalize from a concept | Final shipped content and data inventory |
 | Price and launch date | Not chosen | Scope, measured readiness, and owner decision |
 | Steam approval and publication | Not submitted | App access, actual artifacts, review, and launch execution |
+
+
+## 0.7 development build addendum
+
+- [x] Implemented three-contract campaign, shared upgrades, relay and Packrat; passed local behavior/multiprocess checks.
+- [x] Prepared complete paired 33-section design and 0.7 play guides.
+- [x] Verified Windows export, 22 packed gameplay scripts, isolated-folder launch and rendering.
+- [ ] Steam invites/relay and separate-PC/external-network validation.
+- [ ] Independent newcomer/friend-group observation and target-hardware performance.
+
+Evidence and limitations are in the [0.7 implementation ledger](../superpowers/plans/2026-09-07-release-polish.en.md). This addendum does not change the unfinished account, rights, store and review gates above.

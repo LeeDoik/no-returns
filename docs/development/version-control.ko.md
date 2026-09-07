@@ -41,3 +41,8 @@ Godot 캐시 `.godot/`, 내려받은 엔진·템플릿 `.tools/`, 검사 기록 
 ## 0.6 야간 맵 기록
 
 `v0.6.0`은 32 × 36m 야간 물류센터와 역전 컨베이어를 추가한 기준점입니다. `codex/night-depot`에서 구현·검증한 뒤 `main`에 반영합니다. 이전 `v0.5.0`과 0.5 배포 폴더는 보존합니다. [0.6 플레이 안내](../prototype/06-night-depot.ko.md)를 참고하세요.
+
+
+## 0.7 협동 계약 기록
+
+`v0.7.0`은 세 계약, 공동 금고와 장비, 릴레이 보상, 포장쥐, 안내/설정, 프로토콜 7을 묶은 개발 기준점입니다. `codex/cooperative-contracts`의 검증한 변경을 `main`에 반영합니다. 0.5/0.6 태그와 기존 배포 폴더는 보존합니다. [0.7 구현·검증 기록](../superpowers/plans/2026-09-07-release-polish.ko.md), [플레이 안내](../prototype/07-contracts.ko.md)를 참고하세요. Steam 출시 완료를 뜻하지 않습니다.

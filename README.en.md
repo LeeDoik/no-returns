@@ -4,51 +4,52 @@
 
 > The packages are alive. Ship them anyway.
 
-**Current version: Night Depot playtest 0.6 · September 7, 2026**
+**Current version: Cooperative Contracts playtest 0.7 · September 7, 2026**
 
-A Godot 3D cooperative game where 2–4 workers ship living packages. Primitive visuals support rule validation; Windows on Steam is the release target. English is the source for game copy, with Korean as the default UI and documentation entry point.
+A Godot third-person delivery game for solo play or 2–4 cooperating workers. Complete three contracts in one depot, buy equipment with shared earnings, relay packages and recover cargo stolen by Packrat. The target is a Windows Steam release; this is a development build using primitive art.
 
-## Play now
+## Run now
 
-**Double-click [NO_RETURNS.exe](build/NO_RETURNS_0.6/NO_RETURNS.exe) → Practice Alone.** Close previous windows first. No editor installation is required. Share the complete [Windows ZIP](build/NO_RETURNS_0.6_Windows.zip) with testers.
+**Double-click [NO_RETURNS.exe](build/NO_RETURNS_0.7/NO_RETURNS.exe) → START SOLO CAMPAIGN.** Close older windows first. No editor is required. Share the [Windows ZIP](build/NO_RETURNS_0.7_Windows.zip) with friends and extract the entire archive.
 
-In the development project use [PLAY.cmd](PLAY.cmd), [PLAY_TWO.cmd](PLAY_TWO.cmd) for two local instances, or [PLAY_FOUR.cmd](PLAY_FOUR.cmd) for four. Once the crew count is ready, start the shift in the host window. [EDIT.cmd](EDIT.cmd) opens Godot.
+In the development project use [PLAY.cmd](PLAY.cmd), [PLAY_TWO.cmd](PLAY_TWO.cmd) for two local windows, or [PLAY_FOUR.cmd](PLAY_FOUR.cmd) for four. One worker hosts the campaign; others enter its address, join, and wait for the host to start. The same-PC address is `127.0.0.1`. [EDIT.cmd](EDIT.cmd) opens the editor.
 
-## Implemented in this slice
+## What changed in 0.7
 
-- 32 × 36 m night depot with a high central sorting partition and permanently open side carrying routes. Single intake-to-dispatch throws are blocked.
-- F-reversible conveyor on the right route past the sorting wall, shelves, shutters, lighting and a Packrat nest placeholder. Creature AI is not implemented.
-- Standard, Sneezer, Clinger and Hopper cargo. Holding a Hopper pauses its cycle; aim and put it down to cross the low divider.
-- Initial A shipments followed by balanced A/B destination variations. The three-minute quota is 5/6/8/10 for the respective crew sizes.
-- Q pings, results, and a 60-second bonus shift after unanimous agreement. Bonus failure does not undo base success.
-- Korean/English UI, saved cue sound/mouse sensitivity/language settings, Windows executable and packaging automation.
+- A complete run of three sequential contracts. Base duration is 240 seconds each, with quotas increasing by crew size and stage.
+- Correct delivery earns 10 credits, relay adds 5, contract success adds 20. Spend the shared bank on boots, time extensions and a horn upgrade, then ready unanimously for the next contract.
+- A relay requires another worker to catch in flight within three seconds and at least 3 m from release. Wrong deliveries, repeated pickups and self-catches cannot farm bonuses.
+- Packrat steals cargo in contracts 2–3. Respond to its warning, use R to scare it, or recover the package at its nest.
+- Staged control hints, H help, contract/bank/readiness/equipment results, Korean/English UI, volume/FOV/fullscreen settings and local completed-run records.
+- Incompatible guests are rejected; campaign and creature state replicate separately. The host judges gameplay rules and rewards.
 
-WASD moves, mouse looks, Space jumps, E picks up/catches/puts down, left click throws, Q pings, F reverses the conveyor, and Esc opens the menu. Match the cargo's **A / B label**.
+The existing 32 × 36 m Night Shift Depot, two bypasses, right-lane reversible conveyor, four cargo types, Q pings and three-minute practice remain. Lights are raised to 6.5 m, and the belt previously between partitions is on the right carrying route.
 
-## Guides and release preparation
+WASD moves, mouse looks, Space jumps, E picks up/catches/puts down, left click throws, Q pings, F reverses the belt, R horns, H opens help and Esc opens the menu. Match cargo A/B labels to dispatch bays.
 
-| English | Korean |
+## Design and guides
+
+| Korean | English |
 | --- | --- |
-| [0.6 play guide](docs/prototype/06-night-depot.en.md) | [플레이 안내](docs/prototype/06-night-depot.ko.md) |
-| [Map plan and completion record](docs/superpowers/plans/2026-09-07-night-depot.en.md) | [구현 계획](docs/superpowers/plans/2026-09-07-night-depot.ko.md) |
-| [Design](docs/superpowers/specs/2026-09-06-no-returns-design.md) | [기획서](docs/superpowers/specs/2026-09-06-no-returns-design.ko.md) |
-| [Equipment and Packrat design notes](docs/superpowers/specs/2026-09-07-depot-creature-design.en.md) | [창고 설비·포장쥐 제안](docs/superpowers/specs/2026-09-07-depot-creature-design.ko.md) |
-| [Roadmap and enrollment](docs/steam/01-release-roadmap.md) | [로드맵](docs/steam/01-release-roadmap.ko.md) |
-| [Store draft](docs/steam/02-store-page.en.md) | [상점 초안](docs/steam/02-store-page.ko.md) |
-| [Assets and trailer](docs/steam/03-assets-and-trailer.en.md) | [이미지·트레일러](docs/steam/03-assets-and-trailer.ko.md) |
-| [Online and build plan](docs/steam/04-online-and-build-plan.md) | [온라인 계획](docs/steam/04-online-and-build-plan.ko.md) |
-| [Release checklist](docs/steam/05-release-checklist.md) | [체크리스트](docs/steam/05-release-checklist.ko.md) |
-| [Creator and tester kit](docs/steam/06-creator-kit.en.md) | [스트리머 자료](docs/steam/06-creator-kit.ko.md) |
-| [Windows build and Steam handoff](docs/steam/07-build-handoff.en.md) | [빌드 인계](docs/steam/07-build-handoff.ko.md) |
+| [33-section detailed design](docs/superpowers/specs/2026-09-07-release-design.ko.md) | **[Detailed design](docs/superpowers/specs/2026-09-07-release-design.en.md)** |
+| [0.7 full play guide](docs/prototype/07-contracts.ko.md) | [Full play guide](docs/prototype/07-contracts.en.md) |
+| [0.7 implementation and evidence](docs/superpowers/plans/2026-09-07-release-polish.ko.md) | [Implementation and evidence](docs/superpowers/plans/2026-09-07-release-polish.en.md) |
+| [Roadmap and enrollment](docs/steam/01-release-roadmap.ko.md) | [Roadmap](docs/steam/01-release-roadmap.md) |
+| [Store draft](docs/steam/02-store-page.ko.md) | [Store draft](docs/steam/02-store-page.en.md) |
+| [Assets and trailer](docs/steam/03-assets-and-trailer.ko.md) | [Assets and trailer](docs/steam/03-assets-and-trailer.en.md) |
+| [Online and build plan](docs/steam/04-online-and-build-plan.ko.md) | [Online plan](docs/steam/04-online-and-build-plan.md) |
+| [Release checklist](docs/steam/05-release-checklist.ko.md) | [Checklist](docs/steam/05-release-checklist.md) |
+| [Creator kit](docs/steam/06-creator-kit.ko.md) | [Creator kit](docs/steam/06-creator-kit.en.md) |
+| [Windows build and Steam handoff](docs/steam/07-build-handoff.ko.md) | [Build handoff](docs/steam/07-build-handoff.en.md) |
 
-## Evidence and remaining scope
+The detailed design separates official reference facts from our interpretation. It covers flow, crew-scaled values, rewards/equipment, relay validation, creature states, server ownership, saves, UI/audio, 18 QA areas, independent tester experiments and release gates. Earlier plans/version documents remain historical records; the new design and implementation ledger control conflicting 0.7 values.
 
-Seventeen behavior tests, four real two-process scenarios, the four-process scenario and the SteamPipe generator test passed. Checks cover worker/held-cargo routes to both bay centers, intake-throw first contact, expanded-boundary recovery, conveyor range/facing/line-of-sight/cooldown and guest reversal. The worst tested snapshot is 1,280 bytes, equal to the current limit. Actual rendering verified Korean/English menus and lever prompts, plus overhead, third-person and dispatch/nest views. Windows export and executable smoke checks passed; all 17 gameplay scripts are packed, and practice rendered in a separate folder containing only the executable and game pack.
+## Validation and remaining release work
 
-**This is not a Steam release.** Steamworks enrollment and a real App ID are unavailable. Current transport is direct-IP ENet with one player's PC hosting; Steam invitations and relay are absent. Separate-PC/external-network tests, actual Steam account/install tests, final art, trailer, store publication and review remain incomplete. No enrollment, payment or publication was performed on the creator's behalf. Prepared documents and the preview-only SteamPipe generator support the next work.
+Twenty-one behavior tests, six real two-process scenarios, the four-process scenario and the SteamPipe generator test passed. Coverage includes campaign completion, shared purchases/readiness, theft/horn rescue, actual-flight relay, settled-floor cargo transport to the nest, first-launch settings and duplicate/late-join completion records. Worst tested motion snapshot is 1,280 bytes; separate campaign metadata stays ≤2,048 and creature state ≤256 bytes.
 
-Automated success does not validate fun. Play with friends and assess whether accidents are readable, roles emerge and another shift is appealing. The 0.1–0.5 documents remain historical records. Full Korean/English documents are maintained under the [documentation rules](AGENTS.md).
+**This is not a Steam release.** Steamworks enrollment and real App/Depot IDs are unavailable. Current transport is direct-address ENet with the host PC as server; Steam friend invites and relay are absent. Separate PCs/external networks, target-hardware performance, independent friend-group fun testing, final art/store imagery/trailer/rights review, Steam installation and Valve review remain open. Automated passes do not establish fun or internet connection quality.
 
 ## Version control
 
-Use local Git with `v0.5.0` as the first baseline. Record this 0.6 update separately; no GitHub remote is connected. See the [history and recovery guide](docs/development/version-control.en.md).
+Local Git retains the 0.5/0.6 baselines. This change is identified by `v0.7.0`; no GitHub remote is connected. See [version history and recovery](docs/development/version-control.en.md) and [documentation rules](AGENTS.md).

@@ -7,9 +7,16 @@ signal stopped(reason: String)
 signal input_received(peer_id: int, movement: Vector2, yaw: float, jump: bool)
 signal action_received(peer_id: int, action: String)
 signal snapshot_received(snapshot: Dictionary)
+signal metadata_received(state: Dictionary)
+signal creature_received(state: Array)
 
 const DEFAULT_PORT := 27842
 const MAX_WORKERS := 4
+const PROTOCOL := 7
+var protocol := PROTOCOL
+var pending: Dictionary = {}
+var admitted: Dictionary = {}
+var confirmed := false
 var mode := "offline"
 var in_shift := false
 var join_deadline := 0
@@ -52,6 +59,9 @@ func close(reason: String = "") -> void:
 	in_shift = false
 	join_deadline = 0
 	last_action.clear()
+	pending.clear()
+	admitted.clear()
+	confirmed = false
 	if multiplayer.multiplayer_peer:
 		multiplayer.multiplayer_peer.close()
 	multiplayer.multiplayer_peer = OfflineMultiplayerPeer.new()
@@ -59,13 +69,18 @@ func close(reason: String = "") -> void:
 		stopped.emit(reason)
 
 func _process(_delta: float) -> void:
+	if mode == "host":
+		for id in pending.keys():
+			if Time.get_ticks_msec() > int(pending[id]):
+				pending.erase(id)
+				multiplayer.multiplayer_peer.disconnect_peer(id)
 	if mode == "connecting" and Time.get_ticks_msec() > join_deadline:
 		close("connection_failed")
 
 func _on_connected() -> void:
 	mode = "guest"
 	join_deadline = 0
-	joined.emit()
+
 
 func _on_peer_connected(peer_id: int) -> void:
 	if mode != "host":
@@ -74,10 +89,13 @@ func _on_peer_connected(peer_id: int) -> void:
 		_reject.rpc_id(peer_id)
 		# Let the reliable rejection arrive; the rejected guest closes its connection.
 		return
-	player_joined.emit(peer_id)
+	pending[peer_id] = Time.get_ticks_msec() + 6000
+	_hello.rpc_id(peer_id, protocol)
 
 func _on_peer_disconnected(peer_id: int) -> void:
 	last_action.erase(peer_id)
+	pending.erase(peer_id)
+	admitted.erase(peer_id)
 	if mode == "host":
 		player_left.emit(peer_id)
 
@@ -86,7 +104,7 @@ func _reject() -> void:
 	close("shift_running")
 
 func send_input(movement: Vector2, yaw: float, jump: bool) -> void:
-	if mode == "guest":
+	if mode == "guest" and confirmed:
 		_receive_input.rpc_id(1, movement, yaw, jump)
 	elif mode == "host" or mode == "practice":
 		_accept_input(1, movement, yaw, jump)
@@ -102,7 +120,7 @@ func _accept_input(peer_id: int, movement: Vector2, yaw: float, jump: bool) -> v
 	input_received.emit(peer_id, movement.limit_length(), wrapf(yaw, -PI, PI), jump)
 
 func send_action(action: String) -> void:
-	if mode == "guest":
+	if mode == "guest" and confirmed:
 		_receive_action.rpc_id(1, action)
 	elif mode == "host" or mode == "practice":
 		_accept_action(1, action)
@@ -113,7 +131,7 @@ func _receive_action(action: String) -> void:
 		_accept_action(multiplayer.get_remote_sender_id(), action)
 
 func _accept_action(peer_id: int, action: String) -> void:
-	if action not in ["interact", "throw", "start", "restart", "ping", "overtime", "lever"]:
+	if action not in ["interact", "throw", "start", "restart", "ping", "overtime", "lever", "horn", "next_contract", "buy_boots", "buy_time", "buy_horn"]:
 		return
 	var now := Time.get_ticks_msec()
 	if now - int(last_action.get(peer_id, -1000)) < 150:
@@ -122,10 +140,60 @@ func _accept_action(peer_id: int, action: String) -> void:
 	action_received.emit(peer_id, action)
 
 func publish(snapshot: Dictionary) -> void:
-	if mode == "host" and not multiplayer.get_peers().is_empty():
-		_receive_snapshot.rpc(snapshot)
+	if mode == "host":
+		for id in admitted: _receive_snapshot.rpc_id(id, snapshot)
 
 @rpc("authority", "call_remote", "unreliable_ordered", 1)
 func _receive_snapshot(snapshot: Dictionary) -> void:
-	if mode == "guest":
+	if mode == "guest" and confirmed:
 		snapshot_received.emit(snapshot)
+
+@rpc("authority", "call_remote", "reliable")
+func _hello(expected: int) -> void:
+	if mode != "guest": return
+	if expected != protocol:
+		close("version_mismatch")
+		return
+	_identify.rpc_id(1, protocol)
+
+@rpc("any_peer", "call_remote", "reliable")
+func _identify(version: int) -> void:
+	if mode != "host": return
+	var id := multiplayer.get_remote_sender_id()
+	if not pending.has(id): return
+	pending.erase(id)
+	if version != protocol:
+		_version_reject.rpc_id(id)
+		return
+	if in_shift:
+		_reject.rpc_id(id)
+		return
+	admitted[id] = true
+	_accepted.rpc_id(id, protocol)
+	player_joined.emit(id)
+
+@rpc("authority", "call_remote", "reliable")
+func _version_reject() -> void:
+	close("version_mismatch")
+
+func publish_metadata(state: Dictionary) -> void:
+	if mode == "host":
+		for id in admitted: _metadata.rpc_id(id, state)
+
+@rpc("authority", "call_remote", "reliable", 0)
+func _metadata(state: Dictionary) -> void:
+	if mode == "guest" and confirmed: metadata_received.emit(state)
+
+func publish_creature(state: Array) -> void:
+	if mode == "host":
+		for id in admitted: _creature.rpc_id(id, state)
+
+@rpc("authority", "call_remote", "unreliable_ordered", 1)
+func _creature(state: Array) -> void:
+	if mode == "guest" and confirmed: creature_received.emit(state)
+
+@rpc("authority", "call_remote", "reliable")
+func _accepted(version: int) -> void:
+	if mode != "guest" or version != protocol: return
+	confirmed = true
+	joined.emit()

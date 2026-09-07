@@ -1,4 +1,4 @@
-NO RETURNS 0.6 - Godot Engine and third-party notices
+NO RETURNS 0.7 - Godot Engine and third-party notices
 
 Copyright (c) 2014-present Godot Engine contributors (see AUTHORS.md).
 Copyright (c) 2007-2014 Juan Linietsky, Ariel Manzur.

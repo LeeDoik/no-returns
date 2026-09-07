@@ -13,6 +13,23 @@ const Preferences = preload("res://scripts/preferences.gd")
 const Round = preload("res://scripts/round_rules.gd")
 const Pings = preload("res://scripts/pings.gd")
 const Conveyor = preload("res://scripts/conveyor.gd")
+const Contracts = preload("res://scripts/contracts.gd")
+const Profile = preload("res://scripts/run_profile.gd")
+const Feedback = preload("res://scripts/feedback.gd")
+const Packrat = preload("res://scripts/packrat.gd")
+var contracts = Contracts.new()
+var profile = Profile.new()
+var feedback: Node
+var packrat: Node3D
+var horn_cooldowns: Dictionary = {}
+var lessons: Dictionary = {}
+var meta_bytes := PackedByteArray()
+var ui_event := 0
+var ui_event_kind := ""
+var received_event := 0
+var help_previous_pause := false
+var observed_run := ""
+var participation := 0
 var round_state = Round.new()
 var pings: Node3D
 var conveyor: Node3D
@@ -55,6 +72,10 @@ func _ready() -> void:
 			capture_mode = arg.trim_prefix("--capture=")
 	Preferences.enabled = not test_mode and capture_mode.is_empty()
 	Preferences.load_settings()
+	profile.enabled = not test_mode and capture_mode.is_empty()
+	profile.load_record()
+	feedback = Feedback.new()
+	add_child(feedback)
 	depot = Depot.new()
 	add_child(depot)
 	conveyor = Conveyor.new()
@@ -69,8 +90,16 @@ func _ready() -> void:
 		cargo.sneezed.connect(_apply_sneeze)
 		cargo.notice.connect(func(key: String):
 			_set_notice(key, 3)
-			if key == "shipped": replacements[id] = true)
+			if key == "shipped":
+				replacements[id] = true
+				contracts.ship(id, cargo.relay_ready)
+				_feedback("ship")
+				for member in workers: lessons[member] = 4)
+		cargo.relay_caught.connect(func(_peer: int): _set_notice("relay", 3); _feedback("relay"))
 		cargos[id] = cargo
+	packrat = Packrat.new()
+	add_child(packrat)
+	packrat.reset(cargos)
 	pings = Pings.new()
 	add_child(pings)
 	worker_root = Node3D.new()
@@ -86,6 +115,8 @@ func _ready() -> void:
 	session.input_received.connect(_receive_input)
 	session.action_received.connect(_receive_action)
 	session.snapshot_received.connect(_receive_snapshot)
+	session.metadata_received.connect(_receive_metadata)
+	session.creature_received.connect(_receive_creature)
 	ui = Interface.new()
 	add_child(ui)
 	ui.command.connect(_command)
@@ -95,17 +126,17 @@ func _ready() -> void:
 		elif arg.begins_with("--join="):
 			join_game(arg.trim_prefix("--join="))
 	if capture_mode == "world":
-		practice_game()
+		practice_game(true)
 		workers[1].look_yaw = -0.18
 		workers[1].update_look()
 	_render_ui()
 
 func _configure_input() -> void:
-	for key in {"left": KEY_A, "right": KEY_D, "forward": KEY_W, "back": KEY_S, "jump": KEY_SPACE, "interact": KEY_E, "menu": KEY_ESCAPE, "ping": KEY_Q, "lever": KEY_F}:
+	for key in {"left": KEY_A, "right": KEY_D, "forward": KEY_W, "back": KEY_S, "jump": KEY_SPACE, "interact": KEY_E, "menu": KEY_ESCAPE, "ping": KEY_Q, "lever": KEY_F, "horn": KEY_R, "help": KEY_H}:
 		if not InputMap.has_action(key):
 			InputMap.add_action(key)
 			var event := InputEventKey.new()
-			event.physical_keycode = {"left": KEY_A, "right": KEY_D, "forward": KEY_W, "back": KEY_S, "jump": KEY_SPACE, "interact": KEY_E, "menu": KEY_ESCAPE, "ping": KEY_Q, "lever": KEY_F}[key]
+			event.physical_keycode = {"left": KEY_A, "right": KEY_D, "forward": KEY_W, "back": KEY_S, "jump": KEY_SPACE, "interact": KEY_E, "menu": KEY_ESCAPE, "ping": KEY_Q, "lever": KEY_F, "horn": KEY_R, "help": KEY_H}[key]
 			InputMap.action_add_event(key, event)
 	if not InputMap.has_action("throw"):
 		InputMap.add_action("throw")
@@ -113,15 +144,17 @@ func _configure_input() -> void:
 		mouse.button_index = MOUSE_BUTTON_LEFT
 		InputMap.action_add_event("throw", mouse)
 
-func practice_game() -> void:
+func practice_game(campaign_mode: bool = false) -> void:
 	leave_game()
+	if campaign_mode: contracts.begin()
 	session.practice()
 	local_id = 1
 	_add_worker(1)
 	start_shift()
 
-func host_game(port: int = Session.DEFAULT_PORT) -> void:
+func host_game(port: int = Session.DEFAULT_PORT, campaign_mode: bool = false) -> void:
 	leave_game()
+	if campaign_mode: contracts.begin()
 	if session.host(port) != OK:
 		_set_notice("host_failed", 10)
 		return
@@ -137,6 +170,15 @@ func join_game(address: String, port: int = Session.DEFAULT_PORT) -> void:
 	phase = "connecting"
 
 func leave_game() -> void:
+	observed_run = ""
+	participation = 0
+	if packrat: packrat.stop(cargos)
+	contracts.enabled = false
+	horn_cooldowns.clear()
+	lessons.clear()
+	meta_bytes.clear()
+	ui_event = 0
+	received_event = 0
 	if session:
 		session.close()
 	for worker in workers.values():
@@ -153,6 +195,7 @@ func leave_game() -> void:
 	notice_key = ""
 	if ui:
 		ui.paused = false
+		ui.help_open = false
 	for cargo in cargos.values():
 		cargo.cancel()
 		cargo.rules.reset_shift()
@@ -173,10 +216,17 @@ func _player_joined(peer_id: int) -> void:
 	if phase != "waiting":
 		return
 	_add_worker(peer_id)
+	_publish_metadata(true)
 
 func _player_left(peer_id: int) -> void:
 	if not workers.has(peer_id):
 		return
+	packrat.stop(cargos)
+	if contracts.enabled:
+		if contracts.won and not contracts.finished: contracts.advance()
+		contracts.ready.clear()
+	horn_cooldowns.erase(peer_id)
+	lessons.erase(peer_id)
 	for cargo in cargos.values():
 		if cargo.rules.holder_id == peer_id:
 			cargo.release(workers[peer_id], false)
@@ -209,6 +259,7 @@ func _add_worker(peer_id: int, assigned_slot: int = -1) -> void:
 	worker_root.add_child(worker)
 	worker.position = worker.spawn_position()
 	workers[peer_id] = worker
+	lessons[peer_id] = 0
 	if peer_id == local_id:
 		worker.make_local()
 
@@ -217,12 +268,19 @@ func start_shift() -> void:
 		return
 	if session.mode == "host" and (workers.size() < 2 or workers.size() > Session.MAX_WORKERS):
 		return
+	packrat.stop(cargos)
+	horn_cooldowns.clear()
 	inputs.clear()
 	last_blast.clear()
 	replacements.clear()
 	if pings: pings.clear()
 	if conveyor: conveyor.reset()
 	round_state.start(workers.size(), replay_seed)
+	if contracts.enabled:
+		if contracts.finished: contracts.begin()
+		contracts.prepare()
+		round_state.quota = contracts.quota(workers.size())
+		round_state.duration = contracts.duration()
 	time_left = round_state.duration
 	for cargo in cargos.values():
 		cargo.reset_shift()
@@ -230,6 +288,10 @@ func start_shift() -> void:
 		workers[id].position = workers[id].spawn_position()
 		workers[id].reset_motion()
 	phase = "playing"
+	packrat.reset(cargos)
+	packrat.horn_cooldown_seconds = 6.0 if contracts.horn else 8.0
+	if contracts.enabled: packrat.start(contracts.stage)
+	_publish_metadata(true)
 	conveyor.active = true
 	session.in_shift = true
 	notice_key = ""
@@ -239,6 +301,11 @@ func start_shift() -> void:
 
 func _command(action: String, address: String) -> void:
 	match action:
+		"campaign": practice_game(true)
+		"host_campaign": host_game(Session.DEFAULT_PORT, true)
+		"next_contract", "buy_boots", "buy_time", "buy_horn": session.send_action(action)
+		"quit": get_tree().quit()
+		"help": _toggle_help()
 		"practice": practice_game()
 		"host": host_game()
 		"join": join_game(address)
@@ -250,9 +317,17 @@ func _command(action: String, address: String) -> void:
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("help") and not event.is_echo() and not test_mode:
+		_toggle_help()
+		get_viewport().set_input_as_handled()
+		return
 	if phase != "playing" or test_mode:
 		return
 	if event.is_action_pressed("menu"):
+		if ui.help_open:
+			_toggle_help()
+			get_viewport().set_input_as_handled()
+			return
 		ui.paused = not ui.paused
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if ui.paused else Input.MOUSE_MODE_CAPTURED
 		get_viewport().set_input_as_handled()
@@ -267,6 +342,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		session.send_action("ping")
 	if event.is_action_pressed("lever") and not event.is_echo():
 		session.send_action("lever")
+	if event.is_action_pressed("horn") and not event.is_echo():
+		session.send_action("horn")
 	if event.is_action_pressed("throw"):
 		session.send_action("throw")
 
@@ -278,17 +355,29 @@ func _notification(what: int) -> void:
 func _receive_input(peer_id: int, movement: Vector2, yaw: float, jump: bool) -> void:
 	if not workers.has(peer_id) or phase != "playing":
 		return
+	if movement.length() > 0.1: lessons[peer_id] = maxi(1, int(lessons.get(peer_id, 0)))
 	var pending_jump: bool = inputs.get(peer_id, {}).get("jump", false)
 	inputs[peer_id] = {"move": movement, "yaw": yaw, "jump": jump or pending_jump, "at": Time.get_ticks_msec()}
 
 func _receive_action(peer_id: int, action: String) -> void:
 	if not workers.has(peer_id):
 		return
+	if contracts.enabled and action.begins_with("buy_"):
+		if phase == "won" and contracts.buy(action.trim_prefix("buy_"), peer_id): _publish_metadata(true)
+		return
+	if contracts.enabled and action == "next_contract":
+		if phase == "won" and contracts.vote(peer_id, workers.keys()):
+			contracts.advance()
+			start_shift()
+		_publish_metadata(true)
+		return
 	if action == "overtime":
+		if contracts.enabled: return
 		if phase == "won" and not round_state.bonus and round_state.vote(peer_id, workers.keys()):
 			_begin_bonus()
 		return
 	if action in ["start", "restart"]:
+		if contracts.enabled and phase == "won" and not contracts.finished: return
 		if peer_id == 1 and phase in ["waiting", "won", "lost", "bonus_done"]:
 			start_shift()
 		return
@@ -296,6 +385,13 @@ func _receive_action(peer_id: int, action: String) -> void:
 		return
 	var worker = workers[peer_id]
 	var held = held_cargo(peer_id)
+	if action == "horn":
+		if contracts.enabled and contracts.stage >= 1 and float(horn_cooldowns.get(peer_id, 0)) <= 0:
+			horn_cooldowns[peer_id] = 6.0 if contracts.horn else 8.0
+			packrat.scare(worker, cargos)
+			_feedback("horn")
+			_publish_metadata(true)
+		return
 	if action == "ping":
 		pings.mark(worker, cargos)
 		return
@@ -310,9 +406,11 @@ func _receive_action(peer_id: int, action: String) -> void:
 			candidates.sort_custom(func(a, b): return worker.position.distance_squared_to(a.body.position) < worker.position.distance_squared_to(b.body.position))
 			for candidate in candidates:
 				if candidate.pickup(worker):
+					lessons[peer_id] = maxi(2, int(lessons.get(peer_id, 0)))
 					break
 	elif action == "throw" and held:
 		held.release(worker, true)
+		lessons[peer_id] = maxi(3, int(lessons.get(peer_id, 0)))
 
 func held_cargo(peer_id: int) -> Node3D:
 	for cargo in cargos.values():
@@ -369,8 +467,11 @@ func _physics_process(delta: float) -> void:
 		return
 	if phase == "playing":
 		time_left = maxf(0, time_left - delta)
+		for member in horn_cooldowns: horn_cooldowns[member] = maxf(0, float(horn_cooldowns[member]) - delta)
+		if contracts.enabled: packrat.step(delta, workers, cargos)
 		for id in workers:
 			workers[id].speed_scale = 0.7 if cargos[3].cling.target_kind == "worker" and cargos[3].cling.target_id == id else 1.0
+			if contracts.enabled: workers[id].speed_scale *= 1.0 + contracts.boots * 0.08
 			var sample: Dictionary = inputs.get(id, {})
 			var fresh: bool = Time.get_ticks_msec() - int(sample.get("at", -10000)) < 300
 			var belt_drift: Vector3 = conveyor.drift_at(workers[id].position) if workers[id].position.y >= -0.1 and workers[id].position.y <= 0.15 else Vector3.ZERO
@@ -383,6 +484,7 @@ func _physics_process(delta: float) -> void:
 			if replacements.has(cargo.cargo_id) and cargo.recovery_left <= 0:
 				cargo.rules.destination = round_state.next_destination()
 				replacements.erase(cargo.cargo_id)
+				contracts.replace_cargo(cargo.cargo_id)
 		conveyor.step(delta, cargos)
 		cargos[3].cling.step(delta, workers, cargos)
 		if score >= round_state.quota:
@@ -394,6 +496,8 @@ func _physics_process(delta: float) -> void:
 	tick += 1
 	if tick % 3 == 0:
 		session.publish(_snapshot())
+	if tick % 6 == 0 and contracts.enabled: session.publish_creature(packrat.snapshot())
+	if tick % 12 == 0: _publish_metadata()
 
 func _begin_bonus() -> void:
 	round_state.begin_bonus(score)
@@ -410,6 +514,11 @@ func _begin_bonus() -> void:
 	if not test_mode: Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _finish(result: String) -> void:
+	packrat.stop(cargos)
+	if contracts.enabled:
+		contracts.finish(result == "won")
+		profile.complete(contracts)
+	_feedback("win" if result == "won" else "fail")
 	if result == "won":
 		round_state.base_won = true
 		if round_state.bonus: result = "bonus_done"
@@ -417,6 +526,8 @@ func _finish(result: String) -> void:
 	for cargo in cargos.values():
 		cargo.cancel()
 	phase = result
+	_publish_metadata(true)
+	session.publish_creature(packrat.snapshot())
 	conveyor.active = false
 	inputs.clear()
 	ui.paused = false
@@ -468,6 +579,7 @@ func _receive_snapshot(state: Dictionary) -> void:
 		workers[id].held = held_cargo(id) != null
 		workers[id].stagger = pose.stagger
 		workers[id].speed_scale = pose.speed
+	_sync_creature_claims()
 	if old_phase != phase:
 		ui.paused = false
 		if phase == "playing" and not test_mode:
@@ -486,6 +598,7 @@ func _process(delta: float) -> void:
 			workers[id].velocity = targets[id].velocity
 		for cargo in cargos.values():
 			cargo.interpolate(delta)
+	if workers.has(local_id) and workers[local_id].camera: workers[local_id].camera.fov = Preferences.fov
 	_update_marker()
 	_render_ui()
 	if not capture_mode.is_empty():
@@ -521,7 +634,7 @@ func _render_ui() -> void:
 		var nearest: Node3D = null
 		var distance := Rules.PICKUP_DISTANCE
 		for cargo in cargos.values():
-			if not cargo.body.visible or cargo.rules.holder_id != 0:
+			if not cargo.body.visible or cargo.creature_held or cargo.rules.holder_id != 0:
 				continue
 			if cargo.cling and not cargo.cling.target_kind.is_empty():
 				continue
@@ -542,7 +655,13 @@ func _render_ui() -> void:
 		warning = Copy.get_text("clinger_attached") % maxf(0, cargos[3].cling.remaining)
 	elif phase == "playing" and cargos[4].hopper.phase == "windup":
 		warning = Copy.get_text("hopper_paused") if cargos[4].rules.holder_id else Copy.get_text("hopper_windup") % cargos[4].hopper.remaining
-	ui.render({"quota": round_state.quota, "bonus": round_state.bonus, "base_won": round_state.base_won,
+	var campaign_state: Dictionary = contracts.snapshot()
+	campaign_state.ready = contracts.ready.size()
+	campaign_state.voted = contracts.ready.has(local_id)
+	campaign_state.best_runs = profile.runs
+	ui.render({"campaign":campaign_state, "creature": packrat.status_key(),
+		"horn_left":float(horn_cooldowns.get(local_id, 0)), "lesson":int(lessons.get(local_id, 0)),
+		"progress":Copy.get_text("lesson_%d" % int(lessons.get(local_id, 0))) if phase == "playing" else "", "quota": round_state.quota, "bonus": round_state.bonus, "base_won": round_state.base_won,
 		"elapsed": round_state.duration - time_left, "votes": round_state.votes.size(), "voted": round_state.votes.has(local_id), "seed": round_state.seed_value,
 		"phase": phase, "mode": session.mode, "count": workers.size(), "score": score,
 		"time": time_left, "prompt": prompt_key, "cargo_name": cargo_name, "warning": warning,
@@ -555,3 +674,63 @@ func _capture() -> void:
 	var error := screenshot.save_png(path)
 	print("CAPTURE %s: %s" % [path, error_string(error)])
 	get_tree().quit(0 if error == OK else 1)
+
+func _feedback(kind: String) -> void:
+	ui_event += 1
+	ui_event_kind = kind
+	if feedback: feedback.play(kind)
+
+func _metadata_snapshot() -> Dictionary:
+	var clocks := {}
+	for id in horn_cooldowns: clocks[id] = ceili(float(horn_cooldowns[id]))
+	return {"campaign":contracts.snapshot(), "horn":clocks, "lessons":lessons.duplicate(), "event":ui_event, "sound":ui_event_kind}
+
+func _publish_metadata(force: bool = false) -> void:
+	if not session or session.mode not in ["host", "practice"]: return
+	var data := _metadata_snapshot()
+	var bytes := var_to_bytes(data)
+	if force or bytes != meta_bytes:
+		meta_bytes = bytes
+		session.publish_metadata(data)
+
+func _receive_metadata(data: Dictionary) -> void:
+	contracts.apply_snapshot(data.get("campaign", {}))
+	if contracts.enabled:
+		if observed_run != contracts.run_id:
+			observed_run = contracts.run_id
+			participation = 0
+		if not contracts.settled: participation |= 1 << contracts.stage
+	horn_cooldowns = data.get("horn", {}).duplicate()
+	lessons = data.get("lessons", {}).duplicate()
+	var event := int(data.get("event", 0))
+	if event > received_event:
+		received_event = event
+		feedback.play(str(data.get("sound", "")))
+	if participation == 7: profile.complete(contracts)
+	if not contracts.enabled or contracts.settled:
+		packrat.stop(cargos)
+		_sync_creature_claims()
+
+func _receive_creature(data: Array) -> void:
+	if not contracts.enabled or contracts.settled or phase != "playing": return
+	packrat.apply_snapshot(data)
+	_sync_creature_claims()
+
+func _sync_creature_claims() -> void:
+	for cargo in cargos.values():
+		if session.mode == "guest": cargo.body.freeze = true
+		var was_held: bool = cargo.creature_held
+		cargo.creature_held = packrat.active and packrat.carried_id == cargo.cargo_id
+		if cargo.creature_held:
+			cargo.body.collision_layer = 0
+			cargo.body.collision_mask = 1
+		elif was_held:
+			cargo._set_collision_enabled(cargo.body.visible and cargo.recovery_left <= 0)
+
+
+func _toggle_help() -> void:
+	if not ui.help_open: help_previous_pause = ui.paused
+	ui.toggle_help()
+	if phase == "playing":
+		ui.paused = true if ui.help_open else help_previous_pause
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if ui.paused else Input.MOUSE_MODE_CAPTURED

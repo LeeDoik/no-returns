@@ -1,78 +1,62 @@
-# NO RETURNS — English Steam store draft
+# NO RETURNS — Steam store draft
 
 [한국어](02-store-page.ko.md)
 
-**Status:** Unpublished copy draft for the planned game. Reconcile every statement with the final design and build before submission.  
-**Working title:** NO RETURNS  
-**Tagline:** The packages are alive. Ship them anyway.
+September 7, 2026 · Aligned with the 0.7 development design. Unpublished draft; verify the submitted build before publication. NO RETURNS is a working title. Tagline: The packages are alive. Ship them anyway.
 
 ## Short description
 
-Ship living packages in this 2–4 player online co-op delivery game. Aim sneezing boxes, untangle sticky cargo, and turn warehouse accidents into unlikely teamwork. Meet your quota before the shift ends. Please handle with care. Or at least try.
+Run a night depot where the packages refuse to behave. Carry, throw and relay four kinds of living cargo, outsmart a thieving Packrat, and spend shared earnings between three increasingly demanding contracts. Play solo or coordinate a crew of up to four.
 
 ## About this game
 
-### Welcome to your first shift
+### Welcome to the night shift
 
-The packages are alive. The delivery deadline is real.
+The packages are alive. The delivery deadline is real. Get each shipment to the bay matching its label. Work alone or split the job with up to three friends: someone throws, someone catches, and someone explains what just happened.
 
-Grab up to three friends and clock in at a shipping depot with unusually difficult cargo. Your job is simple: get every package to the right dispatch bay. Keeping it there long enough to ship is the hard part.
+### Learn what your cargo can do
 
-### Your cargo has other plans
+Standard boxes behave. Sneezer blasts whatever is in front. Clinger sticks to workers and other packages. Hopper jumps when left alone. Watch their warnings, position the next throw, and turn an inconvenient habit into a useful handoff.
 
-Some packages sneeze. Some stick to anything they touch. Others refuse to stay on the floor. Learn their habits, watch the warning signs, and decide who gets to carry the next one.
+### Three contracts. One shared bank.
 
-### Make the problem part of the plan
+Meet your quota, bank your earnings and choose shared upgrades between contracts. Better boots, extra time or a shorter horn cooldown change the next attempt. Everyone readies up before the next job. Complete all three contracts to finish the run.
 
-A well-aimed sneeze can send a delivery over a divider. A sticky package can hold a second shipment in place. Use the same behaviors that cause trouble to create shortcuts, rescue a coworker, or recover a delivery that was definitely going wrong.
+### Catch it before the rat does
 
-### Everyone shares the quota
+A deliberate airborne catch by a teammate can earn extra delivery credit. A package left on the floor may attract Packrat. Chase it off with your horn or recover the shipment at its nest. A wrong delivery returns to intake, giving the crew another chance.
 
-Receive incoming cargo, line up a throw, or get into position for a catch. Share the work, switch jobs whenever you need to, and keep the depot moving through short, replayable shifts.
+## Supporting feature list
 
-### Another shift. Another questionable plan.
-
-Changing shipment combinations give familiar package rules new uses. Practice a clever handoff, take a risky shortcut, and find out whether your team has learned anything since the last accident.
-
-## Feature bullets for supporting material
-
-- Online cooperation for 2–4 players.
-- A third-person view of every questionable workplace decision.
-- Living packages with learnable behaviors and useful combinations.
-- Shared delivery goals and fast recovery from mistakes.
-- Short shifts built around teamwork and improvisation.
+- Solo campaign and cooperation for up to four workers.
+- Third-person carrying, throwing and teammate catches.
+- Four living cargo types, A/B deliveries and a reversible floor conveyor.
+- Three-contract runs, shared purchases and unanimous readiness.
+- One thieving Packrat in later contracts and local completed-run records.
+- Korean and English interface; keyboard and mouse.
 
 ## Metadata worksheet
 
-| Field | Draft choice or completion rule |
+| Field | Draft / completion requirement |
 | --- | --- |
-| Name | NO RETURNS, pending final naming review |
-| Developer / Publisher | Await the creator's public publishing name |
-| Genre candidates | Action, Casual, Indie; choose the relevant available categories |
-| Tag candidates | Online Co-Op, Co-op, Physics, Funny, Party Game, Third Person, Multiplayer; confirm exact labels in Steam's tag tools |
-| Platform | Windows only until additional platforms are supported and tested |
-| Players | 2–4 online; do not mark single-player or local co-op without implementing them |
-| Input | Keyboard and mouse as the initial plan; controller declarations require completed testing |
-| Interface language | English after text implementation and QA |
-| Full audio | Do not mark a language as fully voiced on the strength of sound effects |
-| Subtitles | Match the actual implementation; no narrative voiceover is currently planned |
-| Online requirement | State that online play and a Steam connection are required for multiplayer |
-| Support contact | Real creator-controlled email or support URL required before publication |
-| System requirements | Measure the exported build on actual hardware before entering CPU/GPU/RAM/storage and supported OS versions |
-| Price and release date | Await tested scope, owner decision, and Steam readiness |
+| Name | NO RETURNS; final naming and rights review pending |
+| Developer / Publisher | Creator's real public publishing name required |
+| Genre candidates | Action, Casual, Indie; confirm available relevant categories |
+| Tag candidates | Co-op, Physics, Funny, Party Game, Third Person, Multiplayer; validate exact editor labels |
+| Platform | Windows; additional platforms are not certified |
+| Players | Single-player implemented; 2–4-worker direct-address multiplayer implemented; Steam online declaration requires submitted-build verification |
+| Input | Keyboard/mouse; controller support and Steam Deck claims unverified |
+| Interface | Korean and English implemented; final localization QA required |
+| Audio / subtitles | Synthesized sound effects do not qualify as full voiceover; no narrative speech planned |
+| Connection | Development build uses direct-address ENet; do not advertise Steam friend invitations, relay or effortless WAN joining |
+| Support | Creator-controlled support email or URL required |
+| Requirements | Measure exported build on actual Windows hardware before publishing specifications |
+| Price / release date | Not decided; depends on tested scope and Steam readiness |
 
-## Claims to check before publication
+## Claims and publication gates
 
-- Four-player online play works in the submitted build.
-- Hopper behavior exists before retaining the line about packages leaving the floor.
-- Clinger bundling and Sneezer shortcuts work reliably.
-- The shared quota, changing shipments, fast recovery, and restart are implemented.
-- The view shown in screenshots and trailers matches the player camera.
-- No claim of achievements, Cloud, controller support, Steam Deck status, cross-platform play, proximity voice, or mod support is added without evidence.
-- English language support reflects a complete and tested interface.
+Locally implemented features are not evidence of commercial readiness. Confirm the actual submitted build supports every declaration. Four-worker localhost tests do not prove separate-network play. No achievements, Cloud, controller certification, cross-platform support, proximity voice, public matchmaking or mods are promised. Package identities are fixed; A/B destination order changes. Do not advertise random new cargo species or additional maps.
 
-The current document is marketing copy for a proposed product, not evidence that these features are already available. Valve checks feature declarations against the submitted build. [Review process](https://partner.steamgames.com/doc/store/review_process)
+Complete Steamworks enrollment, real IDs, transport/invitation work, independent playtests and final content before public promises. Valve checks listed features against the build. [Review process](https://partner.steamgames.com/doc/store/review_process)
 
-## Publication format notes
-
-Keep the short description plain text. Convert the About section to Steam's supported editor formatting and preview it on the actual store page. Check character limits in the current editor, remove redundant headings if needed, and keep images representative of real gameplay. Read the current [written-description guidance](https://partner.steamgames.com/doc/store/page/description) when preparing the submission.
+Keep short copy plain text. Convert the About section using the real Steam editor, check its current limits and preview the result. All images and trailers must represent the submitted gameplay. The detailed [0.7 design](../superpowers/specs/2026-09-07-release-design.en.md) distinguishes implemented rules, proposed tuning and external gates.

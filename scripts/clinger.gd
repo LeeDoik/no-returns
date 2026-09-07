@@ -69,7 +69,7 @@ func apply_snapshot(data: Array) -> void:
 		cargo.body.collision_mask = 1
 
 func _available(item) -> bool:
-	return is_instance_valid(item) and item.active and item.recovery_left <= 0 and item.body.visible
+	return is_instance_valid(item) and not item.creature_held and item.active and item.recovery_left <= 0 and item.body.visible
 
 func _anchor(item, kind: String) -> Vector3:
 	return item.global_position + Vector3.UP if kind == "worker" else item.body.global_position
