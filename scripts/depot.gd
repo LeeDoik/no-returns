@@ -83,9 +83,9 @@ func _build_nest() -> void:
 	box(Vector3(1.2, 0.8, 0.9), Vector3(13, 0.48, -5), Color("263a40")); _local_label("nest", Vector3(13, 1.25, -5), Color("e4b970"), 27)
 
 func _build_lighting() -> void:
-	for data in [[Vector3(-10, 3.25, -21), Color("9fe8dc"), 5.0], [Vector3(10, 3.25, -21), Color("ffd0a3"), 5.0], [Vector3(-7, 3.3, -5), Color("b8dced"), 4.0], [Vector3(7, 3.3, -5), Color("b8dced"), 4.0], [Vector3(0, 3.2, 3), Color("ffe0ad"), 3.4]]:
+	for data in [[Vector3(-10, 6.5, -21), Color("9fe8dc"), 1.4], [Vector3(10, 6.5, -21), Color("ffd0a3"), 1.4], [Vector3(-7, 6.5, -5), Color("b8dced"), 1.2], [Vector3(7, 6.5, -5), Color("b8dced"), 1.2], [Vector3(0, 6.5, 3), Color("ffe0ad"), 1.0]]:
 		var light := OmniLight3D.new(); light.position = data[0]; light.light_color = data[1]; light.light_energy = data[2]
-		light.omni_range = 8.5; light.shadow_enabled = true; add_child(light); box(Vector3(0.8, 0.08, 0.8), data[0], data[1])
+		light.omni_range = 11.0; light.shadow_enabled = true; add_child(light); box(Vector3(0.8, 0.08, 0.8), data[0], data[1])
 
 func _build_camera_and_marker() -> void:
 	overview = Camera3D.new(); add_child(overview); overview.position = Vector3(15, 18, 18); overview.look_at(Vector3(0, 0, -9)); overview.current = true

@@ -1,5 +1,6 @@
 extends SceneTree
 
+const Layout = preload("res://scripts/depot_layout.gd")
 const Conveyor = preload("res://scripts/conveyor.gd")
 const Worker = preload("res://scripts/worker.gd")
 const Cargo = preload("res://scripts/cargo.gd")
@@ -19,7 +20,7 @@ func run() -> void:
 	var floor := StaticBody3D.new()
 	var floor_collision := CollisionShape3D.new()
 	var floor_shape := BoxShape3D.new()
-	floor_shape.size = Vector3(20, 0.2, 20)
+	floor_shape.size = Vector3(40, 0.2, 40)
 	floor_collision.shape = floor_shape
 	floor.add_child(floor_collision)
 	floor.position.y = -0.1
@@ -29,18 +30,18 @@ func run() -> void:
 	var worker = Worker.new()
 	worker.peer_id = 1
 	world.add_child(worker)
-	worker.position = Vector3(2, 0, -2)
+	worker.position = Layout.LEVER + Vector3(0, 0, 2)
 	worker.heading = 0
 	var roster := {1: worker}
 	check(conveyor.direction == -1, "belt starts toward the loading bays")
-	check(conveyor.drift_at(Vector3(0, 0, -5)) == Vector3(0, 0, -2), "belt center moves at two metres per second")
-	check(conveyor.drift_at(Vector3(1.2, 0, -5)) == Vector3.ZERO, "belt has bounded width")
-	check(conveyor.drift_at(Vector3(0, 0, -8.1)) == Vector3.ZERO, "belt has bounded length")
+	check(conveyor.drift_at(Layout.BELT_CENTER) == Vector3(0, 0, -2), "belt center moves at two metres per second")
+	check(conveyor.drift_at(Layout.BELT_CENTER + Vector3(1.2, 0, 0)) == Vector3.ZERO, "belt has bounded width")
+	check(conveyor.drift_at(Layout.BELT_CENTER + Vector3(0, 0, -3.1)) == Vector3.ZERO, "belt has bounded length")
 	check(not conveyor.try_reverse(9, roster, "playing"), "non-member cannot use lever")
 	check(not conveyor.try_reverse(1, roster, "waiting"), "lever is disabled outside play")
-	worker.position = Vector3(7, 0, -4)
+	worker.position = Layout.LEVER + Vector3(5, 0, 0)
 	check(not conveyor.try_reverse(1, roster, "playing"), "distant worker cannot use lever")
-	worker.position = Vector3(2, 0, -2)
+	worker.position = Layout.LEVER + Vector3(0, 0, 2)
 	worker.heading = PI
 	check(not conveyor.try_reverse(1, roster, "playing"), "worker must face lever")
 	worker.heading = 0
@@ -50,7 +51,7 @@ func run() -> void:
 	wall_shape.size = Vector3(1, 2, 0.2)
 	wall_collision.shape = wall_shape
 	wall.add_child(wall_collision)
-	wall.position = Vector3(2, 1, -3)
+	wall.position = Layout.LEVER + Vector3(0, 1, 1)
 	world.add_child(wall)
 	await physics_frame
 	check(not conveyor.try_reverse(1, roster, "playing"), "solid wall blocks lever line of sight")
@@ -61,7 +62,7 @@ func run() -> void:
 	conveyor.step(0.5, {})
 	check(conveyor.try_reverse(1, roster, "playing") and conveyor.direction == -1, "lever works after cooldown")
 
-	worker.position = Vector3(0, 0, -5)
+	worker.position = Layout.BELT_CENTER
 	for index in range(8):
 		worker.simulate(Vector2.ZERO, 0, false, 1.0 / 60.0)
 	worker.simulate(Vector2.ZERO, 0, false, 0.1, conveyor.drift_at(worker.position))
@@ -71,7 +72,7 @@ func run() -> void:
 	cargo.kind = "standard"
 	world.add_child(cargo)
 	cargo.reset_shift()
-	cargo.body.position = Vector3(0, 0.4, -5)
+	cargo.body.position = Layout.BELT_CENTER + Vector3(0, 0.4, 0)
 	cargo.body.freeze = false
 	conveyor.step(0.1, {1: cargo})
 	check(cargo.body.linear_velocity.z < -0.75 and cargo.body.linear_velocity.z > -0.85, "grounded free cargo accelerates smoothly with belt")
@@ -83,7 +84,7 @@ func run() -> void:
 	clinger_cargo.kind = "clinger"
 	world.add_child(clinger_cargo)
 	clinger_cargo.reset_shift()
-	clinger_cargo.body.position = Vector3(0, 0.4, -5)
+	clinger_cargo.body.position = Layout.BELT_CENTER + Vector3(0, 0.4, 0)
 	clinger_cargo.cling.target_kind = "worker"
 	clinger_cargo.body.linear_velocity = Vector3.ZERO
 	conveyor.step(0.1, {2: clinger_cargo})
@@ -93,7 +94,7 @@ func run() -> void:
 	hopper_cargo.kind = "hopper"
 	world.add_child(hopper_cargo)
 	hopper_cargo.reset_shift()
-	hopper_cargo.body.position = Vector3(0, 0.7, -5)
+	hopper_cargo.body.position = Layout.BELT_CENTER + Vector3(0, 0.7, 0)
 	hopper_cargo.hopper.phase = "airborne"
 	hopper_cargo.body.linear_velocity = Vector3.ZERO
 	conveyor.step(0.1, {2: hopper_cargo})

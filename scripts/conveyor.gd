@@ -57,7 +57,7 @@ func reset() -> void:
 	_present()
 
 func drift_at(at: Vector3) -> Vector3:
-	if absf(at.x - Layout.BELT_CENTER.x) > 1.1 or at.z < -8.0 or at.z > -2.0:
+	if absf(at.x - Layout.BELT_CENTER.x) > 1.1 or absf(at.z - Layout.BELT_CENTER.z) > 3.0:
 		return Vector3.ZERO
 	return Vector3(0, 0, direction * SPEED)
 
@@ -127,7 +127,7 @@ func _process(delta: float) -> void:
 		return
 	for stripe in stripes:
 		stripe.position.z += direction * SPEED * delta
-		if stripe.position.z < -7.7:
+		if stripe.position.z < Layout.BELT_CENTER.z - 2.7:
 			stripe.position.z += 5.4
-		elif stripe.position.z > -2.3:
+		elif stripe.position.z > Layout.BELT_CENTER.z + 2.7:
 			stripe.position.z -= 5.4

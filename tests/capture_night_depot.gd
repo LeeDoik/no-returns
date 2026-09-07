@@ -38,7 +38,7 @@ func _run() -> void:
 	await settle(4)
 	await capture("night-depot-dispatch-nest")
 	game.ui.visible = true
-	worker.position = Vector3(2, 0.05, -2)
+	worker.position = game.conveyor.Layout.LEVER + Vector3(0, 0.05, 2)
 	worker.look_yaw = 0
 	worker.heading = 0
 	worker.update_look()

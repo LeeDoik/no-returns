@@ -4,8 +4,8 @@ const FLOOR_SIZE := Vector2(32, 36)
 const FLOOR_CENTER := Vector3(0, -0.25, -9)
 const BAY_A := Vector3(-10, 0.65, -22)
 const BAY_B := Vector3(10, 0.65, -22)
-const BELT_CENTER := Vector3(0, 0, -5)
-const LEVER := Vector3(2, 0, -4)
+const BELT_CENTER := Vector3(10, 0, -10)
+const LEVER := Vector3(12, 0, -9)
 const NEST := Vector3(13, 0, -5)
 
 static func bay(id: int) -> Vector3:

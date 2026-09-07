@@ -36,6 +36,13 @@ func run() -> void:
 			check(not hit.is_empty(), "intake throw finds a solid contact")
 			if not hit.is_empty():
 				check(Vector2(hit.center.x, hit.center.z).distance_to(Vector2(Layout.bay(id).x, Layout.bay(id).z)) > 3, "intake throw cannot reach dispatch in one flight")
+	# The belt must transport packages across the sorting wall's depth, not into it.
+	var belt_start := Layout.BELT_CENTER + Vector3(0, 0.45, 2.5)
+	var belt_end := Layout.BELT_CENTER + Vector3(0, 0.45, -2.5)
+	check(belt_start.z > -10 and belt_end.z < -10, "belt crosses the sorting boundary")
+	var belt_query: PhysicsShapeQueryParameters3D = game.cargos[1].query(belt_start, belt_end - belt_start)
+	belt_query.collision_mask = 1
+	check(space.cast_motion(belt_query)[0] >= 1.0, "belt transfers cargo past sorting wall without collision")
 	# Sweep both a worker capsule and held box along permanent side routes.
 	var capsule := CapsuleShape3D.new()
 	capsule.radius = 0.32

@@ -17,7 +17,7 @@ In the development project use [PLAY.cmd](PLAY.cmd), [PLAY_TWO.cmd](PLAY_TWO.cmd
 ## Implemented in this slice
 
 - 32 × 36 m night depot with a high central sorting partition and permanently open side carrying routes. Single intake-to-dispatch throws are blocked.
-- F-reversible conveyor, shelves, shutters, lighting and a Packrat nest placeholder. Creature AI is not implemented.
+- F-reversible conveyor on the right route past the sorting wall, shelves, shutters, lighting and a Packrat nest placeholder. Creature AI is not implemented.
 - Standard, Sneezer, Clinger and Hopper cargo. Holding a Hopper pauses its cycle; aim and put it down to cross the low divider.
 - Initial A shipments followed by balanced A/B destination variations. The three-minute quota is 5/6/8/10 for the respective crew sizes.
 - Q pings, results, and a 60-second bonus shift after unanimous agreement. Bonus failure does not undo base success.

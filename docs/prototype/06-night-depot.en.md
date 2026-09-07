@@ -55,7 +55,7 @@ A departing guest releases held cargo and returns the remaining group to the lob
 
 The map measures 32 × 36 m. Starting at intake, walk around either side of the central 3.4 m sorting partition to reach northern dispatch bays A / B. Bay centers are (-10, -22) and (10, -22), over 20 m from intake cargo. The layout blocks a single intake-to-dispatch throw while both carrying routes remain permanently open. Throw strength is unchanged. The low practice divider remains available.
 
-The central floor conveyor moves workers and grounded cargo at 2 m/s. Face the lever and press **F** within 2.4 m to reverse it. Walls block interaction; the shared cooldown is 0.5 seconds. It does not directly push held, attached or airborne cargo. Each new shift resets it toward dispatch. Online simulation is authoritative on the host and shares the direction with guests.
+The floor conveyor on the right bypass moves workers and grounded cargo at 2 m/s. Face the lever and press **F** within 2.4 m to reverse it. Walls block interaction; the shared cooldown is 0.5 seconds. It does not directly push held, attached or airborne cargo. Each new shift resets it toward dispatch. Online simulation is authoritative on the host and shares the direction with guests.
 
 Shelves, sorting tables, dispatch shutters, lighting and lane markings are prototype primitives. The eastern Packrat nest is a location placeholder; creature AI and cargo theft are not implemented. Pressure-plate doors and launchers are also unimplemented. Before further maps or art, evaluate the two routes, relay throws and conveyor mishaps.
 
@@ -64,3 +64,7 @@ The existing 180-second duration and player-count quotas remain unchanged. Diffi
 ## Validation and remaining work
 
 Seventeen behavior tests, four real two-process scenarios, the four-process scenario and the SteamPipe generator test passed. Checks cover worker/held-cargo routes to both bay centers, intake-throw first contact, expanded-boundary recovery, conveyor range/facing/line-of-sight/cooldown and guest reversal. The worst tested snapshot is 1,280 bytes, equal to the current limit. Actual rendering verified Korean/English menus and lever prompts, plus overhead, third-person and dispatch/nest views. Windows export and executable smoke checks passed; all 17 gameplay scripts are packed, and practice rendered in a separate folder containing only the executable and game pack. Separate PCs/external networks, Steam, final art, trailers, public store publication and Valve review remain unverified or unfinished. Steamworks registration and actual application IDs are unavailable; no upload, payment or release has been performed. Passing automated checks does not establish fun.
+
+## 0.6 layout and lighting revision
+
+Raised lights from approximately 3.2 m to 6.5 m and reduced energy from 3.4–5.0 to 1.0–1.4. Moved the belt out of the space between two partitions onto the right bypass. Its center is (10, -10), length 6 m, spanning Z -7 to -13 to carry packages past the sorting wall. The lever is at (12, -9). The left route remains free of belt movement. The existing 0.6 executable and ZIP are refreshed with this layout; all party members must use the refreshed build.
