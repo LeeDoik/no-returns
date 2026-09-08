@@ -77,3 +77,7 @@ Integrate the validated visual cleanup and worker appearance changes from `codex
 ## 0.7.9 Release usability audit
 
 Validated changes from `codex/release-usability` are integrated into main and recorded as `v0.7.9`. The previous state remains at `v0.7.8`.
+
+## 0.8.0 Connected delivery and reactive props
+
+`codex/sorting-line-gameplay` implements the connected belt/cargo/rat situation, 24 reactive props and 13 document locations. After verification, integrate into main and preserve `v0.8.0` as a local baseline. Keep the previous map at `v0.7.9`; do not create a remote repository.

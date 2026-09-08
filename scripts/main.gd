@@ -37,6 +37,7 @@ var round_state = Round.new()
 var pings: Node3D
 var conveyor: Node3D
 var routes: Node3D
+var reactions: Node3D
 var replacements: Dictionary = {}
 var replay_seed := -1
 
@@ -84,6 +85,8 @@ func _ready() -> void:
 	depot = get_node("Map")
 	conveyor = depot.get_node("Gameplay/Conveyor")
 	routes = depot.get_node("Gameplay/RouteChallenges")
+	reactions = depot.get_node("Gameplay/Reactions")
+	reactions.state_changed.connect(func(): _publish_metadata(true))
 	for id in [1, 2, 3, 4]:
 		var cargo = Cargo.new()
 		cargo.cargo_id = id
@@ -192,6 +195,7 @@ func leave_game() -> void:
 	if pings: pings.clear()
 	if conveyor: conveyor.reset()
 	if routes: routes.reset()
+	if reactions: reactions.reset()
 	phase = "menu"
 	time_left = SHIFT_SECONDS
 	notice_key = ""
@@ -282,6 +286,7 @@ func start_shift() -> void:
 	if pings: pings.clear()
 	if conveyor: conveyor.reset()
 	if routes: routes.reset()
+	if reactions: reactions.reset()
 	round_state.start(workers.size(), replay_seed)
 	if contracts.enabled:
 		if contracts.finished: contracts.begin()
@@ -491,6 +496,9 @@ func _apply_sneeze(source: Node3D) -> void:
 	var direction := Vector3.FORWARD.rotated(Vector3.UP, source.facing)
 	var hit_workers: Array = []
 	var hit_cargos: Array = []
+	if packrat.active and _blast_reaches(source,packrat.global_position+Vector3.UP*0.45):
+		packrat.startle(cargos)
+	reactions.blast(source,_blast_reaches)
 	var sticky = cargos[3]
 	if not sticky.cling.target_kind.is_empty() and _blast_reaches(source, sticky.body.position):
 		sticky.cling.detach()
@@ -531,6 +539,7 @@ func _physics_process(delta: float) -> void:
 		for member in horn_cooldowns: horn_cooldowns[member] = maxf(0, float(horn_cooldowns[member]) - delta)
 		if contracts.enabled: packrat.step(delta, workers, cargos)
 		routes.step(delta, workers, cargos)
+		reactions.step(delta, workers, cargos)
 		for id in workers:
 			workers[id].speed_scale = 0.7 if cargos[3].cling.target_kind == "worker" and cargos[3].cling.target_id == id else 1.0
 			if contracts.enabled: workers[id].speed_scale *= 1.0 + contracts.boots * 0.08
@@ -747,7 +756,7 @@ func _feedback(kind: String) -> void:
 func _metadata_snapshot() -> Dictionary:
 	var clocks := {}
 	for id in horn_cooldowns: clocks[id] = ceili(float(horn_cooldowns[id]))
-	return {"campaign":contracts.snapshot(), "horn":clocks, "lessons":lessons.duplicate(), "event":ui_event, "sound":ui_event_kind, "routes":routes.snapshot()}
+	return {"campaign":contracts.snapshot(), "horn":clocks, "lessons":lessons.duplicate(), "event":ui_event, "sound":ui_event_kind, "routes":routes.snapshot(), "reactions":reactions.snapshot()}
 
 func _publish_metadata(force: bool = false) -> void:
 	if not session or session.mode not in ["host", "practice"]: return
@@ -760,6 +769,7 @@ func _publish_metadata(force: bool = false) -> void:
 func _receive_metadata(data: Dictionary) -> void:
 	contracts.apply_snapshot(data.get("campaign", {}))
 	routes.apply_snapshot(data.get("routes", PackedFloat32Array()))
+	reactions.apply_snapshot(data.get("reactions", []))
 	if contracts.enabled:
 		if observed_run != contracts.run_id:
 			observed_run = contracts.run_id

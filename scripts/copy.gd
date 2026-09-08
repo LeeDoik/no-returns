@@ -3,6 +3,7 @@ const Bindings = preload("res://scripts/input_bindings.gd")
 
 static var language := "ko"
 const STRINGS := {
+	"clinger_tag_pair": ["PAIRED / RAT-PROOF %.1fs", "함께 운반 / 절도 방지 %.1f초"],
 	"record_save_failed": ["Record not saved. Check disk space / folder access. Retrying while the game is open.", "완주 기록 저장 실패. 여유 공간·폴더 권한을 확인하세요. 게임을 켜 둔 동안 재시도합니다."],
 	"map_mismatch": ["Different map files. Use the same saved map/build as the host.", "맵 파일이 다릅니다. 방장과 같은 저장 맵/빌드를 사용하세요."],
 	"lesson_0": ["{forward}/{left}/{back}/{right}: move · Mouse: look · {jump}: jump · {help}: help", "{forward}/{left}/{back}/{right}: 이동 · 마우스: 둘러보기 · {jump}: 점프 · {help}: 도움말"],
@@ -36,7 +37,7 @@ const STRINGS := {
 	"host": ["HOST / 2–4 WORKERS", "방 만들기 / 2~4인"],
 	"join": ["JOIN DEPOT", "창고 참가하기"],
 	"address": ["Host address (same PC: 127.0.0.1)", "방장 주소 (같은 PC: 127.0.0.1)"],
-	"development": ["DEVELOPMENT PROTOTYPE / 0.7.9\nLocal / LAN connection · Steam invites not connected", "개발용 프로토타입 / 0.7.9\n로컬·LAN 연결 · Steam 친구 초대 미연결"],
+	"development": ["DEVELOPMENT PROTOTYPE / 0.8.0\nLocal / LAN connection · Steam invites not connected", "개발용 프로토타입 / 0.8.0\n로컬·LAN 연결 · Steam 친구 초대 미연결"],
 	"menu_note": ["Read the A / B label.\nWrong bay? Back to intake.", "A / B 라벨을 확인하세요.\n잘못 보내면 입고 구역으로!"],
 	"controls": ["{forward}/{left}/{back}/{right}  Move    MOUSE  Look    {jump}  Jump    {ping}  Ping    {lever}  Reverse belt\n{interact}  Pick up / catch / put down    {throw}  Throw    ESC  Menu", "{forward}/{left}/{back}/{right}  이동    마우스  둘러보기    {jump}  점프    {ping}  위치 알림    {lever}  벨트 전환\n{interact}  집기 / 받기 / 내려놓기    {throw}  던지기    ESC  메뉴"],
 	"waiting": ["WAITING FOR CREW", "동료를 기다리는 중"],
@@ -68,7 +69,7 @@ const STRINGS := {
 	"shift_running": ["This shift already started. Join the next lobby.", "이미 근무 중이에요. 다음 대기실에 참가하세요."],
 	"recovery": ["Returning the crate…", "화물을 돌려보내는 중…"],
 	"cancel": ["CANCEL CONNECTION", "연결 취소"],
-	"prototype": ["NO RETURNS / DEVELOPMENT 0.7.9", "반품 불가 / 개발용 0.7.9"],
+	"prototype": ["NO RETURNS / DEVELOPMENT 0.8.0", "반품 불가 / 개발용 0.8.0"],
 	"clinger_name": ["CLINGER", "접착 상자"],
 	"clinger_attached": ["STUCK! %.1fs / Sneeze to release.", "붙었어요! %.1f초 / 재채기로 떼어내세요."],
 	"clinger_cooldown": ["UNSTUCK / Ready in %.1fs", "떨어졌어요 / %.1f초 뒤 다시 접착"],

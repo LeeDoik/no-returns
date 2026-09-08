@@ -121,7 +121,8 @@ func step(delta: float, cargos: Dictionary) -> void:
 			continue
 		cargo.body.freeze = false
 		cargo.body.sleeping = false
-		var horizontal := Vector2(cargo.body.linear_velocity.x, cargo.body.linear_velocity.z).move_toward(Vector2(drift.x, drift.z), 8.0 * delta)
+		# Motor force must overcome the parcel's floor friction, not stall below speed.
+		var horizontal := Vector2(cargo.body.linear_velocity.x, cargo.body.linear_velocity.z).move_toward(Vector2(drift.x, drift.z), 24.0 * delta)
 		cargo.body.linear_velocity.x = horizontal.x
 		cargo.body.linear_velocity.z = horizontal.y
 
@@ -137,14 +138,12 @@ func _present() -> void:
 
 func _process(delta: float) -> void:
 	var center_z: float = 0.0 if edited else Layout.BELT_CENTER.z
+	var half_length: float = get_node("TransportZone/CollisionShape3D").shape.size.z * 0.5 - 0.15 if edited else 2.7
 	if not active:
 		return
 	for stripe in stripes:
 		stripe.position.z += direction * SPEED * delta
-		if stripe.position.z < center_z - 2.7:
-			stripe.position.z += 5.4
-		elif stripe.position.z > center_z + 2.7:
-			stripe.position.z -= 5.4
+		stripe.position.z = wrapf(stripe.position.z,center_z-half_length,center_z+half_length)
 
 func worker_drift(worker: Node3D) -> Vector3:
 	var relative: Vector3 = to_local(worker.global_position) if edited else worker.global_position

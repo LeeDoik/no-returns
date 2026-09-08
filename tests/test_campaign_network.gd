@@ -53,9 +53,9 @@ func host_step() -> void:
 				return
 			var cargo = game.cargos[1]
 			cargo.body.freeze = false
-			cargo.body.position = game.packrat.position + Vector3(3.5, 0.4, 1.7)
+			cargo.body.position = Vector3(0, 0.43, -16.4)
 			cargo.body.linear_velocity = Vector3.ZERO
-			game.workers[checkpoint.guest_id].position = game.packrat.position + Vector3(2, 0, 1)
+			game.workers[checkpoint.guest_id].position = Vector3(0, 0.05, -18.6)
 			stage = 3
 		3:
 			if not game.cargos[1].creature_held: return

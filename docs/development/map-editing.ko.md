@@ -132,3 +132,15 @@
 SolidBlock을 선택하면 **Edge Bevel**로 모서리 깎기 양을 조정할 수 있습니다. 0은 기존 각진 모양입니다. **Dimensions**는 메시와 충돌 크기를 함께 바꾸고 **Color**는 색을 바꿉니다. 충돌체 모서리는 직각을 유지합니다. 가구 몸체 크기를 바꾼 뒤에는 상판·서랍·소품의 위치와 크기도 직접 맞추세요.
 
 송장·테이프·저울·프린터·도장은 장식입니다. 시계는 멈춘 사내 시계이며 계약 시간을 표시하지 않습니다. 숨긴 사장상과 옛 매트는 씬에 보존했습니다. 새 적용 도구 `tools/author_intake.gd`는 이미 한 번 적용했으며 게임 실행이나 빌드 시 다시 실행되지 않습니다. 편집 후 같은 0.7.8 빌드를 공유하세요.
+
+## 0.8.0 분류 라인과 반응 소품 편집
+
+`Geometry/SortingLine`에 양쪽 벽·화물 통로 상단·0.6m 분류 턱·발사선이 있습니다. `Gameplay/Conveyor`는 (0,0,-11)의 8m 벨트입니다. 길이를 바꾸면 `Bed` 메시와 `TransportZone/CollisionShape3D`의 길이를 함께 바꾸세요. 방향·레버·줄무늬는 해당 벨트를 기준으로 움직입니다. 직원이 화물 구멍으로 지나가지 못하므로 양쪽 문은 열어 두세요.
+
+`Gameplay/PackratTerritory`는 (6,0,-18)입니다. `PaperNest`는 눈에 보이는 탁자·종이 둥지, `StartPoint`는 출현 위치, `ReturnPoint`는 되찾는 화물 위치, `PatrolPoints`는 순찰 순서, `ActivityZone`은 표적을 찾는 범위입니다. 앞쪽 입구와 회수 위치에 상자 크기만큼 빈 공간을 두세요.
+
+`Gameplay/Reactions` 아래 8묶음은 접수실부터 마지막 인계까지 배치된 소품 24개입니다. `Paperwork`에는 기존 문서를 대체한 소품 13개가 있습니다. 소품을 선택해 Ctrl+D로 복제하고 이동·Y축 회전할 수 있습니다. Inspector의 **Kind**는 Packing cushion(에어캡), Return spring(발판), Carton tower(상자 탑), Paper stack(문서)입니다. **Trigger Radius**는 진입 범위, **Effect Radius**는 밀림 범위, **Lift Speed**는 위로 뜨는 속도, **Reset Seconds**는 복구 시간입니다. 문서는 재채기로만 작동하고 밀림을 만들지 않으므로 앞의 세 수치는 문서에 적용하지 않습니다.
+
+바닥 소품 원점 Y=0, 문서 원점은 책상 표면 바로 위에 둡니다. 발판은 로컬 -Z 방향으로 조금 밀어 보내므로 파란 축 반대쪽을 목적지로 향하게 하세요. 크기는 Scale로 늘리지 말고 기본 크기를 유지하세요. 형상은 종류에 따라 편집기에서 표시되며 Preview 하위 노드를 직접 수정하지 않습니다. 실행 후 근무 재시작으로 소품이 복구되는지도 확인하세요.
+
+`connect_sorting_line.gd`, `populate_reactive_props.gd`, `animate_paperwork.gd`는 이미 적용한 일회성 이전 도구입니다. 편집 중 다시 실행하지 마세요. BUILD.cmd는 저장한 맵을 패키징하며 자동으로 재배치하지 않습니다. 프로토콜 10을 사용하므로 모두 같은 새 ZIP으로 플레이하세요.

@@ -132,7 +132,7 @@ func simulate(movement: Vector2, yaw: float, jump: bool, delta: float, drift: Ve
 	if not is_on_floor():
 		velocity.y -= 18.0 * delta
 	elif jump:
-		velocity.y = 6.5
+		velocity.y = maxf(velocity.y,6.5)
 	move_and_slide()
 	if position.y < -5.0:
 		position = spawn_position()

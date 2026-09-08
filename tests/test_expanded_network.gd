@@ -151,7 +151,7 @@ func host_step() -> void:
 			if game.conveyor.direction != -1:
 				fail("conveyor did not start in its reset direction")
 				return
-			game.workers[checkpoint.guest_id].position = Layout.LEVER + Vector3(0, 0.05, 1)
+			game.workers[checkpoint.guest_id].position = game.conveyor.get_node("Lever").global_position + Vector3(0, 0.05, 1)
 			announce("request_conveyor")
 			stage = 9
 		9:

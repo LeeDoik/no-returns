@@ -75,7 +75,7 @@ func run() -> void:
 	cargo.body.position = Layout.BELT_CENTER + Vector3(0, 0.4, 0)
 	cargo.body.freeze = false
 	conveyor.step(0.1, {1: cargo})
-	check(cargo.body.linear_velocity.z < -0.75 and cargo.body.linear_velocity.z > -0.85, "grounded free cargo accelerates smoothly with belt")
+	check(is_equal_approx(cargo.body.linear_velocity.z,-2.0), "belt motor reaches its target without overshooting")
 	cargo.rules.holder_id = 1
 	cargo.body.linear_velocity = Vector3.ZERO
 	conveyor.step(0.1, {1: cargo})

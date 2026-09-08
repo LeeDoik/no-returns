@@ -102,6 +102,9 @@ func reset(cargos: Dictionary) -> void:
 
 func start(stage: int) -> void:
 	_drop_carried(known_cargos, false)
+	if is_instance_valid(map_layout):
+		position = _start_point()
+		patrol_index = 0
 	active = stage >= 1
 	phase = "patrol" if active else "off"
 	remaining = 0
@@ -200,13 +203,17 @@ func scare(worker: Node3D, cargos: Dictionary) -> bool:
 	if not get_world_3d().direct_space_state.intersect_ray(ray).is_empty():
 		return false
 	horn_cooldowns[worker.peer_id] = horn_cooldown_seconds
+	startle(cargos)
+	return true
+
+func startle(cargos: Dictionary) -> void:
+	if not active: return
 	known_cargos = cargos
 	_drop_carried(cargos, false)
 	target_id = 0
 	phase = "flee"
 	remaining = FLEE_SECONDS
 	_present()
-	return true
 
 func snapshot() -> Array:
 	return [active, phase, position, facing, remaining, target_id, carried_id]
@@ -244,6 +251,11 @@ func _eligible(cargo) -> bool:
 		return false
 	if cargo.cling and not cargo.cling.target_kind.is_empty():
 		return false
+	# An attached Clinger holds its partner too: the rat cannot split the pair.
+	for partner in known_cargos.values():
+		if not is_instance_valid(partner) or not partner.active or not partner.body.visible or partner.creature_held: continue
+		if partner.cling and partner.cling.target_kind == "cargo" and partner.cling.target_id == cargo.cargo_id:
+			return false
 	if cargo.hopper and cargo.hopper.phase == "airborne":
 		return false
 	if protected_left(cargo.cargo_id) > 0 or absf(cargo.body.linear_velocity.y) > 0.25:
@@ -327,7 +339,7 @@ func _move_carried(cargo, goal: Vector3, delta: float) -> bool:
 			var inset := BoxShape3D.new()
 			# Godot's resting contact may settle a few millimetres into the floor.
 			# Keep the horizontal sweep effectively full-size while tolerating it.
-			inset.size = shape.size - Vector3(0.002, 0.012, 0.002)
+			inset.size = shape.size - Vector3(0.002, 0.02, 0.002)
 			shape = inset
 		var request := PhysicsShapeQueryParameters3D.new()
 		request.shape = shape
@@ -358,7 +370,7 @@ func _cargo_overlaps_static(cargo) -> bool:
 		return false
 	if shape is BoxShape3D:
 		var inset := BoxShape3D.new()
-		inset.size = shape.size - Vector3(0.002, 0.012, 0.002)
+		inset.size = shape.size - Vector3(0.002, 0.02, 0.002)
 		shape = inset
 	var request := PhysicsShapeQueryParameters3D.new()
 	request.shape = shape

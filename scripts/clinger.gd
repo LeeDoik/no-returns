@@ -168,7 +168,7 @@ func _process(_delta: float) -> void:
 	label.global_position = cargo.body.global_position + Vector3.UP * 0.8
 	var status: String
 	if target_kind != "":
-		status = Copy.get_text("clinger_tag_attached") % remaining
+		status = Copy.get_text("clinger_tag_pair" if target_kind == "cargo" else "clinger_tag_attached") % remaining
 	elif cooldown > 0:
 		status = Copy.get_text("clinger_tag_cooldown") % cooldown
 	else:

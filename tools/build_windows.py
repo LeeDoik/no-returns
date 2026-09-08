@@ -32,9 +32,12 @@ def main():
     files = [OUT / 'NO_RETURNS.exe', OUT / 'NO_RETURNS.pck']
     for source, target in [('docs/prototype/07-contracts.ko.md', 'README.ko.md'),
                            ('docs/prototype/07-contracts.en.md', 'README.en.md'),
+                           ('docs/prototype/08-reactive-delivery.ko.md', 'REACTIONS.ko.md'),
+                           ('docs/prototype/08-reactive-delivery.en.md', 'REACTIONS.en.md'),
                            ('THIRD_PARTY_NOTICES.txt', 'THIRD_PARTY_NOTICES.txt')]:
         text = (ROOT / source).read_text(encoding='utf-8')
         text = text.replace('07-contracts.en.md', 'README.en.md').replace('07-contracts.ko.md', 'README.ko.md')
+        text = text.replace('08-reactive-delivery.en.md', 'REACTIONS.en.md').replace('08-reactive-delivery.ko.md', 'REACTIONS.ko.md')
         destination = OUT / target
         destination.write_text(text, encoding='utf-8')
         files.append(destination)

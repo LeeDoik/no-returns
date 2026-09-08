@@ -132,3 +132,15 @@ Edit counter details at `Geometry/LowDivider/ReceptionCounter`, and each furnitu
 Select a SolidBlock and adjust **Edge Bevel** to control edge chamfering. Zero restores the original box shape. **Dimensions** updates both mesh and collision size; **Color** changes the color. Collider corners remain square. After resizing a furniture body, manually adjust its worktop, drawers and attached props.
 
 Invoices, tape, scales, printers and stamps are decorative. The stopped office clock does not display contract time. Hidden old boss geometry and mats remain in the scene. The new `tools/author_intake.gd` migration has already been applied once and does not run during gameplay or builds. Share the same rebuilt 0.7.8 package after editing.
+
+## Editing the 0.8.0 sorting line and reactive props
+
+`Geometry/SortingLine` contains the split wall, parcel header, 0.6 m sorting lip and launch line. `Gameplay/Conveyor` is the eight-metre belt at (0,0,-11). To change its length, adjust both the `Bed` mesh and `TransportZone/CollisionShape3D`. Direction, lever and stripes use the belt transform. Keep both staff doors accessible because workers cannot use the parcel opening.
+
+`Gameplay/PackratTerritory` is at (6,0,-18). `PaperNest` is the visible desk/paper nest; `StartPoint` is the spawn; `ReturnPoint` is retrieved-cargo placement; `PatrolPoints` define patrol order; `ActivityZone` bounds target searches. Leave cargo-sized clearance at the entrance and retrieval position.
+
+Eight groups under `Gameplay/Reactions` contain 24 props between intake and the final handoff. `Paperwork` contains 13 replacements for existing documents. Select a prop, duplicate with Ctrl+D, then move or rotate it around Y. Inspector **Kind** offers Packing cushion, Return spring, Carton tower and Paper stack. **Trigger Radius** controls entry range; **Effect Radius** controls impulse range; **Lift Speed** controls upward velocity; **Reset Seconds** controls recovery time. Paper only responds to sneezes and creates no impulse, so the first three numbers do not affect paper.
+
+Place floor props at origin Y=0 and documents just above the desk surface. Springs push slightly along local -Z: aim opposite the blue axis toward the receiving area. Keep the default scale. Type-specific geometry appears in the editor; do not edit generated Preview children directly. Verify restoration after restarting a shift.
+
+`connect_sorting_line.gd`, `populate_reactive_props.gd` and `animate_paperwork.gd` are already-applied, one-time migrations. Do not rerun them while editing. BUILD.cmd packages the saved map without automatic rearrangement. Protocol 10 requires everyone to play the same new ZIP.

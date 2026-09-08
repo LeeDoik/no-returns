@@ -186,7 +186,7 @@ func test_depot_search() -> void:
 	for item in game.cargos.values(): item.cancel()
 	var box = game.cargos[1]
 	box.reset_shift()
-	box.body.position = Vector3(13.5, 0.5, -1.5)
+	box.body.position = Vector3(2, 0.43, -16.4)
 	game.packrat.reset(game.cargos)
 	for frame in range(30): await physics_frame
 	game.packrat.start(1)
@@ -200,7 +200,7 @@ func test_depot_search() -> void:
 	check(box.creature_held, "rat approaches and steals distant settled cargo without teleporting")
 	check(game.packrat.position.distance_to(start) > 1.0, "theft requires rat movement")
 	game.packrat.reset(game.cargos)
-	box.body.position = Vector3(13.5, 0.5, -1.5)
+	box.body.position = Vector3(2, 0.43, -16.4)
 	box.rules.holder_id = 1
 	game.packrat.start(1)
 	game.packrat.step(0.01, game.workers, game.cargos)
