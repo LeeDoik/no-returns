@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 const Layout = preload("res://scripts/depot_layout.gd")
 const Copy = preload("res://scripts/copy.gd")
+const Art = preload("res://scripts/postal_art.gd")
 const START := Vector3(10.0, 0.05, -3.2)
 const STEAL_RADIUS := 1.4
 const SEARCH_RADIUS := 6.0
@@ -32,6 +33,9 @@ var carry_offset := Vector3.ZERO
 var last_safe_cargo_position := Vector3.ZERO
 var visual: Node3D
 var label: Label3D
+var art_skeleton: Skeleton3D
+var art_gait := 0.0
+var art_previous := Vector3.ZERO
 
 func _ready() -> void:
 	collision_layer = 8
@@ -45,17 +49,8 @@ func _ready() -> void:
 	add_child(collision)
 	visual = Node3D.new()
 	add_child(visual)
-	_part(SphereMesh.new(), Vector3(0, 0.43, 0), Vector3(0.75, 0.48, 1.05), Color("58463c"))
-	for side in [-1.0, 1.0]:
-		_part(SphereMesh.new(), Vector3(side * 0.25, 0.79, -0.22), Vector3(0.28, 0.32, 0.18), Color("b47d78"))
-		_part(SphereMesh.new(), Vector3(side * 0.15, 0.61, -0.48), Vector3.ONE * 0.08, Color("fff2c7"))
-		_part(SphereMesh.new(), Vector3(side * 0.15, 0.61, -0.53), Vector3.ONE * 0.035, Color("151719"))
-	var tail_mesh := CylinderMesh.new()
-	tail_mesh.top_radius = 0.035
-	tail_mesh.bottom_radius = 0.055
-	tail_mesh.height = 0.9
-	var tail := _part(tail_mesh, Vector3(0, 0.35, 0.75), Vector3.ONE, Color("a56e68"))
-	tail.rotation.x = PI * 0.5
+	var character := Art.model("packrat"); visual.add_child(character)
+	art_skeleton = character.find_children("*","Skeleton3D",true,false)[0]
 	label = Label3D.new()
 	var font := SystemFont.new()
 	font.font_names = PackedStringArray(["Malgun Gothic", "Segoe UI", "Arial"])
@@ -400,6 +395,17 @@ func _process(delta: float) -> void:
 	if multiplayer.has_multiplayer_peer() and not multiplayer.is_server():
 		position = position.lerp(target_position, minf(1, delta * 15))
 	_present()
+	var stride := clampf(position.distance_to(art_previous)/maxf(delta,0.001)/SPEED,0.0,1.0)
+	art_previous = position; art_gait += delta*stride*12.0
+	if art_skeleton:
+		for i in range(4):
+			var bone := art_skeleton.find_bone(["LFront","RRear","RFront","LRear"][i])
+			if bone >= 0:
+				var rest := art_skeleton.get_bone_rest(bone).basis.get_rotation_quaternion()
+				art_skeleton.set_bone_pose_rotation(bone,rest*Quaternion(Vector3.RIGHT,sin(art_gait+(0 if i<2 else PI))*0.24*stride))
+		var tail := art_skeleton.find_bone("Tail")
+		if tail >= 0:
+			art_skeleton.set_bone_pose_rotation(tail,art_skeleton.get_bone_rest(tail).basis.get_rotation_quaternion()*Quaternion(Vector3.UP,sin(art_gait*0.45)*0.12))
 
 func _present() -> void:
 	visible = active

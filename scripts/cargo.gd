@@ -6,6 +6,7 @@ signal relay_caught(peer_id: int)
 
 var map_layout = null
 const Layout = preload("res://scripts/depot_layout.gd")
+const Art = preload("res://scripts/postal_art.gd")
 const Bevel = preload("res://scripts/bevel_mesh.gd")
 const Rules = preload("res://scripts/cargo_rules.gd")
 const Sneeze = preload("res://scripts/sneeze_rules.gd")
@@ -27,6 +28,7 @@ var sneeze = Sneeze.new(randi())
 var body: RigidBody3D
 var shape: BoxShape3D
 var visual: Node3D
+var art_model: Node3D
 var cues: Node3D
 var cling: Node3D
 var hopper: Node3D
@@ -72,14 +74,9 @@ func _ready() -> void:
 	body.add_child(collision)
 	visual = Node3D.new()
 	body.add_child(visual)
-	_part(Vector3.ONE * SIZE, Vector3.ZERO, Color("b7a182") if kind == "sneezer" else (Color("bd995c") if kind == "hopper" else Color("b89466")))
-	_part(Vector3(0.14, 0.81, 0.81), Vector3.ZERO, Color("b27581") if kind == "sneezer" else Color("609187"))
-	_part(Vector3(0.81,0.025,0.025),Vector3(0,0.397,0),Color("796447"))
-	if kind == "clinger":
-		_part(Vector3.ONE * 0.805, Vector3.ZERO, Color("8b9a61"))
-		for side in [-1.0, 1.0]:
-			_part(Vector3(0.12, 0.40, 0.40), Vector3(side * 0.44, 0, 0), Color("6d9b42"))
-			_part(Vector3(0.40, 0.40, 0.12), Vector3(0, 0, side * 0.44), Color("6d9b42"))
+	art_model = Art.model(kind)
+	visual.add_child(art_model)
+	Art.expression(art_model,"Idle",0.0)
 	for side in [-1.0, 1.0]:
 		var tag := Label3D.new()
 		tag.text = "A\n↑ ↑"
@@ -95,6 +92,7 @@ func _ready() -> void:
 		cues = Cues.new()
 		add_child(cues)
 		cues.setup(body, visual)
+		cues.face.visible = false
 	if kind == "clinger":
 		cling = Clinger.new()
 		add_child(cling)
@@ -394,6 +392,17 @@ func _present() -> void:
 	# Carry/throw direction is authoritative and already replicated. Rotate the
 	# model with it while keeping the stable axis-aligned physics/query shape.
 	visual.rotation.y = facing
+	var expression := "Idle"
+	var opening := 0.0
+	if kind == "sneezer":
+		expression = "Warning" if sneeze.phase == "windup" else ("Burst" if sneeze.phase == "burst" else "Idle")
+		opening = 0.65 if sneeze.phase == "burst" else (0.08 if sneeze.phase == "windup" else 0.0)
+	elif hopper:
+		expression = "Warning" if hopper.phase == "windup" else ("Burst" if hopper.phase == "airborne" else "Idle")
+		opening = 0.28 if hopper.phase == "airborne" else 0.0
+	elif cling and not cling.target_kind.is_empty():
+		expression = "Warning"
+	Art.expression(art_model,expression,opening)
 	var destination_text := "A\n↑ ↑" if rules.destination == 1 else "B\n◆"
 	for tag in destination_labels:
 		tag.text = destination_text

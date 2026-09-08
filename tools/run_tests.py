@@ -31,6 +31,7 @@ def main():
     for script, role, success in (
         ("tests/test_cargo_rules.gd", None, b"PASS:"),
         ("tests/test_bevel_mesh.gd", "bevel-mesh", b"BEVEL MESH PASS"),
+        ("tests/test_postal_art.gd", "postal-art", b"POSTAL ART PASS"),
         ("tests/test_authored_presentation.gd", "authored-presentation", b"AUTHORED PRESENTATION PASS"),
         ("tests/test_release_usability.gd", "release-usability", b"RELEASE USABILITY PASS"),
         ("tests/test_release_controls.gd", "release-controls", b"RELEASE CONTROLS PASS"),

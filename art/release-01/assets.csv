@@ -1,0 +1,12 @@
+id,role,type,description,size/ratio,style line ref,source
+worker,player,rigged_glb,exaggerated postal worker,1.65m,style.txt,Higgsfield and Blender
+packrat,creature,glb,plump paper stealing rat,0.9m,style.txt,Higgsfield and Blender
+standard,cargo,glb,reinforced delivery carton,0.8m,style.txt,Blender
+sneezer,cargo,glb,expressive sneezing carton,0.8m,style.txt,Blender
+clinger,cargo,glb,adhesive green carton,0.8m,style.txt,Blender
+hopper,cargo,glb,spring foot delivery carton,0.8m,style.txt,Blender
+cardboard,surface,texture,warm fibrous kraft board,2880x2880 (4k request),style.txt,Higgsfield
+paint,surface,texture,weathered sage enamel steel,2880x2880 (4k request),style.txt,Higgsfield
+floor,surface,texture,muted charcoal terrazzo concrete,2880x2880 (4k request),style.txt,Higgsfield
+facility,environment,glb,postal machinery and furniture kit,metres,style.txt,Blender
+reactive,interactive,glb,cushion spring and carton kit,metres,style.txt,Blender

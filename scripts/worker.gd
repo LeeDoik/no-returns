@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 const Preferences = preload("res://scripts/preferences.gd")
 const Bevel = preload("res://scripts/bevel_mesh.gd")
+const Art = preload("res://scripts/postal_art.gd")
 
 var map_layout = null
 var peer_id := 0
@@ -28,6 +29,8 @@ var push_velocity := Vector3.ZERO
 var stagger := 0.0
 var speed_scale := 1.0
 var carry_blend := 0.0
+var art_player: AnimationPlayer
+var art_skeleton: Skeleton3D
 
 func _ready() -> void:
 	collision_layer = 2
@@ -42,26 +45,17 @@ func _ready() -> void:
 	visual = Node3D.new()
 	add_child(visual)
 	var suit: Color = SUITS[clampi(slot, 1, 4) - 1]
-	_rounded(Vector3(0.62,0.78,0.44),Vector3(0,0.94,0),suit)
-	var head := _part(Vector3.ONE,Vector3(0,1.49,0),Color("c6b79b"))
-	var sphere := SphereMesh.new(); sphere.radius = 0.245; sphere.height = 0.38; sphere.radial_segments = 12; sphere.rings = 6; head.mesh = sphere
-	_part(Vector3(0.48,0.11,0.47),Vector3(0,1.65,0),suit.darkened(0.25))
-	_part(Vector3(0.5,0.035,0.18),Vector3(0,1.60,-0.25),suit.darkened(0.25))
-	for x in [-0.09,0.09]: _part(Vector3(0.045,0.065,0.025),Vector3(x,1.49,-0.23),Color("243333"))
-	_part(Vector3(0.52,0.07,0.45),Vector3(0,0.89,0),Color("d4caa6"))
-	_part(Vector3(0.25,0.2,0.045),Vector3(-0.12,1.13,-0.245),suit.darkened(0.18))
-	_part(Vector3(0.025,0.46,0.02),Vector3(0,1.06,-0.265),Color("364441"))
-	_part(Vector3(0.18,0.13,0.025),Vector3(0.17,1.2,-0.24),Color("d4caa6"))
-	var number := Label3D.new(); number.name = "EmployeeNumber"; number.text = "%02d" % slot; number.font_size = 42; number.pixel_size = 0.004
-	_part(Vector3(0.32,0.24,0.025),Vector3(0,1.13,0.215),Color("344a46"))
-	number.position = Vector3(0,1.13,0.231); number.modulate = Color("e0d8bf"); number.outline_size = 0; number.visibility_range_end = 15; visual.add_child(number)
-	for side in [-1.0, 1.0]:
-		var arm := _rounded(Vector3(0.19,0.54,0.22),Vector3(side*0.4,0.98,0),suit)
-		arms.append(arm)
-		var glove := _part(Vector3(0.20,0.18,0.23),Vector3.ZERO,Color("d3c9ad")); glove.reparent(arm,false); glove.position = Vector3(0,-0.27,0)
-		var leg := Node3D.new(); leg.name = "LegLeft" if side < 0 else "LegRight"; visual.add_child(leg); leg.position = Vector3(side*0.17,0.57,0); legs.append(leg)
-		var trouser := _rounded(Vector3(0.23,0.47,0.24),Vector3.ZERO,Color("364644")); trouser.reparent(leg,false); trouser.position.y = -0.2
-		var boot := _part(Vector3(0.25,0.16,0.35),Vector3.ZERO,Color("243330")); boot.reparent(leg,false); boot.position = Vector3(0,-0.46,-0.035)
+	var character := Art.model("worker"); visual.add_child(character)
+	art_player = character.find_children("*","AnimationPlayer",true,false)[0]
+	art_skeleton = character.find_children("*","Skeleton3D",true,false)[0]
+	art_player.callback_mode_process = AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_MANUAL
+	for clip in art_player.get_animation_list():
+		if clip == "RESET": continue
+		art_player.get_animation(clip).loop_mode = Animation.LOOP_LINEAR
+		art_player.play(clip); art_player.advance(0); break
+	# Numbered, colored back badge keeps the four crew members distinguishable.
+	var badge := _part(Vector3(0.34,0.20,0.035),Vector3(0,1.10,0.24),suit)
+	badge.name = "CrewBadge"
 	nameplate = Label3D.new()
 	nameplate.text = "%02d / %s" % [slot, "HOST" if peer_id == 1 else "CREW"]
 	nameplate.font_size = 36
@@ -167,8 +161,31 @@ func _process(delta: float) -> void:
 	visual.position.y = absf(sin(gait)) * minf(velocity.length() * 0.008, 0.035)
 	visual.rotation.z = sin(stagger * PI * 2) * 0.35
 	var stride := clampf(Vector2(velocity.x,velocity.z).length()/4.5,0,1)
+	if art_player:
+		art_skeleton.clear_bones_global_pose_override()
+		art_player.advance(delta*stride*1.5)
+		if stride < 0.02:
+			# A stopped courier plants both feet instead of freezing mid-stride.
+			for prefix in ["Left","Right"]:
+				for suffix in ["UpLeg","Leg","Foot","ToeBase"]:
+					var bone := art_skeleton.find_bone(prefix+suffix)
+					if bone >= 0: art_skeleton.reset_bone_pose(bone)
+		if carry_blend > 0.01:
+			for side in [-1.0,1.0]:
+				var prefix := "Left" if side < 0 else "Right"
+				_aim_arm(prefix+"Arm",Vector3(side*0.38,1.04,-0.32),carry_blend)
+				_aim_arm(prefix+"ForeArm",Vector3(side*0.38,1.04,-0.70),carry_blend)
 	for index in range(arms.size()):
 		var arm := arms[index]
 		arm.rotation.x = lerpf(sin(gait+index*PI)*0.45*stride,1.25,carry_blend)
 		arm.position.z = -0.2*carry_blend
 	for index in range(legs.size()): legs[index].rotation.x = -sin(gait+index*PI)*0.5*stride
+
+func _aim_arm(bone_name: String, toward: Vector3, weight: float) -> void:
+	var index := art_skeleton.find_bone(bone_name)
+	if index < 0: return
+	var pose := art_skeleton.get_bone_global_pose(index)
+	var target := art_skeleton.to_local(visual.to_global(toward))
+	var direction := (target-pose.origin).normalized()
+	pose.basis = Basis(Quaternion(pose.basis.y.normalized(),direction))*pose.basis
+	art_skeleton.set_bone_global_pose_override(index,pose,weight,true)

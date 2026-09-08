@@ -55,7 +55,7 @@ Create one record for every external asset or dependency as it is selected. Each
 | Korean/English design, copy and prototype UI | AI-assisted; some text is used in the local prototype, before public distribution | Review retained UI/narrative/localization text and answer the content survey accurately |
 | Godot Engine | 4.7.2 standard Windows x64 portable runtime prepared; official checksum verified | Include version-matched engine and third-party notices in the distribution |
 | Steam integration | Candidate only; exact implementation not selected | Verify license, redistribution terms, versions, and runtime files |
-| Visual art / fonts / audio | Prototype uses AI-assisted code-generated shapes and synthesized warning/sneeze cues, plus system fonts on the device; no external art/audio files | Review retained player-consumed content; add individual records before final selection; do not bundle system font files |
+| Visual art / fonts / audio | 0.9.0 integrates Higgsfield GPT Image 2 surfaces, Image to 3D worker/rat assets, and Blender-authored parcels/facilities. Generation sources and IDs are recorded in `art/release-01`. Synthesized effects and device system fonts remain | AI-generated art is now player-consumed content. Use the [art ledger](../art/02-release.en.md) to review retained assets, provider terms and commercial usage rights and reflect them in the content survey. Do not bundle system font files |
 
 ## 4. Store and Coming Soon — Creator + Development
 

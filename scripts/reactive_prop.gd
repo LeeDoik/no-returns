@@ -1,6 +1,7 @@
 @tool
 extends Node3D
 
+const Art = preload("res://scripts/postal_art.gd")
 const Bevel = preload("res://scripts/bevel_mesh.gd")
 const Cues = preload("res://scripts/sneeze_cues.gd")
 @export_enum("Packing cushion", "Return spring", "Carton tower", "Paper stack") var kind := 0:
@@ -34,17 +35,17 @@ func _build() -> void:
 	if kind != 3: _part(Vector3(1.65,0.04,1.65),Vector3(0,0.025,0),Color("354b48"))
 	match kind:
 		0:
-			for i in range(6):
-				var p := _part(Vector3(0.44,0.28,0.55),Vector3((i%3-1)*0.49,0.18,(i/3-0.5)*0.65),Color("dca773"))
-				pieces.append(p); origins.append(p.position)
+			var model := Art.model("packing_cushion"); visual.add_child(model)
+			for cell in model.find_children("Heat sealed cell*","MeshInstance3D",true,false):
+				pieces.append(cell); origins.append(cell.position)
 		1:
-			for i in range(4): _part(Vector3(1.1,0.045,1.1),Vector3(0,0.09+i*0.08,0),Color("719a8d"))
-			var p := _part(Vector3(1.45,0.12,1.45),Vector3(0,0.42,0),Color("9dbb7c")); pieces.append(p); origins.append(p.position)
+			var model := Art.model("return_spring"); visual.add_child(model)
+			var top := Art.find_part(model,"Top"); pieces.append(top); origins.append(top.position)
 		2:
 			for i in range(3):
-				var p := _part(Vector3(0.87,0.46,0.78),Vector3(0,0.3+i*0.47,0),Color("b99361").lightened(i*0.045))
-				pieces.append(p); origins.append(p.position)
-				var tape := _part(Vector3(0.16,0.47,0.8),Vector3.ZERO,Color("d5c8a4")); tape.reparent(p,false)
+				var pivot := Node3D.new(); visual.add_child(pivot); pivot.position = Vector3(0,0.3+i*0.47,0)
+				var model := Art.model("standard"); pivot.add_child(model); model.scale = Vector3(1.08,0.57,0.97)
+				pieces.append(pivot); origins.append(pivot.position)
 		3:
 			for i in range(18):
 				var p := _part(Vector3(0.56,0.009,0.39),Vector3(sin(i*2.3)*0.025,0.015+i*0.01,cos(i)*0.02),Color("e2d8b8"))

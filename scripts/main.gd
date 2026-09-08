@@ -67,6 +67,7 @@ var score: int:
 		return total
 
 func _ready() -> void:
+	get_viewport().msaa_3d = Viewport.MSAA_4X
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	_configure_input()
 	for argument in OS.get_cmdline_user_args():
