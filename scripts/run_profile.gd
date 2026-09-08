@@ -9,6 +9,7 @@ var last_id := ""
 var path := FILE
 var enabled := true
 var save_error := OK
+var dirty := false
 
 func load_record() -> void:
 	if not enabled: return
@@ -25,15 +26,27 @@ func _number(value: Variant) -> int:
 	return clampi(int(value), 0, 1000000)
 
 func complete(run: RefCounted) -> bool:
-	if not run.enabled or not run.finished or run.run_id.is_empty() or run.run_id == last_id: return false
+	if not run.enabled or not run.finished or run.run_id.is_empty(): return false
+	if run.run_id == last_id:
+		if dirty: return retry_save()
+		return false
 	last_id = run.run_id
 	runs += 1
 	best_credits = maxi(best_credits, run.total_earned)
 	best_deliveries = maxi(best_deliveries, run.total_deliveries)
 	best_relays = maxi(best_relays, run.total_relays)
-	if enabled:
-		var cfg := ConfigFile.new()
-		for key in ["runs", "best_credits", "best_deliveries", "best_relays", "last_id"]: cfg.set_value("record", key, get(key))
-		cfg.set_value("record", "version", 1)
-		save_error = cfg.save(path)
-	return true
+	dirty = enabled
+	return retry_save() if enabled else true
+
+func retry_save() -> bool:
+	if not enabled or not dirty: return false
+	var cfg := ConfigFile.new()
+	for key in ["runs", "best_credits", "best_deliveries", "best_relays", "last_id"]: cfg.set_value("record", key, get(key))
+	cfg.set_value("record", "version", 1)
+	# Write alongside the old record, then replace only after a complete write.
+	var temporary := path + ".tmp"
+	save_error = cfg.save(temporary)
+	if save_error == OK:
+		save_error = DirAccess.rename_absolute(temporary, path)
+	if save_error == OK: dirty = false
+	return save_error == OK

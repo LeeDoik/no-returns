@@ -1,4 +1,4 @@
-# NO RETURNS — Cooperative Contracts playtest 0.7.8
+# NO RETURNS — Cooperative Contracts playtest 0.7.9
 
 [한국어](07-contracts.ko.md)
 
@@ -14,7 +14,7 @@ Keep the executable, .pck game data, both guides, third-party notices and SHA256
 
 ## Controls and settings
 
-| Input | Action |
+| Default input — rebind in Settings | Action |
 | --- | --- |
 | WASD / mouse | Move / look |
 | Space | Jump |
@@ -26,7 +26,9 @@ Keep the executable, .pck game data, both guides, third-party notices and SHA256
 | H | Open cargo and cooperation help |
 | Esc | Menu and settings |
 
-Opening help or menus does not stop the online timer or other workers. Your movement input stops. Select Korean/English on the title menu. Settings include cue sounds, master volume, mouse sensitivity, FOV (60–90 degrees) and fullscreen. Defaults are 80% volume and 72-degree FOV. Preferences save on this PC. There is no camera shake; A/B text and directional arrows supplement color.
+Select **SETTINGS** on the title screen, or **Esc → SETTINGS** during play. Adjust volume, sensitivity, FOV, gameplay sounds, invert Y, fullscreen, VSync/frame cap and control bindings. Defaults are 80% volume, 72-degree FOV and a 120 FPS cap. Changes save automatically on this PC; failures are shown. The following control descriptions use default bindings.
+
+Solo time and physics pause in menus/settings/manuals. Online shifts continue while only your input is blocked. There is no camera shake; A/B text and directional arrows supplement color.
 
 ## Three contracts make one run
 
@@ -148,3 +150,15 @@ Reception now has a custom gray-green paneled counter and wooden worktop. Packin
 Furniture, parcels and worker details have beveled edges, with wear placed on handled worktop edges. When turning with a parcel, the worker and hands immediately follow its direction; pickup and put-down poses blend briefly. Calm parcel labels are reduced while hazard warnings remain. Delivery confirmation uses a short stamp/mechanism sound.
 
 Everyone must use the same 0.7.8 ZIP. Delivery rules and controls remain the same. Final release art and real friend-group fun/performance validation are still pending.
+
+## 0.7.9 Release usability audit
+
+Settings are accessible before starting play. Sliders control volume, sensitivity and FOV; options include gameplay sounds, camera invert Y, borderless fullscreen, VSync and frame limit. The default cap is 120; choose 60/90/120/144/unlimited. Select an action in Controls, then press a new key or mouse button. Conflicting bindings are rejected; Escape cancels capture. Escape, Tab, Enter and modifier keys remain reserved for menus. Default controls can be restored. Gameplay prompts display the current bindings.
+
+Solo time and physics pause while the menu, settings, manual or exit confirmation is open. Online play continues while only local input is blocked. Switching applications stops input and requires manual resume after returning. Leaving or quitting an active run requires confirmation; hosts are told their departure ends the crew session. Connection attempts can be canceled immediately. When a coworker's readiness starts the next contract or overtime, open settings/manuals and their cursor remain available.
+
+The title screen separates starting play, the objective and crew connection. Long settings/manual content scrolls, and the interface fits the viewport aspect ratio. Background buttons cannot receive keyboard focus beneath a modal. Unusable upgrade purchases are hidden on failure/final completion. Solo campaign is no longer mislabeled as practice.
+
+The 10-second connection timeout includes waiting for admission after transport connects. Completed-run records are written to a temporary file before replacement; failures are shown and retried every five seconds while the game remains open. The same completion cannot be counted twice. Damaged numeric preferences fall back to defaults. If saving keeps failing, the record may not survive quitting; check the warning.
+
+Everyone must use the same 0.7.9 ZIP. Steam invitations/relay, separate-PC validation and Steam review are not complete.

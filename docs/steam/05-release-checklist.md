@@ -2,7 +2,7 @@
 
 [한국어](05-release-checklist.ko.md)
 
-**Status date:** September 7, 2026  
+**Status date:** September 8, 2026  
 **Owners:** Creator = account holder/publishing decision maker; Development = the future implementation and production work.  
 **How to use:** Check an item only when its evidence exists. A prepared plan is not completion of the underlying release requirement.
 
@@ -136,3 +136,15 @@ Test a hotfix on a private branch before promoting it. If a new build breaks sta
 - [ ] Independent newcomer/friend-group observation and target-hardware performance.
 
 Evidence and limitations are in the [0.7 implementation ledger](../superpowers/plans/2026-09-07-release-polish.en.md). This addendum does not change the unfinished account, rights, store and review gates above.
+
+## 0.7.9 Release usability audit
+
+- [x] Implemented pre-play settings, rebinding/current-binding prompts, volume/sensitivity/FOV/display controls.
+- [x] Solo time/physics pause, online input blocking and focus-loss/return handling.
+- [x] Leave/quit confirmation, bilingual layout/keyboard focus and preservation of settings during contract/overtime transitions.
+- [x] Admission timeout, completed-record write failure feedback/atomic replacement/retry and damaged numeric preference fallback.
+- [ ] Steam invitations/relay and online validation with Steam-installed builds on separate PCs.
+- [ ] Target-spec performance/long sessions and observation of external newcomers and real friend groups.
+- [ ] Final art/audio/localization/rights/store assets and Valve review.
+
+Release assessment remains **incomplete**. This playtest fixes technical defects; automated checks cannot certify commercial quality. [Changes and evidence](../superpowers/plans/2026-09-08-release-usability.en.md). Official review criteria were rechecked on 2026-09-08. Store claims must still match shipping features, and store/build review remain required. [Steam review process](https://partner.steamgames.com/doc/store/review_process).

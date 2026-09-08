@@ -27,6 +27,10 @@ var ui_event := 0
 var ui_event_kind := ""
 var received_event := 0
 var help_previous_pause := false
+var settings_previous_pause := false
+var exit_previous_pause := false
+var record_retry_left := 0.0
+var window_focused := true
 var observed_run := ""
 var participation := 0
 var round_state = Round.new()
@@ -62,6 +66,7 @@ var score: int:
 		return total
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	_configure_input()
 	for argument in OS.get_cmdline_user_args():
 		if argument.begins_with("--seed="): replay_seed = argument.trim_prefix("--seed=").to_int()
@@ -122,6 +127,9 @@ func _ready() -> void:
 	ui = Interface.new()
 	add_child(ui)
 	ui.command.connect(_command)
+	for child in get_children():
+		child.process_mode = Node.PROCESS_MODE_ALWAYS if child in [ui, session] else Node.PROCESS_MODE_PAUSABLE
+	get_tree().auto_accept_quit = false
 	for arg in OS.get_cmdline_user_args():
 		if arg == "--host":
 			host_game()
@@ -134,17 +142,7 @@ func _ready() -> void:
 	_render_ui()
 
 func _configure_input() -> void:
-	for key in {"left": KEY_A, "right": KEY_D, "forward": KEY_W, "back": KEY_S, "jump": KEY_SPACE, "interact": KEY_E, "menu": KEY_ESCAPE, "ping": KEY_Q, "lever": KEY_F, "horn": KEY_R, "help": KEY_H}:
-		if not InputMap.has_action(key):
-			InputMap.add_action(key)
-			var event := InputEventKey.new()
-			event.physical_keycode = {"left": KEY_A, "right": KEY_D, "forward": KEY_W, "back": KEY_S, "jump": KEY_SPACE, "interact": KEY_E, "menu": KEY_ESCAPE, "ping": KEY_Q, "lever": KEY_F, "horn": KEY_R, "help": KEY_H}[key]
-			InputMap.action_add_event(key, event)
-	if not InputMap.has_action("throw"):
-		InputMap.add_action("throw")
-		var mouse := InputEventMouseButton.new()
-		mouse.button_index = MOUSE_BUTTON_LEFT
-		InputMap.action_add_event("throw", mouse)
+	preload("res://scripts/input_bindings.gd").configure()
 
 func practice_game(campaign_mode: bool = false) -> void:
 	leave_game()
@@ -172,6 +170,7 @@ func join_game(address: String, port: int = Session.DEFAULT_PORT) -> void:
 	phase = "connecting"
 
 func leave_game() -> void:
+	get_tree().paused = false
 	observed_run = ""
 	participation = 0
 	if packrat: packrat.stop(cargos)
@@ -199,6 +198,9 @@ func leave_game() -> void:
 	if ui:
 		ui.paused = false
 		ui.help_open = false
+		ui.settings_open = false
+		ui.confirm_action = ""
+		ui.settings.pending = ""
 	for cargo in cargos.values():
 		cargo.cancel()
 		cargo.rules.reset_shift()
@@ -300,62 +302,115 @@ func start_shift() -> void:
 	conveyor.active = true
 	session.in_shift = true
 	notice_key = ""
-	ui.paused = false
-	if not test_mode and capture_mode.is_empty():
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	_phase_ui()
 
 func _command(action: String, address: String) -> void:
 	match action:
 		"campaign": practice_game(true)
 		"host_campaign": host_game(Session.DEFAULT_PORT, true)
 		"next_contract", "buy_boots", "buy_time", "buy_horn": session.send_action(action)
-		"quit": get_tree().quit()
+		"quit": _request_exit("quit")
 		"help": _toggle_help()
 		"practice": practice_game()
 		"host": host_game()
 		"join": join_game(address)
-		"leave": leave_game()
+		"leave": _request_exit("leave")
 		"start": session.send_action("start")
 		"overtime": session.send_action("overtime")
+		"settings":
+			settings_previous_pause = ui.paused
+			ui.settings_open = true
+			ui.paused = phase == "playing" or ui.paused
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		"settings_close":
+			ui.settings_open = false
+			ui.settings.pending = ""
+			ui.paused = settings_previous_pause if phase == "playing" else false
+			_restore_pointer()
+		"cancel_exit":
+			ui.confirm_action = ""
+			ui.paused = exit_previous_pause if phase == "playing" else false
+			_restore_pointer()
+		"confirm_exit":
+			var pending: String = ui.confirm_action
+			ui.confirm_action = ""
+			if pending == "quit": get_tree().quit()
+			elif pending == "leave": leave_game()
 		"resume":
 			ui.paused = false
 			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
+	_sync_pause()
+
+func _input(event: InputEvent) -> void:
+	if test_mode or not ui or not ui.settings.pending.is_empty(): return
+	if event.is_action_pressed("menu") and not event.is_echo():
+		if not ui.confirm_action.is_empty(): _command("cancel_exit", "")
+		elif ui.settings_open: _command("settings_close", "")
+		elif ui.help_open: _toggle_help()
+		elif phase == "playing":
+			ui.paused = not ui.paused; _restore_pointer(); _sync_pause()
+		elif phase == "connecting": leave_game()
+		else: _command("settings", "")
+		get_viewport().set_input_as_handled()
+
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("help") and not event.is_echo() and not test_mode:
-		_toggle_help()
-		get_viewport().set_input_as_handled()
+	if test_mode or ui.settings_open or not ui.confirm_action.is_empty(): return
+	if event.is_action_pressed("help") and not event.is_echo():
+		_toggle_help(); get_viewport().set_input_as_handled(); return
+	if phase != "playing" or ui.paused or Input.mouse_mode != Input.MOUSE_MODE_CAPTURED: return
+	if event is InputEventMouseMotion and workers.has(local_id): workers[local_id].aim(event.relative)
+	for action in ["interact", "ping", "lever", "horn", "throw"]:
+		if event.is_action_pressed(action) and not event.is_echo(): session.send_action(action)
+
+func _restore_pointer() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED if phase == "playing" and not _local_input_blocked() and not test_mode and capture_mode.is_empty() else Input.MOUSE_MODE_VISIBLE
+
+func _modal_open() -> bool:
+	return ui.settings_open or ui.help_open or not ui.confirm_action.is_empty()
+
+func _local_input_blocked() -> bool:
+	return ui.paused or _modal_open() or not window_focused
+
+func _phase_ui() -> void:
+	ui.paused = phase == "playing" and (_modal_open() or not window_focused)
+	settings_previous_pause = not window_focused
+	help_previous_pause = not window_focused
+	exit_previous_pause = not window_focused
+	_restore_pointer()
+	_sync_pause()
+
+func _sync_pause() -> void:
+	if not ui or not session: return
+	if phase == "playing" and _modal_open(): ui.paused = true
+	get_tree().paused = phase == "playing" and session.mode == "practice" and _local_input_blocked()
+
+func _request_exit(action: String) -> void:
+	ui.settings.pending = ""
+	if profile.dirty: profile.retry_save()
+	if phase in ["menu", "connecting", "waiting"]:
+		if action == "quit": get_tree().quit()
+		else: leave_game()
 		return
-	if phase != "playing" or test_mode:
-		return
-	if event.is_action_pressed("menu"):
-		if ui.help_open:
-			_toggle_help()
-			get_viewport().set_input_as_handled()
-			return
-		ui.paused = not ui.paused
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if ui.paused else Input.MOUSE_MODE_CAPTURED
-		get_viewport().set_input_as_handled()
-		return
-	if ui.paused or Input.mouse_mode != Input.MOUSE_MODE_CAPTURED:
-		return
-	if event is InputEventMouseMotion and workers.has(local_id):
-		workers[local_id].aim(event.relative)
-	if event.is_action_pressed("interact") and not event.is_echo():
-		session.send_action("interact")
-	if event.is_action_pressed("ping") and not event.is_echo():
-		session.send_action("ping")
-	if event.is_action_pressed("lever") and not event.is_echo():
-		session.send_action("lever")
-	if event.is_action_pressed("horn") and not event.is_echo():
-		session.send_action("horn")
-	if event.is_action_pressed("throw"):
-		session.send_action("throw")
+	exit_previous_pause = ui.paused
+	ui.confirm_action = action
+	ui.paused = phase == "playing" or ui.paused
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	_sync_pause()
 
 func _notification(what: int) -> void:
+	if what == NOTIFICATION_APPLICATION_FOCUS_IN: window_focused = true
+	if what == NOTIFICATION_APPLICATION_FOCUS_OUT: window_focused = false
+	if what == NOTIFICATION_WM_CLOSE_REQUEST and ui:
+		_request_exit("quit")
 	if what == NOTIFICATION_APPLICATION_FOCUS_OUT and ui and phase == "playing":
+		ui.settings.pending = ""
 		ui.paused = true
+		help_previous_pause = true
+		settings_previous_pause = true
+		exit_previous_pause = true
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		_sync_pause()
 
 func _receive_input(peer_id: int, movement: Vector2, yaw: float, jump: bool) -> void:
 	if not workers.has(peer_id) or phase != "playing":
@@ -459,12 +514,13 @@ func _apply_sneeze(source: Node3D) -> void:
 	_set_notice("sneeze_blast", 1.5)
 
 func _physics_process(delta: float) -> void:
+	if get_tree().paused: return
 	if not session or phase == "menu":
 		return
 	if phase == "playing" and not test_mode and workers.has(local_id):
 		var movement := Vector2.ZERO
 		var jump := false
-		if not ui.paused and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		if not _local_input_blocked() and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 			movement = Input.get_vector("left", "right", "forward", "back")
 			jump = Input.is_action_just_pressed("jump")
 		session.send_input(movement, workers[local_id].look_yaw, jump)
@@ -516,8 +572,7 @@ func _begin_bonus() -> void:
 		cargo.rules.destination = round_state.next_destination()
 	phase = "playing"
 	conveyor.active = true
-	ui.paused = false
-	if not test_mode: Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	_phase_ui()
 
 func _finish(result: String) -> void:
 	packrat.stop(cargos)
@@ -587,15 +642,16 @@ func _receive_snapshot(state: Dictionary) -> void:
 		workers[id].speed_scale = pose.speed
 	_sync_creature_claims()
 	if old_phase != phase:
-		ui.paused = false
-		if phase == "playing" and not test_mode:
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		else:
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		_phase_ui()
 
 func _process(delta: float) -> void:
 	if not ui:
 		return
+	if profile.dirty:
+		record_retry_left -= delta
+		if record_retry_left <= 0:
+			record_retry_left = 5.0
+			profile.retry_save()
 	if session.mode == "guest":
 		var weight := minf(1, delta * 20)
 		for id in targets:
@@ -605,6 +661,7 @@ func _process(delta: float) -> void:
 		for cargo in cargos.values():
 			cargo.interpolate(delta)
 	if workers.has(local_id) and workers[local_id].camera: workers[local_id].camera.fov = Preferences.fov
+	_sync_pause()
 	_update_marker()
 	_render_ui()
 	if not capture_mode.is_empty():
@@ -630,6 +687,7 @@ func _set_notice(key: String, seconds: float) -> void:
 	notice_until = Time.get_ticks_msec() + int(seconds * 1000)
 
 func _render_ui() -> void:
+	if profile.save_error != OK: notice_key = "record_save_failed"; notice_until = Time.get_ticks_msec() + 1000
 	var prompt_key := "far"
 	var cargo_name := ""
 	var held = held_cargo(local_id)
@@ -736,8 +794,11 @@ func _sync_creature_claims() -> void:
 
 
 func _toggle_help() -> void:
+	if ui.settings_open or not ui.confirm_action.is_empty(): return
 	if not ui.help_open: help_previous_pause = ui.paused
 	ui.toggle_help()
 	if phase == "playing":
 		ui.paused = true if ui.help_open else help_previous_pause
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE if ui.paused else Input.MOUSE_MODE_CAPTURED
+
+	_sync_pause()

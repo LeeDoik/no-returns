@@ -1,13 +1,15 @@
 extends RefCounted
+const Bindings = preload("res://scripts/input_bindings.gd")
 
 static var language := "ko"
 const STRINGS := {
+	"record_save_failed": ["Record not saved. Check disk space / folder access. Retrying while the game is open.", "완주 기록 저장 실패. 여유 공간·폴더 권한을 확인하세요. 게임을 켜 둔 동안 재시도합니다."],
 	"map_mismatch": ["Different map files. Use the same saved map/build as the host.", "맵 파일이 다릅니다. 방장과 같은 저장 맵/빌드를 사용하세요."],
-	"lesson_0": ["WASD: move · Mouse: look · Space: jump · H: help", "WASD: 이동 · 마우스: 둘러보기 · Space: 점프 · H: 도움말"],
-	"lesson_1": ["Approach a package and press E to pick it up.", "상자에 다가가 E를 눌러 들어 보세요."],
-	"lesson_2": ["Left click: throw · E: put down / catch · Q: ping", "왼쪽 클릭: 던지기 · E: 내려놓기 / 받기 · Q: 위치 알림"],
+	"lesson_0": ["{forward}/{left}/{back}/{right}: move · Mouse: look · {jump}: jump · {help}: help", "{forward}/{left}/{back}/{right}: 이동 · 마우스: 둘러보기 · {jump}: 점프 · {help}: 도움말"],
+	"lesson_1": ["Approach a package and press {interact} to pick it up.", "상자에 다가가 {interact}를 눌러 들어 보세요."],
+	"lesson_2": ["{throw}: throw · {interact}: put down / catch · {ping}: ping", "{throw}: 던지기 · {interact}: 내려놓기 / 받기 · {ping}: 위치 알림"],
 	"lesson_3": ["Read the A/B label and deliver to its matching bay.", "상자의 A/B 라벨과 같은 배송구에 넣으세요."],
-	"lesson_4": ["Try a team relay · F: reverse belt · H: help · Esc: settings", "동료와 릴레이에 도전하세요 · F: 벨트 전환 · H: 도움말 · Esc: 설정"],
+	"lesson_4": ["Try a team relay · {lever}: reverse belt · {help}: help · Esc: settings", "동료와 릴레이에 도전하세요 · {lever}: 벨트 전환 · {help}: 도움말 · Esc: 설정"],
 	"version_mismatch": ["Different game versions. Update every player to the same build.", "게임 버전이 다릅니다. 모두 같은 최신 빌드로 갱신하세요."],
 	"relay": ["TEAM RELAY! Deliver this package for a bonus.", "팀 릴레이! 이 상자를 배송하면 추가 보상을 받습니다."],
 	"hopper_name": ["HOPPER", "점프 상자"],
@@ -24,7 +26,7 @@ const STRINGS := {
 	"result": ["%d / %d deliveries · %d seconds\nShipment seed: %d", "%d / %d개 배송 · %d초\n배송 시드: %d"],
 	"base_secured": ["BASE SHIFT COMPLETE!", "기본 근무 성공!"],
 	"sensitivity": ["MOUSE SENSITIVITY: %.2fx", "마우스 감도: %.2f배"],
-	"lever": ["F  REVERSE CONVEYOR", "F  컨베이어 방향 전환"],
+	"lever": ["{lever}  REVERSE CONVEYOR", "{lever}  컨베이어 방향 전환"],
 
 	"subtitle": ["The packages are alive. Ship them anyway.", "택배가 살아 있습니다. 그래도 배송은 해야죠."],
 	"foundation": ["06 / NIGHT SHIFT DEPOT", "06 / 야간 물류센터"],
@@ -34,9 +36,9 @@ const STRINGS := {
 	"host": ["HOST / 2–4 WORKERS", "방 만들기 / 2~4인"],
 	"join": ["JOIN DEPOT", "창고 참가하기"],
 	"address": ["Host address (same PC: 127.0.0.1)", "방장 주소 (같은 PC: 127.0.0.1)"],
-	"development": ["DEVELOPMENT PROTOTYPE / 0.7.8\nLocal / LAN connection · Steam invites not connected", "개발용 프로토타입 / 0.7.8\n로컬·LAN 연결 · Steam 친구 초대 미연결"],
+	"development": ["DEVELOPMENT PROTOTYPE / 0.7.9\nLocal / LAN connection · Steam invites not connected", "개발용 프로토타입 / 0.7.9\n로컬·LAN 연결 · Steam 친구 초대 미연결"],
 	"menu_note": ["Read the A / B label.\nWrong bay? Back to intake.", "A / B 라벨을 확인하세요.\n잘못 보내면 입고 구역으로!"],
-	"controls": ["WASD  Move    MOUSE  Look    SPACE  Jump    Q  Ping    F  Reverse belt\nE  Pick up / catch / put down    LEFT CLICK  Throw    ESC  Menu", "WASD  이동    마우스  둘러보기    SPACE  점프    Q  위치 알림    F  벨트 전환\nE  집기 / 받기 / 내려놓기    왼쪽 클릭  던지기    ESC  메뉴"],
+	"controls": ["{forward}/{left}/{back}/{right}  Move    MOUSE  Look    {jump}  Jump    {ping}  Ping    {lever}  Reverse belt\n{interact}  Pick up / catch / put down    {throw}  Throw    ESC  Menu", "{forward}/{left}/{back}/{right}  이동    마우스  둘러보기    {jump}  점프    {ping}  위치 알림    {lever}  벨트 전환\n{interact}  집기 / 받기 / 내려놓기    {throw}  던지기    ESC  메뉴"],
 	"waiting": ["WAITING FOR CREW", "동료를 기다리는 중"],
 	"ready": ["CREW READY / Host starts the shift", "직원 집합 완료 / 방장이 근무를 시작하세요"],
 	"playing": ["MATCH THE A / B LABEL", "A / B 라벨에 맞게 배송하세요"],
@@ -52,8 +54,8 @@ const STRINGS := {
 	"resume": ["BACK TO WORK", "근무로 돌아가기"],
 	"pause_title": ["TAKING A BREATHER", "잠깐 쉬어가기"],
 	"pause_note": ["The shift keeps running while this menu is open.", "이 메뉴가 열려 있어도 근무 시간은 흐릅니다."],
-	"carrying": ["E  Put down   /   LEFT CLICK  Throw toward marker", "E  내려놓기   /   왼쪽 클릭  착지 표지 쪽으로 던지기"],
-	"near": ["E  Pick up / catch", "E  집기 / 받기"],
+	"carrying": ["{interact}  Put down   /   {throw}  Throw toward marker", "{interact}  내려놓기   /   {throw}  착지 표지 쪽으로 던지기"],
+	"near": ["{interact}  Pick up / catch", "{interact}  집기 / 받기"],
 	"far": ["Find the crate at INTAKE. Match its A / B label.", "입고 구역의 화물을 찾아 라벨에 맞게 보내세요."],
 	"busy": ["Your coworker has the crate. Get ready to catch!", "동료가 화물을 들고 있어요. 받을 준비를 하세요!"],
 	"shipped": ["DELIVERED! Next crate in a moment.", "배송 완료! 곧 다음 화물이 나옵니다."],
@@ -66,7 +68,7 @@ const STRINGS := {
 	"shift_running": ["This shift already started. Join the next lobby.", "이미 근무 중이에요. 다음 대기실에 참가하세요."],
 	"recovery": ["Returning the crate…", "화물을 돌려보내는 중…"],
 	"cancel": ["CANCEL CONNECTION", "연결 취소"],
-	"prototype": ["NO RETURNS / DEVELOPMENT 0.7.8", "반품 불가 / 개발용 0.7.8"],
+	"prototype": ["NO RETURNS / DEVELOPMENT 0.7.9", "반품 불가 / 개발용 0.7.9"],
 	"clinger_name": ["CLINGER", "접착 상자"],
 	"clinger_attached": ["STUCK! %.1fs / Sneeze to release.", "붙었어요! %.1f초 / 재채기로 떼어내세요."],
 	"clinger_cooldown": ["UNSTUCK / Ready in %.1fs", "떨어졌어요 / %.1f초 뒤 다시 접착"],
@@ -85,7 +87,7 @@ const STRINGS := {
 
 static func get_text(key: String) -> String:
 	var pair: Array = STRINGS.get(key, [key, key])
-	return pair[1 if language == "ko" else 0]
+	return Bindings.expand(pair[1 if language == "ko" else 0])
 
 static func toggle() -> void:
 	language = "en" if language == "ko" else "ko"

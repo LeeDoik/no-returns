@@ -4,7 +4,7 @@
 
 > The packages are alive. Ship them anyway.
 
-**Current version: Shipping Shrine playtest 0.7.8 · September 8, 2026**
+**Current version: Shipping Shrine playtest 0.7.9 · September 8, 2026**
 
 A Godot third-person delivery game for solo play or 2–4 cooperating workers. Complete three contracts in an absurd shrine that receives parcels as offerings, buy equipment with shared earnings, relay packages and recover cargo stolen by Packrat. The target is a Windows Steam release; this is a development build using primitive art.
 
@@ -25,7 +25,7 @@ In the development project use [PLAY.cmd](PLAY.cmd), [PLAY_TWO.cmd](PLAY_TWO.cmd
 
 The existing 32 × 36 m Night Shift Depot, two bypasses, right-lane reversible conveyor, four cargo types, Q pings and three-minute practice remain. Lights are raised to 6.5 m, and the belt previously between partitions is on the right carrying route.
 
-WASD moves, mouse looks, Space jumps, E picks up/catches/puts down, left click throws, Q pings, F reverses the belt, R horns, H opens help and Esc opens the menu. Match cargo A/B labels to dispatch bays.
+Default controls: WASD moves, mouse looks, Space jumps, E picks up/catches/puts down, left click throws, Q pings, F reverses the belt, R horns, H opens help and Esc opens the menu. Match cargo A/B labels to dispatch bays.
 
 ## Design and guides
 
@@ -46,13 +46,13 @@ The detailed design separates official reference facts from our interpretation. 
 
 ## Validation and remaining release work
 
-Twenty-four behavior tests, eight real two-process scenarios, the four-process scenario and the SteamPipe generator test passed. Coverage includes campaign completion, shared purchases/readiness, theft/horn rescue, actual-flight relay, settled-floor cargo transport to the nest, first-launch settings and duplicate/late-join completion records. Worst tested motion snapshot is 1,280 bytes; separate campaign metadata stays ≤2,048 and creature state ≤256 bytes.
+Thirty behavior tests, eight real two-process scenarios, the four-process scenario and the SteamPipe generator test passed. Coverage includes campaign completion, shared purchases/readiness, theft/horn rescue, actual-flight relay, settled-floor cargo transport to the nest, first-launch settings and duplicate/late-join completion records. Worst tested motion snapshot is 1,280 bytes; separate campaign metadata stays ≤2,048 and creature state ≤256 bytes.
 
 **This is not a Steam release.** Steamworks enrollment and real App/Depot IDs are unavailable. Current transport is direct-address ENet with the host PC as server; Steam friend invites and relay are absent. Separate PCs/external networks, target-hardware performance, independent friend-group fun testing, final art/store imagery/trailer/rights review, Steam installation and Valve review remain open. Automated passes do not establish fun or internet connection quality.
 
 ## Version control
 
-Local Git retains the 0.5/0.6 baselines. This change is identified by `v0.7.8`; no GitHub remote is connected. See [version history and recovery](docs/development/version-control.en.md) and [documentation rules](AGENTS.md).
+Local Git retains the 0.5/0.6 baselines. This change is identified by `v0.7.9`; no GitHub remote is connected. See [version history and recovery](docs/development/version-control.en.md) and [documentation rules](AGENTS.md).
 
 
 ## 0.7.1 Packrat fix
@@ -106,3 +106,9 @@ Furniture, parcels and worker details have beveled edges, with wear placed on ha
 Everyone must use the same 0.7.8 ZIP. Delivery rules and controls remain the same. Final release art and real friend-group fun/performance validation are still pending.
 
 [0.7.8 implementation and validation](docs/superpowers/plans/2026-09-08-authored-depot.en.md).
+
+## 0.7.9 Release usability
+
+Improved title-screen settings, rebinding, solo pause, exit confirmation, long bilingual UI, admission timeout and completed-record retries.
+
+[0.7.9](docs/superpowers/plans/2026-09-08-release-usability.en.md).

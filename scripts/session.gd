@@ -75,12 +75,11 @@ func _process(_delta: float) -> void:
 			if Time.get_ticks_msec() > int(pending[id]):
 				pending.erase(id)
 				multiplayer.multiplayer_peer.disconnect_peer(id)
-	if mode == "connecting" and Time.get_ticks_msec() > join_deadline:
+	if (mode == "connecting" or (mode == "guest" and not confirmed)) and join_deadline > 0 and Time.get_ticks_msec() > join_deadline:
 		close("connection_failed")
 
 func _on_connected() -> void:
 	mode = "guest"
-	join_deadline = 0
 
 
 func _on_peer_connected(peer_id: int) -> void:
@@ -203,6 +202,7 @@ func _creature(state: Array) -> void:
 func _accepted(version: int) -> void:
 	if mode != "guest" or version != protocol: return
 	confirmed = true
+	join_deadline = 0
 	joined.emit()
 
 @rpc("authority", "call_remote", "reliable")

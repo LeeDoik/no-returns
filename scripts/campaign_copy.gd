@@ -1,4 +1,5 @@
 extends RefCounted
+const Bindings = preload("res://scripts/input_bindings.gd")
 
 const Copy = preload("res://scripts/copy.gd")
 const STRINGS := {
@@ -7,9 +8,9 @@ const STRINGS := {
 	"campaign": ["START SOLO CAMPAIGN", "혼자 캠페인 시작"],
 	"host_campaign": ["HOST CO-OP CAMPAIGN", "협동 캠페인 방 만들기"],
 	"practice_short": ["SHORT PRACTICE", "짧은 연습"],
-	"help": ["H  SHIFT MANUAL", "H  근무 안내서"],
+	"help": ["{help}  SHIFT MANUAL", "{help}  근무 안내서"],
 	"help_title": ["SHIFT MANUAL", "근무 안내서"],
-	"help_body": ["STANDARD — stable cargo\nSNEEZER — blasts cargo forward\nCLINGER — sticks on contact\nHOPPER — jumps when left alone\n\nWASD move  ·  MOUSE look  ·  SPACE jump  ·  ESC menu\nE pick up / catch  ·  LEFT CLICK throw  ·  F reverse belt\nRelay +5: a coworker catches your airborne throw 3 m away\nwithin 3 seconds, then delivers it to the correct bay.\nQ ping  ·  H close help\nR airhorn scares a nearby Packrat.", "일반 상자 — 안정적인 화물\n재채기 상자 — 앞쪽 화물을 밀어냄\n접착 상자 — 닿으면 달라붙음\n점프 상자 — 내버려 두면 뛰어오름\n\nWASD 이동  ·  마우스 시점  ·  SPACE 점프  ·  ESC 메뉴\nE 집기 / 받기  ·  왼쪽 클릭 던지기  ·  F 벨트 전환\n릴레이 +5: 동료가 3m 밖에서 3초 안에 공중으로 받고\n올바른 출고구까지 배송해야 합니다.\nQ 위치 알림  ·  H 안내서 닫기\nR 경적으로 가까운 포장쥐를 쫓아내세요."],
+	"help_body": ["STANDARD — stable cargo\nSNEEZER — blasts cargo forward\nCLINGER — sticks on contact\nHOPPER — jumps when left alone\n\n{forward}/{left}/{back}/{right} move  ·  MOUSE look  ·  {jump} jump  ·  ESC menu\n{interact} pick up / catch  ·  {throw} throw  ·  {lever} reverse belt\nRelay +5: a coworker catches your airborne throw 3 m away\nwithin 3 seconds, then delivers it to the correct bay.\n{ping} ping  ·  {help} close help\n{horn} airhorn scares a nearby Packrat.", "일반 상자 — 안정적인 화물\n재채기 상자 — 앞쪽 화물을 밀어냄\n접착 상자 — 닿으면 달라붙음\n점프 상자 — 내버려 두면 뛰어오름\n\n{forward}/{left}/{back}/{right} 이동  ·  마우스 시점  ·  {jump} 점프  ·  ESC 메뉴\n{interact} 집기 / 받기  ·  {throw} 던지기  ·  {lever} 벨트 전환\n릴레이 +5: 동료가 3m 밖에서 3초 안에 공중으로 받고\n올바른 출고구까지 배송해야 합니다.\n{ping} 위치 알림  ·  {help} 안내서 닫기\n{horn} 경적으로 가까운 포장쥐를 쫓아내세요."],
 	"help_close": ["CLOSE MANUAL", "안내서 닫기"],
 	"contract": ["CONTRACT %d / 3", "계약 %d / 3"],
 	"bank": ["BANK  %d CREDITS", "공동 금고  %d 크레딧"],
@@ -30,7 +31,7 @@ const STRINGS := {
 	"fullscreen_on": ["FULLSCREEN  ON", "전체 화면  켜짐"],
 	"fullscreen_off": ["FULLSCREEN  OFF", "전체 화면  꺼짐"],
 	"progress": ["%s", "%s"],
-	"horn_ready": ["R  AIRHORN READY", "R  경적 준비"],
+	"horn_ready": ["{horn}  AIRHORN READY", "{horn}  경적 준비"],
 	"horn_wait": ["AIRHORN  %.1fs", "경적  %.1f초"],
 	"packrat_off": ["", ""],
 	"packrat_patrol": ["PACKRAT / PATROLLING", "포장쥐 / 순찰 중"],
@@ -43,4 +44,4 @@ const STRINGS := {
 
 static func get_text(key: String) -> String:
 	var pair: Array = STRINGS.get(key, [key, key])
-	return pair[1 if Copy.language == "ko" else 0]
+	return Bindings.expand(pair[1 if Copy.language == "ko" else 0])

@@ -113,7 +113,7 @@ func make_local() -> void:
 
 func aim(relative: Vector2) -> void:
 	look_yaw = wrapf(look_yaw - relative.x * 0.0025 * Preferences.sensitivity, -PI, PI)
-	look_pitch = clampf(look_pitch - relative.y * 0.0025 * Preferences.sensitivity, -0.85, 0.25)
+	look_pitch = clampf(look_pitch - relative.y * 0.0025 * Preferences.sensitivity * (-1.0 if Preferences.invert else 1.0), -0.85, 0.25)
 	update_look()
 
 func update_look() -> void:

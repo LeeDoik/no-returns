@@ -73,3 +73,7 @@ Integrate the validated visual cleanup and worker appearance changes from `codex
 ## 0.7.8 Focused intake and presentation refinement
 
 `codex/authored-depot` refines reception, role-specific worktops, beveled geometry, carrying poses, labels and delivery audio. After validation, it is integrated into main with local baseline `v0.7.8`. The previous presentation remains at `v0.7.7`. [Implementation and validation](../superpowers/plans/2026-09-08-authored-depot.en.md).
+
+## 0.7.9 Release usability audit
+
+Validated changes from `codex/release-usability` are integrated into main and recorded as `v0.7.9`. The previous state remains at `v0.7.8`.
