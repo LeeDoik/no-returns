@@ -4,7 +4,7 @@
 
 > The packages are alive. Ship them anyway.
 
-**Current version: Shipping Shrine playtest 0.7.6 · September 8, 2026**
+**Current version: Shipping Shrine playtest 0.7.7 · September 8, 2026**
 
 A Godot third-person delivery game for solo play or 2–4 cooperating workers. Complete three contracts in an absurd shrine that receives parcels as offerings, buy equipment with shared earnings, relay packages and recover cargo stolen by Packrat. The target is a Windows Steam release; this is a development build using primitive art.
 
@@ -52,7 +52,7 @@ Twenty-four behavior tests, eight real two-process scenarios, the four-process s
 
 ## Version control
 
-Local Git retains the 0.5/0.6 baselines. This change is identified by `v0.7.6`; no GitHub remote is connected. See [version history and recovery](docs/development/version-control.en.md) and [documentation rules](AGENTS.md).
+Local Git retains the 0.5/0.6 baselines. This change is identified by `v0.7.7`; no GitHub remote is connected. See [version history and recovery](docs/development/version-control.en.md) and [documentation rules](AGENTS.md).
 
 
 ## 0.7.1 Packrat fix
@@ -90,3 +90,9 @@ Furnished the interior with 29 reception/packing/lounge/archive clusters, 96 she
 Added walls and partial roofs to intake, lost-property archive, doorman waiting room, air-mail passage and A/B dispatch rooms. Doors and corners interrupt sightlines while side bypasses and both gate cross-links remain open. Throw toward the west intake hatch from the **THROW** floor spot; a teammate on the outside **CATCH** spot can press E for a relay attempt. Workers cannot fit through the hatch.
 
 [0.7.6](docs/superpowers/plans/2026-09-08-enclosed-shrine.en.md).
+
+## 0.7.7 Art direction pass
+
+Reworked backgrounds around worn cream, green-gray and concrete tones. Reduced visible map labels from 104 to 38 and mounted essential guidance on backing panels. Added kick plates, panel joints, roof battens and subtle materials. Workers now wear work clothes, caps, gloves, boots and employee numbers, with alternating arm/leg motion. Refined cargo colors and distant text. Controls and delivery rules are unchanged.
+
+[0.7.7](docs/superpowers/plans/2026-09-08-art-direction.en.md).

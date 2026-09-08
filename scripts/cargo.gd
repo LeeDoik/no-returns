@@ -71,10 +71,11 @@ func _ready() -> void:
 	body.add_child(collision)
 	visual = Node3D.new()
 	body.add_child(visual)
-	_part(Vector3.ONE * SIZE, Vector3.ZERO, Color("baace3") if kind == "sneezer" else (Color("f2c14e") if kind == "hopper" else Color("d5ae70")))
-	_part(Vector3(0.14, 0.81, 0.81), Vector3.ZERO, Color("f09baa") if kind == "sneezer" else Color("69b5a1"))
+	_part(Vector3.ONE * SIZE, Vector3.ZERO, Color("b7a182") if kind == "sneezer" else (Color("bd995c") if kind == "hopper" else Color("b89466")))
+	_part(Vector3(0.14, 0.81, 0.81), Vector3.ZERO, Color("b27581") if kind == "sneezer" else Color("609187"))
+	_part(Vector3(0.81,0.025,0.025),Vector3(0,0.397,0),Color("796447"))
 	if kind == "clinger":
-		_part(Vector3.ONE * 0.805, Vector3.ZERO, Color("b4db73"))
+		_part(Vector3.ONE * 0.805, Vector3.ZERO, Color("8b9a61"))
 		for side in [-1.0, 1.0]:
 			_part(Vector3(0.12, 0.40, 0.40), Vector3(side * 0.44, 0, 0), Color("6d9b42"))
 			_part(Vector3(0.40, 0.40, 0.12), Vector3(0, 0, side * 0.44), Color("6d9b42"))
@@ -111,6 +112,8 @@ func _part(size: Vector3, at: Vector3, color: Color) -> void:
 	mesh.mesh = cube
 	var material := StandardMaterial3D.new()
 	material.albedo_color = color
+	material.roughness = 0.96
+	material.metallic_specular = 0.1
 	mesh.material_override = material
 	mesh.position = at
 	visual.add_child(mesh)

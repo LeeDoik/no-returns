@@ -85,6 +85,7 @@ func _label(font_size: int) -> Label3D:
 	label.font = font
 	label.font_size = font_size
 	label.pixel_size = 0.006
+	label.visibility_range_end = 16
 	label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 	label.outline_size = 6
 	label.no_depth_test = false
@@ -128,11 +129,13 @@ func present(clock: RefCounted, yaw: float, origin: Vector3, burst_yaw: float, e
 	zone.position = Vector3(body.position.x, 0.07, body.position.z)
 	zone.rotation.y = yaw
 	if winding:
+		caption.font_size = 36
 		caption.text = Copy.get_text("sneeze_warning") % maxf(0, clock.remaining)
 		caption.modulate = Color("ffd86f")
 		if last_phase != "windup":
 			_play(warning_sound, body.position)
 	else:
+		caption.font_size = 26
 		caption.modulate = Color.WHITE
 	if clock.event_id > seen_event:
 		seen_event = clock.event_id

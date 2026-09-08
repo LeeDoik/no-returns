@@ -65,3 +65,7 @@ On `codex/winding-shrine`, replace parallel lanes with an S alley, turning airfl
 ## 0.7.6 Enclosed rooms and parcel hatch
 
 Apply room partitions, partial roofs and a parcel relay hatch on `codex/enclosed-shrine`. Integrate into main after validation and retain `v0.7.6` as the local milestone. Preserve the previous layout in `v0.7.5`.
+
+## 0.7.7 Art direction pass
+
+Integrate the validated visual cleanup and worker appearance changes from `codex/art-direction` into main and retain `v0.7.7` as the local milestone. The previous look remains in `v0.7.6`.

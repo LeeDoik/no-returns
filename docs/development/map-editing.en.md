@@ -2,7 +2,7 @@
 
 [한국어](map-editing.ko.md)
 
-For Godot 4.7.2 and NO RETURNS 0.7.6 · September 8, 2026.
+For Godot 4.7.2 and NO RETURNS 0.7.7 · September 8, 2026.
 
 ## First edit: move the central low wall
 
@@ -118,3 +118,9 @@ Floor furniture and stacked parcels are fixed collision props. Decorative vendin
 Under `Geometry/EnclosedRooms`, select `IntakeRoom`, `LostArchive`, `DoormanRoom`, `AirMailRoom` or `DispatchA/B`. Child walls and roofs expose Dimensions and Position. Furniture remains under `Geometry/InteriorDressing`. Moving a room parent does not move existing furniture, delivery zones, plates or wind devices; move related groups together.
 
 The west intake hatch is between `HatchSill` and `HatchHeader`. Its opening is 3m wide and 1.15m high, from 1.8 to 2.95m above the floor. THROW/CATCH floor marks match the actual default throw arc. Re-test throws after changing hatch height or dimensions. The doorman roof is at 8.2m to clear the raised gate. Standard partial roofs are at 5.7m. Fill lights are the corresponding roof-name Light nodes.
+
+## 0.7.7 Art direction pass
+
+Edit wall finishes under each wall’s `SurfaceFinish` and roof battens under `RoofBattens`. These are decorative and have no colliders. Moving a wall moves its finish, but changing Dimensions requires manually adjusting finish lengths/positions. A sign’s `SignBacking` is its panel; resize it when changing text length or font size. Old hidden signs remain in the scene and can be restored using Visibility > Visible.
+
+Subtle wall/floor grain uses a saved NoiseTexture2D. Keep its contrast low. The migration tool has already been applied and is never re-run by normal play or BUILD.cmd.

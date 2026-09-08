@@ -2,7 +2,7 @@
 
 [English](map-editing.en.md)
 
-대상: Godot 4.7.2, NO RETURNS 0.7.6 · 2026년 9월 8일.
+대상: Godot 4.7.2, NO RETURNS 0.7.7 · 2026년 9월 8일.
 
 ## 첫 편집: 중앙 낮은 벽 옮기기
 
@@ -118,3 +118,9 @@
 `Geometry/EnclosedRooms` 아래 `IntakeRoom`, `LostArchive`, `DoormanRoom`, `AirMailRoom`, `DispatchA/B`를 선택합니다. 방 아래의 벽·지붕도 Dimensions와 Position으로 수정할 수 있습니다. 가구는 기존 `Geometry/InteriorDressing`에 있습니다. 방 부모를 옮겨도 기존 가구·배송 판정·발판·송풍 장치는 따라가지 않으므로 관련 그룹도 함께 옮기세요.
 
 접수실 서쪽 `HatchSill`과 `HatchHeader` 사이가 화물 창구입니다. 개구부는 가로 3m·높이 1.15m, 바닥에서 1.8~2.95m입니다. 바닥의 던지기/받기 표시는 실제 기본 던지기 궤적에 맞췄습니다. 창 높이나 크기를 바꾸면 다시 던져 확인하세요. 문지기 지붕은 높이 8.2m로 올라간 문 위 공간을 확보합니다. 기본 부분 지붕은 5.7m 높이에 있습니다. 아래 조명은 각 지붕 이름의 Light 노드입니다.
+
+## 0.7.7 아트 방향 정리
+
+벽 마감은 각 벽의 `SurfaceFinish`, 천장 보강재는 지붕의 `RoofBattens` 아래에서 편집합니다. 마감은 장식이며 충돌체가 없습니다. 벽 위치를 옮기면 함께 이동하지만 Dimensions로 크기를 바꿀 때는 마감 길이·위치를 직접 맞춰야 합니다. 표지의 `SignBacking`은 받침판이며 글 길이나 크기를 바꾸면 함께 조절하세요. 숨긴 기존 표지는 삭제하지 않았으므로 Visibility의 Visible로 다시 표시할 수 있습니다.
+
+벽·바닥의 미세 재질은 저장된 NoiseTexture2D입니다. 낮은 대비를 유지하세요. 새 변환 도구는 이미 적용되었으며 일반 실행과 BUILD.cmd에서 자동으로 다시 돌리지 않습니다.

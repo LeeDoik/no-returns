@@ -1,4 +1,4 @@
-# NO RETURNS — Cooperative Contracts playtest 0.7.6
+# NO RETURNS — Cooperative Contracts playtest 0.7.7
 
 [한국어](07-contracts.ko.md)
 
@@ -134,3 +134,9 @@ Walls and partial roofs now enclose intake, the lost-property archive, doorman w
 A parcel-only hatch is on the west intake wall. Throw toward the opening from the **THROW** floor spot; a teammate on the outside **CATCH** spot presses **E** when the airborne parcel comes close. Catching it in flight and delivering it can earn the existing relay bonus. Workers cannot fit through the hatch and should use the side doorway. Solo players can carry parcels along the existing routes.
 
 Controls, contract duration and gate/wind timing remain unchanged. Redistribute the 0.7.6 ZIP and have everyone run the same build. This remains a development version without Steam friend invites connected.
+
+## 0.7.7 Art direction pass
+
+Reworked backgrounds around worn cream, green-gray and concrete tones. Reduced visible map labels from 104 to 38 and mounted essential guidance on backing panels. Added kick plates, panel joints, roof battens and subtle materials. Workers now wear work clothes, caps, gloves, boots and employee numbers, with alternating arm/leg motion. Refined cargo colors and distant text. Controls and delivery rules are unchanged.
+
+Everyone must use the same 0.7.7 ZIP.

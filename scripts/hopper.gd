@@ -20,8 +20,9 @@ func setup(source: Node3D) -> void:
 	var font := SystemFont.new()
 	font.font_names = PackedStringArray(["Malgun Gothic", "Segoe UI", "Arial"])
 	label.font = font
-	label.font_size = 28
+	label.font_size = 24
 	label.pixel_size = 0.006
+	label.visibility_range_end = 13
 	label.billboard = BaseMaterial3D.BILLBOARD_ENABLED
 	label.modulate = Color("ffe792")
 	add_child(label)
