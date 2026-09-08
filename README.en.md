@@ -2,6 +2,21 @@
 
 [한국어](README.md)
 
+## Find the game here
+
+**Double-click [00_게임 실행.cmd](<00_게임 실행.cmd>) at the top of the project folder.** It opens the last built game without the editor.
+
+| Task | File to open |
+|---|---|
+| Play the game | [00_게임 실행.cmd](<00_게임 실행.cmd>) |
+| Edit the map | [01_맵 편집.cmd](<01_맵 편집.cmd>) |
+| Locate the ZIP to send friends | [02_배포 파일 찾기.cmd](<02_배포 파일 찾기.cmd>) |
+| Run the latest source changes | [PLAY.cmd](PLAY.cmd) |
+
+`build` contains executables and the distribution ZIP; `art` contains Blender and other production sources; `assets` contains runtime art; `scenes` and `scripts` contain maps and code; `docs` contains Korean/English documentation; `tests` and `tools` contain development utilities; `artifacts` contains validation results and captures. Loose root logs were collected into `artifacts/logs/root`. Existing English-named launch tools remain available.
+
+Keep the EXE and PCK together in the same folder. After source changes, run [BUILD.cmd](BUILD.cmd) to refresh the distribution build. `build/NO_RETURNS_0.7` is a retained compatibility folder name; use the information below and the game screen for the actual version.
+
 > The packages are alive. Ship them anyway.
 
 **Current version: Shipping Shrine playtest 0.9.0 · September 8, 2026**
