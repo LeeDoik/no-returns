@@ -53,6 +53,7 @@ def main():
         ("tests/test_editable_map.gd", "editable-map", b"EDITABLE MAP PASS"),
         ("tests/test_route_challenges.gd", "route-challenges", b"ROUTE CHALLENGES PASS"),
         ("tests/test_winding_routes.gd", "winding-routes", b"WINDING ROUTES PASS"),
+        ("tests/test_enclosed_rooms.gd", "enclosed-rooms", b"ENCLOSED ROOMS PASS"),
     ):
         result = subprocess.run(command(script, role), cwd=ROOT,
                                 capture_output=True, timeout=30)

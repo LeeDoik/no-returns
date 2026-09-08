@@ -61,3 +61,7 @@ Implement and validate the 48×60 m map, pressure shortcut and periodic airflow 
 ## 0.7.5 Winding routes
 
 On `codex/winding-shrine`, replace parallel lanes with an S alley, turning airflow route and cross-links, validate and integrate into main. `v0.7.5` is the new baseline; `v0.7.4` retains the previous layout. [Change record](../superpowers/plans/2026-09-08-winding-shrine.en.md).
+
+## 0.7.6 Enclosed rooms and parcel hatch
+
+Apply room partitions, partial roofs and a parcel relay hatch on `codex/enclosed-shrine`. Integrate into main after validation and retain `v0.7.6` as the local milestone. Preserve the previous layout in `v0.7.5`.

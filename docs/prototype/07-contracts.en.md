@@ -1,8 +1,8 @@
-# NO RETURNS — Cooperative Contracts playtest 0.7
+# NO RETURNS — Cooperative Contracts playtest 0.7.6
 
 [한국어](07-contracts.ko.md)
 
-September 7, 2026 · Windows x64 · Godot 4.7.2. A development build using primitive art, not a commercial release candidate or Steam-approved build. English is the source language for game copy; Korean is the default UI.
+September 8, 2026 · Windows x64 · Godot 4.7.2. A development build using primitive art, not a commercial release candidate or Steam-approved build. English is the source language for game copy; Korean is the default UI.
 
 ## Start
 
@@ -126,3 +126,11 @@ Controls are unchanged. Contracts remain 240 seconds. Everyone must use the same
 Added a left S alley, a turning right airflow route and cross-links before/behind the gate. Follow colored lines/arrows and switch to the gate or opposite route midway. Wind now blows from the right toward the center. Map size, intake, dispatch, rat, mechanism timing and contract duration remain unchanged. Everyone must use the same 0.7.5 ZIP.
 
 0.7.5 also furnishes each zone with reception/packing desks, benches, vending cabinets, archives, shelf stock, posters and pipes. These are decorative/fixed collision props, not deliverable cargo or new usable mechanisms.
+
+## 0.7.6 Delivery through rooms and hatches
+
+Walls and partial roofs now enclose intake, the lost-property archive, doorman waiting room, air-mail passage and A/B dispatch rooms. Check around doors and corners as you move. Both existing bypasses and cross-links before/behind the central gate remain open.
+
+A parcel-only hatch is on the west intake wall. Throw toward the opening from the **THROW** floor spot; a teammate on the outside **CATCH** spot presses **E** when the airborne parcel comes close. Catching it in flight and delivering it can earn the existing relay bonus. Workers cannot fit through the hatch and should use the side doorway. Solo players can carry parcels along the existing routes.
+
+Controls, contract duration and gate/wind timing remain unchanged. Redistribute the 0.7.6 ZIP and have everyone run the same build. This remains a development version without Steam friend invites connected.

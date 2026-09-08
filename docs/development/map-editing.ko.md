@@ -2,7 +2,7 @@
 
 [English](map-editing.en.md)
 
-대상: Godot 4.7.2, NO RETURNS 0.7.5 · 2026년 9월 8일.
+대상: Godot 4.7.2, NO RETURNS 0.7.6 · 2026년 9월 8일.
 
 ## 첫 편집: 중앙 낮은 벽 옮기기
 
@@ -104,7 +104,7 @@
 
 새 벽은 `Geometry/WindingAlleys`에서 구역별 부모를 옮깁니다. 내부 SolidBlock의 Dimensions/Color로 크기·색을 조절합니다. `DesignRoutes`의 LeftLoop, RightLoop, FrontCrossLink, RearCrossLink는 설계·검사용 경유점이며 게임이 이동을 강제하지 않습니다. 실제 벽을 옮겼다면 참고 경유점도 맞춰 주세요. 경유점만 움직여도 벽이 자동으로 바뀌지는 않습니다.
 
-[전체 변경 계획](../superpowers/plans/2026-09-08-winding-shrine.ko.md). 같은 0.7.5 ZIP으로 실행하세요. 프로토콜은 9이며 저장 맵 지문으로 이전 맵과의 혼용을 막습니다.
+[전체 변경 계획](../superpowers/plans/2026-09-08-winding-shrine.ko.md). 같은 0.7.6 ZIP으로 실행하세요. 프로토콜은 9이며 저장 맵 지문으로 이전 맵과의 혼용을 막습니다.
 
 
 ## 0.7.5 실내 소품 편집
@@ -112,3 +112,9 @@
 접수·포장·휴게·보관 소품 29개 묶음, 선반 상자 96개, 벽 포스터 18개와 천장 배관·깃발을 채웠습니다. `Geometry/InteriorDressing`에서 가구 묶음을 선택해 옮깁니다. 선반 속 재고는 `Geometry/Shelves`의 각 선반을 따라갑니다. 천장 배관은 `Decoration/InteriorOverhead`, 포스터는 `Decoration/WallPosters`입니다. 표지의 English/Korean을 함께 수정하세요.
 
 바닥 가구와 쌓인 상자는 고정 충돌 소품입니다. 장식 자판기·도장은 새 E 상호작용을 제공하지 않습니다. 실제 배송 화물과 구분해 사용합니다. 큰 가구를 옮긴 뒤에는 코너·발판·송풍 구역을 막지 않는지 F5로 확인하세요.
+
+## 0.7.6 새 실내 구역 편집
+
+`Geometry/EnclosedRooms` 아래 `IntakeRoom`, `LostArchive`, `DoormanRoom`, `AirMailRoom`, `DispatchA/B`를 선택합니다. 방 아래의 벽·지붕도 Dimensions와 Position으로 수정할 수 있습니다. 가구는 기존 `Geometry/InteriorDressing`에 있습니다. 방 부모를 옮겨도 기존 가구·배송 판정·발판·송풍 장치는 따라가지 않으므로 관련 그룹도 함께 옮기세요.
+
+접수실 서쪽 `HatchSill`과 `HatchHeader` 사이가 화물 창구입니다. 개구부는 가로 3m·높이 1.15m, 바닥에서 1.8~2.95m입니다. 바닥의 던지기/받기 표시는 실제 기본 던지기 궤적에 맞췄습니다. 창 높이나 크기를 바꾸면 다시 던져 확인하세요. 문지기 지붕은 높이 8.2m로 올라간 문 위 공간을 확보합니다. 기본 부분 지붕은 5.7m 높이에 있습니다. 아래 조명은 각 지붕 이름의 Light 노드입니다.

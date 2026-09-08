@@ -2,7 +2,7 @@
 
 [한국어](map-editing.ko.md)
 
-For Godot 4.7.2 and NO RETURNS 0.7.5 · September 8, 2026.
+For Godot 4.7.2 and NO RETURNS 0.7.6 · September 8, 2026.
 
 ## First edit: move the central low wall
 
@@ -104,7 +104,7 @@ AirMail is now at (15,0,-24), Y rotation 90 degrees. Wind blows toward the centr
 
 Move grouped new walls under `Geometry/WindingAlleys`. Edit child SolidBlock Dimensions/Color for size/color. LeftLoop, RightLoop, FrontCrossLink and RearCrossLink under `DesignRoutes` are design/test references, not forced navigation. Update reference points after moving walls. Moving only a waypoint does not automatically move walls.
 
-[Full change plan](../superpowers/plans/2026-09-08-winding-shrine.en.md). Use the same 0.7.5 ZIP. Protocol remains 9; saved-map fingerprints prevent mixing old layouts.
+[Full change plan](../superpowers/plans/2026-09-08-winding-shrine.en.md). Use the same 0.7.6 ZIP. Protocol remains 9; saved-map fingerprints prevent mixing old layouts.
 
 
 ## 0.7.5 Editing interior props
@@ -112,3 +112,9 @@ Move grouped new walls under `Geometry/WindingAlleys`. Edit child SolidBlock Dim
 Added 29 reception/packing/lounge/archive clusters, 96 shelf parcels, 18 wall posters and overhead pipes/pennants. Move furniture groups under `Geometry/InteriorDressing`. Shelf stock follows its rack under `Geometry/Shelves`. Pipes are under `Decoration/InteriorOverhead`; posters under `Decoration/WallPosters`. Edit both English/Korean sign fields.
 
 Floor furniture and stacked parcels are fixed collision props. Decorative vending cabinets and stamps do not provide new E interactions. They are separate from deliverable cargo. After moving large furniture, use F5 to check corners, plates and airflow clearance.
+
+## 0.7.6 Editing the new rooms
+
+Under `Geometry/EnclosedRooms`, select `IntakeRoom`, `LostArchive`, `DoormanRoom`, `AirMailRoom` or `DispatchA/B`. Child walls and roofs expose Dimensions and Position. Furniture remains under `Geometry/InteriorDressing`. Moving a room parent does not move existing furniture, delivery zones, plates or wind devices; move related groups together.
+
+The west intake hatch is between `HatchSill` and `HatchHeader`. Its opening is 3m wide and 1.15m high, from 1.8 to 2.95m above the floor. THROW/CATCH floor marks match the actual default throw arc. Re-test throws after changing hatch height or dimensions. The doorman roof is at 8.2m to clear the raised gate. Standard partial roofs are at 5.7m. Fill lights are the corresponding roof-name Light nodes.
