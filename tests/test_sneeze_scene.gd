@@ -38,6 +38,9 @@ func _run() -> void:
 	ordinary.body.freeze = true
 	ordinary.body.position = Vector3(2.32, 0.55, 4)
 	game.workers[1].position = Vector3(0, 0.05, 4)
+	# Keep this range-boundary fixture clear of the coworker; blocked carries
+	# now deliberately release instead of overlapping the carrier's torso.
+	game.workers[2].position = Vector3(8,0.05,10)
 	await frames(3)
 	game._receive_action(1, "interact")
 	game.workers[1].position.x -= 0.15

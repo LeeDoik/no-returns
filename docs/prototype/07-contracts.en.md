@@ -1,14 +1,18 @@
-# NO RETURNS — Cooperative Contracts playtest 0.8.0
+# NO RETURNS — Cooperative Contracts playtest 0.9.1
 
 [한국어](07-contracts.ko.md)
 
-September 8, 2026 · Windows x64 · Godot 4.7.2. A development build using primitive art, not a commercial release candidate or Steam-approved build. English is the source language for game copy; Korean is the default UI.
+September 9, 2026 · Windows x64 · Godot 4.7.2. A development build with production art and carrying/physics improvements, not a commercial release candidate or Steam-approved build. English is the source language for game copy; Korean is the default UI.
+
+## 0.9.1 Carrying, physics and crew colors
+
+Workwear colors identify the crew after removing the back board. Carrying uses a stable gait and wall collision that includes the parcel; parcels rotate and inherit carrier velocity on release. [Physics tuning and validation scope](../art/05-carry-physics.en.md).
 
 ## 0.8.0 Connected delivery and reactive props
 
 The conveyor now connects intake to a sorting lip. Pair Clinger + Hopper or sneeze cargo across, and scare the rat from the nest under sorting. The map contains 24 POP cushions, UP springs and TILT towers, plus 13 existing document locations that scatter when sneezed at. Eighteen sheets initially fly as a bundle, separate, and restore after eight seconds. [Interaction guide and validation scope](08-reactive-delivery.en.md).
 
-Everyone must use the **same 0.8.0 ZIP / protocol 10**. This supersedes build instructions in the older version history below.
+Everyone must use the **same 0.9.1 ZIP / protocol 11**. This supersedes build instructions in the older version history below.
 
 ## Start
 

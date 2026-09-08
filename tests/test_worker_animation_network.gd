@@ -17,6 +17,9 @@ func host_step() -> void:
 		1:
 			if not checkpoint.acknowledged: return
 			game.workers[1].play_throw()
+			game.cargos[1].body.freeze = true
+			game.cargos[1].body.rotation = Vector3(0.4,0.8,-0.3)
+			game.session.publish(game._snapshot())
 			game._publish_metadata(true)
 			announce("throw"); stage = 2
 		2:
@@ -36,4 +39,6 @@ func guest_step() -> void:
 		"throw":
 			if sent == "throw" or worker.throw_sequence != 1: return
 			if worker.art_player.current_animation != "throw": return
+			var expected := Basis.from_euler(Vector3(0.4,0.8,-0.3)).get_rotation_quaternion()
+			if game.cargos[1].body.quaternion.angle_to(expected) > 0.025: return
 			ack(); print("PASS network guest: remote throw clip actually plays")

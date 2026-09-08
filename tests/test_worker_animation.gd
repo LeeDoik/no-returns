@@ -20,7 +20,7 @@ func run() -> void:
 	check(worker.art_player.current_animation == "run", "full speed plays run")
 	worker.held = true
 	for i in range(30): worker._process(1.0/60.0)
-	check(worker.art_player.current_animation == "carry_run", "moving carrier uses authored carry pose")
+	check(worker.art_player.current_animation == "carry_walk", "moving carrier uses stable carry gait")
 	worker.velocity = Vector3.ZERO
 	for i in range(30): worker._process(1.0/60.0)
 	check(worker.art_player.current_animation == "carry_idle", "stopped carrier retains hand support")

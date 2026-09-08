@@ -31,6 +31,16 @@ func run() -> void:
 		await RenderingServer.frame_post_draw
 		var result := root.get_texture().get_image().save_png("res://artifacts/worker-%s.png" % state)
 		if result != OK: quit(1); return
+	box.hide()
+	worker.position.x = -2.25; worker.art_player.play("idle"); worker.art_player.advance(0)
+	for number in range(2,5):
+		var crew = load("res://scripts/worker.gd").new(); crew.slot = number; stage.add_child(crew)
+		crew.position.x = -2.25 + (number-1)*1.5; crew.nameplate.hide(); crew.set_process(false)
+	for view in ["front", "back"]:
+		camera.position = Vector3(0,2.2,-7 if view=="front" else 7)
+		camera.look_at(Vector3(0,0.9,0))
+		await process_frame; await RenderingServer.frame_post_draw
+		root.get_texture().get_image().save_png("res://artifacts/crew-colors-%s.png" % view)
 	stage.queue_free(); await process_frame
 	var game = load("res://scenes/main.tscn").instantiate(); root.add_child(game)
 	game.test_mode = true; game.practice_game(); game.set_physics_process(false)

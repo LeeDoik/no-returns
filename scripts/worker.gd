@@ -4,6 +4,7 @@ const Preferences = preload("res://scripts/preferences.gd")
 const Bevel = preload("res://scripts/bevel_mesh.gd")
 const Art = preload("res://scripts/postal_art.gd")
 const WorkerAnimation = preload("res://scripts/worker_animation.gd")
+const SuitShader = preload("res://scripts/crew_suit.gdshader")
 
 var map_layout = null
 var peer_id := 0
@@ -32,6 +33,7 @@ var speed_scale := 1.0
 var carry_blend := 0.0
 var art_player: AnimationPlayer
 var art_skeleton: Skeleton3D
+var carry_shape: CollisionShape3D
 var animation_motion: RefCounted
 var throw_sequence := 0
 var animation_wire_initialized := false
@@ -46,16 +48,25 @@ func _ready() -> void:
 	shape.shape = capsule
 	shape.position.y = 0.83
 	add_child(shape)
+	carry_shape = CollisionShape3D.new()
+	var carry_box := BoxShape3D.new(); carry_box.size = Vector3.ONE * 0.8
+	carry_shape.shape = carry_box; carry_shape.disabled = true
+	add_child(carry_shape)
 	visual = Node3D.new()
 	add_child(visual)
 	var suit: Color = SUITS[clampi(slot, 1, 4) - 1]
 	var character := Art.model("worker"); visual.add_child(character)
+	for mesh in character.find_children("*", "MeshInstance3D", true, false):
+		for surface in range(mesh.mesh.get_surface_count()):
+			var source = mesh.get_active_material(surface)
+			if source is StandardMaterial3D and source.albedo_texture:
+				var material := ShaderMaterial.new(); material.shader = SuitShader
+				material.set_shader_parameter("albedo_texture", source.albedo_texture)
+				material.set_shader_parameter("crew_color", suit)
+				mesh.set_surface_override_material(surface, material)
 	art_player = character.find_children("*","AnimationPlayer",true,false)[0]
 	art_skeleton = character.find_children("*","Skeleton3D",true,false)[0]
 	animation_motion = WorkerAnimation.new(art_player)
-	# Numbered, colored back badge keeps the four crew members distinguishable.
-	var badge := _part(Vector3(0.34,0.20,0.035),Vector3(0,1.10,0.24),suit)
-	badge.name = "CrewBadge"
 	nameplate = Label3D.new()
 	nameplate.text = "%02d / %s" % [slot, "HOST" if peer_id == 1 else "CREW"]
 	nameplate.font_size = 36
@@ -116,18 +127,29 @@ func update_look() -> void:
 
 func simulate(movement: Vector2, yaw: float, jump: bool, delta: float, drift: Vector3 = Vector3.ZERO) -> void:
 	heading = yaw
-	var wish := Vector3(movement.x, 0, movement.y).rotated(Vector3.UP, yaw) * 4.5 * speed_scale
-	walk_velocity = walk_velocity.move_toward(wish, 24.0 * delta)
+	carry_shape.disabled = not held
+	carry_shape.position = Vector3(0,1.05,0) + forward()*0.98
+	carry_shape.rotation.y = heading
+	var wish := Vector3(movement.x, 0, movement.y).rotated(Vector3.UP, yaw) * (2.4 if held else 4.5) * speed_scale
+	walk_velocity = walk_velocity.move_toward(wish, (12.0 if held else 24.0) * delta)
 	var grounded_drift := drift if is_on_floor() else Vector3.ZERO
 	velocity.x = walk_velocity.x + push_velocity.x + grounded_drift.x
 	velocity.z = walk_velocity.z + push_velocity.z + grounded_drift.z
 	push_velocity = push_velocity.move_toward(Vector3.ZERO, 14.0 * delta)
 	stagger = maxf(0, stagger - delta)
 	if not is_on_floor():
-		velocity.y -= 18.0 * delta
+		velocity.y -= 9.81 * delta
 	elif jump:
-		velocity.y = maxf(velocity.y,6.5)
+		velocity.y = maxf(velocity.y,4.8)
 	move_and_slide()
+	for index in range(get_slide_collision_count()):
+		var contact := get_slide_collision(index)
+		var object := contact.get_collider()
+		if object is RigidBody3D and not object.freeze:
+			var direction := -contact.get_normal().slide(Vector3.UP)
+			var approach := maxf(0, wish.dot(direction))
+			if approach > 0.01:
+				object.apply_force(direction * minf(80.0,approach*35.0),contact.get_position()-object.global_position)
 	if position.y < -5.0:
 		position = spawn_position()
 		reset_motion()

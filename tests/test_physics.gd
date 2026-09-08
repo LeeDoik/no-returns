@@ -3,6 +3,7 @@ extends SceneTree
 var game: Node
 var failures := 0
 var first_contact := Vector3.INF
+var previous_position := Vector3.INF
 
 func _initialize() -> void:
 	call_deferred("_run")
@@ -14,6 +15,8 @@ func _check(ok: bool, message: String) -> void:
 
 func _frames(count: int) -> void:
 	for i in count:
+		if game.cargos[1].body.position.y > 0.4:
+			previous_position = game.cargos[1].body.position
 		await physics_frame
 		await process_frame
 
@@ -104,6 +107,11 @@ func _cargo_shape() -> Shape3D:
 func _contact(_body: Node) -> void:
 	if first_contact == Vector3.INF:
 		first_contact = game.cargos[1].body.position
+		# Contact notifications arrive at the end of a fixed physics step.
+		# Recover the floor crossing instead of measuring post-contact penetration.
+		if previous_position.y > 0.4 and first_contact.y < 0.4:
+			var fraction := (previous_position.y-0.4)/(previous_position.y-first_contact.y)
+			first_contact = previous_position.lerp(first_contact, fraction)
 
 func _throw_case(label: String, worker_at: Vector3, yaw: float, normal: Vector3) -> void:
 	var worker = game.workers[1]

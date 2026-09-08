@@ -27,8 +27,8 @@ func update(delta: float, velocity: Vector3, carrying: bool, stagger: float) -> 
 	if throw_left > 0:
 		clip = "throw"; rate = 1.0
 	elif carrying:
-		clip = "carry_" + ("idle" if airborne_left > 0 else clip)
-		if airborne_left > 0: rate = 1.0
+		clip = "carry_idle" if airborne_left > 0 or speed < 0.12 else "carry_walk"
+		rate = 1.0 if clip == "carry_idle" else clampf(speed / 1.2, 0.35, 2.0)
 	elif stagger > 0.05:
 		clip = "hit_to_body_01"; rate = 1.4
 	elif airborne_left > 0:

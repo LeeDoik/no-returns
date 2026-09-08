@@ -39,6 +39,7 @@ var active := false
 var burst_origin := Vector3.ZERO
 var burst_facing := 0.0
 var target_position := Vector3.ZERO
+var target_rotation := Quaternion.IDENTITY
 var authority_epoch := ""
 var carrier: PhysicsBody3D
 var creature_held := false
@@ -50,7 +51,8 @@ var flight_left := 0.0
 func _ready() -> void:
 	body = RigidBody3D.new()
 	body.name = "Body"
-	body.mass = 1.2
+	body.mass = {"standard":3.0, "sneezer":4.0, "clinger":5.0, "hopper":2.5}.get(kind, 3.0)
+	body.gravity_scale = 9.81 / float(ProjectSettings.get_setting("physics/3d/default_gravity"))
 	body.collision_layer = 4
 	body.collision_mask = 7
 	body.continuous_cd = true
@@ -60,11 +62,11 @@ func _ready() -> void:
 	body.linear_damp_mode = RigidBody3D.DAMP_MODE_REPLACE
 	body.linear_damp = 0
 	body.angular_damp_mode = RigidBody3D.DAMP_MODE_REPLACE
-	body.angular_damp = 0
-	body.lock_rotation = true
+	body.angular_damp = 0.6
+	body.lock_rotation = false
 	body.physics_material_override = PhysicsMaterial.new()
-	body.physics_material_override.bounce = 0.2
-	body.physics_material_override.friction = 0.8
+	body.physics_material_override.bounce = 0.06
+	body.physics_material_override.friction = 0.65
 	body.freeze = true
 	add_child(body)
 	shape = BoxShape3D.new()
@@ -103,6 +105,7 @@ func _ready() -> void:
 		hopper.setup(self)
 	body.position = home
 	target_position = home
+	target_rotation = Quaternion.IDENTITY
 
 func _part(size: Vector3, at: Vector3, color: Color) -> void:
 	var mesh := MeshInstance3D.new()
@@ -191,7 +194,7 @@ func release(worker: Node3D, throwing: bool) -> void:
 	_set_carrier(null)
 	body.freeze = false
 	body.sleeping = false
-	body.linear_velocity = throw_velocity(worker) if throwing else Vector3.ZERO
+	body.linear_velocity = throw_velocity(worker) if throwing else worker.velocity
 	throw_peer = worker.peer_id if throwing else 0
 	throw_origin = body.position
 	flight_left = 3.0 if throwing else 0.0
@@ -199,12 +202,12 @@ func release(worker: Node3D, throwing: bool) -> void:
 	if throwing: worker.play_throw()
 
 func throw_velocity(worker: Node3D) -> Vector3:
-	return worker.forward() * THROW_SPEED + Vector3.UP * THROW_LIFT
+	return worker.forward() * THROW_SPEED + Vector3.UP * THROW_LIFT + worker.velocity
 
 func query(at: Vector3, motion: Vector3) -> PhysicsShapeQueryParameters3D:
 	var request := PhysicsShapeQueryParameters3D.new()
 	request.shape = shape
-	request.transform = Transform3D(Basis.IDENTITY, at)
+	request.transform = Transform3D(body.basis.orthonormalized(), at)
 	request.motion = motion
 	request.margin = MARGIN
 	request.collision_mask = body.collision_mask
@@ -213,10 +216,16 @@ func query(at: Vector3, motion: Vector3) -> PhysicsShapeQueryParameters3D:
 
 func _set_carrier(worker: PhysicsBody3D) -> void:
 	if is_instance_valid(carrier):
+		carrier.held = false
+		carrier.carry_shape.disabled = true
 		body.remove_collision_exception_with(carrier)
 		carrier.remove_collision_exception_with(body)
 	carrier = worker
 	if is_instance_valid(carrier):
+		carrier.held = true
+		carrier.carry_shape.position = Vector3(0,1.05,0) + carrier.forward()*0.98
+		carrier.carry_shape.rotation.y = carrier.heading
+		carrier.carry_shape.disabled = false
 		body.add_collision_exception_with(carrier)
 		carrier.add_collision_exception_with(body)
 
@@ -226,9 +235,19 @@ func move_held(worker: Node3D) -> void:
 		release(worker, false)
 		return
 	var motion: Vector3 = worker.hand_position() - body.position
+	var space := get_world_3d().direct_space_state
+	var turn := query(body.position, Vector3.ZERO)
+	turn.transform.basis = Basis(Vector3.UP, worker.heading)
+	if space.intersect_shape(turn).is_empty(): body.basis = turn.transform.basis
 	var fractions := get_world_3d().direct_space_state.cast_motion(query(body.position, motion))
 	body.position += motion * fractions[0]
 	facing = worker.heading
+	# A blocked parcel must not be dragged inside the carrier's torso.
+	var forward_gap: float = (body.position-worker.position).dot(worker.forward())
+	if forward_gap < 0.9:
+		worker.walk_velocity = Vector3.ZERO
+		worker.velocity.x = 0; worker.velocity.z = 0
+		release(worker, false)
 
 func step(delta: float, workers: Dictionary) -> void:
 	flight_left = maxf(0, flight_left - delta)
@@ -326,7 +345,7 @@ func wire_snapshot() -> Array:
 	var state := snapshot()
 	var values: Array = []
 	for key in COMMON_KEYS:
-		values.append(state[key])
+		values.append(pack_rotation(body.rotation) if key == "facing" and rules.holder_id == 0 else state[key])
 	if kind == "sneezer":
 		for key in SNEEZE_KEYS:
 			values.append(state[key])
@@ -349,7 +368,22 @@ func apply_wire(values: Array) -> void:
 	var state := {}
 	for index in range(keys.size()):
 		state[keys[index]] = values[index]
+	if state.facing is int:
+		state["rotation"] = unpack_rotation(state.facing)
+		state.facing = state.rotation.y
 	apply_snapshot(state)
+
+static func pack_rotation(angles: Vector3) -> int:
+	var packed := 0
+	for axis in range(3): packed |= (roundi(angles[axis] * 512.0 / PI) & 1023) << (axis * 10)
+	return packed
+
+static func unpack_rotation(packed: int) -> Vector3:
+	var angles := Vector3.ZERO
+	for axis in range(3):
+		var value := (packed >> (axis*10)) & 1023
+		angles[axis] = (value-1024 if value >= 512 else value) * PI / 512.0
+	return angles
 
 func apply_snapshot(data: Dictionary) -> void:
 	rules.holder_id = data.holder
@@ -361,6 +395,8 @@ func apply_snapshot(data: Dictionary) -> void:
 	recovery_left = data.recovery
 	active = data.active
 	facing = data.facing
+	target_rotation = Basis.from_euler(data.get("rotation", Vector3(0,facing,0))).get_rotation_quaternion()
+	if rules.holder_id != 0: body.quaternion = target_rotation
 	body.freeze = true
 	body.visible = data.visible
 	_set_collision_enabled(data.visible and recovery_left <= 0)
@@ -381,6 +417,7 @@ func apply_snapshot(data: Dictionary) -> void:
 	_present()
 
 func interpolate(delta: float) -> void:
+	body.quaternion = body.quaternion.slerp(target_rotation, minf(1,delta*20))
 	if body.position.distance_to(target_position) > 4.0 or recovery_left > 0:
 		body.position = target_position
 	else:
@@ -390,9 +427,9 @@ func _process(_delta: float) -> void:
 	_present()
 
 func _present() -> void:
-	# Carry/throw direction is authoritative and already replicated. Rotate the
-	# model with it while keeping the stable axis-aligned physics/query shape.
-	visual.rotation.y = facing
+	# The collision body and visible box share the same physical orientation.
+	visual.rotation = Vector3.ZERO
+	if rules.holder_id == 0: facing = body.rotation.y
 	var expression := "Idle"
 	var opening := 0.0
 	if kind == "sneezer":

@@ -8,7 +8,7 @@ The worker now uses a 41-bone, 13-clip model. The 24-bone walk model and perform
 
 ## Run and inspect
 
-Run `NO_RETURNS.exe` in the Windows package. In the development folder use `PLAY.cmd`, or `EDIT.cmd` for the editor. Close older instances first. Co-op participants must use the same 0.9.0 build and saved map. Protocol 10 and the map identity check remain in place.
+Run `NO_RETURNS.exe` in the Windows package. In the development folder use `00_게임 실행.cmd`, `PLAY.cmd` for the latest source, or `EDIT.cmd` for the editor. Close older instances first. Co-op participants must use the same 0.9.1 build and saved map. Protocol 11 and the map identity check remain in place. The [carrying, physics and crew-color revision](05-carry-physics.en.md) supersedes the original art record below.
 
 Inspect the four parcels and worker in solo practice. Sneezer raises its eyes during warning, shuts them during the burst and opens its lids. Clinger suction cups and Hopper shoes distinguish their silhouettes. Six cushion cells deflate and the spring plate launches upward. The eighteen-sheet flight and reset remain intact. Campaign Packrat uses a new model with moving paws and tail.
 

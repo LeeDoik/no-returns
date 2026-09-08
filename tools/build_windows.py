@@ -38,12 +38,16 @@ def main():
                            ('docs/art/02-release.en.md', 'ART.en.md'),
                            ('docs/art/04-animation-integration.ko.md', 'ANIMATION.ko.md'),
                            ('docs/art/04-animation-integration.en.md', 'ANIMATION.en.md'),
+                           ('docs/art/05-carry-physics.ko.md', 'PHYSICS.ko.md'),
+                           ('docs/art/05-carry-physics.en.md', 'PHYSICS.en.md'),
                            ('THIRD_PARTY_NOTICES.txt', 'THIRD_PARTY_NOTICES.txt')]:
         text = (ROOT / source).read_text(encoding='utf-8')
         text = text.replace('07-contracts.en.md', 'README.en.md').replace('07-contracts.ko.md', 'README.ko.md')
         text = text.replace('08-reactive-delivery.en.md', 'REACTIONS.en.md').replace('08-reactive-delivery.ko.md', 'REACTIONS.ko.md')
         text = text.replace('02-release.en.md', 'ART.en.md').replace('02-release.ko.md', 'ART.ko.md')
         text = text.replace('04-animation-integration.en.md', 'ANIMATION.en.md').replace('04-animation-integration.ko.md', 'ANIMATION.ko.md')
+        text = text.replace('../art/05-carry-physics.en.md', 'PHYSICS.en.md').replace('../art/05-carry-physics.ko.md', 'PHYSICS.ko.md')
+        text = text.replace('05-carry-physics.en.md', 'PHYSICS.en.md').replace('05-carry-physics.ko.md', 'PHYSICS.ko.md')
         destination = OUT / target
         destination.write_text(text, encoding='utf-8')
         files.append(destination)

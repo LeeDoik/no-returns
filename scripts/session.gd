@@ -12,7 +12,7 @@ signal creature_received(state: Array)
 
 const DEFAULT_PORT := 27842
 const MAX_WORKERS := 4
-const PROTOCOL := 10
+const PROTOCOL := 11
 var protocol := PROTOCOL
 var map_id := ""
 var pending: Dictionary = {}

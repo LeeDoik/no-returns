@@ -19,7 +19,11 @@ Keep the EXE and PCK together in the same folder. After source changes, run [BUI
 
 > The packages are alive. Ship them anyway.
 
-**Current version: Shipping Shrine playtest 0.9.0 · September 8, 2026**
+**Current version: Shipping Shrine playtest 0.9.1 · September 9, 2026**
+
+## 0.9.1 Carrying, physics and crew colors
+
+The back board is removed; yellow, teal, purple and coral workwear identify the crew. Carriers use a stable walking gait, and their carried volume blocks against walls. Parcels rotate, roll, respond to friction and retain carrier velocity on release. [Tuning values and validation scope](docs/art/05-carry-physics.en.md).
 
 A Godot third-person delivery game for solo play or 2–4 cooperating workers. Complete three contracts in an absurd shrine that receives parcels as offerings, buy equipment with shared earnings, relay packages and recover cargo stolen by Packrat. The target is a Windows Steam release; this is a development build with Blender and Higgsfield art.
 
@@ -33,7 +37,7 @@ On September 9, 2026, the supplied GLB was verified to contain 41 bones and seve
 
 The conveyor now connects intake to a sorting lip. Pair Clinger + Hopper or sneeze cargo across, and scare the rat from the nest under sorting. The map contains 24 POP cushions, UP springs and TILT towers, plus 13 existing document locations that scatter when sneezed at. Eighteen sheets initially fly as a bundle, separate, and restore after eight seconds. [Interaction guide and validation scope](docs/prototype/08-reactive-delivery.en.md).
 
-Everyone must use the **same 0.9.0 ZIP / protocol 10**. This supersedes build instructions in the older version history below.
+Everyone must use the **same 0.9.1 ZIP / protocol 11**. This supersedes build instructions in the older version history below.
 
 ## Run now
 
