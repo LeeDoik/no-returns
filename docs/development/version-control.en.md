@@ -56,3 +56,8 @@ Restoring source into another folder or PC requires preparing Godot first. `tool
 ## 0.7.4 Shipping Shrine expansion
 
 Implement and validate the 48×60 m map, pressure shortcut and periodic airflow on `codex/shrine-expansion`, then integrate into main. Preserve `v0.7.4` as the new local baseline. The previous map remains in `v0.7.3` history. [Expansion record](../superpowers/plans/2026-09-08-shrine-expansion.en.md).
+
+
+## 0.7.5 Winding routes
+
+On `codex/winding-shrine`, replace parallel lanes with an S alley, turning airflow route and cross-links, validate and integrate into main. `v0.7.5` is the new baseline; `v0.7.4` retains the previous layout. [Change record](../superpowers/plans/2026-09-08-winding-shrine.en.md).

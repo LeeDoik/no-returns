@@ -16,6 +16,8 @@ The implementation plan controls numerical conflicts. The 0.6 depot is the found
 
 **0.7.4 map expansion:** The current default map is 48×60 m with farther dispatch, a pressure gate, periodic airflow and a relay lounge, using protocol 9. The [expansion design](../plans/2026-09-08-shrine-expansion.en.md) supersedes older dimensions/protocol values below.
 
+**0.7.5 routing update:** An S alley, transverse airflow route and cross-links before/behind the gate replace parallel straight lanes. Size and gameplay rules remain; layout follows the [winding-route plan](../plans/2026-09-08-winding-shrine.en.md).
+
 ## 02. Player promise and intended audience
 
 The player is a worker in a night depot. Living packages interfere with ordinary delivery, and workers learn to turn those behaviors into useful routes and catches. A successful run should leave the crew able to describe who threw, who caught, what caused a mishap and how they recovered. The target audience is friends who enjoy physical coordination and short cooperative sessions; solo campaign provides a complete alternative with lower quotas.

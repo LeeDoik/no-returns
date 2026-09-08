@@ -119,3 +119,10 @@ The map is now a saved scene editable directly in Godot. Moving bays, belt, nest
 The map is 48×60 m, 2.5 times the previous area. Dispatch moves farther back, with a relay lounge, permanently open left bypass, central pressure-plate shortcut and periodic right-side airflow. Stand a worker or free package on a plate to open the door, with 6 seconds of grace after leaving. An occupied doorway prevents closure. Airflow repeats 5 seconds idle, 1.5 seconds warning and 2.5 seconds active, pushing workers and free cargo in the arrow direction. Solo players can weigh the plate with a package or run through during the grace period. Mechanism clocks stop in lobby/results and reset each contract.
 
 Controls are unchanged. Contracts remain 240 seconds. Everyone must use the same 0.7.4 ZIP with protocol 9. Difficulty and fun on the enlarged map still need human playtesting.
+
+
+## 0.7.5 Winding routes
+
+Added a left S alley, a turning right airflow route and cross-links before/behind the gate. Follow colored lines/arrows and switch to the gate or opposite route midway. Wind now blows from the right toward the center. Map size, intake, dispatch, rat, mechanism timing and contract duration remain unchanged. Everyone must use the same 0.7.5 ZIP.
+
+0.7.5 also furnishes each zone with reception/packing desks, benches, vending cabinets, archives, shelf stock, posters and pipes. These are decorative/fixed collision props, not deliverable cargo or new usable mechanisms.

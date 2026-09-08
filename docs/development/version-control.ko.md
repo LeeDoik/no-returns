@@ -56,3 +56,8 @@ Godot 캐시 `.godot/`, 내려받은 엔진·템플릿 `.tools/`, 검사 기록 
 ## 0.7.4 배송 신전 확장
 
 `codex/shrine-expansion`에서 48×60m 맵·발판 지름길·주기 송풍을 구현하고 검증한 뒤 main에 반영합니다. `v0.7.4`를 새 로컬 기준점으로 보존합니다. 이전 맵은 `v0.7.3` 이력에 남아 있습니다. [확장 기록](../superpowers/plans/2026-09-08-shrine-expansion.ko.md).
+
+
+## 0.7.5 굽은 동선
+
+`codex/winding-shrine`에서 평행 통로를 S자 골목·꺾인 송풍로·연결길로 수정하고 검증 후 main에 반영합니다. `v0.7.5`가 새 기준점이며 이전 배치는 `v0.7.4`에 남깁니다. [변경 기록](../superpowers/plans/2026-09-08-winding-shrine.ko.md).

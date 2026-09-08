@@ -58,8 +58,8 @@ func run() -> void:
 	route.step(5.1, game.workers, game.cargos)
 	check(route.wind_phase() == 1 and route.worker_drift(worker) == Vector3.ZERO, "warning precedes wind with no force")
 	route.step(1.5, game.workers, game.cargos)
-	check(route.wind_phase() == 2 and route.worker_drift(worker).z < 0, "active wind pushes workers toward dispatch")
-	check(cargo.body.linear_velocity.z < 0, "active wind moves free cargo")
+	check(route.wind_phase() == 2 and route.worker_drift(worker).dot(-wind.global_basis.z) > 5, "active wind pushes workers toward dispatch")
+	check(cargo.body.linear_velocity.dot(-wind.global_basis.z) > 0, "active wind moves free cargo")
 	cargo.rules.holder_id = 1
 	cargo.body.linear_velocity = Vector3.ZERO
 	route.step(0.1, game.workers, game.cargos)
@@ -69,8 +69,8 @@ func run() -> void:
 	route.step(0.1, game.workers, game.cargos)
 	check(cargo.body.linear_velocity == Vector3.ZERO, "wind preserves creature cargo ownership")
 	cargo.creature_held = false
-	wind.rotation.y = PI/2
-	check(route.worker_drift(worker).x < 0, "wind force follows editor rotation")
+	wind.rotation.y += PI/2
+	check(route.worker_drift(worker).z > 0, "wind force follows editor rotation")
 	var state = route.snapshot()
 	route.reset()
 	route.apply_snapshot(state)

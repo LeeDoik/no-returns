@@ -4,7 +4,7 @@
 
 > The packages are alive. Ship them anyway.
 
-**Current version: Shipping Shrine playtest 0.7.4 · September 8, 2026**
+**Current version: Shipping Shrine playtest 0.7.5 · September 8, 2026**
 
 A Godot third-person delivery game for solo play or 2–4 cooperating workers. Complete three contracts in an absurd shrine that receives parcels as offerings, buy equipment with shared earnings, relay packages and recover cargo stolen by Packrat. The target is a Windows Steam release; this is a development build using primitive art.
 
@@ -46,13 +46,13 @@ The detailed design separates official reference facts from our interpretation. 
 
 ## Validation and remaining release work
 
-Twenty-three behavior tests, eight real two-process scenarios, the four-process scenario and the SteamPipe generator test passed. Coverage includes campaign completion, shared purchases/readiness, theft/horn rescue, actual-flight relay, settled-floor cargo transport to the nest, first-launch settings and duplicate/late-join completion records. Worst tested motion snapshot is 1,280 bytes; separate campaign metadata stays ≤2,048 and creature state ≤256 bytes.
+Twenty-four behavior tests, eight real two-process scenarios, the four-process scenario and the SteamPipe generator test passed. Coverage includes campaign completion, shared purchases/readiness, theft/horn rescue, actual-flight relay, settled-floor cargo transport to the nest, first-launch settings and duplicate/late-join completion records. Worst tested motion snapshot is 1,280 bytes; separate campaign metadata stays ≤2,048 and creature state ≤256 bytes.
 
 **This is not a Steam release.** Steamworks enrollment and real App/Depot IDs are unavailable. Current transport is direct-address ENet with the host PC as server; Steam friend invites and relay are absent. Separate PCs/external networks, target-hardware performance, independent friend-group fun testing, final art/store imagery/trailer/rights review, Steam installation and Valve review remain open. Automated passes do not establish fun or internet connection quality.
 
 ## Version control
 
-Local Git retains the 0.5/0.6 baselines. This change is identified by `v0.7.4`; no GitHub remote is connected. See [version history and recovery](docs/development/version-control.en.md) and [documentation rules](AGENTS.md).
+Local Git retains the 0.5/0.6 baselines. This change is identified by `v0.7.5`; no GitHub remote is connected. See [version history and recovery](docs/development/version-control.en.md) and [documentation rules](AGENTS.md).
 
 
 ## 0.7.1 Packrat fix
@@ -77,3 +77,10 @@ Before sharing with friends, rebuild using **[BUILD.cmd](BUILD.cmd)** and use th
 Expanded to **48×60 m, 2.5 times the previous area**. Carry to the farther dispatch courtyard and stage or relay packages at the lounge. The left route is always open; the central shortcut uses worker/package pressure plates; the right express route warns before gusts push cargo and workers. Six seconds of gate grace allow solo passage.
 
 Edit the new mechanisms' placement, direction, timing and strength in Godot. See the [editing guide](docs/development/map-editing.en.md) and [expansion design/validation](docs/superpowers/plans/2026-09-08-shrine-expansion.en.md). Protocol 9 requires all friends to use the same new ZIP.
+
+
+## 0.7.5 Winding alleys
+
+The left route is an S alley; the right turns through transverse airflow. Cross-links before/behind the gate allow mid-route changes. Replaced straight guidance with turning arrows/colored lines and screens that reveal spaces around corners. New walls and reference waypoints remain editable. [Change plan and validation](docs/superpowers/plans/2026-09-08-winding-shrine.en.md).
+
+Furnished the interior with 29 reception/packing/lounge/archive clusters, 96 shelf parcels, 18 wall posters and pipes/pennants. Props remain editable; fixed furniture has collision.

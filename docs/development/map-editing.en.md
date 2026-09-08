@@ -2,7 +2,7 @@
 
 [한국어](map-editing.ko.md)
 
-For Godot 4.7.2 and NO RETURNS 0.7.4 · September 8, 2026.
+For Godot 4.7.2 and NO RETURNS 0.7.5 · September 8, 2026.
 
 ## First edit: move the central low wall
 
@@ -94,3 +94,21 @@ To edit, select `Gameplay/RouteChallenges`. Change Gate Hold Seconds, Wind Idle/
 `Gate/Status` and `AirMail/Status` are dynamic runtime labels. Edit English/Korean on the other signs. Duplicating additional gates or gust mechanisms is not supported yet: this structure edits the placement/settings of the existing pair. Preserve Door/CollisionShape3D, Clearance and PlateFront/Back names under Gate.
 
 Rebuild edited executables with BUILD.cmd. **Protocol 9** requires everyone to run the same 0.7.4 ZIP. [Expansion design and validation](../superpowers/plans/2026-09-08-shrine-expansion.en.md).
+
+
+## 0.7.5 Winding alleys and cross-links
+
+The map stays 48×60 m, replacing the three parallel lanes. The left S alley passes the angled entry, outside the lost-property wall, then inside the northern screen. The right route enters behind a screen, travels sideways through the airflow and turns inward at the northern corner. Cross-links at Z-26 before the gate and Z-30 behind it allow mid-route changes. The central pressure gate remains.
+
+AirMail is now at (15,0,-24), Y rotation 90 degrees. Wind blows toward the central cross-link in -X. Wait out or avoid the gust to reach the outer bypass. Use arrows and colored lines to read corners. Intake, dispatch, rat territory, mechanism timing and contract duration remain unchanged.
+
+Move grouped new walls under `Geometry/WindingAlleys`. Edit child SolidBlock Dimensions/Color for size/color. LeftLoop, RightLoop, FrontCrossLink and RearCrossLink under `DesignRoutes` are design/test references, not forced navigation. Update reference points after moving walls. Moving only a waypoint does not automatically move walls.
+
+[Full change plan](../superpowers/plans/2026-09-08-winding-shrine.en.md). Use the same 0.7.5 ZIP. Protocol remains 9; saved-map fingerprints prevent mixing old layouts.
+
+
+## 0.7.5 Editing interior props
+
+Added 29 reception/packing/lounge/archive clusters, 96 shelf parcels, 18 wall posters and overhead pipes/pennants. Move furniture groups under `Geometry/InteriorDressing`. Shelf stock follows its rack under `Geometry/Shelves`. Pipes are under `Decoration/InteriorOverhead`; posters under `Decoration/WallPosters`. Edit both English/Korean sign fields.
+
+Floor furniture and stacked parcels are fixed collision props. Decorative vending cabinets and stamps do not provide new E interactions. They are separate from deliverable cargo. After moving large furniture, use F5 to check corners, plates and airflow clearance.

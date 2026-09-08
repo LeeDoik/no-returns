@@ -47,8 +47,10 @@ func run() -> void:
 	var capsule := CapsuleShape3D.new()
 	capsule.radius = 0.32
 	capsule.height = 1.65
-	for side in [-1,1]:
-		var route := [Vector3(0, 0, 6.5), Vector3(side * 21, 0, 6.5), Vector3(side * 21, 0, -43.0), Vector3(side * 15, 0, -43.0)]
+	for route_name in ["LeftLoop","RightLoop"]:
+		var route: Array[Vector3] = []
+		for point in game.depot.get_node("DesignRoutes/"+route_name).get_children():
+			route.append(point.global_position)
 		for index in range(route.size() - 1):
 			for held in [false,true]:
 				var request := PhysicsShapeQueryParameters3D.new()
