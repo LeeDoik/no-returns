@@ -1,0 +1,24 @@
+{
+  "asset_id": "ba747b8c-0476-4108-9a87-6823869224c1",
+  "workspace_url": "https://studio.tripo3d.ai/workspace/rigging/ba747b8c-0476-4108-9a87-6823869224c1",
+  "rig_resource_id": "e2676d1f-3794-42c2-a4cd-3b8343ec7fa3",
+  "date_kst": "2026-09-09",
+  "upload_file": "worker-tripo-input.glb",
+  "account_upgraded": true,
+  "rig_model_at_submission": "v1.0 - Good for Humanoid",
+  "credits_before": 3180,
+  "credits_after": 3160,
+  "generated_motions": ["idle", "walk", "run", "jump", "fall", "lift_heavy", "hit_to_body_01"],
+  "export": {
+    "name": "worker-tripo-seven",
+    "format": "GLB",
+    "skeleton": true,
+    "animations_selected": 7,
+    "in_place": true,
+    "texture_option": "2k Current",
+    "ui_success_observed": true,
+    "local_file_received": false
+  },
+  "runtime_integrated": false,
+  "blocker": "Browser download event timed out; local file not found; pageAssets cannot bundle GLB. User asked to save export into art/tripo-01."
+}

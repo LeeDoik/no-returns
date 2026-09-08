@@ -2,6 +2,14 @@
 
 [한국어](03-tripo-animation.ko.md)
 
+## Latest progress — after upgrade
+
+The user upgraded the account. A new upload and humanoid v1.0 rig were created under asset `ba747b8c-0476-4108-9a87-6823869224c1`; the balance changed from 3,180 to 3,160 credits. The generated rig resource is identified as `e2676d1f-3794-42c2-a4cd-3b8343ec7fa3` in the page asset inventory. Seven motions are generated: idle, walk, run, jump, fall, lift_heavy and hit_to_body_01. The new walk plays in the browser.
+
+The former account restriction is resolved. Export Skeleton is enabled and all seven motions can be selected. GLB export was requested as `worker-tripo-seven`, with 2k current textures and Animation stay in Place enabled. Tripo displayed `worker-tripo-seven exported successfully`. However, the browser download event timed out, no local output was found, and the page asset bundler rejects GLB as an unsupported kind. A successful export notification is not evidence that a file was received. The user was asked to save the export under `art/tripo-01/worker-tripo-seven.glb`.
+
+Godot integration and Blender inspection of the exported rig remain pending. See the [execution plan](04-animation-integration.en.md). The Free-plan section below is retained as a historical record, not the current account status.
+
 ## Scope and observed problem
 
 The player character is the first target. The rat and parcel animations are outside this revision. The existing worker uses one `Casual_Walk` clip, resets its legs when stationary, and aims arm bones toward the held parcel. It has no dedicated idle or carrying clips. Replacing the rig alone cannot resolve abrupt transitions, unsuitable movement cadence, or hand contact.
