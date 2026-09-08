@@ -12,6 +12,8 @@ A Godot third-person delivery game for solo play or 2–4 cooperating workers. C
 
 Thirteen worker, Packrat, parcel and facility models and their materials are integrated. Walking and carrying, rat paws and tail, parcel expressions and lids, cushions and spring plates follow existing gameplay state. [Run/edit guide and remaining release work](docs/art/02-release.en.md).
 
+To address unnatural worker motion, a [Tripo rig and animation revision](docs/art/03-tripo-animation.en.md) is in progress. The upload T-pose model and Tripo walk preview are prepared; skeleton export requires an account upgrade. Runtime integration is still pending.
+
 ## 0.8.0 Connected delivery and reactive props
 
 The conveyor now connects intake to a sorting lip. Pair Clinger + Hopper or sneeze cargo across, and scare the rat from the nest under sorting. The map contains 24 POP cushions, UP springs and TILT towers, plus 13 existing document locations that scatter when sneezed at. Eighteen sheets initially fly as a bundle, separate, and restore after eight seconds. [Interaction guide and validation scope](docs/prototype/08-reactive-delivery.en.md).
