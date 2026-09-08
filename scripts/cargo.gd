@@ -196,6 +196,7 @@ func release(worker: Node3D, throwing: bool) -> void:
 	throw_origin = body.position
 	flight_left = 3.0 if throwing else 0.0
 	body.angular_velocity = Vector3.ZERO
+	if throwing: worker.play_throw()
 
 func throw_velocity(worker: Node3D) -> Vector3:
 	return worker.forward() * THROW_SPEED + Vector3.UP * THROW_LIFT

@@ -12,7 +12,7 @@ A Godot third-person delivery game for solo play or 2–4 cooperating workers. C
 
 Thirteen worker, Packrat, parcel and facility models and their materials are integrated. Walking and carrying, rat paws and tail, parcel expressions and lids, cushions and spring plates follow existing gameplay state. [Run/edit guide and remaining release work](docs/art/02-release.en.md).
 
-To address unnatural worker motion, a [Tripo rig and animation revision](docs/art/03-tripo-animation.en.md) is in progress. A new rig and seven motions were generated after the account upgrade. Tripo reports export success, but local file receipt and runtime integration remain pending.
+On September 9, 2026, the supplied GLB was verified to contain 41 bones and seven Tripo motions. Three carrying clips, two airborne poses and a throw follow-through were authored in Blender and integrated into Godot. Original and editable files are preserved. [Integration result and validation scope](docs/art/04-animation-integration.en.md).
 
 ## 0.8.0 Connected delivery and reactive props
 

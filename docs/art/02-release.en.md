@@ -2,6 +2,10 @@
 
 [한국어](02-release.ko.md)
 
+## September 9 worker animation revision
+
+The worker now uses a 41-bone, 13-clip model. The 24-bone walk model and performance figures below describe the initial 0.9.0 release, not a measurement of the replacement. The current editable worker source is `art/tripo-01/worker-animation.blend`. [Motion integration and remaining review](04-animation-integration.en.md).
+
 ## Run and inspect
 
 Run `NO_RETURNS.exe` in the Windows package. In the development folder use `PLAY.cmd`, or `EDIT.cmd` for the editor. Close older instances first. Co-op participants must use the same 0.9.0 build and saved map. Protocol 10 and the map identity check remain in place.

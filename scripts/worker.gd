@@ -3,6 +3,7 @@ extends CharacterBody3D
 const Preferences = preload("res://scripts/preferences.gd")
 const Bevel = preload("res://scripts/bevel_mesh.gd")
 const Art = preload("res://scripts/postal_art.gd")
+const WorkerAnimation = preload("res://scripts/worker_animation.gd")
 
 var map_layout = null
 var peer_id := 0
@@ -31,6 +32,9 @@ var speed_scale := 1.0
 var carry_blend := 0.0
 var art_player: AnimationPlayer
 var art_skeleton: Skeleton3D
+var animation_motion: RefCounted
+var throw_sequence := 0
+var animation_wire_initialized := false
 
 func _ready() -> void:
 	collision_layer = 2
@@ -48,11 +52,7 @@ func _ready() -> void:
 	var character := Art.model("worker"); visual.add_child(character)
 	art_player = character.find_children("*","AnimationPlayer",true,false)[0]
 	art_skeleton = character.find_children("*","Skeleton3D",true,false)[0]
-	art_player.callback_mode_process = AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_MANUAL
-	for clip in art_player.get_animation_list():
-		if clip == "RESET": continue
-		art_player.get_animation(clip).loop_mode = Animation.LOOP_LINEAR
-		art_player.play(clip); art_player.advance(0); break
+	animation_motion = WorkerAnimation.new(art_player)
 	# Numbered, colored back badge keeps the four crew members distinguishable.
 	var badge := _part(Vector3(0.34,0.20,0.035),Vector3(0,1.10,0.24),suit)
 	badge.name = "CrewBadge"
@@ -150,6 +150,16 @@ func hand_position() -> Vector3:
 func forward() -> Vector3:
 	return Vector3.FORWARD.rotated(Vector3.UP, heading)
 
+func play_throw() -> void:
+	throw_sequence += 1
+	if animation_motion: animation_motion.release_throw()
+
+func receive_throw_sequence(sequence: int) -> void:
+	if animation_wire_initialized and sequence > throw_sequence:
+		if animation_motion: animation_motion.release_throw()
+	throw_sequence = maxi(throw_sequence, sequence)
+	animation_wire_initialized = true
+
 func _process(delta: float) -> void:
 	if not visual:
 		return
@@ -157,35 +167,6 @@ func _process(delta: float) -> void:
 	# the previous direction during a quick turn.
 	visual.rotation.y = heading if held else lerp_angle(visual.rotation.y, heading, minf(delta * 16.0, 1.0))
 	carry_blend = move_toward(carry_blend,1.0 if held else 0.0,delta*9.0)
-	gait += delta * Vector2(velocity.x, velocity.z).length() * 2.5
-	visual.position.y = absf(sin(gait)) * minf(velocity.length() * 0.008, 0.035)
+	visual.position = Vector3.ZERO
 	visual.rotation.z = sin(stagger * PI * 2) * 0.35
-	var stride := clampf(Vector2(velocity.x,velocity.z).length()/4.5,0,1)
-	if art_player:
-		art_skeleton.clear_bones_global_pose_override()
-		art_player.advance(delta*stride*1.5)
-		if stride < 0.02:
-			# A stopped courier plants both feet instead of freezing mid-stride.
-			for prefix in ["Left","Right"]:
-				for suffix in ["UpLeg","Leg","Foot","ToeBase"]:
-					var bone := art_skeleton.find_bone(prefix+suffix)
-					if bone >= 0: art_skeleton.reset_bone_pose(bone)
-		if carry_blend > 0.01:
-			for side in [-1.0,1.0]:
-				var prefix := "Left" if side < 0 else "Right"
-				_aim_arm(prefix+"Arm",Vector3(side*0.38,1.04,-0.32),carry_blend)
-				_aim_arm(prefix+"ForeArm",Vector3(side*0.38,1.04,-0.70),carry_blend)
-	for index in range(arms.size()):
-		var arm := arms[index]
-		arm.rotation.x = lerpf(sin(gait+index*PI)*0.45*stride,1.25,carry_blend)
-		arm.position.z = -0.2*carry_blend
-	for index in range(legs.size()): legs[index].rotation.x = -sin(gait+index*PI)*0.5*stride
-
-func _aim_arm(bone_name: String, toward: Vector3, weight: float) -> void:
-	var index := art_skeleton.find_bone(bone_name)
-	if index < 0: return
-	var pose := art_skeleton.get_bone_global_pose(index)
-	var target := art_skeleton.to_local(visual.to_global(toward))
-	var direction := (target-pose.origin).normalized()
-	pose.basis = Basis(Quaternion(pose.basis.y.normalized(),direction))*pose.basis
-	art_skeleton.set_bone_global_pose_override(index,pose,weight,true)
+	if animation_motion: animation_motion.update(delta, velocity, held, stagger)

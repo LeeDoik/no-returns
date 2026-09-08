@@ -756,8 +756,10 @@ func _feedback(kind: String) -> void:
 
 func _metadata_snapshot() -> Dictionary:
 	var clocks := {}
+	var throws := {}
+	for id in workers: throws[id] = workers[id].throw_sequence
 	for id in horn_cooldowns: clocks[id] = ceili(float(horn_cooldowns[id]))
-	return {"campaign":contracts.snapshot(), "horn":clocks, "lessons":lessons.duplicate(), "event":ui_event, "sound":ui_event_kind, "routes":routes.snapshot(), "reactions":reactions.snapshot()}
+	return {"campaign":contracts.snapshot(), "horn":clocks, "lessons":lessons.duplicate(), "event":ui_event, "sound":ui_event_kind, "routes":routes.snapshot(), "reactions":reactions.snapshot(), "throws":throws}
 
 func _publish_metadata(force: bool = false) -> void:
 	if not session or session.mode not in ["host", "practice"]: return
@@ -768,6 +770,8 @@ func _publish_metadata(force: bool = false) -> void:
 		session.publish_metadata(data)
 
 func _receive_metadata(data: Dictionary) -> void:
+	for id in workers:
+		workers[id].receive_throw_sequence(int(data.get("throws", {}).get(id, 0)))
 	contracts.apply_snapshot(data.get("campaign", {}))
 	routes.apply_snapshot(data.get("routes", PackedFloat32Array()))
 	reactions.apply_snapshot(data.get("reactions", []))

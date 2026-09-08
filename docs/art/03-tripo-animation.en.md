@@ -2,13 +2,11 @@
 
 [한국어](03-tripo-animation.ko.md)
 
-## Latest progress — after upgrade
+## Latest progress — runtime integration
 
-The user upgraded the account. A new upload and humanoid v1.0 rig were created under asset `ba747b8c-0476-4108-9a87-6823869224c1`; the balance changed from 3,180 to 3,160 credits. The generated rig resource is identified as `e2676d1f-3794-42c2-a4cd-3b8343ec7fa3` in the page asset inventory. Seven motions are generated: idle, walk, run, jump, fall, lift_heavy and hit_to_body_01. The new walk plays in the browser.
+On September 9, 2026, the supplied GLB was verified to contain 41 bones and seven Tripo motions. Three carrying clips, two airborne poses and a throw follow-through were authored in Blender and integrated into Godot. Original and editable files are preserved. [Integration result and validation scope](04-animation-integration.en.md).
 
-The former account restriction is resolved. Export Skeleton is enabled and all seven motions can be selected. GLB export was requested as `worker-tripo-seven`, with 2k current textures and Animation stay in Place enabled. Tripo displayed `worker-tripo-seven exported successfully`. However, the browser download event timed out, no local output was found, and the page asset bundler rejects GLB as an unsupported kind. A successful export notification is not evidence that a file was received. The user was asked to save the export under `art/tripo-01/worker-tripo-seven.glb`.
-
-Godot integration and Blender inspection of the exported rig remain pending. See the [execution plan](04-animation-integration.en.md). The Free-plan section below is retained as a historical record, not the current account status.
+The paid asset is `ba747b8c-0476-4108-9a87-6823869224c1`. Recorded rigging cost remains 20 credits. The browser download timeout was resolved by the user supplying the local file. The following sections retain the original problems, targets and Free-plan history; use the integration result above for current completion status.
 
 ## Scope and observed problem
 

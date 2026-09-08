@@ -22,11 +22,11 @@ func run() -> void:
 		elif prop.kind == 1:
 			prop.fire(); prop.burst_age = 0.2; prop._present(); check(prop.pieces[0].position.y > prop.origins[0].y,"spring top launches")
 	var worker = game.workers[1]
-	check(worker.art_skeleton.get_bone_count() == 24,"worker rig preserved")
+	for joint in ["Hip", "L_Hand", "R_Hand", "L_Foot", "R_Foot"]:
+		check(worker.art_skeleton.find_bone(joint) >= 0,"worker joint present: "+joint)
 	worker.velocity = Vector3(4.5,0,0); worker._process(0.2)
 	worker.velocity = Vector3.ZERO; worker._process(0.1)
-	var foot: int = worker.art_skeleton.find_bone("LeftFoot")
-	check(worker.art_skeleton.get_bone_pose(foot).is_equal_approx(worker.art_skeleton.get_bone_rest(foot)),"idle restores planted foot")
+	check(worker.art_player.current_animation == "idle","idle uses authored motion")
 	check(game.packrat.art_skeleton.get_bone_count() == 6,"rat paw and tail rig preserved")
 	game.leave_game(); game.free(); await process_frame; await process_frame
 	check(int(Performance.get_monitor(Performance.OBJECT_ORPHAN_NODE_COUNT)) <= before,"art leaves no orphan nodes")

@@ -1,29 +1,35 @@
-# Animation integration work plan
+# Worker animation integration result
 
 [한국어](04-animation-integration.ko.md)
 
-## Target
+September 9, 2026 · Worker animation revision to the 0.9.0 art build. Every participant must use the same latest ZIP. Protocol remains 10.
 
-Continue the [worker revision](03-tripo-animation.en.md) with a rig generated after the user's Tripo upgrade. Use one skeleton and in-place motion. Keep the previous playable model until a replacement passes import and visual checks. Stop work and report when the Codex account's remaining usage reaches 1% or less, as requested by the user. Do not redeem usage resets.
+## Source and authored result
 
-## Execution
+The user-supplied `Downloads/worker-tripo-input.glb` contains 41 bones and seven motions: idle, walk, run, jump, fall, lift_heavy and hit_to_body_01. It is preserved separately as `art/tripo-01/worker-tripo-seven.glb` to distinguish it from the unrigged upload source with the same original name. Its size is 9,405,548 bytes. The paid Tripo asset is `ba747b8c-0476-4108-9a87-6823869224c1`; this local integration made no further generation requests beyond the previously recorded 20-credit rigging job.
 
-- [x] Confirm the upgraded account balance: 3,180 credits.
-- [x] Upload the validated local T-pose as a new asset: `ba747b8c-0476-4108-9a87-6823869224c1`.
-- [x] Submit humanoid v1.0 Auto Rig, displayed cost 20 credits.
-- [x] Generate all seven candidates and confirm their presence in Choose Animations. The rig cost 20 credits; observed balance after generation is 3,160.
-- [x] Request GLB export with skeleton, seven motions and Animation stay in Place. Tripo reports export success; local receipt is still unverified.
-- [ ] Export a rigged GLB with idle, walk and run first; record filenames, skeleton, frame ranges and source asset in `art/tripo-01`.
-- [ ] Obtain jump, fall, lift_heavy and hit_to_body_01 candidates on the same rig. Check each before assigning it to gameplay. These names refer to the observed Tripo library, not a promise of suitable motion.
-- [ ] In Blender, check scale, facing, root displacement, missing textures, arm and leg deformation. Store untouched downloads separately from edited output. Author CarryIdle and CarryWalk upper-body poses with bent elbows and hands at the parcel sides. Create two-handed throw follow-through if the candidate library is unsuitable.
-- [ ] Add `tests/test_worker_animation.gd`: check required clips, idle after stopping, carry state while holding, no visual root drift and finite bone transforms. Run with the local Godot console and require a meaningful failure before changing the controller.
-- [ ] Add `scripts/worker_animation.gd` for explicit clip choice and blending; connect it from `scripts/worker.gd`. Feed existing velocity, held state, vertical motion and stagger. Keep movement and cargo authority unchanged. Derive remote airborne presentation from available replicated motion rather than assuming a client's floor state is authoritative.
-- [ ] Update `tests/test_postal_art.gd` to check required skeletal joints and actual idle playback instead of the previous 24-bone count and rest-pose leg reset.
-- [ ] Run the animation test, postal art test, then `tools/run_tests.py`. Inspect recorded gameplay at start/stop, fast turning, holding and release. Export with `tools/build_windows.py` only after validation.
-- [ ] Update the paired art guides and READMEs with actual completed status. Commit only this task's changes to local Git; exclude the user's `project.godot` change and `art/sneezer` work.
+Blender 5.2.1 LTS normalizes rest height to 1.65 m, forward orientation and floor origin. Root translation range is zero on all three axes in the seven source clips. The 19.5-second lift_heavy includes turns unsuitable for sustained carrying, so it is not directly connected. Six same-skeleton clips were authored: carry_idle, carry_walk, carry_run, air_rise, air_fall and throw, giving 13 exported clips. Airborne clips emphasize pose rather than adding another jump over the physics arc.
 
-## Delivery boundary
+The editable source is `art/tripo-01/worker-animation.blend`, the reproducible preparation tool is `prepare_animation.py` in that folder, and the runtime model is `assets/art/release-01/worker.glb`. The previous model remains in Git history. Map, parcel and rat sources are unchanged in this revision.
 
-A successful browser preview proves neither a usable downloaded skeleton nor natural movement in the game. If usage reaches the requested stop threshold, preserve completed assets, record remaining steps here, and leave the playable version intact unless the replacement has passed validation.
+## Runtime behavior
 
-Current blocker: the download event timed out and no local GLB arrived. The page asset bundler does not support GLB. Resume from local file receipt, verify the seven clips in Blender, then continue the unchecked steps. No gameplay files have been changed in this revision.
+Idle, walk, run, carrying, airborne, hit and throw states select and blend motions. Movement speed controls step cadence; walking/running use separate entry and exit thresholds. Abrupt leg rest-pose resets and per-frame arm aiming are removed. Carrying hand and elbow adjustments are baked into the Blender clips.
+
+Throw follow-through starts at the existing release decision, adding no input delay. Each worker's throw sequence uses the existing reliable metadata channel. Pose packet size is unchanged; metadata changes are checked at intervals of up to 0.2 seconds. Duplicate and stale snapshots do not restart playback; late joiners do not replay past throws. Older metadata without throw information can still be read. Existing host authority retains movement, collision and delivery decisions.
+
+## Validation record
+
+- [x] Confirmed the new animation test fails on the old model because required clips are missing.
+- [x] Replacement passes idle, movement, carrying, throw recovery, airborne transitions, finite bone transforms and fixed visual-root checks.
+- [x] Initial, duplicate and stale throw-sequence reception checks pass.
+- [x] Inspected real Godot-renderer stills of idle, walk, run, carry, throw and airborne poses. Reproduce with `tests/capture_worker_animation.gd`.
+- [x] Four-worker snapshot remains within 1,280 bytes after adding throw information.
+- [x] Passed 35 behavior tests, 10 two-peer network scenarios and one four-peer network scenario. Two processes verify actual remote throw playback. Windows export and packaged launch checks passed.
+- [ ] Human evaluation of carrying, sharp turns, landings and remote motion on separate PCs.
+
+Logs and captures are stored in `artifacts`. Still images and automated tests do not guarantee natural motion in every gameplay situation. Dedicated full-body pickup and landing clips, directional strafing/backpedaling, and exact hand contact on varied parcels require further review. Pickup currently blends into carrying; landing returns to locomotion or idle. This does not constitute completed Steam release readiness.
+
+## Usage stop rule
+
+Stop work and notify the user when Codex has 1% or less remaining. The usage reset was verified at resumption; no reset credit was redeemed.

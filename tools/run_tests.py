@@ -32,6 +32,7 @@ def main():
         ("tests/test_cargo_rules.gd", None, b"PASS:"),
         ("tests/test_bevel_mesh.gd", "bevel-mesh", b"BEVEL MESH PASS"),
         ("tests/test_postal_art.gd", "postal-art", b"POSTAL ART PASS"),
+        ("tests/test_worker_animation.gd", "worker-animation", b"WORKER ANIMATION PASS"),
         ("tests/test_authored_presentation.gd", "authored-presentation", b"AUTHORED PRESENTATION PASS"),
         ("tests/test_release_usability.gd", "release-usability", b"RELEASE USABILITY PASS"),
         ("tests/test_release_controls.gd", "release-controls", b"RELEASE CONTROLS PASS"),
@@ -79,7 +80,8 @@ def main():
                            ("tests/test_protocol_network.gd", "protocol-network"),
                            ("tests/test_map_network.gd", "map-network"),
                            ("tests/test_routes_network.gd", "routes-network"),
-                           ("tests/test_reactions_network.gd", "reactions-network")):
+                           ("tests/test_reactions_network.gd", "reactions-network"),
+                           ("tests/test_worker_animation_network.gd", "worker-animation-network")):
         if run_pair(script, prefix):
             return 1
     return run_four()
