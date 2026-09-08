@@ -1,4 +1,4 @@
-# NO RETURNS — Cooperative Contracts playtest 0.7.7
+# NO RETURNS — Cooperative Contracts playtest 0.7.8
 
 [한국어](07-contracts.ko.md)
 
@@ -140,3 +140,11 @@ Controls, contract duration and gate/wind timing remain unchanged. Redistribute 
 Reworked backgrounds around worn cream, green-gray and concrete tones. Reduced visible map labels from 104 to 38 and mounted essential guidance on backing panels. Added kick plates, panel joints, roof battens and subtle materials. Workers now wear work clothes, caps, gloves, boots and employee numbers, with alternating arm/leg motion. Refined cargo colors and distant text. Controls and delivery rules are unchanged.
 
 Everyone must use the same 0.7.7 ZIP.
+
+## 0.7.8 Intake and tactile presentation refinement
+
+Reception now has a custom gray-green paneled counter and wooden worktop. Packing desks have scales, tape and invoices; records desks have trays and stamps to distinguish their jobs. A small founder portrait replaces the giant boss display, with the clock and signs mounted on walls. Loading outlines and relay-location marks replace display mats. These props are decoration, not new usable devices.
+
+Furniture, parcels and worker details have beveled edges, with wear placed on handled worktop edges. When turning with a parcel, the worker and hands immediately follow its direction; pickup and put-down poses blend briefly. Calm parcel labels are reduced while hazard warnings remain. Delivery confirmation uses a short stamp/mechanism sound.
+
+Everyone must use the same 0.7.8 ZIP. Delivery rules and controls remain the same. Final release art and real friend-group fun/performance validation are still pending.

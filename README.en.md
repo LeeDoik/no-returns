@@ -4,7 +4,7 @@
 
 > The packages are alive. Ship them anyway.
 
-**Current version: Shipping Shrine playtest 0.7.7 · September 8, 2026**
+**Current version: Shipping Shrine playtest 0.7.8 · September 8, 2026**
 
 A Godot third-person delivery game for solo play or 2–4 cooperating workers. Complete three contracts in an absurd shrine that receives parcels as offerings, buy equipment with shared earnings, relay packages and recover cargo stolen by Packrat. The target is a Windows Steam release; this is a development build using primitive art.
 
@@ -52,7 +52,7 @@ Twenty-four behavior tests, eight real two-process scenarios, the four-process s
 
 ## Version control
 
-Local Git retains the 0.5/0.6 baselines. This change is identified by `v0.7.7`; no GitHub remote is connected. See [version history and recovery](docs/development/version-control.en.md) and [documentation rules](AGENTS.md).
+Local Git retains the 0.5/0.6 baselines. This change is identified by `v0.7.8`; no GitHub remote is connected. See [version history and recovery](docs/development/version-control.en.md) and [documentation rules](AGENTS.md).
 
 
 ## 0.7.1 Packrat fix
@@ -96,3 +96,13 @@ Added walls and partial roofs to intake, lost-property archive, doorman waiting 
 Reworked backgrounds around worn cream, green-gray and concrete tones. Reduced visible map labels from 104 to 38 and mounted essential guidance on backing panels. Added kick plates, panel joints, roof battens and subtle materials. Workers now wear work clothes, caps, gloves, boots and employee numbers, with alternating arm/leg motion. Refined cargo colors and distant text. Controls and delivery rules are unchanged.
 
 [0.7.7](docs/superpowers/plans/2026-09-08-art-direction.en.md).
+
+## 0.7.8 Intake and tactile presentation refinement
+
+Reception now has a custom gray-green paneled counter and wooden worktop. Packing desks have scales, tape and invoices; records desks have trays and stamps to distinguish their jobs. A small founder portrait replaces the giant boss display, with the clock and signs mounted on walls. Loading outlines and relay-location marks replace display mats. These props are decoration, not new usable devices.
+
+Furniture, parcels and worker details have beveled edges, with wear placed on handled worktop edges. When turning with a parcel, the worker and hands immediately follow its direction; pickup and put-down poses blend briefly. Calm parcel labels are reduced while hazard warnings remain. Delivery confirmation uses a short stamp/mechanism sound.
+
+Everyone must use the same 0.7.8 ZIP. Delivery rules and controls remain the same. Final release art and real friend-group fun/performance validation are still pending.
+
+[0.7.8 implementation and validation](docs/superpowers/plans/2026-09-08-authored-depot.en.md).

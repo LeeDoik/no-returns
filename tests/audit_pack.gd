@@ -11,7 +11,7 @@ func _initialize() -> void:
 			push_error("Missing packed script: " + script)
 			quit(1)
 			return
-	for script in ["editable_map", "editable_block", "map_sign", "map_zone", "route_challenges"]:
+	for script in ["editable_map", "editable_block", "map_sign", "map_zone", "route_challenges", "bevel_mesh"]:
 		if not FileAccess.file_exists("res://scripts/%s.gdc" % script):
 			push_error("Missing packed editor runtime: " + script)
 			quit(1)
@@ -33,5 +33,5 @@ func _initialize() -> void:
 		quit(1)
 		return
 	map.free()
-	print("PACK AUDIT PASS: 28 compiled gameplay scripts and saved map identity available: " + identity)
+	print("PACK AUDIT PASS: 29 compiled gameplay scripts and saved map identity available: " + identity)
 	quit(0)

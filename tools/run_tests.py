@@ -30,6 +30,8 @@ def main():
         return 1
     for script, role, success in (
         ("tests/test_cargo_rules.gd", None, b"PASS:"),
+        ("tests/test_bevel_mesh.gd", "bevel-mesh", b"BEVEL MESH PASS"),
+        ("tests/test_authored_presentation.gd", "authored-presentation", b"AUTHORED PRESENTATION PASS"),
         ("tests/test_physics.gd", "physics", b"PHYSICS PASS"),
         ("tests/test_shift.gd", "shift", b"PASS shift"),
         ("tests/test_sneeze_rules.gd", "sneeze-rules", b"PASS:"),

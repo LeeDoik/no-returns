@@ -69,3 +69,7 @@ Apply room partitions, partial roofs and a parcel relay hatch on `codex/enclosed
 ## 0.7.7 Art direction pass
 
 Integrate the validated visual cleanup and worker appearance changes from `codex/art-direction` into main and retain `v0.7.7` as the local milestone. The previous look remains in `v0.7.6`.
+
+## 0.7.8 Focused intake and presentation refinement
+
+`codex/authored-depot` refines reception, role-specific worktops, beveled geometry, carrying poses, labels and delivery audio. After validation, it is integrated into main with local baseline `v0.7.8`. The previous presentation remains at `v0.7.7`. [Implementation and validation](../superpowers/plans/2026-09-08-authored-depot.en.md).

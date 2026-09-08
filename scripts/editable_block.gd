@@ -1,5 +1,10 @@
 @tool
 extends StaticBody3D
+const Bevel = preload("res://scripts/bevel_mesh.gd")
+@export_range(0.0,0.15,0.005) var edge_bevel := 0.0:
+	set(value):
+		edge_bevel = maxf(0,value)
+		_sync()
 @export var dimensions := Vector3(2,2,0.5):
 	set(value):
 		dimensions = Vector3(maxf(0.05,value.x),maxf(0.05,value.y),maxf(0.05,value.z))
@@ -23,6 +28,10 @@ func _sync() -> void:
 		mesh.material_override = mesh.material_override.duplicate()
 		collision.shape = collision.shape.duplicate()
 		unique_resources = true
-	mesh.mesh.size = dimensions
+	if edge_bevel > 0:
+		mesh.mesh = Bevel.make(dimensions,edge_bevel)
+	else:
+		if not mesh.mesh is BoxMesh: mesh.mesh = BoxMesh.new()
+		mesh.mesh.size = dimensions
 	collision.shape.size = dimensions
 	mesh.material_override.albedo_color = color

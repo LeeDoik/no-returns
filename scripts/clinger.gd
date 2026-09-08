@@ -160,9 +160,10 @@ func step(delta: float, workers: Dictionary, cargos: Dictionary) -> void:
 func _process(_delta: float) -> void:
 	if not is_instance_valid(cargo) or not label:
 		return
-	label.visible = cargo.active and cargo.body.visible
+	var shown: bool = cargo.active and cargo.body.visible
+	label.visible = shown and (target_kind != "" or cooldown > 0)
 	link.visible = false
-	if not label.visible:
+	if not shown:
 		return
 	label.global_position = cargo.body.global_position + Vector3.UP * 0.8
 	var status: String

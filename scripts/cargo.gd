@@ -6,6 +6,7 @@ signal relay_caught(peer_id: int)
 
 var map_layout = null
 const Layout = preload("res://scripts/depot_layout.gd")
+const Bevel = preload("res://scripts/bevel_mesh.gd")
 const Rules = preload("res://scripts/cargo_rules.gd")
 const Sneeze = preload("res://scripts/sneeze_rules.gd")
 const Cues = preload("res://scripts/sneeze_cues.gd")
@@ -107,9 +108,7 @@ func _ready() -> void:
 
 func _part(size: Vector3, at: Vector3, color: Color) -> void:
 	var mesh := MeshInstance3D.new()
-	var cube := BoxMesh.new()
-	cube.size = size
-	mesh.mesh = cube
+	mesh.mesh = Bevel.make(size,minf(0.022,minf(size.x,minf(size.y,size.z))*0.14))
 	var material := StandardMaterial3D.new()
 	material.albedo_color = color
 	material.roughness = 0.96

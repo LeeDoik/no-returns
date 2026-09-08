@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 const Preferences = preload("res://scripts/preferences.gd")
+const Bevel = preload("res://scripts/bevel_mesh.gd")
 
 var map_layout = null
 var peer_id := 0
@@ -26,6 +27,7 @@ var walk_velocity := Vector3.ZERO
 var push_velocity := Vector3.ZERO
 var stagger := 0.0
 var speed_scale := 1.0
+var carry_blend := 0.0
 
 func _ready() -> void:
 	collision_layer = 2
@@ -77,9 +79,7 @@ func _rounded(size: Vector3, at: Vector3, color: Color) -> MeshInstance3D:
 
 func _part(size: Vector3, at: Vector3, color: Color) -> MeshInstance3D:
 	var mesh := MeshInstance3D.new()
-	var box := BoxMesh.new()
-	box.size = size
-	mesh.mesh = box
+	mesh.mesh = Bevel.make(size,minf(0.025,minf(size.x,minf(size.y,size.z))*0.16))
 	var material := StandardMaterial3D.new()
 	material.albedo_color = color
 	material.roughness = 0.85
@@ -159,13 +159,16 @@ func forward() -> Vector3:
 func _process(delta: float) -> void:
 	if not visual:
 		return
-	visual.rotation.y = lerp_angle(visual.rotation.y, heading, minf(delta * 16.0, 1.0))
+	# Held cargo already uses authoritative heading: do not leave hands facing
+	# the previous direction during a quick turn.
+	visual.rotation.y = heading if held else lerp_angle(visual.rotation.y, heading, minf(delta * 16.0, 1.0))
+	carry_blend = move_toward(carry_blend,1.0 if held else 0.0,delta*9.0)
 	gait += delta * Vector2(velocity.x, velocity.z).length() * 2.5
 	visual.position.y = absf(sin(gait)) * minf(velocity.length() * 0.008, 0.035)
 	visual.rotation.z = sin(stagger * PI * 2) * 0.35
 	var stride := clampf(Vector2(velocity.x,velocity.z).length()/4.5,0,1)
 	for index in range(arms.size()):
 		var arm := arms[index]
-		arm.rotation.x = 1.25 if held else sin(gait+index*PI)*0.45*stride
-		arm.position.z = -0.2 if held else 0.0
+		arm.rotation.x = lerpf(sin(gait+index*PI)*0.45*stride,1.25,carry_blend)
+		arm.position.z = -0.2*carry_blend
 	for index in range(legs.size()): legs[index].rotation.x = -sin(gait+index*PI)*0.5*stride

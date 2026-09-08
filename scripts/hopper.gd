@@ -119,15 +119,16 @@ func present() -> void:
 	indicator.position = Vector3(0, 0.52, -0.28)
 	indicator.rotation.y = cargo.facing
 	label.position = Vector3(0, 0.85, 0)
+	label.font_size = 26 if phase == "windup" else 20
 	if phase == "windup":
 		cargo.visual.scale = Vector3(1.12, 0.72, 1.12)
-		label.text = Copy.get_text("hopper_name") + "\n" + (Copy.get_text("hopper_paused") if paused else Copy.get_text("hopper_windup") % remaining)
+		label.text = Copy.get_text("hopper_paused") if paused else Copy.get_text("hopper_windup") % remaining
 	elif phase == "airborne":
 		cargo.visual.scale = Vector3(0.94, 1.12, 0.94)
 		label.text = Copy.get_text("hopper_name") + "\n" + Copy.get_text("hopper_paused" if cargo.rules.holder_id != 0 else "hopper_airborne")
 	else:
 		cargo.visual.scale = Vector3.ONE
-		label.text = Copy.get_text("hopper_name") + "\n" + (Copy.get_text("hopper_paused") if paused else Copy.get_text("hopper_rest") % remaining)
+		label.text = Copy.get_text("hopper_paused") if paused else Copy.get_text("hopper_rest") % remaining
 
 func _process(_delta: float) -> void:
 	present()

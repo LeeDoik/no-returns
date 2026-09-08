@@ -19,6 +19,7 @@ func _process(_delta: float) -> void:
 	if Cues.muted: player.stop()
 
 func _tone(kind: String) -> AudioStreamWAV:
+	if kind == "ship": return _stamp()
 	var rate := 22050
 	var duration := 0.32 if kind != "win" else 0.6
 	var count := int(rate * duration)
@@ -35,4 +36,23 @@ func _tone(kind: String) -> AudioStreamWAV:
 	sound.format = AudioStreamWAV.FORMAT_16_BITS
 	sound.mix_rate = rate
 	sound.data = bytes
+	return sound
+
+func _stamp() -> AudioStreamWAV:
+	# A low impact, short paper scrape, and lighter return of the mechanism.
+	# Dedicated seeded noise must never consume gameplay's random sequence.
+	var rng := RandomNumberGenerator.new(); rng.seed = 7142
+	var rate := 22050; var count := int(rate*0.32)
+	var bytes := PackedByteArray(); bytes.resize(count*2)
+	var filtered := 0.0
+	for i in range(count):
+		var t := float(i)/rate
+		filtered = lerpf(filtered,rng.randf_range(-1,1),0.38)
+		var thud := sin(TAU*92*t)*exp(-t*35)*0.58
+		var contact := filtered*exp(-t*82)*0.5
+		var scrape := filtered*exp(-absf(t-0.065)*40)*0.18
+		var rebound := sin(TAU*185*t)*exp(-maxf(0,t-0.13)*55)*0.16 if t >= 0.13 else 0.0
+		var envelope := minf(1,t*1500)*minf(1,(0.32-t)*80)
+		bytes.encode_s16(i*2,int(clampf((thud+contact+scrape+rebound)*envelope,-0.95,0.95)*25000))
+	var sound := AudioStreamWAV.new(); sound.format = AudioStreamWAV.FORMAT_16_BITS; sound.mix_rate = rate; sound.data = bytes
 	return sound

@@ -114,9 +114,9 @@ func present(clock: RefCounted, yaw: float, origin: Vector3, burst_yaw: float, e
 		seen_event = maxi(seen_event, clock.event_id)
 		cancel()
 		return
-	caption.visible = true
+	caption.visible = clock.phase == "windup"
 	caption.position = body.position + Vector3(0, 1.0, 0)
-	caption.text = Copy.get_text("sneezer_name") + " / A"
+	caption.text = ""
 	# The face inherits the cargo model's facing; world-space cues use yaw below.
 	face.rotation.y = 0
 	var winding: bool = clock.phase == "windup"

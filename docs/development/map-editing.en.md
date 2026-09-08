@@ -2,7 +2,7 @@
 
 [한국어](map-editing.ko.md)
 
-For Godot 4.7.2 and NO RETURNS 0.7.7 · September 8, 2026.
+For Godot 4.7.2 and NO RETURNS 0.7.8 · September 8, 2026.
 
 ## First edit: move the central low wall
 
@@ -124,3 +124,11 @@ The west intake hatch is between `HatchSill` and `HatchHeader`. Its opening is 3
 Edit wall finishes under each wall’s `SurfaceFinish` and roof battens under `RoofBattens`. These are decorative and have no colliders. Moving a wall moves its finish, but changing Dimensions requires manually adjusting finish lengths/positions. A sign’s `SignBacking` is its panel; resize it when changing text length or font size. Old hidden signs remain in the scene and can be restored using Visibility > Visible.
 
 Subtle wall/floor grain uses a saved NoiseTexture2D. Keep its contrast low. The migration tool has already been applied and is never re-run by normal play or BUILD.cmd.
+
+## 0.7.8 Editing reception and worktop props
+
+Edit counter details at `Geometry/LowDivider/ReceptionCounter`, and each furniture group's new work surface at its `AuthoredWorktop` under `Geometry/InteriorDressing`. Wall portraits, the clock and loading paint are under `Decoration/AuthoredIntake`. Moving a parent moves its attached details.
+
+Select a SolidBlock and adjust **Edge Bevel** to control edge chamfering. Zero restores the original box shape. **Dimensions** updates both mesh and collision size; **Color** changes the color. Collider corners remain square. After resizing a furniture body, manually adjust its worktop, drawers and attached props.
+
+Invoices, tape, scales, printers and stamps are decorative. The stopped office clock does not display contract time. Hidden old boss geometry and mats remain in the scene. The new `tools/author_intake.gd` migration has already been applied once and does not run during gameplay or builds. Share the same rebuilt 0.7.8 package after editing.
