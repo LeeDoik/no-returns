@@ -13,7 +13,7 @@
 | Locate the ZIP to send friends | [02_배포 파일 찾기.cmd](<02_배포 파일 찾기.cmd>) |
 | Run the latest source changes | [PLAY.cmd](PLAY.cmd) |
 
-`build` contains executables and the distribution ZIP; `art` contains Blender and other production sources; `assets` contains runtime art; `scenes` and `scripts` contain maps and code; `docs` contains Korean/English documentation; `tests` and `tools` contain development utilities; `artifacts` contains validation results and captures. Loose root logs were collected into `artifacts/logs/root`. Existing English-named launch tools remain available.
+`build` contains executables and the distribution ZIP; `art` contains Blender and other production sources; `assets` contains runtime art; `scenes` and `scripts` contain maps and code; `docs` contains Korean/English documentation; `tests` and `tools` contain development utilities; `artifacts` contains validation results and captures. Obsolete builds, installed-tool archives, previous automatic backups and old temporary logs were removed. The latest playable build, distribution ZIP, validation evidence and production sources remain. Existing English-named launch tools remain available.
 
 Keep the EXE and PCK together in the same folder. After source changes, run [BUILD.cmd](BUILD.cmd) to refresh the distribution build. `build/NO_RETURNS_0.7` is a retained compatibility folder name; use the information below and the game screen for the actual version.
 

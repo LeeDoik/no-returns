@@ -13,7 +13,7 @@
 | 친구에게 보낼 ZIP 찾기 | [02_배포 파일 찾기.cmd](<02_배포 파일 찾기.cmd>) |
 | 최신 소스 변경을 바로 실행 | [PLAY.cmd](PLAY.cmd) |
 
-`build`는 실행 파일과 배포 ZIP, `art`는 Blender 등 제작 원본, `assets`는 게임용 아트, `scenes`·`scripts`는 맵과 코드, `docs`는 한·영 문서, `tests`·`tools`는 개발 도구, `artifacts`는 검사 결과와 캡처입니다. 루트에 흩어져 있던 로그는 `artifacts/logs/root`로 모았습니다. 기존 영문 실행 도구도 유지합니다.
+`build`는 실행 파일과 배포 ZIP, `art`는 Blender 등 제작 원본, `assets`는 게임용 아트, `scenes`·`scripts`는 맵과 코드, `docs`는 한·영 문서, `tests`·`tools`는 개발 도구, `artifacts`는 검사 결과와 캡처입니다. 구버전 배포본, 설치가 끝난 압축파일, 이전 자동 백업과 오래된 임시 로그는 정리했습니다. 최신 실행본·배포 ZIP·검증 기록과 제작 원본은 유지합니다. 기존 영문 실행 도구도 유지합니다.
 
 실행용 EXE와 PCK는 같은 폴더에 함께 있어야 합니다. 소스를 수정한 뒤 배포본을 갱신하려면 [BUILD.cmd](BUILD.cmd)를 실행하세요. `build/NO_RETURNS_0.7`은 호환성을 유지한 폴더 이름이며 실제 버전은 아래 안내와 게임 화면을 기준으로 합니다.
 
