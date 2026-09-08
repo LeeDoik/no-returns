@@ -1,0 +1,32 @@
+{
+  "fps": 60,
+  "durations": {
+    "idle": 2.4,
+    "walk": 2.0,
+    "run": 1.0,
+    "carry_idle": 2.4,
+    "carry_walk": 2.0,
+    "carry_back": 2.0,
+    "carry_left": 2.0,
+    "carry_right": 2.0,
+    "carry_forward_left": 2.0,
+    "carry_forward_right": 2.0,
+    "carry_back_left": 2.0,
+    "carry_back_right": 2.0,
+    "carry_air": 0.4,
+    "air_rise": 0.4,
+    "air_fall": 0.4,
+    "land": 0.3,
+    "throw": 0.48,
+    "hit_to_body_01": 0.5
+  },
+  "source": "art/tripo-01/worker-animation.blend",
+  "corrections": [
+    "center Hip XY per frame",
+    "evaluated sole floor correction",
+    "independent carry upper body",
+    "directional carry lower body",
+    "explicit throw recovery",
+    "linear sampled keys"
+  ]
+}

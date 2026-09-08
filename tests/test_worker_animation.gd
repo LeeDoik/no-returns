@@ -8,7 +8,7 @@ func run() -> void:
 	root.add_child(worker)
 	worker.set_process(false)
 	await process_frame
-	for clip in ["idle", "walk", "run", "carry_idle", "carry_walk", "carry_run", "air_rise", "air_fall", "throw", "hit_to_body_01"]:
+	for clip in ["idle", "walk", "run", "carry_idle", "carry_walk", "carry_air", "air_rise", "air_fall", "land", "throw", "hit_to_body_01"]:
 		check(worker.art_player.has_animation(clip), "missing worker motion: " + clip)
 	if failures:
 		worker.free(); print("WORKER ANIMATION FAIL"); quit(1); return

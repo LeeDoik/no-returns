@@ -130,7 +130,11 @@ func simulate(movement: Vector2, yaw: float, jump: bool, delta: float, drift: Ve
 	carry_shape.disabled = not held
 	carry_shape.position = Vector3(0,1.05,0) + forward()*0.98
 	carry_shape.rotation.y = heading
-	var wish := Vector3(movement.x, 0, movement.y).rotated(Vector3.UP, yaw) * (2.4 if held else 4.5) * speed_scale
+	var pace := Vector3(movement.x,0,movement.y)
+	if held:
+		pace.x *= 0.75
+		if pace.z > 0: pace.z *= 0.75
+	var wish := pace.rotated(Vector3.UP, yaw) * (1.6 if held else 3.2) * speed_scale
 	walk_velocity = walk_velocity.move_toward(wish, (12.0 if held else 24.0) * delta)
 	var grounded_drift := drift if is_on_floor() else Vector3.ZERO
 	velocity.x = walk_velocity.x + push_velocity.x + grounded_drift.x
@@ -187,8 +191,11 @@ func _process(delta: float) -> void:
 		return
 	# Held cargo already uses authoritative heading: do not leave hands facing
 	# the previous direction during a quick turn.
-	visual.rotation.y = heading if held else lerp_angle(visual.rotation.y, heading, minf(delta * 16.0, 1.0))
+	var travel := Vector2(velocity.x,velocity.z)
+	var target_yaw := visual.rotation.y
+	if travel.length()>0.08: target_yaw = atan2(-velocity.x,-velocity.z)
+	visual.rotation.y = heading if held else lerp_angle(visual.rotation.y,target_yaw,1.0-exp(-delta*14.0))
 	carry_blend = move_toward(carry_blend,1.0 if held else 0.0,delta*9.0)
 	visual.position = Vector3.ZERO
 	visual.rotation.z = sin(stagger * PI * 2) * 0.35
-	if animation_motion: animation_motion.update(delta, velocity, held, stagger)
+	if animation_motion: animation_motion.update(delta, velocity, held, stagger, heading)

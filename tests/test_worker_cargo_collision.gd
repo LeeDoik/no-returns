@@ -36,8 +36,8 @@ func run() -> void:
 		worker.simulate(Vector2(0, -1), 0, false, 1.0 / 60)
 		cargo.move_held(worker)
 		await frames(1)
-	# Carrying now walks at 2.4 m/s; cover over one metre without self-blocking.
-	check(worker.position.z < 5.0 and cargo.rules.holder_id == 1, "own held crate does not block carrying: worker=%s cargo=%s holder=%d" % [worker.position, cargo.body.position, cargo.rules.holder_id])
+	# Carrying walks at 1.6 m/s; cover at least 0.7 m without self-blocking.
+	check(worker.position.z < 5.3 and cargo.rules.holder_id == 1, "own held crate does not block carrying: worker=%s cargo=%s holder=%d" % [worker.position, cargo.body.position, cargo.rules.holder_id])
 	game._add_worker(22)
 	var other = game.workers[22]
 	other.position = cargo.body.position + Vector3(0, -1, -1.5)
