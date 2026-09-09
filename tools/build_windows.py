@@ -42,6 +42,8 @@ def main():
                            ('docs/art/05-carry-physics.en.md', 'PHYSICS.en.md'),
                            ('docs/art/06-motion-rebuild.ko.md', 'MOTION.ko.md'),
                            ('docs/art/06-motion-rebuild.en.md', 'MOTION.en.md'),
+                           ('docs/art/08-animation-polish.ko.md', 'POLISH.ko.md'),
+                           ('docs/art/08-animation-polish.en.md', 'POLISH.en.md'),
                            ('THIRD_PARTY_NOTICES.txt', 'THIRD_PARTY_NOTICES.txt')]:
         text = (ROOT / source).read_text(encoding='utf-8')
         text = text.replace('07-contracts.en.md', 'README.en.md').replace('07-contracts.ko.md', 'README.ko.md')
@@ -52,6 +54,8 @@ def main():
         text = text.replace('05-carry-physics.en.md', 'PHYSICS.en.md').replace('05-carry-physics.ko.md', 'PHYSICS.ko.md')
         text = text.replace('../art/06-motion-rebuild.', '06-motion-rebuild.')
         text = text.replace('06-motion-rebuild.en.md', 'MOTION.en.md').replace('06-motion-rebuild.ko.md', 'MOTION.ko.md')
+        text = text.replace('../art/08-animation-polish.', '08-animation-polish.')
+        text = text.replace('08-animation-polish.en.md', 'POLISH.en.md').replace('08-animation-polish.ko.md', 'POLISH.ko.md')
         destination = OUT / target
         destination.write_text(text, encoding='utf-8')
         files.append(destination)

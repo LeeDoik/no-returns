@@ -31,6 +31,8 @@ var push_velocity := Vector3.ZERO
 var stagger := 0.0
 var speed_scale := 1.0
 var carry_blend := 0.0
+var breathing_clock := 0.0
+var torso_lean := 0.0
 var art_player: AnimationPlayer
 var art_skeleton: Skeleton3D
 var carry_shape: CollisionShape3D
@@ -199,3 +201,12 @@ func _process(delta: float) -> void:
 	visual.position = Vector3.ZERO
 	visual.rotation.z = sin(stagger * PI * 2) * 0.35
 	if animation_motion: animation_motion.update(delta, velocity, held, stagger, heading)
+	# Visual-only spine motion; keep feet, collider and carrying hand targets intact.
+	breathing_clock += delta
+	var lean_target := 0.0 if held else minf(travel.length()/3.2,1.0)*0.035
+	torso_lean = lerpf(torso_lean,lean_target,1.0-exp(-delta*7.0))
+	if art_skeleton and not held:
+		var spine := art_skeleton.find_bone("Spine01")
+		if spine >= 0:
+			var breath := sin(breathing_clock*TAU/3.6)*0.008*(1.0-minf(travel.length(),1.0))
+			art_skeleton.set_bone_pose_rotation(spine,art_skeleton.get_bone_pose_rotation(spine)*Quaternion(Vector3.RIGHT,torso_lean+breath))
