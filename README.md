@@ -147,3 +147,5 @@
 첫 화면 설정, 키 변경, 솔로 일시정지, 나가기 확인, 긴 한영 UI, 연결 승인 제한 시간과 완주 기록 재시도를 개선했습니다.
 
 [0.7.9](docs/superpowers/plans/2026-09-08-release-usability.ko.md).
+
+물리 조정은 [03_물리 실험실.cmd](<03_물리 실험실.cmd>)로 실행하세요. [조작·검증 범위](docs/art/07-physics-lab.ko.md).

@@ -147,3 +147,5 @@ Everyone must use the same 0.7.8 ZIP. Delivery rules and controls remain the sam
 Improved title-screen settings, rebinding, solo pause, exit confirmation, long bilingual UI, admission timeout and completed-record retries.
 
 [0.7.9](docs/superpowers/plans/2026-09-08-release-usability.en.md).
+
+Run [03_물리 실험실.cmd](<03_물리 실험실.cmd>) to tune physics in a separate lab. [Controls and verification scope](docs/art/07-physics-lab.en.md).
