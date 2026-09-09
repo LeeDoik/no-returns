@@ -2,6 +2,8 @@
 
 [한국어](2026-09-07-first-prototype.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../../README.en.md) first for current rules and outstanding work.
+
 Version 0.1 · 2026-09-07 · Scope: first development prototype.
 
 **Goal:** Run a third-person graybox depot on Windows, connect two instances, and carry, drop, throw, catch, and dispatch one shared crate.

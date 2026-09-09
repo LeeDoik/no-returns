@@ -2,6 +2,8 @@
 
 [한국어](03-assets-and-trailer.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../README.en.md) first for current rules and outstanding work.
+
 **Status:** Production specifications only; artwork and footage have not been produced.  
 **Checked against official documentation:** September 7, 2026. Recheck the current Steamworks templates at export time.
 

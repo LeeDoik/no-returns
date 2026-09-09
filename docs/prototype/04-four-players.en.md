@@ -2,6 +2,8 @@
 
 [한국어](04-four-players.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../README.en.md) first for current rules and outstanding work.
+
 Prototype 0.4 · 2026-09-07 · Windows · Godot 4.7.2
 
 Hosted rooms now support **2–4 workers**. Solo practice, Standard/Sneezer/Clinger cargo, five shared deliveries and the three-minute shift remain unchanged. This step tests the same interactions with more coworkers; it does not establish final four-player balance.

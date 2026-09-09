@@ -2,6 +2,8 @@
 
 [한국어](05-expanded.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../README.en.md) first for current rules and outstanding work.
+
 September 7, 2026. Windows x64, Godot 4.7.2. Primitive-art development playtest, not a Steam release candidate. English is the original game-copy language; Korean is the default UI.
 
 ## Start

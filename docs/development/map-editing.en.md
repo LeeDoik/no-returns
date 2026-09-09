@@ -2,6 +2,8 @@
 
 [한국어](map-editing.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../README.en.md) first for current rules and outstanding work.
+
 For Godot 4.7.2 and NO RETURNS 0.7.8 · September 8, 2026.
 
 ## First edit: move the central low wall

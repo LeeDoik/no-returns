@@ -2,6 +2,8 @@
 
 [한국어](2026-09-07-shipping-shrine.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../../README.en.md) first for current rules and outstanding work.
+
 ## Direction
 
 For 0.7.2, replace the ordinary night warehouse theme with **THE SHIPPING SHRINE**. A delivery company treats its job with absurd reverence. Original cardboard idols and paperwork stamps provide workplace satire without real religious figures or symbols. Proceed under the user's concept-change request and standing instruction to work without incremental approvals.

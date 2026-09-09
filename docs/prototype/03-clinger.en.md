@@ -2,6 +2,8 @@
 
 [한국어](03-clinger.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../README.en.md) first for current rules and outstanding work.
+
 **Historical 0.3 record. The current project runs [0.4 with 2–4 workers](04-four-players.en.md).** Two-player limits and packet measurements below describe 0.3.
 
 Prototype 0.3 · 2026-09-07 · Windows · Godot 4.7.2

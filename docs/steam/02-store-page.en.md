@@ -2,6 +2,8 @@
 
 [한국어](02-store-page.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../README.en.md) first for current rules and outstanding work.
+
 September 7, 2026 · Aligned with the 0.7 development design. Unpublished draft; verify the submitted build before publication. NO RETURNS is a working title. Tagline: The packages are alive. Ship them anyway.
 
 ## Short description

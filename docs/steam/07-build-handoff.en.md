@@ -2,6 +2,8 @@
 
 [한국어](07-build-handoff.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../README.en.md) first for current rules and outstanding work.
+
 September 7, 2026 · Prototype 0.7. A local export is distinct from a Steam-uploaded and reviewed release.
 
 ## Prepared locally

@@ -2,6 +2,8 @@
 
 [한국어](2026-09-08-sorting-line.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../../README.en.md) first for current rules and outstanding work.
+
 ## Decision
 
 Bring separate devices into one delivery situation. An 8 m conveyor sends parcels from intake to central sorting through a floor-level cargo passage in the north wall. Workers and held cargo use the existing doors. A 0.6 m sorting lip ends the line. A coworker can lift normal cargo over it, a sneeze can launch it, and a Hopper can jump over on its own. Preserve walking detours and the western throwing hatch.

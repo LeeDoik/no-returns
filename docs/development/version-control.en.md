@@ -2,6 +2,8 @@
 
 [한국어](version-control.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../README.en.md) first for current rules and outstanding work.
+
 September 7, 2026. The creator chose **local Git only**. No GitHub repository or remote connection is created.
 
 ## Baseline

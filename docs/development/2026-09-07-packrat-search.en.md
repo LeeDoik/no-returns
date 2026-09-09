@@ -2,6 +2,8 @@
 
 [한국어](2026-09-07-packrat-search.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../README.en.md) first for current rules and outstanding work.
+
 ## Cause
 
 Previously Packrat searched only within its 1.4 m steal range and had no approach state. A grounded package about 4 m away in the real depot reproduced passing by without theft. Prior tests placed cargo beside the rat and missed this gap.

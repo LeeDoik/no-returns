@@ -2,6 +2,8 @@
 
 [한국어](2026-09-08-release-usability.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../../README.en.md) first for current rules and outstanding work.
+
 ## Goal and direction
 
 Audit first launch, settings, in-game menus, exit, network connection and saving for a Steam Windows release. Compared with adding only visuals or rewriting the whole game, prioritize actual player flows and defects in the existing game. Preserve cooperative delivery and the directly editable map. Follow the user's instruction to implement, validate and package without per-step approvals.

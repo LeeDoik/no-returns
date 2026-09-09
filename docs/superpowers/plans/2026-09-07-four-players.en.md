@@ -2,6 +2,8 @@
 
 [한국어](2026-09-07-four-players.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../../README.en.md) first for current rules and outstanding work.
+
 Continue the approved concept after the three core cargo types. Use the existing runtime and ENet. No Steam, new cargo, purchased assets or final balancing in this step.
 
 - Support 2–4 workers per hosted room, plus unchanged solo practice. Host alone cannot start. Keep three cargo slots, five deliveries and 180 seconds for controlled comparison.

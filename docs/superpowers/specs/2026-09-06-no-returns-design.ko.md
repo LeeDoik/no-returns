@@ -2,6 +2,8 @@
 
 [English](2026-09-06-no-returns-design.md)
 
+> 문서 체계 개정: 이 파일의 버전·수치는 작성 당시 기준입니다. 현재 규칙·미완료 상태는 [문서 홈](../../README.md)을 먼저 확인하세요.
+
 > 택배가 살아 있습니다. 그래도 배송은 해야죠.  
 > The packages are alive. Ship them anyway.
 

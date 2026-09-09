@@ -2,6 +2,8 @@
 
 [English](physics-fix-report.en.md)
 
+> 문서 체계 개정: 이 파일의 버전·수치는 작성 당시 기준입니다. 현재 규칙·미완료 상태는 [문서 홈](../README.md)을 먼저 확인하세요.
+
 버전 0.1 · 2026-09-07 · 첫 프로토타입 범위에서 완료.
 
 `scripts/main.gd`와 `scripts/depot.gd`에서 P2 지적 두 건을 수정했다.

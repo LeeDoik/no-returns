@@ -2,6 +2,8 @@
 
 [한국어](01-release-roadmap.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../README.en.md) first for current rules and outstanding work.
+
 **Prepared:** September 7, 2026  
 **Account status:** Not registered, as reported by the creator.  
 **Target:** Windows PC / Steam / 3D third-person / online cooperation.  

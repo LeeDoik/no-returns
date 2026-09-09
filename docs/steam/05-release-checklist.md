@@ -2,6 +2,8 @@
 
 [한국어](05-release-checklist.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../README.en.md) first for current rules and outstanding work.
+
 **Status date:** September 8, 2026  
 **Owners:** Creator = account holder/publishing decision maker; Development = the future implementation and production work.  
 **How to use:** Check an item only when its evidence exists. A prepared plan is not completion of the underlying release requirement.

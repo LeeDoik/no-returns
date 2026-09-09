@@ -2,6 +2,8 @@
 
 [English](04-online-and-build-plan.md)
 
+> 문서 체계 개정: 이 파일의 버전·수치는 작성 당시 기준입니다. 현재 규칙·미완료 상태는 [문서 홈](../README.md)을 먼저 확인하세요.
+
 **상태:** Godot 4.7.2 확장 프로토타입 0.5에 화물 네 종류·인원별 목표·A/B 목적지·위치 알림·추가 근무를 구현했습니다. 로컬 두/네 프로세스 ENet 검사와 Windows 내보내기를 검증했습니다. Steam 통신·실제 App ID·Steam 설치는 미구성입니다. [현재 실행 안내](../prototype/05-expanded.ko.md)와 [빌드 인계](07-build-handoff.ko.md)를 참고하세요.  
 **갱신일:** 2026년 9월 7일
 

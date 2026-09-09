@@ -2,6 +2,8 @@
 
 [한국어](06-creator-kit.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../README.en.md) first for current rules and outstanding work.
+
 **Status:** Korean/English preparation drafts. No messages have been sent, no access has been granted, and no public playtest exists.  
 **Updated:** September 7, 2026
 

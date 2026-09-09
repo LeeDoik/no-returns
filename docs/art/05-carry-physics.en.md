@@ -2,6 +2,8 @@
 
 [한국어](05-carry-physics.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../README.en.md) first for current rules and outstanding work.
+
 ## Design
 
 September 9, 2026 · 0.9.1 / protocol 11. Apply consistent gravity and rigid-body responses while retaining existing co-op controls, rather than building a complete reality simulator. No custom physics engine or engine replacement. Remove the back-mounted CrewBadge. As requested, crew identification uses yellow, teal, purple and coral workwear for slots 1–4. Preserve face, glove and cap colors; existing nameplates remain secondary labels.

@@ -2,6 +2,8 @@
 
 [한국어](01-first-playable.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../README.en.md) first for current rules and outstanding work.
+
 Version 0.1 · 2026-09-07 · Windows · Godot 4.7.2
 
 **Historical 0.1 record. The current project runs [prototype 0.2 with Sneezer cargo](02-sneezer.en.md).** Launchers, basic controls and runtime restoration below remain useful; one-crate/audio limitations and the next experiment describe 0.1. The current test runner also covers Sneezer and uses an additional UDP 27944 process pair.

@@ -2,6 +2,8 @@
 
 [한국어](2026-09-08-enclosed-shrine.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../../README.en.md) first for current rules and outstanding work.
+
 Goal: divide the 48×60m Shipping Shrine into spaces with doorways, interrupted sightlines and roofs to vary delivery situations. Preserve the winding main routes and both cross-links. Modify the saved Godot 4.7.2 map scene without regenerating it at runtime.
 
 ## Spaces and situations

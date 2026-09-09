@@ -2,6 +2,8 @@
 
 [한국어](2026-09-08-winding-shrine.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../../README.en.md) first for current rules and outstanding work.
+
 Goal: version 0.7.5 replaces three parallel straight lanes within the existing 48×60 m map with winding alleys and cross-links. Follow the user's standing instruction to proceed through layout, validation and build without incremental approval. Improve horizontal routing and changing sightlines before adding an elevation system.
 
 Left: alternate an angled screen extending from the southern outer wall, an inner lost-property wall and a northern outer-wall screen to create an S route. Right: enter inside a southern screen, travel sideways through the airflow and turn inward again at the northern end. Move AirMail to (15,0,-24), Y rotation 90 degrees, blowing toward the central cross-link. Keep the pressure gate. At Z-26 before and Z-30 behind the gate, cross-links connect left and right so players can change routes midway.

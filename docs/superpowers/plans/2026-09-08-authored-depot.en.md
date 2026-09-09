@@ -2,6 +2,8 @@
 
 [한국어](2026-09-08-authored-depot.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../../README.en.md) first for current rules and outstanding work.
+
 ## Direction
 
 Compose the first intake room as a place people worked in. Avoid identical furniture duplication or random prop scattering. Differentiate forms and objects around receiving, packing and record keeping. Put wear only on handled edges and work surfaces. The goal is coherent, deliberate craft, not a guarantee of mistaken beliefs about authorship.

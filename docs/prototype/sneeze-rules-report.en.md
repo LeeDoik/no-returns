@@ -2,6 +2,8 @@
 
 [한국어](sneeze-rules-report.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../README.en.md) first for current rules and outstanding work.
+
 Version 0.2 · 2026-09-07 · Status: implemented and behaviorally verified.
 
 ## Scope

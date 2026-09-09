@@ -2,6 +2,8 @@
 
 [한국어](2026-09-07-release-polish.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../../README.en.md) first for current rules and outstanding work.
+
 Target: 0.7 playable development build, not a Steam-approved release. Apply writing-plans and subagent-driven-development. The user authorized detailed design and implementation without incremental approval. Existing 0.6 remains recoverable in local Git. No paid assets, remote publication or account actions.
 
 ## Design and boundaries

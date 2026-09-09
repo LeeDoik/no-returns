@@ -2,6 +2,8 @@
 
 [한국어](2026-09-08-reactive-props.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../../README.en.md) first for current rules and outstanding work.
+
 ## Design
 
 Use authored clusters throughout intake, both winding routes, central sorting and dispatch. Prefer three reusable, recognizable reactions over unrelated random traps or dozens of simulated debris bodies. Preserve existing carrying clearances and a walk-around option. No score damage or mandatory cargo type. These complement the connected sorting line in the same release.

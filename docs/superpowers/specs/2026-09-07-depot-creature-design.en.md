@@ -2,6 +2,8 @@
 
 [한국어](2026-09-07-depot-creature-design.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../../README.en.md) first for current rules and outstanding work.
+
 **Follow-up:** This document records the original proposals. Version 0.6 subsequently implemented the larger night map, reversing conveyor and nest placeholder only. Packrat AI, pressure-plate doors and launchers remain unimplemented. See the [0.6 guide](../../prototype/06-night-depot.en.md) for current status.
 
 **Created:** September 7, 2026  

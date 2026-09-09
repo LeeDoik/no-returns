@@ -2,6 +2,8 @@
 
 [한국어](physics-fix-report.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../README.en.md) first for current rules and outstanding work.
+
 Version 0.1 · 2026-09-07 · Completed within the first prototype.
 
 Two P2 findings are fixed in `scripts/main.gd` and `scripts/depot.gd`:

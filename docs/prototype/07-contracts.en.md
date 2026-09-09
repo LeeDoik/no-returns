@@ -2,6 +2,8 @@
 
 [한국어](07-contracts.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../README.en.md) first for current rules and outstanding work.
+
 September 9, 2026 · Windows x64 · Godot 4.7.2. A development build with production art and carrying/physics improvements, not a commercial release candidate or Steam-approved build. English is the source language for game copy; Korean is the default UI.
 
 ## 0.9.3 animation transition polish

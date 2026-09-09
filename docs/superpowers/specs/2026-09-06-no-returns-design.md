@@ -2,6 +2,8 @@
 
 [한국어](2026-09-06-no-returns-design.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../../README.en.md) first for current rules and outstanding work.
+
 > The packages are alive. Ship them anyway.
 
 **Document:** Concept design v0.2  

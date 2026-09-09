@@ -2,6 +2,8 @@
 
 [한국어](2026-09-08-art-direction.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../../README.en.md) first for current rules and outstanding work.
+
 ## Goal and diagnosis
 
 The current view asks players to notice large primitives, saturated colors, floating jokes and repeated props simultaneously. Make deliberate selection and finish visible instead of the quantity added. The direction is **an aging delivery depot pretending to be a temple**. Ground the facility so living parcels and delivery mouths feel strange. This pass cannot guarantee that nobody will perceive an AI-made aesthetic.

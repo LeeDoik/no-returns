@@ -2,6 +2,8 @@
 
 [한국어](02-release.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../README.en.md) first for current rules and outstanding work.
+
 ## September 9 worker animation revision
 
 The worker now uses a 41-bone, 13-clip model. The 24-bone walk model and performance figures below describe the initial 0.9.0 release, not a measurement of the replacement. The current editable worker source is `art/tripo-01/worker-animation.blend`. [Motion integration and remaining review](04-animation-integration.en.md).

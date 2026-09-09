@@ -2,6 +2,8 @@
 
 [한국어](06-motion-rebuild.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../README.en.md) first for current rules and outstanding work.
+
 ## Confirmed causes
 
 Recorded a continuous 16-second scenario in 0.9.1 and measured hips and feet across entire clips. Run Hip Z was approximately -0.913 m; idle/walk were approximately -0.086 m. A stationary Root concealed an 83 cm Hip-origin mismatch. The evaluated shoe mesh extended approximately 3–10 cm below the floor in idle, walk and run. Sideways/backward travel reused forward motion, and carrying wrists inherited walking-arm roll. Earlier clip-existence, finite-transform and still-image checks missed these defects.

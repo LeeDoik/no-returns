@@ -2,6 +2,8 @@
 
 [한국어](04-animation-integration.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../README.en.md) first for current rules and outstanding work.
+
 The current build uses the [0.9.1 carrying, physics and crew-color revision](05-carry-physics.en.md), protocol 11. Below is the earlier 0.9.0 rig integration record. The current controller never selects carry_run while carrying.
 
 September 9, 2026 · Worker animation revision to the 0.9.0 art build. Every participant must use the same latest ZIP. Protocol remains 10.

@@ -2,6 +2,8 @@
 
 [한국어](2026-09-07-editable-map.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../../README.en.md) first for current rules and outstanding work.
+
 ## Authorized goal and structure
 
 The user requested direct map editing in the editor. Convert the procedural map once into `scenes/maps/shipping_shrine.tscn`, then use that saved file as the source of truth. Ordinary play/build never regenerates or overwrites it. Geometry, lighting and decoration are real nodes. Edit dispatch visuals and zones together, belt/lever, rat nest/activity/patrol, and worker/cargo spawns.

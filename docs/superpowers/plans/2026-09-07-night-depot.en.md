@@ -2,6 +2,8 @@
 
 [한국어](2026-09-07-night-depot.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../../README.en.md) first for current rules and outstanding work.
+
 September 7, 2026. Target: prototype 0.6. Use subagent-driven-development for the bounded depot presentation task and a final review. The creator approved the larger night depot; the Packrat scope is a nest placeholder only, with AI deferred.
 
 ## Constraints and layout

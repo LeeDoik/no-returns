@@ -2,6 +2,8 @@
 
 [한국어](2026-09-07-release-design.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../../README.en.md) first for current rules and outstanding work.
+
 Version 0.7 design, September 7, 2026. Korean is the default documentation entry point. [Implementation plan](../plans/2026-09-07-release-polish.en.md).
 
 ## 01. Status and authority

@@ -2,6 +2,8 @@
 
 [한국어](03-tripo-animation.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../README.en.md) first for current rules and outstanding work.
+
 ## Latest progress — runtime integration
 
 On September 9, 2026, the supplied GLB was verified to contain 41 bones and seven Tripo motions. Three carrying clips, two airborne poses and a throw follow-through were authored in Blender and integrated into Godot. Original and editable files are preserved. [Integration result and validation scope](04-animation-integration.en.md).

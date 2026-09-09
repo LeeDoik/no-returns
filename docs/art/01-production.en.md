@@ -2,6 +2,8 @@
 
 [한국어](01-production.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../README.en.md) first for current rules and outstanding work.
+
 ## Direction and scope
 
 Prioritize shape, materials and motion over cost savings as requested. Preserve cooperative rules, map routes, collision dimensions, English source copy and complete Korean counterparts. Depict a tired postal facility in exaggerated stylized 3D. Muted sage facilities form the background; ochre/cream workers and parcels carry focus; lime and dusty pink signal interactions. Model rounded edges and handles in geometry and distinguish paper, rubber, painted metal and timber. Do not indiscriminately apply one texture to floors and walls.

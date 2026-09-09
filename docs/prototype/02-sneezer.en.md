@@ -2,6 +2,8 @@
 
 [한국어](02-sneezer.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../README.en.md) first for current rules and outstanding work.
+
 **Historical 0.2 record. The current project runs [0.3 with Clinger](03-clinger.en.md).** The launchers run the latest code; the two-cargo count, packet measurement and future-work list below describe 0.2.
 
 Prototype 0.2 · 2026-09-07 · Windows · Godot 4.7.2

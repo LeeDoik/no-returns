@@ -2,6 +2,8 @@
 
 [한국어](2026-09-08-shrine-expansion.ko.md)
 
+> Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../../README.en.md) first for current rules and outstanding work.
+
 Goal: version 0.7.4 expands the saved map from 32×36 m to 48×60 m (2.5 times the area), adding route choice, cooperation and timing challenges. Following the user's standing request to skip incremental approvals, implement and validate in this session.
 
 Simple enlargement adds empty travel; additional floors increase camera and rat pathfinding work. Choose three horizontal routes. Keep intake and the existing southern section, moving dispatch to X±15, Z-43. Floor bounds: X±24, Z-48…12. A second sorting wall at Z-28 has permanently open bypasses at X±21 and a 4 m central door. Add a relay staging area at Z-18 for setting cargo down.
