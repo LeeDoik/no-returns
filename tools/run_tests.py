@@ -36,8 +36,6 @@ def main():
         ("tests/test_carry_physics.gd", "carry-physics", b"CARRY PHYSICS PASS"),
         ("tests/test_motion_quality.gd", "motion-quality", b"MOTION QUALITY PASS"),
         ("tests/test_physics_lab.gd", "physics-lab", b"PHYSICS LAB PASS"),
-        ("tests/test_force_grab.gd", "force-grab", b"FORCE GRAB PASS"),
-        ("tests/test_force_grab_integration.gd", "force-grab-integration", b"FORCE GRAB INTEGRATION PASS"),
         ("tests/test_authored_presentation.gd", "authored-presentation", b"AUTHORED PRESENTATION PASS"),
         ("tests/test_release_usability.gd", "release-usability", b"RELEASE USABILITY PASS"),
         ("tests/test_release_controls.gd", "release-controls", b"RELEASE CONTROLS PASS"),

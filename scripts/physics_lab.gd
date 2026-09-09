@@ -1,20 +1,14 @@
 extends Node3D
 const Cargo = preload("res://scripts/cargo.gd")
-const ForceGrab = preload("res://scripts/lab_force_grab.gd")
 const Worker = preload("res://scripts/worker.gd")
-const DEFAULTS = {"mass":3.0,"friction":0.65,"bounce":0.06,"gravity":9.81,"damping":0.6,"throw":9.5,"spring":180.0,"grip_damping":18.0,"strength":90.0}
+const DEFAULTS = {"mass":3.0,"friction":0.65,"bounce":0.06,"gravity":9.81,"damping":0.6,"throw":9.5}
 var settings = DEFAULTS.duplicate()
 var parcels: Array = []
 var homes: Array[Vector3] = []
 var worker
 var panel: PanelContainer
-var telemetry: Label
 var status: Label
 var fields := {}
-var grip = ForceGrab.new()
-var force_mode := true
-var reaction_velocity := Vector3.ZERO
-var grip_lines: Array = []
 var held = null
 var jump_requested := false
 var elapsed := 0.0
@@ -22,7 +16,6 @@ var message := ""
 var ground_material := PhysicsMaterial.new()
 
 func _ready():
- process_priority = 10
  var environment := WorldEnvironment.new()
  environment.environment = Environment.new()
  environment.environment.background_mode = Environment.BG_COLOR
@@ -59,10 +52,6 @@ func _ready():
  for home in homes:
   var parcel = Cargo.new(); parcel.home = home; add_child(parcel)
   parcel.active = true; parcel.body.freeze = false; parcels.append(parcel)
- for i in range(2):
-  var line := MeshInstance3D.new(); var mesh := CylinderMesh.new(); mesh.top_radius = 0.012; mesh.bottom_radius = 0.012; mesh.height = 1.0
-  line.mesh = mesh; var mat := StandardMaterial3D.new(); mat.albedo_color = Color("ffc85a") if i == 0 else Color("53dfda"); mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-  line.material_override = mat; line.visible = false; add_child(line); grip_lines.append(line)
  make_ui()
  apply_settings()
  Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -87,17 +76,13 @@ func make_ui():
  var canvas := CanvasLayer.new(); add_child(canvas)
  panel = PanelContainer.new(); panel.position = Vector2(12,12); panel.custom_minimum_size.x = 345
  canvas.add_child(panel)
- panel.custom_minimum_size.y = 640
- var scroll := ScrollContainer.new(); scroll.custom_minimum_size = Vector2(355,640); panel.add_child(scroll)
- var column := VBoxContainer.new(); scroll.add_child(column)
+ var column := VBoxContainer.new(); panel.add_child(column)
  var title := Label.new(); title.text = "물리 실험실 / PHYSICS LAB"; column.add_child(title)
  var engine := Label.new()
  # Read the effective setting; do not change project settings from the laboratory.
  engine.text = "Backend: %s | %d Hz" % [ProjectSettings.get_setting("physics/3d/physics_engine","DEFAULT"),Engine.physics_ticks_per_second]
  column.add_child(engine)
- var mode := CheckButton.new(); mode.text = "힘 기반 잡기 (끄면 기존 운반)"; mode.button_pressed = true; column.add_child(mode)
- mode.toggled.connect(func(enabled): release_grip(); force_mode = enabled; reset_trials())
- for spec in [["mass","상자 질량 / kg",0.2,30,0.1],["friction","상자·바닥 마찰",0,1,0.01],["bounce","상자 반발",0,1,0.01],["gravity","상자 중력 / m/s²",0.1,25,0.1],["damping","회전 감쇠",0,5,0.05],["throw","던지기 세기 / 기존 m/s",1,20,0.1],["spring","손 스프링 / N/m",20,500,5],["grip_damping","손 감쇠 / Ns/m",1,60,1],["strength","한 손 힘 상한 / N",10,200,5]]:
+ for spec in [["mass","상자 질량 / kg",0.2,30,0.1],["friction","상자·바닥 마찰",0,1,0.01],["bounce","상자 반발",0,1,0.01],["gravity","상자 중력 / m/s²",0.1,25,0.1],["damping","회전 감쇠",0,5,0.05],["throw","던지기 수평 속도 / m/s",1,20,0.1]]:
   var row := HBoxContainer.new(); column.add_child(row)
   var text := Label.new(); text.text = spec[1]; text.custom_minimum_size.x = 225; row.add_child(text)
   var value := SpinBox.new(); value.min_value = spec[2]; value.max_value = spec[3]; value.step = spec[4]; value.value = settings[spec[0]]
@@ -106,13 +91,11 @@ func make_ui():
  for spec in [["시험 재시작 / R",reset_trials],["기본값 복원",restore_defaults],["조정값 저장",save_values],["저장값 불러오기",load_values]]:
   var button := Button.new(); button.text = spec[0]; button.pressed.connect(spec[1]); column.add_child(button)
  var controls := Label.new()
- controls.text = "Tab: 조작 ↔ 패널 / WASD: 이동\n마우스: 시점 / Space: 점프\n양쪽 마우스: 각 손 잡기 / E: 양손 토글\nF: 밀어 던지기 / 시점 높이: 들어올리기\n1~4: 시험 구역 이동 / R: 전체 초기화\n상자 중력만 변경 · 본편 설정에 영향 없음"
+ controls.text = "Tab: 조작 ↔ 패널 / WASD: 이동\n마우스: 시점 / Space: 점프\nE: 들기·내려놓기 / 왼쪽 클릭: 던지기\n1~4: 시험 구역 이동 / R: 전체 초기화\n상자 중력만 변경 · 본편 설정에 영향 없음"
  column.add_child(controls)
  status = Label.new(); column.add_child(status)
- telemetry = Label.new(); telemetry.position = Vector2(360,12); canvas.add_child(telemetry)
 
 func apply_settings():
- grip.spring = settings.spring; grip.damping = settings.grip_damping; grip.max_force = settings.strength
  ground_material.friction = settings.friction
  for parcel in parcels:
   parcel.body.mass = settings.mass
@@ -123,8 +106,7 @@ func apply_settings():
   parcel.body.sleeping = false
 
 func reset_trials():
- release_grip()
- reaction_velocity = Vector3.ZERO
+ if held != null: held.release(worker,false); held = null
  for i in range(parcels.size()):
   var body = parcels[i].body
   body.freeze = false; body.position = homes[i]; body.rotation = Vector3.ZERO
@@ -167,111 +149,35 @@ func _unhandled_input(event):
   if event.keycode == KEY_R: reset_trials()
   if event.keycode == KEY_SPACE: jump_requested = true
   if event.keycode == KEY_E:
-   if grip.is_holding() or held != null: release_grip()
-   elif force_mode: try_hand(0); try_hand(1)
+   if held != null: held.release(worker,false); held = null
    else:
-    var parcel = nearest_parcel()
-    if parcel != null and parcel.pickup(worker): held = parcel
-  if event.keycode == KEY_F: throw_grip()
+    var nearest = null; var distance := 3.0
+    for parcel in parcels:
+     var d: float = parcel.body.position.distance_to(worker.position)
+     if d < distance: nearest = parcel; distance = d
+    if nearest != null and nearest.pickup(worker): held = nearest
   if event.keycode >= KEY_1 and event.keycode <= KEY_4:
-   release_grip(); reaction_velocity = Vector3.ZERO
+   if held != null: held.release(worker,false); held = null
    worker.position = [Vector3(-10,0.05,1),Vector3(-3,0.05,1),Vector3(5,0.05,1),Vector3(10.9,0.05,6)][event.keycode-KEY_1]
    worker.reset_motion()
  if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
   if event is InputEventMouseMotion: worker.aim(event.relative)
-  if event is InputEventMouseButton:
-   if force_mode and event.button_index in [MOUSE_BUTTON_LEFT,MOUSE_BUTTON_RIGHT]:
-    var hand := 0 if event.button_index == MOUSE_BUTTON_LEFT else 1
-    if event.pressed: try_hand(hand)
-    else: grip.release(hand)
-   elif not force_mode and event.pressed and event.button_index == MOUSE_BUTTON_LEFT: throw_grip()
-
-func nearest_parcel():
- var nearest = null; var distance := 2.2
- for parcel in parcels:
-  var d: float = parcel.body.position.distance_to(worker.position+Vector3.UP)
-  if d < distance and (parcel.body.position-worker.position).dot(worker.forward()) > 0:
-   var query := PhysicsRayQueryParameters3D.create(worker.position+Vector3.UP,parcel.body.position,1)
-   if get_world_3d().direct_space_state.intersect_ray(query).is_empty():
-    nearest = parcel; distance = d
- return nearest
-
-func try_hand(hand: int):
- var parcel = nearest_parcel()
- if parcel != null: grip.attach(parcel.body,hand)
-
-func release_grip():
- grip.release_all()
- if held != null: held.release(worker,false); held = null
-
-func throw_grip():
- if force_mode:
-  var unique := []
-  for body in grip.bodies:
-   if is_instance_valid(body) and body not in unique: unique.append(body)
-  for body in unique:
-   body.apply_central_impulse((worker.forward()+Vector3.UP*0.35)*settings.throw*1.5)
-  if not unique.is_empty(): worker.play_throw()
-  grip.release_all()
- elif held != null:
-  var parcel = held; parcel.release(worker,true)
-  parcel.body.linear_velocity = worker.forward()*settings.throw + Vector3.UP*Cargo.THROW_LIFT + worker.velocity
-  held = null
-
-func draw_grips():
- for hand in range(2):
-  var line: MeshInstance3D = grip_lines[hand]
-  line.visible = force_mode and is_instance_valid(grip.bodies[hand])
-  if not line.visible: continue
-  var direction: Vector3 = grip.points[hand]-grip.targets[hand]
-  var length := direction.length()
-  line.position = (grip.points[hand]+grip.targets[hand])*0.5
-  line.basis = Basis(Quaternion(Vector3.UP,direction/length)) if length > 0.001 else Basis.IDENTITY
-  line.scale = Vector3(1,maxf(0.005,length),1)
+  if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and held != null:
+   var parcel = held; parcel.release(worker,true)
+   parcel.body.linear_velocity = worker.forward()*settings.throw + Vector3.UP*Cargo.THROW_LIFT + worker.velocity
+   held = null
 
 func _physics_process(delta):
  elapsed += delta
  var movement := Vector2.ZERO
  if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
   movement = Vector2(float(Input.is_physical_key_pressed(KEY_D))-float(Input.is_physical_key_pressed(KEY_A)),float(Input.is_physical_key_pressed(KEY_S))-float(Input.is_physical_key_pressed(KEY_W))).limit_length()
- if force_mode:
-  var center: Vector3 = worker.position+worker.forward()*1.25+Vector3.UP*clampf(0.95-worker.look_pitch*1.4,0.6,2.2)
-  grip.step(center,worker.heading,worker.velocity,delta)
-  reaction_velocity += -grip.total_force.slide(Vector3.UP)/25.0*delta
-  reaction_velocity = reaction_velocity.limit_length(3.0)*exp(-2.0*delta)
- worker.simulate(movement,worker.look_yaw,jump_requested,delta,reaction_velocity); jump_requested = false
- draw_grips()
+ worker.simulate(movement,worker.look_yaw,jump_requested,delta); jump_requested = false
  if held != null:
   held.move_held(worker)
   if held.carrier == null: held = null
  var speed: float = parcels[0].body.linear_velocity.length()
- telemetry.text = "Tab: 설정 | E: 양손 | 마우스 좌·우: 한 손 | F: 던지기\n%s | %.0f N | 연결 오차 %.2f m" % ["힘 기반" if force_mode else "기존 운반",grip.total_force.length(),grip.max_error]
- status.text = "%.1f s | 낙하 %.2f m/s\n잡기 힘 %.0f N | 손 오차 %.2f m\n%s" % [elapsed,speed,grip.total_force.length(),grip.max_error,message]
+ status.text = "%.1f s | 낙하 상자 %.2f m/s\n%s" % [elapsed,speed,message]
 
 func _exit_tree():
  Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-
-func _process(_delta):
- if not is_instance_valid(worker): return
- var skeleton: Skeleton3D = worker.art_skeleton
- skeleton.clear_bones_global_pose_override()
- if not force_mode or not grip.is_holding(): return
- worker.visual.rotation.y = worker.heading
- skeleton.force_update_all_bone_transforms()
- for hand in range(2):
-  if not is_instance_valid(grip.bodies[hand]): continue
-  var prefix := "L_" if hand == 0 else "R_"
-  var upper := skeleton.find_bone(prefix+"Upperarm")
-  var fore := skeleton.find_bone(prefix+"Forearm")
-  var wrist := skeleton.find_bone(prefix+"Hand")
-  var target: Vector3 = skeleton.global_transform.affine_inverse()*(grip.bodies[hand].global_transform*grip.anchors[hand])
-  # Two-bone CCD changes rotations only: arm lengths remain unchanged.
-  for iteration in range(8):
-   for bone in [fore,upper]:
-    var pose := skeleton.get_bone_global_pose(bone)
-    var end := skeleton.get_bone_global_pose(wrist).origin
-    var from := end-pose.origin; var toward := target-pose.origin
-    if from.length() < 0.001 or toward.length() < 0.001: continue
-    pose.basis = Basis(Quaternion(from.normalized(),toward.normalized()))*pose.basis
-    skeleton.set_bone_global_pose_override(bone,pose,1.0,true)
-    skeleton.force_update_all_bone_transforms()
