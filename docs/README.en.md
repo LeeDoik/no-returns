@@ -18,3 +18,7 @@ Read 1→2 to understand the game, 3 to author content, 4 to choose next work an
 [Documentation rules](../AGENTS.md) · [Game launch guide](../README.en.md)
 
 [Proposed plan → implement → review process](current/06-iteration-loop.en.md)
+
+[MDA analysis — Core Fun and Core Loop](current/07-mda.en.md)
+
+[Expansion exploration — expeditions, road trips and city life](current/08-expansion-directions.en.md) · Future direction proposals

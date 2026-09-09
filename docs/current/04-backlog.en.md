@@ -2,6 +2,10 @@
 
 [한국어](04-backlog.ko.md)
 
+## ECO-01 — Sustaining rewards and equipment choices
+
+P1·Structure confirmed by code/arithmetic; experienced impact unverified. The minimum first-contract success payout for four players is 120 credits, exceeding the 110 cost of every maximum upgrade, so equipment progression can finish in the first shop. [Analysis and completed worksheet](07-mda.en.md). Price/availability changes remain proposals, not implementation. Completion criteria: compare income/purchase paths by crew size; if adjusted, check solo viability and choices in both shop windows, and record reasons for choices in actual co-op play. Retain current specification values until rules change.
+
 Reviewed: 2026-09-09 · Game 0.9.4 · Code baseline: this reactive-prop revision.
 
 

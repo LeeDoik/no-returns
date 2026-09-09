@@ -1,0 +1,20 @@
+{
+  "dimensions_m": [
+    0.8,
+    0.72,
+    0.76
+  ],
+  "texture_size": [
+    1254,
+    1254
+  ],
+  "objects": 18,
+  "triangles_all_expression_variants": 267,
+  "animation": "Scene, frames 1-90 at 30fps",
+  "expression_frames": {
+    "idle": 1,
+    "warning": 30,
+    "sneeze": 48
+  },
+  "effects": "Breath particles and collision not included; engine integration pending."
+}

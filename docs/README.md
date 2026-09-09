@@ -18,3 +18,7 @@
 [문서 관리 규칙](../AGENTS.md) · [게임 실행 안내](../README.md)
 
 [기획 → 구현 → 검토 루프 운영 제안](current/06-iteration-loop.ko.md)
+
+[MDA 분석 — 핵심 재미와 플레이 루프](current/07-mda.ko.md)
+
+[확장 기획 탐색 — 배송 원정·로드트립·도시 생활](current/08-expansion-directions.ko.md) · 향후 방향 제안

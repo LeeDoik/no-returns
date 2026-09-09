@@ -1,0 +1,8 @@
+{
+  "animation": "SneezeCycle",
+  "channels": 11,
+  "embedded_images": 1,
+  "meshes": 13,
+  "file_bytes": 950504,
+  "rig": "Rigid object transforms; no skeleton required."
+}

@@ -31,6 +31,10 @@ Documentation check: `python tools/check_docs.py`. Full suite: `python tools/run
 
 ## Outstanding release gates
 
+Current ECO-01 arithmetic is first four-player success 120 ≥ all maximum upgrades 110. This is a static calculation, not a new game-execution result. Economic changes require checking crew-specific income/purchases, choices in both shop windows and solo progression. Word content/structure in the [completed worksheet and analysis](07-mda.en.md) was checked, but visual review remains incomplete because no page renderer is available.
+
+For human fun evaluation, use the [MDA observation questions](07-mda.en.md) to record spontaneous cooperation, transport mastery, route discovery, recovery and retries. These remain analytical hypotheses, not new play results or completion evidence.
+
 - [ ] Separate Windows devices/networks with 2/3/4 players.
 - [ ] Onboarding, completion and replay review by a new four-player group.
 - [ ] Performance measurements and minimum/recommended specifications for the latest build.

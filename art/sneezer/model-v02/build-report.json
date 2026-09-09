@@ -1,0 +1,8 @@
+{
+  "version": "0.2",
+  "triangles_all_states": 1339,
+  "mouth_depth_m": 0.105,
+  "lid_thickness_m": 0.008,
+  "facial_relief_m": ".012-.026",
+  "warning_cheek_depth_m": 0.044
+}
