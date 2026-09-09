@@ -1,0 +1,21 @@
+extends SceneTree
+func _initialize(): call_deferred("run")
+func run():
+ var script = load("res://scripts/lab_force_grab.gd")
+ assert(script != null)
+ var body := RigidBody3D.new(); body.gravity_scale = 0; root.add_child(body)
+ var grab = script.new()
+ body.position = Vector3(0,1,-1)
+ var before := body.position
+ grab.attach(body,0)
+ assert(body.position == before and not body.freeze)
+ body.linear_velocity = Vector3(2,1,0)
+ grab.release(0)
+ assert(body.linear_velocity == Vector3(2,1,0))
+ grab.attach(body,0); grab.attach(body,1)
+ grab.step(Vector3(0,2,-1),0.0,Vector3.ZERO,1.0/60)
+ assert(grab.total_force.length() <= grab.max_force*2+0.01)
+ assert(grab.total_force.y > 0)
+ grab.release_all()
+ assert(not grab.is_holding())
+ body.free(); print("FORCE GRAB PASS"); quit()

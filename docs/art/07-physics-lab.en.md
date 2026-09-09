@@ -2,6 +2,8 @@
 
 [한국어](07-physics-lab.ko.md)
 
+> Latest revision: two-hand force grabbing is now the default. [Updated controls, physics and validation](08-force-grab.en.md) supersede the initial implementation below. Switch off force mode to compare legacy carrying.
+
 Reuse production workers and parcels in a separate single-player test map. Provide drop, ramp, six-box stack and narrow corridor stations. Tune mass, friction, restitution, gravity, angular damping and throw speed at runtime; reset all objects for comparisons. Save only to user://physics-lab.json, with no automatic production changes. Display the physics backend and tick rate without changing them. Gravity tuning affects test parcels only; worker gravity stays identical to production.
 
 Sequence: dedicated scene and controls; tuning panel and save/load; drop/reset/parameter checks; rendered review. Do not modify production code. This is a measurement tool for the current carrying implementation before redesign, not an online physics validation environment.
