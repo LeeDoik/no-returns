@@ -72,3 +72,5 @@ Existing paths are preserved for link/tool compatibility. These files contain hi
 - [Shipping Shrine expansion design and implementation plan](../superpowers/plans/2026-09-08-shrine-expansion.en.md)
 - [Connected sorting line · 0.8.0](../superpowers/plans/2026-09-08-sorting-line.en.md)
 - [Winding Shipping Shrine layout plan](../superpowers/plans/2026-09-08-winding-shrine.en.md)
+
+- [0.9.4 reactive impact](../art/09-reactive-impact.en.md)

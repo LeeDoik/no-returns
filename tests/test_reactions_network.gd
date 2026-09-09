@@ -15,7 +15,7 @@ func host_step() -> void:
 			# Trigger just after an ordinary metadata publication. Automatic transition
 			# publication must deliver the 0.18s warning before the next 0.2s tick.
 			game.tick = 12; game._publish_metadata(true)
-			game.reactions.get_node("Paperwork/Documents00").arm(Vector3.RIGHT)
+			game.reactions.get_node("Paperwork/Documents00").arm(Vector3.RIGHT,9.0,Vector3(1,0.4,2))
 			announce("reaction"); stage = 1
 		1:
 			if not checkpoint.acknowledged: return
@@ -34,6 +34,7 @@ func guest_step() -> void:
 			if spring.event_id != 1 or paper.event_id != 1: return
 			if not saw_warning: fail("guest missed spring compression warning"); return
 			if paper.phase != 2 or not paper.burst_direction.is_equal_approx(Vector3.RIGHT): fail("guest paper direction/state differs"); return
+			if not is_equal_approx(paper.impact_strength,9.0) or not paper.impact_point.is_equal_approx(Vector3(1,0.4,2)): fail("guest impact differs"); return
 			var first: int = paper.event_id; game.reactions.apply_snapshot(game.reactions.snapshot())
 			if paper.event_id != first: fail("duplicate metadata repeats event"); return
 			ack()

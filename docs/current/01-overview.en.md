@@ -2,7 +2,7 @@
 
 [한국어](01-overview.ko.md)
 
-Reviewed: 2026-09-09 · Game 0.9.3 · Code baseline `1d8fbde` (update when behavior changes).
+Reviewed: 2026-09-09 · Game 0.9.4 · Code baseline: this reactive-prop revision.
 
 
 ## Confirmed direction
@@ -13,7 +13,7 @@ The core loop is identify parcel traits → choose a route → carry/throw/catch
 
 ## Production scope
 
-The current game has one Shipping Shrine map and a separate physics laboratory. Development uses Godot 4.7.2, targeting Windows/Steam. The current 0.9.3 executable is a development build, not a release candidate. Production retains legacy carrying. The Human: Fall Flat-inspired force-grab experiment was reverted at the user's request and is not a current feature.
+The current game has one Shipping Shrine map and a separate physics laboratory. Development uses Godot 4.7.2, targeting Windows/Steam. The current 0.9.4 executable is a development build, not a release candidate. Production retains legacy carrying. The Human: Fall Flat-inspired force-grab experiment was reverted at the user's request and is not a current feature.
 
 Priorities are core controls/animation, meaningful map choices and situations, real four-player fun testing, and connection/release usability. More maps, full-body ragdolls and Unity migration are not committed scope. Do not promise completed Steam integration or store approval.
 

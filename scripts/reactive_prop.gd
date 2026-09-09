@@ -19,9 +19,14 @@ var occupied: Dictionary = {}
 var visual: Node3D
 var pieces: Array[Node3D] = []
 var origins: Array[Vector3] = []
+var spring_supports: Array[Dictionary] = []
+var plate_underside := 0.0
 var burst_age := 9.0
 var sound: AudioStreamPlayer3D
 var burst_direction := Vector3.FORWARD
+var impact_strength := 6.0
+var impact_point := Vector3.ZERO
+var paper_angular: Array[Vector3] = []
 var paper_velocity: Array[Vector3] = []
 var paper_resting: Array[bool] = []
 var paper_fanned := false
@@ -30,7 +35,7 @@ static var sounds: Dictionary = {}
 func _ready() -> void: _build()
 func _build() -> void:
 	if is_instance_valid(visual): visual.free()
-	pieces.clear(); origins.clear()
+	pieces.clear(); origins.clear(); spring_supports.clear()
 	visual = Node3D.new(); visual.name = "Preview"; add_child(visual)
 	if kind != 3: _part(Vector3(1.65,0.04,1.65),Vector3(0,0.025,0),Color("354b48"))
 	match kind:
@@ -41,9 +46,21 @@ func _build() -> void:
 		1:
 			var model := Art.model("return_spring"); visual.add_child(model)
 			var top := Art.find_part(model,"Top"); pieces.append(top); origins.append(top.position)
+			var plate := Art.find_part(top,"Launch plate") as MeshInstance3D
+			var to_model := model.global_transform.affine_inverse()
+			plate_underside = ((to_model * plate.global_transform) * plate.get_aabb()).position.y
+			for support in model.find_children("*","MeshInstance3D",true,false):
+				if str(support.name).begins_with("Compression spring") or str(support.name).begins_with("Guide pin") or str(support.name).begins_with("Surface Brushed dark steel"):
+					var rest: Transform3D = to_model * support.global_transform
+					var box: AABB = rest * support.get_aabb()
+					spring_supports.append({"node":support,"rest":rest,"bottom":box.position.y,"height":box.size.y,"model":model})
 		2:
 			for i in range(3):
-				var pivot := Node3D.new(); visual.add_child(pivot); pivot.position = Vector3(0,0.3+i*0.47,0)
+				var pivot := RigidBody3D.new(); visual.add_child(pivot); pivot.position = Vector3(0,0.3+i*0.47,0)
+				pivot.mass = 1.5; pivot.freeze = true; pivot.continuous_cd = true
+				pivot.collision_layer = 0; pivot.collision_mask = 0
+				pivot.physics_material_override = PhysicsMaterial.new(); pivot.physics_material_override.friction = 0.6; pivot.physics_material_override.bounce = 0.12
+				var collision := CollisionShape3D.new(); var box := BoxShape3D.new(); box.size = Vector3(0.864,0.456,0.776); collision.shape = box; pivot.add_child(collision)
 				var model := Art.model("standard"); pivot.add_child(model); model.scale = Vector3(1.08,0.57,0.97)
 				pieces.append(pivot); origins.append(pivot.position)
 		3:
@@ -66,15 +83,18 @@ func _part(size: Vector3, at: Vector3, tint: Color) -> MeshInstance3D:
 
 func reset() -> void:
 	phase = 0; remaining = 0; event_id = 0; occupied.clear(); burst_age = 9; burst_direction = Vector3.FORWARD; _present()
+	impact_strength = 6.0; impact_point = Vector3.ZERO
 	if sound: sound.stop()
 
-func arm(direction: Vector3 = Vector3.ZERO) -> void:
+func arm(direction: Vector3 = Vector3.ZERO, strength: float = 6.0, point: Vector3 = Vector3.INF) -> void:
 	if phase != 0: return
 	if direction.length_squared() > 0.1: burst_direction = direction.normalized()
+	impact_strength = clampf(strength,0.1,20.0)
+	impact_point = point if point.is_finite() else global_position+Vector3.UP*0.4
 	phase = 1; remaining = 0.18
 
 func fire() -> void:
-	phase = 2; remaining = reset_seconds; event_id += 1; burst_age = 0; _begin_paper(); _play(); _present()
+	phase = 2; remaining = reset_seconds; event_id += 1; burst_age = 0; _begin_paper(); _begin_tower(); _play(); _present()
 
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint(): return
@@ -85,10 +105,16 @@ func _process(delta: float) -> void:
 
 func _present() -> void:
 	if not is_instance_valid(visual): return
-	if kind == 3 and phase == 2: return
+	if kind in [2,3] and phase == 2: return
+	if kind == 1:
+		_present_spring()
+		return
 	for i in range(pieces.size()):
 		var p := pieces[i]; p.position = origins[i]; p.rotation = Vector3.ZERO; p.scale = Vector3.ONE
-		if phase == 1: p.scale.y = 0.7
+		if kind == 2:
+			p.freeze = true; p.collision_layer = 0; p.collision_mask = 0
+			p.linear_velocity = Vector3.ZERO; p.angular_velocity = Vector3.ZERO
+		if phase == 1 and kind != 2: p.scale.y = 0.7
 		if phase != 2: continue
 		var t := minf(burst_age,1.0)
 		match kind:
@@ -96,27 +122,60 @@ func _present() -> void:
 				p.scale.y = 0.16
 				p.position += Vector3(sin(i*2.4),0,cos(i*2.4))*t*0.7 + Vector3.UP*maxf(0,2*t-3*t*t)
 				p.rotation.y = t*(i-2)*0.5
-			1:
-				p.position.y += maxf(0,sin(minf(burst_age*5,PI)))*0.48
-				p.scale.y = 0.55
-			2:
-				p.position = origins[i].lerp(Vector3((i-1)*0.45,0.25,-0.4-i*0.38),minf(1,t*3))
-				p.rotation.x = minf(1,t*3)*(-1.1-i*0.15)
+
+func _present_spring() -> void:
+	# Rigid plate translation; supports deform around their fixed lower endpoints.
+	var offset := 0.0
+	if phase == 1:
+		var compression := clampf(1.0-remaining/0.18,0.0,1.0)
+		offset = -0.10*smoothstep(0.0,1.0,compression)
+	elif phase == 2:
+		var recovery := clampf(burst_age*5.0/PI,0.0,1.0)
+		offset = -0.10*(1.0-recovery)+sin(recovery*PI)*0.48
+	var top := pieces[0]
+	top.position = origins[0]+Vector3.UP*offset
+	top.scale = Vector3.ONE; top.rotation = Vector3.ZERO
+	for support in spring_supports:
+		var height: float = maxf(0.01,plate_underside+offset-support.bottom)
+		var ratio: float = height/support.height
+		var deformation := Transform3D(Basis.from_scale(Vector3(1,ratio,1)),Vector3(0,support.bottom*(1.0-ratio),0))
+		support.node.transform = support.node.get_parent().global_transform.affine_inverse()*support.model.global_transform*deformation*support.rest
 
 func apply_state(state: Array) -> void:
 	var old_event := event_id
 	phase = int(state[0]); remaining = float(state[1]); event_id = int(state[2])
 	burst_direction = state[3]
-	if event_id > old_event: burst_age = 0; _begin_paper(); _play()
+	impact_strength = state[4] if state.size()>4 else 6.0
+	impact_point = state[5] if state.size()>5 else global_position+Vector3.UP*0.4
+	if event_id > old_event: burst_age = 0; _begin_paper(); _begin_tower(); _play()
 	if event_id < old_event or phase == 0: burst_age = 9
 	_present()
 
+func _begin_tower() -> void:
+	if kind != 2: return
+	var rng := RandomNumberGenerator.new(); rng.seed = hash(str(name))+event_id*7919
+	for i in range(pieces.size()):
+		var body := pieces[i] as RigidBody3D
+		body.position = origins[i]; body.rotation = Vector3.ZERO; body.scale = Vector3.ONE
+		body.freeze = false; body.sleeping = false
+		# Visual debris collides with the map and other debris, not authoritative cargo/workers.
+		body.collision_layer = 8; body.collision_mask = 9
+		var distance := body.global_position.distance_to(impact_point)
+		var speed := impact_strength/(1.0+distance*0.5)
+		body.linear_velocity = burst_direction*speed+Vector3.UP*speed*0.25
+		var offset := (impact_point-body.global_position).limit_length(0.4)
+		body.angular_velocity = offset.cross(burst_direction*speed)*4.0+Vector3(rng.randf_range(-1,1),rng.randf_range(-1,1),rng.randf_range(-1,1))*speed*0.35
+
 func _begin_paper() -> void:
 	if kind != 3: return
-	paper_velocity.clear(); paper_resting.clear(); paper_fanned = false
+	paper_velocity.clear(); paper_angular.clear(); paper_resting.clear(); paper_fanned = false
+	var rng := RandomNumberGenerator.new(); rng.seed = hash(str(name))+event_id*7919
+	var sideways := burst_direction.cross(Vector3.UP).normalized()
 	for i in range(pieces.size()):
 		pieces[i].position = origins[i]; pieces[i].rotation = Vector3.ZERO; pieces[i].scale = Vector3.ONE
-		paper_velocity.append(burst_direction*(6.0+i*0.035)+Vector3.UP*(2.8+i*0.018))
+		var speed := impact_strength*rng.randf_range(0.88,1.12)
+		paper_velocity.append(burst_direction*speed+Vector3.UP*(0.6+speed*0.35)+sideways*rng.randf_range(-0.25,0.25)*speed)
+		paper_angular.append(Vector3(rng.randf_range(-1,1),rng.randf_range(-1,1),rng.randf_range(-1,1))*speed*0.5)
 		paper_resting.append(false)
 
 func _paper_step(delta: float) -> void:
@@ -124,7 +183,7 @@ func _paper_step(delta: float) -> void:
 	if burst_age > 0.14 and not paper_fanned:
 		var across := Vector3(-burst_direction.z,0,burst_direction.x)
 		for i in range(pieces.size()):
-			paper_velocity[i] += across*sin(i*2.4)*3.6 + Vector3.UP*cos(i*1.7)*1.5 + burst_direction*sin(i*0.9)*1.8
+			paper_velocity[i] += (across*sin(i*2.4)*0.6 + Vector3.UP*cos(i*1.7)*0.25 + burst_direction*sin(i*0.9)*0.3)*impact_strength
 		paper_fanned = true
 	for i in range(pieces.size()):
 		if paper_resting[i]: continue
@@ -143,7 +202,8 @@ func _paper_step(delta: float) -> void:
 			if hit.normal.y > 0.5: paper_resting[i] = true; sheet.rotation = Vector3(0,i*0.6,0)
 		else: sheet.global_position += motion
 		if not paper_resting[i] and burst_age > 0.14:
-			sheet.rotation = Vector3(sin(burst_age*8+i)*0.6,burst_age*(i%3-1)*1.2,cos(burst_age*7+i)*0.5)
+			sheet.rotation += paper_angular[i]*delta
+			paper_angular[i] *= exp(-delta*0.6)
 		paper_velocity[i] = v
 
 func _play() -> void:

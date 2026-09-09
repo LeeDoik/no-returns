@@ -59,6 +59,8 @@ def main():
         ("tests/test_conveyor.gd", "conveyor", b"CONVEYOR PASS"),
         ("tests/test_sorting_line.gd", "sorting-line", b"SORTING LINE PASS"),
         ("tests/test_reactive_props.gd", "reactive-props", b"REACTIVE PROPS PASS"),
+        ("tests/test_spring_visual.gd", "spring-visual", b"SPRING VISUAL PASS"),
+        ("tests/test_prop_impact.gd", "prop-impact", b"PROP IMPACT PASS"),
         ("tests/test_paperwork.gd", "paperwork", b"PAPERWORK PASS"),
         ("tests/test_contracts.gd", "contracts", b"CONTRACTS PASS"),
         ("tests/test_campaign.gd", "campaign", b"CAMPAIGN PASS"),

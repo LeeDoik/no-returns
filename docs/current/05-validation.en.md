@@ -2,10 +2,10 @@
 
 [한국어](05-validation.ko.md)
 
-Reviewed: 2026-09-09 · Game 0.9.3 · Code baseline `1d8fbde` (update when behavior changes).
+Reviewed: 2026-09-09 · Game 0.9.4 · Code baseline: this reactive-prop revision.
 
 
-Checked items mean only the evidence scope stated below. This documentation reorganization did not rerun game tests.
+Checked items mean only the version-specific evidence scope stated below. Version 0.9.3 is historical; new checks for this 0.9.4 revision are separated below.
 
 ## Verified development baseline — 0.9.3
 
@@ -40,3 +40,15 @@ Documentation check: `python tools/check_docs.py`. Full suite: `python tools/run
 - [ ] User approval to release and verification of public availability/installation.
 
 See the [release task list](../steam/05-release-checklist.md) and [roadmap](../steam/01-release-roadmap.md) for detailed procedures. Recheck fees, waiting periods and review requirements against official Steamworks documentation when executing them. This document is not a fresh platform-policy audit or approval evidence.
+
+## 0.9.4 spring/impact validation — results and limits
+
+- [x] Inspect the shipped GLB's merged spring/guide-pin mesh and continuously sample plate thickness and support endpoints.
+- [x] Check strength-dependent paper speed, world-space direction under a rotated parent, rigid-body carton travel and reset.
+- [x] Record 241 frames at 60 fps using the actual renderer and review compression, launch and scattering samples. `artifacts/reactive-fix.mp4`.
+- [x] Confirm passing results for 41 behavior, 10 two-peer and one four-peer checks. One two-peer check passed on retest after a timeout.
+- [x] Rebuild the Windows package, pass the execution smoke check and run 180 frames with the real graphics renderer. `artifacts/reactive-build.log`, `artifacts/reactive-packed-render.log`.
+
+The first full run failed the existing 2,048-byte campaign metadata check after adding impact data. Compressed transmission with bounded decompression corrected it, and that check then passed. Final full log: `artifacts/reactive-fix-suite-final.log`. Decorative cartons collide with the map/debris and do not physically push workers/delivery cargo. Identical final debris positions, external networking and extended human co-op quality remain unverified.
+
+Obtained passing results for 41 behavior checks, 10 two-peer scenarios and one four-peer scenario. The final throw-animation network check timed out once in the full run and passed on isolated retest; repeat-run stability needs further observation. Windows build/smoke checks and 180-frame packaged execution with the real renderer also passed. Evidence: `artifacts/reactive-fix-suite-final.log`, `artifacts/reactive-animation-network-retest.log`, `artifacts/reactive-four-final.log`, `artifacts/reactive-build.log`, `artifacts/reactive-packed-render.log`.

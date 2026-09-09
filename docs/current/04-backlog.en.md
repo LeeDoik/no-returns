@@ -2,7 +2,7 @@
 
 [한국어](04-backlog.ko.md)
 
-Reviewed: 2026-09-09 · Game 0.9.3 · Code baseline `1d8fbde` (update when behavior changes).
+Reviewed: 2026-09-09 · Game 0.9.4 · Code baseline: this reactive-prop revision.
 
 
 P0 blocks execution/release; P1 affects the core experience; P2 is follow-up improvement. Do not label unreproduced reports as confirmed bugs. Development owns items unless assigned otherwise; account/publication approvals require user involvement. Closing an item requires evidence and a fix version.
@@ -28,3 +28,7 @@ P0 blocks execution/release; P1 affects the core experience; P2 is follow-up imp
 ## New issue format
 
 ID / affected version / reproduction / expected behavior / actual behavior / frequency / video-log / impact / priority / state / owner / fix version and retest. Preserve user concerns while distinguishing them from reproduced evidence. Scope changes also update the [overview](01-overview.en.md).
+
+## PROP-01 / PROP-02 — 0.9.4 revision
+
+Fixed reproduced spring penetration and paper/carton responses that did not account adequately for direction/strength. Related behavior/network checks passed. The existing throw-network timeout and successful retest are recorded in the [validation document](05-validation.en.md). Frame-exact decorative-debris replication is outside scope.

@@ -2,7 +2,7 @@
 
 [한국어](03-guides.ko.md)
 
-Reviewed: 2026-09-09 · Game 0.9.3 · Code baseline `1d8fbde` (update when behavior changes).
+Reviewed: 2026-09-09 · Game 0.9.4 · Code baseline: this reactive-prop revision.
 
 
 ## Launch and editing entry points
@@ -51,3 +51,7 @@ This is a single-user test reusing production workers/parcels. Tab/Escape toggle
 ## Completion workflow
 
 Review relevant code/scenes and this guide → change → appropriate checks → update current specification/backlog/validation in both languages → log the change → save to local Git. Documentation-only work checks links, language parity and values rather than rerunning the entire game suite. Do not revert or commit unrelated user changes.
+
+## Editing reactive-device art
+
+Presentation code locates Top/Launch plate and metal support meshes by name. Rerun support-contact tests after re-exporting the model. Decorative carton debris is not delivery cargo. [0.9.4 production/validation details](../art/09-reactive-impact.en.md).

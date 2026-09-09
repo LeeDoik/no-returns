@@ -2,7 +2,7 @@
 
 [한국어](README.md)
 
-A third-person 3D cooperative game about delivering living parcels for 1–4 players. Current **development build 0.9.3**, Godot 4.7.2, targeting Windows/Steam. Steam invites and store/build approval are not complete.
+A third-person 3D cooperative game about delivering living parcels for 1–4 players. Current **development build 0.9.4**, Godot 4.7.2, targeting Windows/Steam. Steam invites and store/build approval are not complete.
 
 ## Launch
 
@@ -13,7 +13,7 @@ A third-person 3D cooperative game about delivering living parcels for 1–4 pla
 - [BUILD.cmd](BUILD.cmd): rebuild the package
 - [02_배포 파일 찾기.cmd](<02_배포 파일 찾기.cmd>): locate the distribution ZIP
 
-Keep the executable and PCK together. `build/NO_RETURNS_0.7` is the retained compatibility path; the actual version is 0.9.3. Cooperative players use the same build/map. Protocol is 11.
+Keep the executable and PCK together. `build/NO_RETURNS_0.7` is the retained compatibility path; the actual version is 0.9.4. Cooperative players use the same build/map. Protocol is 12.
 
 ## Documentation
 

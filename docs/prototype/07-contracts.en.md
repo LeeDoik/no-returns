@@ -1,4 +1,4 @@
-# NO RETURNS — Cooperative Contracts playtest 0.9.3
+# NO RETURNS — Cooperative Contracts playtest 0.9.4
 
 [한국어](07-contracts.ko.md)
 
@@ -22,7 +22,7 @@ Workwear colors identify the crew after removing the back board. Carrying uses a
 
 The conveyor now connects intake to a sorting lip. Pair Clinger + Hopper or sneeze cargo across, and scare the rat from the nest under sorting. The map contains 24 POP cushions, UP springs and TILT towers, plus 13 existing document locations that scatter when sneezed at. Eighteen sheets initially fly as a bundle, separate, and restore after eight seconds. [Interaction guide and validation scope](08-reactive-delivery.en.md).
 
-Everyone must use the **same 0.9.3 ZIP / protocol 11**. This supersedes build instructions in the older version history below.
+Everyone must use the **same 0.9.4 ZIP / protocol 12**. This supersedes build instructions in the older version history below.
 
 ## Start
 
@@ -182,3 +182,5 @@ The title screen separates starting play, the objective and crew connection. Lon
 The 10-second connection timeout includes waiting for admission after transport connects. Completed-run records are written to a temporary file before replacement; failures are shown and retried every five seconds while the game remains open. The same completion cannot be counted twice. Damaged numeric preferences fall back to defaults. If saving keeps failing, the record may not survive quitting; check the warning.
 
 Everyone must use the same 0.7.9 ZIP. Steam invitations/relay, separate-PC validation and Steam review are not complete.
+
+See the [0.9.4 revision](../art/09-reactive-impact.en.md) for spring contact and direction/strength-driven paper/carton responses.

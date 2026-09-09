@@ -2,7 +2,7 @@
 
 [한국어](02-spec.ko.md)
 
-Reviewed: 2026-09-09 · Game 0.9.3 · Code baseline `1d8fbde` (update when behavior changes).
+Reviewed: 2026-09-09 · Game 0.9.4 · Code baseline: this reactive-prop revision.
 
 
 This document is the current behavior reference. If historical plans conflict, check this document and its linked code. If new code differs, update this document rather than reverting code to historical numbers. Values below are defaults unless stated otherwise.
@@ -58,6 +58,10 @@ Sources: [sneezer](../../scripts/sneeze_rules.gd), [clinger](../../scripts/cling
 
 Workers use 41 bones and 18 clips, including eight carry directions, air, landing and throwing. Version 0.9.3 refines transitions and breathing. [Transition details](../art/08-animation-polish.en.md). Fully planted hand/foot IK and full-body ragdolls are absent.
 
-Networking uses ENet with host authority, up to four players, default UDP port 27842 and protocol 11. Protocol/map mismatches are checked on admission. At 60 Hz, general states publish every three ticks (20 Hz), packrats every six (10 Hz), and metadata every twelve (5 Hz). Steam friend invites are not connected. [Session code](../../scripts/session.gd).
+Networking uses ENet with host authority, up to four players, default UDP port 27842 and protocol 12. Protocol/map mismatches are checked on admission. At 60 Hz, general states publish every three ticks (20 Hz), packrats every six (10 Hz), and metadata every twelve (5 Hz). Steam friend invites are not connected. [Session code](../../scripts/session.gd).
 
 Local settings and completed-run records are saved. Records use `user://run_profile.cfg`; mid-campaign saves, Steam Cloud and online leaderboards are absent. Lab values use `user://physics-lab.json` only and never automatically change production.
+
+## 0.9.4 reactive-device revision
+
+The spring plate retains its thickness while spring/guide height follows its underside. Paper reacts to sneezes and fast worker/cargo contacts; decorative carton rigid bodies topple from impact direction, strength and position. Impact information replicates online. [Values and presentation/gameplay boundaries](../art/09-reactive-impact.en.md).

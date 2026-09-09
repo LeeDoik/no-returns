@@ -72,3 +72,5 @@
 - [배송 신전 확장 기획·작업 계획](../superpowers/plans/2026-09-08-shrine-expansion.ko.md)
 - [배송 분류선 연결 · 0.8.0](../superpowers/plans/2026-09-08-sorting-line.ko.md)
 - [배송 신전 굽은 동선 계획](../superpowers/plans/2026-09-08-winding-shrine.ko.md)
+
+- [0.9.4 reactive impact](../art/09-reactive-impact.ko.md)

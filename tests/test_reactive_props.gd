@@ -36,6 +36,12 @@ func run() -> void:
 	var remote = replica.get_node("Gameplay/Reactions")
 	remote.apply_snapshot(system.snapshot())
 	check(remote.snapshot() == system.snapshot(),"Guest presents identical phase and event state")
+	remote.reset(); remote.apply_wire_snapshot(system.wire_snapshot())
+	check(remote.snapshot() == system.snapshot(),"Compressed impact state round trips exactly")
+	var wire_before = remote.snapshot()
+	remote.apply_wire_snapshot(PackedByteArray())
+	remote.apply_wire_snapshot([])
+	check(remote.snapshot() == wire_before,"Invalid wire types leave state unchanged")
 	remote.reset(); check(remote.props[0].phase == 0 and remote.props[0].event_id == 0,"Restart resets reactions")
 	replica.free()
 	system.reset(); cargo.rules.holder_id = 1

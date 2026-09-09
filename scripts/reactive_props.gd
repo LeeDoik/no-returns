@@ -25,18 +25,17 @@ func reaches(p: Node3D, at: Vector3, radius: float) -> bool:
 func step(delta: float, workers: Dictionary, cargos: Dictionary) -> void:
 	if not is_finite(delta) or delta <= 0: return
 	for p in props:
-		if p.kind == 3: continue
 		var occupants: Dictionary = {}
 		for id in workers:
 			var w = workers[id]
 			if not reaches(p,w.global_position+Vector3.UP*0.5,p.trigger_radius): continue
 			var key := "w%d"%id; occupants[key] = true
-			if not p.occupied.has(key) and (p.kind != 2 or w.velocity.length() >= 1.8): p.arm()
+			if not p.occupied.has(key) and (p.kind not in [2,3] or w.velocity.length() >= 1.8): p.arm(w.velocity,w.velocity.length(),w.global_position+Vector3.UP*0.5)
 		for id in cargos:
 			var c = cargos[id]
 			if not free_cargo(c) or not reaches(p,c.body.global_position,p.trigger_radius): continue
 			var key := "c%d"%id; occupants[key] = true
-			if not p.occupied.has(key) and (p.kind != 2 or c.body.linear_velocity.length() >= 1.8): p.arm()
+			if not p.occupied.has(key) and (p.kind not in [2,3] or c.body.linear_velocity.length() >= 1.8): p.arm(c.body.linear_velocity,c.body.linear_velocity.length()*sqrt(c.body.mass/3.0),c.body.global_position)
 		p.occupied = occupants
 	# Separate loops prevent tree order from changing chain timing.
 	var fired: Array[Node3D] = []
@@ -52,7 +51,7 @@ func step(delta: float, workers: Dictionary, cargos: Dictionary) -> void:
 		if p.kind == 1: continue
 		for other in props:
 			if other == p or other.kind in [1,3]: continue
-			if reaches(p,other.global_position+Vector3.UP*0.5,2.65): other.arm()
+			if reaches(p,other.global_position+Vector3.UP*0.5,2.65): other.arm((other.global_position-p.global_position).normalized(),p.impact_strength*0.7,p.global_position)
 	_notify_changes()
 
 func _notify_changes() -> void:
@@ -80,22 +79,33 @@ func _direction(p: Node3D, at: Vector3) -> Vector3:
 
 func blast(source: Node3D, can_reach: Callable) -> void:
 	for p in props:
-		if can_reach.call(source,p.global_position+Vector3.UP*0.45): p.arm(Vector3.FORWARD.rotated(Vector3.UP,source.facing))
+		if can_reach.call(source,p.global_position+Vector3.UP*0.45): p.arm(Vector3.FORWARD.rotated(Vector3.UP,source.facing),8.0*clampf(1.0-source.body.global_position.distance_to(p.global_position)/8.2,0.4,1.0),source.body.global_position)
 	_notify_changes()
 func snapshot() -> PackedFloat32Array:
 	var state := PackedFloat32Array()
-	for p in props: state.append_array(PackedFloat32Array([p.phase,p.remaining,p.event_id,p.burst_direction.x,p.burst_direction.y,p.burst_direction.z]))
+	for p in props: state.append_array(PackedFloat32Array([p.phase,p.remaining,p.event_id,p.burst_direction.x,p.burst_direction.y,p.burst_direction.z,p.impact_strength,p.impact_point.x,p.impact_point.y,p.impact_point.z]))
 	return state
 func apply_snapshot(state: Variant) -> void:
-	if not state is PackedFloat32Array or state.size() != props.size()*6: return
+	if not state is PackedFloat32Array or state.size() != props.size()*10: return
 	for value in state:
 		if not is_finite(value): return
 	for i in range(props.size()):
-		var n := i*6
+		var n := i*10
 		if state[n] != floorf(state[n]) or state[n] < 0 or state[n] > 2: return
 		if state[n+1] < 0 or state[n+1] > 20: return
 		if state[n+2] != floorf(state[n+2]) or state[n+2] < 0 or state[n+2] > 16777215: return
 		if Vector3(state[n+3],state[n+4],state[n+5]).length() > 1.01: return
+		if state[n+6] < 0.1 or state[n+6] > 20: return
+		if Vector3(state[n+7],state[n+8],state[n+9]).length() > 10000: return
 	for i in range(props.size()):
-		var n := i*6
-		props[i].apply_state([int(state[n]),state[n+1],int(state[n+2]),Vector3(state[n+3],state[n+4],state[n+5])])
+		var n := i*10
+		props[i].apply_state([int(state[n]),state[n+1],int(state[n+2]),Vector3(state[n+3],state[n+4],state[n+5]),state[n+6],Vector3(state[n+7],state[n+8],state[n+9])])
+
+# Compress only the wire representation; decoding is bounded by the authored prop count.
+func wire_snapshot() -> PackedByteArray:
+	return snapshot().to_byte_array().compress(FileAccess.COMPRESSION_DEFLATE)
+func apply_wire_snapshot(data: Variant) -> void:
+	if not data is PackedByteArray or data.is_empty() or data.size() > props.size()*40+128: return
+	var raw: PackedByteArray = data.decompress(props.size()*40, FileAccess.COMPRESSION_DEFLATE)
+	if raw.size() != props.size()*40: return
+	apply_snapshot(raw.to_float32_array())

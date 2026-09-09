@@ -44,6 +44,8 @@ def main():
                            ('docs/art/06-motion-rebuild.en.md', 'MOTION.en.md'),
                            ('docs/art/08-animation-polish.ko.md', 'POLISH.ko.md'),
                            ('docs/art/08-animation-polish.en.md', 'POLISH.en.md'),
+                           ('docs/art/09-reactive-impact.ko.md', 'IMPACT.ko.md'),
+                           ('docs/art/09-reactive-impact.en.md', 'IMPACT.en.md'),
                            ('THIRD_PARTY_NOTICES.txt', 'THIRD_PARTY_NOTICES.txt')]:
         text = (ROOT / source).read_text(encoding='utf-8')
         text = text.replace('07-contracts.en.md', 'README.en.md').replace('07-contracts.ko.md', 'README.ko.md')
@@ -56,6 +58,8 @@ def main():
         text = text.replace('06-motion-rebuild.en.md', 'MOTION.en.md').replace('06-motion-rebuild.ko.md', 'MOTION.ko.md')
         text = text.replace('../art/08-animation-polish.', '08-animation-polish.')
         text = text.replace('08-animation-polish.en.md', 'POLISH.en.md').replace('08-animation-polish.ko.md', 'POLISH.ko.md')
+        text = text.replace('../art/09-reactive-impact.', '09-reactive-impact.')
+        text = text.replace('09-reactive-impact.en.md', 'IMPACT.en.md').replace('09-reactive-impact.ko.md', 'IMPACT.ko.md')
         destination = OUT / target
         destination.write_text(text, encoding='utf-8')
         files.append(destination)

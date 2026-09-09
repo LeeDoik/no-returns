@@ -2,7 +2,7 @@
 
 [한국어](README.md)
 
-Current baseline: **0.9.3 · 2026-09-09**. Use the specification below for current behavior; consult the archive for historical plans and values.
+Current baseline: **0.9.4 · 2026-09-09**. Use the specification below for current behavior; consult the archive for historical plans and values.
 
 1. [Game overview](current/01-overview.en.md)
 2. [Current specification](current/02-spec.en.md)
