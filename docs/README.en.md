@@ -16,3 +16,5 @@ Current baseline: **0.9.3 · 2026-09-09**. Use the specification below for curre
 Read 1→2 to understand the game, 3 to author content, 4 to choose next work and 5 to validate/release. Update the relevant document and Korean counterpart in the same task, and record it in the [work log](archive/change-log.en.md). Investigations/reviews with no implementation changes still log conclusions and unknowns. Historical checkboxes apply only to their original evidence scope.
 
 [Documentation rules](../AGENTS.md) · [Game launch guide](../README.en.md)
+
+[Proposed plan → implement → review process](current/06-iteration-loop.en.md)
