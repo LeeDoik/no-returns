@@ -1,0 +1,135 @@
+{
+  "date": "2026-09-13",
+  "starting_credits": 2715,
+  "spent": 1400,
+  "remaining_observed": 1315,
+  "decision": "Stop at 18; preserve credits; select six",
+  "candidates": [
+    {
+      "module": "Wall",
+      "variant": "A",
+      "id": "6c565b63-04ab-4f9b-a052-c57fce0c8135",
+      "url": "https://studio.tripo3d.ai/ko/workspace/generate/6c565b63-04ab-4f9b-a052-c57fce0c8135",
+      "cost": 20
+    },
+    {
+      "module": "Wall",
+      "variant": "B",
+      "id": "c157b77e-5904-43ff-a2dd-c8fc0f86d5ef",
+      "url": "https://studio.tripo3d.ai/ko/workspace/generate/c157b77e-5904-43ff-a2dd-c8fc0f86d5ef",
+      "cost": 85
+    },
+    {
+      "module": "Wall",
+      "variant": "C",
+      "id": "1f804613-539f-496f-90a7-6b915ba5d1c2",
+      "url": "https://studio.tripo3d.ai/ko/workspace/generate/1f804613-539f-496f-90a7-6b915ba5d1c2",
+      "cost": 85
+    },
+    {
+      "module": "Corner",
+      "variant": "A",
+      "id": "3a3b6b0f-70a4-433f-a861-043a07734c5b",
+      "url": "https://studio.tripo3d.ai/ko/workspace/generate/3a3b6b0f-70a4-433f-a861-043a07734c5b",
+      "cost": 20
+    },
+    {
+      "module": "Corner",
+      "variant": "B",
+      "id": "5b794c1d-2c9c-4f52-878c-3769acbacc55",
+      "url": "https://studio.tripo3d.ai/ko/workspace/generate/5b794c1d-2c9c-4f52-878c-3769acbacc55",
+      "cost": 85
+    },
+    {
+      "module": "Corner",
+      "variant": "C",
+      "id": "7477f530-2098-4c59-bff9-2d4c585ff4af",
+      "url": "https://studio.tripo3d.ai/ko/workspace/generate/7477f530-2098-4c59-bff9-2d4c585ff4af",
+      "cost": 85
+    },
+    {
+      "module": "Door",
+      "variant": "A",
+      "id": "9c56a949-f429-43ed-8d51-1e2a6d10f4b1",
+      "url": "https://studio.tripo3d.ai/ko/workspace/generate/9c56a949-f429-43ed-8d51-1e2a6d10f4b1",
+      "cost": 85
+    },
+    {
+      "module": "Door",
+      "variant": "B",
+      "id": "73d4052e-f78b-4145-9587-e728f3fd4732",
+      "url": "https://studio.tripo3d.ai/ko/workspace/generate/73d4052e-f78b-4145-9587-e728f3fd4732",
+      "cost": 85
+    },
+    {
+      "module": "Door",
+      "variant": "C",
+      "id": "ac35d3e2-49ae-431d-9ae1-3ccd2027dacd",
+      "url": "https://studio.tripo3d.ai/ko/workspace/generate/ac35d3e2-49ae-431d-9ae1-3ccd2027dacd",
+      "cost": 85
+    },
+    {
+      "module": "Floor",
+      "variant": "A",
+      "id": "3d1cffd9-00c9-4c9e-92dd-b2b5f213b30b",
+      "url": "https://studio.tripo3d.ai/ko/workspace/generate/3d1cffd9-00c9-4c9e-92dd-b2b5f213b30b",
+      "cost": 85
+    },
+    {
+      "module": "Floor",
+      "variant": "B",
+      "id": "6f731573-443f-4738-b1b0-5be56ef6bf7d",
+      "url": "https://studio.tripo3d.ai/ko/workspace/generate/6f731573-443f-4738-b1b0-5be56ef6bf7d",
+      "cost": 85
+    },
+    {
+      "module": "Floor",
+      "variant": "C",
+      "id": "b397f29d-7b9f-432c-9ade-8582ff9545dd",
+      "url": "https://studio.tripo3d.ai/ko/workspace/generate/b397f29d-7b9f-432c-9ade-8582ff9545dd",
+      "cost": 85
+    },
+    {
+      "module": "Lamp",
+      "variant": "A",
+      "id": "cfbb5195-620c-466d-951d-02c9f9e5502c",
+      "url": "https://studio.tripo3d.ai/ko/workspace/generate/cfbb5195-620c-466d-951d-02c9f9e5502c",
+      "cost": 85
+    },
+    {
+      "module": "Lamp",
+      "variant": "B",
+      "id": "470de6c2-3e36-4d70-bcde-9ee97af5ca4f",
+      "url": "https://studio.tripo3d.ai/ko/workspace/generate/470de6c2-3e36-4d70-bcde-9ee97af5ca4f",
+      "cost": 85
+    },
+    {
+      "module": "Lamp",
+      "variant": "C",
+      "id": "b6353f11-06f8-4db2-a200-6317ef6728b1",
+      "url": "https://studio.tripo3d.ai/ko/workspace/generate/b6353f11-06f8-4db2-a200-6317ef6728b1",
+      "cost": 85
+    },
+    {
+      "module": "Rack",
+      "variant": "A",
+      "id": "a1e48eb8-6514-4620-9648-53fa4cba4142",
+      "url": "https://studio.tripo3d.ai/ko/workspace/generate/a1e48eb8-6514-4620-9648-53fa4cba4142",
+      "cost": 85
+    },
+    {
+      "module": "Rack",
+      "variant": "B",
+      "id": "28ca899c-7d87-46b6-8f06-1100411cb5fe",
+      "url": "https://studio.tripo3d.ai/ko/workspace/generate/28ca899c-7d87-46b6-8f06-1100411cb5fe",
+      "cost": 85
+    },
+    {
+      "module": "Rack",
+      "variant": "C",
+      "id": "203b62dd-6e63-4bd1-892d-e4122203ba72",
+      "url": "https://studio.tripo3d.ai/ko/workspace/generate/203b62dd-6e63-4bd1-892d-e4122203ba72",
+      "cost": 85
+    }
+  ]
+}

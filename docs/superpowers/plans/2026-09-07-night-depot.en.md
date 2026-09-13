@@ -2,6 +2,9 @@
 
 [한국어](2026-09-07-night-depot.ko.md)
 
+> **Historical record · retired/superseded 2026-09-12.** The [PSX space-delivery design](../../current/01-overview.en.md) is current. Implementation, launch, art and values below are historical, not current status. Deleted files remain path records only.
+
+
 > Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../../README.en.md) first for current rules and outstanding work.
 
 September 7, 2026. Target: prototype 0.6. Use subagent-driven-development for the bounded depot presentation task and a final review. The creator approved the larger night depot; the Packrat scope is a nest placeholder only, with AI deferred.

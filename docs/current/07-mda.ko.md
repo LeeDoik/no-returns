@@ -2,6 +2,9 @@
 
 [English](07-mda.en.md)
 
+> **과거 기록 · 2026-09-12 폐기/대체.** 현재 게임은 [PSX 우주 배송 기획](01-overview.ko.md)을 따른다. 아래 구현·실행·아트·수치는 과거 자료이며 현재 상태가 아니다. 삭제된 파일은 경로 기록으로만 남긴다.
+
+
 분석일: 2026-09-09 · 게임 0.9.4 · 현재 명세 및 코드 정적 검토. 게임 코드 변경 없음. 아래 재미와 플레이 행동은 구현에서 도출한 가설이며 이번 작업에서 사람 플레이로 검증하지 않았다.
 
 ## 분석 기준
@@ -23,7 +26,7 @@ MDA는 Mechanics(규칙·행동), Dynamics(규칙과 플레이어 선택이 만�
 
 웃긴 사고와 수습담은 이 경험들이 결합하면서 생길 수 있는 결과다. 이를 독립적인 MDA 기본 분류로 취급하거나, 별도의 스토리 캠페인이 확인됐다는 뜻으로 Narrative를 핵심에 넣지는 않는다. Expression과 Submission 역시 현재 구현에서 중심 재미라고 판단할 근거가 약하다.
 
-근거: [운반·릴레이](../../scripts/cargo.gd), [배송 판정](../../scripts/cargo_rules.gd), [직원](../../scripts/worker.gd), [공동 보상](../../scripts/contracts.gd), [환경](../../scripts/route_challenges.gd), [벨트](../../scripts/conveyor.gd), [쥐](../../scripts/packrat.gd), [표시](../../scripts/pings.gd), [반응 소품](../../scripts/reactive_props.gd). 특수 화물 수치와 근거는 [현재 명세](02-spec.ko.md)를 따른다.
+근거: 운반·릴레이 (`../../scripts/cargo.gd`; retired file), 배송 판정 (`../../scripts/cargo_rules.gd`; retired file), 직원 (`../../scripts/worker.gd`; retired file), 공동 보상 (`../../scripts/contracts.gd`; retired file), 환경 (`../../scripts/route_challenges.gd`; retired file), 벨트 (`../../scripts/conveyor.gd`; retired file), 쥐 (`../../scripts/packrat.gd`; retired file), 표시 (`../../scripts/pings.gd`; retired file), 반응 소품 (`../../scripts/reactive_props.gd`; retired file). 특수 화물 수치와 근거는 [현재 명세](02-spec.ko.md)를 따른다.
 
 ## Core Loop — 어떤 선택과 행동을 반복하는가
 
@@ -42,7 +45,7 @@ MDA는 Mechanics(규칙·행동), Dynamics(규칙과 플레이어 선택이 만�
 | 피드백·보상 | 배송 점수, 릴레이 알림, 계약 중 누적 획득액 |
 | 반복 유도 | 다음 화물과 목적지, 남은 목표량·시간, 직전 실패에서 배운 개선 |
 
-배송은 목적지 일치·비운반·미배송 상태여야 인정된다. 릴레이는 다른 직원이 던진 화물을 던지기 후 3초 이내, 시작 위치에서 3m 이상 떨어진 곳에서 바닥 인접 검사에 걸리지 않는 상태로 받아야 성립한다. 단순한 근거리 전달 모두가 릴레이는 아니다. 근거: [cargo.gd의 pickup/release](../../scripts/cargo.gd), [cargo_rules.gd의 try_dispatch](../../scripts/cargo_rules.gd).
+배송은 목적지 일치·비운반·미배송 상태여야 인정된다. 릴레이는 다른 직원이 던진 화물을 던지기 후 3초 이내, 시작 위치에서 3m 이상 떨어진 곳에서 바닥 인접 검사에 걸리지 않는 상태로 받아야 성립한다. 단순한 근거리 전달 모두가 릴레이는 아니다. 근거: cargo.gd의 pickup/release (`../../scripts/cargo.gd`; retired file), cargo_rules.gd의 try_dispatch (`../../scripts/cargo_rules.gd`; retired file).
 
 ### 계약 안의 반복
 
@@ -54,9 +57,9 @@ MDA는 Mechanics(규칙·행동), Dynamics(규칙과 플레이어 선택이 만�
 
 **계약 성공 → 공동 크레딧 정산 → 방장이 장비 구매 → 전원 준비 → 다음 계약 → 3번째 계약 성공으로 완주.**
 
-배송당 10크레딧, 릴레이 배송은 5 추가이며 성공할 때 획득액과 성공 보너스 20을 공동 잔액에 반영한다. 실패에는 같은 지급을 하지 않으며 성공 루트의 장비 구매·다음 계약으로 자동 진행하지 않는다. 신발·시간·경적 구매는 다음 계약의 수행 조건을 바꾼다. 이 장비 성장은 현재 캠페인 안의 진행이며 영구 성장이라고 보지 않는다. 근거: [contracts.gd](../../scripts/contracts.gd), [진행 제어](../../scripts/main.gd).
+배송당 10크레딧, 릴레이 배송은 5 추가이며 성공할 때 획득액과 성공 보너스 20을 공동 잔액에 반영한다. 실패에는 같은 지급을 하지 않으며 성공 루트의 장비 구매·다음 계약으로 자동 진행하지 않는다. 신발·시간·경적 구매는 다음 계약의 수행 조건을 바꾼다. 이 장비 성장은 현재 캠페인 안의 진행이며 영구 성장이라고 보지 않는다. 근거: contracts.gd (`../../scripts/contracts.gd`; retired file), 진행 제어 (`../../scripts/main.gd`; retired file).
 
-연습은 별도 흐름이다. 기본 180초 배송 후 성공 시 전원 동의로 60초 추가 목표에 도전할 수 있으며 캠페인 장비 루프와 구분한다. 근거: [round_rules.gd](../../scripts/round_rules.gd), [main.gd](../../scripts/main.gd).
+연습은 별도 흐름이다. 기본 180초 배송 후 성공 시 전원 동의로 60초 추가 목표에 도전할 수 있으며 캠페인 장비 루프와 구분한다. 근거: round_rules.gd (`../../scripts/round_rules.gd`; retired file), main.gd (`../../scripts/main.gd`; retired file).
 
 ## 핵심 가설의 약점과 확인할 점
 
@@ -74,7 +77,7 @@ MDA는 Mechanics(규칙·행동), Dynamics(규칙과 플레이어 선택이 만�
 
 2026-09-09에 사용자 제공 Word 양식의 7개 답변란을 채우고 반복 구조·보완 우선순위를 덧붙였다. [한국어 작성본](../deliverables/core_loop_No_Returns.filled.ko.docx), [영어 대응본](../deliverables/core_loop_No_Returns.filled.en.docx). 원본은 보존했다.
 
-[contracts.gd](../../scripts/contracts.gd)의 현재 규칙에서 전체 최대 장비 비용은 신발 20×2 + 시간 25×2 + 경적 20 = 110이다. 4인 첫 계약은 릴레이 없이 목표 10개만 달성해도 10×10 + 성공 보너스 20 = 120을 받는다. 구매 횟수 제한이 없어 첫 계약 뒤 전 장비 최대 강화가 가능하다. 따라서 다음 계약의 구매 선택과 릴레이 추가 수입의 장비 사용처가 일찍 소진될 수 있다. 이는 코드와 산술로 확인한 구조이며 실제 재미 저하는 아직 가설이다. 기록·운반 효율·협동 자체의 가치를 부정하지 않는다.
+contracts.gd (`../../scripts/contracts.gd`; retired file)의 현재 규칙에서 전체 최대 장비 비용은 신발 20×2 + 시간 25×2 + 경적 20 = 110이다. 4인 첫 계약은 릴레이 없이 목표 10개만 달성해도 10×10 + 성공 보너스 20 = 120을 받는다. 구매 횟수 제한이 없어 첫 계약 뒤 전 장비 최대 강화가 가능하다. 따라서 다음 계약의 구매 선택과 릴레이 추가 수입의 장비 사용처가 일찍 소진될 수 있다. 이는 코드와 산술로 확인한 구조이며 실제 재미 저하는 아직 가설이다. 기록·운반 효율·협동 자체의 가치를 부정하지 않는다.
 
 보완 우선순위는 ① 보상→다음 구매 선택의 지속성 ② 운반 방식 간 선택 가치 ③ 사고 수습→학습·보람 ④ 다음 계약의 변화다. 가격·해금 조정과 맵 구간 비교는 제안이며 승인된 구현 변경은 아니다. [ECO-01과 기존 백로그](04-backlog.ko.md)를 따른다.
 

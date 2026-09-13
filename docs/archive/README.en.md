@@ -2,6 +2,14 @@
 
 [한국어](README.md)
 
+## 2026-09-12 — restart as PSX space delivery
+
+Previous Godot/Unity games, art and builds were deleted. Documents and existing Git history remain; this does not imply copies of deleted uncommitted files were kept. The [deletion manifest](space-reset-deletion-manifest.json) is not a backup.
+
+[Previous overview](pre-space-2026-09-12/docs/current/01-overview.en.md) · [previous specification](pre-space-2026-09-12/docs/current/02-spec.en.md) · [previous guide](pre-space-2026-09-12/docs/current/03-guides.en.md) · [previous backlog](pre-space-2026-09-12/docs/current/04-backlog.en.md) · [previous validation](pre-space-2026-09-12/docs/current/05-validation.en.md)
+
+Documents below and earlier-numbered historical documents under docs/current are archival. The [current design](../current/01-overview.en.md) governs the new game.
+
 Existing paths are preserved for link/tool compatibility. These files contain historical plans, detailed guides and validation records. The specification in the [documentation home](../README.en.md) takes precedence for current state. Do not copy historical values as current defaults. Records of cancelled features do not imply current implementation.
 
 [Former README](legacy-readme.en.md) · [Work log](change-log.en.md)
@@ -74,3 +82,7 @@ Existing paths are preserved for link/tool compatibility. These files contain hi
 - [Winding Shipping Shrine layout plan](../superpowers/plans/2026-09-08-winding-shrine.en.md)
 
 - [0.9.4 reactive impact](../art/09-reactive-impact.en.md)
+
+## SIDE EFFECTS — 2026-09-12
+
+ZIP (`side-effects-2026-09-12.zip`; retired file) · [기획 / Design](../current/14-side-effects.en.md) · [인계 / Handoff](../current/16-side-effects-handoff.en.md) · [과거 구현 / Historical implementation](../current/17-side-effects-implementation.en.md).

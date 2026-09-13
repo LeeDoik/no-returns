@@ -1,0 +1,38 @@
+[
+  {
+    "module": "Wall",
+    "triangles": 8294,
+    "uv": true,
+    "texture_files": true
+  },
+  {
+    "module": "Corner",
+    "triangles": 9563,
+    "uv": true,
+    "texture_files": true
+  },
+  {
+    "module": "Door",
+    "triangles": 8196,
+    "uv": true,
+    "texture_files": true
+  },
+  {
+    "module": "Floor",
+    "triangles": 9306,
+    "uv": true,
+    "texture_files": true
+  },
+  {
+    "module": "Lamp",
+    "triangles": 8343,
+    "uv": true,
+    "texture_files": true
+  },
+  {
+    "module": "Rack",
+    "triangles": 9046,
+    "uv": true,
+    "texture_files": true
+  }
+]

@@ -2,6 +2,9 @@
 
 [한국어](2026-09-07-release-design.ko.md)
 
+> **Historical record · retired/superseded 2026-09-12.** The [PSX space-delivery design](../../current/01-overview.en.md) is current. Implementation, launch, art and values below are historical, not current status. Deleted files remain path records only.
+
+
 > Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../../README.en.md) first for current rules and outstanding work.
 
 Version 0.7 design, September 7, 2026. Korean is the default documentation entry point. [Implementation plan](../plans/2026-09-07-release-polish.en.md).

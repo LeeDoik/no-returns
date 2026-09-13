@@ -1,0 +1,104 @@
+[
+  {
+    "module": "Wall",
+    "variant": "B",
+    "source": "NR_Wall_Smart_B\\NR_Wall_Smart_B.fbx",
+    "triangles": 8294,
+    "polygons": 4543,
+    "dimensions_m": [
+      3.0,
+      0.6052762269973755,
+      2.827064037322998
+    ],
+    "textures": [
+      "NR_Wall_BaseColor_512.png"
+    ],
+    "pivot": "bottom center",
+    "status": "offline review; scale proposal; no collision or Unity validation"
+  },
+  {
+    "module": "Corner",
+    "variant": "C",
+    "source": "NR_Corner_Smart_C\\NR_Corner_Smart_C.fbx",
+    "triangles": 9563,
+    "polygons": 5674,
+    "dimensions_m": [
+      2.399120569229126,
+      2.654128074645996,
+      3.0
+    ],
+    "textures": [
+      "NR_Corner_BaseColor_512.png"
+    ],
+    "pivot": "bottom center",
+    "status": "offline review; scale proposal; no collision or Unity validation"
+  },
+  {
+    "module": "Door",
+    "variant": "B",
+    "source": "NR_Door_Smart_B_Textured\\NR_Door_Smart_B_Textured.fbx",
+    "triangles": 8196,
+    "polygons": 4623,
+    "dimensions_m": [
+      3.200000047683716,
+      2.043185234069824,
+      3.200000047683716
+    ],
+    "textures": [
+      "NR_Door_BaseColor_512.png"
+    ],
+    "pivot": "bottom center",
+    "status": "offline review; scale proposal; no collision or Unity validation"
+  },
+  {
+    "module": "Floor",
+    "variant": "B",
+    "source": "NR_Floor_Smart_B\\NR_Floor_Smart_B.fbx",
+    "triangles": 9306,
+    "polygons": 5135,
+    "dimensions_m": [
+      3.0,
+      3.1347625255584717,
+      0.26186853647232056
+    ],
+    "textures": [
+      "NR_Floor_BaseColor_512.png"
+    ],
+    "pivot": "bottom center",
+    "status": "offline review; scale proposal; no collision or Unity validation"
+  },
+  {
+    "module": "Lamp",
+    "variant": "C",
+    "source": "NR_Lamp_Smart_C_Textured\\NR_Lamp_Smart_C_Textured.fbx",
+    "triangles": 8343,
+    "polygons": 5294,
+    "dimensions_m": [
+      1.1999999284744263,
+      0.2866635322570801,
+      0.7146067023277283
+    ],
+    "textures": [
+      "NR_Lamp_BaseColor_512.png"
+    ],
+    "pivot": "bottom center",
+    "status": "offline review; scale proposal; no collision or Unity validation"
+  },
+  {
+    "module": "Rack",
+    "variant": "A",
+    "source": "NR_Rack_Smart_A_Textured\\NR_Rack_Smart_A_Textured.fbx",
+    "triangles": 9046,
+    "polygons": 4799,
+    "dimensions_m": [
+      2.374206066131592,
+      1.5534932613372803,
+      2.3999998569488525
+    ],
+    "textures": [
+      "NR_Rack_BaseColor_512.png"
+    ],
+    "pivot": "bottom center",
+    "status": "offline review; scale proposal; no collision or Unity validation"
+  }
+]

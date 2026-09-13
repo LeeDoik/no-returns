@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Wall",
+    "triangles": 1500,
+    "dimensions_m": [
+      3.1910476684570312,
+      0.7060208320617676,
+      3.0
+    ],
+    "status": "review only; proportions and collision fit unverified"
+  },
+  {
+    "name": "Corner",
+    "triangles": 2500,
+    "dimensions_m": [
+      2.479945421218872,
+      1.5483088493347168,
+      3.0
+    ],
+    "status": "review only; proportions and collision fit unverified"
+  },
+  {
+    "name": "Door",
+    "triangles": 3000,
+    "dimensions_m": [
+      3.202693462371826,
+      1.2162114381790161,
+      3.200000047683716
+    ],
+    "status": "review only; proportions and collision fit unverified"
+  },
+  {
+    "name": "Floor",
+    "triangles": 1000,
+    "dimensions_m": [
+      3.4174070358276367,
+      3.4149551391601562,
+      0.25
+    ],
+    "status": "review only; proportions and collision fit unverified"
+  },
+  {
+    "name": "Lamp",
+    "triangles": 800,
+    "dimensions_m": [
+      1.0145471096038818,
+      0.3144500255584717,
+      0.6500000357627869
+    ],
+    "status": "review only; proportions and collision fit unverified"
+  },
+  {
+    "name": "Rack",
+    "triangles": 4000,
+    "dimensions_m": [
+      2.4264004230499268,
+      1.5775837898254395,
+      2.3999998569488525
+    ],
+    "status": "review only; proportions and collision fit unverified"
+  }
+]

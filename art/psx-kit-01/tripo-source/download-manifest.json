@@ -1,0 +1,101 @@
+[
+  {
+    "file": "NR_Corner_Tripo_2500.glb",
+    "bytes": 6073544,
+    "triangles": 2500,
+    "meshes": 1,
+    "materials": 1,
+    "images": 3,
+    "sha256": "1dd1ed56bc6584d2e84b50b278a13ce540dbd4f595b4cd4b69365a15ae13c762"
+  },
+  {
+    "file": "NR_Corner_Tripo_Source.glb",
+    "bytes": 58428748,
+    "triangles": 1979820,
+    "meshes": 1,
+    "materials": 1,
+    "images": 3,
+    "sha256": "6686ec22daffe2024fb00a6a8c01dd6c3a4ae6271ae0d5e18e06339106bf3ecb"
+  },
+  {
+    "file": "NR_Door_Tripo_3000.glb",
+    "bytes": 6829840,
+    "triangles": 3000,
+    "meshes": 1,
+    "materials": 1,
+    "images": 3,
+    "sha256": "d034685478c826c8390aa80e18c61ce7bfb75e021bc88390ab019d5b858a6635"
+  },
+  {
+    "file": "NR_Door_Tripo_Source.glb",
+    "bytes": 56543148,
+    "triangles": 1884644,
+    "meshes": 1,
+    "materials": 1,
+    "images": 3,
+    "sha256": "350f945af47f2e203c908c506837dfc561ef897af511791de1cea33e7b67036b"
+  },
+  {
+    "file": "NR_Floor_Tripo_1000.glb",
+    "bytes": 4294860,
+    "triangles": 1000,
+    "meshes": 1,
+    "materials": 1,
+    "images": 3,
+    "sha256": "b71e06f7fbd15ff32c1a28adf4c0f8c829ebf0315c48075f3be0485c99be879b"
+  },
+  {
+    "file": "NR_Floor_Tripo_Source.glb",
+    "bytes": 57299708,
+    "triangles": 1946442,
+    "meshes": 1,
+    "materials": 1,
+    "images": 3,
+    "sha256": "374599796f63d732ac1225fd94d56d63907146ad794ba4030132db442d3a619b"
+  },
+  {
+    "file": "NR_Lamp_Tripo_800.glb",
+    "bytes": 4909988,
+    "triangles": 800,
+    "meshes": 1,
+    "materials": 1,
+    "images": 3,
+    "sha256": "5eeadbf02215951e7c3890ec08eb463b05cede6c4cf69fc676c50442734642e7"
+  },
+  {
+    "file": "NR_Lamp_Tripo_Source.glb",
+    "bytes": 56915520,
+    "triangles": 1934640,
+    "meshes": 1,
+    "materials": 1,
+    "images": 3,
+    "sha256": "e47a02b441060e60c1e5c393f7ee90e924ddbdd5ea4b2ecd68e49e3eb75e5a39"
+  },
+  {
+    "file": "NR_Rack_Tripo_4000.glb",
+    "bytes": 7356936,
+    "triangles": 4000,
+    "meshes": 1,
+    "materials": 1,
+    "images": 3,
+    "sha256": "1136de45fbc6c65d3c231f3fd9a61ec91a57a1020a0392b5a562adc128f04894"
+  },
+  {
+    "file": "NR_Rack_Tripo_Source.glb",
+    "bytes": 56777104,
+    "triangles": 1867433,
+    "meshes": 1,
+    "materials": 1,
+    "images": 3,
+    "sha256": "f7b98eeb19ed578ba2e3b11ded754a37b430d8a16eb7c7e05d4f46d13fa17884"
+  },
+  {
+    "file": "NR_Wall_Tripo_1500.glb",
+    "bytes": 4904828,
+    "triangles": 1500,
+    "meshes": 1,
+    "materials": 1,
+    "images": 3,
+    "sha256": "ac0915b0e99552c7ae883d3d33d2222816a38598e030a6080f6c8588c4e733fc"
+  }
+]

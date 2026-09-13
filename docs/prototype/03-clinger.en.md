@@ -2,6 +2,9 @@
 
 [한국어](03-clinger.ko.md)
 
+> **Historical record · retired/superseded 2026-09-12.** The [PSX space-delivery design](../current/01-overview.en.md) is current. Implementation, launch, art and values below are historical, not current status. Deleted files remain path records only.
+
+
 > Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../README.en.md) first for current rules and outstanding work.
 
 **Historical 0.3 record. The current project runs [0.4 with 2–4 workers](04-four-players.en.md).** Two-player limits and packet measurements below describe 0.3.
@@ -12,7 +15,7 @@ Prototype 0.3 · 2026-09-07 · Windows · Godot 4.7.2
 
 ## Start playing
 
-Close older game windows, double-click [PLAY.cmd](../../PLAY.cmd), and choose **Practice Alone**. Use the language button if needed. Find the lime crate with raised sticky pads at the right-hand intake, marked **CLINGER / A**.
+Close older game windows, double-click PLAY.cmd (`../../PLAY.cmd`; retired file), and choose **Practice Alone**. Use the language button if needed. Find the lime crate with raised sticky pads at the right-hand intake, marked **CLINGER / A**.
 
 Walk into it after its initial one-second grace period. It sticks for five seconds and your normal movement becomes 70% speed; movement and jumping remain available. A connection and countdown identify the bond. Wait for it to fall off, or have a coworker aim the Sneezer at the attached crate to remove it early. The Clinger receives the sneeze's push as it detaches.
 
@@ -22,7 +25,7 @@ All three types go to **A**. The quota remains five deliveries in three minutes;
 
 ## Two short experiments
 
-Run [PLAY_TWO.cmd](../../PLAY_TWO.cmd). Wait for two workers in the host window and press **Start Shift**. Switch between windows on one PC to control each worker; two keyboards on that PC do not control separate players simultaneously.
+Run PLAY_TWO.cmd (`../../PLAY_TWO.cmd`; retired file). Wait for two workers in the host window and press **Start Shift**. Switch between windows on one PC to control each worker; two keyboards on that PC do not control separate players simultaneously.
 
 1. **Rescue a coworker.** Let the Clinger stick to the other worker. Pick up the Sneezer, aim its nose at the attached crate and watch the warning. The sneeze releases the bond and may also shove the coworker. Was the attempted rescue useful, funny or merely annoying?
 2. **Bundle a delivery.** Carry the Clinger beside the Standard crate, put it down within contact range, then step away so the crate becomes its nearest target. Pick up the Standard crate and carry both to A before the five-second bond expires. Both should count once. If time runs out, the Clinger drops and can be recovered.
@@ -64,4 +67,4 @@ The two-process Clinger test verifies matching target/countdown, followed motion
 
 The behavior suite and editor import returned 0 without script errors. Existing sandbox certificate and `user://` directory/cache errors still appeared and are recorded separately from gameplay failures. Actual Korean/English menus and attachment/rescue captures were inspected; audio listening, long sessions, human fun and remote connectivity still need testing.
 
-Local renderer captures: [attached](../../artifacts/clinger-attached.png), [rescue warning](../../artifacts/clinger-rescue-warning.png), [released](../../artifacts/clinger-released.png), [Korean menu](../../artifacts/clinger-menu-ko.png), [English menu](../../artifacts/clinger-menu-en.png). These ignored inspection artifacts can be recreated with graphical `tests/capture_clinger.gd`. The [implementation plan](../superpowers/plans/2026-09-07-clinger.en.md) records scope. No new engine, purchased asset, Steam registration, public export or upload was performed.
+Local renderer captures: attached (`../../artifacts/clinger-attached.png`; retired file), rescue warning (`../../artifacts/clinger-rescue-warning.png`; retired file), released (`../../artifacts/clinger-released.png`; retired file), Korean menu (`../../artifacts/clinger-menu-ko.png`; retired file), English menu (`../../artifacts/clinger-menu-en.png`; retired file). These ignored inspection artifacts can be recreated with graphical `tests/capture_clinger.gd`. The [implementation plan](../superpowers/plans/2026-09-07-clinger.en.md) records scope. No new engine, purchased asset, Steam registration, public export or upload was performed.

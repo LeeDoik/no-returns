@@ -2,6 +2,9 @@
 
 [한국어](06-iteration-loop.ko.md)
 
+> **Historical record · retired/superseded 2026-09-12.** The [PSX space-delivery design](01-overview.en.md) is current. Implementation, launch, art and values below are historical, not current status. Deleted files remain path records only.
+
+
 Update 2026-09-09: the small-area checks and limited release scope below are earlier operating proposals, not a cap on long-term design. The user requested broader exploration including travel and randomized maps. For [expansion directions](08-expansion-directions.en.md), derive validation questions from the larger vision before choosing experiment scope. The previous order is not a fixed schedule that takes priority over choosing a new vision.
 
 Status: proposed operating process · 2026-09-09 · baseline build 0.9.3. Writing this document does not start an automation, scheduled task or authorize release.

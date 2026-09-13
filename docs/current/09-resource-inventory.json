@@ -1,0 +1,687 @@
+{
+  "date": "2026-09-09",
+  "scope": "assets/, art/ media; scenes/; scripts/ shaders. Excludes import caches, builds, artifacts, tools and metadata. Static inspection, not a runtime trace.",
+  "files": [
+    {
+      "path": "assets/art/release-01/clinger.glb",
+      "bytes": 638152,
+      "type": "glb",
+      "meshes": 21,
+      "materials": 7,
+      "images": 0,
+      "animations": []
+    },
+    {
+      "path": "assets/art/release-01/conveyor_module.glb",
+      "bytes": 317088,
+      "type": "glb",
+      "meshes": 4,
+      "materials": 4,
+      "images": 0,
+      "animations": []
+    },
+    {
+      "path": "assets/art/release-01/dispatch.glb",
+      "bytes": 275120,
+      "type": "glb",
+      "meshes": 6,
+      "materials": 6,
+      "images": 0,
+      "animations": []
+    },
+    {
+      "path": "assets/art/release-01/hopper.glb",
+      "bytes": 571452,
+      "type": "glb",
+      "meshes": 22,
+      "materials": 8,
+      "images": 0,
+      "animations": []
+    },
+    {
+      "path": "assets/art/release-01/packing_cushion.glb",
+      "bytes": 139460,
+      "type": "glb",
+      "meshes": 9,
+      "materials": 4,
+      "images": 0,
+      "animations": []
+    },
+    {
+      "path": "assets/art/release-01/packrat.glb",
+      "bytes": 8279884,
+      "type": "glb",
+      "meshes": 1,
+      "materials": 1,
+      "images": 4,
+      "animations": []
+    },
+    {
+      "path": "assets/art/release-01/packrat_Image_0.jpg",
+      "bytes": 3293919,
+      "type": "jpg"
+    },
+    {
+      "path": "assets/art/release-01/packrat_Image_1.jpg",
+      "bytes": 1835691,
+      "type": "jpg"
+    },
+    {
+      "path": "assets/art/release-01/packrat_Image_2.jpg",
+      "bytes": 2191727,
+      "type": "jpg"
+    },
+    {
+      "path": "assets/art/release-01/packrat_Image_3.jpg",
+      "bytes": 85913,
+      "type": "jpg"
+    },
+    {
+      "path": "assets/art/release-01/pendant.glb",
+      "bytes": 46556,
+      "type": "glb",
+      "meshes": 4,
+      "materials": 4,
+      "images": 0,
+      "animations": []
+    },
+    {
+      "path": "assets/art/release-01/return_spring.glb",
+      "bytes": 306080,
+      "type": "glb",
+      "meshes": 4,
+      "materials": 4,
+      "images": 0,
+      "animations": []
+    },
+    {
+      "path": "assets/art/release-01/shelf.glb",
+      "bytes": 306356,
+      "type": "glb",
+      "meshes": 3,
+      "materials": 3,
+      "images": 0,
+      "animations": []
+    },
+    {
+      "path": "assets/art/release-01/sneezer.glb",
+      "bytes": 532228,
+      "type": "glb",
+      "meshes": 20,
+      "materials": 6,
+      "images": 0,
+      "animations": []
+    },
+    {
+      "path": "assets/art/release-01/standard.glb",
+      "bytes": 224888,
+      "type": "glb",
+      "meshes": 9,
+      "materials": 5,
+      "images": 0,
+      "animations": []
+    },
+    {
+      "path": "assets/art/release-01/textures/cardboard_basecolor.png",
+      "bytes": 15970585,
+      "type": "png"
+    },
+    {
+      "path": "assets/art/release-01/textures/cardboard_height.png",
+      "bytes": 5296492,
+      "type": "png"
+    },
+    {
+      "path": "assets/art/release-01/textures/cardboard_normal.png",
+      "bytes": 16736327,
+      "type": "png"
+    },
+    {
+      "path": "assets/art/release-01/textures/cardboard_roughness.png",
+      "bytes": 7036822,
+      "type": "png"
+    },
+    {
+      "path": "assets/art/release-01/textures/cardboard_seamless.png",
+      "bytes": 15970585,
+      "type": "png"
+    },
+    {
+      "path": "assets/art/release-01/textures/floor_basecolor.png",
+      "bytes": 16267315,
+      "type": "png"
+    },
+    {
+      "path": "assets/art/release-01/textures/floor_height.png",
+      "bytes": 5186926,
+      "type": "png"
+    },
+    {
+      "path": "assets/art/release-01/textures/floor_normal.png",
+      "bytes": 16354810,
+      "type": "png"
+    },
+    {
+      "path": "assets/art/release-01/textures/floor_roughness.png",
+      "bytes": 7181005,
+      "type": "png"
+    },
+    {
+      "path": "assets/art/release-01/textures/floor_seamless.png",
+      "bytes": 16267315,
+      "type": "png"
+    },
+    {
+      "path": "assets/art/release-01/textures/paint_basecolor.png",
+      "bytes": 10412420,
+      "type": "png"
+    },
+    {
+      "path": "assets/art/release-01/textures/paint_height.png",
+      "bytes": 4871511,
+      "type": "png"
+    },
+    {
+      "path": "assets/art/release-01/textures/paint_normal.png",
+      "bytes": 15530362,
+      "type": "png"
+    },
+    {
+      "path": "assets/art/release-01/textures/paint_roughness.png",
+      "bytes": 5341554,
+      "type": "png"
+    },
+    {
+      "path": "assets/art/release-01/textures/paint_seamless.png",
+      "bytes": 10412420,
+      "type": "png"
+    },
+    {
+      "path": "assets/art/release-01/workbench.glb",
+      "bytes": 229788,
+      "type": "glb",
+      "meshes": 5,
+      "materials": 5,
+      "images": 0,
+      "animations": []
+    },
+    {
+      "path": "assets/art/release-01/worker.glb",
+      "bytes": 9591636,
+      "type": "glb",
+      "meshes": 1,
+      "materials": 1,
+      "images": 1,
+      "animations": [
+        "air_fall",
+        "air_rise",
+        "carry_air",
+        "carry_back",
+        "carry_back_left",
+        "carry_back_right",
+        "carry_forward_left",
+        "carry_forward_right",
+        "carry_idle",
+        "carry_left",
+        "carry_right",
+        "carry_walk",
+        "hit_to_body_01",
+        "idle",
+        "land",
+        "run",
+        "throw",
+        "walk"
+      ]
+    },
+    {
+      "path": "assets/art/release-01/worker_texture_0.png",
+      "bytes": 7638560,
+      "type": "png"
+    },
+    {
+      "path": "assets/art/release-01/worker_worker-tripo-input_glb_basecolor.png",
+      "bytes": 7638560,
+      "type": "png"
+    },
+    {
+      "path": "art/release-01/concepts/cardboard.png",
+      "bytes": 18931940,
+      "type": "png"
+    },
+    {
+      "path": "art/release-01/concepts/depot.png",
+      "bytes": 12956554,
+      "type": "png"
+    },
+    {
+      "path": "art/release-01/concepts/floor.png",
+      "bytes": 19069742,
+      "type": "png"
+    },
+    {
+      "path": "art/release-01/concepts/packrat.png",
+      "bytes": 6075376,
+      "type": "png"
+    },
+    {
+      "path": "art/release-01/concepts/paint.png",
+      "bytes": 11184418,
+      "type": "png"
+    },
+    {
+      "path": "art/release-01/concepts/worker.png",
+      "bytes": 5580957,
+      "type": "png"
+    },
+    {
+      "path": "art/release-01/source/packrat-generated.glb",
+      "bytes": 8045144,
+      "type": "glb",
+      "meshes": 1,
+      "materials": 1,
+      "images": 4,
+      "animations": []
+    },
+    {
+      "path": "art/release-01/source/packrat.blend",
+      "bytes": 8145510,
+      "type": "blend"
+    },
+    {
+      "path": "art/release-01/source/postal-kit.blend",
+      "bytes": 710738,
+      "type": "blend"
+    },
+    {
+      "path": "art/release-01/source/worker-generated.glb",
+      "bytes": 8983180,
+      "type": "glb",
+      "meshes": 1,
+      "materials": 1,
+      "images": 1,
+      "animations": [
+        "Armature|Casual_Walk|baselayer"
+      ]
+    },
+    {
+      "path": "art/release-01/source/worker.blend",
+      "bytes": 9183863,
+      "type": "blend"
+    },
+    {
+      "path": "art/sneezer/concepts/sneezer-states-ps1-v01.png",
+      "bytes": 1526885,
+      "type": "png"
+    },
+    {
+      "path": "art/sneezer/concepts/sneezer-states-ps1-v02.png",
+      "bytes": 1396600,
+      "type": "png"
+    },
+    {
+      "path": "art/sneezer/concepts/sneezer-states-v01.png",
+      "bytes": 1611205,
+      "type": "png"
+    },
+    {
+      "path": "art/sneezer/concepts/sneezer-states-v02.png",
+      "bytes": 1617172,
+      "type": "png"
+    },
+    {
+      "path": "art/sneezer/model-v01/previews/glb-reimport-sneeze.png",
+      "bytes": 875915,
+      "type": "png"
+    },
+    {
+      "path": "art/sneezer/model-v01/previews/idle.png",
+      "bytes": 870559,
+      "type": "png"
+    },
+    {
+      "path": "art/sneezer/model-v01/previews/sneeze.png",
+      "bytes": 875720,
+      "type": "png"
+    },
+    {
+      "path": "art/sneezer/model-v01/previews/warning.png",
+      "bytes": 869628,
+      "type": "png"
+    },
+    {
+      "path": "art/sneezer/model-v01/sneezer-idle.glb",
+      "bytes": 942512,
+      "type": "glb",
+      "meshes": 13,
+      "materials": 5,
+      "images": 1,
+      "animations": []
+    },
+    {
+      "path": "art/sneezer/model-v01/sneezer-idle_cardboard.png",
+      "bytes": 912480,
+      "type": "png"
+    },
+    {
+      "path": "art/sneezer/model-v01/sneezer-sneeze.glb",
+      "bytes": 942512,
+      "type": "glb",
+      "meshes": 13,
+      "materials": 5,
+      "images": 1,
+      "animations": []
+    },
+    {
+      "path": "art/sneezer/model-v01/sneezer-sneeze_cardboard.png",
+      "bytes": 912480,
+      "type": "png"
+    },
+    {
+      "path": "art/sneezer/model-v01/sneezer-warning.glb",
+      "bytes": 942512,
+      "type": "glb",
+      "meshes": 13,
+      "materials": 5,
+      "images": 1,
+      "animations": []
+    },
+    {
+      "path": "art/sneezer/model-v01/sneezer-warning_cardboard.png",
+      "bytes": 912480,
+      "type": "png"
+    },
+    {
+      "path": "art/sneezer/model-v01/sneezer.blend",
+      "bytes": 1015798,
+      "type": "blend"
+    },
+    {
+      "path": "art/sneezer/model-v01/sneezer.glb",
+      "bytes": 950504,
+      "type": "glb",
+      "meshes": 13,
+      "materials": 5,
+      "images": 1,
+      "animations": [
+        "SneezeCycle"
+      ]
+    },
+    {
+      "path": "art/sneezer/model-v01/sneezer_cardboard.png",
+      "bytes": 912480,
+      "type": "png"
+    },
+    {
+      "path": "art/sneezer/model-v01/textures/cardboard.png",
+      "bytes": 912480,
+      "type": "png"
+    },
+    {
+      "path": "art/sneezer/model-v02/previews/glb-reimport-sneeze.png",
+      "bytes": 885737,
+      "type": "png"
+    },
+    {
+      "path": "art/sneezer/model-v02/previews/idle.png",
+      "bytes": 878331,
+      "type": "png"
+    },
+    {
+      "path": "art/sneezer/model-v02/previews/sneeze.png",
+      "bytes": 885535,
+      "type": "png"
+    },
+    {
+      "path": "art/sneezer/model-v02/previews/warning.png",
+      "bytes": 879853,
+      "type": "png"
+    },
+    {
+      "path": "art/sneezer/model-v02/sneezer.blend",
+      "bytes": 1030197,
+      "type": "blend"
+    },
+    {
+      "path": "art/sneezer/model-v02/sneezer.blend1",
+      "bytes": 1030173,
+      "type": "blend1"
+    },
+    {
+      "path": "art/sneezer/model-v02/sneezer.glb",
+      "bytes": 1027052,
+      "type": "glb",
+      "meshes": 24,
+      "materials": 5,
+      "images": 1,
+      "animations": [
+        "SneezeCycle"
+      ]
+    },
+    {
+      "path": "art/sneezer/model-v02/sneezer_cardboard.png",
+      "bytes": 912480,
+      "type": "png"
+    },
+    {
+      "path": "art/sneezer/model-v02/textures/cardboard.png",
+      "bytes": 912480,
+      "type": "png"
+    },
+    {
+      "path": "art/tripo-01/preview-air_rise.png",
+      "bytes": 613307,
+      "type": "png"
+    },
+    {
+      "path": "art/tripo-01/preview-carry_idle.png",
+      "bytes": 599032,
+      "type": "png"
+    },
+    {
+      "path": "art/tripo-01/preview-carry_walk.png",
+      "bytes": 604310,
+      "type": "png"
+    },
+    {
+      "path": "art/tripo-01/preview-idle.png",
+      "bytes": 605111,
+      "type": "png"
+    },
+    {
+      "path": "art/tripo-01/preview-jump.png",
+      "bytes": 602158,
+      "type": "png"
+    },
+    {
+      "path": "art/tripo-01/preview-lift_heavy.png",
+      "bytes": 595494,
+      "type": "png"
+    },
+    {
+      "path": "art/tripo-01/preview-run.png",
+      "bytes": 598775,
+      "type": "png"
+    },
+    {
+      "path": "art/tripo-01/preview-throw.png",
+      "bytes": 597642,
+      "type": "png"
+    },
+    {
+      "path": "art/tripo-01/preview-walk.png",
+      "bytes": 603134,
+      "type": "png"
+    },
+    {
+      "path": "art/tripo-01/worker-animation.blend",
+      "bytes": 11267608,
+      "type": "blend"
+    },
+    {
+      "path": "art/tripo-01/worker-candidate.glb",
+      "bytes": 9685620,
+      "type": "glb",
+      "meshes": 1,
+      "materials": 1,
+      "images": 1,
+      "animations": [
+        "air_fall",
+        "air_rise",
+        "carry_idle",
+        "carry_run",
+        "carry_walk",
+        "fall",
+        "hit_to_body_01",
+        "idle",
+        "jump",
+        "lift_heavy",
+        "run",
+        "throw",
+        "walk"
+      ]
+    },
+    {
+      "path": "art/tripo-01/worker-tpose-angle.png",
+      "bytes": 931538,
+      "type": "png"
+    },
+    {
+      "path": "art/tripo-01/worker-tpose-front.png",
+      "bytes": 937326,
+      "type": "png"
+    },
+    {
+      "path": "art/tripo-01/worker-tripo-input.blend",
+      "bytes": 8766776,
+      "type": "blend"
+    },
+    {
+      "path": "art/tripo-01/worker-tripo-input.glb",
+      "bytes": 8469988,
+      "type": "glb",
+      "meshes": 1,
+      "materials": 1,
+      "images": 1,
+      "animations": []
+    },
+    {
+      "path": "art/tripo-01/worker-tripo-seven.glb",
+      "bytes": 9405548,
+      "type": "glb",
+      "meshes": 1,
+      "materials": 1,
+      "images": 1,
+      "animations": [
+        "preset:biped:lift_heavy",
+        "preset:biped:walk",
+        "preset:biped:run",
+        "preset:biped:jump",
+        "preset:biped:hit_to_body_01",
+        "preset:biped:idle",
+        "preset:biped:fall"
+      ]
+    },
+    {
+      "path": "art/worker-motion-02/worker-motion.blend",
+      "bytes": 12395974,
+      "type": "blend"
+    },
+    {
+      "path": "art/worker-motion-02/worker-motion.blend1",
+      "bytes": 12345109,
+      "type": "blend1"
+    },
+    {
+      "path": "art/worker-motion-02/worker.glb",
+      "bytes": 9591636,
+      "type": "glb",
+      "meshes": 1,
+      "materials": 1,
+      "images": 1,
+      "animations": [
+        "air_fall",
+        "air_rise",
+        "carry_air",
+        "carry_back",
+        "carry_back_left",
+        "carry_back_right",
+        "carry_forward_left",
+        "carry_forward_right",
+        "carry_idle",
+        "carry_left",
+        "carry_right",
+        "carry_walk",
+        "hit_to_body_01",
+        "idle",
+        "land",
+        "run",
+        "throw",
+        "walk"
+      ]
+    },
+    {
+      "path": "scenes/main.tscn",
+      "bytes": 321,
+      "type": "tscn"
+    },
+    {
+      "path": "scenes/maps/shipping_shrine.tscn",
+      "bytes": 2889605,
+      "type": "tscn"
+    },
+    {
+      "path": "scenes/physics_lab.tscn",
+      "bytes": 171,
+      "type": "tscn"
+    },
+    {
+      "path": "scenes/pieces/reactive_prop.tscn",
+      "bytes": 176,
+      "type": "tscn"
+    },
+    {
+      "path": "scenes/pieces/solid_block.tscn",
+      "bytes": 942,
+      "type": "tscn"
+    },
+    {
+      "path": "scripts/crew_suit.gdshader",
+      "bytes": 846,
+      "type": "gdshader"
+    }
+  ],
+  "map_node_types": {
+    "Node3D": 431,
+    "WorldEnvironment": 1,
+    "DirectionalLight3D": 1,
+    "OmniLight3D": 14,
+    "MeshInstance3D": 1644,
+    "Camera3D": 1,
+    "StaticBody3D": 162,
+    "CollisionShape3D": 171,
+    "Label3D": 122,
+    "Area3D": 9,
+    "Marker3D": 40
+  },
+  "map_subresource_types": {
+    "Environment": 1,
+    "StandardMaterial3D": 1508,
+    "ArrayMesh": 82,
+    "BoxMesh": 1254,
+    "Gradient": 1,
+    "FastNoiseLite": 1,
+    "NoiseTexture2D": 1,
+    "BoxShape3D": 171,
+    "SystemFont": 110,
+    "CylinderMesh": 16,
+    "TorusMesh": 5,
+    "SphereMesh": 24
+  },
+  "map_art_nodes": {
+    "Art_pendant": 14,
+    "Art_shelf": 8,
+    "Art_workbench": 7,
+    "Art_dispatch": 2,
+    "Art_conveyor_module": 8
+  }
+}

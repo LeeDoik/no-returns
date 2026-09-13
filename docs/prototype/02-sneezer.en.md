@@ -2,6 +2,9 @@
 
 [한국어](02-sneezer.ko.md)
 
+> **Historical record · retired/superseded 2026-09-12.** The [PSX space-delivery design](../current/01-overview.en.md) is current. Implementation, launch, art and values below are historical, not current status. Deleted files remain path records only.
+
+
 > Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../README.en.md) first for current rules and outstanding work.
 
 **Historical 0.2 record. The current project runs [0.3 with Clinger](03-clinger.en.md).** The launchers run the latest code; the two-cargo count, packet measurement and future-work list below describe 0.2.
@@ -12,14 +15,14 @@ Prototype 0.2 · 2026-09-07 · Windows · Godot 4.7.2
 
 ## 1. Start here
 
-1. Close any older game windows. Double-click [PLAY.cmd](../../PLAY.cmd) in the project folder.
+1. Close any older game windows. Double-click PLAY.cmd (`../../PLAY.cmd`; retired file) in the project folder.
 2. Select **혼자 연습하기 / PRACTICE ALONE**. The language button switches between Korean and English; Korean remains the default.
 3. Find the lavender crate with a pink nose on the left side of intake. Move close and press **E** to pick it up. If two crates are nearby, E selects the nearest available reachable one. Each worker can hold one crate.
 4. Turn with the mouse. While carried, the nose follows your horizontal aim. Put it down with **E** or throw it with **left-click**; it keeps its last direction after release.
 5. When it swells, watch the **countdown and yellow cone on the floor**. After 1.5 seconds, it sneezes forward. Other workers in range are shoved and drop their cargo. Other crates in range are pushed. The Sneezer and its carrier are immune to their own burst.
 6. Deliver either crate to the mint **A** bay. They contribute to the same five-delivery quota within three minutes. Each crate returns to its own intake position after about 1.2 seconds. B returns cargo without awarding a delivery.
 
-The launchers use the portable runtime already prepared in this folder; no Steam login is needed. They run the editable project, not a standalone Steam distribution. [EDIT.cmd](../../EDIT.cmd) opens the editor; F5 runs the project. If the runtime is missing, use the restoration instructions in [the first guide, section 6](01-first-playable.en.md#6-edit-and-restore-the-runtime).
+The launchers use the portable runtime already prepared in this folder; no Steam login is needed. They run the editable project, not a standalone Steam distribution. EDIT.cmd (`../../EDIT.cmd`; retired file) opens the editor; F5 runs the project. If the runtime is missing, use the restoration instructions in [the first guide, section 6](01-first-playable.en.md#6-edit-and-restore-the-runtime).
 
 ## 2. Controls and cues
 
@@ -39,7 +42,7 @@ All danger cues remain visible with sound muted. Sound and language choices last
 
 ## 3. Try a cooperative accident
 
-Run [PLAY_TWO.cmd](../../PLAY_TWO.cmd), wait for **2 / 2 CREW** in the host window, then press **START SHIFT** there. One PC uses two separate game windows; switch focus to control each worker. These are not simultaneous controls for two people on one keyboard.
+Run PLAY_TWO.cmd (`../../PLAY_TWO.cmd`; retired file), wait for **2 / 2 CREW** in the host window, then press **START SHIFT** there. One PC uses two separate game windows; switch focus to control each worker. These are not simultaneous controls for two people on one keyboard.
 
 Try three short experiments:
 
@@ -88,6 +91,6 @@ The final full run passed all five individual scripts and both host/guest proces
 
 The sandbox logged existing root-certificate and `user://` cache/profiler-directory errors. These were separate from GDScript failures and did not prevent the checks or image capture. Audio synthesis and mute paths ran, but listening quality and comfortable levels on other devices still need user testing.
 
-Actual scene captures: [windup](../../artifacts/sneezer-windup.png), [burst](../../artifacts/sneezer-burst.png), [Korean menu](../../artifacts/sneezer-menu-ko.png), [English menu](../../artifacts/sneezer-menu-en.png), [muted pause](../../artifacts/sneezer-pause-muted.png). These local inspection files are ignored by git. The capture fixture is `tests/capture_sneezer.gd` and must use the graphical renderer.
+Actual scene captures: windup (`../../artifacts/sneezer-windup.png`; retired file), burst (`../../artifacts/sneezer-burst.png`; retired file), Korean menu (`../../artifacts/sneezer-menu-ko.png`; retired file), English menu (`../../artifacts/sneezer-menu-en.png`; retired file), muted pause (`../../artifacts/sneezer-pause-muted.png`; retired file). These local inspection files are ignored by git. The capture fixture is `tests/capture_sneezer.gd` and must use the graphical renderer.
 
 Clinger/Hopper cargo, four players, Steam transport, saved settings, gamepads, final art/audio, commercial performance targets and public redistribution remain future work. Steam release preparation stays in the [release checklist](../steam/05-release-checklist.md). The [0.2 implementation plan](../superpowers/plans/2026-09-07-sneezer.en.md) records the approved scope; the [rules report](sneeze-rules-report.en.md) records its initial failure/success evidence.

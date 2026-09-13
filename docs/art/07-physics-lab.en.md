@@ -2,6 +2,9 @@
 
 [한국어](07-physics-lab.ko.md)
 
+> **Historical record · retired/superseded 2026-09-12.** The [PSX space-delivery design](../current/01-overview.en.md) is current. Implementation, launch, art and values below are historical, not current status. Deleted files remain path records only.
+
+
 > Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../README.en.md) first for current rules and outstanding work.
 
 Reuse production workers and parcels in a separate single-player test map. Provide drop, ramp, six-box stack and narrow corridor stations. Tune mass, friction, restitution, gravity, angular damping and throw speed at runtime; reset all objects for comparisons. Save only to user://physics-lab.json, with no automatic production changes. Display the physics backend and tick rate without changing them. Gravity tuning affects test parcels only; worker gravity stays identical to production.

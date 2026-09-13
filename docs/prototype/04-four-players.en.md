@@ -2,6 +2,9 @@
 
 [한국어](04-four-players.ko.md)
 
+> **Historical record · retired/superseded 2026-09-12.** The [PSX space-delivery design](../current/01-overview.en.md) is current. Implementation, launch, art and values below are historical, not current status. Deleted files remain path records only.
+
+
 > Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../README.en.md) first for current rules and outstanding work.
 
 Prototype 0.4 · 2026-09-07 · Windows · Godot 4.7.2
@@ -11,11 +14,11 @@ Hosted rooms now support **2–4 workers**. Solo practice, Standard/Sneezer/Clin
 ## Play
 
 1. Close older game windows and return any existing host to the menu.
-2. Double-click [PLAY_FOUR.cmd](../../PLAY_FOUR.cmd). It opens one host and three guest windows, each 640 × 400. Move or resize them to fit your display.
+2. Double-click PLAY_FOUR.cmd (`../../PLAY_FOUR.cmd`; retired file). It opens one host and three guest windows, each 640 × 400. Move or resize them to fit your display.
 3. In the host window, wait for **4 / 4 WORKERS**, then select **START SHIFT**. You can also start a hosted shift with two or three workers; the host alone cannot start.
 4. Switch focus between windows to control each worker. This is a development launcher for separate processes, not simultaneous local multiplayer on one keyboard. Maximize a window if its text is too small.
 
-[PLAY_TWO.cmd](../../PLAY_TWO.cmd) still opens two windows. [PLAY.cmd](../../PLAY.cmd) opens the menu and solo practice. For manual joining, one player selects **HOST / 2–4 WORKERS** and others enter the host address; the same-PC address is `127.0.0.1`. Everyone must run the same version. Regular play uses UDP **27842**.
+PLAY_TWO.cmd (`../../PLAY_TWO.cmd`; retired file) still opens two windows. PLAY.cmd (`../../PLAY.cmd`; retired file) opens the menu and solo practice. For manual joining, one player selects **HOST / 2–4 WORKERS** and others enter the host address; the same-PC address is `127.0.0.1`. Everyone must run the same version. Regular play uses UDP **27842**.
 
 WASD moves, the mouse looks/aims, Space jumps, E picks up/puts down, left-click throws, and Esc opens the menu. Time continues while the menu is open. The language and sound buttons remain available. Cargo rules are described in the [Clinger guide](03-clinger.en.md); its two-player limitation is historical. Runtime restoration remains in [the first guide](01-first-playable.en.md#6-edit-and-restore-the-runtime).
 
@@ -50,7 +53,7 @@ The roster test first failed before slots existed, then passed for 2/3/4 start r
 
 The real four-process case verifies the same roster and slots on all clients, ownership of two different cargo items, Clinger attachment, a sneeze hitting two workers and releasing cargo, shared delivery, a carrier leaving, three-player restart and host departure. Its initial recorded maximum serialized state was **1036 bytes**. The state-body budget excludes transport framing. Code review found no P1/P2 issues. Vacant-slot reuse is checked locally; an actual reconnect into that vacant slot is not part of the four-process test. Full-room network rejection is configured through ENet capacity but is not a separate fifth-process test.
 
-Editor import and actual-renderer Korean/English menu, lobby and four-worker captures are also checked. The sandbox can report the existing certificate-store and `user://` cache/profiler directory errors; distinguish these from script errors. Local screenshots: [four workers](../../artifacts/four-workers.png), [lobby](../../artifacts/four-lobby.png), [Korean menu](../../artifacts/four-menu-ko.png), [English menu](../../artifacts/four-menu-en.png). These ignored inspection artifacts can be recreated using graphical `tests/capture_four.gd`.
+Editor import and actual-renderer Korean/English menu, lobby and four-worker captures are also checked. The sandbox can report the existing certificate-store and `user://` cache/profiler directory errors; distinguish these from script errors. Local screenshots: four workers (`../../artifacts/four-workers.png`; retired file), lobby (`../../artifacts/four-lobby.png`; retired file), Korean menu (`../../artifacts/four-menu-ko.png`; retired file), English menu (`../../artifacts/four-menu-en.png`; retired file). These ignored inspection artifacts can be recreated using graphical `tests/capture_four.gd`.
 
 Successful local process tests do not establish other-PC LAN, Internet/NAT, latency, long-session performance or human enjoyment. Steam lobbies, invitations, App ID setup and distribution remain pending in the [release checklist](../steam/05-release-checklist.md). The [0.4 plan](../superpowers/plans/2026-09-07-four-players.en.md) records this step's scope.
 

@@ -1,0 +1,11 @@
+{
+  "date": "2026-09-13",
+  "starting_credits": 1315,
+  "spent": 170,
+  "remaining": 1145,
+  "regenerations": 0,
+  "models": {
+    "Parcel": "73269692-f730-49c6-95d7-2e080bb7bbe2",
+    "Receipt": "10f8f9ae-2d8f-4b39-9de5-2711c4b166dc"
+  }
+}

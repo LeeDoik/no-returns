@@ -4,20 +4,23 @@
 
 [English](<legacy-readme.en.md>)
 
+> **과거 기록 · 2026-09-12 폐기/대체.** 현재 게임은 [PSX 우주 배송 기획](../current/01-overview.ko.md)을 따른다. 아래 구현·실행·아트·수치는 과거 자료이며 현재 상태가 아니다. 삭제된 파일은 경로 기록으로만 남긴다.
+
+
 ## 실행 파일은 여기 있습니다
 
-**폴더 맨 위의 [00_게임 실행.cmd](<../../00_게임 실행.cmd>)를 두 번 클릭하세요.** 마지막으로 빌드한 게임을 에디터 없이 실행합니다.
+**폴더 맨 위의 00_게임 실행.cmd (`<../../00_게임 실행.cmd>`; retired file)를 두 번 클릭하세요.** 마지막으로 빌드한 게임을 에디터 없이 실행합니다.
 
 | 하고 싶은 일 | 열 파일 |
 |---|---|
-| 게임 실행 | [00_게임 실행.cmd](<../../00_게임 실행.cmd>) |
-| 맵 편집 | [01_맵 편집.cmd](<../../01_맵 편집.cmd>) |
-| 친구에게 보낼 ZIP 찾기 | [02_배포 파일 찾기.cmd](<../../02_배포 파일 찾기.cmd>) |
-| 최신 소스 변경을 바로 실행 | [PLAY.cmd](<../../PLAY.cmd>) |
+| 게임 실행 | 00_게임 실행.cmd (`<../../00_게임 실행.cmd>`; retired file) |
+| 맵 편집 | 01_맵 편집.cmd (`<../../01_맵 편집.cmd>`; retired file) |
+| 친구에게 보낼 ZIP 찾기 | 02_배포 파일 찾기.cmd (`<../../02_배포 파일 찾기.cmd>`; retired file) |
+| 최신 소스 변경을 바로 실행 | PLAY.cmd (`<../../PLAY.cmd>`; retired file) |
 
 `build`는 실행 파일과 배포 ZIP, `art`는 Blender 등 제작 원본, `assets`는 게임용 아트, `scenes`·`scripts`는 맵과 코드, `docs`는 한·영 문서, `tests`·`tools`는 개발 도구, `artifacts`는 검사 결과와 캡처입니다. 구버전 배포본, 설치가 끝난 압축파일, 이전 자동 백업과 오래된 임시 로그는 정리했습니다. 최신 실행본·배포 ZIP·검증 기록과 제작 원본은 유지합니다. 기존 영문 실행 도구도 유지합니다.
 
-실행용 EXE와 PCK는 같은 폴더에 함께 있어야 합니다. 소스를 수정한 뒤 배포본을 갱신하려면 [BUILD.cmd](<../../BUILD.cmd>)를 실행하세요. `build/NO_RETURNS_0.7`은 호환성을 유지한 폴더 이름이며 실제 버전은 아래 안내와 게임 화면을 기준으로 합니다.
+실행용 EXE와 PCK는 같은 폴더에 함께 있어야 합니다. 소스를 수정한 뒤 배포본을 갱신하려면 BUILD.cmd (`<../../BUILD.cmd>`; retired file)를 실행하세요. `build/NO_RETURNS_0.7`은 호환성을 유지한 폴더 이름이며 실제 버전은 아래 안내와 게임 화면을 기준으로 합니다.
 
 > 택배가 살아 있습니다. 그래도 배송은 해야죠.
 
@@ -51,9 +54,9 @@
 
 ## 바로 실행
 
-**[NO_RETURNS.exe](<../../build/NO_RETURNS_0.7/NO_RETURNS.exe>)를 두 번 클릭 → 혼자 캠페인 시작.** 이전 창은 닫아 주세요. 에디터 없이 실행됩니다. 친구에게는 [Windows ZIP](<../../build/NO_RETURNS_0.7_Windows.zip>)을 전달하고 전체 압축을 풀어 사용하세요.
+**NO_RETURNS.exe (`<../../build/NO_RETURNS_0.7/NO_RETURNS.exe>`; retired file)를 두 번 클릭 → 혼자 캠페인 시작.** 이전 창은 닫아 주세요. 에디터 없이 실행됩니다. 친구에게는 Windows ZIP (`<../../build/NO_RETURNS_0.7_Windows.zip>`; retired file)을 전달하고 전체 압축을 풀어 사용하세요.
 
-개발 프로젝트에서는 [PLAY.cmd](<../../PLAY.cmd>), 같은 PC의 두 창은 [PLAY_TWO.cmd](<../../PLAY_TWO.cmd>), 네 창은 [PLAY_FOUR.cmd](<../../PLAY_FOUR.cmd>)를 실행합니다. 한 명이 협동 캠페인 방을 만들고 나머지는 주소를 입력해 참가한 다음 방장이 시작합니다. 같은 PC 주소는 `127.0.0.1`입니다. [EDIT.cmd](<../../EDIT.cmd>)는 에디터를 엽니다.
+개발 프로젝트에서는 PLAY.cmd (`<../../PLAY.cmd>`; retired file), 같은 PC의 두 창은 PLAY_TWO.cmd (`<../../PLAY_TWO.cmd>`; retired file), 네 창은 PLAY_FOUR.cmd (`<../../PLAY_FOUR.cmd>`; retired file)를 실행합니다. 한 명이 협동 캠페인 방을 만들고 나머지는 주소를 입력해 참가한 다음 방장이 시작합니다. 같은 PC 주소는 `127.0.0.1`입니다. EDIT.cmd (`<../../EDIT.cmd>`; retired file)는 에디터를 엽니다.
 
 ## 0.7에서 달라진 것
 
@@ -108,9 +111,9 @@
 
 ## 0.7.3 직접 편집하는 맵
 
-**[EDIT_MAP.cmd](<../../EDIT_MAP.cmd>)**를 두 번 클릭하면 편집할 맵이 열립니다. 벽·조명·배송구·벨트·쥐 영역·시작점을 직접 배치하고 Ctrl+S → F5로 확인하세요. 벽 예제는 외형과 충돌 크기가 함께 바뀝니다. **[한국어 맵 편집 안내](<../../docs/development/map-editing.ko.md>)**에 첫 벽 이동부터 맵 확대까지 정리했습니다.
+**EDIT_MAP.cmd (`<../../EDIT_MAP.cmd>`; retired file)**를 두 번 클릭하면 편집할 맵이 열립니다. 벽·조명·배송구·벨트·쥐 영역·시작점을 직접 배치하고 Ctrl+S → F5로 확인하세요. 벽 예제는 외형과 충돌 크기가 함께 바뀝니다. **[한국어 맵 편집 안내](<../../docs/development/map-editing.ko.md>)**에 첫 벽 이동부터 맵 확대까지 정리했습니다.
 
-친구에게 보낼 때는 **[BUILD.cmd](<../../BUILD.cmd>)**로 실행 파일을 다시 만들고 같은 ZIP을 사용합니다. 프로토콜 8에서 서로 다른 맵의 입장을 거절합니다. 저장한 맵이 실행 시 다시 생성되지 않습니다.
+친구에게 보낼 때는 **BUILD.cmd (`<../../BUILD.cmd>`; retired file)**로 실행 파일을 다시 만들고 같은 ZIP을 사용합니다. 프로토콜 8에서 서로 다른 맵의 입장을 거절합니다. 저장한 맵이 실행 시 다시 생성되지 않습니다.
 
 
 ## 0.7.4 넓어진 배송 신전
@@ -154,4 +157,4 @@
 
 [0.7.9](<../../docs/superpowers/plans/2026-09-08-release-usability.ko.md>).
 
-물리 조정은 [03_물리 실험실.cmd](<../../03_물리 실험실.cmd>)로 실행하세요. [조작·검증 범위](<../../docs/art/07-physics-lab.ko.md>).
+물리 조정은 03_물리 실험실.cmd (`<../../03_물리 실험실.cmd>`; retired file)로 실행하세요. [조작·검증 범위](<../../docs/art/07-physics-lab.ko.md>).

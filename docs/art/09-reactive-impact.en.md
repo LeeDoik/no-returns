@@ -2,6 +2,9 @@
 
 [한국어](09-reactive-impact.ko.md)
 
+> **Historical record · retired/superseded 2026-09-12.** The [PSX space-delivery design](../current/01-overview.en.md) is current. Implementation, launch, art and values below are historical, not current status. Deleted files remain path records only.
+
+
 Target: 0.9.4 / protocol 12. Status: implemented and checked; retest history and limits recorded below.
 
 ## Spring platform

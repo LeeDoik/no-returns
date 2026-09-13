@@ -2,6 +2,9 @@
 
 [한국어](07-build-handoff.ko.md)
 
+> **Historical record · retired/superseded 2026-09-12.** The [PSX space-delivery design](../current/01-overview.en.md) is current. Implementation, launch, art and values below are historical, not current status. Deleted files remain path records only.
+
+
 > Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../README.en.md) first for current rules and outstanding work.
 
 September 7, 2026 · Prototype 0.7. A local export is distinct from a Steam-uploaded and reviewed release.

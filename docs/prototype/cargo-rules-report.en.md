@@ -2,6 +2,9 @@
 
 [한국어](cargo-rules-report.ko.md)
 
+> **Historical record · retired/superseded 2026-09-12.** The [PSX space-delivery design](../current/01-overview.en.md) is current. Implementation, launch, art and values below are historical, not current status. Deleted files remain path records only.
+
+
 > Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../README.en.md) first for current rules and outstanding work.
 
 Version 0.1 · 2026-09-07 · Status: implemented and behaviorally verified.

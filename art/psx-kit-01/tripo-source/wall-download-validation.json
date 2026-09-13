@@ -1,0 +1,12 @@
+{
+  "file": "NR_Wall_Tripo_1500.glb",
+  "bytes": 4904828,
+  "sha256": "ac0915b0e99552c7ae883d3d33d2222816a38598e030a6080f6c8588c4e733fc",
+  "glb_version": 2,
+  "triangles": 1500,
+  "meshes": 1,
+  "materials": 1,
+  "images": 3,
+  "external_uris": [],
+  "blender_import": "PASS: Blender 5.2.1 LTS, 1500 polygons, exit 0"
+}

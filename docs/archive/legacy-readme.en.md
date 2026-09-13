@@ -4,20 +4,23 @@
 
 [한국어](<legacy-readme.ko.md>)
 
+> **Historical record · retired/superseded 2026-09-12.** The [PSX space-delivery design](../current/01-overview.en.md) is current. Implementation, launch, art and values below are historical, not current status. Deleted files remain path records only.
+
+
 ## Find the game here
 
-**Double-click [00_게임 실행.cmd](<../../00_게임 실행.cmd>) at the top of the project folder.** It opens the last built game without the editor.
+**Double-click 00_게임 실행.cmd (`<../../00_게임 실행.cmd>`; retired file) at the top of the project folder.** It opens the last built game without the editor.
 
 | Task | File to open |
 |---|---|
-| Play the game | [00_게임 실행.cmd](<../../00_게임 실행.cmd>) |
-| Edit the map | [01_맵 편집.cmd](<../../01_맵 편집.cmd>) |
-| Locate the ZIP to send friends | [02_배포 파일 찾기.cmd](<../../02_배포 파일 찾기.cmd>) |
-| Run the latest source changes | [PLAY.cmd](<../../PLAY.cmd>) |
+| Play the game | 00_게임 실행.cmd (`<../../00_게임 실행.cmd>`; retired file) |
+| Edit the map | 01_맵 편집.cmd (`<../../01_맵 편집.cmd>`; retired file) |
+| Locate the ZIP to send friends | 02_배포 파일 찾기.cmd (`<../../02_배포 파일 찾기.cmd>`; retired file) |
+| Run the latest source changes | PLAY.cmd (`<../../PLAY.cmd>`; retired file) |
 
 `build` contains executables and the distribution ZIP; `art` contains Blender and other production sources; `assets` contains runtime art; `scenes` and `scripts` contain maps and code; `docs` contains Korean/English documentation; `tests` and `tools` contain development utilities; `artifacts` contains validation results and captures. Obsolete builds, installed-tool archives, previous automatic backups and old temporary logs were removed. The latest playable build, distribution ZIP, validation evidence and production sources remain. Existing English-named launch tools remain available.
 
-Keep the EXE and PCK together in the same folder. After source changes, run [BUILD.cmd](<../../BUILD.cmd>) to refresh the distribution build. `build/NO_RETURNS_0.7` is a retained compatibility folder name; use the information below and the game screen for the actual version.
+Keep the EXE and PCK together in the same folder. After source changes, run BUILD.cmd (`<../../BUILD.cmd>`; retired file) to refresh the distribution build. `build/NO_RETURNS_0.7` is a retained compatibility folder name; use the information below and the game screen for the actual version.
 
 > The packages are alive. Ship them anyway.
 
@@ -51,9 +54,9 @@ Everyone must use the **same 0.9.3 ZIP / protocol 11**. This supersedes build in
 
 ## Run now
 
-**Double-click [NO_RETURNS.exe](<../../build/NO_RETURNS_0.7/NO_RETURNS.exe>) → START SOLO CAMPAIGN.** Close older windows first. No editor is required. Share the [Windows ZIP](<../../build/NO_RETURNS_0.7_Windows.zip>) with friends and extract the entire archive.
+**Double-click NO_RETURNS.exe (`<../../build/NO_RETURNS_0.7/NO_RETURNS.exe>`; retired file) → START SOLO CAMPAIGN.** Close older windows first. No editor is required. Share the Windows ZIP (`<../../build/NO_RETURNS_0.7_Windows.zip>`; retired file) with friends and extract the entire archive.
 
-In the development project use [PLAY.cmd](<../../PLAY.cmd>), [PLAY_TWO.cmd](<../../PLAY_TWO.cmd>) for two local windows, or [PLAY_FOUR.cmd](<../../PLAY_FOUR.cmd>) for four. One worker hosts the campaign; others enter its address, join, and wait for the host to start. The same-PC address is `127.0.0.1`. [EDIT.cmd](<../../EDIT.cmd>) opens the editor.
+In the development project use PLAY.cmd (`<../../PLAY.cmd>`; retired file), PLAY_TWO.cmd (`<../../PLAY_TWO.cmd>`; retired file) for two local windows, or PLAY_FOUR.cmd (`<../../PLAY_FOUR.cmd>`; retired file) for four. One worker hosts the campaign; others enter its address, join, and wait for the host to start. The same-PC address is `127.0.0.1`. EDIT.cmd (`<../../EDIT.cmd>`; retired file) opens the editor.
 
 ## What changed in 0.7
 
@@ -108,9 +111,9 @@ A giant cardboard boss watches over the rethemed shrine. A/B bays are hungry fac
 
 ## 0.7.3 Visually editable map
 
-Double-click **[EDIT_MAP.cmd](<../../EDIT_MAP.cmd>)** to open the editable map. Place walls, lights, bays, the belt, rat territory and spawns, then Ctrl+S → F5 to test. The wall prefab keeps mesh and collision dimensions aligned. **[Map editing guide](<../../docs/development/map-editing.en.md>)** covers your first wall move through map expansion.
+Double-click **EDIT_MAP.cmd (`<../../EDIT_MAP.cmd>`; retired file)** to open the editable map. Place walls, lights, bays, the belt, rat territory and spawns, then Ctrl+S → F5 to test. The wall prefab keeps mesh and collision dimensions aligned. **[Map editing guide](<../../docs/development/map-editing.en.md>)** covers your first wall move through map expansion.
 
-Before sharing with friends, rebuild using **[BUILD.cmd](<../../BUILD.cmd>)** and use the same ZIP. Protocol 8 rejects different maps. The saved map is not regenerated at runtime.
+Before sharing with friends, rebuild using **BUILD.cmd (`<../../BUILD.cmd>`; retired file)** and use the same ZIP. Protocol 8 rejects different maps. The saved map is not regenerated at runtime.
 
 
 ## 0.7.4 A larger Shipping Shrine
@@ -154,4 +157,4 @@ Improved title-screen settings, rebinding, solo pause, exit confirmation, long b
 
 [0.7.9](<../../docs/superpowers/plans/2026-09-08-release-usability.en.md>).
 
-Run [03_물리 실험실.cmd](<../../03_물리 실험실.cmd>) to tune physics in a separate lab. [Controls and verification scope](<../../docs/art/07-physics-lab.en.md>).
+Run 03_물리 실험실.cmd (`<../../03_물리 실험실.cmd>`; retired file) to tune physics in a separate lab. [Controls and verification scope](<../../docs/art/07-physics-lab.en.md>).

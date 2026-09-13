@@ -1,0 +1,14 @@
+[
+  {
+    "module": "Parcel",
+    "triangles": 3722,
+    "uv": true,
+    "texture_files": true
+  },
+  {
+    "module": "Receipt",
+    "triangles": 9777,
+    "uv": true,
+    "texture_files": true
+  }
+]

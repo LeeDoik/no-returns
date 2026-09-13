@@ -2,6 +2,9 @@
 
 [한국어](2026-09-08-winding-shrine.ko.md)
 
+> **Historical record · retired/superseded 2026-09-12.** The [PSX space-delivery design](../../current/01-overview.en.md) is current. Implementation, launch, art and values below are historical, not current status. Deleted files remain path records only.
+
+
 > Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../../README.en.md) first for current rules and outstanding work.
 
 Goal: version 0.7.5 replaces three parallel straight lanes within the existing 48×60 m map with winding alleys and cross-links. Follow the user's standing instruction to proceed through layout, validation and build without incremental approval. Improve horizontal routing and changing sightlines before adding an elevation system.

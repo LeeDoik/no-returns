@@ -2,13 +2,16 @@
 
 [한국어](map-editing.ko.md)
 
+> **Historical record · retired/superseded 2026-09-12.** The [PSX space-delivery design](../current/01-overview.en.md) is current. Implementation, launch, art and values below are historical, not current status. Deleted files remain path records only.
+
+
 > Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../README.en.md) first for current rules and outstanding work.
 
 For Godot 4.7.2 and NO RETURNS 0.7.8 · September 8, 2026.
 
 ## First edit: move the central low wall
 
-1. Close the game and double-click [EDIT_MAP.cmd](../../EDIT_MAP.cmd) in the project folder. Godot opens `shipping_shrine.tscn`. Select **3D** at the top.
+1. Close the game and double-click EDIT_MAP.cmd (`../../EDIT_MAP.cmd`; retired file) in the project folder. Godot opens `shipping_shrine.tscn`. Select **3D** at the top.
 2. In the left **Scene** tree, select `ShippingShrine → Geometry → LowDivider`. This is the central low wall.
 3. Expand **Inspector → Node3D → Transform → Position** on the right. Change X from `1` to `3` and press Enter. The wall moves 2 m to the right. Y is height; Z is depth. You can also drag the colored axis arrows in the 3D view.
 4. Select **Solid1** under LowDivider. The upper **Dimensions** X/Y/Z fields control width/height/depth. Changing them updates both the visible wall and collision. To rest on the floor, set Position Y to half its height. Use Dimensions instead of Scale for wall and floor size.
@@ -58,7 +61,7 @@ Raise a ceiling light's Position Y or reduce its Light Energy to reduce glare. T
 
 ## Play your saved map with friends
 
-**Ctrl+S → F5** tests the latest source map. An existing EXE does not update automatically. Close game windows and double-click [BUILD.cmd](../../BUILD.cmd). Successful checks display the new EXE and ZIP paths. This uses Python, Godot and export templates already prepared on this PC. For another PC, see [build handoff](../steam/07-build-handoff.en.md).
+**Ctrl+S → F5** tests the latest source map. An existing EXE does not update automatically. Close game windows and double-click BUILD.cmd (`../../BUILD.cmd`; retired file). Successful checks display the new EXE and ZIP paths. This uses Python, Godot and export templates already prepared on this PC. For another PC, see [build handoff](../steam/07-build-handoff.en.md).
 
 Send the new `build/NO_RETURNS_0.7_Windows.zip` to friends and have everyone extract the same ZIP. Do not mix source runs with exported builds. Network protocol 9 compares fingerprints of the saved map and dependent resources, rejecting a mismatch. Automatic map downloads and live editing replication are not supported.
 

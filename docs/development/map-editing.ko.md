@@ -2,13 +2,16 @@
 
 [English](map-editing.en.md)
 
+> **과거 기록 · 2026-09-12 폐기/대체.** 현재 게임은 [PSX 우주 배송 기획](../current/01-overview.ko.md)을 따른다. 아래 구현·실행·아트·수치는 과거 자료이며 현재 상태가 아니다. 삭제된 파일은 경로 기록으로만 남긴다.
+
+
 > 문서 체계 개정: 이 파일의 버전·수치는 작성 당시 기준입니다. 현재 규칙·미완료 상태는 [문서 홈](../README.md)을 먼저 확인하세요.
 
 대상: Godot 4.7.2, NO RETURNS 0.7.8 · 2026년 9월 8일.
 
 ## 첫 편집: 중앙 낮은 벽 옮기기
 
-1. 게임 창을 닫고 프로젝트 폴더의 [EDIT_MAP.cmd](../../EDIT_MAP.cmd)를 두 번 클릭합니다. Godot에서 `shipping_shrine.tscn`이 열립니다. 위쪽 **3D**를 선택합니다.
+1. 게임 창을 닫고 프로젝트 폴더의 EDIT_MAP.cmd (`../../EDIT_MAP.cmd`; retired file)를 두 번 클릭합니다. Godot에서 `shipping_shrine.tscn`이 열립니다. 위쪽 **3D**를 선택합니다.
 2. 왼쪽 **씬(Scene)** 목록에서 `ShippingShrine → Geometry → LowDivider`를 선택합니다. 선택한 것이 중앙 낮은 벽입니다.
 3. 오른쪽 **인스펙터(Inspector) → Node3D → Transform → Position**을 펼칩니다. X를 `1`에서 `3`으로 바꾸고 Enter를 누릅니다. 벽이 오른쪽으로 2m 이동합니다. Y는 높이, Z는 앞뒤입니다. 3D 화면의 축 화살표를 끌어도 됩니다.
 4. LowDivider 아래 **Solid1**을 선택합니다. 위쪽 **Dimensions**의 X/Y/Z는 벽의 가로/높이/두께입니다. 값을 바꾸면 보이는 벽과 충돌 범위가 함께 바뀝니다. 바닥에 맞추려면 Position Y를 높이의 절반으로 둡니다. 벽·바닥 크기는 Scale보다 Dimensions로 조절하세요.
@@ -58,7 +61,7 @@
 
 ## 저장한 맵을 친구와 실행하기
 
-**Ctrl+S → F5**는 소스 프로젝트의 최신 맵을 시험합니다. 이미 만들어진 EXE는 자동으로 바뀌지 않습니다. 게임 창을 닫고 [BUILD.cmd](../../BUILD.cmd)를 두 번 클릭하세요. 검사가 통과하면 새 EXE와 ZIP의 경로를 표시합니다. 이 PC에 준비된 Python·Godot·내보내기 템플릿을 사용합니다. 다른 PC의 준비 방법은 [빌드 인계](../steam/07-build-handoff.ko.md)를 참고하세요.
+**Ctrl+S → F5**는 소스 프로젝트의 최신 맵을 시험합니다. 이미 만들어진 EXE는 자동으로 바뀌지 않습니다. 게임 창을 닫고 BUILD.cmd (`../../BUILD.cmd`; retired file)를 두 번 클릭하세요. 검사가 통과하면 새 EXE와 ZIP의 경로를 표시합니다. 이 PC에 준비된 Python·Godot·내보내기 템플릿을 사용합니다. 다른 PC의 준비 방법은 [빌드 인계](../steam/07-build-handoff.ko.md)를 참고하세요.
 
 친구에게 `build/NO_RETURNS_0.7_Windows.zip`을 새로 전달하고 모두 같은 ZIP을 풀어 실행합니다. 소스 실행과 내보낸 빌드를 섞지 마세요. 네트워크 프로토콜 9은 저장된 맵과 종속 리소스의 지문을 확인하며 다르면 입장을 거절합니다. 맵 자동 다운로드나 플레이 중 편집 공유는 지원하지 않습니다.
 

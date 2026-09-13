@@ -1,0 +1,38 @@
+[
+  {
+    "file": "NR_Corner_Review.fbx",
+    "meshes": 1,
+    "faces": 2500,
+    "uv": true
+  },
+  {
+    "file": "NR_Door_Review.fbx",
+    "meshes": 1,
+    "faces": 3000,
+    "uv": true
+  },
+  {
+    "file": "NR_Floor_Review.fbx",
+    "meshes": 1,
+    "faces": 1000,
+    "uv": true
+  },
+  {
+    "file": "NR_Lamp_Review.fbx",
+    "meshes": 1,
+    "faces": 800,
+    "uv": true
+  },
+  {
+    "file": "NR_Rack_Review.fbx",
+    "meshes": 1,
+    "faces": 4000,
+    "uv": true
+  },
+  {
+    "file": "NR_Wall_Review.fbx",
+    "meshes": 1,
+    "faces": 1500,
+    "uv": true
+  }
+]

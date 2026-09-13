@@ -2,21 +2,26 @@
 
 [한국어](README.md)
 
-A third-person 3D cooperative game about delivering living parcels for 1–4 players. Current **development build 0.9.4**, Godot 4.7.2, targeting Windows/Steam. Steam invites and store/build approval are not complete.
+**A PSX-style cooperative space-delivery mystery.** Route selection triggers automatic spacecraft travel and landing. Employees deliver through dangerous sites, reinvesting pay in equipment and harder work.
 
-## Launch
+[Product design](docs/current/01-overview.en.md) · [Documentation](docs/README.en.md)
 
-- [00_게임 실행.cmd](<00_게임 실행.cmd>): run the last package
-- [01_맵 편집.cmd](<01_맵 편집.cmd>): edit the map
-- [03_물리 실험실.cmd](<03_물리 실험실.cmd>): tune legacy-carrying physics
-- [PLAY.cmd](PLAY.cmd): run current sources
-- [BUILD.cmd](BUILD.cmd): rebuild the package
-- [02_배포 파일 찾기.cmd](<02_배포 파일 찾기.cmd>): locate the distribution ZIP
+Open Unity with [01_Open_Project.cmd](01_Open_Project.cmd). The only development project is `NoReturns/`. A two-player first-person delivery, creature, rescue, beacon-purchase and risk-contract experiment is playable. Final maps and PSX art remain absent. Host progression is saved locally.
 
-Keep the executable and PCK together. `build/NO_RETURNS_0.7` is the retained compatibility path; the actual version is 0.9.4. Cooperative players use the same build/map. Protocol is 12.
+[Launch game](02_Play_Carry_Test.cmd), select HOST, then [join on the same PC](03_Join_Local_Carry_Test.cmd). [Controls and validation](docs/current/carry-test.en.md).
 
-## Documentation
+The previous Godot/temporary Unity games, art, builds and launchers were deleted at the user's request. [Historical records](docs/archive/README.en.md) and Git history remain. Prior test passes do not validate this game.
 
-Use the **[six-part documentation home](docs/README.en.md)** for current design, rules, production, backlog, validation and history. The former version-by-version README is preserved in the [archive](docs/archive/legacy-readme.en.md).
+[Next step: launch delivery mode](04_Play_Delivery_Loop.cmd) · [Delivery guide](docs/current/space-play-02.en.md)
 
-Version control is local Git with no GitHub remote. `art/` holds sources, `assets/` runtime art, `scenes/` and `scripts/` maps/code, `tests/` and `tools/` development tools, and `artifacts/` local validation evidence.
+[Next step: launch Listener/rescue experiment](06_Play_Listener_Test.cmd) · [Controls/validation](docs/current/space-play-03.en.md)
+
+[Launch current build 0.8.2](06_Play_Listener_Test.cmd) · [B purchase / T contract / V beacon guide](docs/current/space-play-04.en.md)
+
+[Progress saving/restart guide](docs/current/space-play-05.en.md)
+
+[I inspect / Tab field log guide](docs/current/space-play-06.en.md)
+
+[SPACE-PLAY-07 — expanded map/suppression](docs/current/space-play-07.en.md)
+
+[0.8.2 review fixes and validation](docs/current/review-fixes.en.md)

@@ -2,6 +2,9 @@
 
 [한국어](2026-09-08-enclosed-shrine.ko.md)
 
+> **Historical record · retired/superseded 2026-09-12.** The [PSX space-delivery design](../../current/01-overview.en.md) is current. Implementation, launch, art and values below are historical, not current status. Deleted files remain path records only.
+
+
 > Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../../README.en.md) first for current rules and outstanding work.
 
 Goal: divide the 48×60m Shipping Shrine into spaces with doorways, interrupted sightlines and roofs to vary delivery situations. Preserve the winding main routes and both cross-links. Modify the saved Godot 4.7.2 map scene without regenerating it at runtime.

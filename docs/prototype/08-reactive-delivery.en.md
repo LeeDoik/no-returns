@@ -2,6 +2,9 @@
 
 [한국어](08-reactive-delivery.ko.md)
 
+> **Historical record · retired/superseded 2026-09-12.** The [PSX space-delivery design](../current/01-overview.en.md) is current. Implementation, launch, art and values below are historical, not current status. Deleted files remain path records only.
+
+
 > Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../README.en.md) first for current rules and outstanding work.
 
 September 8, 2026. This development build connects existing mechanisms to delivery and adds reactive props. It is not a completed Steam release or final art version.

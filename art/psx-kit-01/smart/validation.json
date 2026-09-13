@@ -1,0 +1,110 @@
+[
+  {
+    "file": "NR_Wall_Smart_A\\NR_Wall_Smart_A.fbx",
+    "polygons": 4079,
+    "uv": true,
+    "sha256": "a7b745a3e6b5be71d24408009a7a89e169e5800bdc1a6f8972779975c19a9279"
+  },
+  {
+    "file": "NR_Wall_Smart_B\\NR_Wall_Smart_B.fbx",
+    "polygons": 4543,
+    "uv": true,
+    "sha256": "42fa6b3eab228159a45a9131a2557999581277e762c2515beea77fc8621fa481"
+  },
+  {
+    "file": "NR_Wall_Smart_C\\NR_Wall_Smart_C.fbx",
+    "polygons": 4443,
+    "uv": true,
+    "sha256": "7fdca63a74d9f9d77e89cabaaea6f68dc6f6638dced203fa8da60e9afcca51c7"
+  },
+  {
+    "file": "NR_Corner_Smart_A\\NR_Corner_Smart_A.fbx",
+    "polygons": 4936,
+    "uv": true,
+    "sha256": "4bf446da4d967b9f0cc02f28574555881f72abbd689cffd7d5e37a70da9a9e17"
+  },
+  {
+    "file": "NR_Corner_Smart_B\\NR_Corner_Smart_B.fbx",
+    "polygons": 5439,
+    "uv": true,
+    "sha256": "db25952981b1ed66ae92c01654732c12a2aea7ecb2af32b632596a3921127297"
+  },
+  {
+    "file": "NR_Corner_Smart_C\\NR_Corner_Smart_C.fbx",
+    "polygons": 5674,
+    "uv": true,
+    "sha256": "8b01f07b84d8c418cb6912a8e60fd7a54d4af2a42f9c44061a9926c6f245cae8"
+  },
+  {
+    "file": "NR_Door_Smart_A\\NR_Door_Smart_A.fbx",
+    "polygons": 5493,
+    "uv": true,
+    "sha256": "4af520ad9f2d83e6abd6e39dfc8d05d27979373bbd4c9d83af18a5c82dc17fc6"
+  },
+  {
+    "file": "NR_Door_Smart_B_Textured\\NR_Door_Smart_B_Textured.fbx",
+    "polygons": 4623,
+    "uv": true,
+    "sha256": "89eb1001399ebe009090d6688f3ade4b512affb885505d9fad0fb5389936e51a"
+  },
+  {
+    "file": "NR_Door_Smart_C_Textured\\NR_Door_Smart_C_Textured.fbx",
+    "polygons": 4323,
+    "uv": true,
+    "sha256": "679df624f470ba319b81b14d4750316094f25d96b518960bfe95932ac4d21e52"
+  },
+  {
+    "file": "NR_Floor_Smart_A\\NR_Floor_Smart_A.fbx",
+    "polygons": 5694,
+    "uv": true,
+    "sha256": "22fc3adcb82a9005cb4333513840874ba82ce50aabf6db2416d623f27d49c47a"
+  },
+  {
+    "file": "NR_Floor_Smart_B\\NR_Floor_Smart_B.fbx",
+    "polygons": 5135,
+    "uv": true,
+    "sha256": "41c5b9a50406337b5a8c846a944bb362edb8e6b65d60a44370e1a655597701b7"
+  },
+  {
+    "file": "NR_Floor_Smart_C\\NR_Floor_Smart_C.fbx",
+    "polygons": 4742,
+    "uv": true,
+    "sha256": "9626fb00fc3a00400af0725ca86537527562fda14271b053ae85d43df43c4968"
+  },
+  {
+    "file": "NR_Lamp_Smart_A\\NR_Lamp_Smart_A.fbx",
+    "polygons": 5454,
+    "uv": true,
+    "sha256": "15312022dbda0cb609d048e14ef6d718f508b17cf7bbc005ac297fc2c627dc2d"
+  },
+  {
+    "file": "NR_Lamp_Smart_B_Textured\\NR_Lamp_Smart_B_Textured.fbx",
+    "polygons": 2035,
+    "uv": true,
+    "sha256": "8645b8d9ed80766e488f8b8f2208d834abf0df75fd85d683fba3bef086cd75f1"
+  },
+  {
+    "file": "NR_Lamp_Smart_C_Textured\\NR_Lamp_Smart_C_Textured.fbx",
+    "polygons": 5294,
+    "uv": true,
+    "sha256": "f9f0788e079e380494eb51c12dae82cbee66e5cd9cb96a359874ddb3621f9129"
+  },
+  {
+    "file": "NR_Rack_Smart_A_Textured\\NR_Rack_Smart_A_Textured.fbx",
+    "polygons": 4799,
+    "uv": true,
+    "sha256": "d064210e9f70c634f32c4b634a3421477c123a693f9db7f1530ff2d00adfd9e7"
+  },
+  {
+    "file": "NR_Rack_Smart_B_Textured\\NR_Rack_Smart_B_Textured.fbx",
+    "polygons": 5337,
+    "uv": true,
+    "sha256": "115d5f6e33133b98dd96338a47ca0d52df2f7bed4b93baa5b49af621f7e316e6"
+  },
+  {
+    "file": "NR_Rack_Smart_C\\NR_Rack_Smart_C.fbx",
+    "polygons": 5350,
+    "uv": true,
+    "sha256": "163e86ca23ad48819d65ba081e45be0c0f323694fed1051057b433098dd309c4"
+  }
+]

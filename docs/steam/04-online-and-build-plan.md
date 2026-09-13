@@ -2,6 +2,9 @@
 
 [한국어](04-online-and-build-plan.ko.md)
 
+> **Historical record · retired/superseded 2026-09-12.** The [PSX space-delivery design](../current/01-overview.en.md) is current. Implementation, launch, art and values below are historical, not current status. Deleted files remain path records only.
+
+
 > Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../README.en.md) first for current rules and outstanding work.
 
 **Status:** Godot 4.7.2 expanded prototype 0.5 includes four cargo types, crew quotas, A/B destinations, pings and overtime. Local two-/four-process ENet tests and a Windows export are verified. Steam transport, real App ID and Steam installation remain unconfigured. See the [current play guide](../prototype/05-expanded.en.md) and [build handoff](07-build-handoff.en.md).  

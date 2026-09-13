@@ -2,6 +2,14 @@
 
 [English](README.en.md)
 
+## 2026-09-12 — PSX 우주 배송으로 재출발
+
+기존 Godot와 Unity 게임·아트·빌드는 삭제했다. 보관한 것은 문서와 Git의 기존 이력이며, 삭제된 미커밋 파일의 복사본을 보관했다는 뜻이 아니다. [삭제 목록](space-reset-deletion-manifest.json)은 백업이 아니다.
+
+[이전 개요](pre-space-2026-09-12/docs/current/01-overview.ko.md) · [이전 현재 명세](pre-space-2026-09-12/docs/current/02-spec.ko.md) · [이전 가이드](pre-space-2026-09-12/docs/current/03-guides.ko.md) · [이전 백로그](pre-space-2026-09-12/docs/current/04-backlog.ko.md) · [이전 검증](pre-space-2026-09-12/docs/current/05-validation.ko.md)
+
+아래 문서와 docs/current의 이전 번호 문서는 모두 역사 자료다. 새 게임의 기준은 [현재 기획](../current/01-overview.ko.md)이다.
+
 기존 파일 경로는 링크·도구 호환성을 위해 보존했습니다. 아래 문서는 과거 기획·상세 가이드·검증 기록입니다. 현재 상태는 [문서 홈](../README.md)의 명세가 우선하며, 과거 수치를 현재 값으로 복사하지 마세요. 취소된 기능의 구현 기록은 현재 구현을 의미하지 않습니다.
 
 [이전 README](legacy-readme.ko.md) · [작업 기록](change-log.ko.md)
@@ -74,3 +82,7 @@
 - [배송 신전 굽은 동선 계획](../superpowers/plans/2026-09-08-winding-shrine.ko.md)
 
 - [0.9.4 reactive impact](../art/09-reactive-impact.ko.md)
+
+## SIDE EFFECTS — 2026-09-12
+
+ZIP (`side-effects-2026-09-12.zip`; retired file) · [기획 / Design](../current/14-side-effects.ko.md) · [인계 / Handoff](../current/16-side-effects-handoff.ko.md) · [과거 구현 / Historical implementation](../current/17-side-effects-implementation.ko.md).

@@ -2,23 +2,29 @@
 
 [English](README.en.md)
 
-현재 기준: **0.9.4 · 2026-09-09**. 현재 동작은 아래 명세를 기준으로 읽고, 예전 계획과 수치는 과거 기록에서 확인하세요.
+2026-09-12 · SPACE-01. 현행 방향은 PSX 우주 배송·미스터리다. 이전 기획보다 아래 문서가 우선한다.
 
-1. [게임 개요](current/01-overview.ko.md)
+1. [게임 개요·최상위 기획](current/01-overview.ko.md)
 2. [현재 게임 명세](current/02-spec.ko.md)
 3. [맵·아트·기술 가이드](current/03-guides.ko.md)
-4. [미완료·버그 목록](current/04-backlog.ko.md)
+4. [미정·미완료·우선순위](current/04-backlog.ko.md)
 5. [테스트·출시 체크리스트](current/05-validation.ko.md)
 6. [과거 기록 보관함](archive/README.md)
 
-## 읽는 순서와 관리
+[프로젝트 실행](../01_Open_Project.cmd) · [문서 관리 규칙](../AGENTS.md)
 
-게임 파악은 1→2, 직접 제작은 3, 다음 작업 결정은 4, 검증·출시는 5를 읽으세요. 새 작업은 해당 문서와 영어 대응본을 같은 작업에서 갱신하고 [작업 기록](archive/change-log.ko.md)에 남깁니다. 수정 없는 조사·검토도 결론과 미확인 사항을 기록합니다. 과거 문서의 체크박스는 그 당시 검증 범위를 뜻합니다.
+[보수·실패·상점 설계 — 검증용 제안](current/economy.ko.md)
 
-[문서 관리 규칙](../AGENTS.md) · [게임 실행 안내](../README.md)
+[실행 가능한 운반 실험 — 조작·현재 검증](current/carry-test.ko.md)
 
-[기획 → 구현 → 검토 루프 운영 제안](current/06-iteration-loop.ko.md)
+[리스너·구조 실험 — 실행·현재 검증](current/space-play-03.ko.md)
 
-[MDA 분석 — 핵심 재미와 플레이 루프](current/07-mda.ko.md)
+[보급·위험 계약 실험](current/space-play-04.ko.md)
 
-[확장 기획 탐색 — 배송 원정·로드트립·도시 생활](current/08-expansion-directions.ko.md) · 향후 방향 제안
+[방장 진행 저장](current/space-play-05.ko.md)
+
+[현장 단서·공용 기록](current/space-play-06.ko.md)
+
+[SPACE-PLAY-07 — 확장 맵·억제장치](current/space-play-07.ko.md)
+
+[독립 검토 반영 — 0.8.2](current/review-fixes.ko.md)

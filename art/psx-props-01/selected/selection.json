@@ -1,0 +1,36 @@
+[
+  {
+    "module": "Parcel",
+    "variant": "Approved",
+    "source": "C:\\Users\\LeeDoik\\Documents\\ChatGPT\\\uac8c\uc784\uc81c\uc791_1\\art\\psx-props-01\\source\\Parcel\\NR_Parcel_Approved.fbx",
+    "triangles": 3722,
+    "polygons": 2044,
+    "dimensions_m": [
+      1.0338383913040161,
+      0.6605556011199951,
+      0.6444444060325623
+    ],
+    "textures": [
+      "NR_Parcel_BaseColor_512.png"
+    ],
+    "pivot": "bottom center",
+    "status": "offline review; scale proposal; no collision or Unity validation"
+  },
+  {
+    "module": "Receipt",
+    "variant": "Approved",
+    "source": "C:\\Users\\LeeDoik\\Documents\\ChatGPT\\\uac8c\uc784\uc81c\uc791_1\\art\\psx-props-01\\source\\Receipt\\NR_Receipt_Approved.fbx",
+    "triangles": 9777,
+    "polygons": 5301,
+    "dimensions_m": [
+      0.855886697769165,
+      1.0153394937515259,
+      1.600000023841858
+    ],
+    "textures": [
+      "NR_Receipt_BaseColor_512.png"
+    ],
+    "pivot": "bottom center",
+    "status": "offline review; scale proposal; no collision or Unity validation"
+  }
+]

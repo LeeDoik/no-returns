@@ -2,23 +2,29 @@
 
 [한국어](README.md)
 
-Current baseline: **0.9.4 · 2026-09-09**. Use the specification below for current behavior; consult the archive for historical plans and values.
+2026-09-12 · SPACE-01. The current direction is PSX space-delivery mystery. These documents supersede previous plans.
 
-1. [Game overview](current/01-overview.en.md)
-2. [Current specification](current/02-spec.en.md)
+1. [Overview and product design](current/01-overview.en.md)
+2. [Current game specification](current/02-spec.en.md)
 3. [Map, art and technical guide](current/03-guides.en.md)
-4. [Open work and bugs](current/04-backlog.en.md)
+4. [Open decisions, work and priorities](current/04-backlog.en.md)
 5. [Testing and release checklist](current/05-validation.en.md)
 6. [Historical archive](archive/README.en.md)
 
-## Navigation and maintenance
+[Open project](../01_Open_Project.cmd) · [Documentation rules](../AGENTS.md)
 
-Read 1→2 to understand the game, 3 to author content, 4 to choose next work and 5 to validate/release. Update the relevant document and Korean counterpart in the same task, and record it in the [work log](archive/change-log.en.md). Investigations/reviews with no implementation changes still log conclusions and unknowns. Historical checkboxes apply only to their original evidence scope.
+[Pay, failure and shop design — test proposal](current/economy.en.md)
 
-[Documentation rules](../AGENTS.md) · [Game launch guide](../README.en.md)
+[Executable carrying experiment — controls and current validation](current/carry-test.en.md)
 
-[Proposed plan → implement → review process](current/06-iteration-loop.en.md)
+[Listener/rescue experiment — launch/current validation](current/space-play-03.en.md)
 
-[MDA analysis — Core Fun and Core Loop](current/07-mda.en.md)
+[Supply/risk contract experiment](current/space-play-04.en.md)
 
-[Expansion exploration — expeditions, road trips and city life](current/08-expansion-directions.en.md) · Future direction proposals
+[Host progression save](current/space-play-05.en.md)
+
+[Site clues/shared log](current/space-play-06.en.md)
+
+[SPACE-PLAY-07 — expanded map/suppression](current/space-play-07.en.md)
+
+[Independent review integration — 0.8.2](current/review-fixes.en.md)

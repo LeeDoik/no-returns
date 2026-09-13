@@ -2,6 +2,9 @@
 
 [한국어](07-contracts.ko.md)
 
+> **Historical record · retired/superseded 2026-09-12.** The [PSX space-delivery design](../current/01-overview.en.md) is current. Implementation, launch, art and values below are historical, not current status. Deleted files remain path records only.
+
+
 > Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../README.en.md) first for current rules and outstanding work.
 
 September 9, 2026 · Windows x64 · Godot 4.7.2. A development build with production art and carrying/physics improvements, not a commercial release candidate or Steam-approved build. English is the source language for game copy; Korean is the default UI.

@@ -1,0 +1,11 @@
+{
+  "model": "605a7916-9931-49fe-b401-9cf0626fbbad",
+  "provider": "Tripo Smart Mesh P2.0",
+  "privacy": "private",
+  "start": 1145,
+  "geometry": 65,
+  "texture": 20,
+  "remaining": 1060,
+  "source": "docs/art/space-concepts/equipment-01.png",
+  "approval": "user approved 03 Decoy Beacon; requested production and game integration"
+}

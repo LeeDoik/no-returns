@@ -1,14 +1,31 @@
-.godot/
-.tools/
+# Generated Unity data
+**/[Ll]ibrary/
+**/[Tt]emp/
+**/[Oo]bj/
+**/[Ll]ogs/
+**/UserSettings/
+**/.vs/
+**/*.csproj
+**/*.sln
+**/*.slnx
 artifacts/
 build/
+__pycache__/
 *.tmp
 *.log
-__pycache__/
 .env
 .env.*
 !.env.example
-export_credentials.cfg
-steam_appid.txt
 *.pfx
 *.p12
+steam_appid.txt
+
+# Local Unity path mapping and generated players
+/NoReturns/CarryWorkspace.txt
+/builds/
+
+# Local editor backups and authentication caches
+*.blend[0-9]*
+*.fbx.bak
+*.zip.part
+*.crdownload

@@ -2,6 +2,9 @@
 
 [한국어](07-mda.ko.md)
 
+> **Historical record · retired/superseded 2026-09-12.** The [PSX space-delivery design](01-overview.en.md) is current. Implementation, launch, art and values below are historical, not current status. Deleted files remain path records only.
+
+
 Analysis date: 2026-09-09 · Game 0.9.4 · Static review of current specifications and code. No gameplay code changes. Fun and player behavior below are hypotheses inferred from implementation, not validated through human play in this task.
 
 ## Method
@@ -23,7 +26,7 @@ MDA connects Mechanics (rules and actions), Dynamics (patterns emerging from rul
 
 Comic mishaps and recovery stories may emerge from these experiences together. They are not a separate standard MDA category, nor grounds to classify Narrative as core as though a separate story campaign had been established. Evidence for Expression or Submission as central pleasures is also weak in the current implementation.
 
-Evidence: [carrying and relays](../../scripts/cargo.gd), [delivery checks](../../scripts/cargo_rules.gd), [worker](../../scripts/worker.gd), [shared rewards](../../scripts/contracts.gd), [environment](../../scripts/route_challenges.gd), [belt](../../scripts/conveyor.gd), [rat](../../scripts/packrat.gd), [pings](../../scripts/pings.gd), [reactive props](../../scripts/reactive_props.gd). See the [current specification](02-spec.en.md) for special-parcel values and sources.
+Evidence: carrying and relays (`../../scripts/cargo.gd`; retired file), delivery checks (`../../scripts/cargo_rules.gd`; retired file), worker (`../../scripts/worker.gd`; retired file), shared rewards (`../../scripts/contracts.gd`; retired file), environment (`../../scripts/route_challenges.gd`; retired file), belt (`../../scripts/conveyor.gd`; retired file), rat (`../../scripts/packrat.gd`; retired file), pings (`../../scripts/pings.gd`; retired file), reactive props (`../../scripts/reactive_props.gd`; retired file). See the [current specification](02-spec.en.md) for special-parcel values and sources.
 
 ## Core Loop — What choices and actions repeat?
 
@@ -42,7 +45,7 @@ When an accident or interference occurs, branch into **assess → recover, rerou
 | Feedback/reward | Delivery score, relay notice, earnings accumulated during a contract |
 | Repeat incentive | Next parcel/destination, remaining quota/time, improvements learned from the previous failure |
 
-Delivery requires the matching destination, no holder and no previous delivery. A relay requires another worker to catch a thrown parcel within 3 seconds of the throw, at least 3m from its origin, while passing the floor-proximity check. Not every short handoff counts. Evidence: [cargo.gd pickup/release](../../scripts/cargo.gd), [cargo_rules.gd try_dispatch](../../scripts/cargo_rules.gd).
+Delivery requires the matching destination, no holder and no previous delivery. A relay requires another worker to catch a thrown parcel within 3 seconds of the throw, at least 3m from its origin, while passing the floor-proximity check. Not every short handoff counts. Evidence: cargo.gd pickup/release (`../../scripts/cargo.gd`; retired file), cargo_rules.gd try_dispatch (`../../scripts/cargo_rules.gd`; retired file).
 
 ### Within-contract loop
 
@@ -54,9 +57,9 @@ Campaign duration starts at 240 seconds plus 20 seconds per time-upgrade level. 
 
 **Win contract → settle shared credits → host buys upgrades → everyone readies → next contract → finish by winning the third contract.**
 
-Each delivery earns 10 credits plus 5 for a relay. On success, earnings and a 20-credit completion bonus enter the shared balance. Failure does not pay the same rewards or automatically enter the successful upgrade/next-contract path. Boots, time and horn purchases change the next contract's conditions. These upgrades are progression within the current campaign, not permanent character growth. Evidence: [contracts.gd](../../scripts/contracts.gd), [flow control](../../scripts/main.gd).
+Each delivery earns 10 credits plus 5 for a relay. On success, earnings and a 20-credit completion bonus enter the shared balance. Failure does not pay the same rewards or automatically enter the successful upgrade/next-contract path. Boots, time and horn purchases change the next contract's conditions. These upgrades are progression within the current campaign, not permanent character growth. Evidence: contracts.gd (`../../scripts/contracts.gd`; retired file), flow control (`../../scripts/main.gd`; retired file).
 
-Practice has a separate flow: after a successful base 180-second shift, unanimous agreement enables a 60-second extra target. Keep it distinct from campaign upgrades. Evidence: [round_rules.gd](../../scripts/round_rules.gd), [main.gd](../../scripts/main.gd).
+Practice has a separate flow: after a successful base 180-second shift, unanimous agreement enables a 60-second extra target. Keep it distinct from campaign upgrades. Evidence: round_rules.gd (`../../scripts/round_rules.gd`; retired file), main.gd (`../../scripts/main.gd`; retired file).
 
 ## Weak points and questions to validate
 
@@ -74,7 +77,7 @@ These are neither confirmed bugs nor approved new features. They provide observa
 
 On 2026-09-09, filled all 7 response areas in the supplied Word worksheet and appended the repeating structure and improvement priorities. [English completed copy](../deliverables/core_loop_No_Returns.filled.en.docx), [Korean counterpart](../deliverables/core_loop_No_Returns.filled.ko.docx). The source remains unchanged.
 
-Under current [contracts.gd](../../scripts/contracts.gd) rules, every maximum upgrade costs boots 20×2 + time 25×2 + horn 20 = 110. A four-player first contract meeting its quota of 10 without relays pays 10×10 + success bonus 20 = 120. Purchases have no count limit, so all upgrades can be maximized after the first contract. Subsequent purchase choices and equipment uses for additional relay income can therefore run out early. Code and arithmetic confirm the structure; reduced fun remains a hypothesis. This does not negate records, transport efficiency or cooperation itself.
+Under current contracts.gd (`../../scripts/contracts.gd`; retired file) rules, every maximum upgrade costs boots 20×2 + time 25×2 + horn 20 = 110. A four-player first contract meeting its quota of 10 without relays pays 10×10 + success bonus 20 = 120. Purchases have no count limit, so all upgrades can be maximized after the first contract. Subsequent purchase choices and equipment uses for additional relay income can therefore run out early. Code and arithmetic confirm the structure; reduced fun remains a hypothesis. This does not negate records, transport efficiency or cooperation itself.
 
 Improvement priorities are ① sustaining reward→next purchase choices ② transport-method choice value ③ recovery→learning/satisfaction ④ variation in the next contract. Price/availability adjustments and map-segment comparisons remain proposals, not approved implementation changes. Follow [ECO-01 and the existing backlog](04-backlog.en.md).
 

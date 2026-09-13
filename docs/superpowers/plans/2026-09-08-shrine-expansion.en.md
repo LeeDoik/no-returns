@@ -2,6 +2,9 @@
 
 [한국어](2026-09-08-shrine-expansion.ko.md)
 
+> **Historical record · retired/superseded 2026-09-12.** The [PSX space-delivery design](../../current/01-overview.en.md) is current. Implementation, launch, art and values below are historical, not current status. Deleted files remain path records only.
+
+
 > Documentation update: versions and values here belong to this file's original context. Check the [documentation home](../../README.en.md) first for current rules and outstanding work.
 
 Goal: version 0.7.4 expands the saved map from 32×36 m to 48×60 m (2.5 times the area), adding route choice, cooperation and timing challenges. Following the user's standing request to skip incremental approvals, implement and validate in this session.
