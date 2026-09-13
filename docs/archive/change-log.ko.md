@@ -638,3 +638,11 @@ Git 상태 조사: 브랜치 codex/tripo-animation, 마지막 커밋 681f430 (20
 GitHub 원격: https://github.com/LeeDoik/no-returns (비공개). 모델·Blender 원본·텍스처·음원·영상·압축 에셋은 .gitattributes에 따라 Git LFS로 저장한다. 복제 환경은 Git LFS 설치 후 git lfs pull을 실행한다. 과거 커밋의 일반 Git 바이너리는 이력 보존을 위해 재작성하지 않았다. 과거 텍스트 객체 783개와 현재 대상 파일의 자격증명 패턴 검사에서 발견 0개.
 
 기준점 커밋 180fb6b를 main에 빠르게 병합했다. LFS 추적 파일 222개, git lfs fsck 통과. 원격 푸시는 자동 승인 검토에서 목적지와 전체 이력·에셋 전송 범위의 명시적 승인을 요구하며 실행 전에 차단됐다. 원격 백업 완료가 아니며 사용자 확인 대기 상태다.
+
+## 2026-09-13 — 테스트·배포 제한 확인
+
+Steam 공식 [키 정책](https://partner.steamgames.com/doc/features/keys), [Playtest](https://partner.steamgames.com/doc/features/playtest), [업로드 안내](https://partner.steamgames.com/doc/sdk/uploading)를 확인했다. 반복 업데이트는 지원하지만 무제한 보장은 하지 않는다. 확인한 업로드 안내에서 월별 업데이트 횟수 상한은 찾지 못했다. Release State Override 키는 일반적으로 총 2,500개 제한이며 요청별 검토 대상이다. Playtest 키도 무제한이 아니며 50,000개 초과 요청 단계에서는 공개 신청 전환을 권장한다. 테스트 권한 수와 업데이트 횟수는 별개다. Playtest 접근권 판매는 금지된다. 자체 전용 서버의 비용·수용 인원은 Steam 배포와 별도다. 소규모 친구 반복 테스트는 초기 등록·권한·빌드 설정을 갖춘 뒤 진행할 수 있다는 결론이며 이 프로젝트의 계정·승인·배포 상태를 확인하거나 변경하지 않았다. 코드 변경 없음, 실제 배포 검증 없음. 한영 문서 검사 수행.
+
+## 2026-09-13 — 원격 업로드 완료
+
+사용자가 목적지와 전체 전송 범위를 승인한 후 비공개 origin의 main에 eb5dba6을 정상 푸시했다. 소스·문서·아트와 main에서 도달 가능한 커밋 이력을 보존했다. LFS 업로드는 177개 객체, 599 MB로 완료됐으며 현재 LFS 추적 경로는 222개다. 로컬/원격 커밋 일치, 비공개 설정, git lfs fsck 통과와 추가 LFS 전송 없음(dry-run)을 확인했다. 빌드·캐시·인증정보 등 기존 제외 범위는 유지했다. 게임 코드 변경과 게임 실행 재검증은 없으며 한영 문서 검사를 수행했다.
