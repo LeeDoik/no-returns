@@ -49,3 +49,12 @@
 
 
 최종 자동 검사: GLB 재가져오기 전후 48,906삼각형 일치, UV 누락 0, 비정상 좌표 0, 화물 구역 중앙 통로 표본 6개 모두 통과. 점·선 표본 검사이므로 직원·화물의 전체 부피 충돌을 보장하지 않는다. 한영 문서 링크·체크 상태·수치 대응 검사 통과.
+
+
+## 2026-09-14 — 각진 외부 수정 후보
+
+사용자 의견: 외부가 너무 둥글다. [Angular Blender](../../art/ship-flatbed-01/Flatbed_Angular.blend) · [GLB](../../art/ship-flatbed-01/Flatbed_Angular.glb) · [FBX](../../art/ship-flatbed-01/Flatbed_Angular.fbx) · [정면](../../art/ship-flatbed-01/review/angular-front.png) · [후면](../../art/ship-flatbed-01/review/angular-rear.png).
+
+[angular.py](../../art/ship-flatbed-01/angular.py)는 기존 통합 파일을 읽어 외장에만 12도 이내 제한적 면 병합과 flat shading을 적용한다. 유리 재질 경계와 열린 경계는 병합하지 않는다. 외장 삼각형은 10,962 → 10,562, 전체 GLB는 48,506이며 재가져오기 결과와 일치한다. 새로운 정점 위치는 0개로 외곽 치수를 다시 설계한 작업은 아니다. 기본 실루엣을 유지하면서 면 경계가 드러나는 후보이며, 곡면 모서리를 직육면체 모서리로 완전히 교체한 것은 아니다. 내부와 문·램프의 구조는 편집하지 않았다. 기존 Integrated 파일을 보존한다.
+
+[검사 결과](../../art/ship-flatbed-01/angular-validation.json): UV 누락 0, 비정상 좌표 0. 같은 카메라·조명으로 정후면을 직접 비교했다. Unity 적용·실제 조작·사용자 미술 승인 상태는 미완료다. 추가 Tripo 크레딧은 사용하지 않았다.

@@ -715,3 +715,8 @@ Directly compared both sheets and recorded projection, length allocation, window
 ## 2026-09-14 — First FLATBED integrated 3D candidate
 
 On user request, generated/downloaded Tripo geometry and integrated the cabin, windows, doors and ramp in Blender. Rejected duplicated craft and Boolean failures. Revised interior width to 4.352m to fit the exterior. The [production report](../current/ship-production.en.md) records artifacts, inspections and outstanding quality items. No game code or Unity play-scene changes. Actual controls and release quality are unverified.
+
+
+## 2026-09-14 — Angular FLATBED exterior candidate
+
+Addressed user feedback about roundness with limited hull face dissolution and flat shading in Blender, saving a separate Angular model and front/rear renders. Preserved the integrated model; no Unity changes. GLB reimport matched 48,506 triangles and UV checks passed. [Production/review](../current/ship-production.en.md). Actual controls and user art approval remain incomplete.

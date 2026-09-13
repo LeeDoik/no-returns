@@ -1,0 +1,15 @@
+{
+  "source": "Flatbed_Integrated.blend",
+  "variant": "Flatbed_Angular",
+  "angle_degrees": 12,
+  "hull_triangles_before": 10962,
+  "hull_triangles_after": 10562,
+  "flat_shading": true,
+  "new_vertex_positions": 0,
+  "unity_manual_validation": false,
+  "unchanged_other_meshes": 48,
+  "export_triangles": 48506,
+  "reimport_triangles": 48506,
+  "missing_uvs": [],
+  "nonfinite_vertices": 0
+}

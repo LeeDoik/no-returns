@@ -49,3 +49,12 @@ Before publishing, run [finish.py](../../art/ship-flatbed-01/finish.py) to bake 
 
 
 Final automated checks: 48,906 triangles matched before/after GLB reimport, 0 missing UVs, 0 invalid coordinates, all 6 cargo-aisle ray samples passed. Point/line samples do not guarantee whole-body or cargo-volume collision clearance. Bilingual document link, checkbox and numeric parity checks passed.
+
+
+## 2026-09-14 — Angular exterior candidate
+
+User feedback: the exterior is too rounded. [Angular Blender](../../art/ship-flatbed-01/Flatbed_Angular.blend) · [GLB](../../art/ship-flatbed-01/Flatbed_Angular.glb) · [FBX](../../art/ship-flatbed-01/Flatbed_Angular.fbx) · [Front](../../art/ship-flatbed-01/review/angular-front.png) · [Rear](../../art/ship-flatbed-01/review/angular-rear.png).
+
+[angular.py](../../art/ship-flatbed-01/angular.py) reads the integrated file and applies limited 12-degree face dissolution and flat shading only to the hull. Glass material boundaries and open boundaries are not dissolved. Hull triangles change from 10,962 to 10,562; the complete GLB has 48,506 triangles, matching reimport. There are 0 new vertex positions; this does not redesign the outer dimensions. The candidate preserves the basic silhouette while exposing face boundaries, rather than fully replacing curved corners with rectangular corners. Cabin and door/ramp structures were not edited. Original Integrated files remain available.
+
+[Validation](../../art/ship-flatbed-01/angular-validation.json): 0 missing UVs and 0 invalid coordinates. Directly compared front and rear renders using the same camera and lighting. Unity integration, actual controls and user art approval remain incomplete. No additional Tripo credits were used.
