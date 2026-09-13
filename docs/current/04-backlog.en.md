@@ -176,3 +176,5 @@ Friends invitations/joining can be tested before release with Steamworks integra
 [Prerelease testing](https://partner.steamgames.com/doc/store/testing) · [Official SpaceWar sample](https://partner.steamgames.com/doc/sdk/api/example). Official documentation review only; no Steam configuration, code or distribution changes and no actual invitation test.
 
 [Steam private testing registration and checklist](steam-testing.en.md) — 2026-09-13
+
+0.8.15: [Baton shell restoration](baton-mesh-fix.en.md).

@@ -24,3 +24,5 @@ Windows 빌드 성공. Blender 앞면 및 FBX 재가져오기에서 몸체/화�
 [Model](../../art/psx-baton-02/selected/validation.json) · [Feedback checks](../../artifacts/baton-feedback/latest.json) · [Resistance checks](../../artifacts/space-foundation/baton-resistance-result.json)
 
 최종 검증: 두 프로세스 저지·다운·구조·긴급 회수 회귀 24개도 통과했다. 표시 검사 11개와 저항 로직 검사 3개는 별도 범위다.
+
+0.8.15: [충격봉 외장 복원](baton-mesh-fix.ko.md).

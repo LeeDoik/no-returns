@@ -1,6 +1,6 @@
 {
   "triangles": 9694,
-  "vertices": 10847,
+  "vertices": 5188,
   "uv_layers": 1,
   "dimensions": [
     0.22595062851905823,
@@ -8,6 +8,8 @@
     0.6799999475479126
   ],
   "source": "C:\\Users\\LeeDoik\\Documents\\ChatGPT\\\uac8c\uc784\uc81c\uc791_1\\art\\psx-baton-02\\source\\NR_Baton_Integrated.fbx",
-  "screen_faces_removed": 357,
-  "screen_separate_uv": true
+  "screen_faces_removed": 0,
+  "screen_separate_uv": true,
+  "shell_preserved": true,
+  "weld_distance_m": 1e-05
 }

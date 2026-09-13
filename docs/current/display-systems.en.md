@@ -26,3 +26,5 @@ Windows build succeeded. Comparing terminal progress at 25% and 75% changed 212 
 [CRT validation](../../artifacts/space-foundation/crt-progress-result.json) · [Baton shader](../../NoReturns/Assets/_NoReturns/Resources/BatonDisplay.shader) · [Terminal shader](../../NoReturns/Assets/_NoReturns/Resources/ReceiptUI/ReceiptCRT.shader)
 
 Final validation: passed 11 two-process baton display/recharge checks and 30 delivery/receipt/settlement checks. Terminal front/rear/wall-occlusion render checks passed. Inspected the in-game mid-charge baton display. Bilingual documentation checks passed for 216 documents. Human readability and performance measurements were not performed.
+
+0.8.15: [Baton shell restoration](baton-mesh-fix.en.md).

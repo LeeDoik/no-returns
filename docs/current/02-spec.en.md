@@ -84,3 +84,5 @@ Added Korean by default, the 한국어 / English menu toggle and persistence of 
 ## SPACE-PLAY-04 — Supply/risk contracts (0.5.0)
 
 [Purchase/use specification](space-play-04.en.md). Listener mode now implements session beacon-license purchase, shared deployment and risk-contract selection. Persistence, the full shop, more destinations and final art remain. Use existing launchers 06/07. Two-process progression checks passed 24, existing rescue checks 21, and language checks 9. Human feel, economy balance and rendered readability of the new supply panel are unverified.
+
+0.8.15: [Baton shell restoration](baton-mesh-fix.en.md).

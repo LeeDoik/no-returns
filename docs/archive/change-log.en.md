@@ -654,3 +654,7 @@ Reviewed official Steamworks onboarding, fee and testing guidance and the preced
 ## 2026-09-13 — Steam registration deferred
 
 After observing the fee stage, the user deferred spending and Steam registration. No payment executed by the agent; payment completion unverified. Do not mark onboarding, distribution or Steam integration complete. Updated the current registration document in both languages; no gameplay code changes or game tests. Ran documentation checks.
+
+## 2026-09-13 — Baton shell restoration
+
+Reproduced an opening caused by deletion of shell polygons near the screen; restored the original shell, normalized face orientation and added a triangle-preservation check. Windows 0.8.15 build, 11 two-executable charging/display checks and ready/charging render inspection completed. Full user symptom confirmation and human feel remain unverified. The 4-player expansion was not pursued because this fix took priority.

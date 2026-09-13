@@ -26,3 +26,5 @@ Windows 빌드 성공. 단말기 진행률 25%와 75% 렌더 비교에서 정면
 [CRT validation](../../artifacts/space-foundation/crt-progress-result.json) · [Baton shader](../../NoReturns/Assets/_NoReturns/Resources/BatonDisplay.shader) · [Terminal shader](../../NoReturns/Assets/_NoReturns/Resources/ReceiptUI/ReceiptCRT.shader)
 
 최종 검증: 실제 두 프로세스 충격봉 표시·충전 11개, 배송·영수증·정산 30개 검사 통과. 단말기 정면·뒷면·벽 차폐 렌더 검사 통과. 게임 내 충격봉 중간 충전 화면 확인. 한영 문서 검사 216개 통과. 실제 사람의 가독성과 성능 측정은 미실시.
+
+0.8.15: [충격봉 외장 복원](baton-mesh-fix.ko.md).

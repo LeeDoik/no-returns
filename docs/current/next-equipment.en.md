@@ -24,3 +24,5 @@ Currently swaps prepared textures. Alternatives include drawing charge directly 
 [Model](../../art/psx-baton-02/selected/validation.json) · [Feedback checks](../../artifacts/baton-feedback/latest.json) · [Resistance checks](../../artifacts/space-foundation/baton-resistance-result.json)
 
 Final validation: all 24 two-process stun/down/rescue/emergency recovery regressions also passed. The 11 display checks and 3 resistance logic checks cover separate scopes.
+
+0.8.15: [Baton shell restoration](baton-mesh-fix.en.md).

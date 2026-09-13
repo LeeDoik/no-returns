@@ -37,18 +37,26 @@ for poly in o.data.polygons:
  if gg>.25 and gg>rr*1.35 and gg>bb*1.3:
   matches.append(dict(p=list(poly.center),n=list(poly.normal),index=poly.index))
 (out/'green-faces.json').write_text(json.dumps(matches))
-# Replace only the inner glass region; preserve the generated recessed frame.
+# Preserve the generated shell and place the separate display just above its glass.
 import bmesh
 bm=bmesh.new();bm.from_mesh(o.data)
-remove=[f for f in bm.faces if -.046<f.calc_center_median().x<-.026 and -.047<f.calc_center_median().y<-.032 and .328<f.calc_center_median().z<.444]
-bmesh.ops.delete(bm,geom=remove,context='FACES');bm.to_mesh(o.data);bm.free()
-mesh=bpy.data.meshes.new('BatonScreen');mesh.from_pydata([(-.046,-.0426,.328),(-.026,-.0426,.328),(-.026,-.0426,.444),(-.046,-.0426,.444)],[],[(0,1,2,3)]);mesh.update()
+source_triangles=report["triangles"]
+# Keep the shell intact: centroid-selected polygons extend beyond the screen rectangle.
+# Removing them opened a long slit above the bezel in Unity's backface-culled render.
+bmesh.ops.remove_doubles(bm,verts=list(bm.verts),dist=.00001)
+bmesh.ops.recalc_face_normals(bm,faces=list(bm.faces))
+bmesh.ops.triangulate(bm,faces=list(bm.faces))
+bm.to_mesh(o.data);bm.free()
+mesh=bpy.data.meshes.new('BatonScreen');mesh.from_pydata([(-.046,-.048,.328),(-.026,-.048,.328),(-.026,-.048,.444),(-.046,-.048,.444)],[],[(0,1,2,3)]);mesh.update()
 glass=bpy.data.objects.new('BatonScreen',mesh);bpy.context.collection.objects.link(glass)
 uv=mesh.uv_layers.new(name='ScreenUV')
 for i,xy in enumerate([(0,0),(1,0),(1,1),(0,1)]):uv.data[i].uv=xy
 mat=bpy.data.materials.new('BatonScreen');mat.diffuse_color=(.01,.02,.01,1);mesh.materials.append(mat)
 glass.select_set(True);o.select_set(True)
-report['screen_faces_removed']=len(remove);report['screen_separate_uv']=True
+report['screen_faces_removed']=0;report['screen_separate_uv']=True
+report['shell_preserved']=True;report['weld_distance_m']=.00001
+o.data.calc_loop_triangles();report['triangles']=len(o.data.loop_triangles);report['vertices']=len(o.data.vertices)
+assert report['triangles']==source_triangles, 'Baton shell triangles lost during display preparation'
 bpy.ops.export_scene.fbx(filepath=str(out/'NR_Baton_Selected.fbx'),use_selection=True,add_leaf_bones=False,bake_anim=False,axis_forward='-Z',axis_up='Y',path_mode='AUTO')
 (out/'validation.json').write_text(json.dumps(report,indent=2))
 scene=bpy.context.scene;scene.render.engine='CYCLES';scene.cycles.samples=24;scene.render.resolution_x=900;scene.render.resolution_y=900;scene.render.resolution_percentage=100

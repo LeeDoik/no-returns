@@ -291,3 +291,5 @@ This is a layout proposal rather than an exact reconstruction or measured drawin
 [Git version control](version-control.en.md)
 
 [Steam private testing registration and checklist](steam-testing.en.md) — 2026-09-13
+
+0.8.15: [Baton shell restoration](baton-mesh-fix.en.md).

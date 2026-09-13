@@ -176,3 +176,5 @@
 [출시 전 테스트](https://partner.steamgames.com/doc/store/testing) · [공식 SpaceWar 샘플](https://partner.steamgames.com/doc/sdk/api/example). 공식 문서 조사만 수행했으며 Steam 설정·코드·배포 변경과 실제 초대 검증은 없다.
 
 [Steam 비공개 테스트 등록·체크리스트](steam-testing.ko.md) — 2026-09-13
+
+0.8.15: [충격봉 외장 복원](baton-mesh-fix.ko.md).
