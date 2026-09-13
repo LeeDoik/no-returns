@@ -725,3 +725,7 @@ Addressed user feedback about roundness with limited hull face dissolution and f
 ## 2026-09-14 — FLATBED interior proposal
 
 Created a board covering the full cabin, consoles and equipment on user request. Identified a console blocking the incline and revised it to side consoles with an upper standing area. Recorded bilingual proposal, review and unverified items under [interior design 03](../current/ship-production.en.md). Performed image review and document checks only; no code, model or Unity changes.
+
+## 2026-09-14 — Flat cabin, central display and rear access review
+
+Generated [interior design 04](../current/ship-production.en.md) to visualize the requested interior ramp removal and large central display. Rear render and construction source confirm a central entrance and exterior boarding ramp. Distinguished design dimensions from actual clear passage and recorded employee and cargo clearance below the engine as unverified. Validation covers image review and documentation checks; no code, 3D model or Unity changes.

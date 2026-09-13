@@ -73,3 +73,11 @@ Created an interior image proposal using the angular exterior and existing cabin
 - Unverified: incline length/angle/rise, actual furniture/body fit within roughly 4.35m width, headroom and exterior window coordinates, equipment reach. Perspective imagery is not measurement evidence. The 3D model still retains the existing stairs.
 
 [Initial generation — held for console access issue](../../art/ship-concepts-01/interior-design-03-draft.png). After image selection, revalidate structural dimensions and apply them to the model.
+
+## 2026-09-14 — Interior design 04 and rear entrance review
+
+![Interior design 04](../../art/ship-concepts-01/interior-design-04.png)
+
+At the user's request, removed the interior ramp and floor step and placed a large recessed contract and route display centrally below the front windshield. This supersedes the ramp proposal in design 03. The side auxiliary screens, 4 seats, equipment docks and cargo racks remain. Visually confirmed a flat aisle and large display in the image. Screen copy is illustrative. **Only the concept image changed; the actual 3D model retains its stairs.** Window sill height and sightlines, equipment reach and human-scale fit need renewed validation when changing the model.
+
+Reviewed the [open rear entrance](../../art/ship-flatbed-01/review/angular-rear.png). A central door and exterior boarding ramp exist between the engines. Removing the interior ramp does not remove this exterior ramp. The [structural source](../../art/ship-flatbed-01/build.py) specifies a door 3m wide and 2.4m high; the [hull cut](../../art/ship-flatbed-01/integrate.py) spans 3.06m in width and 2.30m in height. These are design and cutting dimensions, not measured final clearances. The central rear engine geometry visually overhangs the entrance; full employee and cargo volume clearance through the frame, hull and engine, open-door interference and ground connection remain unverified. Render and source inspection alone do not guarantee unobstructed passage. No rear structure changes or Unity tests were performed.
