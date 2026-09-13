@@ -96,7 +96,7 @@ def main():
             # Reuse the freed slot with a fresh evidence directory and input sequence.
             folders[2]=RUN/'hazard-rejoined-2';folders[2].mkdir();command(2);start(2,'--hazard')
             wait('freed slot 2 reused',lambda:all_state(lambda s:s.get('occupiedMask')==15) and state(2).get('recipient')==2)
-        
+
 
         setup('--delivery');action();action();wait('four player delivery departure',lambda:phase(2))
         go(2,0,-6);go(2,0,-4.2);go(2,-1,-4.2);command(2,yaw=27,pitch=20,interact=True)
