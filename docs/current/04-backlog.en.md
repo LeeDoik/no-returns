@@ -174,3 +174,5 @@ Minimum validation candidate: invitation joining across different Steam accounts
 Friends invitations/joining can be tested before release with Steamworks integration and accounts granted test access. Requirements include an owned AppID and Steamworks configuration, compatible test builds and app access for each account; consider Release State Override keys for a small external test. A lobby invitation does not grant a game license. Valve's official SpaceWar sample AppID 480 is an initial API proof-of-concept candidate, not a substitute for testing distribution and entitlements under the game's own app. This project's Steamworks registration, owned AppID and test-key availability remain unverified. The preceding invitation-development recommendation did not establish readiness to connect.
 
 [Prerelease testing](https://partner.steamgames.com/doc/store/testing) · [Official SpaceWar sample](https://partner.steamgames.com/doc/sdk/api/example). Official documentation review only; no Steam configuration, code or distribution changes and no actual invitation test.
+
+[Steam private testing registration and checklist](steam-testing.en.md) — 2026-09-13

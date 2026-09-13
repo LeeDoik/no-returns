@@ -646,3 +646,7 @@ Checked official Steam [key policy](https://partner.steamgames.com/doc/features/
 ## 2026-09-13 — Remote upload completed
 
 After the user approved the destination and full transfer scope, normally pushed eb5dba6 to main on private origin. Preserved source, documents, art and commit history reachable from main. LFS uploaded 177 objects totaling 599 MB; the current tree tracks 222 LFS paths. Verified matching local/remote commits, private visibility, passing git lfs fsck and no additional LFS transfer in dry-run. Existing exclusions for builds, caches and credentials remain. No gameplay code changes or repeated runtime verification; ran bilingual document checks.
+
+## 2026-09-13 — Steam registration preparation
+
+Reviewed official Steamworks onboarding, fee and testing guidance and the preceding session; created a bilingual registration checklist. Opened the real browser login dialog and await user login. Partner, AppID and payment are unverified; no registration submission, deployment or gameplay code changes. Run document validation.

@@ -174,3 +174,5 @@
 정식 출시 전에도 Steamworks 연동과 테스트 접근 권한을 갖춘 계정으로 친구 초대·합류를 검증할 수 있다. 자체 AppID와 Steamworks 설정, 호환 테스트 빌드 및 각 계정의 앱 접근 권한이 필요하며 외부 소규모 테스트에는 Release State Override 키를 검토한다. 로비 초대 자체는 게임 이용 권한을 부여하지 않는다. Valve 공식 SpaceWar 샘플 AppID 480은 초기 API 기술 검증 후보이고 자체 앱 배포·권한 검증을 대신하지 않는다. 현재 이 프로젝트의 Steamworks 등록·자체 AppID·테스트 키 보유 여부는 미확인이다. 앞선 Steam 초대 개발 권고는 이미 연결할 준비가 됐다는 의미가 아니다.
 
 [출시 전 테스트](https://partner.steamgames.com/doc/store/testing) · [공식 SpaceWar 샘플](https://partner.steamgames.com/doc/sdk/api/example). 공식 문서 조사만 수행했으며 Steam 설정·코드·배포 변경과 실제 초대 검증은 없다.
+
+[Steam 비공개 테스트 등록·체크리스트](steam-testing.ko.md) — 2026-09-13

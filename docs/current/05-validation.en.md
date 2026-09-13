@@ -151,3 +151,5 @@ The final 0.8.3 build passed 17 automated carrying regressions using two Windows
 
 
 Final 0.8.4 Windows build succeeded. Two real Windows processes passed 14 automated checks including delivery, receipt, single reward payment, return, wallet retention and disconnect settlement. Blender front/rear and Unity prop rendering were reviewed. After the final textured-rear repair, build and delivery tests were rerun; older runtime captures show the earlier rear, so rear-review.png is the final rear appearance evidence. Human feel/fun and performance measurement were not performed. Documentation checks passed for 206 entries.
+
+[Steam private testing registration and checklist](steam-testing.en.md) — 2026-09-13

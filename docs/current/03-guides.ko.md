@@ -289,3 +289,5 @@ DOWNED·ASSIST·SUPPORTING MOSS·LOWER·CONFIRM RETURN, 입력 E와 상태 막�
 
 
 [Git 버전 관리](version-control.ko.md)
+
+[Steam 비공개 테스트 등록·체크리스트](steam-testing.ko.md) — 2026-09-13

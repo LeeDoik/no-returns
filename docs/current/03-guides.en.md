@@ -289,3 +289,5 @@ This is a layout proposal rather than an exact reconstruction or measured drawin
 
 
 [Git version control](version-control.en.md)
+
+[Steam private testing registration and checklist](steam-testing.en.md) — 2026-09-13
