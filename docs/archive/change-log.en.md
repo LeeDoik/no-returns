@@ -706,3 +706,7 @@ Generated and visually reviewed the forward-glazing four-view revision. Preserve
 ## 2026-09-13 — interior revised to match front glazing
 
 Generated and visually reviewed interior 02, removing forward non-habitable space and placing console beneath front glass. Documented proposed 7.6×6.4m interior, taper to 4.8m forward width, 47.04 square meters before furniture and 4-player clearance checks bilingually. Corrected the old width typo. No code/model/build changes; exact alignment with exterior mesh unverified. Documentation/arithmetic checks only.
+
+## 2026-09-13 — ship exterior/interior re-review
+
+Directly compared both sheets and recorded projection, length allocation, window/floor height, ramp/hatch height, aisle/seat envelopes, body count and art density as S01~S08. Limited earlier alignment claims to visual direction and explicitly left structure validation incomplete. Retain exterior A selection. No code/model/image/build changes. Updated bilingual review/backlog/validation and links. No actual 3D/control tests.

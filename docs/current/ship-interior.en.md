@@ -41,3 +41,5 @@ Checked length/width sums, tapered area and ramp triangle calculation. Visually 
 - [ ] Finalize production structure after user interior appearance review.
 
 [Exterior selection](ship-concepts.en.md) · [Demo inventory](demo-art-list.en.md) · [Employee/carrying code](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs).
+
+2026-09-13 review: [Exterior/interior consistency S01~S08](ship-review.en.md). Retain appearance direction; production-structure validation remains incomplete. Dimensional sums do not prove assemblability.
