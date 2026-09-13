@@ -662,3 +662,7 @@ Reproduced an opening caused by deletion of shell polygons near the screen; rest
 ## 2026-09-13 — Startup screen investigation
 
 Investigated the startup black-screen question using code, settings and existing player logs. Unity splash is enabled; CarryRoom.Awake synchronously constructs the world/assets before creating the camera/menu. A temporary dark interval before the menu may therefore be startup initialization, but the exact user-observed screen and duration remain unverified. The initial screen with buttons is the development HOST/JOIN menu. No gameplay changes, fresh startup reproduction or duration measurements. A persistent black screen must not be classified as normal loading without investigation.
+
+## 2026-09-13 — Startup visor occlusion
+
+0.8.16: The black rectangle in the startup menu was the local character visor. Update returned early for inactive sessions, skipping body visibility. Moved visibility into LateUpdate so it runs before rendering in both menus and gameplay. A temporary Unity scene regression recorded hidden=False before and True after recompilation. Windows build verification is separate from human startup-screen confirmation, which remains pending.

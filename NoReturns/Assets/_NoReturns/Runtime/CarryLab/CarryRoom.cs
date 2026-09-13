@@ -93,8 +93,6 @@ public sealed class CarryRoom : MonoBehaviour {
         // Preserve one-shot inputs until a simulation tick / outgoing packet consumes them.
         cmd.drop|=inputs[local].drop;cmd.inspect|=inputs[local].inspect;cmd.buy|=inputs[local].buy;cmd.contract|=inputs[local].contract;cmd.deploy|=inputs[local].deploy;cmd.call|=inputs[local].call;cmd.shove|=inputs[local].shove;cmd.action|=inputs[local].action;cmd.interact|=inputs[local].interact;cmd.jump|=inputs[local].jump;cmd.reset|=inputs[local].reset;if(journalOpen){cmd.drop=false;cmd.x=0;cmd.z=0;cmd.quiet=true;cmd.jump=false;cmd.interact=false;cmd.action=false;cmd.call=false;cmd.shove=false;cmd.rescue=false;cmd.buy=false;cmd.contract=false;cmd.deploy=false;cmd.inspect=false;cmd.reset=false;}inputs[local]=cmd;
         if(!hosting&&wire!=null&&Time.realtimeSinceStartup>=sendAt){wire.Send(JsonUtility.ToJson(cmd));inputs[local].drop=false;inputs[local].inspect=false;inputs[local].buy=false;inputs[local].contract=false;inputs[local].deploy=false;inputs[local].call=false;inputs[local].shove=false;inputs[local].action=false;inputs[local].interact=false;inputs[local].jump=false;inputs[local].reset=false;sendAt=Time.realtimeSinceStartup+.033f;}
-        for(int i=0;i<2;i++){bool visible=i!=local&&(i==0||peer);foreach(var r in bodies[i])r.enabled=visible;}
-        workers[1].gameObject.SetActive(peer||local==1);
     }
     static bool Finite(float n)=>!float.IsNaN(n)&&!float.IsInfinity(n);
     void FixedUpdate(){
@@ -198,6 +196,9 @@ public sealed class CarryRoom : MonoBehaviour {
     [Serializable] class UiEvidence {public string language,host,objective,status,firstRecord,secondRecord,suppressionCue;public bool koreanGlyph,journalOpen;}
     void WriteEvidence(CarryState s){if(testFolder==null)return;try{File.WriteAllText(Path.Combine(testFolder,"ui.json"),JsonUtility.ToJson(new UiEvidence{suppressionCue=suppression==null?null:T(CarrySuppression.Cue(suppression.Stage)),journalOpen=journalOpen,firstRecord=T(clues!=null&&(clues.Mask&1)!=0?CarryClues.FirstBody:"Not discovered"),secondRecord=T(clues!=null&&(clues.Mask&2)!=0?CarryClues.SecondBody:"Not discovered"),language=CarryLanguage.Korean?"ko":"en",host=T("HOST"),objective=T(CarryMission.Objective(missionPhase)),status=T(status),koreanGlyph=CarryLanguage.Font.HasCharacter('한')}));File.WriteAllText(Path.Combine(testFolder,"state.tmp"),JsonUtility.ToJson(s));var path=Path.Combine(testFolder,"state.json");if(File.Exists(path))File.Delete(path);File.Move(Path.Combine(testFolder,"state.tmp"),path);}catch(IOException){} }
     void LateUpdate(){if(eye==null)return;eye.transform.position=workers[local].transform.position+Vector3.up*(hazard&&danger!=null&&(local==0?danger.down0:danger.down1)?.55f:1.57f);eye.transform.rotation=Quaternion.Euler(pitch,yaw,0);
+        // Apply before every render, including the inactive startup menu.
+        for(int i=0;i<2;i++){bool visible=i!=local&&(i==0||peer);foreach(var r in bodies[i])r.enabled=visible;}
+        workers[1].gameObject.SetActive(peer||local==1);
         receiptFeedback?.Display(active?missionPhase:-1,receiptProgress,receiptCollected,receiptReady);
         suppression?.Display(active&&(missionPhase==2||missionPhase==3));
         if(outer!=null&&outerDanger!=null)outer.Display(outerDanger,active&&(missionPhase==2||missionPhase==3)&&suppression.Stage>=2);
