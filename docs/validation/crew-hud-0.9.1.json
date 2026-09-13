@@ -1,0 +1,48 @@
+{
+  "version": "0.9.1",
+  "unity_state_checks": 10,
+  "unity_text_height_checks": 100,
+  "unity_result": "PASS",
+  "windows_build": "PASS",
+  "four_process": {
+    "status": "PASS",
+    "checks": [
+      "--hazard host ready",
+      "--hazard slot 1",
+      "--hazard slot 2",
+      "--hazard slot 3",
+      "--hazard four replicated slots",
+      "fifth player rejected",
+      "beacon purchase shared",
+      "slot 3 owns beacon",
+      "four player hazard departure",
+      "independent cooldowns 0 1 2",
+      "slot 3 places active beacon",
+      "slot 3 cooldown shared",
+      "slot 2 leave preserves other identities",
+      "remaining crew next preparation",
+      "freed slot 2 reused",
+      "--delivery host ready",
+      "--delivery slot 1",
+      "--delivery slot 2",
+      "--delivery slot 3",
+      "--delivery four replicated slots",
+      "four player delivery departure",
+      "slot 2 owns cargo",
+      "other crew cannot drop owned cargo",
+      "receipt issued on all four peers",
+      "delivery alone does not pay",
+      "slot 3 collects receipt",
+      "return blocked while slot 2 and 3 outside",
+      "four crew back aboard",
+      "four peer settlement exactly 420",
+      "settlement not paid again",
+      "no null/index exceptions in player logs"
+    ],
+    "run": "C:\\Users\\LeeDoik\\Documents\\ChatGPT\\\uac8c\uc784\uc81c\uc791_1\\artifacts\\four-player\\run-20260913-225029"
+  },
+  "limitations": [
+    "Four-process run predates only final objective font-size adjustment. Unity checks and build rerun afterward.",
+    "Isolated actual Canvas camera renders are layout evidence, not full-game human readability or WAN/Steam tests."
+  ]
+}

@@ -30,3 +30,5 @@
 [독립 검토 반영 — 0.8.2](current/review-fixes.ko.md)
 
 [현재 0.9.0 — 4인 협동 실행·검증](current/four-player.ko.md)
+
+[0.9.1 — 협동 HUD](current/crew-hud.ko.md)

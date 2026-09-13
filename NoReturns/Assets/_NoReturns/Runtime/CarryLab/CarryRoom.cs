@@ -17,6 +17,7 @@ public sealed partial class CarryRoom : MonoBehaviour {
     bool hosting, active, peer, menu=true, capturePending; int local,holder=-1,tick,seq;
     float yaw,pitch,sendAt,lastPacket,connectAt; string address="127.0.0.1",status="Choose HOST or enter the host's LAN address.";
     CarryThreat threat,outer; CarrySuppression suppression; ThreatState danger,outerDanger; bool hazard; CarryClues clues; bool journalOpen;
+    CrewHud playHud;
     CarryEquipment equipment=new CarryEquipment(); BatonVisual baton=new BatonVisual(); bool unlocked,hard; int deliveries;
     int supplyChoice; bool receiptCollected,receiptReady; float receiptProgress; ReceiptFeedback receiptFeedback;
     CarryMission mission; int missionPhase=-1,credits,receipt,returnPay;
@@ -200,6 +201,8 @@ public sealed partial class CarryRoom : MonoBehaviour {
         if(threat!=null&&danger!=null){threat.Display(danger,active&&(missionPhase==2||missionPhase==3));
             for(int i=0;i<4;i++){bool down=danger.IsDown(i);rigs[i].localRotation=Quaternion.Euler(0,0,down?90:0);rigs[i].localPosition=down?new Vector3(.5f,.3f,0):Vector3.zero;}
         }
+        if(playHud==null)playHud=gameObject.AddComponent<CrewHud>();
+        playHud.Apply(hosting?Snapshot():target??Snapshot(),local,active&&!menu&&!journalOpen);
         if(capturePending && testFolder!=null){capturePending=false;var rt=new RenderTexture(960,600,24);rt.Create();
             var req=new UnityEngine.Rendering.Universal.UniversalRenderPipeline.SingleCameraRequest{destination=rt};
             UnityEngine.Rendering.RenderPipeline.SubmitRenderRequest(eye,req);var old=RenderTexture.active;RenderTexture.active=rt;var tex=new Texture2D(960,600,TextureFormat.RGB24,false);tex.ReadPixels(new Rect(0,0,960,600),0,0);tex.Apply();File.WriteAllBytes(Path.Combine(testFolder,"capture.png"),tex.EncodeToPNG());ScreenCapture.CaptureScreenshot(Path.Combine(testFolder,"screen.png"));RenderTexture.active=old;Destroy(tex);rt.Release();Destroy(rt);
@@ -227,24 +230,6 @@ public sealed partial class CarryRoom : MonoBehaviour {
             }
             if(active&&hazard)Label(new Rect(22,470,Screen.width-44,70),hosting?saveNotice:"Using host progress / personal save unchanged");
             return;}
-        Label(new Rect(22,18,600,35),T(hazard?"LISTENER TEST":missionPhase<0?"CARRY TEST":"DELIVERY LOOP")+" / "+T(hosting?"Host":"Client")+" / "+T("CREW")+" "+(CrewCount+"/4"));
-        Label(new Rect(22,48,Screen.width-44,55),missionPhase<0?"Move the parcel through the passage and onto the marked floor.":CarryMission.Objective(missionPhase));
-        if(missionPhase==3)Label(new Rect(22,165,Screen.width-44,45),receiptCollected?"Receipt collected / return aboard to get paid":"Collect receipt at terminal [E] / No pay until return");
-        if(missionPhase>=0)Label(new Rect(22,108,Screen.width-44,85),string.Format(T("SHARED WALLET {0} CR / RECEIPT {1} / RETURN {2}"),credits,receipt,returnPay)+"\n"+T(hazard?"[E] ship action / Blue floor: ship / Gold floor: reception / Host save":"[E] ship action / Blue floor: ship / Gold floor: reception / Session only"));
-        Label(new Rect(Screen.width/2-5,Screen.height/2-12,25,30),"+");
-        Label(new Rect(22,Screen.height-65,Screen.width-44,50),(holder==local||equipment.Carrier==local)?"[Q] SET DOWN   /   HANDS OCCUPIED":"[E] PICK UP nearby parcel   /   WASD move   /   Esc menu");
-        Label(new Rect(22,Screen.height-100,Screen.width-44,45),!hosting&&target!=null?target.message:status);
-        if(hazard)Label(new Rect(22,Screen.height-145,Screen.width-44,45),hosting?saveNotice:"Using host progress / personal save unchanged");
-        if(hazard&&danger!=null){
-            if(missionPhase==2||missionPhase==3)Label(new Rect(22,340,Screen.width-44,42),CarrySuppression.Cue(suppression.Stage));
-            Label(new Rect(22,150,Screen.width-44,50),string.Format(T("{0} / Beacon {1}/2 ({2}s) / E carry / Q place"),T(hard?"RISK":"STANDARD"),equipment.Charges,Mathf.CeilToInt(equipment.Remaining)));
-            Label(new Rect(22,200,Screen.width-44,65),"Shift quiet walk / C call / LMB baton / Hold E rescue / E inspect / Tab field log");
-            if((missionPhase==2||missionPhase==3)&&clues.Target(eye.transform.position,eye.transform.rotation)>=0)Label(new Rect(Screen.width/2-170,Screen.height/2+30,340,60),"[E] Inspect terminal / shared field log");
-            Label(new Rect(22,265,Screen.width-44,35),T(danger.state==2?"LISTENER: ATTACK WARNING - MOVE AWAY":danger.state==4?"LISTENER: STUNNED":danger.state==1?"LISTENER: INVESTIGATING SOUND":"LISTENER: PATROLLING / keep quiet"));
-            Label(new Rect(22,302,Screen.width-44,35),string.Format(T("Rescue {0}% / Baton cooldown {1}s"),Mathf.RoundToInt(danger.RescueAt(local)/2.5f*100),Mathf.CeilToInt(danger.CooldownAt(local))));
-            if(!danger.IsDown(local)&&AnyOtherDown(local))Label(new Rect(22,385,Screen.width-44,60),"TEAMMATE DOWN / put cargo down, approach and hold E");
-            if(danger.IsDown(local))Label(new Rect(22,385,Screen.width-44,60),"DOWN / wait for teammate rescue. All down: emergency recovery.");
-        }
     }
     void DrawJournal(){
         float w=Mathf.Min(860,Screen.width-40),x=(Screen.width-w)/2;

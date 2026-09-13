@@ -23,6 +23,17 @@ public static class CarryLanguage {
         return english;
     }
     public static readonly Dictionary<string,string> Ko=new Dictionary<string,string>{
+        {"WALLET {0} CR / CREW {1}/4","잔액 {0} CR / 직원 {1}/4"},
+        {"EMPTY","빈자리"},
+        {"DOWN","구조 필요"},
+        {"CARGO","화물 운반"},
+        {"BEACON","신호기 운반"},
+        {"ABOARD","우주선"},
+        {"IN FIELD","현장"},
+        {"YOU","나"},
+        {"[E] Interact / Hold E rescue / LMB baton / Tab log / Esc menu","E 상호작용 · E 유지 구조 · 왼쪽 클릭 충격봉 · Tab 기록 · Esc 메뉴"},
+        {"RESCUING {0}% / keep holding E","구조 중 {0}% / E를 계속 누르세요"},
+        {"WASD move / Mouse look / Shift quiet walk","WASD 이동 · 마우스 시점 · Shift 조용히 걷기"},
         {"Protocol mismatch / use the same game build","게임 버전이 다릅니다. 같은 실행본으로 접속하세요."},
         {"RECEIPT COLLECTED","영수증 회수 완료"},{"TAKE RECEIPT [E]","영수증 가져가기 [E]"},{"PRINTING RECEIPT","영수증 출력 중"},{"SCANNING","화물 확인 중"},{"PLACE PARCEL","화물을 놓으세요"},{"STANDBY","대기 중"},
         {"Receipt collected / return aboard to get paid","영수증을 챙겼습니다 / 우주선에 돌아가 정산하세요"},

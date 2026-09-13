@@ -30,3 +30,5 @@
 [Independent review integration — 0.8.2](current/review-fixes.en.md)
 
 [Current 0.9.0 — four-player launch and validation](current/four-player.en.md)
+
+[0.9.1 — cooperative HUD](current/crew-hud.en.md)

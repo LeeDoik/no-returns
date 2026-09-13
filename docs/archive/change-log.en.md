@@ -674,3 +674,9 @@ Expanded the existing two-player direct LAN experiment to 4 including the host a
 Real local four-process checks passed 31+15, existing two-process regressions passed 24+30, and Unity MCP logic checks passed 7. Test paths were corrected for crew collision/interaction positions and state-file read races; failed records retained. Rebuilt and passed all 31 full four-player session checks again after the final journal-only UI correction. Documentation validation passed for 224 files, including links, counterparts and checkbox states. Human fun, HUD readability, other-PC/WAN/Steam and long-session load remain untested. Steam registration is deferred by the user.
 
 [Current specification and evidence](../current/four-player.en.md).
+
+## 2026-09-13 — 0.9.1 cooperative HUD
+
+Moved gameplay HUD to a separate Canvas to improve four-player state visibility and central sightlines. Added number/color/self/down/cargo/beacon/aboard/field states, contextual controls and indirect suppression cues. Preserved menus, shop, journal and gameplay rules. Passed 10 Unity state conditions plus text-height checks across all phases in both languages; fixed English objective overflow. Reviewed isolated Canvas renders at two aspect ratios. After 31 four-process regression checks, adjusted only objective font size and passed Unity checks and Windows 0.9.1 build again. Human readability, background contrast and Steam/WAN remain untested.
+
+[Specification and evidence](../current/crew-hud.en.md).
