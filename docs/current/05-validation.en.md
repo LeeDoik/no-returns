@@ -164,3 +164,5 @@ Final 0.8.4 Windows build succeeded. Two real Windows processes passed 14 automa
 0.8.15: [Baton shell restoration](baton-mesh-fix.en.md).
 
 0.8.16: The black rectangle in the startup menu was the local character visor. Update returned early for inactive sessions, skipping body visibility. Moved visibility into LateUpdate so it runs before rendering in both menus and gameplay. A temporary Unity scene regression recorded hidden=False before and True after recompilation. Windows build verification is separate from human startup-screen confirmation, which remains pending.
+
+2026-09-13: [Complete demo cycle and 44 art production units](demo-art-list.en.md). Production proposal for the user goal, not approval of new appearances/timing or completed production.

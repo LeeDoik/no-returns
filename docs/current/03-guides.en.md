@@ -300,3 +300,5 @@ This is a layout proposal rather than an exact reconstruction or measured drawin
 [Steam private testing registration and checklist](steam-testing.en.md) — 2026-09-13
 
 0.8.15: [Baton shell restoration](baton-mesh-fix.en.md).
+
+2026-09-13: [Complete demo cycle and 44 art production units](demo-art-list.en.md). Production proposal for the user goal, not approval of new appearances/timing or completed production.

@@ -1,0 +1,45 @@
+﻿ID,Category KO,Category EN,Asset KO,Asset EN,R existing N new,Priority,Requirement KO,Requirement EN
+ENV01,구조,Structure,직선 벽,Straight wall,R,P0,후면·상단·접합선,"Back, top and seams"
+ENV02,구조,Structure,벽 코너,Wall corner,R,P0,안·바깥 코너 조립,Inner/outer corner assembly
+ENV03,구조,Structure,기본 문틀,Standard doorway,R,P0,화물 운반 개구부,Cargo clearance
+ENV04,구조,Structure,바닥 타일,Floor tile,R,P0,이음새·반복 무늬 보완,Improve seams and repetition
+ENV05,구조,Structure,벽 끝 마감,Wall end cap,N,P0,노출 단면 마감,Cover exposed ends
+ENV06,구조,Structure,T자 접합부,T junction,N,P1,분기점 두께 통일,Consistent branch thickness
+ENV07,구조,Structure,천장·보 모듈,Ceiling/beam module,N,P0,1인칭 상부 마감,Finish first-person overhead view
+ENV08,구조,Structure,대형 반입 문틀,Freight doorway,N,P1,Bay 04 진입 실루엣,Bay 04 entrance silhouette
+ENV09,구조,Structure,셔터 문짝,Shutter leaf,N,P1,문틀과 분리·이동 축,Separate frame and travel axis
+ENV10,구조,Structure,계단·경사 모듈,Stair/ramp module,N,P1,발 높이·화물 충돌,Step height and cargo collision
+ENV11,구조,Structure,난간,Railing,N,P1,단차·기계실 경계,Edges and machinery boundaries
+FAC01,시설,Facility,작업등,Work lamp,R,P0,발광 면과 실제 광원 분리,Separate emissive face and light
+FAC02,시설,Facility,화물 선반,Cargo rack,R,P0,비어 있는 형태·틈 충돌,Empty configuration and gap collision
+FAC03,시설,Facility,수령 단말기,Receipt terminal,R,P0,CRT·영수증 슬롯 유지,Retain CRT and receipt slot
+FAC04,시설,Facility,억제장치 본체,Suppressor body,N,P0,4단계 발광·진동 부품,Parts for 4-stage light/vibration
+FAC05,시설,Facility,중계 기둥,Relay post,N,P0,외곽 입구 경계 신호,Outer-entry boundary cues
+FAC06,시설,Facility,적색 경고등,Red warning beacon,N,P0,Unity 점멸 제어,Unity-controlled flashing
+FAC07,시설,Facility,배관·케이블 키트,Pipe/cable kit,N,P1,같은 단면의 직선·곡선 조각,Straight/bent pieces sharing a profile
+FAC08,시설,Facility,환기구·설비 패널,Vent/service panel,N,P1,벽면 밀도와 변주,Wall density and variation
+PRP01,소품,Props,밀봉 배송 상자,Sealed parcel,R,P0,전후면·시야·손 접점,"Front/back, visibility and grip"
+PRP02,소품,Props,유인 신호기,Lure beacon,R,P0,선내 구매 배치·집기,Ship purchase spawn and pickup
+PRP03,소품,Props,내장 화면 충격봉,Display-equipped baton,R,P0,복원 외장·충전·전기 끝,"Repaired shell, charge screen and tip"
+PRP04,소품,Props,비배송 보관 상자,Static storage crate,N,P1,배송 화물과 외형 구분,Distinguish from deliverable cargo
+PRP05,소품,Props,드럼통,Industrial drum,N,P2,엄폐·밀도; 파괴 기능 제외,Cover/density; no destruction feature
+PRP06,소품,Props,팔레트,Pallet,N,P1,적재 높이·단순 충돌,Stack height and simple collision
+PRP07,소품,Props,사무 작업대,Office workbench,N,P1,최근 작업 흔적,Recently used workstation
+PRP08,소품,Props,의자,Chair,N,P2,비어 있는 자리,Abandoned seat
+PRP09,소품,Props,컵,Cup,N,P2,김은 별도 VFX,Steam uses separate VFX
+PRP10,소품,Props,문서·배송 기록 묶음,Document/log bundle,N,P1,납작한 메시·문구 텍스처,Flat mesh and text texture
+SHP01,우주선,Ship,우주선 외장,Ship hull,N,P0,귀환 기준점·출입구,Return anchor and entrance
+SHP02,우주선,Ship,착륙 다리,Landing leg,N,P1,한 원형 반복 배치,Repeat one master mesh
+SHP03,우주선,Ship,탑승 램프,Boarding ramp,N,P0,화물·4인 진입 폭,Cargo and 4-player entry clearance
+SHP04,우주선,Ship,선내 화물실 셸,Cargo cabin shell,N,P0,시설 키트로 내부 보완,Support interior with facility kit
+SHP05,우주선,Ship,항로·보급 콘솔,Route/supply console,N,P0,항로·구매·정산 화면 공유,Shared route/shop/report screen
+ACT01,캐릭터,Characters,직원 전신,Employee full body,N,P0,한 모델·4색 변형,One model with 4 team colors
+ACT02,캐릭터,Characters,1인칭 팔·손,First-person arms/hands,N,P0,전신과 장갑·소매 통일,Match full-body gloves/sleeves
+ACT03,캐릭터,Characters,리스너,Listener,N,P0,조사·공격 예고·저지 실루엣,Investigate/windup/stun silhouette
+ACT04,캐릭터,Characters,갈색 A 외곽 생물,Brown A outer creature,N,P0,선택 A 유지·흰 생물 폐기 유지,Keep selected A; exclude discarded white creature
+EXT01,외곽,Exterior,현장 지면,Site ground,N,P0,단색 외곽 지면 대체,Replace flat-color exterior ground
+EXT02,외곽,Exterior,대형 절벽 암석,Large cliff rock,N,P0,경계·외곽 실루엣,Boundary and outer silhouette
+EXT03,외곽,Exterior,중형 암석,Medium rock,N,P1,회전·크기 변형으로 연결부 숨김,Rotate/scale to hide joins
+EXT04,외곽,Exterior,잔해·자갈 군집,Rubble cluster,N,P2,통로 밖 장식·불필요 충돌 제외,Off-route dressing without extra collision
+EXT05,외곽,Exterior,외곽 차단문,Outer barrier gate,N,P0,침입 위치·억제 실패 신호,Intrusion location and suppression failure
+EXT06,외곽,Exterior,원경 시설 실루엣,Distant facility silhouette,N,P2,탐험 불가 배경,Non-explorable backdrop

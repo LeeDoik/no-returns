@@ -192,3 +192,5 @@ This is a layout proposal rather than an exact reconstruction or measured drawin
 
 ## SPACE-ART-25 — Tripo PSX kit
 
+
+2026-09-13: [Complete demo cycle and 44 art production units](demo-art-list.en.md). Production proposal for the user goal, not approval of new appearances/timing or completed production.

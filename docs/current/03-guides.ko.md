@@ -300,3 +300,5 @@ DOWNED·ASSIST·SUPPORTING MOSS·LOWER·CONFIRM RETURN, 입력 E와 상태 막�
 [Steam 비공개 테스트 등록·체크리스트](steam-testing.ko.md) — 2026-09-13
 
 0.8.15: [충격봉 외장 복원](baton-mesh-fix.ko.md).
+
+2026-09-13: [완결형 데모 한 사이클·44개 아트 제작 단위](demo-art-list.ko.md). 사용자 목표를 구체화한 제작 제안이며 신규 외형·시간·제작 완료 승인이 아니다.

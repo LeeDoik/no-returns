@@ -680,3 +680,7 @@ Real local four-process checks passed 31+15, existing two-process regressions pa
 Moved gameplay HUD to a separate Canvas to improve four-player state visibility and central sightlines. Added number/color/self/down/cargo/beacon/aboard/field states, contextual controls and indirect suppression cues. Preserved menus, shop, journal and gameplay rules. Passed 10 Unity state conditions plus text-height checks across all phases in both languages; fixed English objective overflow. Reviewed isolated Canvas renders at two aspect ratios. After 31 four-process regression checks, adjusted only objective font size and passed Unity checks and Windows 0.9.1 build again. Human readability, background contrast and Steam/WAN remain untested.
 
 [Specification and evidence](../current/crew-hud.en.md).
+
+## 2026-09-13 — complete-demo art inventory
+
+User requested a 3D list for the CINDER DEPOT reference quality and a complete demo cycle. Corrected and inspected the image path, checked Selected models and current code. Authored 44 production units (10 existing, 34 proposed new), zone mapping, animation/non-model work, cycle through purchase, production order and gates in Korean/English and CSV. No code/model/build change. Retained appearance-approval gates; timing targets/new assets remain proposals. Check documentation links/counterparts/counts, without new gameplay or mesh re-audit.

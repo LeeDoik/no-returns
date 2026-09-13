@@ -32,3 +32,5 @@
 [현재 0.9.0 — 4인 협동 실행·검증](current/four-player.ko.md)
 
 [0.9.1 — 협동 HUD](current/crew-hud.ko.md)
+
+[한 사이클 데모·3D 에셋 목록](current/demo-art-list.ko.md)
