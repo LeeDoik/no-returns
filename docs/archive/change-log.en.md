@@ -729,3 +729,7 @@ Created a board covering the full cabin, consoles and equipment on user request.
 ## 2026-09-14 — Flat cabin, central display and rear access review
 
 Generated [interior design 04](../current/ship-production.en.md) to visualize the requested interior ramp removal and large central display. Rear render and construction source confirm a central entrance and exterior boarding ramp. Distinguished design dimensions from actual clear passage and recorded employee and cargo clearance below the engine as unverified. Validation covers image review and documentation checks; no code, 3D model or Unity changes.
+
+## 2026-09-14 — Cockpit rear visualization
+
+Generated and stored the requested [interior design 04 reverse angle](../current/ship-production.en.md). Visually reviewed the flat cabin and open rear exit. Exact layout consistency and exit collision remain unverified. Bilingual documentation checks performed; no code or model changes.
