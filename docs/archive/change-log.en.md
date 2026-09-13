@@ -636,3 +636,5 @@ Preserve the current 0.8.14 Unity project, art sources, tools and bilingual docu
 This task organizes version control and changes no gameplay code. The working-file credential-pattern scan found 0 matches. Game validation references the existing 0.8.14 two-process 41 checks and CRT occlusion results; these were not rerun in this task.
 
 GitHub remote: https://github.com/LeeDoik/no-returns (private). Models, Blender sources, textures, audio, video and archive assets use Git LFS according to .gitattributes. Install Git LFS and run git lfs pull after cloning. Historical ordinary Git binaries were not rewritten, preserving history. Credential-pattern scans found 0 matches across 783 historical text objects and current candidate files.
+
+Fast-forwarded main to baseline commit 180fb6b. Git LFS tracks 222 files; git lfs fsck passed. Automatic approval review blocked the remote push before execution, requiring explicit approval of the destination and transfer of full history and assets. Remote backup is not complete and awaits user confirmation.
