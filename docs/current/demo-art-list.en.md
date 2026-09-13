@@ -128,4 +128,4 @@ New designs follow production image → user appearance approval → 3D producti
 
 This task inspected the reference image, Selected model files, current code and documentation, then authored the list and bilingual documents. No code, model, map, timing, save or executable changed; no new gameplay test was run.
 
-[Four ship exterior proposals — selection pending](ship-concepts.en.md). Comparison concepts before 3D production.
+[Ship exterior — A selected](ship-concepts.en.md). Comparison concepts before 3D production.

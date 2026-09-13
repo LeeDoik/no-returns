@@ -690,3 +690,9 @@ User requested a 3D list for the CINDER DEPOT reference quality and a complete d
 At user request, planned A/B/C/D ship comparisons in the same PSX industrial style as CINDER DEPOT: low freighter, container transport, industrial tug and vertical lander, using matching views and human scale references. Appearance selection is pending; interior dimensions, collision and rigging are unvalidated. No 3D/code/map/executable changes. Updated bilingual comparison documents and inventory links.
 
 Generated and visually reviewed the [comparison sheet](../current/ship-concepts.en.md), preserving a source copy in the project. User selection and dimensional validation remain pending.
+
+## 2026-09-13 — ship A selected; four-view sheet requested
+
+User selected A / FLATBED. Preserve the comparison sheet and produce front/rear/left/right views with the cargo ramp defined at rear. Details of previously unseen faces are new proposals. No model/code/executable changes. Updated selection status in both languages.
+
+Generated, visually reviewed and preserved the four-view image in the project. Cross-view structural consistency remains a pre-modeling validation task. Checked document links and language counterparts.

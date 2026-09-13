@@ -2,7 +2,7 @@
 
 [한국어](ship-concepts.ko.md)
 
-2026-09-13 · Appearance proposals awaiting user selection. Use the same worn PSX industrial paint, texture and lighting family as the CINDER DEPOT reference. Assume a walkable interior for 1~4 crew and cargo, but these are not validated dimensional, layout, collision or rigging drawings.
+2026-09-13 · The user selected the A / FLATBED appearance direction. Use the same worn PSX industrial paint, texture and lighting family as the CINDER DEPOT reference. Assume a walkable interior for 1~4 crew and cargo, but these are not validated dimensional, layout, collision or rigging drawings.
 
 | Option | Direction | Comparison focus |
 |---|---|---|
@@ -17,4 +17,12 @@ After selection, create front/back/side and interior-flow production sheets cove
 
 ![Ship comparison](../../art/ship-concepts-01/ship-comparison-01.png)
 
-Generated and visually reviewed the 4-option sheet for silhouettes, entrances and human scale cues. Recommend A as a first-demo candidate; user selection remains pending. D lower-entry height and every option’s 4-crew interior need dimensional design. The image does not validate carrying clearance.
+Generated and visually reviewed the 4-option sheet for silhouettes, entrances and human scale cues. The user selected A. Preserve B/C/D as comparison history. D lower-entry height and every option’s 4-crew interior need dimensional design. The image does not validate carrying clearance.
+
+## A selected and four-view sheet
+
+The user selected A and requested front/rear/left/right images. Define the cargo opening and ramp as the rear; the front is the opposite closed low hull. Left elevation points its nose left; right elevation points its nose right. Previously unseen front/profile details are proposed extensions of A, not mechanically validated CAD projections. No 3D production or game integration occurs in this task.
+
+![A four views](../../art/ship-concepts-01/flatbed-four-views-01.png)
+
+Generated front/rear/left/right sheet and checked the open rear ramp and profile nose directions. Roof heights, landing supports and panel details are not an exact cross-view engineering projection. Resolve common dimensions and support placement into a single structure before modeling.

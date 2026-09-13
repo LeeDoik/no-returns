@@ -195,4 +195,4 @@ This is a layout proposal rather than an exact reconstruction or measured drawin
 
 2026-09-13: [Complete demo cycle and 44 art production units](demo-art-list.en.md). Production proposal for the user goal, not approval of new appearances/timing or completed production.
 
-[Four ship exterior proposals — selection pending](ship-concepts.en.md). Comparison concepts before 3D production.
+[Ship exterior — A selected](ship-concepts.en.md). Comparison concepts before 3D production.
