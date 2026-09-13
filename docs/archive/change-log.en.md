@@ -658,3 +658,7 @@ After observing the fee stage, the user deferred spending and Steam registration
 ## 2026-09-13 — Baton shell restoration
 
 Reproduced an opening caused by deletion of shell polygons near the screen; restored the original shell, normalized face orientation and added a triangle-preservation check. Windows 0.8.15 build, 11 two-executable charging/display checks and ready/charging render inspection completed. Full user symptom confirmation and human feel remain unverified. The 4-player expansion was not pursued because this fix took priority.
+
+## 2026-09-13 — Startup screen investigation
+
+Investigated the startup black-screen question using code, settings and existing player logs. Unity splash is enabled; CarryRoom.Awake synchronously constructs the world/assets before creating the camera/menu. A temporary dark interval before the menu may therefore be startup initialization, but the exact user-observed screen and duration remain unverified. The initial screen with buttons is the development HOST/JOIN menu. No gameplay changes, fresh startup reproduction or duration measurements. A persistent black screen must not be classified as normal loading without investigation.
