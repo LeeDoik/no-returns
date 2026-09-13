@@ -38,3 +38,5 @@ Paused interior proposal: exterior 11.2×10.8m, central hull width 7.2m, side en
 Generated and visually reviewed the glazing revision: front three-pane windshield, forward side glazing and open rear cargo ramp.
 
 The [held interior draft](../../art/ship-concepts-01/interior-draft-hold-01.png) began generating before the request changed and arrived afterward. It incorrectly labels usable width as 7.6m rather than 6.4m; its overall length line also appears to include the deployed ramp, so it is not dimensional evidence. New glazing and cockpit access through the forward non-habitable area require redesign. Do not use this interior draft as a production reference.
+
+[Interior revision 02 — front glazing and dimensional calculations](ship-interior.en.md). Proposed replacement for the held interior draft; 3D validation pending.

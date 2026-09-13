@@ -702,3 +702,7 @@ Generated, visually reviewed and preserved the four-view image in the project. C
 While preparing dimensional assumptions for the interior concept, the user prioritized front windows. Retained interior dimensions as proposals and switched to forward glazing on the exterior four-view sheet. No code/model/executable changes.
 
 Generated and visually reviewed the forward-glazing four-view revision. Preserved the later-arriving interior draft on hold, documenting incorrect width, ambiguous length line and missing new glazing. No model/game changes.
+
+## 2026-09-13 — interior revised to match front glazing
+
+Generated and visually reviewed interior 02, removing forward non-habitable space and placing console beneath front glass. Documented proposed 7.6×6.4m interior, taper to 4.8m forward width, 47.04 square meters before furniture and 4-player clearance checks bilingually. Corrected the old width typo. No code/model/build changes; exact alignment with exterior mesh unverified. Documentation/arithmetic checks only.
