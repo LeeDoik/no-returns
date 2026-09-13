@@ -710,3 +710,8 @@ Generated and visually reviewed interior 02, removing forward non-habitable spac
 ## 2026-09-13 — ship exterior/interior re-review
 
 Directly compared both sheets and recorded projection, length allocation, window/floor height, ramp/hatch height, aisle/seat envelopes, body count and art density as S01~S08. Limited earlier alignment claims to visual direction and explicitly left structure validation incomplete. Retain exterior A selection. No code/model/image/build changes. Updated bilingual review/backlog/validation and links. No actual 3D/control tests.
+
+
+## 2026-09-14 — First FLATBED integrated 3D candidate
+
+On user request, generated/downloaded Tripo geometry and integrated the cabin, windows, doors and ramp in Blender. Rejected duplicated craft and Boolean failures. Revised interior width to 4.352m to fit the exterior. The [production report](../current/ship-production.en.md) records artifacts, inspections and outstanding quality items. No game code or Unity play-scene changes. Actual controls and release quality are unverified.

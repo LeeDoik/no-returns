@@ -1,0 +1,11 @@
+{
+  "meshes": 49,
+  "triangles": 48906,
+  "source_id": "c1864948-b96d-483d-b31d-c00dfca0bba9",
+  "source_untouched": true,
+  "uv_missing": [],
+  "nonfinite_vertices": 0,
+  "unity_playtest": false,
+  "roundtrip_geometry_match": true,
+  "corridor_clear_samples": 6
+}

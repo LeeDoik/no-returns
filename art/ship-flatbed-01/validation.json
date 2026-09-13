@@ -1,0 +1,14 @@
+{
+  "status": "structural model; Tripo shell integration pending",
+  "clear_floor_width_m": 6.4,
+  "clear_floor_length_m": 7.6,
+  "seat_count": 4,
+  "door_width_m": 3,
+  "door_height_m": 2.4,
+  "ramp_length_m": 3,
+  "floor_height_m": 0.6,
+  "ramp_angle_deg": 11.536959032815489,
+  "meshes": 130,
+  "triangles": 6332,
+  "unity_playtest": false
+}

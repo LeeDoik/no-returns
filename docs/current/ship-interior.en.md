@@ -43,3 +43,6 @@ Checked length/width sums, tapered area and ramp triangle calculation. Visually 
 [Exterior selection](ship-concepts.en.md) · [Demo inventory](demo-art-list.en.md) · [Employee/carrying code](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs).
 
 2026-09-13 review: [Exterior/interior consistency S01~S08](ship-review.en.md). Retain appearance direction; production-structure validation remains incomplete. Dimensional sums do not prove assemblability.
+
+
+2026-09-14: [FLATBED integrated 3D model and review status](ship-production.en.md). Integrated-model changes supersede earlier interior dimensional proposals. Unity integration and 4-player control validation remain incomplete.

@@ -34,3 +34,6 @@ Assemble simple exterior shell, floor, nose, glass, door, ramp and furniture blo
 [Exterior sheet](../../art/ship-concepts-01/flatbed-four-views-windows-02.png) · [Interior sheet](../../art/ship-concepts-01/interior-glazing-aligned-02.png) · [Dimensional proposal](ship-interior.en.md).
 
 Validation: direct visual comparison and document arithmetic/status checks. No 3D mesh, collision or actual-control validation.
+
+
+2026-09-14: [FLATBED integrated 3D model and review status](ship-production.en.md). Integrated-model changes supersede earlier interior dimensional proposals. Unity integration and 4-player control validation remain incomplete.

@@ -43,3 +43,6 @@
 [외부 선택](ship-concepts.ko.md) · [데모 목록](demo-art-list.ko.md) · [직원·운반 코드](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs).
 
 2026-09-13 재검토: [외부·내부 정합성 S01~S08](ship-review.ko.md). 외형 방향은 유지하되 제작용 구조 검증은 미완료다. 치수 합계가 실제 조립 가능성을 보장하지 않는다.
+
+
+2026-09-14: [FLATBED 3D 통합 모델·검토 상태](ship-production.ko.md). 이전 내부 치수 제안보다 통합 모델의 변경 내용을 우선한다. Unity 적용·4인 조작 검증은 미완료다.

@@ -34,3 +34,6 @@ A의 낮고 넓은 외형, 후방 화물 진입, 전방 창문과 콘솔, 단층
 [외부 시트](../../art/ship-concepts-01/flatbed-four-views-windows-02.png) · [내부 시트](../../art/ship-concepts-01/interior-glazing-aligned-02.png) · [치수 제안](ship-interior.ko.md).
 
 검증: 두 이미지 직접 시각 검토와 문서의 산술·상태 확인. 3D 메시·충돌·실제 조작은 미검증이다.
+
+
+2026-09-14: [FLATBED 3D 통합 모델·검토 상태](ship-production.ko.md). 이전 내부 치수 제안보다 통합 모델의 변경 내용을 우선한다. Unity 적용·4인 조작 검증은 미완료다.

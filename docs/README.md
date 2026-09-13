@@ -34,3 +34,5 @@
 [0.9.1 — 협동 HUD](current/crew-hud.ko.md)
 
 [한 사이클 데모·3D 에셋 목록](current/demo-art-list.ko.md)
+
+- [FLATBED 3D 제작·검토 후보](current/ship-production.ko.md): Tripo 원본, Blender 통합, 내보내기와 검증 상태.

@@ -1,0 +1,12 @@
+{
+  "approved_reference": "../ship-concepts-01/flatbed-four-views-windows-02.png",
+  "single_view_input": "tripo-input.png",
+  "reference_preparation": "Built-in imagegen; preserve approved A; single front-left perspective, rear closed, no sheet or new design",
+  "tripo_rejected_id": "df867e57-a11c-4095-9424-8b57d5bd7e85",
+  "tripo_source_id": "c1864948-b96d-483d-b31d-c00dfca0bba9",
+  "credits_spent": 140,
+  "observed_balance": 750,
+  "source_sha256": "19a2074af3391797fc30c0dafd93daa36a94d84a9368249dc6fab6b772178459",
+  "blender_version": "5.2.1",
+  "status": "integrated review candidate; not release approved"
+}

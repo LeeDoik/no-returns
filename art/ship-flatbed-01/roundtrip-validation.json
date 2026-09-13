@@ -1,0 +1,63 @@
+{
+  "export_expected_triangles": 48906,
+  "open_bounds_min": [
+    -5.400000095367432,
+    -6.823693752288818,
+    -0.03909078985452652
+  ],
+  "open_bounds_max": [
+    5.400000095367432,
+    5.599999904632568,
+    4.449999809265137
+  ],
+  "seats": 4,
+  "corridor_rays": [
+    {
+      "x": -0.6,
+      "z": 1.0,
+      "clear": true,
+      "hit": null,
+      "point": null
+    },
+    {
+      "x": -0.6,
+      "z": 2.2,
+      "clear": true,
+      "hit": null,
+      "point": null
+    },
+    {
+      "x": 0,
+      "z": 1.0,
+      "clear": true,
+      "hit": null,
+      "point": null
+    },
+    {
+      "x": 0,
+      "z": 2.2,
+      "clear": true,
+      "hit": null,
+      "point": null
+    },
+    {
+      "x": 0.6,
+      "z": 1.0,
+      "clear": true,
+      "hit": null,
+      "point": null
+    },
+    {
+      "x": 0.6,
+      "z": 2.2,
+      "clear": true,
+      "hit": null,
+      "point": null
+    }
+  ],
+  "roundtrip_triangles": 48906,
+  "roundtrip_geometry_match": true,
+  "uv_missing": [],
+  "invalid_coordinates": 0,
+  "unity_manual_validation": false
+}
