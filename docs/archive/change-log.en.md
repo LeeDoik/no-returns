@@ -684,3 +684,9 @@ Moved gameplay HUD to a separate Canvas to improve four-player state visibility 
 ## 2026-09-13 — complete-demo art inventory
 
 User requested a 3D list for the CINDER DEPOT reference quality and a complete demo cycle. Corrected and inspected the image path, checked Selected models and current code. Authored 44 production units (10 existing, 34 proposed new), zone mapping, animation/non-model work, cycle through purchase, production order and gates in Korean/English and CSV. No code/model/build change. Retained appearance-approval gates; timing targets/new assets remain proposals. Check documentation links/counterparts/counts, without new gameplay or mesh re-audit.
+
+## 2026-09-13 — ship exterior comparison concepts
+
+At user request, planned A/B/C/D ship comparisons in the same PSX industrial style as CINDER DEPOT: low freighter, container transport, industrial tug and vertical lander, using matching views and human scale references. Appearance selection is pending; interior dimensions, collision and rigging are unvalidated. No 3D/code/map/executable changes. Updated bilingual comparison documents and inventory links.
+
+Generated and visually reviewed the [comparison sheet](../current/ship-concepts.en.md), preserving a source copy in the project. User selection and dimensional validation remain pending.

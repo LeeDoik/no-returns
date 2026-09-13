@@ -127,3 +127,5 @@ P0: 핵심 공간·기능 통합. P1: 동선·시설 밀도 마감. P2: 작은 �
 [계약·보수 코드](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryMission.cs) · [억제 코드](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarrySuppression.cs) · [생물 코드](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryThreat.cs).
 
 이번 작업은 원본 이미지 시각 검토, Selected 모델 파일·현재 코드·관련 문서 조사, 목록·한영 문서 작성이다. 코드·모델·맵·시간·저장·실행본은 변경하지 않았고 새 플레이 검증도 수행하지 않았다.
+
+[우주선 외형 4안 — 선택 대기](ship-concepts.ko.md). 3D 제작 전 비교 시안.

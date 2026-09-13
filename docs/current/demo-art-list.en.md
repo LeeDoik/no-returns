@@ -127,3 +127,5 @@ New designs follow production image → user appearance approval → 3D producti
 [Contract/pay code](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryMission.cs) · [Suppression code](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarrySuppression.cs) · [Creature code](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryThreat.cs).
 
 This task inspected the reference image, Selected model files, current code and documentation, then authored the list and bilingual documents. No code, model, map, timing, save or executable changed; no new gameplay test was run.
+
+[Four ship exterior proposals — selection pending](ship-concepts.en.md). Comparison concepts before 3D production.
