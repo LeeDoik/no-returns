@@ -666,3 +666,11 @@ Investigated the startup black-screen question using code, settings and existing
 ## 2026-09-13 — Startup visor occlusion
 
 0.8.16: The black rectangle in the startup menu was the local character visor. Update returned early for inactive sessions, skipping body visibility. Moved visibility into LateUpdate so it runs before rendering in both menus and gameplay. A temporary Unity scene regression recorded hidden=False before and True after recompilation. Windows build verification is separate from human startup-screen confirmation, which remains pending.
+
+## 2026-09-13 — 0.9.0 four-player cooperation
+
+Expanded the existing two-player direct LAN experiment to 4 including the host as the next implementation step. Added per-connection slots/inputs/timeouts, 4-color crew/batons/down/rescue/all-aboard checks, fifth-client rejection and vacant-slot rejoining during preparation. Rescue selects one nearest teammate and resets progress on target changes. Retained disconnect shift abort and downed-crew recovery. Protocol 10; Windows 0.9.0. Journal retains 2 clues.
+
+Real local four-process checks passed 31+15, existing two-process regressions passed 24+30, and Unity MCP logic checks passed 7. Test paths were corrected for crew collision/interaction positions and state-file read races; failed records retained. Rebuilt and passed all 31 full four-player session checks again after the final journal-only UI correction. Documentation validation passed for 224 files, including links, counterparts and checkbox states. Human fun, HUD readability, other-PC/WAN/Steam and long-session load remain untested. Steam registration is deferred by the user.
+
+[Current specification and evidence](../current/four-player.en.md).

@@ -1,5 +1,10 @@
 # Map, art and technical production guide
 
+## Current 0.9.0 — four-player cooperation
+
+[Current rules, launch and validation](four-player.en.md). Supports 1 host and up to 3 clients joining during preparation. This supersedes historical two-player limits and unimplemented four-player statements below. Existing E/Q, baton, delivery and receipt collection rules remain. Steam registration is deferred at user request; other-PC, internet and human four-player fun validation remain outstanding.
+
+
 0.8.14: [Display implementation policy and current audit](display-systems.en.md).
 
 0.8.13: [Integrated display / 내장 화면](next-equipment.en.md).

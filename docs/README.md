@@ -28,3 +28,5 @@
 [SPACE-PLAY-07 — 확장 맵·억제장치](current/space-play-07.ko.md)
 
 [독립 검토 반영 — 0.8.2](current/review-fixes.ko.md)
+
+[현재 0.9.0 — 4인 협동 실행·검증](current/four-player.ko.md)

@@ -28,3 +28,5 @@
 [SPACE-PLAY-07 — expanded map/suppression](current/space-play-07.en.md)
 
 [Independent review integration — 0.8.2](current/review-fixes.en.md)
+
+[Current 0.9.0 — four-player launch and validation](current/four-player.en.md)

@@ -23,6 +23,7 @@ public static class CarryLanguage {
         return english;
     }
     public static readonly Dictionary<string,string> Ko=new Dictionary<string,string>{
+        {"Protocol mismatch / use the same game build","게임 버전이 다릅니다. 같은 실행본으로 접속하세요."},
         {"RECEIPT COLLECTED","영수증 회수 완료"},{"TAKE RECEIPT [E]","영수증 가져가기 [E]"},{"PRINTING RECEIPT","영수증 출력 중"},{"SCANNING","화물 확인 중"},{"PLACE PARCEL","화물을 놓으세요"},{"STANDBY","대기 중"},
         {"Receipt collected / return aboard to get paid","영수증을 챙겼습니다 / 우주선에 돌아가 정산하세요"},
         {"Collect receipt at terminal [E] / No pay until return","단말기에서 [E]로 영수증을 챙기세요 / 귀환 전에는 미지급"},

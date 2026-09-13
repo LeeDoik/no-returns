@@ -6,16 +6,20 @@ namespace NoReturns.CarryLab {
     public Vector3 position,noiseTarget;
     public int state,hits,rescues,evacuations,noises;
     public int pursuedPlayer=-1;
+    public bool[] down; public float[] rescue,cooldown;
+    public bool IsDown(int i)=>down!=null&&i<down.Length?down[i]:i==0?down0:i==1&&down1;
+    public float RescueAt(int i)=>rescue!=null&&i<rescue.Length?rescue[i]:i==0?rescue0:i==1?rescue1:0;
+    public float CooldownAt(int i)=>cooldown!=null&&i<cooldown.Length?cooldown[i]:i==0?cooldown0:i==1?cooldown1:0;
     public bool down0,down1;
     public float rescue0,rescue1,cooldown0,cooldown1,warning;
 }
 // Host-owned experiment. Clients only display the replicated state.
 public sealed class CarryThreat {
     public bool Hard; readonly bool outer; float searchClock,distraction; int pursuedPlayer=-1;
-    public readonly bool[] Down=new bool[2];
-    public readonly float[] Rescue=new float[2],Cooldown=new float[2];
-    readonly float[] protection=new float[2],stepClock=new float[2];
-    readonly Vector3[] previous=new Vector3[2];
+    public readonly bool[] Down=new bool[4];
+    public readonly float[] Rescue=new float[4],Cooldown=new float[4];
+    readonly float[] protection=new float[4],stepClock=new float[4];
+    readonly Vector3[] previous=new Vector3[4];
     readonly Vector3[] patrol={new Vector3(1,0,5),new Vector3(1,0,7),new Vector3(-3,0,7),new Vector3(-3,0,5)};
     readonly Dictionary<Vector2Int,int> grid=new Dictionary<Vector2Int,int>();
     readonly List<Vector3> nodes=new List<Vector3>(),path=new List<Vector3>();
@@ -64,10 +68,10 @@ public sealed class CarryThreat {
     }
     public void Hear(Vector3 source,float range){if(outer)return;if(state==2||state==3||state==4||CarryMission.Aboard(source)||Vector3.Distance(position,source)>range)return;noiseTarget=source;noises++;state=1;interest=5;Route(source);}
     // The outer creature knows crew positions after entry; geometry still controls movement.
-    void SearchCrew(Vector3[] players,int count){
+    void SearchCrew(Vector3[] players,int mask){
         int chosen=-1;float best=float.MaxValue;
-        for(int i=0;i<count;i++){
-            if(Down[i]||CarryMission.Aboard(players[i]))continue;
+        for(int i=0;i<players.Length;i++){
+            if((mask&(1<<i))==0||Down[i]||CarryMission.Aboard(players[i]))continue;
             float distance=(players[i]-position).sqrMagnitude;
             if(distance<best){chosen=i;best=distance;}
         }
@@ -80,12 +84,14 @@ public sealed class CarryThreat {
         if(state>=2||CarryMission.Aboard(source)||Vector3.Distance(position,source)>range)return;
         pursuedPlayer=-1;noiseTarget=source;noises++;state=1;interest=5;distraction=1.2f;Route(source);
     }
-    public void Reset(){Array.Clear(Down,0,2);Array.Clear(Rescue,0,2);Array.Clear(Cooldown,0,2);Array.Clear(protection,0,2);gridBuilt=false;grid.Clear();nodes.Clear();position=patrol[0];state=0;patrolIndex=0;timer=0;stunResistance=0;allDown=0;searchClock=0;distraction=0;pursuedPlayer=-1;interest=0;Array.Clear(stepClock,0,2);Array.Clear(previous,0,2);path.Clear();}
-    public bool Tick(Vector3[] players,bool peer,CarryInput[] inputs,int holder,bool field,float dt){
+    public void Reset(){Array.Clear(Down,0,4);Array.Clear(Rescue,0,4);Array.Clear(Cooldown,0,4);Array.Clear(protection,0,4);gridBuilt=false;grid.Clear();nodes.Clear();position=patrol[0];state=0;patrolIndex=0;timer=0;stunResistance=0;allDown=0;searchClock=0;distraction=0;pursuedPlayer=-1;interest=0;Array.Clear(stepClock,0,4);Array.Clear(previous,0,4);path.Clear();}
+    public bool Tick(Vector3[] players,bool peer,CarryInput[] inputs,int holder,bool field,float dt)=>Tick(players,peer?3:1,inputs,holder,field,dt);
+    public bool Tick(Vector3[] players,int mask,CarryInput[] inputs,int holder,bool field,float dt){
         if(!field)return false;
         stunResistance=Mathf.Max(0,stunResistance-dt);
-        int count=peer?2:1;
+        int count=players.Length;
         for(int i=0;i<count;i++){
+            if((mask&(1<<i))==0)continue;
             if(!outer)protection[i]=Mathf.Max(0,protection[i]-dt);Cooldown[i]=Mathf.Max(0,Cooldown[i]-dt);stepClock[i]-=dt;
             if(!Down[i]){
                 if(inputs[i].call)Hear(players[i],12);
@@ -99,12 +105,12 @@ public sealed class CarryThreat {
         }
         if(outer){
             distraction=Mathf.Max(0,distraction-dt);searchClock-=dt;
-            if(state<2&&distraction<=0&&searchClock<=0){searchClock=.8f;SearchCrew(players,count);}
+            if(state<2&&distraction<=0&&searchClock<=0){searchClock=.8f;SearchCrew(players,mask);}
         }
-        if(state==2){timer-=dt;if(timer<=0){if(!Down[victim]&&!CarryMission.Aboard(players[victim])&&protection[victim]<=0&&Vector3.Distance(players[victim],position)<1.5f&&Sight(position,players[victim])){Down[victim]=true;hits++;}state=3;timer=4;}}
+        if(state==2){timer-=dt;if(timer<=0){if((mask&(1<<victim))!=0&&!Down[victim]&&!CarryMission.Aboard(players[victim])&&protection[victim]<=0&&Vector3.Distance(players[victim],position)<1.5f&&Sight(position,players[victim])){Down[victim]=true;hits++;}state=3;timer=4;}}
         else if(state==3||state==4){timer-=dt;if(timer<=0){if(state==4)stunResistance=2;state=0;path.Clear();}}
         else {
-            int close=-1;for(int i=0;i<count;i++)if(!Down[i]&&!CarryMission.Aboard(players[i])&&protection[i]<=0&&Vector3.Distance(position,players[i])<1.3f&&Sight(position,players[i])){close=i;break;}
+            int close=-1;for(int i=0;i<count;i++)if((mask&(1<<i))!=0&&!Down[i]&&!CarryMission.Aboard(players[i])&&protection[i]<=0&&Vector3.Distance(position,players[i])<1.3f&&Sight(position,players[i])){close=i;break;}
             if(close>=0){state=2;timer=(Hard||outer)?.9f:1.2f;victim=close;path.Clear();}
             else {
                 if(state==1){interest-=dt;if(interest<=0){state=0;path.Clear();}}
@@ -114,15 +120,25 @@ public sealed class CarryThreat {
         }
         if(outer)return false;
         for(int i=0;i<count;i++){
-            int other=1-i;
-            bool can=peer&&!Down[i]&&Down[other]&&holder!=i&&inputs[i].rescue&&Vector3.Distance(players[i],players[other])<=2&&Sight(players[i],players[other]);
+            int other=RescueTarget(i,players,mask);
+            bool can=(mask&(1<<i))!=0&&!Down[i]&&other>=0&&holder!=i&&inputs[i].rescue;
+            if(rescueTargets[i]!=other)Rescue[i]=0;rescueTargets[i]=other;
             Rescue[i]=can?Rescue[i]+dt:0;
             if(Rescue[i]>=2.5f){Down[other]=false;protection[other]=4;Rescue[i]=0;rescues++;}
         }
-        if(Down[0]&&(!peer||Down[1]))allDown+=dt;else allDown=0;
+        bool everyone=mask!=0;for(int i=0;i<count;i++)if((mask&(1<<i))!=0&&!Down[i])everyone=false;
+        if(everyone)allDown+=dt;else allDown=0;
         if(allDown>=3){evacuations++;return true;}return false;
     }
-    public ThreatState Snapshot()=>new ThreatState{pursuedPlayer=pursuedPlayer,position=position,noiseTarget=noiseTarget,state=state,hits=hits,rescues=rescues,evacuations=evacuations,noises=noises,down0=Down[0],down1=Down[1],rescue0=Rescue[0],rescue1=Rescue[1],cooldown0=Cooldown[0],cooldown1=Cooldown[1],warning=state==2?timer:0};
+    readonly int[] rescueTargets={-1,-1,-1,-1};
+    public int RescueTarget(int who,Vector3[] players,int mask){
+        int chosen=-1;float nearest=2.0001f;
+        for(int i=0;i<players.Length;i++)if(i!=who&&(mask&(1<<i))!=0&&Down[i]){
+            float d=Vector3.Distance(players[who],players[i]);if(d<nearest&&Sight(players[who],players[i])){chosen=i;nearest=d;}
+        }
+        return chosen;
+    }
+    public ThreatState Snapshot()=>new ThreatState{down=(bool[])Down.Clone(),rescue=(float[])Rescue.Clone(),cooldown=(float[])Cooldown.Clone(),pursuedPlayer=pursuedPlayer,position=position,noiseTarget=noiseTarget,state=state,hits=hits,rescues=rescues,evacuations=evacuations,noises=noises,down0=Down[0],down1=Down[1],rescue0=Rescue[0],rescue1=Rescue[1],cooldown0=Cooldown[0],cooldown1=Cooldown[1],warning=state==2?timer:0};
     public void Display(ThreatState s,bool enabled){
         body.SetActive(enabled);if(!enabled)return;
         body.transform.position=s.position;body.transform.localScale=s.state==2?new Vector3(1.15f,.8f,1.15f):Vector3.one;

@@ -2,11 +2,11 @@ using UnityEngine;
 namespace NoReturns.CarryLab {
 // Pure presentation: the existing host-owned shove cooldown drives both peers.
 public sealed class BatonVisual {
-    readonly GameObject[] roots=new GameObject[2];
-    readonly BatonFeedback[] feedback=new BatonFeedback[2];
-    public void Display(Camera eye, CharacterController[] crew, int local, bool peer, bool active,
-        int cargoHolder, int beaconHolder, ThreatState danger, float yaw0, float yaw1) {
-        for(int i=0;i<2;i++) {
+    readonly GameObject[] roots=new GameObject[4];
+    readonly BatonFeedback[] feedback=new BatonFeedback[4];
+    public void Display(Camera eye, CharacterController[] crew, int local, int occupiedMask, bool active,
+        int cargoHolder, int beaconHolder, ThreatState danger, float[] yaws) {
+        for(int i=0;i<4;i++) {
             if(!roots[i]) {
                 var model=Resources.Load<GameObject>("PSXKit01/Baton");if(!model)return;
                 roots[i]=new GameObject("Shock baton employee "+i);
@@ -22,11 +22,11 @@ public sealed class BatonVisual {
                 glove.GetComponent<Renderer>().sharedMaterial=CarryWorld.Mat(new Color(.15f,.12f,.1f));
                 feedback[i]=new BatonFeedback(roots[i].transform);
             }
-            bool down=danger!=null&&(i==0?danger.down0:danger.down1);
-            float rescue=danger==null?0:(i==0?danger.rescue0:danger.rescue1);
-            bool show=active&&(i==0||peer)&&cargoHolder!=i&&beaconHolder!=i&&!down&&rescue<=0;
+            bool down=danger!=null&&danger.IsDown(i);
+            float rescue=danger==null?0:danger.RescueAt(i);
+            bool show=active&&((occupiedMask&(1<<i))!=0)&&cargoHolder!=i&&beaconHolder!=i&&!down&&rescue<=0;
             roots[i].SetActive(show);if(!show)continue;
-            float cooldown=danger==null?0:(i==0?danger.cooldown0:danger.cooldown1);
+            float cooldown=danger==null?0:danger.CooldownAt(i);
             feedback[i].Display(cooldown);
             float elapsed=6-cooldown;
             // Immediate forward beat matches the immediate gameplay contact; smooth return.
@@ -41,7 +41,7 @@ public sealed class BatonVisual {
                 roots[i].transform.SetPositionAndRotation(eye.transform.position+rotation*(offset*reach),rotation*Quaternion.Euler(-12-65*strike,180,-18+35*strike));
                 roots[i].transform.localScale=Vector3.one*reach;
             } else {
-                var rotation=Quaternion.Euler(0,i==0?yaw0:yaw1,0);
+                var rotation=Quaternion.Euler(0,yaws[i],0);
                 roots[i].transform.SetPositionAndRotation(crew[i].transform.position+rotation*new Vector3(.32f,1.12f,.28f+.25f*strike),rotation*Quaternion.Euler(45+40*strike,180,-12));
                 roots[i].transform.localScale=Vector3.one;
             }
