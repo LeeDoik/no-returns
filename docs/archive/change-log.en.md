@@ -720,3 +720,8 @@ On user request, generated/downloaded Tripo geometry and integrated the cabin, w
 ## 2026-09-14 — Angular FLATBED exterior candidate
 
 Addressed user feedback about roundness with limited hull face dissolution and flat shading in Blender, saving a separate Angular model and front/rear renders. Preserved the integrated model; no Unity changes. GLB reimport matched 48,506 triangles and UV checks passed. [Production/review](../current/ship-production.en.md). Actual controls and user art approval remain incomplete.
+
+
+## 2026-09-14 — FLATBED interior proposal
+
+Created a board covering the full cabin, consoles and equipment on user request. Identified a console blocking the incline and revised it to side consoles with an upper standing area. Recorded bilingual proposal, review and unverified items under [interior design 03](../current/ship-production.en.md). Performed image review and document checks only; no code, model or Unity changes.

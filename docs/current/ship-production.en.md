@@ -58,3 +58,18 @@ User feedback: the exterior is too rounded. [Angular Blender](../../art/ship-fla
 [angular.py](../../art/ship-flatbed-01/angular.py) reads the integrated file and applies limited 12-degree face dissolution and flat shading only to the hull. Glass material boundaries and open boundaries are not dissolved. Hull triangles change from 10,962 to 10,562; the complete GLB has 48,506 triangles, matching reimport. There are 0 new vertex positions; this does not redesign the outer dimensions. The candidate preserves the basic silhouette while exposing face boundaries, rather than fully replacing curved corners with rectangular corners. Cabin and door/ramp structures were not edited. Original Integrated files remain available.
 
 [Validation](../../art/ship-flatbed-01/angular-validation.json): 0 missing UVs and 0 invalid coordinates. Directly compared front and rear renders using the same camera and lighting. Unity integration, actual controls and user art approval remain incomplete. No additional Tripo credits were used.
+
+
+## 2026-09-14 — Interior design 03 visual proposal
+
+![Interior design 03](../../art/ship-concepts-01/interior-design-03.png)
+
+Created an interior image proposal using the angular exterior and existing cabin render. **This is not a new 3D implementation and awaits user selection.** Used the built-in image generation tool; no Tripo credits were used.
+
+- One board compares the rear-to-front overview, cockpit consoles and crew/equipment area.
+- Unify off-white angular metal panels, dark flooring, 4 orange seats and restrained cyan screens. Propose cargo racks and tie-down/floor rails, left beacon/right baton docks, ceiling-edge cables, rear hazard markings and handles.
+- Propose a short incline instead of the existing stairs. The initial generation appeared to end against the console and was held. Split consoles left/right to reveal an upper standing work area.
+- Review: visually confirmed 4 seats, 3 windshield panes, a clear central aisle, and console/equipment placement. Screen copy on the sheet is illustrative, not approved game copy.
+- Unverified: incline length/angle/rise, actual furniture/body fit within roughly 4.35m width, headroom and exterior window coordinates, equipment reach. Perspective imagery is not measurement evidence. The 3D model still retains the existing stairs.
+
+[Initial generation — held for console access issue](../../art/ship-concepts-01/interior-design-03-draft.png). After image selection, revalidate structural dimensions and apply them to the model.
