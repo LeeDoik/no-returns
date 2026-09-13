@@ -26,3 +26,15 @@ The user selected A and requested front/rear/left/right images. Define the cargo
 ![A four views](../../art/ship-concepts-01/flatbed-four-views-01.png)
 
 Generated front/rear/left/right sheet and checked the open rear ramp and profile nose directions. Roof heights, landing supports and panel details are not an exact cross-view engineering projection. Resolve common dimensions and support placement into a single structure before modeling.
+
+## Front cockpit window request
+
+The user paused interior concepts and requested front exterior windows. Retain the A hull and propose a low wide 3-pane cockpit windshield with heavy framing, wrapping briefly around the forward side corners. Preserve the rear cargo opening. This is a glazing revision, not approval of interior dimensions or 3D production.
+
+Paused interior proposal: exterior 11.2×10.8m, central hull width 7.2m, side engines 1.8m each, interior 7.6×6.4m with 2.5m clear height, aisle 2.0m. These are proposed values, not measurements from the reference; glazing/interior alignment remains unvalidated.
+
+![Front glazing revision](../../art/ship-concepts-01/flatbed-four-views-windows-02.png)
+
+Generated and visually reviewed the glazing revision: front three-pane windshield, forward side glazing and open rear cargo ramp.
+
+The [held interior draft](../../art/ship-concepts-01/interior-draft-hold-01.png) began generating before the request changed and arrived afterward. It incorrectly labels usable width as 7.6m rather than 6.4m; its overall length line also appears to include the deployed ramp, so it is not dimensional evidence. New glazing and cockpit access through the forward non-habitable area require redesign. Do not use this interior draft as a production reference.

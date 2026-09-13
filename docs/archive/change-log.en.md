@@ -696,3 +696,9 @@ Generated and visually reviewed the [comparison sheet](../current/ship-concepts.
 User selected A / FLATBED. Preserve the comparison sheet and produce front/rear/left/right views with the cargo ramp defined at rear. Details of previously unseen faces are new proposals. No model/code/executable changes. Updated selection status in both languages.
 
 Generated, visually reviewed and preserved the four-view image in the project. Cross-view structural consistency remains a pre-modeling validation task. Checked document links and language counterparts.
+
+## 2026-09-13 — interior paused; front cockpit glazing
+
+While preparing dimensional assumptions for the interior concept, the user prioritized front windows. Retained interior dimensions as proposals and switched to forward glazing on the exterior four-view sheet. No code/model/executable changes.
+
+Generated and visually reviewed the forward-glazing four-view revision. Preserved the later-arriving interior draft on hold, documenting incorrect width, ambiguous length line and missing new glazing. No model/game changes.
