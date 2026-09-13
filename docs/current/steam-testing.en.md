@@ -2,7 +2,7 @@
 
 [한국어](steam-testing.ko.md)
 
-2026-09-13 · Registration preparation. Observed the login dialog at the Steamworks signup entry point. Partner approval, an owned NO RETURNS AppID, payment, build distribution and test keys remain unverified. Opening the login dialog does not complete registration.
+2026-09-13 · Steam registration is deferred by user decision. Confirmed login and the Steam Direct fee stage. Attempted to proceed to checkout guidance using Continue, but inspection of the subsequent page was interrupted. The agent did not execute payment, and completed payment is unverified. Partner approval, an owned NO RETURNS AppID, build distribution and test keys remain unverified. Do not resume registration or payment before a user request.
 
 ## Objective and first step
 
@@ -16,7 +16,8 @@ The app fee is USD 100 or the local equivalent; check applicable taxes and the a
 
 - [x] Review the preceding session and official onboarding/testing guidance.
 - [x] Open the signup login dialog.
-- [ ] Sign in and inspect existing partner/app status.
+- [x] Confirm account login.
+- [ ] Inspect existing partner approval and app ownership.
 - [ ] Confirm completion of required onboarding, agreements, payment, identity, banking and tax steps.
 - [ ] Obtain and record the owned NO RETURNS AppID.
 - [ ] Configure the Windows depot and launch option; verify app/depot inclusion in testing account packages.

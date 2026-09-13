@@ -650,3 +650,7 @@ After the user approved the destination and full transfer scope, normally pushed
 ## 2026-09-13 — Steam registration preparation
 
 Reviewed official Steamworks onboarding, fee and testing guidance and the preceding session; created a bilingual registration checklist. Opened the real browser login dialog and await user login. Partner, AppID and payment are unverified; no registration submission, deployment or gameplay code changes. Run document validation.
+
+## 2026-09-13 — Steam registration deferred
+
+After observing the fee stage, the user deferred spending and Steam registration. No payment executed by the agent; payment completion unverified. Do not mark onboarding, distribution or Steam integration complete. Updated the current registration document in both languages; no gameplay code changes or game tests. Ran documentation checks.

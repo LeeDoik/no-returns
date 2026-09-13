@@ -650,3 +650,7 @@ Steam 공식 [키 정책](https://partner.steamgames.com/doc/features/keys), [Pl
 ## 2026-09-13 — Steam registration preparation
 
 Steamworks 공식 가입·수수료·테스트 안내와 다른 세션을 확인하고 한영 등록 체크리스트를 작성했다. 실제 브라우저에서 로그인 창을 열었으며 사용자 로그인 대기다. 파트너·AppID·결제는 미확인이고 가입 제출·배포·게임 코드 변경은 없다. 문서 검사를 수행한다.
+
+## 2026-09-13 — Steam registration deferred
+
+수수료 단계 확인 후 사용자가 비용 지출을 나중으로 미뤄 Steam 등록을 보류했다. 에이전트 결제 실행 없음, 결제 완료 미확인. 가입·배포·Steam 연동 완료로 표시하지 않는다. 현재 등록 문서를 한영 갱신했으며 게임 코드 변경과 게임 테스트는 없다. 문서 검사 수행.
