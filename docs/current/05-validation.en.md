@@ -174,4 +174,4 @@ Final 0.8.4 Windows build succeeded. Two real Windows processes passed 14 automa
 
 2026-09-14: [FLATBED interior validation](ship-interior-pipeline.en.md#sequence-and-gates) — actual employee/cargo passage, door/ramp interference, first-person legibility, wiring after reimport, multiple processes and 4-player passing. All remain future checks; documentation checks do not substitute for them.
 
-2026-09-14: [Structure trial evidence](ship-interior-trial.en.md). Completed 12,711-triangle GLB round-trip and sampled passage checks. Unity import/collision/execution could not run due to license failure. Automatic approval review's retry rejection is also recorded.
+2026-09-14 latest: [FLATBED structure trial 02](ship-interior-trial.en.md). Centered windshield/unobscured display, Unity connection recovery, 3 automated passage lines and Windows build passed. Human carrying feel, final exterior textures, ceiling seams/lighting and 4-player integration remain unverified.

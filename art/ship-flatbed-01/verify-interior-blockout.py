@@ -1,7 +1,7 @@
 """Round-trip verification, independent of the generation scene."""
 import bpy,json,math
 from pathlib import Path
-R=Path(__file__).resolve().parent/'interior-blockout'
+R=Path(__file__).resolve().parent/'interior-blockout-02'
 expected=json.loads((R/'validation.json').read_text())
 bpy.ops.object.select_all(action='SELECT');bpy.ops.object.delete(use_global=False)
 bpy.ops.import_scene.gltf(filepath=str(R/'Flatbed_InteriorTrial.glb'))

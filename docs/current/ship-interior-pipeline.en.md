@@ -102,4 +102,4 @@ Change directory if the actual save folder differs. Existing files are excluded;
 
 Automated cases passed for ignoring existing files, blocking partial downloads and accepting a new stable ZIP. Directory polling verifies saved downloads; it does not automatically fix site errors or different save locations.
 
-2026-09-14 implementation update: [structure trial 01](ship-interior-trial.en.md) completes the first Blender candidate. Unity work is blocked by licensing; the overall gates above remain incomplete.
+2026-09-14 latest: [FLATBED structure trial 02](ship-interior-trial.en.md). Centered windshield/unobscured display, Unity connection recovery, 3 automated passage lines and Windows build passed. Human carrying feel, final exterior textures, ceiling seams/lighting and 4-player integration remain unverified.

@@ -28,6 +28,7 @@ namespace NoReturns.Editor {
             EditorBuildSettings.scenes=new[]{new EditorBuildSettingsScene(ScenePath,true)};
             AssetDatabase.SaveAssets();Validate();
         }
+        [MenuItem("NO RETURNS/Validate Project Foundation")]
         public static void Validate() {
             if(PlayerSettings.productName!="NO RETURNS")throw new Exception("Product name mismatch");
             if(!File.Exists(ScenePath))throw new Exception("Missing Bootstrap scene");

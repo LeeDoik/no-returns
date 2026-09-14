@@ -1,10 +1,10 @@
 """Build an isolated, flat-deck cabin candidate inside the preserved angular hull."""
-import bpy, json, math, hashlib
+import bpy, bmesh, json, math, hashlib
 from pathlib import Path
 from mathutils import Vector
 from mathutils.bvhtree import BVHTree
 R=Path(__file__).resolve().parent
-O=R/'interior-blockout';O.mkdir(exist_ok=True)
+O=R/'interior-blockout-02';O.mkdir(exist_ok=True)
 bpy.ops.wm.open_mainfile(filepath=str(R/'Flatbed_Angular.blend'))
 s=bpy.context.scene;s.frame_set(40)
 hull=bpy.data.objects['Tripo_Hull_Reworked']
@@ -13,6 +13,14 @@ def fingerprint(o):
 original=fingerprint(hull)
 for o in list(s.objects):
  if o!=hull:bpy.data.objects.remove(o,do_unlink=True)
+# User-requested localized windshield replacement; preserve the earlier trial files.
+bm=bmesh.new();bm.from_mesh(hull.data)
+for axis,values in [(0,[-3.3,3.3]),(1,[3.78]),(2,[2.30,3.34])]:
+ for value in values:
+  co=Vector((0,0,0));co[axis]=value;normal=Vector((0,0,0));normal[axis]=1
+  bmesh.ops.bisect_plane(bm,geom=list(bm.verts)+list(bm.edges)+list(bm.faces),dist=.00001,plane_co=co,plane_no=normal)
+remove=[f for f in bm.faces if abs(f.calc_center_median().x)<3.3 and f.calc_center_median().y>3.78 and 2.30<f.calc_center_median().z<3.34]
+bmesh.ops.delete(bm,geom=remove,context='FACES');bm.to_mesh(hull.data);bm.free();hull.data.update()
 def mat(n,c,emission=0):
  m=bpy.data.materials.new(n);m.diffuse_color=(*c,1);m.use_nodes=True
  p=m.node_tree.nodes.get('Principled BSDF');p.inputs['Base Color'].default_value=(*c,1);p.inputs['Roughness'].default_value=.8
@@ -25,6 +33,20 @@ def box(n,loc,dim,m,collision=True):
  if collision:boxes.append({'name':n,'position':list(loc),'size':list(dim)})
  return o
 floor=1.0
+facade=[]
+def wind_panel(name,x0,x1,z0,z1,material,solid=True):
+ pts=[(x,5.12-(z-2.3)*1.34/1.04,z) for x,z in [(x0,z0),(x1,z0),(x1,z1),(x0,z1)]]
+ mesh=bpy.data.meshes.new(name);mesh.from_pydata(pts,[],[(0,1,2,3)]);mesh.update();o=bpy.data.objects.new(name,mesh);s.collection.objects.link(o);mesh.materials.append(material)
+ if solid:facade.append(name)
+ return o
+glass=mat('Trial_Glazing',(.22,.32,.32));glass.node_tree.nodes.get('Principled BSDF').inputs['Transmission Weight'].default_value=.9
+glass.node_tree.nodes.get('Principled BSDF').inputs['Roughness'].default_value=.05
+wind_panel('Trial_WindowSill',-3.3,3.3,2.30,2.42,ivory)
+wind_panel('Trial_WindowHeader',-3.3,3.3,3.17,3.34,ivory)
+wind_panel('Trial_WindowCheekL',-3.3,-2.02,2.42,3.17,ivory)
+wind_panel('Trial_WindowCheekR',2.02,3.3,2.42,3.17,ivory)
+for j,(a,b) in enumerate([(-2.02,-.78),(-.72,.72),(.78,2.02)]):wind_panel('Trial_WindowGlass_'+str(j),a,b,2.42,3.17,glass,False)
+for x in [-.75,.75]:wind_panel('Trial_WindowMullion_'+str(x),x-.03,x+.03,2.42,3.17,dark)
 box('Trial_Deck',(0,0,.9),(4.352,7.6,.2),dark)
 box('Trial_Threshold',(0,-3.9,.9),(3,.2,.2),dark)
 box('Trial_Ceiling',(0,0,3.18),(4.35,7.6,.12),ivory)
@@ -42,7 +64,7 @@ for side in [-1,1]:
   box('Trial_Light_'+str(side)+'_'+str(y),(side*1.15,y,3.10),(.62,.14,.035),lamp,False)
   bpy.ops.object.light_add(type='AREA',location=(side*1.1,y,3.07));bpy.context.object.data.energy=24;bpy.context.object.data.size=1.1
 box('Trial_Lintel',(0,-3.97,2.91),(3.56,.16,.10),ivory)
-box('Trial_ConsoleBase',(0,3.24,1.50),(2.12,.55,1.0),dark)
+box('Trial_ConsoleBase',(0,3.24,1.37),(2.12,.55,.74),dark)
 box('Trial_ConsoleHousing',(0,3.43,2.15),(2.12,.22,.70),ivory)
 box('Trial_DisplaySurface',(0,3.309,2.15),(1.92,.015,.53),screen,False)
 for side in [-1,1]:
@@ -62,7 +84,7 @@ for o in meshes:
  bpy.ops.object.mode_set(mode='EDIT');bpy.ops.mesh.select_all(action='SELECT');bpy.ops.uv.smart_project();bpy.ops.object.mode_set(mode='OBJECT')
 bpy.context.view_layer.update()
 # Collision checks deliberately include the original hull and all solid trial furniture.
-solid_names={b['name'] for b in boxes}
+solid_names={b['name'] for b in boxes}|set(facade)
 verts=[];faces=[];owners=[]
 for o in meshes:
  if o!=hull and o.name not in solid_names:continue
@@ -91,6 +113,10 @@ for x in [-.45,0,.45]:
  origin=Vector((x,2.5,floor+1.57));hit=tree.ray_cast(origin,Vector((0,1,0)),10)
  eyes.append({'x':x,'opaque_obstacle':owners[hit[2]] if hit[0] is not None else None})
 report={'status':'structural candidate; sampled geometry checks only','floor_height_m':floor,'ceiling_underside_m':3.12,'headroom_m':2.12,'eye_height_above_floor_m':1.57,'employee_height_m':1.8,'employee_radius_m':.34,'cargo_size_m':[.8,.65,.65],'ramp_horizontal_run_m':3,'hull_fingerprint_before':original,'hull_fingerprint_after':fingerprint(hull),'employee_sample_collisions':hits,'cargo_conservative_sphere_collisions':cargo_hits,'forward_eye_rays':eyes,'unity_playtest':False}
+report['localized_windshield_replacement']=True
+report['central_window_and_display_axis_x_m']=0
+report['console_base_top_m']=1.74
+report['display_bottom_m']=1.885
 bpy.ops.object.select_all(action='DESELECT')
 for o in meshes:o.select_set(True)
 bpy.ops.export_scene.fbx(filepath=str(O/'Flatbed_InteriorTrial.fbx'),use_selection=True,add_leaf_bones=False,bake_anim=False,axis_forward='-Z',axis_up='Y',path_mode='COPY',embed_textures=True)

@@ -102,4 +102,4 @@ python tools/watch_download.py --directory "$env:USERPROFILE/Downloads" --prefix
 
 자동 시험에서 기존 파일 배제, 부분 다운로드 보류, 새 안정 ZIP 승인 사례가 통과했다. 폴더 폴링은 이번 다운로드의 저장 확인 방법이며, 사이트 오류나 다른 저장 경로까지 자동 해결하는 기능은 아니다.
 
-2026-09-14 구현 상태 갱신: [구조 시험 01](ship-interior-trial.ko.md)에서 첫 Blender 후보 제작 완료. Unity 단계는 라이선스 오류로 차단됐으며 위 전체 통과 조건을 완료 처리하지 않는다.
+2026-09-14 최신: [FLATBED 구조 시험 02](ship-interior-trial.ko.md). 중앙 창문·화면 가림 수정, Unity 연결 복구, 자동 출입 통과선 3개와 Windows 빌드 성공. 사람 운반감·최종 외장 텍스처·천장 이음새와 조명·4인 통합은 미검증이다.

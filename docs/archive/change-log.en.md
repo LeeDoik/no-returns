@@ -749,3 +749,11 @@ Following the user's proposal, added the [download polling tool](../../tools/wat
 ## 2026-09-14 — FLATBED interior structure trial production
 
 With user approval, built a [separate interior trial candidate](../current/ship-interior-trial.en.md): preserved hull mesh, unified deck, adjusted ceiling, placed central console/seats/racks/doors/exterior ramp and rendered the same model. Sampled passage and 12,711-triangle GLB round-trip checks passed. Central window-frame obstruction remains unresolved. Prepared separate Unity trial code/model, but licensing exit code 198 stopped execution before import; automatic approval review rejected retry without evidence of resolving the prerequisite. License-client connection still failed after login diagnostics. Compilation, actual passage, build and human operation remain unverified; existing game scene/build preserved. Update bilingual documents and run documentation checks.
+
+## 2026-09-14 — Unity attach recovery and FLATBED structure trial 02
+
+Diagnosed license failure by environment as requested. Unlike sandbox inspection, the normal user environment confirmed Personal Assigned; opened the Editor once and attached. Actual MCP initialize/tools/list/editor_status succeeded with ready, compilation and reload complete. Changed setup/check/trial to existing-Editor attachment without global permission or license-file changes. Hub IPC warnings remain.
+
+Rebuilt the off-center windshield symmetrically and lowered the display base. Local hull changes affect only the new candidate; originals are preserved. Corrected FBX orientation and separated generated hull visuals from simple cabin/frame/ramp collision. After initial passage failures, all 3 actual CharacterController lines passed. GLB has 13,925 triangles, missing UVs/nonfinite coordinates 0. Verified Unity compilation/import, Play rendering and Windows build success. The first CLI call timed out at 30 seconds while the build succeeded in approximately 111 seconds; increased command timeout to 600 seconds.
+
+Updated Korean/English current specification, guides, backlog and validation. Final textures, ceiling seams, excessive lighting, human carrying feel and online integration remain incomplete. Preserved the main game scene/build. [Results and reproduction](../current/ship-interior-trial.en.md).

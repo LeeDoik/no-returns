@@ -305,4 +305,4 @@ This is a layout proposal rather than an exact reconstruction or measured drawin
 
 2026-09-14: [FLATBED interior workflow](ship-interior-pipeline.en.md) — boundaries and reuse rules for structure, individual parts and Unity functional assembly.
 
-2026-09-14: [FLATBED structure trial production/resume guide](ship-interior-trial.en.md). Separate Blender/FBX/GLB and generation code provided. Unity generation/build code is prepared but unverified in execution.
+2026-09-14 latest: [FLATBED structure trial 02](ship-interior-trial.en.md). Centered windshield/unobscured display, Unity connection recovery, 3 automated passage lines and Windows build passed. Human carrying feel, final exterior textures, ceiling seams/lighting and 4-player integration remain unverified.

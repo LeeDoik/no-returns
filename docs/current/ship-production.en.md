@@ -92,4 +92,4 @@ Added [interior production basis, parts and gates](ship-interior-pipeline.en.md)
 
 ## 2026-09-14 — Interior structure trial 01 progress
 
-[New structural model, measurements and validation status](ship-interior-trial.en.md). Built the flat deck and central screen as a separate Blender model. Geometry samples and GLB checks passed, but central window-frame obstruction remains and Unity license failure blocks game validation/build. Existing models preserved.
+2026-09-14 latest: [FLATBED structure trial 02](ship-interior-trial.en.md). Centered windshield/unobscured display, Unity connection recovery, 3 automated passage lines and Windows build passed. Human carrying feel, final exterior textures, ceiling seams/lighting and 4-player integration remain unverified.
