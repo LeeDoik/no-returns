@@ -69,3 +69,7 @@ Tripo는 기존 승인 이미지의 주요 부품에서 초안이 유용한 경�
 ## 참고
 
 [Unity 프리팹](https://docs.unity3d.com/6000.0/Documentation/Manual/Prefabs.html) · [Unity 모델 파일 형식](https://docs.unity3d.com/6000.0/Documentation/Manual/3D-formats.html) · [Blender FBX](https://docs.blender.org/manual/en/latest/files/import_export/fbx.html). 공식 문서는 기능 근거이며 이 프로젝트의 품질이나 적용 완료를 증명하지 않는다.
+
+## 2026-09-14 — 내부 브라우저 Tripo 확인
+
+사용자 선호에 따라 Chrome 대신 Codex 내부 브라우저를 우선한다. 로그인된 작업 공간, 잔액 750, 기존 우주선 모델과 GLB·FBX 내보내기 메뉴에 실제로 접근했다. 기존 모델에서 두 형식의 내보내기를 시험했으나 다운로드 이벤트는 각각 20초 후 시간 초과였고 Downloads 폴더에서 새 파일을 확인하지 못했다. 제작 화면 조작은 확인했지만 신규 생성·업로드·다운로드 저장까지 완료 검증한 것은 아니다. 내부 브라우저의 영구적인 기능 미지원으로 단정하지 않는다. 생성 크레딧을 사용하지 않았고 기존 파일을 보존했다. 다운로드 완료 여부가 다음 검증 항목이다.

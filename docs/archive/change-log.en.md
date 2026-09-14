@@ -737,3 +737,7 @@ Generated and stored the requested [interior design 04 reverse angle](../current
 ## 2026-09-14 — Interior workflow comparison and preparation
 
 The user requested comparing whole-room generation, individual asset assembly and alternatives. Inspected existing production sources and concepts, and documented [dimensioned structure + individual parts + Unity functional assembly](../current/ship-interior-pipeline.en.md), part families, reuse rules and validation order in both languages. Preserved the distinction between actual model stairs and the flat-floor concept, and the unverified rear clear passage. Linked relevant guides, backlog and validation documents. Check documentation links, language counterparts, numbers and checkbox states. No code/model changes or actual play validation.
+
+## 2026-09-14 — In-app Tripo export investigation
+
+Recorded in-app browser preference, live connection and existing asset access in the [production document](../current/ship-interior-pipeline.en.md). GLB/FBX download events timed out; completed local saving remains unverified. No new generation, upload or model changes. The preceding raw numeric parity check failed because Korean first-person and 3D wording had different numeric-token counts; design numeric parity passed after normalizing those expressions. Rerun bilingual documentation and whitespace checks.

@@ -69,3 +69,7 @@ Automated dimension, UV, missing-data and round-trip checks provide structural e
 ## References
 
 [Unity prefabs](https://docs.unity3d.com/6000.0/Documentation/Manual/Prefabs.html) · [Unity model file formats](https://docs.unity3d.com/6000.0/Documentation/Manual/3D-formats.html) · [Blender FBX](https://docs.blender.org/manual/en/latest/files/import_export/fbx.html). Official documentation supports capabilities, not this project's quality or completed integration.
+
+## 2026-09-14 — Tripo in-app browser check
+
+Prefer the Codex in-app browser over Chrome following the user's preference. Accessed the authenticated workspace, balance 750, existing ship model and GLB/FBX export menus. Tested both export formats on the existing model, but each download event timed out after 20 seconds and no new file was confirmed in Downloads. Creation-interface control is verified; new generation, upload and completed file saving are not. Do not infer permanent lack of browser support. No generation credits were spent and existing files were preserved. Download completion is the next validation item.
