@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 namespace NoReturns.Trials {
 public sealed class ShipInteriorTrial : MonoBehaviour {
+    public const float JumpSpeed=5f, Gravity=18f;
     CharacterController body;
     Camera eye;
     float yaw, pitch, vertical;
@@ -30,7 +31,9 @@ public sealed class ShipInteriorTrial : MonoBehaviour {
         var delta=m.delta.ReadValue();yaw+=delta.x*.12f;pitch=Mathf.Clamp(pitch-delta.y*.12f,-80,80);
         transform.rotation=Quaternion.Euler(0,yaw,0);eye.transform.localRotation=Quaternion.Euler(pitch,0,0);
         Vector3 move=new Vector3((k.dKey.isPressed?1:0)-(k.aKey.isPressed?1:0),0,(k.wKey.isPressed?1:0)-(k.sKey.isPressed?1:0));
-        vertical=body.isGrounded?-2:vertical-20*Time.deltaTime;
+        if(body.isGrounded&&vertical<0)vertical=-2;
+        if(k.spaceKey.wasPressedThisFrame&&body.isGrounded&&!carrying)vertical=JumpSpeed;
+        vertical-=Gravity*Time.deltaTime;
         body.Move((transform.TransformDirection(Vector3.ClampMagnitude(move,1))*3+Vector3.up*vertical)*Time.deltaTime);
         if(transform.position.y<-3){body.enabled=false;transform.position=new Vector3(0,.1f,-8);body.enabled=true;}
         if(parcel&&k.eKey.wasPressedThisFrame&&!carrying&&Vector3.Distance(eye.transform.position,parcel.transform.position)<2.4f){
@@ -47,7 +50,7 @@ public sealed class ShipInteriorTrial : MonoBehaviour {
     }
     void OnGUI(){
         GUI.Box(new Rect(16,16,590,76),english?"FLATBED STRUCTURE TRIAL — not the main game":"FLATBED 구조 시험 — 본 게임과 별도 장면");
-        GUI.Label(new Rect(28,43,565,24),english?"WASD move / Mouse look / E carry / Q drop / F1 한국어 / Esc cursor":"WASD 이동 / 마우스 시야 / E 들기 / Q 놓기 / F1 English / Esc 커서");
+        GUI.Label(new Rect(28,43,565,24),english?"WASD move / Mouse look / E carry / Q drop / Space jump / F1 한국어 / Esc cursor":"WASD 이동 / 마우스 시야 / E 들기 / Q 놓기 / Space 점프 / F1 English / Esc 커서");
     }
 }
 }

@@ -1,4 +1,4 @@
-# FLATBED 내부 구조 시험 02
+# FLATBED 내부 구조 시험 03
 
 [English](ship-interior-trial.en.md)
 
@@ -8,16 +8,16 @@
 
 창문의 오른쪽 쏠림을 해결하기 위해 새 후보의 창문 주변 외장을 국소적으로 다시 만들었다. 중앙 유리와 화면을 X=0에 맞추고 좌우 창·기둥을 대칭 배치했다. 콘솔 받침 상단 1.74m, 화면 하단 1.885m로 0.145m 여유를 확보해 화면 가림을 없앴다. 중앙과 좌우 눈높이 시선에서 불투명 외장 장애물은 없었다. 새 후보의 외장 지문은 변경되며 이전 원본은 그대로 보존했다.
 
-- [Blender](../../art/ship-flatbed-01/interior-blockout-02/Flatbed_InteriorTrial.blend) · [FBX](../../art/ship-flatbed-01/interior-blockout-02/Flatbed_InteriorTrial.fbx) · [GLB](../../art/ship-flatbed-01/interior-blockout-02/Flatbed_InteriorTrial.glb)
-- [전방](../../art/ship-flatbed-01/interior-blockout-02/forward.png) · [후방](../../art/ship-flatbed-01/interior-blockout-02/rear.png) · [창문](../../art/ship-flatbed-01/interior-blockout-02/window.png)
-- [제작 코드](../../art/ship-flatbed-01/interior-blockout.py) · [구조 검사](../../art/ship-flatbed-01/interior-blockout-02/validation.json) · [재가져오기 검사](../../art/ship-flatbed-01/interior-blockout-02/roundtrip.json)
+- [Blender](../../art/ship-flatbed-01/interior-blockout-03/Flatbed_InteriorTrial.blend) · [FBX](../../art/ship-flatbed-01/interior-blockout-03/Flatbed_InteriorTrial.fbx) · [GLB](../../art/ship-flatbed-01/interior-blockout-03/Flatbed_InteriorTrial.glb)
+- [전방](../../art/ship-flatbed-01/interior-blockout-03/forward.png) · [후방](../../art/ship-flatbed-01/interior-blockout-03/rear.png) · [창문](../../art/ship-flatbed-01/interior-blockout-03/window.png)
+- [제작 코드](../../art/ship-flatbed-01/interior-blockout.py) · [구조 검사](../../art/ship-flatbed-01/interior-blockout-03/validation.json) · [재가져오기 검사](../../art/ship-flatbed-01/interior-blockout-03/roundtrip.json)
 - [Unity 장면](../../NoReturns/Assets/_NoReturns/Scenes/ShipInteriorTrial.unity) · [생성·검사·빌드 코드](../../NoReturns/Assets/_NoReturns/Editor/ShipInteriorTrialBuild.cs) · [시험 조작](../../NoReturns/Assets/_NoReturns/Runtime/ShipInteriorTrial.cs)
 
-로컬 실행 파일은 `builds/ShipInteriorTrial/NoReturns-InteriorTrial.exe`다. 같은 폴더의 데이터와 함께 사용한다. 빌드·로그는 Git에서 제외한다. WASD·마우스, E 들기, Q 놓기, F1 한영 전환, Esc 커서 해제다. 본 게임의 운반 코드나 빌드 설정을 대체하지 않는다.
+로컬 실행 파일은 `builds/ShipInteriorTrial/NoReturns-InteriorTrial.exe`다. 같은 폴더의 데이터와 함께 사용한다. 빌드·로그는 Git에서 제외한다. WASD·마우스, E 들기, Q 놓기, Space 빈손 점프, F1 한영 전환, Esc 커서 해제다. 본 게임의 운반 코드나 빌드 설정을 대체하지 않는다.
 
 ## 치수·출입 검증
 
-바닥 1.00m, 천장 아래 3.12m, 객실 높이 2.12m, 시점 높이 2.57m다. [현재 운반 코드](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs)의 직원 높이 1.8m·반지름 0.34m·눈높이 1.57m, 화물 0.8×0.65×0.65m를 기준으로 삼았다. 후방 문틀 여유 높이는 약 1.86m, 외부 발판은 수평 3m·상승 1m다. 출시 확정값이 아닌 시험값이다.
+바닥 1.00m, 천장 아래 4.12m, 객실 높이 3.12m, 시점 높이 2.57m다. [현재 운반 코드](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs)의 직원 높이 1.8m·반지름 0.34m·눈높이 1.57m, 화물 0.8×0.65×0.65m를 기준으로 삼았다. 후방 문틀 여유 높이는 약 1.86m, 외부 발판은 수평 3m·상승 1m다. 출시 확정값이 아닌 시험값이다.
 
 FBX 전방 축 차이를 Unity Y축 180도 회전으로 보정했다. 생성 외장 삼각형을 그대로 보행 충돌체로 쓰면 입구에서 걸렸다. 시각 외장과 충돌체를 분리해 객실·문틀에는 상자, 발판에는 전용 경사 상자를 사용했다. 본 게임 물리 전면 교체가 아니다.
 
@@ -48,3 +48,11 @@ open은 필요한 경우 정상 사용자 환경에서 한 번 실행한다. 첫
 - [ ] 문 애니메이션·동적 화면·본 게임·4인 온라인 통합.
 
 좌석·벽·랙은 단색 구조 부품이고 화면 글자는 예시다. 로컬 근거는 `artifacts/ship-interior-trial/passage.txt`, `build-success.txt`, `unity-play.png`, `unity-interior.png`와 `NoReturns/Logs/Editor.log`다. 구조 JSON의 unity_playtest=false는 Blender 검사 자체의 범위이며 별도 Unity 결과와 구분한다. 자동 검사·렌더 확인은 사람 조작감·재미 검증이 아니다.
+
+## 2026-09-14 — 점프 여유와 제작 순서 변경
+
+사용자의 실제 플레이 의견은 천장이 낮다는 것이며, 점프 시 천장에 닿지 않을 만큼 충분한 높이를 요청했다. 객실 높이를 2.12m에서 3.12m로 1.00m 높였다. 바닥·화면·캐릭터 시점은 유지하고 벽 상단·천장·지붕·전방 상부를 함께 높였다. 낮은 후방 문은 그대로이므로 문 바로 아래나 가구 위 점프까지 보장하는 기준이 아니다. 지붕 높이 증가에 따른 외관 비율과 전방 상부 마감은 사용자 시각 검토가 남아 있다.
+
+시험본에 Space 빈손 점프를 추가했다. 본 게임 CarryRoom의 초기 속도 5m/s, 중력 18m/s²를 사용하며 화물 운반 중에는 점프하지 않는다. 이론적 상승 약 0.694m, 직원 키 1.8m 기준 정점 여유 약 0.60m다. 실제 CharacterController 9지점 검사에서 상승 약 0.645m, Above 충돌 없음, 기존 출입 3경로 통과를 확인했다. 실제 수치는 이산 시간 적분과 바닥 접촉 여유 때문에 이론값과 다르다. 새 Windows 빌드 성공. 자동 검사이며 사람의 새 높이 만족 여부는 아직 미확인이다.
+
+[새 에셋 제작 파이프라인](art-structure-first.ko.md)을 적용한다. 구조 제작 → Unity 실제 플레이 → 사용자 확인 → 승인 구조 기준 Tripo 외형 → Blender 치수 검수 → 게임 재검증이다. 이 모델의 아트 제작은 구조 확인 뒤에 진행하며 이번 Tripo 생성·비용 사용은 없다. 이전 렌더와 플레이 캡처는 이전 높이의 증거이고, 현행 높이는 새 구조 렌더와 passage.txt를 기준으로 한다.

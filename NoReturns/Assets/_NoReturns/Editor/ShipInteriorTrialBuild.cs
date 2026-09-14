@@ -71,7 +71,7 @@ public static class ShipInteriorTrialBuild {
         if(materials.TryGetValue("Trial_Graphite",out var groundMaterial))ground.GetComponent<Renderer>().sharedMaterial=groundMaterial;
         var player=new GameObject("Trial employee");player.transform.position=new Vector3(0,.05f,-8);player.AddComponent<ShipInteriorTrial>();
         var parcel=GameObject.CreatePrimitive(PrimitiveType.Cube);parcel.name="Trial carried parcel";parcel.layer=2;parcel.transform.position=new Vector3(.6f,.45f,-7.7f);parcel.transform.localScale=new Vector3(.8f,.65f,.65f);parcel.AddComponent<Rigidbody>().mass=8;
-        for(int i=0;i<3;i++){var light=new GameObject("Cabin light").AddComponent<Light>();light.type=LightType.Point;light.transform.position=new Vector3(0,2.94f,-2+i*2);light.range=5;light.intensity=1.3f;}
+        for(int i=0;i<3;i++){var light=new GameObject("Cabin light").AddComponent<Light>();light.type=LightType.Point;light.transform.position=new Vector3(0,3.94f,-2+i*2);light.range=5;light.intensity=1.3f;}
         var sun=new GameObject("Trial daylight").AddComponent<Light>();sun.type=LightType.Directional;sun.intensity=1.2f;sun.transform.rotation=Quaternion.Euler(40,-30,0);
         RenderSettings.ambientLight=new Color(.3f,.3f,.3f);
         Physics.SyncTransforms();
@@ -82,6 +82,14 @@ public static class ShipInteriorTrialBuild {
             for(int i=0;i<900&&test.transform.position.z<2.2f;i++)controller.Move(new Vector3(0,-.02f,.06f));
             bool ok=test.transform.position.z>2.1f;passed&=ok;results.Add("lane="+lane+" end="+test.transform.position.ToString("F3")+" pass="+ok);
             if(!ok){var p=test.transform.position;foreach(var hit in Physics.CapsuleCastAll(p+Vector3.up*.34f,p+Vector3.up*1.46f,.34f,Vector3.forward,.3f))if(hit.collider.gameObject!=test)results.Add("obstacle="+hit.collider.name+" distance="+hit.distance);}
+        }
+        // Real controller jump sweep, on the flat cabin deck, with production jump constants.
+        foreach(float lane in new[]{-.55f,0,.55f})foreach(float z in new[]{-2.5f,0f,2f}){
+            controller.enabled=false;test.transform.position=new Vector3(lane,1.035f,z);controller.enabled=true;Physics.SyncTransforms();
+            for(int i=0;i<20;i++)controller.Move(Vector3.down*.02f);
+            float start=test.transform.position.y,peak=start,speed=ShipInteriorTrial.JumpSpeed;bool overhead=false;
+            for(int i=0;i<100;i++){speed-=ShipInteriorTrial.Gravity*.02f;var flags=controller.Move(Vector3.up*speed*.02f);overhead|=(flags&CollisionFlags.Above)!=0;peak=Mathf.Max(peak,test.transform.position.y);if(i>5&&controller.isGrounded)break;}
+            bool ok=!overhead&&peak-start>.6f;passed&=ok;results.Add("jump lane="+lane+" z="+z+" rise="+(peak-start)+" overhead="+overhead+" pass="+ok);
         }
         UnityEngine.Object.DestroyImmediate(test);
         EditorSceneManager.SaveScene(scene,ScenePath);AssetDatabase.SaveAssets();

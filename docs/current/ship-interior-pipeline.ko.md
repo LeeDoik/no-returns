@@ -2,7 +2,7 @@
 
 [English](ship-interior-pipeline.en.md)
 
-2026-09-14 · 제작 준비와 권고. 이번 작업은 기존 소스 조사·부품 분류·검증 순서 수립이며 신규 모델 제작이나 Unity 적용 완료가 아니다.
+2026-09-14 최신: [구조 제작 → 플레이 승인 → 아트 제작](art-structure-first.ko.md)을 모든 에셋의 기본 순서로 적용한다. 아래 부품별 제작·검사 방법은 유지하며, 과거 조사 기록과 현재 상태를 구분한다.
 
 ## 선택할 방식
 
@@ -102,4 +102,4 @@ python tools/watch_download.py --directory "$env:USERPROFILE/Downloads" --prefix
 
 자동 시험에서 기존 파일 배제, 부분 다운로드 보류, 새 안정 ZIP 승인 사례가 통과했다. 폴더 폴링은 이번 다운로드의 저장 확인 방법이며, 사이트 오류나 다른 저장 경로까지 자동 해결하는 기능은 아니다.
 
-2026-09-14 최신: [FLATBED 구조 시험 02](ship-interior-trial.ko.md). 중앙 창문·화면 가림 수정, Unity 연결 복구, 자동 출입 통과선 3개와 Windows 빌드 성공. 사람 운반감·최종 외장 텍스처·천장 이음새와 조명·4인 통합은 미검증이다.
+2026-09-14 최신: [구조 시험 03](ship-interior-trial.ko.md). 객실 높이 3.12m, Space 빈손 점프 추가. 9지점 점프 머리 충돌 없음·출입 3경로·Windows 빌드 통과. 사용자 공간감 재확인 뒤 [새 파이프라인](art-structure-first.ko.md)으로 아트를 제작한다.

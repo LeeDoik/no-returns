@@ -2,7 +2,7 @@
 
 [한국어](ship-interior-pipeline.ko.md)
 
-2026-09-14 · Production preparation and recommendation. This task inspects existing sources, classifies parts and establishes validation order; it does not complete new models or Unity integration.
+2026-09-14 latest: [Structure → play approval → art production](art-structure-first.en.md) is the default for all assets. Retain the component methods/checks below and distinguish historical investigation from current status.
 
 ## Approach
 
@@ -102,4 +102,4 @@ Change directory if the actual save folder differs. Existing files are excluded;
 
 Automated cases passed for ignoring existing files, blocking partial downloads and accepting a new stable ZIP. Directory polling verifies saved downloads; it does not automatically fix site errors or different save locations.
 
-2026-09-14 latest: [FLATBED structure trial 02](ship-interior-trial.en.md). Centered windshield/unobscured display, Unity connection recovery, 3 automated passage lines and Windows build passed. Human carrying feel, final exterior textures, ceiling seams/lighting and 4-player integration remain unverified.
+2026-09-14 latest: [Structure trial 03](ship-interior-trial.en.md). Cabin height 3.12m with Space empty-hand jumping. No head collision at 9 jump positions; 3 passage routes and Windows build passed. Obtain human spatial review before art production through the [new pipeline](art-structure-first.en.md).

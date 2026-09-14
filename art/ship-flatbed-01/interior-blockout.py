@@ -4,7 +4,7 @@ from pathlib import Path
 from mathutils import Vector
 from mathutils.bvhtree import BVHTree
 R=Path(__file__).resolve().parent
-O=R/'interior-blockout-02';O.mkdir(exist_ok=True)
+O=R/'interior-blockout-03';O.mkdir(exist_ok=True)
 bpy.ops.wm.open_mainfile(filepath=str(R/'Flatbed_Angular.blend'))
 s=bpy.context.scene;s.frame_set(40)
 hull=bpy.data.objects['Tripo_Hull_Reworked']
@@ -51,7 +51,7 @@ box('Trial_Deck',(0,0,.9),(4.352,7.6,.2),dark)
 box('Trial_Threshold',(0,-3.9,.9),(3,.2,.2),dark)
 box('Trial_Ceiling',(0,0,3.18),(4.35,7.6,.12),ivory)
 for side in [-1,1]:
- box('Trial_Wall_'+str(side),(side*2.19,0,2.04),(.12,7.6,2.08),ivory)
+ box('Trial_Wall_'+str(side),(side*2.19,0,2.06),(.12,7.6,2.12),ivory)
  for j,y in enumerate([.35,1.4]):
   box('Trial_SeatBack_'+str(side)+'_'+str(j),(side*2.02,y,1.91),(.16,.72,.86),orange)
   box('Trial_SeatPan_'+str(side)+'_'+str(j),(side*1.80,y,1.43),(.58,.72,.14),dark)
@@ -82,6 +82,20 @@ for o in meshes:
  if o==hull:continue
  bpy.ops.object.select_all(action='DESELECT');o.select_set(True);bpy.context.view_layer.objects.active=o
  bpy.ops.object.mode_set(mode='EDIT');bpy.ops.mesh.select_all(action='SELECT');bpy.ops.uv.smart_project();bpy.ops.object.mode_set(mode='OBJECT')
+# Lift the upper shell and cabin together, preserving deck, furniture and eye height.
+# Blend above the rear doorway so lower openings and the display stay fixed.
+def raised_z(z):
+ return z+1.0*max(0,min(1,(z-2.86)/.26))
+for o in meshes:
+ inv=o.matrix_world.inverted()
+ for v in o.data.vertices:
+  world=o.matrix_world@v.co;world.z=raised_z(world.z);v.co=inv@world
+ o.data.update()
+for o in s.objects:
+ if o.type=='LIGHT':o.location.z=raised_z(o.location.z)
+for b in boxes:
+ low=b['position'][2]-b['size'][2]/2;high=b['position'][2]+b['size'][2]/2
+ b['position'][2]=(raised_z(low)+raised_z(high))/2;b['size'][2]=raised_z(high)-raised_z(low)
 bpy.context.view_layer.update()
 # Collision checks deliberately include the original hull and all solid trial furniture.
 solid_names={b['name'] for b in boxes}|set(facade)
@@ -112,8 +126,9 @@ eyes=[]
 for x in [-.45,0,.45]:
  origin=Vector((x,2.5,floor+1.57));hit=tree.ray_cast(origin,Vector((0,1,0)),10)
  eyes.append({'x':x,'opaque_obstacle':owners[hit[2]] if hit[0] is not None else None})
-report={'status':'structural candidate; sampled geometry checks only','floor_height_m':floor,'ceiling_underside_m':3.12,'headroom_m':2.12,'eye_height_above_floor_m':1.57,'employee_height_m':1.8,'employee_radius_m':.34,'cargo_size_m':[.8,.65,.65],'ramp_horizontal_run_m':3,'hull_fingerprint_before':original,'hull_fingerprint_after':fingerprint(hull),'employee_sample_collisions':hits,'cargo_conservative_sphere_collisions':cargo_hits,'forward_eye_rays':eyes,'unity_playtest':False}
+report={'status':'structural candidate; sampled geometry checks only','floor_height_m':floor,'ceiling_underside_m':4.12,'headroom_m':3.12,'eye_height_above_floor_m':1.57,'employee_height_m':1.8,'employee_radius_m':.34,'cargo_size_m':[.8,.65,.65],'ramp_horizontal_run_m':3,'hull_fingerprint_before':original,'hull_fingerprint_after':fingerprint(hull),'employee_sample_collisions':hits,'cargo_conservative_sphere_collisions':cargo_hits,'forward_eye_rays':eyes,'unity_playtest':False}
 report['localized_windshield_replacement']=True
+report['upper_shell_lift_m']=1.0
 report['central_window_and_display_axis_x_m']=0
 report['console_base_top_m']=1.74
 report['display_bottom_m']=1.885
@@ -130,5 +145,6 @@ for pos in [(0,-9,9),(6,6,10)]:
  bpy.ops.object.light_add(type='AREA',location=pos);l=bpy.context.object;l.data.energy=1800;l.data.size=7;l.rotation_euler=(Vector((0,0,1.5))-l.location).to_track_quat('-Z','Y').to_euler()
 for name,pos,target,ortho in [('forward',(0,-3.3,2.57),(0,3.4,2.15),0),('rear',(0,2.5,2.57),(0,-4.5,1.9),0),('window',(0,2.4,2.57),(0,6,2.57),0),('exterior-rear',(11,-16,10),(0,-1,1.7),19)]:
  cam.location=pos;cam.rotation_euler=(Vector(target)-cam.location).to_track_quat('-Z','Y').to_euler();cam.data.type='ORTHO' if ortho else 'PERSP';cam.data.ortho_scale=ortho or 15;cam.data.lens=20;s.render.filepath=str(O/(name+'.png'));bpy.ops.render.render(write_still=True)
+bpy.context.preferences.filepaths.save_version=0
 bpy.ops.file.pack_all();bpy.ops.wm.save_as_mainfile(filepath=str(O/'Flatbed_InteriorTrial.blend'))
 print('TRIAL_REPORT',json.dumps(report))

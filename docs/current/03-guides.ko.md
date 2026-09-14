@@ -305,4 +305,4 @@ DOWNED·ASSIST·SUPPORTING MOSS·LOWER·CONFIRM RETURN, 입력 E와 상태 막�
 
 2026-09-14: [FLATBED 내부 제작 방식](ship-interior-pipeline.ko.md) — 구조·개별 부품·Unity 기능 조립의 경계와 재사용 기준.
 
-2026-09-14 최신: [FLATBED 구조 시험 02](ship-interior-trial.ko.md). 중앙 창문·화면 가림 수정, Unity 연결 복구, 자동 출입 통과선 3개와 Windows 빌드 성공. 사람 운반감·최종 외장 텍스처·천장 이음새와 조명·4인 통합은 미검증이다.
+2026-09-14 최신: [구조 시험 03](ship-interior-trial.ko.md). 객실 높이 3.12m, Space 빈손 점프 추가. 9지점 점프 머리 충돌 없음·출입 3경로·Windows 빌드 통과. 사용자 공간감 재확인 뒤 [새 파이프라인](art-structure-first.ko.md)으로 아트를 제작한다.
