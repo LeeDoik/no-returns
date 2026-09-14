@@ -741,3 +741,7 @@ The user requested comparing whole-room generation, individual asset assembly an
 ## 2026-09-14 — In-app Tripo export investigation
 
 Recorded in-app browser preference, live connection and existing asset access in the [production document](../current/ship-interior-pipeline.en.md). GLB/FBX download events timed out; completed local saving remains unverified. No new generation, upload or model changes. The preceding raw numeric parity check failed because Korean first-person and 3D wording had different numeric-token counts; design numeric parity passed after normalizing those expressions. Rerun bilingual documentation and whitespace checks.
+
+## 2026-09-14 — In-app browser download saving verified
+
+Following the user's proposal, added the [download polling tool](../../tools/watch_download.py) and re-exported the existing Tripo ship in the in-app browser. Polled a new 4,856,994-byte ZIP every 2 seconds, confirming stability after approximately 4.05 seconds; ZIP CRC and FBX/JPEG signatures passed. Automated checks passed against mistaking existing or partial files for completion. Recorded bilingual instructions and updated the earlier unconfirmed status in the [current production document](../current/ship-interior-pipeline.en.md). Earlier event failures remain unexplained; no new models, gameplay changes or Blender reimport. Downloaded files and temporary logs are not committed.

@@ -73,3 +73,31 @@ Tripo는 기존 승인 이미지의 주요 부품에서 초안이 유용한 경�
 ## 2026-09-14 — 내부 브라우저 Tripo 확인
 
 사용자 선호에 따라 Chrome 대신 Codex 내부 브라우저를 우선한다. 로그인된 작업 공간, 잔액 750, 기존 우주선 모델과 GLB·FBX 내보내기 메뉴에 실제로 접근했다. 기존 모델에서 두 형식의 내보내기를 시험했으나 다운로드 이벤트는 각각 20초 후 시간 초과였고 Downloads 폴더에서 새 파일을 확인하지 못했다. 제작 화면 조작은 확인했지만 신규 생성·업로드·다운로드 저장까지 완료 검증한 것은 아니다. 내부 브라우저의 영구적인 기능 미지원으로 단정하지 않는다. 생성 크레딧을 사용하지 않았고 기존 파일을 보존했다. 다운로드 완료 여부가 다음 검증 항목이다.
+
+## 2026-09-14 — 파일시스템 판정으로 다운로드 성공
+
+이 절은 앞선 로컬 저장 미확인 상태를 갱신한다. 내부 브라우저에서 기존 우주선 모델을 FBX로 내보내고 다운로드 폴더의 새 ZIP을 실제 확인했다. 브라우저 이벤트는 성공 기준으로 사용하지 않았다. 이전 실패의 정확한 원인은 확정하지 않으며, 이번 파일명·시점의 다운로드 성공을 근거로 기록한다.
+
+- 파일: Windows Downloads의 NR_Flatbed_IAB_Check_20260914.zip, 4,856,994바이트.
+- 2초 간격으로 검사해 크기·수정 시각이 2회 연속 같고 새 부분 다운로드 파일이 없음을 확인했다. 약 4.05초 후 완료 판정.
+- ZIP CRC 검사 통과. FBX 바이너리와 JPEG 텍스처의 파일 시그니처도 확인했다. Blender 재가져오기나 신규 아트 품질 검토는 이번 범위가 아니다.
+- SHA256: 25ce888b4483c25de862561a18b5b947148cac51f0d12265e9e261a1f0b32423.
+- 새 생성과 크레딧 사용 없음. 다운로드 파일은 Downloads에 유지하고 기존 제작 원본을 덮어쓰지 않았다.
+
+### 재사용 절차
+
+[watch_download.py](../../tools/watch_download.py)는 Windows 터미널에서 실행한다. 먼저 이번 작업 전용 파일명을 Tripo에 지정하고, 다운로드 버튼을 누르기 전에 목록을 저장한다.
+
+~~~powershell
+python tools/watch_download.py --directory "$env:USERPROFILE/Downloads" --prefix NR_Asset_Check --state "$env:TEMP/nr-download-state.json" --prepare
+~~~
+
+내부 브라우저에서 Export를 누른 직후 다음을 실행한다.
+
+~~~powershell
+python tools/watch_download.py --directory "$env:USERPROFILE/Downloads" --prefix NR_Asset_Check --state "$env:TEMP/nr-download-state.json" --timeout 120 --interval 2
+~~~
+
+실제 저장 폴더가 다르면 directory를 바꾼다. 기존 파일은 제외하고 지정 접두사의 새 파일만 선택한다. 새 .crdownload 또는 .part가 남아 있으면 성공 처리하지 않는다. 안정된 ZIP은 CRC와 모델 포함 여부, GLB는 헤더 버전·전체 길이를 추가 검사한다. 현재 도구의 허용 출력은 ZIP 또는 GLB이며 단독 FBX는 지원하지 않는다. 120초 내 확인하지 못하면 TIMEOUT과 종료 코드 1을 반환하며 완료로 기록하지 않는다. 임시 스냅샷·다운로드 로그는 커밋하지 않는다.
+
+자동 시험에서 기존 파일 배제, 부분 다운로드 보류, 새 안정 ZIP 승인 사례가 통과했다. 폴더 폴링은 이번 다운로드의 저장 확인 방법이며, 사이트 오류나 다른 저장 경로까지 자동 해결하는 기능은 아니다.

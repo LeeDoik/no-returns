@@ -73,3 +73,31 @@ Automated dimension, UV, missing-data and round-trip checks provide structural e
 ## 2026-09-14 — Tripo in-app browser check
 
 Prefer the Codex in-app browser over Chrome following the user's preference. Accessed the authenticated workspace, balance 750, existing ship model and GLB/FBX export menus. Tested both export formats on the existing model, but each download event timed out after 20 seconds and no new file was confirmed in Downloads. Creation-interface control is verified; new generation, upload and completed file saving are not. Do not infer permanent lack of browser support. No generation credits were spent and existing files were preserved. Download completion is the next validation item.
+
+## 2026-09-14 — Download confirmed through filesystem polling
+
+This section updates the previously unconfirmed local-save status. Exported the existing ship as FBX in the in-app browser and confirmed a new ZIP in Downloads. Browser events were not the success criterion. The exact cause of earlier failures remains undetermined; this records successful downloading with the current filename and attempt.
+
+- File: NR_Flatbed_IAB_Check_20260914.zip in Windows Downloads, 4,856,994 bytes.
+- Polled every 2 seconds; size and modification time matched for 2 consecutive comparisons, with no new partial download remaining. Completion was detected after approximately 4.05 seconds.
+- ZIP CRC passed. Also verified binary FBX and JPEG texture signatures. Blender reimport and new art quality review are outside this task.
+- SHA256: 25ce888b4483c25de862561a18b5b947148cac51f0d12265e9e261a1f0b32423.
+- No new generation or credit spending. Kept the download in Downloads without overwriting production sources.
+
+### Reusable procedure
+
+Run [watch_download.py](../../tools/watch_download.py) from the Windows terminal. Set a task-specific export name in Tripo and save a directory snapshot before clicking download.
+
+~~~powershell
+python tools/watch_download.py --directory "$env:USERPROFILE/Downloads" --prefix NR_Asset_Check --state "$env:TEMP/nr-download-state.json" --prepare
+~~~
+
+Immediately after clicking Export in the in-app browser, run:
+
+~~~powershell
+python tools/watch_download.py --directory "$env:USERPROFILE/Downloads" --prefix NR_Asset_Check --state "$env:TEMP/nr-download-state.json" --timeout 120 --interval 2
+~~~
+
+Change directory if the actual save folder differs. Existing files are excluded; only new files with the specified prefix are candidates. New .crdownload or .part files block success. Stable ZIPs receive CRC and model-entry checks; GLBs receive header version and total-length checks. The tool currently accepts ZIP or GLB, not standalone FBX. If no completion is confirmed within 120 seconds, return TIMEOUT and exit code 1 without recording success. Do not commit temporary snapshots or download logs.
+
+Automated cases passed for ignoring existing files, blocking partial downloads and accepting a new stable ZIP. Directory polling verifies saved downloads; it does not automatically fix site errors or different save locations.
