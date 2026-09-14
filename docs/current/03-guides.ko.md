@@ -302,3 +302,5 @@ DOWNED·ASSIST·SUPPORTING MOSS·LOWER·CONFIRM RETURN, 입력 E와 상태 막�
 0.8.15: [충격봉 외장 복원](baton-mesh-fix.ko.md).
 
 2026-09-13: [완결형 데모 한 사이클·44개 아트 제작 단위](demo-art-list.ko.md). 사용자 목표를 구체화한 제작 제안이며 신규 외형·시간·제작 완료 승인이 아니다.
+
+2026-09-14: [FLATBED 내부 제작 방식](ship-interior-pipeline.ko.md) — 구조·개별 부품·Unity 기능 조립의 경계와 재사용 기준.

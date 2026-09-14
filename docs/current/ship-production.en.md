@@ -85,3 +85,7 @@ Reviewed the [open rear entrance](../../art/ship-flatbed-01/review/angular-rear.
 ## 2026-09-14 — Rear view from the cockpit
 
 The [reverse-angle image](../../art/ship-concepts-01/interior-design-04-rear.png) visualizes the open rear exit from the cockpit using design 04 materials and flat floor. Visually confirmed the baton on image left, beacon on image right, 4 seats, a central aisle and an exterior boarding ramp. The large central display is behind the camera. This generated image does not establish exact rack depth order or numbered seat positions as a reverse render of the same model. Entrance height, engine interference and cargo clearance remain unverified; this concept does not close those issues. No code, model or Unity changes.
+
+## 2026-09-14 — Interior production approach
+
+Added [interior production basis, parts and gates](ship-interior-pipeline.en.md). Based on design 04, use Blender for dimensioned structure, individual production/cleanup for necessary major parts, and Unity for functional assembly. Current work is source inspection and preparation; no new model or game integration.

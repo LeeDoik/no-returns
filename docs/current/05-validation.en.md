@@ -171,3 +171,5 @@ Final 0.8.4 Windows build succeeded. Two real Windows processes passed 14 automa
 
 
 2026-09-14: [FLATBED integrated 3D model and review status](ship-production.en.md). Integrated-model changes supersede earlier interior dimensional proposals. Unity integration and 4-player control validation remain incomplete.
+
+2026-09-14: [FLATBED interior validation](ship-interior-pipeline.en.md#sequence-and-gates) — actual employee/cargo passage, door/ramp interference, first-person legibility, wiring after reimport, multiple processes and 4-player passing. All remain future checks; documentation checks do not substitute for them.

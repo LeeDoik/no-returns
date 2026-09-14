@@ -733,3 +733,7 @@ Generated [interior design 04](../current/ship-production.en.md) to visualize th
 ## 2026-09-14 — Cockpit rear visualization
 
 Generated and stored the requested [interior design 04 reverse angle](../current/ship-production.en.md). Visually reviewed the flat cabin and open rear exit. Exact layout consistency and exit collision remain unverified. Bilingual documentation checks performed; no code or model changes.
+
+## 2026-09-14 — Interior workflow comparison and preparation
+
+The user requested comparing whole-room generation, individual asset assembly and alternatives. Inspected existing production sources and concepts, and documented [dimensioned structure + individual parts + Unity functional assembly](../current/ship-interior-pipeline.en.md), part families, reuse rules and validation order in both languages. Preserved the distinction between actual model stairs and the flat-floor concept, and the unverified rear clear passage. Linked relevant guides, backlog and validation documents. Check documentation links, language counterparts, numbers and checkbox states. No code/model changes or actual play validation.
