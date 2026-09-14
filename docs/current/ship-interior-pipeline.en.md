@@ -101,3 +101,5 @@ python tools/watch_download.py --directory "$env:USERPROFILE/Downloads" --prefix
 Change directory if the actual save folder differs. Existing files are excluded; only new files with the specified prefix are candidates. New .crdownload or .part files block success. Stable ZIPs receive CRC and model-entry checks; GLBs receive header version and total-length checks. The tool currently accepts ZIP or GLB, not standalone FBX. If no completion is confirmed within 120 seconds, return TIMEOUT and exit code 1 without recording success. Do not commit temporary snapshots or download logs.
 
 Automated cases passed for ignoring existing files, blocking partial downloads and accepting a new stable ZIP. Directory polling verifies saved downloads; it does not automatically fix site errors or different save locations.
+
+2026-09-14 implementation update: [structure trial 01](ship-interior-trial.en.md) completes the first Blender candidate. Unity work is blocked by licensing; the overall gates above remain incomplete.

@@ -1,0 +1,8 @@
+{
+  "expected_triangles": 12711,
+  "reimport_triangles": 12711,
+  "missing_uvs": [],
+  "nonfinite_vertices": 0,
+  "separate_screen": true,
+  "separate_ramp": true
+}

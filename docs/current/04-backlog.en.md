@@ -196,3 +196,5 @@ Friends invitations/joining can be tested before release with Steamworks integra
 2026-09-14: [FLATBED integrated 3D model and review status](ship-production.en.md). Integrated-model changes supersede earlier interior dimensional proposals. Unity integration and 4-player control validation remain incomplete.
 
 2026-09-14: [FLATBED interior production preparation](ship-interior-pipeline.en.md). Resolve flat-floor/window/headroom consistency and cargo passage below the rear engine, then validate a representative section before full assembly. Modeling and Unity validation remain incomplete.
+
+2026-09-14: [FLATBED structure trial 01](ship-interior-trial.en.md). Blender candidate complete. Priorities remain restoring Unity licensing, compiling/testing passage, and reviewing the low rear entrance and central window-frame sightline. No new executable.

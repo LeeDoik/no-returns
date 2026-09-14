@@ -304,3 +304,5 @@ This is a layout proposal rather than an exact reconstruction or measured drawin
 2026-09-13: [Complete demo cycle and 44 art production units](demo-art-list.en.md). Production proposal for the user goal, not approval of new appearances/timing or completed production.
 
 2026-09-14: [FLATBED interior workflow](ship-interior-pipeline.en.md) — boundaries and reuse rules for structure, individual parts and Unity functional assembly.
+
+2026-09-14: [FLATBED structure trial production/resume guide](ship-interior-trial.en.md). Separate Blender/FBX/GLB and generation code provided. Unity generation/build code is prepared but unverified in execution.
