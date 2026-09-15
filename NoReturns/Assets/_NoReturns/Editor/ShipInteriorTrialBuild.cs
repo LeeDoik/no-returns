@@ -58,7 +58,7 @@ public static class ShipInteriorTrialBuild {
             renderer.sharedMaterials=replacement;
         }
         foreach(var mesh in model.GetComponentsInChildren<MeshFilter>()) {
-            if(mesh.name.Contains("Display")||mesh.name.Contains("Label")||mesh.name.Contains("Light"))continue;
+            if(mesh.name.Contains("Display")||mesh.name.Contains("Label")||mesh.name.Contains("Light")||mesh.name.Contains("FloorMark")||mesh.name.Contains("Strip")||mesh.name.Contains("Status")||mesh.name.Contains("Lens")||mesh.name.Contains("Harness"))continue;
             // Visual hull triangles are not the walking collision shell. Use the fitted cabin surfaces.
             if(mesh.name=="Tripo_Hull_Reworked"||mesh.name=="Trial_ExteriorRamp")continue;
             if(mesh.name.Contains("Window"))mesh.gameObject.AddComponent<MeshCollider>().sharedMesh=mesh.sharedMesh;
@@ -90,7 +90,7 @@ public static class ShipInteriorTrialBuild {
             bool ok=test.transform.position.z < -7.4f;passed&=ok;results.Add("return lane="+lane+" end="+test.transform.position.ToString("F3")+" pass="+ok);
         }
         // Real controller jump sweep, on the flat cabin deck, with production jump constants.
-        foreach(float lane in new[]{-.55f,0,.55f})foreach(float z in new[]{-3.98f,-2.5f,0f,2f}){
+        foreach(float lane in new[]{-.55f,0,.55f})foreach(float z in new[]{-3.98f,-2.5f,0f,.65f,2f}){
             controller.enabled=false;test.transform.position=new Vector3(lane,1.035f,z);controller.enabled=true;Physics.SyncTransforms();
             for(int i=0;i<20;i++)controller.Move(Vector3.down*.02f);
             float start=test.transform.position.y,peak=start,speed=ShipInteriorTrial.JumpSpeed;bool overhead=false;

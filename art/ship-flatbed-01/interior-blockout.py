@@ -4,23 +4,11 @@ from pathlib import Path
 from mathutils import Vector
 from mathutils.bvhtree import BVHTree
 R=Path(__file__).resolve().parent
-O=R/'interior-blockout-04';O.mkdir(exist_ok=True)
-bpy.ops.wm.open_mainfile(filepath=str(R/'Flatbed_Angular.blend'))
-s=bpy.context.scene;s.frame_set(40)
-hull=bpy.data.objects['Tripo_Hull_Reworked']
-def fingerprint(o):
- return hashlib.sha256(repr(([(tuple(v.co)) for v in o.data.vertices],[(tuple(p.vertices),p.material_index) for p in o.data.polygons])).encode()).hexdigest()
-original=fingerprint(hull)
-for o in list(s.objects):
- if o!=hull:bpy.data.objects.remove(o,do_unlink=True)
-# User-requested localized windshield replacement; preserve the earlier trial files.
-bm=bmesh.new();bm.from_mesh(hull.data)
-for axis,values in [(0,[-3.3,3.3]),(1,[3.78]),(2,[2.30,3.34])]:
- for value in values:
-  co=Vector((0,0,0));co[axis]=value;normal=Vector((0,0,0));normal[axis]=1
-  bmesh.ops.bisect_plane(bm,geom=list(bm.verts)+list(bm.edges)+list(bm.faces),dist=.00001,plane_co=co,plane_no=normal)
-remove=[f for f in bm.faces if abs(f.calc_center_median().x)<3.3 and f.calc_center_median().y>3.78 and 2.30<f.calc_center_median().z<3.34]
-bmesh.ops.delete(bm,geom=remove,context='FACES');bm.to_mesh(hull.data);bm.free();hull.data.update()
+O=R/'interior-blockout-05';O.mkdir(exist_ok=True)
+# Interior first: no generated exterior is loaded or used as a dimensional constraint.
+bpy.ops.wm.read_factory_settings(use_empty=True)
+s=bpy.context.scene;s.world=bpy.data.worlds.new('Trial_World');hull=None;original=None
+
 def mat(n,c,emission=0):
  m=bpy.data.materials.new(n);m.diffuse_color=(*c,1);m.use_nodes=True
  p=m.node_tree.nodes.get('Principled BSDF');p.inputs['Base Color'].default_value=(*c,1);p.inputs['Roughness'].default_value=.8
@@ -96,9 +84,50 @@ for o in s.objects:
 for b in boxes:
  low=b['position'][2]-b['size'][2]/2;high=b['position'][2]+b['size'][2]/2
  b['position'][2]=(raised_z(low)+raised_z(high))/2;b['size'][2]=raised_z(high)-raised_z(low)
+# Replace truck-like rows with asymmetric orbital postal work zones.
+removed={o.name for o in s.objects if any(o.name.startswith(p) for p in ['Trial_Seat','Trial_Rack','Trial_Dock'])}
+for name in removed:bpy.data.objects.remove(bpy.data.objects[name],do_unlink=True)
+boxes[:]=[b for b in boxes if b['name'] not in removed]
+burgundy=mat('Trial_Burgundy',(.19,.045,.055))
+# Left: sealed return lockers, unequal heights and recessed latch strips.
+for j,y in enumerate([-1.1,.05,1.2]):
+ box('Trial_SealedLocker_'+str(j),(-1.87,y,2.06),(.48,.96,2.12),burgundy)
+ box('Trial_LockerDoor_'+str(j),(-1.614,y,2.06),(.028,.79,1.84),ivory)
+ box('Trial_LockerLatch_'+str(j),(-1.585,y,2.02),(.04,.28,.08),dark)
+ box('Trial_LockerStatus_'+str(j),(-1.56,y,2.66),(.015,.22,.04),cyan,False)
+# Right: a continuous dispatch desk, parcel cubbies and overhead paperwork machine.
+box('Trial_DispatchDesk',(1.87,.35,1.63),(.48,3.6,.16),ivory)
+for y in [-1.25,1.95]:box('Trial_DeskLeg_'+str(y),(1.9,y,1.28),(.34,.18,.56),dark)
+box('Trial_ReceiptPrinter',(1.84,.95,1.98),(.38,.76,.54),burgundy)
+box('Trial_ReceiptSlot',(1.637,.95,2.03),(.018,.55,.055),dark,False)
+for j,y in enumerate([-.85,-.27]):box('Trial_SupplyCubby_'+str(j),(1.9,y,2.55),(.36,.46,.6),dark)
+box('Trial_DeskDisplay',(1.63,.08,2.12),(.025,.64,.43),screen,False)
+# Central scan gate leaves a broad ground-level route; no raised cargo pedestal.
+for side in [-1,1]:
+ box('Trial_ScannerUpright_'+str(side),(side*1.59,-.65,2.48),(.14,.3,2.96),burgundy)
+ box('Trial_ScannerStrip_'+str(side),(side*1.505,-.65,2.8),(.018,.18,1.28),cyan,False)
+box('Trial_ScannerOverhead',(0,-.65,3.9),(3.32,.46,.3),ivory)
+box('Trial_ScannerLens',(0,-.65,3.73),(.72,.28,.035),cyan,False)
+for x in [-.6,.6]:box('Trial_FloorMark_'+str(x),(x,-.65,1.004),(.035,1.25,.008),orange,False)
+for y in [-1.26,-.04]:box('Trial_FloorMark_'+str(y),(0,y,1.004),(1.23,.035,.008),orange,False)
+# Four folded launch seats live beside the rear airlock rather than lining the saloon.
+for side in [-1,1]:
+ for j,y in enumerate([-3.25,-2.55]):
+  box('Trial_FoldedSeat_'+str(side)+'_'+str(j),(side*2.04,y,1.95),(.14,.52,1.25),orange)
+  box('Trial_SeatHarness_'+str(side)+'_'+str(j),(side*1.95,y,2.06),(.025,.07,.8),dark,False)
+# Overhead utility trunk gives the workstations a connected mechanical purpose.
+box('Trial_UtilityTrunk',(1.9,.2,3.86),(.22,5.6,.25),burgundy)
+# Label planes are illustrative; no unimplemented controls are presented as functional.
+def label(n,text,loc,rot,size=.13):
+ bpy.ops.object.text_add(location=loc,rotation=rot);o=bpy.context.object;o.name='Trial_Label_'+n;o.data.body=text;o.data.size=size;o.data.materials.append(cyan);bpy.ops.object.convert(target='MESH')
+label('Scan','PARCEL SCREENING',( -.95,-.891,3.85),(math.pi/2,0,0),.14)
+label('Return','SEALED RETURNS',(-1.59,-1.42,3.19),(math.pi/2,0,math.pi/2),.12)
+label('Dispatch','DISPATCH',(1.615,-.62,2.82),(math.pi/2,0,-math.pi/2),.12)
+# The envelope below is a temporary cover derived around the interior, not final ship art.
 # The previous generated hull did not contain the rectangular cabin.
 # Build a fitted structural envelope; keep original hull source files untouched.
-bpy.data.objects.remove(hull,do_unlink=True);hull=None
+if hull:bpy.data.objects.remove(hull,do_unlink=True)
+hull=None
 for name in ['Trial_Lintel','Trial_Jamb_-1','Trial_Jamb_1','Trial_OpenDoor_-1','Trial_OpenDoor_1']:
  o=bpy.data.objects.get(name)
  if o:bpy.data.objects.remove(o,do_unlink=True)
@@ -169,6 +198,10 @@ report={'status':'structural candidate; sampled geometry checks only','floor_hei
 report['localized_windshield_replacement']=True
 report['upper_shell_lift_m']=1.0
 report['fitted_structural_envelope']=True
+report['interior_first']=True
+report['layout']='orbital postal screening / sealed returns / dispatch / folded launch seats'
+report['scanner_clear_width_m']=3.04
+report['scanner_clear_height_m']=2.75
 report['interior_protrusions']=protrusions
 report['entry_clear_width_m']=3.2
 report['entry_clear_height_m']=3.12

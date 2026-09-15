@@ -25,3 +25,9 @@ Link the structural source, approved-view images, dimensions/pivots, raw Tripo r
 - [ ] Automated checks and human quality review are recorded separately.
 
 The ship is currently iterating before the second gate. [Structure trial](ship-interior-trial.en.md) · [Interior component guide](ship-interior-pipeline.en.md).
+
+## 2026-09-15 — Build the ship interior first
+
+Build interior work zones, routes and actual play first. After user review, derive the exterior dimensions by adding structure thickness and equipment clearance around that layout; obtain exterior art approval before production. Do not compress the interior to fit an exterior concept. Use only a temporary cover for visibility and entry checks during interior testing. The generation script now starts with an empty Blender scene and does not load the old exterior file.
+
+The new candidate arranges inspection, sealed storage and dispatch work asymmetrically around the space-delivery role. Automated checks and human satisfaction remain separate; scanner, lockers and receipt equipment are structural mockups in this task. This does not approve new economy or cargo rules.

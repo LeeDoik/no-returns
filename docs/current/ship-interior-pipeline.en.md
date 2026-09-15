@@ -102,4 +102,7 @@ Change directory if the actual save folder differs. Existing files are excluded;
 
 Automated cases passed for ignoring existing files, blocking partial downloads and accepting a new stable ZIP. Directory polling verifies saved downloads; it does not automatically fix site errors or different save locations.
 
-2026-09-15 latest: [Structure trial 04](ship-interior-trial.en.md). Replaced the exterior with a fitted structural shell and enlarged the entrance to 3.2m wide/3.12m high. Containment, 5 entry/3 return/12 jump checks and Windows build passed. Human spatial review and final art remain incomplete.
+
+## 2026-09-15 — Interior-first orbital post-office candidate
+
+The user confirmed building and play-approving the interior before wrapping the exterior. The [default pipeline](art-structure-first.en.md) supersedes earlier exterior-led guidance. Zones comprise a central floor inspection marker/overhead scanner, left sealed return lockers, right dispatch desk, 4 folded rear seats and a shared forward route display. The exterior is a temporary cover; no Tripo generation is performed. [Current trial](ship-interior-trial.en.md).

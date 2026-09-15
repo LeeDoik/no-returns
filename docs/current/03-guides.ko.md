@@ -305,4 +305,4 @@ DOWNED·ASSIST·SUPPORTING MOSS·LOWER·CONFIRM RETURN, 입력 E와 상태 막�
 
 2026-09-14: [FLATBED 내부 제작 방식](ship-interior-pipeline.ko.md) — 구조·개별 부품·Unity 기능 조립의 경계와 재사용 기준.
 
-2026-09-15 최신: [구조 시험 04](ship-interior-trial.ko.md). 외장을 객실에 맞춘 단순 구조로 교체하고 출입구를 폭 3.2m·높이 3.12m로 확대했다. 돌출 검사, 진입 5·귀환 3·점프 12지점 및 Windows 빌드 통과. 사람 공간감 재검토와 최종 아트는 미완료다.
+2026-09-15 최신: [구조 시험 05](ship-interior-trial.ko.md). 실내 선행 우주 우체국 배치: 중앙 검사 공간, 왼쪽 밀폐함, 오른쪽 작업대, 후방 접힌 좌석. 기능은 구조 모형이며 사용자 공간감 확인과 외장 아트가 남아 있다.

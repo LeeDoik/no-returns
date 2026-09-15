@@ -769,3 +769,9 @@ Apply the [new asset pipeline](../current/art-structure-first.en.md): structure 
 ## 2026-09-15 — Interior protrusion and rear entrance fix
 
 Human play exposed interior protrusion and a low entrance. Irregular hull deformation and retaining the low door caused the problem; earlier central-line checks did not guarantee overall quality. Rebuilt the isolated trial shell around the cabin and adjusted doors/frame/floor/ceiling connections. Earlier models/main game preserved; no Tripo use. Protrusions 0, GLB 2,255 triangles/missing UVs 0, actual 5 entry/3 return/12 jump checks and Windows build passed. Recovered initial Editor IPC startup wait through direct Editor launch after a normal license query. Human satisfaction, final appearance and online integration remain unverified. [Current results](../current/ship-interior-trial.en.md).
+
+## 2026-09-15 — Interior-first orbital post-office structure trial 05
+
+The user requested completing the interior before wrapping the exterior and differentiating the truck-like layout. Generation now starts from an empty Blender scene, removing the previous hull dependency. Added central scanner/floor inspection markings, left sealed return lockers, right dispatch desk, 4 folded rear seats and an overhead service trunk. Exterior remains a temporary cover. Device behavior, new economy and mystery events are not implemented; no Tripo use.
+
+Verification: protrusions 0, GLB round-trip 4,246 triangles/missing UVs 0/nonfinite coordinates 0; actual Unity 5 entry/3 return routes and 15 jump positions passed. New Windows build succeeded. Earlier models/main game preserved. Human spatial approval, final exterior, device functions and online validation remain incomplete. [Current specification](../current/ship-interior-trial.en.md) · [Production sequence](../current/art-structure-first.en.md).

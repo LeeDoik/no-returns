@@ -92,4 +92,4 @@ Added [interior production basis, parts and gates](ship-interior-pipeline.en.md)
 
 ## 2026-09-14 — Interior structure trial 01 progress
 
-2026-09-15 latest: [Structure trial 04](ship-interior-trial.en.md). Replaced the exterior with a fitted structural shell and enlarged the entrance to 3.2m wide/3.12m high. Containment, 5 entry/3 return/12 jump checks and Windows build passed. Human spatial review and final art remain incomplete.
+2026-09-15 latest: [Structure trial 05](ship-interior-trial.en.md). Interior-first orbital post office: central inspection, left sealed lockers, right dispatch desk and rear folded seats. Devices are structural mockups; human spatial review and exterior art remain pending.
