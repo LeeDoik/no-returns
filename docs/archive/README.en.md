@@ -86,3 +86,5 @@ Existing paths are preserved for link/tool compatibility. These files contain hi
 ## SIDE EFFECTS — 2026-09-12
 
 ZIP (`side-effects-2026-09-12.zip`; retired file) · [기획 / Design](../current/14-side-effects.en.md) · [인계 / Handoff](../current/16-side-effects-handoff.en.md) · [과거 구현 / Historical implementation](../current/17-side-effects-implementation.en.md).
+
+- [FLATBED trial 03](ship-interior-trial-03.en.md)

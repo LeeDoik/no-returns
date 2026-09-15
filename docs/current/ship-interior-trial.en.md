@@ -1,58 +1,38 @@
-# FLATBED interior structure trial 03
+# FLATBED interior structure trial 04
 
 [한국어](ship-interior-trial.ko.md)
 
-2026-09-14 · Central window/display corrected; Unity import, automated passage and Windows build completed. This is an isolated spatial trial, not final art. Existing Angular/Integrated models, trial 01 sources and main game scene/build are preserved.
+2026-09-15 · Refit the structure after the user reported interior protrusion and a low entrance. Applied to the isolated trial scene/Windows build; main game and earlier art sources are preserved. [Previous state](../archive/ship-interior-trial-03.en.md).
 
-## Placement and deliverables
+## Cause and correction
 
-Locally rebuilt the new candidate's windshield surround to correct the off-center window. Aligned central glazing and display to X=0 with symmetric side panes and mullions. Console base top is 1.74m and display bottom 1.885m, leaving 0.145m clearance and removing screen obstruction. Center and side eye rays found no opaque hull obstacle. The new candidate's hull fingerprint changes; earlier sources remain intact.
+Trial 03 raised the cabin ceiling but left the rear door approximately 1.86m high. Stretching an irregular generated hull did not guarantee containment of the rectangular cabin. Earlier central passage checks did not establish exterior fit or comfortable entry.
 
-- [Blender](../../art/ship-flatbed-01/interior-blockout-03/Flatbed_InteriorTrial.blend) · [FBX](../../art/ship-flatbed-01/interior-blockout-03/Flatbed_InteriorTrial.fbx) · [GLB](../../art/ship-flatbed-01/interior-blockout-03/Flatbed_InteriorTrial.glb)
-- [Forward](../../art/ship-flatbed-01/interior-blockout-03/forward.png) · [Rear](../../art/ship-flatbed-01/interior-blockout-03/rear.png) · [Windshield](../../art/ship-flatbed-01/interior-blockout-03/window.png)
-- [Generation code](../../art/ship-flatbed-01/interior-blockout.py) · [Geometry checks](../../art/ship-flatbed-01/interior-blockout-03/validation.json) · [Round-trip checks](../../art/ship-flatbed-01/interior-blockout-03/roundtrip.json)
-- [Unity scene](../../NoReturns/Assets/_NoReturns/Scenes/ShipInteriorTrial.unity) · [Generation/check/build code](../../NoReturns/Assets/_NoReturns/Editor/ShipInteriorTrialBuild.cs) · [Trial controls](../../NoReturns/Assets/_NoReturns/Runtime/ShipInteriorTrial.cs)
+Following the new pipeline, replaced this trial's visual exterior with a simple structure fitted to the cabin. Preserved the original Tripo hull; this does not complete final engines, decoration or ship appearance. Kept furniture, display and viewpoint while building outer walls, roof, nose connections and rear frame from shared dimensions.
 
-Local executable: `builds/ShipInteriorTrial/NoReturns-InteriorTrial.exe`. Keep it with the other data in its folder. Builds/logs are excluded from Git. Controls: WASD/mouse, E pick up, Q drop, Space empty-hand jump, F1 language switch, Esc release cursor. This does not replace main game carrying code or build settings.
+- Cabin floor 1.00m, ceiling underside 4.12m, clear height 3.12m.
+- Rear opening clear width 3.2m and height 3.12m. Door panels match that height and are moved aside in their open positions.
+- Exterior width 5.1m. Filled floor/ceiling connections between doorway and cabin. Exterior ramp has a horizontal run of 3m and rise of 1m.
+- Preserved employee height 1.8m, radius 0.34m, jump speed 5m/s and gravity 18m/s².
 
-## Dimensions and passage verification
+## Deliverables and reproduction
 
-Floor is 1.00m, ceiling underside 4.12m, cabin height 3.12m and eye elevation 2.57m. Used employee height 1.8m, radius 0.34m, eye height 1.57m and cargo size 0.8×0.65×0.65m from [current carrying code](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs). Rear frame clearance is approximately 1.86m; exterior ramp horizontal run is 3m and rise 1m. These are trial values, not release decisions.
+[Blender](../../art/ship-flatbed-01/interior-blockout-04/Flatbed_InteriorTrial.blend) · [FBX](../../art/ship-flatbed-01/interior-blockout-04/Flatbed_InteriorTrial.fbx) · [GLB](../../art/ship-flatbed-01/interior-blockout-04/Flatbed_InteriorTrial.glb)
 
-Corrected FBX forward-axis differences with a 180-degree Unity Y rotation. Raw generated hull triangles used as walking collision snagged at the entrance. Separated visual hull and collision, using boxes for cabin/frame and a dedicated inclined box for the ramp. This does not replace main game physics.
+[Interior forward](../../art/ship-flatbed-01/interior-blockout-04/forward.png) · [Interior rear](../../art/ship-flatbed-01/interior-blockout-04/rear.png) · [Exterior rear](../../art/ship-flatbed-01/interior-blockout-04/exterior-rear.png) · [Exterior front](../../art/ship-flatbed-01/interior-blockout-04/exterior-front.png)
 
-Actual CharacterController.Move tests at X=-0.55, 0 and 0.55m all reached Z=2.259m. Employee samples and a conservative enclosing cargo sphere also found no collisions. GLB round-trip matches 13,925 triangles, missing UVs 0 and nonfinite coordinates 0. These checks do not establish human carrying feel while rotating cargo or guarantee passage at every position.
+[Structure generation/dimensions](../../art/ship-flatbed-01/interior-blockout.py) · [Geometry evidence](../../art/ship-flatbed-01/interior-blockout-04/validation.json) · [Round-trip](../../art/ship-flatbed-01/interior-blockout-04/roundtrip.json) · [Unity checks/build](../../NoReturns/Assets/_NoReturns/Editor/ShipInteriorTrialBuild.cs) · [Controls](../../NoReturns/Assets/_NoReturns/Runtime/ShipInteriorTrial.cs).
 
-## Unity recovery and execution
+Executable: `builds/ShipInteriorTrial/NoReturns-InteriorTrial.exe`. WASD/mouse, Space empty-hand jump, E pick up, Q drop, F1 language switch, Esc release cursor. Retain adjacent data files. Build through the existing Editor using `powershell -NoProfile -File tools/unity.ps1 trial`. Close any previous trial instance and relaunch.
 
-The sandbox attempt failed with exit code 198 and `No valid Unity Editor license found`. After read-only inspection in the normal user environment confirmed Unity Personal Assigned, opened the Editor once and attached to the existing instance. No global sandbox disabling, license deletion or forced license-process termination was used. Hub IPC warnings remain; this does not mean all warnings disappeared.
+## Verification scope
 
-Registered MCP was official `unity mcp --project-path ...`, already an attach configuration. The [actual MCP probe](../../tools/unity_mcp_probe.py) passed initialize, tools/list and tools/call editor_status, confirming ready, compiling=false and domainReloadInProgress=false. The [task helper](../../tools/unity.ps1) now attaches only for setup/check/trial, failing when no Editor is connected or compilation/reload/Play is active. It does not silently spawn batch Editors. Registered menus avoid observed string-conversion errors with dynamic eval.
+- [x] Compared fixed interior vertices against the fitted exterior bounds and sloping nose roof: 0 protrusions. Excludes intentionally external doors, ramp and shell. This is not a general arbitrary mesh-intersection checker.
+- [x] Reviewed same-model interior/exterior renders; GLB round-trip passed: 2,255 triangles, missing UVs 0, nonfinite coordinates 0.
+- [x] Actual CharacterController passed 5 entry and 3 return routes.
+- [x] No head collision at 12 jump positions including beneath the doorway. Actual rise approximately 0.645m.
+- [x] Unity compilation/import and Windows build succeeded; fresh build-success.txt verified.
+- [ ] Human spatial comfort, entry clearance and cargo-handling review.
+- [ ] Final art, moving doors, exterior finishing, main game and 4-player online integration.
 
-~~~powershell
-powershell -NoProfile -File tools/unity.ps1 open
-powershell -NoProfile -File tools/unity.ps1 trial
-python tools/unity_mcp_probe.py
-~~~
-
-Run open once in the normal user environment when needed. The first build succeeded in approximately 111 seconds but exceeded the CLI's default 30-second response timeout. The helper now waits up to 600 seconds and checks a fresh build-success.txt. A menu response alone does not establish build success.
-
-## Complete and unverified
-
-- [x] Same-model renders confirm centered windshield and unobscured display.
-- [x] Unity compilation/import and 3 actual passage lines passed.
-- [x] Windows BuildPipeline success, fresh executable and success record verified.
-- [x] Editor Play entry and game-view rendering verified.
-- [ ] Human review of E pick-up, Q drop and carrying through the low entrance.
-- [ ] Final exterior texture retention, glazing, ceiling seams, excessive lighting and PSX finishing.
-- [ ] Door animation, dynamic display, main game and 4-player online integration.
-
-Seats, walls and racks are plain structural parts and display text is illustrative. Local evidence: `artifacts/ship-interior-trial/passage.txt`, `build-success.txt`, `unity-play.png`, `unity-interior.png` and `NoReturns/Logs/Editor.log`. Geometry JSON unity_playtest=false describes the Blender check's own scope, distinct from the separate Unity results. Automated checks/render review are not human handling or fun validation.
-
-## 2026-09-14 — Jump clearance and production sequence
-
-The user's actual play feedback was that the ceiling felt low, with a request for enough height to jump without touching it. Increased cabin height from 2.12m to 3.12m, a 1.00m lift. Kept floor, display and player viewpoint fixed while raising upper walls, ceiling, roof and upper front together. The low rear door remains; the guarantee does not cover jumping directly beneath it or on furniture. Exterior proportions and upper-front finishing after the roof lift still need user visual review.
-
-Added Space empty-hand jumping to the trial. Uses production CarryRoom initial speed 5m/s and gravity 18m/s²; no jumping while carrying cargo. Theoretical rise is approximately 0.694m, leaving approximately 0.60m above a 1.8m employee at the apex. Actual CharacterController checks at 9 positions recorded approximately 0.645m rise with no Above collision, and 3 original passage routes passed. Discrete integration and ground-contact clearance explain the difference from theory. New Windows build succeeded. These are automated checks; human satisfaction with the new height remains unverified.
-
-Apply the [new asset pipeline](art-structure-first.en.md): structure → actual Unity play → user confirmation → Tripo visuals based on approved structure → Blender dimensional review → game retest. Art production for this model waits for structural confirmation; no Tripo generation or spending occurred. Earlier renders/play captures document the previous height; use the new structural renders and passage.txt for current height evidence.
+Local evidence: `artifacts/ship-interior-trial/passage.txt`, `build-success.txt`, `envelope-blender.log`, `envelope-roundtrip.log`. Automated checks do not establish comfort. Proceed to art through the [structure-first pipeline](art-structure-first.en.md) after human structural approval. No Tripo generation or credits used.

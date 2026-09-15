@@ -1,0 +1,45 @@
+{
+  "status": "structural candidate; sampled geometry checks only",
+  "floor_height_m": 1.0,
+  "ceiling_underside_m": 4.12,
+  "headroom_m": 3.12,
+  "eye_height_above_floor_m": 1.57,
+  "employee_height_m": 1.8,
+  "employee_radius_m": 0.34,
+  "cargo_size_m": [
+    0.8,
+    0.65,
+    0.65
+  ],
+  "ramp_horizontal_run_m": 3,
+  "hull_fingerprint_before": "e39b08cedab41b7081cec9e06e9951da0c5295eb73518000535d01c9363648c4",
+  "hull_fingerprint_after": null,
+  "employee_sample_collisions": [],
+  "cargo_conservative_sphere_collisions": [],
+  "forward_eye_rays": [
+    {
+      "x": -0.45,
+      "opaque_obstacle": null
+    },
+    {
+      "x": 0,
+      "opaque_obstacle": null
+    },
+    {
+      "x": 0.45,
+      "opaque_obstacle": null
+    }
+  ],
+  "unity_playtest": false,
+  "localized_windshield_replacement": true,
+  "upper_shell_lift_m": 1.0,
+  "fitted_structural_envelope": true,
+  "interior_protrusions": [],
+  "entry_clear_width_m": 3.2,
+  "entry_clear_height_m": 3.12,
+  "central_window_and_display_axis_x_m": 0,
+  "console_base_top_m": 1.74,
+  "display_bottom_m": 1.885,
+  "triangles": 2255,
+  "missing_uvs": []
+}

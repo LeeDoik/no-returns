@@ -305,4 +305,4 @@ This is a layout proposal rather than an exact reconstruction or measured drawin
 
 2026-09-14: [FLATBED interior workflow](ship-interior-pipeline.en.md) — boundaries and reuse rules for structure, individual parts and Unity functional assembly.
 
-2026-09-14 latest: [Structure trial 03](ship-interior-trial.en.md). Cabin height 3.12m with Space empty-hand jumping. No head collision at 9 jump positions; 3 passage routes and Windows build passed. Obtain human spatial review before art production through the [new pipeline](art-structure-first.en.md).
+2026-09-15 latest: [Structure trial 04](ship-interior-trial.en.md). Replaced the exterior with a fitted structural shell and enlarged the entrance to 3.2m wide/3.12m high. Containment, 5 entry/3 return/12 jump checks and Windows build passed. Human spatial review and final art remain incomplete.

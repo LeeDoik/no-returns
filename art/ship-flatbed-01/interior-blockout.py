@@ -4,7 +4,7 @@ from pathlib import Path
 from mathutils import Vector
 from mathutils.bvhtree import BVHTree
 R=Path(__file__).resolve().parent
-O=R/'interior-blockout-03';O.mkdir(exist_ok=True)
+O=R/'interior-blockout-04';O.mkdir(exist_ok=True)
 bpy.ops.wm.open_mainfile(filepath=str(R/'Flatbed_Angular.blend'))
 s=bpy.context.scene;s.frame_set(40)
 hull=bpy.data.objects['Tripo_Hull_Reworked']
@@ -96,13 +96,52 @@ for o in s.objects:
 for b in boxes:
  low=b['position'][2]-b['size'][2]/2;high=b['position'][2]+b['size'][2]/2
  b['position'][2]=(raised_z(low)+raised_z(high))/2;b['size'][2]=raised_z(high)-raised_z(low)
+# The previous generated hull did not contain the rectangular cabin.
+# Build a fitted structural envelope; keep original hull source files untouched.
+bpy.data.objects.remove(hull,do_unlink=True);hull=None
+for name in ['Trial_Lintel','Trial_Jamb_-1','Trial_Jamb_1','Trial_OpenDoor_-1','Trial_OpenDoor_1']:
+ o=bpy.data.objects.get(name)
+ if o:bpy.data.objects.remove(o,do_unlink=True)
+boxes[:]=[b for b in boxes if b['name'] not in ['Trial_Lintel','Trial_Jamb_-1','Trial_Jamb_1','Trial_OpenDoor_-1','Trial_OpenDoor_1']]
+for o in s.objects:
+ if o.type=='MESH' and o.name.startswith('Trial_Window'):
+  for v in o.data.vertices:v.co.x=max(-2.55,min(2.55,v.co.x))
+for side in [-1,1]:
+ box('Shell_Side_'+str(side),(side*2.4,-.16,2.44),(.3,8.08,3.88),ivory)
+ box('Trial_Jamb_'+str(side),(side*2.075,-3.98,2.56),(.95,.24,3.12),ivory)
+ box('Trial_OpenDoor_'+str(side),(side*3.4,-4.12,2.56),(1.6,.12,3.12),dark)
+ # Forward side cheek closes the sloping windshield to the side shell.
+ pts=[(side*2.55,y,z) for y,z in [(3.78,.5),(5.12,.5),(5.12,2.3),(3.78,4.34)]]
+ me=bpy.data.meshes.new('Shell_NoseCheek');me.from_pydata(pts,[],[(0,1,2,3)]);me.update()
+ o=bpy.data.objects.new('Shell_NoseCheek_'+str(side),me);s.collection.objects.link(o);me.materials.append(ivory);facade.append(o.name)
+box('Shell_Roof',(0,-.16,4.36),(5.1,8.08,.24),ivory)
+box('Shell_Underfloor',(0,.46,.64),(5.1,9.32,.28),dark)
+box('Shell_NoseLower',(0,5.12,1.4),(5.1,.16,1.8),ivory)
+box('Trial_Lintel',(0,-3.98,4.24),(5.1,.24,.24),ivory)
+# Bridge the old 0.2 m gap between cabin and rear doorway.
+box('Shell_RearRoofBridge',(0,-3.98,4.18),(5.1,.44,.12),ivory)
+box('Trial_EntryDeck',(0,-3.89,.9),(3.2,.22,.2),dark)
+meshes=[o for o in s.objects if o.type=='MESH']
+for o in meshes:
+ if o.data.uv_layers:continue
+ bpy.ops.object.select_all(action='DESELECT');o.select_set(True);bpy.context.view_layer.objects.active=o
+ bpy.ops.object.mode_set(mode='EDIT');bpy.ops.mesh.select_all(action='SELECT');bpy.ops.uv.smart_project();bpy.ops.object.mode_set(mode='OBJECT')
 bpy.context.view_layer.update()
+# Verify cabin fixture vertices against the fitted envelope (not just outer bounds).
+protrusions=[]
+for o in meshes:
+ if not o.name.startswith('Trial_') or any(k in o.name for k in ['OpenDoor','ExteriorRamp','Window','Jamb','Lintel']):continue
+ for v in o.data.vertices:
+  w=o.matrix_world@v.co
+  roof=4.48 if w.y<=3.78 else 4.34-(w.y-3.78)*2.04/1.34
+  if abs(w.x)>2.55+.001 or w.y < -4.2-.001 or w.y>5.2+.001 or w.z<.5-.001 or w.z>roof+.001:protrusions.append(o.name);break
+assert not protrusions,protrusions
 # Collision checks deliberately include the original hull and all solid trial furniture.
 solid_names={b['name'] for b in boxes}|set(facade)
 verts=[];faces=[];owners=[]
 for o in meshes:
  if o!=hull and o.name not in solid_names:continue
- if o.name in ['Trial_Deck','Trial_Threshold']:continue
+ if o.name in ['Trial_Deck','Trial_Threshold','Trial_EntryDeck','Shell_Underfloor']:continue
  offset=len(verts);verts.extend(o.matrix_world@v.co for v in o.data.vertices)
  for p in o.data.polygons:
   if o==hull and p.material_index==1:continue
@@ -126,9 +165,13 @@ eyes=[]
 for x in [-.45,0,.45]:
  origin=Vector((x,2.5,floor+1.57));hit=tree.ray_cast(origin,Vector((0,1,0)),10)
  eyes.append({'x':x,'opaque_obstacle':owners[hit[2]] if hit[0] is not None else None})
-report={'status':'structural candidate; sampled geometry checks only','floor_height_m':floor,'ceiling_underside_m':4.12,'headroom_m':3.12,'eye_height_above_floor_m':1.57,'employee_height_m':1.8,'employee_radius_m':.34,'cargo_size_m':[.8,.65,.65],'ramp_horizontal_run_m':3,'hull_fingerprint_before':original,'hull_fingerprint_after':fingerprint(hull),'employee_sample_collisions':hits,'cargo_conservative_sphere_collisions':cargo_hits,'forward_eye_rays':eyes,'unity_playtest':False}
+report={'status':'structural candidate; sampled geometry checks only','floor_height_m':floor,'ceiling_underside_m':4.12,'headroom_m':3.12,'eye_height_above_floor_m':1.57,'employee_height_m':1.8,'employee_radius_m':.34,'cargo_size_m':[.8,.65,.65],'ramp_horizontal_run_m':3,'hull_fingerprint_before':original,'hull_fingerprint_after':None,'employee_sample_collisions':hits,'cargo_conservative_sphere_collisions':cargo_hits,'forward_eye_rays':eyes,'unity_playtest':False}
 report['localized_windshield_replacement']=True
 report['upper_shell_lift_m']=1.0
+report['fitted_structural_envelope']=True
+report['interior_protrusions']=protrusions
+report['entry_clear_width_m']=3.2
+report['entry_clear_height_m']=3.12
 report['central_window_and_display_axis_x_m']=0
 report['console_base_top_m']=1.74
 report['display_bottom_m']=1.885
@@ -143,7 +186,7 @@ report['missing_uvs']=[o.name for o in meshes if not o.data.uv_layers]
 bpy.ops.object.camera_add();cam=bpy.context.object;s.camera=cam;s.render.engine='CYCLES';s.cycles.samples=20;s.render.resolution_x=1200;s.render.resolution_y=800;s.render.resolution_percentage=100;s.world.color=(.16,.16,.16)
 for pos in [(0,-9,9),(6,6,10)]:
  bpy.ops.object.light_add(type='AREA',location=pos);l=bpy.context.object;l.data.energy=1800;l.data.size=7;l.rotation_euler=(Vector((0,0,1.5))-l.location).to_track_quat('-Z','Y').to_euler()
-for name,pos,target,ortho in [('forward',(0,-3.3,2.57),(0,3.4,2.15),0),('rear',(0,2.5,2.57),(0,-4.5,1.9),0),('window',(0,2.4,2.57),(0,6,2.57),0),('exterior-rear',(11,-16,10),(0,-1,1.7),19)]:
+for name,pos,target,ortho in [('forward',(0,-3.3,2.57),(0,3.4,2.15),0),('rear',(0,2.5,2.57),(0,-4.5,1.9),0),('window',(0,2.4,2.57),(0,6,2.57),0),('exterior-rear',(11,-16,10),(0,-1,1.7),19),('exterior-front',(-11,16,10),(0,0,2),19)]:
  cam.location=pos;cam.rotation_euler=(Vector(target)-cam.location).to_track_quat('-Z','Y').to_euler();cam.data.type='ORTHO' if ortho else 'PERSP';cam.data.ortho_scale=ortho or 15;cam.data.lens=20;s.render.filepath=str(O/(name+'.png'));bpy.ops.render.render(write_still=True)
 bpy.context.preferences.filepaths.save_version=0
 bpy.ops.file.pack_all();bpy.ops.wm.save_as_mainfile(filepath=str(O/'Flatbed_InteriorTrial.blend'))

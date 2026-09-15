@@ -77,14 +77,20 @@ public static class ShipInteriorTrialBuild {
         Physics.SyncTransforms();
         var test=new GameObject("Automatic passage probe");var controller=test.AddComponent<CharacterController>();controller.height=1.8f;controller.radius=.34f;controller.center=Vector3.up*.9f;controller.skinWidth=.035f;controller.stepOffset=.32f;
         var results=new List<string>();bool passed=true;
-        foreach(float lane in new[]{-.55f,0,.55f}){
+        foreach(float lane in new[]{-1.1f,-.55f,0,.55f,1.1f}){
             controller.enabled=false;test.transform.position=new Vector3(lane,.05f,-8);controller.enabled=true;Physics.SyncTransforms();
             for(int i=0;i<900&&test.transform.position.z<2.2f;i++)controller.Move(new Vector3(0,-.02f,.06f));
             bool ok=test.transform.position.z>2.1f;passed&=ok;results.Add("lane="+lane+" end="+test.transform.position.ToString("F3")+" pass="+ok);
             if(!ok){var p=test.transform.position;foreach(var hit in Physics.CapsuleCastAll(p+Vector3.up*.34f,p+Vector3.up*1.46f,.34f,Vector3.forward,.3f))if(hit.collider.gameObject!=test)results.Add("obstacle="+hit.collider.name+" distance="+hit.distance);}
         }
+        // Verify return travel, including the doorway and downhill ramp.
+        foreach(float lane in new[]{-1.1f,0,1.1f}){
+            controller.enabled=false;test.transform.position=new Vector3(lane,1.035f,2.2f);controller.enabled=true;Physics.SyncTransforms();
+            for(int i=0;i<900&&test.transform.position.z>-7.5f;i++)controller.Move(new Vector3(0,-.02f,-.06f));
+            bool ok=test.transform.position.z < -7.4f;passed&=ok;results.Add("return lane="+lane+" end="+test.transform.position.ToString("F3")+" pass="+ok);
+        }
         // Real controller jump sweep, on the flat cabin deck, with production jump constants.
-        foreach(float lane in new[]{-.55f,0,.55f})foreach(float z in new[]{-2.5f,0f,2f}){
+        foreach(float lane in new[]{-.55f,0,.55f})foreach(float z in new[]{-3.98f,-2.5f,0f,2f}){
             controller.enabled=false;test.transform.position=new Vector3(lane,1.035f,z);controller.enabled=true;Physics.SyncTransforms();
             for(int i=0;i<20;i++)controller.Move(Vector3.down*.02f);
             float start=test.transform.position.y,peak=start,speed=ShipInteriorTrial.JumpSpeed;bool overhead=false;

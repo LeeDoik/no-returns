@@ -102,4 +102,4 @@ python tools/watch_download.py --directory "$env:USERPROFILE/Downloads" --prefix
 
 자동 시험에서 기존 파일 배제, 부분 다운로드 보류, 새 안정 ZIP 승인 사례가 통과했다. 폴더 폴링은 이번 다운로드의 저장 확인 방법이며, 사이트 오류나 다른 저장 경로까지 자동 해결하는 기능은 아니다.
 
-2026-09-14 최신: [구조 시험 03](ship-interior-trial.ko.md). 객실 높이 3.12m, Space 빈손 점프 추가. 9지점 점프 머리 충돌 없음·출입 3경로·Windows 빌드 통과. 사용자 공간감 재확인 뒤 [새 파이프라인](art-structure-first.ko.md)으로 아트를 제작한다.
+2026-09-15 최신: [구조 시험 04](ship-interior-trial.ko.md). 외장을 객실에 맞춘 단순 구조로 교체하고 출입구를 폭 3.2m·높이 3.12m로 확대했다. 돌출 검사, 진입 5·귀환 3·점프 12지점 및 Windows 빌드 통과. 사람 공간감 재검토와 최종 아트는 미완료다.
