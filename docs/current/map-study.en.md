@@ -2,7 +2,7 @@
 
 [한국어](map-study.ko.md)
 
-2026-09-16 · MAP-STUDY-04 · HTML implemented / proposal before Unity integration
+2026-09-16 · MAP-STUDY-05 · HTML implemented / proposal before Unity integration
 
 ## Scope and direction
 
@@ -26,7 +26,7 @@ Open root Play_Map_Overview.cmd or the HTML in a browser. No external downloads 
 - E: pick up cargo → deliver at receiving → collect receipt → finish at ship. Also inspect records and unlock the emergency exit from inside.
 - Q: set cargo down. F: an 8-second lure in danger mode. Beacons are unlimited in this experiment.
 - Danger defaults off. When enabled, suppression advances through 4 stages at 45-second intervals with patrol/hunt behavior. Colors and descriptions replace a numeric timer. A 0.9-second attack warning precedes recovery to ship, leaving cargo on site. Ship interior is safe.
-- Proposed extent 120×96m is represented at 10 pixels/m. Accelerated review movement is 88 pixels/s empty-handed and 62 carrying. This does not validate Unity scale, physics or final difficulty.
+- Proposed extent 120×112m is represented at 10 pixels/m. Accelerated review movement is 88 pixels/s empty-handed and 62 carrying. This does not validate Unity scale, physics or final difficulty.
 
 ## Evidence and next gates
 
@@ -37,4 +37,9 @@ Automation executes movement logic in a mocked DOM; it does not validate human f
 
 ## MAP-STUDY-04
 
-Exterior expansion 04: enlarged the proposed overall extent to 120×96m. Preserved interior coordinates and widened the west antenna area, east service yard, south freight yard and fuel equipment area. Exterior obstacles allow movement around multiple sides. Antenna/fuel areas are currently labels and collision obstacles, with no new interactions. Automated travel to 5 additional exterior destinations and existing delivery/exit/return checks passed. Browser rendering confirmed with zero console errors. First-person feel, danger balance and Unity integration remain unverified.
+Exterior expansion 04: enlarged the proposed overall extent to 120×112m. Preserved interior coordinates and widened the west antenna area, east service yard, south freight yard and fuel equipment area. Exterior obstacles allow movement around multiple sides. Antenna/fuel areas are currently labels and collision obstacles, with no new interactions. Automated travel to 5 additional exterior destinations and existing delivery/exit/return checks passed. Browser rendering confirmed with zero console errors. First-person feel, danger balance and Unity integration remain unverified.
+
+
+## MAP-STUDY-05
+
+Added the northern exterior maintenance area to complete a four-sided perimeter loop. Proposed extent: 120×112m. Preserve separation between interior and exterior, connected only through the existing west entrance and east emergency door. Full exterior circuit and existing delivery/door automated checks passed; browser rendering and zero console errors confirmed. Unity integration and human feel remain unverified.

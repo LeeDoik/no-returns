@@ -10,3 +10,6 @@ t.interact();assert.equal(t.get().state,'carry');assert(t.go(t.receiver)<20);t.i
 
 for(const p of [{x:50,y:190},{x:1150,y:350},{x:1150,y:910},{x:50,y:910},{x:570,y:870}]){assert(t.go(p)<20,'exterior destination');assert(t.isOutdoor(t.get().player));}
 console.log('PASS: expanded west, east and south exploration destinations.');
+
+for(const p of [{x:50,y:670},{x:50,y:-90},{x:1150,y:-90},{x:1150,y:910},{x:50,y:910},t.ship]){assert(t.go(p)<20,"perimeter loop");assert(t.isOutdoor(t.get().player));}
+console.log("PASS: full exterior perimeter circuit.");
