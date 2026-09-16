@@ -213,3 +213,6 @@ Friends invitations/joining can be tested before release with Steamworks integra
 
 
 2026-09-16: [EXIT-RELOCATION](map-study.en.md). Moved the emergency exit to the right wall of receiving at the user-marked location. Closed the former cooling exit. Inside-only E unlock remains. Automated delivery/receipt/return, new gate unlock, old exit blockage and perimeter circuit checks passed. No Unity changes; human feel unverified.
+
+
+2026-09-17: [CONCEPT-ZONING-02](concept-zoning.en.md). Added three proposed loops and connecting paths: A warehouse, B central freight obstacles, C east service block. Proposed one Listener per zone (three total), with separate lure-player markers. Each loop has at least two escape connections; purple dashes represent proposed traversable routes. Evaluate one employee drawing pursuit while others carry along the opposite side. Infinite kiting, player-count scaling, hearing/pursuit reset/speed and cargo clearance remain undecided. Only HTML visualization changed; no AI, Unity or existing playable-study integration. Browser rendering of loops and zone markers inspected. Cooperative fun and actual pursuit remain unverified.

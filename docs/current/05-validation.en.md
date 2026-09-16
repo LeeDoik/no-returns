@@ -193,3 +193,6 @@ Final 0.8.4 Windows build succeeded. Two real Windows processes passed 14 automa
 
 
 2026-09-16: [Concept-based interior/exterior zoning](concept-zoning.en.md) / CONCEPT-ZONING-01.
+
+
+2026-09-17: [CONCEPT-ZONING-02](concept-zoning.en.md). Added three proposed loops and connecting paths: A warehouse, B central freight obstacles, C east service block. Proposed one Listener per zone (three total), with separate lure-player markers. Each loop has at least two escape connections; purple dashes represent proposed traversable routes. Evaluate one employee drawing pursuit while others carry along the opposite side. Infinite kiting, player-count scaling, hearing/pursuit reset/speed and cargo clearance remain undecided. Only HTML visualization changed; no AI, Unity or existing playable-study integration. Browser rendering of loops and zone markers inspected. Cooperative fun and actual pursuit remain unverified.
