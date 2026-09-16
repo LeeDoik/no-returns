@@ -7,4 +7,3 @@ vm.runInNewContext(js,context);const t=context.window.test;
 
 for(let i=0;i<t.grid.length;i++)if(t.grid[i]&&t.can(t.point(i)))assert(t.route(t.ship,t.point(i)).length||Math.hypot(t.point(i).x-t.ship.x,t.point(i).y-t.ship.y)<30,'unreachable '+i);
 t.interact();assert.equal(t.get().state,'carry');assert(t.go(t.receiver)<20);t.interact();assert.equal(t.get().state,'receipt');t.interact();assert.equal(t.get().state,'return');assert(t.go(t.ship)<20);t.interact();assert(t.get().won);t.reset();assert(t.gateTest());t.reset();t.interact();t.drop();assert.equal(t.get().state,'pickup');t.interact();assert.equal(t.get().state,'carry');console.log('PASS: closed-gate connectivity, full movement/delivery/receipt/return, gate side restriction, pickup/drop.');
-
