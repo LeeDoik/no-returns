@@ -25,3 +25,5 @@ The previous Godot/temporary Unity games, art, builds and launchers were deleted
 [SPACE-PLAY-07 — expanded map/suppression](docs/current/space-play-07.en.md)
 
 [0.8.2 review fixes and validation](docs/current/review-fixes.en.md)
+
+[Launch the new primitive map trial](Play_Cinder_Blockout.cmd) · [Layout and scale guide](docs/current/cinder-blockout.en.md)

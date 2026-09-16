@@ -324,3 +324,6 @@ DOWNED·ASSIST·SUPPORTING MOSS·LOWER·CONFIRM RETURN, 입력 E와 상태 막�
 
 
 2026-09-16: [시안 기준 내부·외부 개념도](concept-zoning.ko.md) / CONCEPT-ZONING-01.
+
+
+2026-09-17: [CINDER-BLOCKOUT-01 — Unity 기본 도형 배치 시험](cinder-blockout.ko.md). 108×86.4m 검증 스케일, 출입 가능한 건물 5개와 순환로 3개, 기존 우주선 내부 시험 05 재사용. 기존 게임과 분리된 1인 공간 시험이며 적 추적·온라인·배송 정산은 미연결. 물리 이동 41개 검사 및 에디터 렌더 확인, Windows 빌드 성공. 사람 조작감·운반 여유·협동 재미는 미검증.

@@ -40,3 +40,5 @@
 - [CINDER DEPOT HTML / MAP-STUDY-05](current/map-study.ko.md)
 
 - [시안 기준 내부·외부 개념도](current/concept-zoning.ko.md)
+
+[Unity 기본 도형 맵 시험 — 실행·스케일·검증](current/cinder-blockout.ko.md)

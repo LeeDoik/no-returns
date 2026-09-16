@@ -25,3 +25,5 @@
 [SPACE-PLAY-07 — 확장 맵·억제장치](docs/current/space-play-07.ko.md)
 
 [0.8.2 검토 반영·검증](docs/current/review-fixes.ko.md)
+
+[새 맵 기본 도형 시험 실행](Play_Cinder_Blockout.cmd) · [배치·스케일 안내](docs/current/cinder-blockout.ko.md)
