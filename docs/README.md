@@ -37,4 +37,4 @@
 
 - [FLATBED 3D 제작·검토 후보](current/ship-production.ko.md): Tripo 원본, Blender 통합, 내보내기와 검증 상태.
 
-- [CINDER DEPOT HTML / MAP-STUDY-03](current/map-study.ko.md)
+- [CINDER DEPOT HTML / MAP-STUDY-04](current/map-study.ko.md)
