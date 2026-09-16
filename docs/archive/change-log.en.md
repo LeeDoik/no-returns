@@ -780,3 +780,8 @@ Verification: protrusions 0, GLB round-trip 4,246 triangles/missing UVs 0/nonfin
 ## 2026-09-16 / MAP-STUDY-02
 
 Expanded simple routes into a playable HTML with 18 spaces, loops and an emergency exit at user request. Keep ship trial 05 and defer exterior. No Unity code/scene changes. Automated movement/delivery/return and door checks plus browser rendering verified; human fun, first-person and online remain unverified. [MAP-STUDY-02](../current/map-study.en.md).
+
+
+## 2026-09-16 / MAP-STUDY-03
+
+2026-09-16 / MAP-STUDY-03: Added west loading yard, east service yard, southern outdoor route and inside-only exit to HTML. Connectivity, delivery cycle and outdoor return automation passed; browser visuals inspected. Unity, online and human fun testing not performed. [Details](../current/map-study.en.md).

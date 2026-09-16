@@ -2,7 +2,7 @@
 
 [한국어](map-study.ko.md)
 
-2026-09-16 · MAP-STUDY-02 · HTML implemented / proposal before Unity integration
+2026-09-16 · MAP-STUDY-03 · HTML implemented / proposal before Unity integration
 
 ## Scope and direction
 
@@ -14,7 +14,9 @@ The abandoned industrial exploration described on the [official Lethal Company p
 
 18 named spaces including landing connect through narrow corridors and branches. West entrance, unloading, sorting, storage, power, control, inspection and receiving form the primary approach. Records, security, pumps, turbines, suppressor core, workshop, cooling and waste storage form central and eastern loops. The break room is an optional dead end.
 
-Unlock the west entrance emergency connector with E from inside the facility. Mandatory delivery and all other passages remain connected while it is closed. Once opened it serves the return trip. Route overlay shows the shortest connection from your position to the objective and can be disabled for free exploration. All passages allow cargo. Employee-only passages, additional lock puzzles, vertical traversal, fog of war and procedural generation are not implemented.
+Added the west loading yard, southwest landing area, east service yard and southern outdoor return route. Blue-grey identifies the interior and ochre identifies exterior space. Enter through the west main entrance, then leave receiving via workshop and cooling to the east emergency exit. E unlocks the east door only from inside. While closed, the west entrance still connects every area and the delivery destination. Containers and equipment bend the exterior route and its straight sightlines. Existing four-stage suppression/hunting behavior remains; dedicated exterior creatures, visibility and cover simulation are not implemented.
+
+The route overlay shows the shortest connection to the objective and can be disabled. Interior rooms were rearranged to fit the complete map; this is not a scale enlargement preserving previous room dimensions. All passages allow cargo. Employee-only passages, additional lock puzzles, vertical traversal, fog of war and procedural generation are not implemented.
 
 ## Launch and rules
 
@@ -28,6 +30,6 @@ Open root Play_Map_Overview.cmd or the HTML in a browser. No external downloads 
 
 ## Evidence and next gates
 
-[Automated check](../../prototypes/cinder-depot/check.cjs): connectivity of every movement cell except the closed gate, full carry/delivery/receipt/return loop, outside gate denial/inside unlock, drop/recovery passed. Node syntax check passed. Browser rendering and read-only connectivity diagnostics confirmed 879 floor cells with receiving, clue and patrol points connected.
+[Automated check](../../prototypes/cinder-depot/check.cjs): connectivity of every movement cell except the closed gate, full carry/delivery/receipt/return loop, outside gate denial/inside unlock, drop/recovery and travel through the unlocked east exit, service yard, southern exterior and back to ship passed. Node syntax check passed. Browser rendering and read-only connectivity diagnostics confirmed receiving, clue and patrol points connected.
 
 Automation executes movement logic in a mocked DOM; it does not validate human feel or networking. A full manual browser return run, danger balance, human navigation/fun, first-person visibility, elevation and four-player passing remain unverified. Test whether players can infer destinations at junctions without the overlay and whether revisiting remains interesting before Unity blockout.
