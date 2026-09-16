@@ -38,3 +38,5 @@
 - [FLATBED 3D production/review candidate](current/ship-production.en.md): Tripo source, Blender integration, exports and validation status.
 
 - [CINDER DEPOT HTML / MAP-STUDY-05](current/map-study.en.md)
+
+- [Concept-based interior/exterior zoning](current/concept-zoning.en.md)

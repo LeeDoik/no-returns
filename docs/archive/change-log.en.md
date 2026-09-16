@@ -800,3 +800,12 @@ Added the northern exterior maintenance area to complete a four-sided perimeter 
 ## 2026-09-16 / EXIT-RELOCATION
 
 Moved the emergency exit to the right wall of receiving at the user-marked location. Closed the former cooling exit. Inside-only E unlock remains. Automated delivery/receipt/return, new gate unlock, old exit blockage and perimeter circuit checks passed. No Unity changes; human feel unverified.
+
+
+## 2026-09-16 / CONCEPT-ZONING-01
+
+Inspected supplied exec-c3d9d407-ad3f-4af5-8675-89221626a2b6.png and interpreted its layout. Blue identifies the central warehouse, north office, northeast receiving bay, east service block and south storage block. The central courtyard and shortcut are outdoors; the long west route is covered; the green dashed line is the suppression field. The reference word inside does not establish an enclosed building. Interior partitions and service/storage uses are proposals, not measured plans.
+
+Includes building details, interior/route toggles, four suppression stages and Korean/English switching. Preserves the previous playable map; this deliverable is an interactive concept diagram, not a movement game. No Unity changes.
+
+Validation: browser rendering inspected, interior and suppression buttons exercised, zero console errors. Dimensions, collision, gameplay and online behavior unverified.
