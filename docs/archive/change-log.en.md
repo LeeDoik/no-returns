@@ -775,3 +775,8 @@ Human play exposed interior protrusion and a low entrance. Irregular hull deform
 The user requested completing the interior before wrapping the exterior and differentiating the truck-like layout. Generation now starts from an empty Blender scene, removing the previous hull dependency. Added central scanner/floor inspection markings, left sealed return lockers, right dispatch desk, 4 folded rear seats and an overhead service trunk. Exterior remains a temporary cover. Device behavior, new economy and mystery events are not implemented; no Tripo use.
 
 Verification: protrusions 0, GLB round-trip 4,246 triangles/missing UVs 0/nonfinite coordinates 0; actual Unity 5 entry/3 return routes and 15 jump positions passed. New Windows build succeeded. Earlier models/main game preserved. Human spatial approval, final exterior, device functions and online validation remain incomplete. [Current specification](../current/ship-interior-trial.en.md) · [Production sequence](../current/art-structure-first.en.md).
+
+
+## 2026-09-16 / MAP-STUDY-02
+
+Expanded simple routes into a playable HTML with 18 spaces, loops and an emergency exit at user request. Keep ship trial 05 and defer exterior. No Unity code/scene changes. Automated movement/delivery/return and door checks plus browser rendering verified; human fun, first-person and online remain unverified. [MAP-STUDY-02](../current/map-study.en.md).

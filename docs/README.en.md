@@ -36,3 +36,5 @@
 [One-cycle demo and 3D asset list](current/demo-art-list.en.md)
 
 - [FLATBED 3D production/review candidate](current/ship-production.en.md): Tripo source, Blender integration, exports and validation status.
+
+- [CINDER DEPOT HTML / MAP-STUDY-02](current/map-study.en.md)

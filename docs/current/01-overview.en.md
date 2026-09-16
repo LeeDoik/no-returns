@@ -196,3 +196,6 @@ This is a layout proposal rather than an exact reconstruction or measured drawin
 2026-09-13: [Complete demo cycle and 44 art production units](demo-art-list.en.md). Production proposal for the user goal, not approval of new appearances/timing or completed production.
 
 [Ship exterior — A selected](ship-concepts.en.md). Comparison concepts before 3D production.
+
+
+2026-09-16: [HTML layout study: 18 spaces, loops and emergency exit](map-study.en.md). Unity integration and human feel testing remain pending. Ship exterior production is deferred.

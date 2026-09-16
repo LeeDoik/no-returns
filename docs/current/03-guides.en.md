@@ -306,3 +306,6 @@ This is a layout proposal rather than an exact reconstruction or measured drawin
 2026-09-14: [FLATBED interior workflow](ship-interior-pipeline.en.md) — boundaries and reuse rules for structure, individual parts and Unity functional assembly.
 
 2026-09-15 latest: [Structure trial 05](ship-interior-trial.en.md). Interior-first orbital post office: central inspection, left sealed lockers, right dispatch desk and rear folded seats. Devices are structural mockups; human spatial review and exterior art remain pending.
+
+
+2026-09-16: [HTML layout study: 18 spaces, loops and emergency exit](map-study.en.md). Unity integration and human feel testing remain pending. Ship exterior production is deferred.

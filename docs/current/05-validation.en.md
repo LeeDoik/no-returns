@@ -175,3 +175,6 @@ Final 0.8.4 Windows build succeeded. Two real Windows processes passed 14 automa
 2026-09-14: [FLATBED interior validation](ship-interior-pipeline.en.md#sequence-and-gates) — actual employee/cargo passage, door/ramp interference, first-person legibility, wiring after reimport, multiple processes and 4-player passing. All remain future checks; documentation checks do not substitute for them.
 
 2026-09-15 latest: [Structure trial 05](ship-interior-trial.en.md). Interior-first orbital post office: central inspection, left sealed lockers, right dispatch desk and rear folded seats. Devices are structural mockups; human spatial review and exterior art remain pending.
+
+
+2026-09-16: [HTML layout study: 18 spaces, loops and emergency exit](map-study.en.md). Unity integration and human feel testing remain pending. Ship exterior production is deferred.

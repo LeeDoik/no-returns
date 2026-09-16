@@ -306,3 +306,6 @@ DOWNED·ASSIST·SUPPORTING MOSS·LOWER·CONFIRM RETURN, 입력 E와 상태 막�
 2026-09-14: [FLATBED 내부 제작 방식](ship-interior-pipeline.ko.md) — 구조·개별 부품·Unity 기능 조립의 경계와 재사용 기준.
 
 2026-09-15 최신: [구조 시험 05](ship-interior-trial.ko.md). 실내 선행 우주 우체국 배치: 중앙 검사 공간, 왼쪽 밀폐함, 오른쪽 작업대, 후방 접힌 좌석. 기능은 구조 모형이며 사용자 공간감 확인과 외장 아트가 남아 있다.
+
+
+2026-09-16: [HTML 맵 구조 실험 · 18개 공간·순환·비상문](map-study.ko.md). Unity 적용·사람 조작감 검증은 후속 작업. 우주선 외장 제작 보류.

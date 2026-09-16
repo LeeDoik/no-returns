@@ -198,3 +198,6 @@ Friends invitations/joining can be tested before release with Steamworks integra
 2026-09-14: [FLATBED interior production preparation](ship-interior-pipeline.en.md). Resolve flat-floor/window/headroom consistency and cargo passage below the rear engine, then validate a representative section before full assembly. Modeling and Unity validation remain incomplete.
 
 2026-09-15 latest: [Structure trial 05](ship-interior-trial.en.md). Interior-first orbital post office: central inspection, left sealed lockers, right dispatch desk and rear folded seats. Devices are structural mockups; human spatial review and exterior art remain pending.
+
+
+2026-09-16: [HTML layout study: 18 spaces, loops and emergency exit](map-study.en.md). Unity integration and human feel testing remain pending. Ship exterior production is deferred.
