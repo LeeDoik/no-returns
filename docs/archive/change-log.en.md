@@ -795,3 +795,8 @@ Exterior expansion 04: enlarged the proposed overall extent to 120×96m. Preserv
 ## 2026-09-16 / MAP-STUDY-05
 
 Added the northern exterior maintenance area to complete a four-sided perimeter loop. Proposed extent: 120×112m. Preserve separation between interior and exterior, connected only through the existing west entrance and east emergency door. Full exterior circuit and existing delivery/door automated checks passed; browser rendering and zero console errors confirmed. Unity integration and human feel remain unverified.
+
+
+## 2026-09-16 / EXIT-RELOCATION
+
+Moved the emergency exit to the right wall of receiving at the user-marked location. Closed the former cooling exit. Inside-only E unlock remains. Automated delivery/receipt/return, new gate unlock, old exit blockage and perimeter circuit checks passed. No Unity changes; human feel unverified.

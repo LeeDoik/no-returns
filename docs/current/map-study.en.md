@@ -14,7 +14,7 @@ The abandoned industrial exploration described on the [official Lethal Company p
 
 18 named spaces including landing connect through narrow corridors and branches. West entrance, unloading, sorting, storage, power, control, inspection and receiving form the primary approach. Records, security, pumps, turbines, suppressor core, workshop, cooling and waste storage form central and eastern loops. The break room is an optional dead end.
 
-Added the west loading yard, southwest landing area, east service yard and southern outdoor return route. Blue-grey identifies the interior and ochre identifies exterior space. Enter through the west main entrance, then leave receiving via workshop and cooling to the east emergency exit. E unlocks the east door only from inside. While closed, the west entrance still connects every area and the delivery destination. Containers and equipment bend the exterior route and its straight sightlines. Existing four-stage suppression/hunting behavior remains; dedicated exterior creatures, visibility and cover simulation are not implemented.
+Added the west loading yard, southwest landing area, east service yard and southern outdoor return route. Blue-grey identifies the interior and ochre identifies exterior space. Enter through the west main entrance, then leave through the emergency exit directly to the right of receiving. E unlocks the east door only from inside. While closed, the west entrance still connects every area and the delivery destination. Containers and equipment bend the exterior route and its straight sightlines. Existing four-stage suppression/hunting behavior remains; dedicated exterior creatures, visibility and cover simulation are not implemented.
 
 The route overlay shows the shortest connection to the objective and can be disabled. Interior rooms were rearranged to fit the complete map; this is not a scale enlargement preserving previous room dimensions. All passages allow cargo. Employee-only passages, additional lock puzzles, vertical traversal, fog of war and procedural generation are not implemented.
 
@@ -43,3 +43,8 @@ Exterior expansion 04: enlarged the proposed overall extent to 120×112m. Preser
 ## MAP-STUDY-05
 
 Added the northern exterior maintenance area to complete a four-sided perimeter loop. Proposed extent: 120×112m. Preserve separation between interior and exterior, connected only through the existing west entrance and east emergency door. Full exterior circuit and existing delivery/door automated checks passed; browser rendering and zero console errors confirmed. Unity integration and human feel remain unverified.
+
+
+## 2026-09-16 / EXIT-RELOCATION
+
+Moved the emergency exit to the right wall of receiving at the user-marked location. Closed the former cooling exit. Inside-only E unlock remains. Automated delivery/receipt/return, new gate unlock, old exit blockage and perimeter circuit checks passed. No Unity changes; human feel unverified.
