@@ -42,3 +42,4 @@
 - [Concept-based interior/exterior zoning](current/concept-zoning.en.md)
 
 [Unity primitive map trial — launch, scale and validation](current/cinder-blockout.en.md)
+[World-setting proposal — Earth, underground settlements and survival logistics](current/world-setting.en.md)

@@ -219,3 +219,5 @@ Friends invitations/joining can be tested before release with Steamworks integra
 
 
 2026-09-17: [CINDER-BLOCKOUT-01 — Unity primitive layout trial](cinder-blockout.en.md). A 108×86.4m validation scale, 5 enterable buildings, 3 loops and reused ship interior trial 05. Separate single-player spatial experiment; enemy pursuit, networking and delivery settlement are not connected. 41 physical passage checks and Editor rendering inspected; Windows build succeeded. Human controls, cargo clearance and cooperative enjoyment remain unverified.
+
+2026-09-17 / WORLD-01: [Setting expansion proposal](world-setting.en.md). Outstanding decisions: approve the corporate-logistics focus; define Earth's cause of destruction, creature origins and concealed company information; select first-delivery clues. Underground cities, new NPCs, factions and resonator cooling are not implemented. Narrative alone does not change existing delivery, rescue or reward rules.

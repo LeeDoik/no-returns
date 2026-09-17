@@ -202,3 +202,7 @@ This is a layout proposal rather than an exact reconstruction or measured drawin
 
 
 2026-09-16 / MAP-STUDY-03: Added west loading yard, east service yard, southern outdoor route and inside-only exit to HTML. Connectivity, delivery cycle and outdoor return automation passed; browser visuals inspected. Unity, online and human fun testing not performed. [MAP-STUDY-03](map-study.en.md).
+
+## 2026-09-17 — Underground settlements and survival logistics
+
+The user supplied Earth's destruction, underground habitation across planets, unfamiliar creatures, dependence on essential deliveries, player couriers and limited-duration suppression as world premises. [WORLD-01 setting expansion](world-setting.en.md) proposes corporate logistics, underground life, CINDER DEPOT's roles and mystery clues around them. Corporate structure, suppression mechanism, history and copy remain unapproved proposals; Earth's cause of destruction, creature origins and the ending remain undecided. No code, scene, economy or failure-rule changes.

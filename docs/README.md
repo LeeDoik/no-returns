@@ -42,3 +42,4 @@
 - [시안 기준 내부·외부 개념도](current/concept-zoning.ko.md)
 
 [Unity 기본 도형 맵 시험 — 실행·스케일·검증](current/cinder-blockout.ko.md)
+[세계관 보강 제안 — 지구 파괴·지하 정착지·생존 물류망](current/world-setting.ko.md)
