@@ -1,0 +1,18 @@
+﻿[Script Info]
+ScriptType: v4.00+
+PlayResX: 1280
+PlayResY: 720
+WrapStyle: 0
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Default,Malgun Gothic,25,&H00E8EAEF,&H000000FF,&H00101010,&H00101010,0,0,0,0,100,100,0,0,1,1,0,2,70,70,24,1
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:02.00,0:00:07.00,Default,,0,0,0,,한때, 우리의 고향은 한곳이었습니다.
+Dialogue: 0,0:00:09.00,0:00:16.00,Default,,0,0,0,,이제는 누군가 우리를 기다리는 모든 곳이 고향입니다.
+Dialogue: 0,0:00:19.00,0:00:27.00,Default,,0,0,0,,우리는 매일, 당신의 세계를 살아 있게 하는 것들을 배달합니다.
+Dialogue: 0,0:00:29.00,0:00:37.00,Default,,0,0,0,,보호된 배송 구역은 모든 화물의 안전한 도착을 돕습니다.
+Dialogue: 0,0:00:40.00,0:00:46.00,Default,,0,0,0,,그리고 우리의 직원들은 결코 혼자가 아닙니다.
+Dialogue: 0,0:00:52.00,0:00:59.00,Default,,0,0,0,,모든 배송은 익숙한 소리와 함께 마무리됩니다.
+Dialogue: 0,0:01:02.00,0:01:08.00,Default,,0,0,0,,어디에 있든, 누군가는 우리를 기다리고 있으니까요.
+Dialogue: 0,0:01:10.00,0:01:15.00,Default,,0,0,0,,배송은 보장합니다. 귀환은 포함되지 않습니다.

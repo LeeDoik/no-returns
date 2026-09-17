@@ -1,0 +1,22 @@
+{
+  "version": "TRAILER-DRAFT-01",
+  "date": "2026-09-17",
+  "kind": "concept animatic; not gameplay",
+  "picture_editor": "Higgsedit in Higgsfield hosted sandbox",
+  "final_assembly": "FFmpeg; Korean captions, temporary Windows Zira narration, original synthesized score, generated clip ambience",
+  "duration_seconds": 75,
+  "size": [1280, 720],
+  "fps": 24,
+  "sources": [
+    "docs/art/space-concepts/concept-02.png",
+    "docs/art/space-concepts/first-delivery-01.png",
+    "docs/art/space-concepts/gameplay-01.png",
+    "docs/art/space-concepts/suppression-stages-01.png",
+    "docs/art/space-concepts/rescue-extraction-01.png"
+  ],
+  "generations": [
+    {"file":"depot-motion.mp4","model":"kling3_0","mode":"std","job":"b9208bf7-35ab-4129-9952-17f331da36f2","reference":"depot-reference.png","duration_seconds":6,"timeline_seconds":[18,24],"brief":"Preserve PSX depot and orange/teal workers. Orange courier carries parcel forward; partner looks around corner. Slow follow camera, industrial ambience, no music or voices."},
+    {"file":"threat-motion.mp4","model":"kling3_0","mode":"std","job":"528a84f8-9a57-41b5-8dd9-873547703522","reference":"suppression-reference.png","duration_seconds":6,"timeline_seconds":[33,39],"brief":"Angular rock-like outer creature approaches one step. Suppression lamp darkens, camera retreats, industrial hum and footsteps. Preserve PSX pixel textures and violet sky."}
+  ],
+  "limitations": ["Seedance 2.0 rejected by current plan; no Seedance job created", "Temporary synthetic narration is not final casting", "Still illustrations outside the 12 generated seconds and graphics", "AI motion has continuity deviations; no implemented gameplay claim", "Older ship and terminal concept designs appear; not exact current Unity models", "Reference YouTube footage and soundtrack were not reused", "Complete source archive upload was rejected by automatic approval; omitted"]
+}

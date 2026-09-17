@@ -44,3 +44,5 @@
 [Unity 기본 도형 맵 시험 — 실행·스케일·검증](current/cinder-blockout.ko.md)
 [세계관 보강 제안 — 지구 파괴·지하 정착지·생존 물류망](current/world-setting.ko.md)
 [채용 광고형 트레일러 — 참고 분석·75초 대본 제안](current/trailer-recruitment.ko.md)
+
+[75초 트레일러 초안 — 영상·제작 소스·검증](current/trailer-draft.ko.md)

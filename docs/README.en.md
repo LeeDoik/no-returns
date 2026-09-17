@@ -44,3 +44,5 @@
 [Unity primitive map trial — launch, scale and validation](current/cinder-blockout.en.md)
 [World-setting proposal — Earth, underground settlements and survival logistics](current/world-setting.en.md)
 [Recruitment-ad trailer — reference analysis and proposed 75-second script](current/trailer-recruitment.en.md)
+
+[75-second trailer draft — video, sources and validation](current/trailer-draft.en.md)

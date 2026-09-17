@@ -2,7 +2,7 @@
 
 [한국어](trailer-recruitment.ko.md)
 
-2026-09-17 · TRAILER-01 · Script/edit proposal; no finished video produced
+2026-09-17 · TRAILER-01 · Original script/edit treatment. [75-second concept draft and validation](trailer-draft.en.md); final release trailer not produced.
 
 ## Reference verification and interpretation
 
@@ -56,7 +56,7 @@ Production order:
 4. Apply final narration, subtitles, sound and color. Produce company archive footage ourselves or use material with verified usage rights.
 5. Before store publication, check that footage does not imply unimplemented gameplay. Do not display wishlist instructions or an invented release date when the Steam page is not ready.
 
-This task produced analysis and script documents only. Images, 3D models, an animatic, a finished video and voice-over have not been produced. The reference video was not downloaded in full or reused as production material.
+The initial reference investigation produced analysis and script documents only. A subsequent user request produced a [concept video draft and temporary narration](trailer-draft.en.md). Actual gameplay capture and a release-ready trailer remain outstanding. The reference video was not downloaded in full or reused as production material.
 
 ## Review
 
