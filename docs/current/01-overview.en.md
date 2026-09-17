@@ -206,3 +206,5 @@ This is a layout proposal rather than an exact reconstruction or measured drawin
 ## 2026-09-17 — Underground settlements and survival logistics
 
 The user supplied Earth's destruction, underground habitation across planets, unfamiliar creatures, dependence on essential deliveries, player couriers and limited-duration suppression as world premises. [WORLD-01 setting expansion](world-setting.en.md) proposes corporate logistics, underground life, CINDER DEPOT's roles and mystery clues around them. Corporate structure, suppression mechanism, history and copy remain unapproved proposals; Earth's cause of destruction, creature origins and the ending remain undecided. No code, scene, economy or failure-rule changes.
+
+2026-09-17 / TRAILER-01: [Recruitment-ad trailer proposal](trailer-recruitment.en.md). Analyzed the user's reference contrast between corporate promotion and field horror; wrote a proposed 75-second sequence and bilingual script. New copy/shots are proposals; no finished video, animatic or recording exists yet. The direction shows cooperative carrying, distraction and receipt; actual capture requires those features and filming spaces to be ready.
