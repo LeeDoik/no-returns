@@ -335,3 +335,7 @@ This is a layout proposal rather than an exact reconstruction or measured drawin
 [CINDER-DEMO-01 — launch, rules and validation](cinder-demo.en.md)
 
 Launch with Play_Cinder_Demo.cmd. Create in the Unity Demo menu overwrites direct demo edits; Build builds the saved demo. The source blockout and interior trial remain.
+
+## 2026-09-18 — CINDER portable package
+
+At user request, copied 194 Windows runtime files (124,687,055 bytes) into desktop folder `NO_RETURNS_Cinder_Demo_20260918-232940`. Excluded the development backup; included PLAY.cmd, paired README files and a SHA-256 manifest. All 194 source/copy hashes matched and the copied player actually started with protocol 11, ship preparation and one host. This does not validate another physical PC or LAN connection. No gameplay changes. Reproduction tool: `tools/package_cinder.ps1`; evidence: `artifacts/cinder-portable-smoke/result.txt`.

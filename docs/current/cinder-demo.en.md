@@ -33,3 +33,5 @@ Automation uses a local Windows build with test-input support. The [delivery tes
 See CINDER-DEMO-01 in the [validation checklist](05-validation.en.md) for results. Local raw evidence is in `artifacts/cinder-demo/`, `artifacts/cinder-demo-loop/`, and `artifacts/cinder-demo-hazards/`. Builds, logs and captures are excluded from Git.
 
 Human checks remain: finding reception on a first visit, cargo visibility/carry fatigue, reasons to distract enemies for a courier, understanding suppression signals, tension after rescue, and the 10–15-minute target duration. That duration is not a measured result. Render inspection showed the existing baton obscuring the center of the terminal screen. Weapon placement and terminal readability are follow-up work. The outer creature's complete pursuit routes, cargo collisions at every doorway, other PCs/internet/Steam and actual four-person enjoyment are unverified. Existing URP DepthOfField/Panini shader warnings and deprecated Unity API warnings remain. This is a playable-cycle test, not release sign-off.
+
+[Running and connecting on another PC](cinder-portable.en.md)

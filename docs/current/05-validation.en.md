@@ -227,3 +227,7 @@ Final 0.8.4 Windows build succeeded. Two real Windows processes passed 14 automa
 - [ ] Every cargo passage, complete outer pursuit, other PCs, internet and Steam.
 
 Raw logs passed null/index/missing-reference exception checks. Existing URP post-processing shader and deprecated Unity API warnings remain. One rebuild failed because scripts were compiling; the final build passed after confirming ready status. In the four-process test the host carried while three peers received state aboard; this is not simultaneous four-person control validation. Paired documentation links/checkboxes and task-scoped diffs are checked.
+
+## 2026-09-18 — CINDER portable package
+
+At user request, copied 194 Windows runtime files (124,687,055 bytes) into desktop folder `NO_RETURNS_Cinder_Demo_20260918-232940`. Excluded the development backup; included PLAY.cmd, paired README files and a SHA-256 manifest. All 194 source/copy hashes matched and the copied player actually started with protocol 11, ship preparation and one host. This does not validate another physical PC or LAN connection. No gameplay changes. Reproduction tool: `tools/package_cinder.ps1`; evidence: `artifacts/cinder-portable-smoke/result.txt`.

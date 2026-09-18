@@ -227,3 +227,7 @@
 - [ ] 모든 화물 통로·외곽 생물 전체 추격·실제 다른 PC·인터넷·Steam.
 
 원시 로그의 null/index/missing-reference 예외 검사 통과. 기존 URP 후처리 셰이더와 구형 Unity API 경고는 남음. 재빌드 한 번은 스크립트 컴파일 중 호출되어 실패했고, ready 확인 후 최종 빌드는 통과했다. 4인 검사는 방장이 운반하고 다른 3명은 선내에서 상태를 받았으며, 동시 4인 조작 검증은 아니다. 한영 문서 링크·체크 상태 검사와 작업 범위 diff 검사를 수행한다.
+
+## 2026-09-18 — CINDER portable package
+
+사용자 요청으로 바탕화면 `NO_RETURNS_Cinder_Demo_20260918-232940` 폴더에 Windows 실행 파일·데이터·라이브러리 194개(124,687,055바이트)를 복사했다. 개발용 백업은 제외하고 PLAY.cmd, 한영 README, SHA-256 목록을 포함했다. 원본/복사본 해시 194개 일치와 복사본 실제 시작(프로토콜 11·선내 준비·방장 1명)을 확인했다. 다른 물리 PC·LAN 접속 검증은 아직 아니다. 게임 동작 변경 없음. 재현 도구는 `tools/package_cinder.ps1`, 근거는 `artifacts/cinder-portable-smoke/result.txt`다.

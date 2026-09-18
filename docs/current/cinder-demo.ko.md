@@ -33,3 +33,5 @@ Unity `NO RETURNS > Demo > Create Cinder Delivery Demo`는 원본 블록아웃�
 검증 결과는 [검증 체크리스트](05-validation.ko.md)의 CINDER-DEMO-01 항목을 따른다. 로컬 원본 근거는 `artifacts/cinder-demo/`, `artifacts/cinder-demo-loop/`, `artifacts/cinder-demo-hazards/`에 있다. 빌드·로그·캡처는 Git에 포함하지 않는다.
 
 사람이 확인할 항목: 초행길 수령소 발견, 화물 시야·운반 피로, 동료 유인으로 배송할 이유, 억제 신호의 이해, 구조 후 탈출의 긴장, 10~15분 목표 길이. 목표 시간은 실측 확정이 아니다. 렌더 확인에서 기존 충격봉이 단말기 화면 중앙을 가리는 문제가 보였다. 무기 위치와 단말기 가독성 조정은 후속 작업이다. 외곽 생물의 전체 추격 경로, 모든 출입구의 화물 충돌, 다른 PC·인터넷·Steam, 실제 4인 재미는 미검증이다. 기존 URP DepthOfField/Panini 셰이더 경고와 Unity 구형 API 경고가 남는다. 출시 완료 판정이 아닌 한 사이클 플레이 검증용이다.
+
+[다른 PC 실행·접속 안내](cinder-portable.ko.md)

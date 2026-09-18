@@ -335,3 +335,7 @@ DOWNED·ASSIST·SUPPORTING MOSS·LOWER·CONFIRM RETURN, 입력 E와 상태 막�
 [CINDER-DEMO-01 — 실행·규칙·검증](cinder-demo.ko.md)
 
 Play_Cinder_Demo.cmd로 실행한다. Unity Demo 메뉴의 Create는 데모 직접 편집을 덮어쓰며 Build는 저장된 데모를 빌드한다. 원본 블록아웃과 선내 시험은 보존한다.
+
+## 2026-09-18 — CINDER portable package
+
+사용자 요청으로 바탕화면 `NO_RETURNS_Cinder_Demo_20260918-232940` 폴더에 Windows 실행 파일·데이터·라이브러리 194개(124,687,055바이트)를 복사했다. 개발용 백업은 제외하고 PLAY.cmd, 한영 README, SHA-256 목록을 포함했다. 원본/복사본 해시 194개 일치와 복사본 실제 시작(프로토콜 11·선내 준비·방장 1명)을 확인했다. 다른 물리 PC·LAN 접속 검증은 아직 아니다. 게임 동작 변경 없음. 재현 도구는 `tools/package_cinder.ps1`, 근거는 `artifacts/cinder-portable-smoke/result.txt`다.
