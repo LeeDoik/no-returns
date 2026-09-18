@@ -6,7 +6,9 @@
 
 [Product design](docs/current/01-overview.en.md) · [Documentation](docs/README.en.md)
 
-Open Unity with [01_Open_Project.cmd](01_Open_Project.cmd). The only development project is `NoReturns/`. A two-player first-person delivery, creature, rescue, beacon-purchase and risk-contract experiment is playable. Final maps and PSX art remain absent. Host progression is saved locally.
+Open Unity with [01_Open_Project.cmd](01_Open_Project.cmd). The only development project is `NoReturns/`. First-person delivery for 1–4 players is now playable on the primitive CINDER map. This is not the final map or completed PSX art. Host progression is saved locally.
+
+**Current demo: [Play_Cinder_Demo.cmd](Play_Cinder_Demo.cmd)** · [Launch, rules and validation](docs/current/cinder-demo.en.md). Depart from the existing ship, deliver, collect the receipt, return and purchase supplies. Earlier trial launchers below remain available.
 
 [Launch game](02_Play_Carry_Test.cmd), select HOST, then [join on the same PC](03_Join_Local_Carry_Test.cmd). [Controls and validation](docs/current/carry-test.en.md).
 

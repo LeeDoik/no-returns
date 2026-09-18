@@ -203,3 +203,27 @@ Final 0.8.4 Windows build succeeded. Two real Windows processes passed 14 automa
 2026-09-17 / WORLD-01: [Narrative consistency review](world-setting.en.md). Reviewed bilingual documents, links, checkbox parity and compatibility with existing delivery/suppression rules. User approval and human curiosity remain unverified. Future playtests should examine whether deliveries remain completable without clues, helping residents feels meaningful, and players can distinguish ordinary deliveries from anomalies. No code/scene changes or game tests.
 
 2026-09-17: [TRAILER-DRAFT-01](trailer-draft.en.md) — 75-second concept video, bilingual subtitles and production sources retained. File/render checks are separate from human full listening/mood evaluation. Actual cooperative capture, generated continuity revisions and final casting/music/publication-rights review remain. No game code/scene changes.
+
+## 2026-09-18 — CINDER-DEMO-01
+
+[Launch, rules and authoring](cinder-demo.en.md)
+
+- [x] Actual Unity MCP C# checks: four aboard spawns, held cargo rejection, stable reception, print delay, receipt collection, all aboard and 420CR.
+- [x] Legacy reception/aboard regression with no Cinder profile. Source-scene preservation was checked in code/diff, not a full rerun of the legacy build.
+- [x] Successful Windows build. Final build passed complete cycles with one/four processes. Two-process delivery and hazards ran on the same gameplay rules before title/rejection-copy changes.
+- [x] Delivery, floor scan, receipt collection, 420CR, 120CR purchase, 300CR balance and two uses next shift. All runs below use real processes and ordinary movement inputs, without teleportation or seeded money.
+
+| Processes | Result | Evidence under `artifacts/cinder-demo-loop/` |
+|---|---|---|
+| 1 | PASS | `run-20260918-175911/report.json` |
+| 2 | PASS | `run-20260918-174307/report.json` |
+| 4 | PASS | `run-20260918-175400/report.json` |
+
+- [x] Two-process hazard test: replicated attack warning, host down, movement blocked while down, distant rescue rejected, partner rescue progress and revival. `artifacts/cinder-demo-hazards/run-20260918-174812/report.json`.
+- [x] Full four-player room rejection uses protocol 11: `artifacts/cinder-demo/rejection.json`.
+- [x] Actual C# suppression state evaluation at 0/359.9/360/479.9/480/599.9/600/608 seconds: `artifacts/cinder-demo/suppression-boundaries.txt`. This was not a real-time 608-second online pursuit test.
+- [x] Ship/terminal-front render inspection and Korean/English UI state checks. The existing baton still obscures the terminal center.
+- [ ] Human 1–4 player controls, distraction cooperation, first visit and 10–15-minute duration.
+- [ ] Every cargo passage, complete outer pursuit, other PCs, internet and Steam.
+
+Raw logs passed null/index/missing-reference exception checks. Existing URP post-processing shader and deprecated Unity API warnings remain. One rebuild failed because scripts were compiling; the final build passed after confirming ready status. In the four-process test the host carried while three peers received state aboard; this is not simultaneous four-person control validation. Paired documentation links/checkboxes and task-scoped diffs are checked.

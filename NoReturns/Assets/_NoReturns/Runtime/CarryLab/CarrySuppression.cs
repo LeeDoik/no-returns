@@ -3,8 +3,8 @@ namespace NoReturns.CarryLab {
 // Host advances this clock. Players read stage cues rather than numerical time.
 public sealed class CarrySuppression {
     public float Elapsed {get;private set;}
-    public int Stage=>Elapsed<90?0:Elapsed<135?1:Elapsed<180?2:3;
-    public bool Intrusion=>Elapsed>=188;
+    public int Stage=>Elapsed<(CinderDemoLayout.Active?360:90)?0:Elapsed<(CinderDemoLayout.Active?480:135)?1:Elapsed<(CinderDemoLayout.Active?600:180)?2:3;
+    public bool Intrusion=>Elapsed>=(CinderDemoLayout.Active?608:188);
     readonly GameObject device; readonly Material lamp;
     readonly Light workLight;
     readonly AudioSource audio; readonly AudioClip tone;
@@ -12,6 +12,7 @@ public sealed class CarrySuppression {
     public CarrySuppression(){
         device=CarryWorld.Box("Suppressor indicator",new Vector3(2.8f,2.8f,-1),new Vector3(.5f,.8f,.5f),CarryWorld.Mat(new Color(.13f,.17f,.18f)));device.GetComponent<Collider>().enabled=false;
         lamp=CarryWorld.Mat(Color.cyan);var bulb=CarryWorld.Box("Suppressor lamp",new Vector3(2.8f,3.35f,-1),new Vector3(.4f,.3f,.4f),lamp,device.transform);bulb.GetComponent<Collider>().enabled=false;
+        if(CinderDemoLayout.Active)device.transform.position=new Vector3(20,3,20);
         workLight=GameObject.Find("Work light")?.GetComponent<Light>();
         audio=device.AddComponent<AudioSource>();audio.spatialBlend=0;
         tone=AudioClip.Create("Suppression signal placeholder",6615,1,22050,false);var samples=new float[6615];

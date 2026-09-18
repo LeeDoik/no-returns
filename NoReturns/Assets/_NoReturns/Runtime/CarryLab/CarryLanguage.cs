@@ -104,7 +104,7 @@ public static class CarryLanguage {
         {"DOWN / wait for teammate rescue. All down: emergency recovery.","행동 불능 / 동료의 구조를 기다리세요. 전원 다운 시 긴급 회수됩니다."},
         {"Employee down / parcel released","직원이 쓰러져 화물을 놓았습니다"},
         {"Emergency recovery / secured pay retained","긴급 회수 완료 / 확보한 배송 보수는 유지됩니다"},
-        {"NO RETURNS / LISTENER TEST","NO RETURNS / 리스너 실험"},{"LISTENER TEST","리스너 실험"},{"TEAMMATE DOWN / put cargo down, approach and hold E","동료가 쓰러졌습니다 / 화물을 내려놓고 가까이서 E를 누르세요"},
+        {"NO RETURNS / CINDER DEMO","NO RETURNS / 신더 배송 데모"},{"NO RETURNS / LISTENER TEST","NO RETURNS / 리스너 실험"},{"LISTENER TEST","리스너 실험"},{"TEAMMATE DOWN / put cargo down, approach and hold E","동료가 쓰러졌습니다 / 화물을 내려놓고 가까이서 E를 누르세요"},
         {"Choose HOST or enter the host's LAN address.","방을 만들거나 방장의 내부 네트워크 주소를 입력하세요."},
         {"HOST / waiting for partner","방장 / 동료를 기다리는 중"},
         {"Connecting...","연결 중..."},

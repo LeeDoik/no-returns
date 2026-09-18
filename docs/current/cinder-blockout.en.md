@@ -56,3 +56,9 @@ Local evidence: `artifacts/cinder-blockout/passage.txt`, `overview.png`, `spawn.
 
 
 The standalone Windows window also displayed the Korean HUD, parcel and buildings. No startup exceptions occurred, but existing URP warnings about stripped DepthOfField/Panini post-processing shaders remain. Human validation of language switching and the full E/Q controls remains outstanding.
+
+## 2026-09-18 — Separate delivery demo
+
+[CINDER-DEMO-01 — launch, rules and validation](cinder-demo.en.md)
+
+The original spatial trial remains without networking, enemies or delivery. Those features are connected in separate CinderDeliveryDemo, so the original trial checkboxes above are not marked complete.

@@ -6,7 +6,9 @@
 
 [최상위 기획서](docs/current/01-overview.ko.md) · [문서 홈](docs/README.md)
 
-[01_Open_Project.cmd](01_Open_Project.cmd)로 Unity를 엽니다. 유일한 개발 프로젝트는 `NoReturns/`입니다. 현재 2인 1인칭 배송·크리처·구조·신호기 구매·위험 계약 실험을 실행할 수 있습니다. 최종 맵·PSX 아트는 아직 없습니다. 방장 진행은 로컬에 저장됩니다.
+[01_Open_Project.cmd](01_Open_Project.cmd)로 Unity를 엽니다. 유일한 개발 프로젝트는 `NoReturns/`입니다. 현재 1~4인 1인칭 배송을 기본 도형 CINDER 맵에서 실행할 수 있습니다. 최종 맵·PSX 아트 완성본은 아니며 방장 진행은 로컬에 저장됩니다.
+
+**현재 데모: [Play_Cinder_Demo.cmd](Play_Cinder_Demo.cmd)** · [실행·규칙·검증](docs/current/cinder-demo.ko.md). 기존 우주선에서 출발해 배송·영수증·귀환·보급을 진행합니다. 아래 이전 실험 실행 항목도 보존합니다.
 
 [게임 실행](02_Play_Carry_Test.cmd) 후 HOST → [같은 PC 참가](03_Join_Local_Carry_Test.cmd). [조작·검증 안내](docs/current/carry-test.ko.md).
 

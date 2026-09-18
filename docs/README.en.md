@@ -46,3 +46,5 @@
 [Recruitment-ad trailer — reference analysis and proposed 75-second script](current/trailer-recruitment.en.md)
 
 [75-second trailer draft — video, sources and validation](current/trailer-draft.en.md)
+
+[CINDER delivery demo — playable cycle](current/cinder-demo.en.md)

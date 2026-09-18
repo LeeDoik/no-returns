@@ -329,3 +329,9 @@ DOWNED·ASSIST·SUPPORTING MOSS·LOWER·CONFIRM RETURN, 입력 E와 상태 막�
 2026-09-17: [CINDER-BLOCKOUT-01 — Unity 기본 도형 배치 시험](cinder-blockout.ko.md). 108×86.4m 검증 스케일, 출입 가능한 건물 5개와 순환로 3개, 기존 우주선 내부 시험 05 재사용. 기존 게임과 분리된 1인 공간 시험이며 적 추적·온라인·배송 정산은 미연결. 물리 이동 41개 검사 및 에디터 렌더 확인, Windows 빌드 성공. 사람 조작감·운반 여유·협동 재미는 미검증.
 
 2026-09-17: [TRAILER-DRAFT-01](trailer-draft.ko.md) — 75초 콘셉트 영상·한영 자막·제작 소스 보관. 파일·렌더 검증과 사람의 전체 청취·분위기 평가를 구분한다. 실제 협동 촬영, 생성 동작 연속성 수정, 최종 성우·음악·공개 권리 검토는 남아 있다. 게임 코드·장면 변경 없음.
+
+## 2026-09-18 — CINDER-DEMO-01
+
+[CINDER-DEMO-01 — 실행·규칙·검증](cinder-demo.ko.md)
+
+Play_Cinder_Demo.cmd로 실행한다. Unity Demo 메뉴의 Create는 데모 직접 편집을 덮어쓰며 Build는 저장된 데모를 빌드한다. 원본 블록아웃과 선내 시험은 보존한다.

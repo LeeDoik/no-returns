@@ -98,3 +98,9 @@ Added Korean by default, the 한국어 / English menu toggle and persistence of 
 
 
 2026-09-17: [CINDER-BLOCKOUT-01 — Unity primitive layout trial](cinder-blockout.en.md). A 108×86.4m validation scale, 5 enterable buildings, 3 loops and reused ship interior trial 05. Separate single-player spatial experiment; enemy pursuit, networking and delivery settlement are not connected. 41 physical passage checks and Editor rendering inspected; Windows build succeeded. Human controls, cargo clearance and cooperative enjoyment remain unverified.
+
+## 2026-09-18 — CINDER-DEMO-01
+
+[CINDER-DEMO-01 — launch, rules and validation](cinder-demo.en.md)
+
+This separate scene reuses existing 0.9.1 rules with distinct map coordinates, navigation bounds and suppression timing. Initial population is one B listener and one outer creature. Do not mix clients from the existing trial build.

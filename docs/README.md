@@ -46,3 +46,5 @@
 [채용 광고형 트레일러 — 참고 분석·75초 대본 제안](current/trailer-recruitment.ko.md)
 
 [75초 트레일러 초안 — 영상·제작 소스·검증](current/trailer-draft.ko.md)
+
+[CINDER 배송 데모 — 한 사이클 실행](current/cinder-demo.ko.md)

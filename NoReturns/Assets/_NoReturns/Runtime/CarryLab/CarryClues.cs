@@ -11,6 +11,7 @@ public sealed class CarryClues {
     public const string SecondBody="PARCEL CND-041: RECEIVED.\nThe receipt is dated before your ship landed.\nReceiver signature: EMPLOYEE 00.\nNo one answers behind the shutter.";
     public CarryClues(){
         Vector3[] positions={new Vector3(7.7f,1.35f,0),new Vector3(-7.8f,1.35f,10.6f)};
+        if(CinderDemoLayout.Active)positions[0]=new Vector3(-1.2f,1.35f,21);
         for(int i=0;i<1;i++){
             terminals[i]=CarryWorld.Box(i==0?"Maintenance terminal":"Reception recorder",positions[i],new Vector3(.35f,.75f,.65f),CarryWorld.Mat(new Color(.2f,.23f,.24f)));
             screens[i]=CarryWorld.Mat(new Color(.6f,.32f,.05f));

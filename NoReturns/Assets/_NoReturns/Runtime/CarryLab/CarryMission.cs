@@ -26,7 +26,7 @@ public sealed class CarryMission {
     public bool ReceiptReady=>Phase==3&&printTime>=.75f;
     public bool CollectReceipt(){if(!ReceiptReady||ReceiptCollected)return false;ReceiptCollected=true;return true;}
     public float ReceiptProgress=>Phase==3?1:Phase==2?Mathf.Clamp01(stable/.75f):0;
-    public static bool Aboard(Vector3 p)=>Mathf.Abs(p.x)<3 && p.z< -3.8f && p.z> -10 && p.y<2;
+    public static bool Aboard(Vector3 p)=>CinderDemoLayout.Active?CinderDemoLayout.Aboard(p):Mathf.Abs(p.x)<3 && p.z< -3.8f && p.z> -10 && p.y<2;
     public bool Act(bool aboard,bool allAboard){
         if(!aboard)return false;
         if(Phase==0){Phase=1;return false;}
@@ -37,6 +37,7 @@ public sealed class CarryMission {
     public void Tick(Vector3 p,Vector3 velocity,int holder,float dt){
         if(Phase==3){printTime+=dt;return;}
         if(Phase!=2)return;
+        p-=CinderDemoLayout.ReceiptOffset;
         bool onBench=holder<0 && p.x> -7.05f && p.x< -4.95f && p.z>8.4f && p.z<9.6f && p.y>.2f && p.y<.65f && velocity.sqrMagnitude<.04f;
         stable=onBench?stable+dt:0;
         if(stable>=.75f){Phase=3;printTime=0;}

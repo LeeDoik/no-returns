@@ -7,7 +7,7 @@ public sealed partial class CarryRoom {
     int occupiedMask=1;
     bool Present(int slot)=>(occupiedMask&(1<<slot))!=0;
     int CrewCount {get {int count=0;for(int i=0;i<4;i++)if(Present(i))count++;return count;}}
-    static Vector3 Spawn(int slot)=>new Vector3(slot%2==0?-1:1,0,slot<2?-5:-7);
+    static Vector3 Spawn(int slot)=>CinderDemoLayout.Spawn(slot);
     Vector3[] Positions(){var p=new Vector3[4];for(int i=0;i<4;i++)p[i]=workers[i].transform.position;return p;}
     float[] Yaws(){var v=new float[4];for(int i=0;i<4;i++)v[i]=hosting?inputs[i].yaw:target?.yaws!=null?target.yaws[i]:0;return v;}
     bool AllAboard(){for(int i=0;i<4;i++)if(Present(i)&&(!CarryMission.Aboard(workers[i].transform.position)||(hazard&&threat.Down[i])))return false;return true;}
@@ -31,7 +31,7 @@ public sealed partial class CarryRoom {
         if(hosting&&listener!=null&&listener.Pending()){
             var incoming=listener.AcceptTcpClient();int slot=-1;for(int i=1;i<4;i++)if(connections[i]==null){slot=i;break;}
             if(slot<0||(mission!=null&&mission.Phase!=0)){
-                using(var rejected=new CarryWire(incoming))rejected.Send(JsonUtility.ToJson(new CarryState{rejection=slot<0?"Room full / wait for a free crew slot":"Shift in progress / wait for host to prepare next shift"}));
+                using(var rejected=new CarryWire(incoming))rejected.Send(JsonUtility.ToJson(new CarryState{protocol=CinderDemoLayout.Active?11:10,rejection=slot<0?"Room full / wait for a free crew slot":"Shift in progress / wait for host to prepare next shift"}));
             }else{
                 connections[slot]=new CarryWire(incoming);occupiedMask|=1<<slot;peer=true;lastInputs[slot]=Time.realtimeSinceStartup;inputs[slot]=new CarryInput();
                 workers[slot].gameObject.SetActive(true);workers[slot].enabled=false;workers[slot].transform.position=Spawn(slot);workers[slot].enabled=true;
@@ -54,7 +54,7 @@ public sealed partial class CarryRoom {
         }else if(wire!=null){
             foreach(var line in wire.Read())try{
                 var v=JsonUtility.FromJson<CarryState>(line);
-                if(v==null||v.protocol!=10){Disconnect();status="Protocol mismatch / use the same game build";break;}
+                if(v==null||v.protocol!=(CinderDemoLayout.Active?11:10)){Disconnect();status="Protocol mismatch / use the same game build";break;}
                 if(!string.IsNullOrEmpty(v.rejection)){Disconnect();status=v.rejection;break;}
                 if(v.recipient<1||v.recipient>3||v.positions==null||v.positions.Length!=4||v.yaws==null||v.yaws.Length!=4)throw new Exception("Invalid crew snapshot");
                 target=v;local=v.recipient;occupiedMask=v.occupiedMask;peer=CrewCount>1;lastPacket=Time.realtimeSinceStartup;

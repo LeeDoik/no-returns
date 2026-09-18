@@ -329,3 +329,9 @@ This is a layout proposal rather than an exact reconstruction or measured drawin
 2026-09-17: [CINDER-BLOCKOUT-01 — Unity primitive layout trial](cinder-blockout.en.md). A 108×86.4m validation scale, 5 enterable buildings, 3 loops and reused ship interior trial 05. Separate single-player spatial experiment; enemy pursuit, networking and delivery settlement are not connected. 41 physical passage checks and Editor rendering inspected; Windows build succeeded. Human controls, cargo clearance and cooperative enjoyment remain unverified.
 
 2026-09-17: [TRAILER-DRAFT-01](trailer-draft.en.md) — 75-second concept video, bilingual subtitles and production sources retained. File/render checks are separate from human full listening/mood evaluation. Actual cooperative capture, generated continuity revisions and final casting/music/publication-rights review remain. No game code/scene changes.
+
+## 2026-09-18 — CINDER-DEMO-01
+
+[CINDER-DEMO-01 — launch, rules and validation](cinder-demo.en.md)
+
+Launch with Play_Cinder_Demo.cmd. Create in the Unity Demo menu overwrites direct demo edits; Build builds the saved demo. The source blockout and interior trial remain.

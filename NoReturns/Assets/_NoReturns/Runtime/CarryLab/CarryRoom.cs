@@ -26,7 +26,7 @@ public sealed partial class CarryRoom : MonoBehaviour {
     [Serializable] class TestCommand {public int seq;public float x,z,yaw,pitch;public bool jump,interact,drop,reset,action; public bool capture,toggleLanguage,quiet,call,shove,rescue,buy,contract,deploy,inspect,journal;}
     void Awake(){
         Application.runInBackground=true;Application.targetFrameRate=60;Time.fixedDeltaTime=.02f;
-        CarryWorld.Build();receiptFeedback=FindFirstObjectByType<ReceiptFeedback>();
+        CinderDemoLayout.Initialize();if(CinderDemoLayout.Active)CinderDemoLayout.Build();else CarryWorld.Build();receiptFeedback=FindFirstObjectByType<ReceiptFeedback>();
         for(int i=0;i<4;i++) {
             var g=new GameObject("Employee "+i);workers[i]=g.AddComponent<CharacterController>();workers[i].height=1.8f;workers[i].radius=.34f;workers[i].center=new Vector3(0,.9f,0);workers[i].stepOffset=.32f;workers[i].skinWidth=.035f;
             rigs[i]=new GameObject("Employee visuals").transform;rigs[i].SetParent(g.transform,false);
@@ -36,15 +36,15 @@ public sealed partial class CarryRoom : MonoBehaviour {
             Visual("Visor",rigs[i],new Vector3(0,1.56f,.24f),new Vector3(.39f,.26f,.02f),CarryWorld.Mat(Color.black));
             bodies[i]=g.GetComponentsInChildren<Renderer>();
         }
-        var c=CarryWorld.Box("Sealed parcel",new Vector3(0,.55f,-3),new Vector3(.8f,.65f,.65f),CarryWorld.Mat(new Color(.78f,.69f,.52f)));
+        var c=CarryWorld.Box("Sealed parcel",CinderDemoLayout.Cargo,new Vector3(.8f,.65f,.65f),CarryWorld.Mat(new Color(.78f,.69f,.52f)));
         cargo=c.AddComponent<Rigidbody>();cargo.mass=8;cargo.linearDamping=.8f;cargo.angularDamping=2;cargo.interpolation=RigidbodyInterpolation.Interpolate;cargo.collisionDetectionMode=CollisionDetectionMode.ContinuousDynamic;cargoCollider=c.GetComponent<Collider>();
         Visual("Seal",c.transform,Vector3.zero,new Vector3(.14f,1.015f,1.015f),CarryWorld.Mat(new Color(.35f,.06f,.06f)));
         var parcelArt=FacilityArt.Place("Parcel",c.transform.position,new Vector3(.8f,.65f,.65f));
         if(parcelArt){c.GetComponent<Renderer>().enabled=false;var seal=c.transform.Find("Seal");if(seal)seal.gameObject.SetActive(false);parcelArt.transform.SetParent(c.transform,true);}
-        var cam=new GameObject("First person camera");eye=cam.AddComponent<Camera>();cam.AddComponent<AudioListener>();eye.fieldOfView=80;eye.nearClipPlane=.06f;eye.farClipPlane=60;eye.backgroundColor=new Color(.07f,.08f,.1f);
+        var cam=new GameObject("First person camera");eye=cam.AddComponent<Camera>();cam.AddComponent<AudioListener>();eye.fieldOfView=80;eye.nearClipPlane=.06f;eye.farClipPlane=CinderDemoLayout.Active?130:60;eye.backgroundColor=new Color(.07f,.08f,.1f);
         ResetRoom();
         var args=Environment.GetCommandLineArgs();
-        hazard=Array.IndexOf(args,"--hazard")>=0;if(hazard){threat=new CarryThreat();outer=new CarryThreat(threat);suppression=new CarrySuppression();danger=threat.Snapshot();outerDanger=outer.Snapshot();clues=new CarryClues();}
+        hazard=CinderDemoLayout.Active||Array.IndexOf(args,"--hazard")>=0;if(hazard){threat=new CarryThreat();outer=new CarryThreat(threat);suppression=new CarrySuppression();danger=threat.Snapshot();outerDanger=outer.Snapshot();clues=new CarryClues();threat.PrepareNavigation();outer.PrepareNavigation();}
         if(hazard||Array.IndexOf(args,"--delivery")>=0){mission=new CarryMission();missionPhase=0;}
         for(int i=0;i<args.Length;i++) {
 #if CARRY_TEST_AUTOMATION || UNITY_EDITOR
@@ -59,7 +59,7 @@ public sealed partial class CarryRoom : MonoBehaviour {
     static void Visual(string name,Transform parent,Vector3 pos,Vector3 size,Material mat){var g=GameObject.CreatePrimitive(PrimitiveType.Cube);g.name=name;Destroy(g.GetComponent<Collider>());g.transform.SetParent(parent,false);g.transform.localPosition=pos;g.transform.localScale=size;g.GetComponent<Renderer>().sharedMaterial=mat;}
     void ResetRoom(){
         Release();threat?.Reset();outer?.Reset();if(outer!=null)outerDanger=outer.Snapshot();if(threat!=null)danger=threat.Snapshot();for(int i=0;i<4;i++){workers[i].enabled=false;workers[i].transform.position=Spawn(i);workers[i].transform.rotation=Quaternion.identity;workers[i].enabled=true;fall[i]=0;}
-        cargo.position=new Vector3(0,.55f,-3);cargo.rotation=Quaternion.identity;cargo.linearVelocity=Vector3.zero;cargo.angularVelocity=Vector3.zero;
+        cargo.position=CinderDemoLayout.Cargo;cargo.rotation=Quaternion.identity;cargo.linearVelocity=Vector3.zero;cargo.angularVelocity=Vector3.zero;
     }
     void StartHost(){try{
         listener=new TcpListener(IPAddress.Any,Port);listener.Start(4);
@@ -144,7 +144,7 @@ public sealed partial class CarryRoom : MonoBehaviour {
                 bool clear=true;foreach(var overlap in Physics.OverlapBox(next,new Vector3(.4f,.325f,.325f)*.99f,look,~0,QueryTriggerInteraction.Ignore)){if(overlap!=cargoCollider&&overlap!=workers[holder]){clear=false;break;}}
                 if(clear)cargo.MoveRotation(look);
                 if(Vector3.Distance(next,p.position+Vector3.up) > 2.4f)Release();
-            }else{cargo.isKinematic=mission!=null&&mission.Phase>=3;if(cargo.position.y < -3){cargo.position=new Vector3(0,.6f,-3);cargo.linearVelocity=Vector3.zero;} }
+            }else{cargo.isKinematic=mission!=null&&mission.Phase>=3;if(cargo.position.y < -3){cargo.position=CinderDemoLayout.Cargo;cargo.linearVelocity=Vector3.zero;} }
             if(mission!=null){mission.Tick(cargo.position,cargo.linearVelocity,holder,Time.fixedDeltaTime);unlocked=mission.BeaconUnlocked;hard=mission.HardContract;deliveries=mission.SuccessfulDeliveries;receiptCollected=mission.ReceiptCollected;receiptReady=mission.ReceiptReady;receiptProgress=mission.ReceiptProgress;missionPhase=mission.Phase;credits=mission.Credits;receipt=mission.Receipt;returnPay=mission.ReturnPay;}
             if(hazard&&save!=null&&Time.realtimeSinceStartup>=retrySaveAt){
                 bool written=save.Write(mission,out var notice);
@@ -185,7 +185,7 @@ public sealed partial class CarryRoom : MonoBehaviour {
         holder=who;cargo.linearVelocity=Vector3.zero;cargo.angularVelocity=Vector3.zero;cargo.isKinematic=true;Physics.IgnoreCollision(cargoCollider,workers[who],true);status="Parcel held";
     }
     void Release(){if(cargo==null)return;if(holder>=0)Physics.IgnoreCollision(cargoCollider,workers[holder],false);holder=-1;cargo.isKinematic=false;cargo.linearVelocity=Vector3.zero;cargo.angularVelocity=Vector3.zero;}
-    CarryState Snapshot()=>new CarryState{positions=Positions(),yaws=Yaws(),occupiedMask=occupiedMask,recipient=local,beaconCarrier=equipment.Carrier,beaconExists=equipment.Exists,receiptCollected=receiptCollected,receiptReady=receiptReady,receiptProgress=receiptProgress,shiftElapsed=suppression==null?0:suppression.Elapsed,suppressionStage=suppression==null?0:suppression.Stage,outerDanger=outerDanger,clueMask=clues==null?0:clues.Mask,unlocked=unlocked,hard=hard,deliveries=deliveries,charges=equipment.Charges,beaconTime=equipment.Remaining,beaconPosition=equipment.Position,hazard=hazard,danger=danger,phase=missionPhase,credits=credits,receipt=receipt,returnPay=returnPay,tick=tick,holder=holder,p0=workers[0].transform.position,p1=workers[1].transform.position,yaw0=inputs[0].yaw,yaw1=inputs[1].yaw,cargo=cargo.position,rotation=cargo.rotation,players=CrewCount,connected=peer,ack=inputs[local].seq,message=status};
+    CarryState Snapshot()=>new CarryState{protocol=CinderDemoLayout.Active?11:10,positions=Positions(),yaws=Yaws(),occupiedMask=occupiedMask,recipient=local,beaconCarrier=equipment.Carrier,beaconExists=equipment.Exists,receiptCollected=receiptCollected,receiptReady=receiptReady,receiptProgress=receiptProgress,shiftElapsed=suppression==null?0:suppression.Elapsed,suppressionStage=suppression==null?0:suppression.Stage,outerDanger=outerDanger,clueMask=clues==null?0:clues.Mask,unlocked=unlocked,hard=hard,deliveries=deliveries,charges=equipment.Charges,beaconTime=equipment.Remaining,beaconPosition=equipment.Position,hazard=hazard,danger=danger,phase=missionPhase,credits=credits,receipt=receipt,returnPay=returnPay,tick=tick,holder=holder,p0=workers[0].transform.position,p1=workers[1].transform.position,yaw0=inputs[0].yaw,yaw1=inputs[1].yaw,cargo=cargo.position,rotation=cargo.rotation,players=CrewCount,connected=peer,ack=inputs[local].seq,message=status};
     [Serializable] class UiEvidence {public string language,host,objective,status,firstRecord,secondRecord,suppressionCue;public bool koreanGlyph,journalOpen;}
     void WriteEvidence(CarryState s){if(testFolder==null)return;try{File.WriteAllText(Path.Combine(testFolder,"ui.json"),JsonUtility.ToJson(new UiEvidence{suppressionCue=suppression==null?null:T(CarrySuppression.Cue(suppression.Stage)),journalOpen=journalOpen,firstRecord=T(clues!=null&&(clues.Mask&1)!=0?CarryClues.FirstBody:"Not discovered"),secondRecord=T(clues!=null&&(clues.Mask&2)!=0?CarryClues.SecondBody:"Not discovered"),language=CarryLanguage.Korean?"ko":"en",host=T("HOST"),objective=T(CarryMission.Objective(missionPhase)),status=T(status),koreanGlyph=CarryLanguage.Font.HasCharacter('한')}));File.WriteAllText(Path.Combine(testFolder,"state.tmp"),JsonUtility.ToJson(s));var path=Path.Combine(testFolder,"state.json");if(File.Exists(path))File.Delete(path);File.Move(Path.Combine(testFolder,"state.tmp"),path);}catch(IOException){} }
     void LateUpdate(){if(eye==null)return;eye.transform.position=workers[local].transform.position+Vector3.up*(hazard&&danger!=null&&danger.IsDown(local)?.55f:1.57f);eye.transform.rotation=Quaternion.Euler(pitch,yaw,0);
@@ -215,7 +215,7 @@ public sealed partial class CarryRoom : MonoBehaviour {
         GUI.skin.font=CarryLanguage.Font;GUI.skin.label.wordWrap=true;
         GUI.skin.label.fontSize=18;GUI.skin.button.fontSize=20;GUI.skin.textField.fontSize=20;
         if(active&&journalOpen&&clues!=null){DrawJournal();return;}
-        if(!active||menu){GUI.Box(new Rect(20,20,560,440),"");Label(new Rect(40,38,500,35),hazard?"NO RETURNS / LISTENER TEST":missionPhase<0?"NO RETURNS / CARRY TEST":"NO RETURNS / DELIVERY LOOP");Label(new Rect(40,78,480,55),status);
+        if(!active||menu){GUI.Box(new Rect(20,20,560,440),"");Label(new Rect(40,38,500,35),CinderDemoLayout.Active?"NO RETURNS / CINDER DEMO":hazard?"NO RETURNS / LISTENER TEST":missionPhase<0?"NO RETURNS / CARRY TEST":"NO RETURNS / DELIVERY LOOP");Label(new Rect(40,78,480,55),status);
             if(!active){if(Button(new Rect(40,140,220,45),"HOST"))StartHost();address=GUI.TextField(new Rect(40,202,300,38),address,64);if(Button(new Rect(355,200,170,42),"JOIN"))StartJoin();Label(new Rect(40,252,480,80),"Direct LAN / TCP 27841\nSame PC: 127.0.0.1\nAllow host through Windows Firewall if prompted.");}
             else{if(Button(new Rect(40,140,220,45),"RESUME")){menu=false;SetCursor(true);}if(Button(new Rect(280,140,220,45),"LEAVE SESSION"))Disconnect();Label(new Rect(40,200,480,70),missionPhase<0?"WASD move / Mouse look / E interact / Q set down\nSpace jump (empty hands) / R reset (host)":"WASD move / Mouse look / E interact / Q set down\nSpace jump (empty hands) / E ship action");}
             if(active){Label(new Rect(40,270,100,30),T("FOV")+" "+Mathf.RoundToInt(eye.fieldOfView));eye.fieldOfView=GUI.HorizontalSlider(new Rect(150,285,340,20),eye.fieldOfView,65,100);}

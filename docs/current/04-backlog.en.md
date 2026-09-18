@@ -225,3 +225,9 @@ Friends invitations/joining can be tested before release with Steamworks integra
 2026-09-17 / TRAILER-01: [Trailer production backlog](trailer-recruitment.en.md). Review 75-second proposal → temporary-voice animatic → keyframe approval → actual cooperative capture → final sound/subtitles/publication review. Do not advertise pursuit, networking or delivery as implemented in the new Cinder blockout where they are not connected. Omit wishlist messaging until the store page is ready.
 
 2026-09-17: [TRAILER-DRAFT-01](trailer-draft.en.md) — 75-second concept video, bilingual subtitles and production sources retained. File/render checks are separate from human full listening/mood evaluation. Actual cooperative capture, generated continuity revisions and final casting/music/publication-rights review remain. No game code/scene changes.
+
+## 2026-09-18 — CINDER-DEMO-01
+
+[CINDER-DEMO-01 — launch, rules and validation](cinder-demo.en.md)
+
+Connected: separate-map delivery, receipt, return, supplies, expanded navigation and B listener. Next priorities: two-person first-visit play and route/carry fatigue tuning, A/C listeners, regional readability of suppression cues, full outer pursuit, other PCs and real four-person play. Layout/code checks do not close these items.

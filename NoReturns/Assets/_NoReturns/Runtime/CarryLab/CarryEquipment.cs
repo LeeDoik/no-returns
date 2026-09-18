@@ -10,7 +10,7 @@ public sealed class CarryEquipment {
     float pulse;
     GameObject visual;
     AudioSource audio; AudioClip clip; int lastBeat=-1;
-    public void Begin(bool unlocked){Charges=unlocked?2:0;Remaining=0;pulse=0;Exists=unlocked;Carrier=-1;Position=new Vector3(-2,.22f,-7);}
+    public void Begin(bool unlocked){Charges=unlocked?2:0;Remaining=0;pulse=0;Exists=unlocked;Carrier=-1;Position=CinderDemoLayout.Active?CinderDemoLayout.ShipPoint(new Vector3(-1.6f,1.26f,-2)):new Vector3(-2,.22f,-7);}
     // Remote placement is no longer supported; stock must be carried from the ship.
     public bool Deploy(Vector3 player,Quaternion look,bool free,CarryMission mission)=>false;
     public bool PickUp(int who,Vector3 player,Quaternion look,bool free){
@@ -31,7 +31,7 @@ public sealed class CarryEquipment {
         return true;
     }
     public void Follow(Vector3 player,Quaternion look){if(Carrier>=0)Position=player+Vector3.up*1.57f+look*new Vector3(0,-.4f,.75f);}
-    public void RecoverCarrier(Vector3 player){if(Carrier>=0){Carrier=-1;Position=new Vector3(player.x,.23f,player.z);}}
+    public void RecoverCarrier(Vector3 player){if(Carrier>=0){Carrier=-1;Position=player+Vector3.up*.23f;}}
     public void Tick(bool field,float dt,CarryThreat threat,CarryThreat extra=null){
         if(!field){Remaining=0;return;}
         if(Remaining<=0)return;
