@@ -15,7 +15,10 @@ namespace NoReturns.CarryLab {
 }
 // Host-owned experiment. Clients only display the replicated state.
 public sealed class CarryThreat {
-    public bool Hard; readonly bool outer,cinder; float searchClock,distraction; int pursuedPlayer=-1;
+    public bool Hard; readonly bool outer,cinder; readonly CarryThreat listenerOwner;
+    readonly CarryThreat[] additional=Array.Empty<CarryThreat>();
+    readonly bool[] swings=new bool[4];
+    float searchClock,distraction; int pursuedPlayer=-1;
     public readonly bool[] Down=new bool[4];
     public readonly float[] Rescue=new float[4],Cooldown=new float[4];
     readonly float[] protection=new float[4],stepClock=new float[4];
@@ -33,15 +36,22 @@ public sealed class CarryThreat {
     int state,patrolIndex,victim,hits,rescues,evacuations,noises,displayState=-1;
     float timer,interest,allDown,stunResistance;
     bool gridBuilt;
-    public CarryThreat(CarryThreat parent=null){
+    public CarryThreat(CarryThreat parent=null):this(parent,-1){}
+    // A owns shared crew recovery and the navigation graph; B/C only simulate their own AI.
+    CarryThreat(CarryThreat parent,int listenerIndex){
         cinder=GameObject.Find("Cinder Depot editable primitive blockout")!=null;
-        outer=parent!=null;if(outer){Down=parent.Down;protection=parent.protection;patrol=new[]{new Vector3(13,0,28),new Vector3(10,0,0),new Vector3(2,0,-2),new Vector3(13,0,16)};position=patrol[0];}
+        outer=parent!=null&&listenerIndex<0;
+        if(parent!=null){Down=parent.Down;protection=parent.protection;Rescue=parent.Rescue;Cooldown=parent.Cooldown;swings=parent.swings;}
+        if(listenerIndex>=0){listenerOwner=parent;grid=parent.grid;nodes=parent.nodes;edges=parent.edges;}
+        if(outer){patrol=new[]{new Vector3(13,0,28),new Vector3(10,0,0),new Vector3(2,0,-2),new Vector3(13,0,16)};position=patrol[0];}
         if(cinder){
             patrol=outer?new[]{CinderPoint(820,320),CinderPoint(820,650),CinderPoint(120,650),CinderPoint(120,80)}
-                :new[]{CinderPoint(400,340),CinderPoint(550,340),CinderPoint(550,500),CinderPoint(400,500)};
+                :listenerIndex==1?new[]{new Vector3(-6,0,2),new Vector3(12,0,2),new Vector3(12,0,-17),new Vector3(-6,0,-17)}
+                :listenerIndex==2?new[]{new Vector3(21,0,0),new Vector3(38,0,0),new Vector3(38,0,-20),new Vector3(21,0,-20)}
+                :new[]{new Vector3(-26,0,10),new Vector3(-16,0,10),new Vector3(-16,0,-8),new Vector3(-26,0,-8)};
             position=patrol[0];
         }
-        body=new GameObject(outer?"OUTER placeholder":"LISTENER placeholder");skin=CarryWorld.Mat(new Color(.42f,.3f,.22f));
+        body=new GameObject(outer?"OUTER placeholder":cinder?"LISTENER "+(listenerIndex==1?"B":listenerIndex==2?"C":"A")+" placeholder":"LISTENER placeholder");skin=CarryWorld.Mat(new Color(.42f,.3f,.22f));
         Part("Torso",new Vector3(0,1.1f,0),outer?new Vector3(.25f,2.4f,.2f):new Vector3(.5f,1.4f,.35f));
         Part("Listening head",new Vector3(0,outer?2.6f:1.95f,0),outer?new Vector3(.8f,.18f,.2f):new Vector3(.85f,.35f,.45f));
         Part("Left leg",new Vector3(-.22f,.4f,0),new Vector3(.13f,.8f,.15f));
@@ -50,6 +60,7 @@ public sealed class CarryThreat {
         warningClip=AudioClip.Create("Listener warning placeholder",11025,1,22050,false);var samples=new float[11025];
         for(int i=0;i<samples.Length;i++)samples[i]=Mathf.Sin(i*2*Mathf.PI*180/22050f)*.15f*(1-i/(float)samples.Length);
         warningClip.SetData(samples,0);
+        if(cinder&&parent==null)additional=new[]{new CarryThreat(this,1),new CarryThreat(this,2)};
     }
     void Part(string name,Vector3 p,Vector3 size){var g=GameObject.CreatePrimitive(PrimitiveType.Cube);g.name=name;g.GetComponent<Collider>().enabled=false;g.transform.SetParent(body.transform,false);g.transform.localPosition=p;g.transform.localScale=size;g.GetComponent<Renderer>().sharedMaterial=skin;}
     static bool Static(Collider c)=>c.enabled && c.GetComponentInParent<CharacterController>()==null && c.attachedRigidbody==null && c.gameObject.name!="Decoy beacon" && c.GetComponentInParent<ReceiptFeedback>()==null;
@@ -88,10 +99,15 @@ public sealed class CarryThreat {
         if(cinder)Debug.Log("Cinder navigation prepared: "+(outer?"outer":"listener")+", "+nodes.Count+" nodes, "+elapsed.ElapsedMilliseconds+" ms");
     }
     // Called before accepting peers so the first active AI tick cannot stall the connection.
-    public void PrepareNavigation(){if(cinder&&!gridBuilt)BuildGrid();}
+    public void PrepareNavigation(){
+        if(!cinder)return;
+        if(listenerOwner!=null){if(!listenerOwner.gridBuilt)listenerOwner.BuildGrid();gridBuilt=listenerOwner.gridBuilt;}
+        else if(!gridBuilt)BuildGrid();
+        foreach(var listener in additional)listener.PrepareNavigation();
+    }
     int Nearest(Vector3 p){int result=0;float best=float.MaxValue;for(int i=0;i<nodes.Count;i++){float d=(nodes[i]-p).sqrMagnitude;if(d<best){best=d;result=i;}}return result;}
     void Route(Vector3 goal){
-        if(!gridBuilt)BuildGrid();path.Clear();if(nodes.Count==0)return;
+        if(!gridBuilt){if(cinder)PrepareNavigation();else BuildGrid();}path.Clear();if(nodes.Count==0)return;
         int start=Nearest(position),end=Nearest(goal);var parents=new int[nodes.Count];Array.Fill(parents,-1);parents[start]=start;
         var queue=new Queue<int>();queue.Enqueue(start);
         while(queue.Count>0&&parents[end]<0){int n=queue.Dequeue();foreach(int i in edges[n])if(parents[i]<0){parents[i]=n;queue.Enqueue(i);}}
@@ -99,7 +115,8 @@ public sealed class CarryThreat {
         if(cinder&&(position-nodes[start]).sqrMagnitude>.0001f){if(!SegmentClear(position,nodes[start]))return;path.Add(nodes[start]);}
         var reverse=new List<Vector3>();for(int n=end;n!=start;n=parents[n])reverse.Add(nodes[n]);reverse.Reverse();path.AddRange(reverse);
     }
-    public void Hear(Vector3 source,float range){if(outer)return;if(state==2||state==3||state==4||CarryMission.Aboard(source)||Vector3.Distance(position,source)>range)return;noiseTarget=source;noises++;state=1;interest=5;Route(source);}
+    public void Hear(Vector3 source,float range){HearLocal(source,range);foreach(var listener in additional)listener.HearLocal(source,range);}
+    void HearLocal(Vector3 source,float range){if(outer)return;if(state==2||state==3||state==4||CarryMission.Aboard(source)||Vector3.Distance(position,source)>range)return;noiseTarget=source;noises++;state=1;interest=5;Route(source);}
     // The outer creature knows crew positions after entry; geometry still controls movement.
     void SearchCrew(Vector3[] players,int mask){
         int chosen=-1;float best=float.MaxValue;
@@ -117,20 +134,30 @@ public sealed class CarryThreat {
         if(state>=2||CarryMission.Aboard(source)||Vector3.Distance(position,source)>range)return;
         pursuedPlayer=-1;noiseTarget=source;noises++;state=1;interest=5;distraction=1.2f;Route(source);
     }
-    public void Reset(){Array.Clear(Down,0,4);Array.Clear(Rescue,0,4);Array.Clear(Cooldown,0,4);Array.Clear(protection,0,4);if(!cinder){gridBuilt=false;grid.Clear();nodes.Clear();edges.Clear();}position=patrol[0];state=0;patrolIndex=0;timer=0;stunResistance=0;allDown=0;searchClock=0;distraction=0;pursuedPlayer=-1;interest=0;Array.Clear(stepClock,0,4);Array.Clear(previous,0,4);path.Clear();}
+    public void Reset(){
+        if(!outer&&listenerOwner==null){Array.Clear(Down,0,4);Array.Clear(Rescue,0,4);Array.Clear(Cooldown,0,4);Array.Clear(protection,0,4);Array.Clear(swings,0,4);Array.Fill(rescueTargets,-1);}
+        if(!cinder){gridBuilt=false;grid.Clear();nodes.Clear();edges.Clear();}
+        position=patrol[0];state=0;patrolIndex=0;timer=0;stunResistance=0;allDown=0;searchClock=0;distraction=0;pursuedPlayer=-1;interest=0;displayState=-1;
+        Array.Clear(stepClock,0,4);Array.Clear(previous,0,4);path.Clear();foreach(var listener in additional)listener.Reset();
+    }
     public bool Tick(Vector3[] players,bool peer,CarryInput[] inputs,int holder,bool field,float dt)=>Tick(players,peer?3:1,inputs,holder,field,dt);
     public bool Tick(Vector3[] players,int mask,CarryInput[] inputs,int holder,bool field,float dt){
         if(!field)return false;
         stunResistance=Mathf.Max(0,stunResistance-dt);
         int count=players.Length;
+        if(!outer&&listenerOwner==null)for(int i=0;i<count;i++){
+            protection[i]=Mathf.Max(0,protection[i]-dt);Cooldown[i]=Mathf.Max(0,Cooldown[i]-dt);
+            swings[i]=(mask&(1<<i))!=0&&!Down[i]&&inputs[i].shove&&holder!=i&&Cooldown[i]<=0;
+            if(swings[i])Cooldown[i]=6;
+        }
         for(int i=0;i<count;i++){
             if((mask&(1<<i))==0)continue;
-            if(!outer)protection[i]=Mathf.Max(0,protection[i]-dt);Cooldown[i]=Mathf.Max(0,Cooldown[i]-dt);stepClock[i]-=dt;
+            stepClock[i]-=dt;
             if(!Down[i]){
-                if(inputs[i].call)Hear(players[i],12);
-                if(!inputs[i].quiet&&stepClock[i]<=0&&(players[i]-previous[i]).sqrMagnitude>.00001f){Hear(players[i],Hard?8:6);stepClock[i]=.45f;}
-                if(!outer&&inputs[i].shove&&holder!=i&&Cooldown[i]<=0){
-                    Cooldown[i]=6;var delta=position-players[i];var facing=Quaternion.Euler(0,inputs[i].yaw,0)*Vector3.forward;
+                if(inputs[i].call)HearLocal(players[i],12);
+                if(!inputs[i].quiet&&stepClock[i]<=0&&(players[i]-previous[i]).sqrMagnitude>.00001f){HearLocal(players[i],Hard?8:6);stepClock[i]=.45f;}
+                if(!outer&&swings[i]){
+                    var delta=position-players[i];var facing=Quaternion.Euler(0,inputs[i].yaw,0)*Vector3.forward;
                     if(state!=4&&stunResistance<=0&&delta.magnitude<=2.5f&&Vector3.Angle(delta,facing)<=65&&Sight(players[i],position)){state=4;timer=3;path.Clear();}
                 }
             }
@@ -151,7 +178,8 @@ public sealed class CarryThreat {
                 if(path.Count>0){var next=Vector3.MoveTowards(position,path[0],dt*(state==1?(outer?3.3f:Hard?3.2f:2.5f):(outer?2.2f:Hard?1.8f:1.4f)));if(WalkPoint(next,out var grounded)&&Mathf.Abs(grounded.y-position.y)<=StepHeight+.001f)position=grounded;if(Vector3.Distance(position,path[0])<.03f)path.RemoveAt(0);}
             }
         }
-        if(outer)return false;
+        if(outer||listenerOwner!=null)return false;
+        foreach(var listener in additional){listener.Hard=Hard;listener.Tick(players,mask,inputs,holder,field,dt);}
         for(int i=0;i<count;i++){
             int other=RescueTarget(i,players,mask);
             bool can=(mask&(1<<i))!=0&&!Down[i]&&other>=0&&holder!=i&&inputs[i].rescue;
@@ -172,6 +200,8 @@ public sealed class CarryThreat {
         return chosen;
     }
     public ThreatState Snapshot()=>new ThreatState{down=(bool[])Down.Clone(),rescue=(float[])Rescue.Clone(),cooldown=(float[])Cooldown.Clone(),pursuedPlayer=pursuedPlayer,position=position,noiseTarget=noiseTarget,state=state,hits=hits,rescues=rescues,evacuations=evacuations,noises=noises,down0=Down[0],down1=Down[1],rescue0=Rescue[0],rescue1=Rescue[1],cooldown0=Cooldown[0],cooldown1=Cooldown[1],warning=state==2?timer:0};
+    public ThreatState[] AdditionalSnapshots(){var result=new ThreatState[additional.Length];for(int i=0;i<result.Length;i++)result[i]=additional[i].Snapshot();return result;}
+    public void DisplayAdditional(ThreatState[] states,bool enabled){for(int i=0;i<additional.Length;i++){bool valid=states!=null&&i<states.Length&&states[i]!=null;additional[i].Display(valid?states[i]:null,enabled&&valid);}}
     public void Display(ThreatState s,bool enabled){
         body.SetActive(enabled);if(!enabled)return;
         body.transform.position=s.position;body.transform.localScale=s.state==2?new Vector3(1.15f,.8f,1.15f):Vector3.one;

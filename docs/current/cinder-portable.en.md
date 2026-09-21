@@ -19,3 +19,6 @@ WASD movement, mouse look, E interaction/hold to rescue a teammate, Q set down, 
 Press E aboard to select a contract/depart → pick up cargo with E and carry it to BAY 04 → place it on the marked floor with Q → collect the printed receipt at the terminal with E → bring everyone aboard and press E to return/settle. The first standard contract pays 420CR.
 
 This is a primitive-map demo. Human enjoyment, compatibility with all PCs and Steam release are not validated.
+
+
+**Version compatibility:** the September 18 portable package uses protocol 11. This dense facility build uses protocol 12 and cannot connect to it. Copy the complete new build to both computers before testing.

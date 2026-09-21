@@ -2,6 +2,11 @@
 
 [한국어](01-overview.ko.md)
 
+
+## Dense facility update — CINDER-DENSE-02
+
+The 108×86.4m footprint is preserved with nine buildings, interior rooms/corridors and looping alleys. Three A/B/C listeners use Cinder protocol 12. Earlier single-listener/protocol 11 descriptions are historical. See the [dense facility specification](cinder-density.en.md) for layout, production and verification scope. Tension and cooperative fun still require human play.
+
 0.8.4: two approved parcel/receipt models produced and visually integrated. Dynamic terminal state remains follow-up work. [Record](psx-props-01.en.md).
 
 

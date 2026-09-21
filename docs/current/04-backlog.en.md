@@ -2,6 +2,11 @@
 
 0.9.1: [Cooperative HUD and evidence](crew-hud.en.md). Reorganized gameplay instructions and four-player states. Human readability assessment remains outstanding.
 
+
+## Dense facility update — CINDER-DENSE-02
+
+The 108×86.4m footprint is preserved with nine buildings, interior rooms/corridors and looping alleys. Three A/B/C listeners use Cinder protocol 12. Earlier single-listener/protocol 11 descriptions are historical. See the [dense facility specification](cinder-density.en.md) for layout, production and verification scope. Tension and cooperative fun still require human play.
+
 ## Current 0.9.0 — four-player cooperation
 
 [Current rules, launch and validation](four-player.en.md). Supports 1 host and up to 3 clients joining during preparation. This supersedes historical two-player limits and unimplemented four-player statements below. Existing E/Q, baton, delivery and receipt collection rules remain. Steam registration is deferred at user request; other-PC, internet and human four-player fun validation remain outstanding.
@@ -230,4 +235,9 @@ Friends invitations/joining can be tested before release with Steamworks integra
 
 [CINDER-DEMO-01 — launch, rules and validation](cinder-demo.en.md)
 
-Connected: separate-map delivery, receipt, return, supplies, expanded navigation and B listener. Next priorities: two-person first-visit play and route/carry fatigue tuning, A/C listeners, regional readability of suppression cues, full outer pursuit, other PCs and real four-person play. Layout/code checks do not close these items.
+Connected: separate-map delivery, receipt, return, supplies, expanded navigation, A/B/C listeners and dense facilities. Next priorities: two-person first-visit play and route/carry fatigue tuning, multi-listener patrol/distraction balance, regional readability of suppression cues, full outer pursuit, other PCs and real four-person play. Layout/code checks do not close these items.
+
+
+### Dense-map carrying controls — prioritize human validation
+
+- [ ] Assess frustration where the forward parcel contacts jambs, canopy columns and corners before the body. Automation failures do not alone prove an impassable game, but empty-handed route success does not close carrying-quality work.

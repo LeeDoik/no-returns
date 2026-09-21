@@ -48,3 +48,5 @@
 [75초 트레일러 초안 — 영상·제작 소스·검증](current/trailer-draft.ko.md)
 
 [CINDER 배송 데모 — 한 사이클 실행](current/cinder-demo.ko.md)
+
+[밀집 시설 적용 — CINDER-DENSE-02](current/cinder-density.ko.md)

@@ -48,3 +48,5 @@
 [75-second trailer draft — video, sources and validation](current/trailer-draft.en.md)
 
 [CINDER delivery demo — playable cycle](current/cinder-demo.en.md)
+
+[Dense facility update — CINDER-DENSE-02](current/cinder-density.en.md)

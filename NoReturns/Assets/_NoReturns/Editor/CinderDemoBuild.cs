@@ -19,7 +19,7 @@ public static class CinderDemoBuild {
   new GameObject("Cinder demo layout").AddComponent<CinderDemoLayout>();
   new GameObject("Cinder delivery runtime").AddComponent<CarryRoom>();
   EditorSceneManager.SaveScene(scene,ScenePath);AssetDatabase.SaveAssets();
-  Validate();
+  CinderDenseBuild.Populate();Validate();
  }
  [MenuItem("NO RETURNS/Demo/Validate Cinder Delivery Demo")]
  public static void Validate(){

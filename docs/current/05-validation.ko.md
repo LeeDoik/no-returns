@@ -231,3 +231,23 @@
 ## 2026-09-18 — CINDER portable package
 
 사용자 요청으로 바탕화면 `NO_RETURNS_Cinder_Demo_20260918-232940` 폴더에 Windows 실행 파일·데이터·라이브러리 194개(124,687,055바이트)를 복사했다. 개발용 백업은 제외하고 PLAY.cmd, 한영 README, SHA-256 목록을 포함했다. 원본/복사본 해시 194개 일치와 복사본 실제 시작(프로토콜 11·선내 준비·방장 1명)을 확인했다. 다른 물리 PC·LAN 접속 검증은 아직 아니다. 게임 동작 변경 없음. 재현 도구는 `tools/package_cinder.ps1`, 근거는 `artifacts/cinder-portable-smoke/result.txt`다.
+
+
+## CINDER-DENSE-02 — 2026-09-21
+
+구현·검증 범위는 [밀집 시설 명세](cinder-density.ko.md)를 따른다.
+
+- [x] Unity 플러그인으로 생성·컴파일·Windows 빌드. `artifacts/cinder-demo/build-success.txt` 2026-09-21 14:42 UTC.
+- [x] 기존 108×86.4m 유지, 내부 표본 29곳 연결, 긴 시야 4곳 차단, 실제 CharacterController 경로 166칸 통과. `artifacts/cinder-dense/geometry.txt`. 이것은 모든 화물 회전을 보장하는 검사가 아니다.
+- [x] 실제 C# 공유 타이머·구조·충격봉·초기화·직렬화·기존 1체 시험 회귀 검사. `artifacts/cinder-dense/shared-state.txt`.
+- [x] 실제 콜라이더 경로망에서 A/B/C 각각 순찰점 4개 방문. 300초 가속 시뮬레이션이며 실시간·사람 플레이와 다르다. `artifacts/cinder-dense/threat-patrols.txt`.
+- [x] 2개 실제 프로세스: B 공격 예고→다운→이동 불가→먼 거리 구조 거절→동료 구조, 상태 복제와 근무 유지. `artifacts/cinder-dense-hazards/run-20260921-235055/report.json`.
+- [x] 실제 Unity 렌더로 지붕·실내·골목 확인. `artifacts/cinder-dense/cutaway-verified.png`은 검토용 지붕 숨김이며 빌드는 지붕을 유지한다.
+- [ ] 사람 2~4인 길 찾기·유인·운반·긴장감, 전체 출입구의 화물 회전, 외곽 생물 전체 추격, 다른 PC/WAN/Steam.
+
+초기 자동 운반 입력은 아래로 52도 조준해 바닥과 부딪혔고, 이후 모퉁이·문설주·캐노피 기둥에 걸렸다. 빈손 경로 성공을 화물 운반 성공으로 간주하지 않았다. 시선 25도와 문 중앙 접근 입력으로 재검사한다. 충돌·적·시간은 끄지 않는다. 이전 실패 원본은 `artifacts/cinder-demo-loop/`에 보존한다.
+
+4프로세스 `run-20260922-001725`는 배송·인쇄·실물 영수증 회수·한영 전환까지 통과했다. 이후 자동 경로가 완료된 화물 앞으로 다시 접근해 목표 좌표 0.15m 허용치에 도달하지 못했다. 귀환 경로의 불필요한 수령 지점 재방문을 제거했다. 이는 귀환 성공 판정과 구분한다.
+
+- [x] 최종 4개 실제 프로세스 전체 사이클 통과: `artifacts/cinder-demo-loop/run-20260922-002317/report.json`. 실제 이동 입력으로 운반·수령·인쇄·영수증 회수·전원 승선 조건·420CR 단일 정산·120CR 신호기 구매·잔액 300CR 보존·다음 근무 초기화·3체 스냅샷과 공유 다운 상태 일치를 확인했다. 방장만 왕복하고 참가자 3명은 선내에서 복제 상태를 검사했다. 실제 사람 4명 동시 운반·재미 검사와 다르다. 앞선 실패 기록은 보존하며 이 최종 성공과 구분한다.
+- [x] 한영 문서 링크·대응 검사 266개 문서 통과, Python 검사 도구 구문 검사, Git 변경 형식 검사 통과.

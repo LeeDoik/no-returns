@@ -17,16 +17,16 @@
 - 별도 [CinderDeliveryDemo.unity](../../NoReturns/Assets/_NoReturns/Scenes/CinderDeliveryDemo.unity). 원본 블록아웃과 선내 시험을 보존한다. 지도 범위 108×86.4m, 기존 선내 크기와 출입 구조를 그대로 사용한다. 외장을 새로 만들지 않았다.
 - [CinderDemoLayout.cs](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CinderDemoLayout.cs): 선내 4개 스폰, 화물·장비 적재, BAY 04 수령 중심 `(32.7,0,15)`, 선내 귀환 영역. 수령 장치의 원래 화면 재질과 영수증 슬롯을 같은 오프셋으로 이동한다.
 - [CarryMission.cs](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryMission.cs): 손에서 놓은 화물이 0.75초 안정되면 수령, 인쇄 준비 0.75초, 영수증 회수와 전원 승선 후 정산. 가격·보수·실패 규칙은 기존 규칙을 재사용하며 새 경제 설계를 확정한 것이 아니다. 참가자 이탈 시 현재 근무를 중단하는 기존 제한도 유지한다.
-- [CarryThreat.cs](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryThreat.cs): B구역 리스너 1체와 외곽 생물 1체. 벽을 고려한 탐색 범위를 확대하고 시작 전에 경로망을 준비한다. 같은 정적 맵의 다음 근무에서는 경로망을 재사용한다. A/C 추가 리스너는 미구현이다.
+- [CarryThreat.cs](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryThreat.cs): A/B/C 리스너 3체와 외곽 생물 1체. 벽을 고려한 탐색 범위를 확대하고 시작 전에 경로망을 준비한다. 같은 정적 맵의 다음 근무에서는 경로망을 재사용한다. 세부 배치와 공유 상태는 [밀집 시설 명세](cinder-density.ko.md)를 따른다.
 - [CarrySuppression.cs](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarrySuppression.cs): 0~360초 안정, 360~480초 불안, 480~600초 임계, 600초 이후 꺼짐, 608초부터 외곽 침입. 모두 현장 시간 기준의 첫 검증값이다. 숫자 카운트다운 대신 신호·조명·문구로 알린다. 블록아웃 억제 기둥 전체가 개별 작동하는 것은 아니다.
-- [CarryRoom.Network.cs](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.Network.cs): 방장 권한, 준비 중 합류, Cinder 프로토콜 11/기존 시험 10 분리. 다른 맵의 빌드를 섞어 접속할 수 없다.
-- 사무실의 유지보수 단서를 옮겼다. 건물 내부 세부 방, 새로운 몬스터, 완성 아트, 추가 화물 종류는 이번 범위가 아니다.
+- [CarryRoom.Network.cs](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.Network.cs): 방장 권한, 준비 중 합류, Cinder 프로토콜 12/기존 시험 10 분리. 다른 맵의 빌드를 섞어 접속할 수 없다.
+- 사무실의 유지보수 단서를 옮겼다. 건물 9개에 방과 복도를 추가했다. 새로운 몬스터 종류·완성 아트·추가 화물 종류는 이번 범위가 아니다.
 
 ## 제작과 재현
 
 Unity `NO RETURNS > Demo > Create Cinder Delivery Demo`는 원본 블록아웃을 새 데모 경로에 다시 복사하므로 데모의 직접 편집을 덮어쓴다. 직접 수정 전 별도 저장하거나 소스 생성 코드에 반영한다. **Build Cinder Delivery Demo는 현재 저장된 데모 장면을 빌드하고 지도를 재생성하지 않는다.** Validate는 수령·영수증·전원 귀환·420CR 규칙을 검사한다. [CinderDemoBuild.cs](../../NoReturns/Assets/_NoReturns/Editor/CinderDemoBuild.cs)가 재현 소스다.
 
-자동 검사에는 테스트 입력 기능이 포함된 로컬 Windows 빌드를 사용한다. [배송 검사](../../tools/test_cinder_demo.py)는 `--crew 1`, `--crew 2`, `--crew 4`를 지원하며 [위험 검사](../../tools/test_cinder_hazards.py)는 2개 프로세스를 사용한다. 같은 포트를 쓰므로 순서대로 실행한다. 실제 이동 입력으로 서쪽·북쪽 우회로를 왕복하고 순간 이동이나 잔액 주입을 하지 않는다. 여러 명의 검사에서는 방장만 배송하고 나머지는 선내에서 복제 상태와 전원 승선 규칙을 확인하므로, 전원 동시 운반 검증과 다르다.
+자동 검사에는 테스트 입력 기능이 포함된 로컬 Windows 빌드를 사용한다. [배송 검사](../../tools/test_cinder_dense.py)는 `--crew 1`, `--crew 2`, `--crew 4`를 지원하며 [위험 검사](../../tools/test_cinder_dense_hazards.py)는 2개 프로세스를 사용한다. 같은 포트를 쓰므로 순서대로 실행한다. 실제 이동 입력으로 서쪽·북쪽 우회로를 왕복하고 순간 이동이나 잔액 주입을 하지 않는다. 여러 명의 검사에서는 방장만 배송하고 나머지는 선내에서 복제 상태와 전원 승선 규칙을 확인하므로, 전원 동시 운반 검증과 다르다.
 
 ## 검증과 남은 작업
 

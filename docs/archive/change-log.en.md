@@ -842,3 +842,16 @@ Validation: [current evidence](../current/05-validation.en.md) records one/two/f
 ## 2026-09-18 — CINDER portable package
 
 At user request, copied 194 Windows runtime files (124,687,055 bytes) into desktop folder `NO_RETURNS_Cinder_Demo_20260918-232940`. Excluded the development backup; included PLAY.cmd, paired README files and a SHA-256 manifest. All 194 source/copy hashes matched and the copied player actually started with protocol 11, ship preparation and one host. This does not validate another physical PC or LAN connection. No gameplay changes. Reproduction tool: `tools/package_cinder.ps1`; evidence: `artifacts/cinder-portable-smoke/result.txt`.
+
+
+## 2026-09-21~22 — CINDER-DENSE-02
+
+The user approved increasing facility density without shrinking the map. The delivery demo retains its 108×86.4m footprint and ship, adding nine accessible buildings, room partitions, corridors, multiple entrances, canopies, utilities, freight stacks and sightline barriers. The original blockout is preserved. Signs use a depth-tested material. The host simulates A/B/C separately while processing shared down/rescue/baton timers once. Snapshots and join compatibility use Cinder protocol 12; the legacy trial remains 10.
+
+Generation, validation, rendering and Windows build used the Unity plugin CLI. The first build call hit the CLI five-second response limit, but the editor subsequently completed the build successfully. Checks passed for 29 room samples, four blocked sightlines, 166 CharacterController cells, shared-state regressions, accelerated 300-second patrols, and B warning/down/rescue in two actual processes. Automated carrying encountered floor/jamb/column contacts and was retested with revised inputs. Cutaway captures now wait for the next editor frame and restore roof visibility. See CINDER-DENSE-02 in [validation](../current/05-validation.en.md) for evidence and the final delivery result.
+
+Paired specifications, guide, backlog, validation and portable compatibility notes were updated. Eight pre-existing ship material modifications and a recovery scene are excluded from the commit. Human tension, cooperative fun, carrying fatigue, parcel rotations at all doors, complete outer pursuit, WAN and Steam remain unverified. Final art, suppression timing and economy changes are outside this scope.
+
+During inspection-tool updates, Unity paused commands at its external scene modification dialog. Reloading the saved scene restored compilation/capture, and roof restoration was confirmed. Carrying automation uses ordinary look-and-strafe cornering to avoid driving the forward parcel into a wall.
+
+Final four-process run `run-20260922-002317` passed the full cycle: host carrying, receipt, all-aboard gating, 420CR settlement, 120CR purchase, retained 300CR/new shift and three-listener replication. Three clients remained aboard. Earlier input failures were retained. Documentation checks passed for 266 documents, along with Python syntax and Git formatting.

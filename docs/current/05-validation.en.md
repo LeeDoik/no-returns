@@ -231,3 +231,23 @@ Raw logs passed null/index/missing-reference exception checks. Existing URP post
 ## 2026-09-18 — CINDER portable package
 
 At user request, copied 194 Windows runtime files (124,687,055 bytes) into desktop folder `NO_RETURNS_Cinder_Demo_20260918-232940`. Excluded the development backup; included PLAY.cmd, paired README files and a SHA-256 manifest. All 194 source/copy hashes matched and the copied player actually started with protocol 11, ship preparation and one host. This does not validate another physical PC or LAN connection. No gameplay changes. Reproduction tool: `tools/package_cinder.ps1`; evidence: `artifacts/cinder-portable-smoke/result.txt`.
+
+
+## CINDER-DENSE-02 — 2026-09-21
+
+See the [dense facility specification](cinder-density.en.md) for implementation scope.
+
+- [x] Generated, compiled and Windows-built through the Unity plugin. `artifacts/cinder-demo/build-success.txt`, 2026-09-21 14:42 UTC.
+- [x] Preserved 108×86.4m, connected 29 interior samples, obstructed four long sightlines and traversed 166 cells with a real CharacterController. `artifacts/cinder-dense/geometry.txt`. This does not guarantee every parcel rotation.
+- [x] Actual C# shared timers, rescue, baton, reset, serialization and legacy single-listener regression. `artifacts/cinder-dense/shared-state.txt`.
+- [x] A/B/C each visited all four patrol nodes over actual collider navigation. Accelerated 300-second simulation, not real-time or human play. `artifacts/cinder-dense/threat-patrols.txt`.
+- [x] Two real processes: B warning→down→movement blocked→distant rescue rejected→partner rescue, replicated state and preserved shift. `artifacts/cinder-dense-hazards/run-20260921-235055/report.json`.
+- [x] Actual Unity renders of roofs, rooms and alleys. `artifacts/cinder-dense/cutaway-verified.png` hides roofs for inspection; the build retains them.
+- [ ] Human 2–4-player wayfinding, distraction, carrying and tension; parcel rotation at every entrance; complete outer pursuit; other PCs/WAN/Steam.
+
+Initial carrying automation looked down 52 degrees and contacted the floor; subsequent attempts hit corners, door jambs and a canopy column. Empty-handed route success was not treated as carrying success. Retests use 25-degree pitch and centred doorway approaches without disabling collision, enemies or time. Earlier failure evidence remains under `artifacts/cinder-demo-loop/`.
+
+Four-process `run-20260922-001725` passed delivery, printing, physical receipt collection and language switching. Its return route then unnecessarily revisited the delivered parcel and could not reach the 0.15m waypoint tolerance. That receiver revisit was removed from the return route; this earlier run is not recorded as successful return.
+
+- [x] Final full cycle passed in four actual processes: `artifacts/cinder-demo-loop/run-20260922-002317/report.json`. Ordinary movement verified carrying, receipt processing/printing/collection, all-aboard gating, one-time 420CR settlement, 120CR beacon purchase, retained 300CR balance, next-shift reset, three-listener snapshots and shared down state. Only the host traversed the route; three clients checked replication aboard. This is not four humans carrying simultaneously or a fun assessment. Earlier failures remain separate from this final pass.
+- [x] Paired documentation/link checks passed across 266 documents, Python test-script syntax passed, and Git diff formatting passed.
