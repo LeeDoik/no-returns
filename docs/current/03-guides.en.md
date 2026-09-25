@@ -361,3 +361,5 @@ List required third-person employee and first-person arm actions before producti
 Separate ambience, action/contact sounds, danger cues and UI/machinery. Edit original recordings or appropriately licensed sources into variations. Use Unity AudioSource 3D attenuation and Audio Mixer; implement and verify wall occlusion separately, rather than assuming spatial audio automatically blocks sound through walls. Connect animations/sounds to states/actions and check online duplicate playback.
 
 Validation: existing documentation and official references only. No new assets, rigs or audio were generated and no runtime tests ran. [Unity AudioSource](https://docs.unity.com/en-us/engine/6000.0/manual/audio/reference/class-audio-source/source-overview) · [Blender glTF export](https://docs.blender.org/manual/en/4.2/addons/import_export/scene_gltf2.html).
+
+[CONCEPT / 02 — image-based modular asset list](concept-02-modules.en.md)

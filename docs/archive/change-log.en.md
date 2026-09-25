@@ -865,3 +865,8 @@ At the user’s request, reviewed code e27b9a3, current dense-map specifications
 ## 2026-09-25 — Proposed art, animation and audio workflow
 
 Proposed Blender-led hybrid production and an integrated representative area while preserving current structure and approval rules. Updated paired guides with art/animation/audio responsibilities, contact, online timing and occlusion checks. Documentation/reference review only; no game changes, new assets or runtime validation. Run documentation link checks.
+
+
+## 2026-09-25 — CONCEPT-02 module breakdown
+
+Created paired lists of 28 visible repeatable/device entries and six proposed assembly additions from the supplied image. Separated characters, creature, ship, distant scenery, ground and materials/decals. The pictured ramp does not override current design decisions. Image/specification review and documentation checks only; no model, game-code, scene changes or runtime tests.

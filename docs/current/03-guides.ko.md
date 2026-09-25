@@ -361,3 +361,5 @@ PSX 표현은 각진 실루엣·공용 팔레트·일관된 텍스처 밀도·�
 음향은 환경음, 행동/접촉음, 위험 신호, UI/기계음으로 구분한다. 직접 녹음 또는 사용권이 확인된 소스를 편집해 변주한다. Unity AudioSource의 3D 거리 표현과 Audio Mixer로 혼합하며, 벽에 의한 차음은 별도 구현·검증한다. 자동으로 벽 너머 소리가 막힌다고 가정하지 않는다. 애니메이션과 효과음은 상태/동작에 맞춰 연결하고 온라인 중복 재생을 검사한다.
 
 검증: 기존 문서와 공식 자료 검토만 수행했다. 신규 에셋·리그·소리 생성 및 런타임 검사는 하지 않았다. [Unity AudioSource](https://docs.unity.com/en-us/engine/6000.0/manual/audio/reference/class-audio-source/source-overview) · [Blender glTF 내보내기](https://docs.blender.org/manual/en/4.2/addons/import_export/scene_gltf2.html).
+
+[CONCEPT / 02 — 이미지 기반 모듈 목록](concept-02-modules.ko.md)
