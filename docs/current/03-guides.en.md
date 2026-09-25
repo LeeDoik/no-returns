@@ -344,3 +344,20 @@ Launch with Play_Cinder_Demo.cmd. Create in the Unity Demo menu overwrites direc
 ## 2026-09-18 — CINDER portable package
 
 At user request, copied 194 Windows runtime files (124,687,055 bytes) into desktop folder `NO_RETURNS_Cinder_Demo_20260918-232940`. Excluded the development backup; included PLAY.cmd, paired README files and a SHA-256 manifest. All 194 source/copy hashes matched and the copied player actually started with protocol 11, ship preparation and one host. This does not validate another physical PC or LAN connection. No gameplay changes. Reproduction tool: `tools/package_cinder.ps1`; evidence: `artifacts/cinder-portable-smoke/result.txt`.
+
+
+## 2026-09-25 — Proposed art, animation and audio workflow
+
+The user asked how to complete these disciplines together. This is production advice, not new concept approval or completed model production. Preserve the map and the existing Blender structure→in-game spatial check→art workflow.
+
+Recommend a Blender-led hybrid. Author dimensionally consistent wall/floor/door/stair/pipe modules with shared low-resolution materials. Use approved images to generate Tripo candidates for characters, creatures and distinctive props, then clean silhouette, topology, UVs, pivots, materials and rigs in Blender. Do not assume generation preserves blockout dimensions, openings or moving parts exactly. Separate moving parts and display surfaces; keep collision geometry independent of visual meshes. Purchased assets can supplement generic props, subject to style normalization and usage rights. Fully manual production provides control but takes longer; generation-led bulk production can increase correction and consistency costs.
+
+Propose one small connected section of warehouse A as the representative area. Complete walls, doors, floors, ceilings, shelving, signs and lighting alongside employee/listener presentation, carrying, attack warning, baton and rescue motions, footsteps, parcel contacts, creature warnings and suppression cues. Judge the combination from Unity first person before expanding the same modules, rigs, materials and audio rules across the facility. Preserve the ship-exterior production hold.
+
+Build the PSX look through angular silhouettes, a shared palette, consistent texture density and intentional lighting. Close-up parcels and screens must remain readable. Strong camera shake, vertex jitter or texture distortion are not committed defaults. Choose texture sizes and polygon budgets through comparison in the representative gameplay area.
+
+List required third-person employee and first-person arm actions before production and maintain stable rigs. Treat auto-rigging/motion as a starting point; refine hand/parcel/foot contacts and transitions. Design listener investigation, warning, lunge and stagger instead of applying human walking unchanged. Existing gameplay state owns collision and attack timing; presentation is not the sole authority.
+
+Separate ambience, action/contact sounds, danger cues and UI/machinery. Edit original recordings or appropriately licensed sources into variations. Use Unity AudioSource 3D attenuation and Audio Mixer; implement and verify wall occlusion separately, rather than assuming spatial audio automatically blocks sound through walls. Connect animations/sounds to states/actions and check online duplicate playback.
+
+Validation: existing documentation and official references only. No new assets, rigs or audio were generated and no runtime tests ran. [Unity AudioSource](https://docs.unity.com/en-us/engine/6000.0/manual/audio/reference/class-audio-source/source-overview) · [Blender glTF export](https://docs.blender.org/manual/en/4.2/addons/import_export/scene_gltf2.html).

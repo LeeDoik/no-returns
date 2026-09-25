@@ -860,3 +860,8 @@ Final four-process run `run-20260922-002317` passed the full cycle: host carryin
 ## 2026-09-25 — Remaining-work review
 
 At the user’s request, reviewed code e27b9a3, current dense-map specifications and evidence. Created a [paired priority list](../current/remaining-work.en.md) separating implemented behavior, pending human validation, new production and the Steam hold. No game code/scene changes or runtime retests; historical passes are not represented as fresh validation. Run documentation link checks. Preserve nine existing material edits and the recovery scene.
+
+
+## 2026-09-25 — Proposed art, animation and audio workflow
+
+Proposed Blender-led hybrid production and an integrated representative area while preserving current structure and approval rules. Updated paired guides with art/animation/audio responsibilities, contact, online timing and occlusion checks. Documentation/reference review only; no game changes, new assets or runtime validation. Run documentation link checks.
