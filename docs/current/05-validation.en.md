@@ -251,3 +251,6 @@ Four-process `run-20260922-001725` passed delivery, printing, physical receipt c
 
 - [x] Final full cycle passed in four actual processes: `artifacts/cinder-demo-loop/run-20260922-002317/report.json`. Ordinary movement verified carrying, receipt processing/printing/collection, all-aboard gating, one-time 420CR settlement, 120CR beacon purchase, retained 300CR balance, next-shift reset, three-listener snapshots and shared down state. Only the host traversed the route; three clients checked replication aboard. This is not four humans carrying simultaneously or a fun assessment. Earlier failures remain separate from this final pass.
 - [x] Paired documentation/link checks passed across 266 documents, Python test-script syntax passed, and Git diff formatting passed.
+
+
+2026-09-25: [Remaining work and recommended order](remaining-work.en.md). Source and existing evidence review only; no new feature implementation or gameplay retest.

@@ -50,3 +50,5 @@
 [CINDER delivery demo — playable cycle](current/cinder-demo.en.md)
 
 [Dense facility update — CINDER-DENSE-02](current/cinder-density.en.md)
+
+[Remaining work and recommended order — 2026-09-25](current/remaining-work.en.md)

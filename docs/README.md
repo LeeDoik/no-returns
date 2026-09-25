@@ -50,3 +50,5 @@
 [CINDER 배송 데모 — 한 사이클 실행](current/cinder-demo.ko.md)
 
 [밀집 시설 적용 — CINDER-DENSE-02](current/cinder-density.ko.md)
+
+[현재 남은 작업·권장 순서 — 2026-09-25](current/remaining-work.ko.md)

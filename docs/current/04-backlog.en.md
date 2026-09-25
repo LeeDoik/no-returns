@@ -241,3 +241,6 @@ Connected: separate-map delivery, receipt, return, supplies, expanded navigation
 ### Dense-map carrying controls — prioritize human validation
 
 - [ ] Assess frustration where the forward parcel contacts jambs, canopy columns and corners before the body. Automation failures do not alone prove an impassable game, but empty-handed route success does not close carrying-quality work.
+
+
+2026-09-25: [Remaining work and recommended order](remaining-work.en.md). Source and existing evidence review only; no new feature implementation or gameplay retest.

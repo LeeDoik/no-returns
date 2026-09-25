@@ -855,3 +855,8 @@ Paired specifications, guide, backlog, validation and portable compatibility not
 During inspection-tool updates, Unity paused commands at its external scene modification dialog. Reloading the saved scene restored compilation/capture, and roof restoration was confirmed. Carrying automation uses ordinary look-and-strafe cornering to avoid driving the forward parcel into a wall.
 
 Final four-process run `run-20260922-002317` passed the full cycle: host carrying, receipt, all-aboard gating, 420CR settlement, 120CR purchase, retained 300CR/new shift and three-listener replication. Three clients remained aboard. Earlier input failures were retained. Documentation checks passed for 266 documents, along with Python syntax and Git formatting.
+
+
+## 2026-09-25 — Remaining-work review
+
+At the user’s request, reviewed code e27b9a3, current dense-map specifications and evidence. Created a [paired priority list](../current/remaining-work.en.md) separating implemented behavior, pending human validation, new production and the Steam hold. No game code/scene changes or runtime retests; historical passes are not represented as fresh validation. Run documentation link checks. Preserve nine existing material edits and the recovery scene.
