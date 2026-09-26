@@ -47,6 +47,20 @@ unity build ./NoReturns --target StandaloneWindows64 --output-path "$PWD/builds/
 
 Actual macOS play, distribution signing/notarization and Windows player testing on Windows are separate checks. Environment setup does not establish release readiness on either platform.
 
+## Korean font and recompilation
+
+The [shared language code](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryLanguage.cs) loads bundled `NotoSansKR-Regular` instead of system fonts. On this Mac, Unity 6000.6.0f1 failed to convert fonts created by `CreateDynamicFontFromOSFont` through IMGUI's TextCore path. Removed the Windows Malgun Gothic dependency; menus and HUD share the bundled font. The approximately 4.6 MB [upstream OTF](https://github.com/notofonts/noto-cjk/blob/main/Sans/SubsetOTF/KR/NotoSansKR-Regular.otf) is unmodified and accompanied by the [original OFL](../../NoReturns/Assets/_NoReturns/Resources/Fonts/NotoSansKR-LICENSE.txt) and Unity-generated `.meta` files. Git LFS tracks the OTF; it is not installed system-wide.
+
+The test directory and received state in [CarryRoom](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs) are runtime-only values. Excluded them from serialization so Editor code reload cannot restore `null` as an empty string or empty state. This prevents the empty-path exception and empty rotation-array access seen after recompilation.
+
+The font check needs no separate framework. Stop Play mode in the open Editor and run from the repository root:
+
+```sh
+unity command eval_file --file "$PWD/tools/unity_checks/FontCheck.cs" --caller plugin --skill unity-cli --project-path "$PWD/NoReturns" --format json
+```
+
+The [check](../../tools/unity_checks/FontCheck.cs) verifies dynamic-font loading, TextCore font-data loading and Korean/Latin/digit glyphs. A successful result is `FONT PASS: NotoSansKR-Regular`.
+
 ## Verification in this setup
 
 - [x] Repository cloned; CLI version and PATH in a fresh login shell verified.
@@ -56,12 +70,13 @@ Actual macOS play, distribution signing/notarization and Windows player testing 
 - [x] Editor and Windows Mono module installed and `unity editors verify` passed. Verified the executable's `arm64` architecture and the macOS build-support directory.
 - [x] Verified compilation and live CLI connectivity: `ready`, no compilation failure, zero Console errors and 7 existing deprecated-API warnings.
 - [x] Passed discovery of 151 CLI commands, C# `eval`, opening/querying the `CarryRoom` scene, and MCP initialization/tool listing/actual `editor_status` invocation.
+- [x] Passed bundled-font checks, starting/stopping `CarryRoom` Play mode after recompilation, and visual inspection of the Korean menu. After preserving previous logs and clearing the Console, the new run recorded zero errors and zero warnings.
 - [ ] Verify automatic MCP loading in a new Codex session.
 - [ ] Verify macOS/Windows builds and actual gameplay.
 
-Development environment installation and live connection verification are complete. `CarryRoom` is open and unmodified. The 7 warnings concern existing object-search APIs in `FacilityArt`, `CarryRoom` and `ShipInteriorTrialBuild`. Play mode, game builds and human controls were not tested.
+Development environment installation and live connection verification are complete. `CarryRoom` is open and unmodified. The 7 compiler warnings concern existing object-search APIs in `FacilityArt`, `CarryRoom` and `ShipInteriorTrialBuild` and were not fixed. Gameplay beyond menu startup, game builds and human controls were not tested. A layout issue remains: the help text overlaps the quit button in the small Game view.
 
-During initial import, Unity cleared only the generated runtime list in the [URP global settings](../../NoReturns/Assets/Settings/UniversalRenderPipelineGlobalSettings.asset). The installed URP 17.6.0 `RenderPipelineGraphicsSettingsContainer` clears this list in the Editor and regenerates it during Player builds. Authored settings, game code and scenes remain unchanged. This automatic normalization is included in the record.
+During initial import, Unity cleared only the generated runtime list in the [URP global settings](../../NoReturns/Assets/Settings/UniversalRenderPipelineGlobalSettings.asset). The installed URP 17.6.0 `RenderPipelineGraphicsSettingsContainer` clears this list in the Editor and regenerates it during Player builds. Authored settings and scenes remain unchanged. This automatic normalization is included in the record.
 
 Immediately after cloning, Git reported line-ending changes in two Windows launchers, although their raw bytes matched HEAD. Normalized their stored content to the existing `.gitattributes` and verified unchanged command content. `tools/check_docs.py` failed on **142** historical `artifacts/` links excluded from Git. The new documentation introduces no additional failures; do not fabricate historical validation outputs to fill the gaps.
 

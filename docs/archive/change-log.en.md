@@ -2,6 +2,12 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-09-26 — Mac Korean font and code-reload compatibility
+
+Environment verification exposed repeated Windows-system-font warnings in the `CarryRoom` menu. Selecting an installed Mac font still failed to load font data through TextCore. Changed the [shared font](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryLanguage.cs) to Noto Sans KR Regular in Resources and added the unmodified 4,644,748-byte OTF, original OFL and Unity-generated metadata. The font matches the official notofonts/noto-cjk Git blob hash. Git LFS tracks the OTF. Menus and HUD use the same initialization path.
+
+Code reload restored the `null` test directory and received state as empty values, causing empty-path and rotation-array bounds exceptions. Excluded both runtime-only fields from serialization. [FontCheck](../../tools/unity_checks/FontCheck.cs) passed dynamic-font, TextCore-data and Korean/Latin/digit checks. Verified Play mode startup/stop after recompilation and actual Korean menu rendering. After preserving old logs and clearing the Console, the new run recorded zero errors and zero warnings. The 7 existing deprecated-API compiler warnings remain. No scene changes. Small Game-view help/quit-button overlap, gameplay progression, builds on both platforms, Windows revalidation and human controls remain unresolved or unverified. Documentation checks have no new failures beyond 142 existing missing artifact links. Updated the [environment guide](../current/macos-development.en.md); local commit only.
+
 ## 2026-09-26 — Editor, CLI and MCP verification after Mac license activation
 
 Confirmed active Unity Personal licensing after the user completed activation. The user directly accepted the first-launch Editor terms. Completed project import and compilation in Unity 6000.6.0f1 arm64; confirmed `ready`, `compiling=false`, `compilationFailed=false`, zero Console errors and 7 existing deprecated-API warnings. Passed discovery of 151 CLI commands, C# `eval`, opening `CarryRoom` and querying its hierarchy. A separate stdio MCP client also completed initialization → listing 151 tools → invoking `editor_status`. [Current environment](../current/macos-development.en.md).

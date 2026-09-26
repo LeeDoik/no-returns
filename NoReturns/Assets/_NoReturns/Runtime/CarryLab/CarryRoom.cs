@@ -22,7 +22,8 @@ public sealed partial class CarryRoom : MonoBehaviour {
     int supplyChoice; bool receiptCollected,receiptReady; float receiptProgress; ReceiptFeedback receiptFeedback;
     CarryMission mission; int missionPhase=-1,credits,receipt,returnPay;
     CarrySave save; string saveNotice=""; float retrySaveAt;
-    string testFolder; int testSeq=-1; CarryState target; 
+    [NonSerialized] string testFolder; int testSeq=-1;
+    [NonSerialized] CarryState target;
     [Serializable] class TestCommand {public int seq;public float x,z,yaw,pitch;public bool jump,interact,drop,reset,action; public bool capture,toggleLanguage,quiet,call,shove,rescue,buy,contract,deploy,inspect,journal;}
     void Awake(){
         Application.runInBackground=true;Application.targetFrameRate=60;Time.fixedDeltaTime=.02f;

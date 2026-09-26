@@ -2,6 +2,12 @@
 
 [English](change-log.en.md)
 
+## 2026-09-26 — Mac 한국어 글꼴과 코드 재로딩 호환성
+
+환경 검증 중 `CarryRoom` 메뉴에서 Windows 시스템 글꼴 경고가 반복됐다. 설치된 Mac 글꼴로 이름을 바꿔도 TextCore의 글꼴 데이터 로딩이 실패함을 확인했다. [공용 글꼴](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryLanguage.cs)을 Resources의 Noto Sans KR Regular로 교체하고 원본 OTF 4,644,748바이트·OFL 원문·Unity 생성 메타데이터를 추가했다. 공식 notofonts/noto-cjk 파일과 Git blob 해시가 일치하며 수정하지 않았다. OTF는 LFS로 관리한다. 메뉴와 HUD 모두 같은 초기화 경로를 사용한다.
+
+코드 재로딩으로 `null` 테스트 폴더·수신 상태가 빈 값으로 복원되어 빈 경로 예외와 회전 배열 범위 예외가 발생했다. 두 실행 전용 필드를 직렬화에서 제외했다. [FontCheck](../../tools/unity_checks/FontCheck.cs)로 동적 글꼴·TextCore 데이터·한글/영문/숫자를 확인했고 재컴파일 후 Play Mode 시작·중지, 한국어 메뉴의 실제 표시를 확인했다. 기존 로그 보관 후 콘솔을 비운 새 실행 구간 오류 0개·경고 0개. 컴파일의 기존 폐기 예정 API 경고 7개는 남는다. 씬 변경 없음. 작은 Game 뷰의 문구·종료 버튼 겹침, 실제 게임 진행·양 플랫폼 빌드·Windows 재검증·사람 조작감은 미해결 또는 미검증이다. 문서 검사는 기존 누락 artifacts 링크 142개 외 새 실패 없음. [환경 가이드](../current/macos-development.ko.md)를 갱신했으며 로컬 커밋만 한다.
+
 ## 2026-09-26 — Mac 라이선스 활성화 후 에디터·CLI·MCP 검증
 
 사용자의 활성화 완료 후 Unity Personal 활성 상태를 확인했다. 첫 실행 에디터 약관은 사용자가 직접 동의했다. Unity 6000.6.0f1 arm64에서 프로젝트 가져오기·컴파일을 마치고 `ready`, `compiling=false`, `compilationFailed=false`, 콘솔 오류 0개와 기존 폐기 예정 API 경고 7개를 확인했다. CLI 명령 151개 조회와 C# `eval`, `CarryRoom` 열기·계층 조회를 통과했다. 별도 stdio MCP 클라이언트의 초기화 → 도구 목록 151개 → `editor_status` 호출도 성공했다. [현재 환경](../current/macos-development.ko.md).

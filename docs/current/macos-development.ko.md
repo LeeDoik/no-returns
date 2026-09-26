@@ -47,6 +47,20 @@ unity build ./NoReturns --target StandaloneWindows64 --output-path "$PWD/builds/
 
 macOS의 실제 플레이·배포 서명·공증과 Windows 실행본의 Windows 기기 검증은 별도다. 환경 설정이 두 플랫폼의 출시 검증 완료를 의미하지 않는다.
 
+## 한국어 글꼴과 재컴파일
+
+[공용 언어 코드](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryLanguage.cs)는 시스템 글꼴 대신 포함된 `NotoSansKR-Regular`를 불러온다. 이 맥의 Unity 6000.6.0f1에서는 `CreateDynamicFontFromOSFont`로 만든 글꼴이 IMGUI의 TextCore 변환에서 실패했다. Windows 맑은 고딕 의존성을 제거하고 메뉴와 HUD가 같은 글꼴을 사용하게 했다. 약 4.6 MB의 [원본 OTF](https://github.com/notofonts/noto-cjk/blob/main/Sans/SubsetOTF/KR/NotoSansKR-Regular.otf)는 변경하지 않았으며, [OFL 원문](../../NoReturns/Assets/_NoReturns/Resources/Fonts/NotoSansKR-LICENSE.txt)과 Unity가 생성한 `.meta`를 함께 보관한다. OTF는 Git LFS 대상이며 시스템 전체에 설치하지 않는다.
+
+[CarryRoom](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs)의 테스트 폴더와 수신 상태는 실행 중에만 사용하는 값이다. 에디터 코드 재로딩이 `null`을 빈 문자열·빈 상태로 복원하지 않도록 직렬화에서 제외했다. 재컴파일 뒤 발생하던 빈 경로 예외와 빈 회전 배열 접근을 막는다.
+
+글꼴 검사에는 별도 프레임워크가 필요 없다. 열린 에디터의 Play Mode를 중지하고 저장소 루트에서 실행한다.
+
+```sh
+unity command eval_file --file "$PWD/tools/unity_checks/FontCheck.cs" --caller plugin --skill unity-cli --project-path "$PWD/NoReturns" --format json
+```
+
+[검사 코드](../../tools/unity_checks/FontCheck.cs)는 동적 글꼴 로딩, TextCore 글꼴 데이터 로딩, 한글·영문·숫자 문자 지원을 확인한다. 성공 결과는 `FONT PASS: NotoSansKR-Regular`다.
+
 ## 이번 확인 결과
 
 - [x] 저장소 복제, CLI 버전 및 새 로그인 셸의 PATH 확인.
@@ -56,12 +70,13 @@ macOS의 실제 플레이·배포 서명·공증과 Windows 실행본의 Windows
 - [x] 에디터와 Windows Mono 모듈 설치 및 `unity editors verify` 통과. 실행 파일의 `arm64`와 macOS 빌드 지원 디렉터리 확인.
 - [x] 프로젝트 컴파일과 열린 에디터의 CLI 연결 확인. `ready`, 컴파일 실패 없음, 콘솔 오류 0개, 기존 폐기 예정 API 경고 7개.
 - [x] CLI 명령 151개 조회, C# `eval`, `CarryRoom` 씬 열기·계층 조회, MCP 초기화·도구 목록·`editor_status` 실제 호출 통과.
+- [x] 포함 글꼴 검사, 재컴파일 후 `CarryRoom` Play Mode 시작·중지와 한국어 메뉴 표시 확인. 기존 로그를 보관하고 콘솔을 비운 새 실행 구간에서 오류 0개·경고 0개.
 - [ ] Codex 새 세션의 MCP 자동 로딩 확인.
 - [ ] macOS·Windows 빌드 및 실제 게임 동작 확인.
 
-개발 환경 설치와 실제 연결 검증을 완료했다. `CarryRoom` 씬은 열린 상태이며 변경되지 않았다. 경고 7개는 `FacilityArt`, `CarryRoom`, `ShipInteriorTrialBuild`의 기존 객체 검색 API 사용에서 발생한다. 플레이 모드·게임 빌드·사람 조작감 검증은 수행하지 않았다.
+개발 환경 설치와 실제 연결 검증을 완료했다. `CarryRoom` 씬은 열린 상태이며 변경되지 않았다. 컴파일 경고 7개는 `FacilityArt`, `CarryRoom`, `ShipInteriorTrialBuild`의 기존 객체 검색 API 사용에서 발생하며 수정하지 않았다. 메뉴 시작 확인을 넘는 실제 게임 진행·게임 빌드·사람 조작감 검증은 수행하지 않았다. 작은 Game 뷰에서 안내 문구와 종료 버튼이 겹치는 레이아웃 문제는 남아 있다.
 
-첫 가져오기 때 Unity가 [URP 전역 설정](../../NoReturns/Assets/Settings/UniversalRenderPipelineGlobalSettings.asset)의 생성된 런타임 목록만 비웠다. 설치된 URP 17.6.0의 `RenderPipelineGraphicsSettingsContainer`는 에디터에서 이 목록을 비우고 Player 빌드 중 다시 생성한다. 제작용 설정 목록과 게임 코드·씬은 변경하지 않았다. 이 자동 정규화를 기록에 포함한다.
+첫 가져오기 때 Unity가 [URP 전역 설정](../../NoReturns/Assets/Settings/UniversalRenderPipelineGlobalSettings.asset)의 생성된 런타임 목록만 비웠다. 설치된 URP 17.6.0의 `RenderPipelineGraphicsSettingsContainer`는 에디터에서 이 목록을 비우고 Player 빌드 중 다시 생성한다. 제작용 설정 목록과 씬은 변경하지 않았다. 이 자동 정규화를 기록에 포함한다.
 
 복제 직후 Windows 실행 파일 2개의 줄바꿈이 Git 변경으로 표시됐지만 원시 바이트는 HEAD와 동일했다. 기존 `.gitattributes`에 맞춰 Git 저장 내용을 정규화했고 명령 내용이 동일함을 검사했다. `tools/check_docs.py`는 Git에서 제외된 과거 `artifacts/` 결과 링크 **142개**가 없어 실패했다. 새 문서로 추가된 실패는 없으며 과거 검증 결과를 새로 만들어 채우지 않는다.
 

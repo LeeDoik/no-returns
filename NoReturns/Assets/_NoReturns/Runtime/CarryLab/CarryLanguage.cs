@@ -12,7 +12,7 @@ public static class CarryLanguage {
         persist=testFolder==null;
         preference=testFolder==null?"NoReturns.Language":"NoReturns.Language.Test."+testFolder;
         Korean=!persist||PlayerPrefs.GetString(preference,"ko")!="en";
-        Font=UnityEngine.Font.CreateDynamicFontFromOSFont(new[]{"Malgun Gothic","맑은 고딕","Arial"},20);
+        Font=Resources.Load<Font>("Fonts/NotoSansKR-Regular");
     }
     public static void Toggle(){Korean=!Korean;if(!persist)return;try{PlayerPrefs.SetString(preference,Korean?"ko":"en");PlayerPrefs.Save();}catch(PlayerPrefsException){Debug.LogWarning("Language changed for this session; preference could not be saved.");}}
     public static string Text(string english){
