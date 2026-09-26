@@ -1,5 +1,7 @@
 # Testing and release checklist
 
+2026-09-26: [Mac development environment](macos-development.en.md) — verified Unity 6000.6.0f1 arm64/Windows Mono installation, CLI/PATH, LFS source restoration and Codex MCP configuration recognition. Compilation, live connectivity and game builds require separate checks after license selection/activation.
+
 0.9.1: [Cooperative HUD and evidence](crew-hud.en.md). Reorganized gameplay instructions and four-player states. Human readability assessment remains outstanding.
 
 ## Current 0.9.0 — four-player cooperation

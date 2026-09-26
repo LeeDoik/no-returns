@@ -2,6 +2,16 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-09-26 — Apple Silicon Mac development environment
+
+Cloned the existing Windows repository on Mac and configured official Unity CLI 1.0.0-beta.11, Git LFS 3.8.0, login-shell PATH, Hub project registration and local Codex MCP settings. The user selected macOS and Windows. Retain Editor 6000.6.0f1 and Pipeline 0.7.0-exp.1. No game code, scene or asset changes. [Mac environment guide](../current/macos-development.en.md).
+
+Verification: restored 296 LFS files totaling 852,525,080 bytes, passed final integrity validation and found zero remaining pointers. Verified that Codex CLI reads the project MCP configuration and a fresh login shell resolves `unity --version`. Editor and Windows Mono installation checks passed; confirmed the arm64 executable and macOS build-support files. Sign-in works, but no license is active; the user's license selection is pending. Compilation, live connectivity, automatic MCP loading in a new Codex session and gameplay on either platform were not tested. The existing document check failed on 142 ignored `artifacts/` links, with no new failures. Two `.cmd` line-ending changes appeared immediately after cloning although raw bytes matched HEAD.
+
+Normalized both `.cmd` files to the existing `.gitattributes` and verified unchanged command content. Detected and stopped incorrect architecture selection with CLI `--resume`, verified the official Apple Silicon file's size/checksum and installed without the resume option.
+
+The current origin is public, contrary to the repository's private-remote documentation. Personal paths and authentication configuration remain local; this environment work is not pushed to the remote.
+
 ## 2026-09-12 — SPACE-01 direction reset and previous-game deletion
 
 The user retained NO RETURNS and chose PSX space mystery, space delivery, dangerous creatures, reinvested pay and harder jobs as the new product direction. Spacecraft travel/landing is automatic after route selection. Mystery identity and detailed failure/economy rules remain undecided.

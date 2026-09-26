@@ -49,6 +49,8 @@
 
 ## 프로젝트 사용
 
+macOS에서 이어서 개발할 때는 [맥 개발 환경·직접 CLI 명령](macos-development.ko.md)을 따른다. 아래 `.cmd`와 PowerShell 실행 안내는 Windows용이다.
+
 [01_Open_Project.cmd](../../01_Open_Project.cmd)로 새 Unity 프로젝트를 연다. 프로젝트는 `NoReturns/`이며 코드·씬·에셋은 `Assets/_NoReturns/` 아래에 둔다. 장면·프리팹·머티리얼은 Unity 편집기 또는 공식 MCP를 통해 수정한다. 현재 Bootstrap은 빈 출발점이다.
 
 `powershell -NoProfile -File tools/unity.ps1 check`는 기반 설정을 검사한다. `setup`은 초기 기반을 구성하는 명령이며 사용자 제작 장면을 대신하는 게임 생성 명령이 아니다. `python tools/unity_mcp.py editor_status`로 연결을 확인한다. MCP는 게임 멀티플레이 서버가 아니다.

@@ -13,6 +13,8 @@
 
 [프로젝트 실행](../01_Open_Project.cmd) · [문서 관리 규칙](../AGENTS.md)
 
+[macOS 개발 환경·Unity CLI](current/macos-development.ko.md)
+
 [보수·실패·상점 설계 — 검증용 제안](current/economy.ko.md)
 
 [실행 가능한 운반 실험 — 조작·현재 검증](current/carry-test.ko.md)

@@ -5,4 +5,4 @@ if not exist NoReturns.exe (
  pause
  exit /b 1
 )
-start "" NoReturns.exe 
+start "" NoReturns.exe

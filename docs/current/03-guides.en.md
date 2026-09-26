@@ -49,6 +49,8 @@ As of 0.6.0, host progression saves restore wallet, beacon license and successfu
 
 ## Using the project
 
+For development on macOS, follow the [Mac environment and direct CLI commands](macos-development.en.md). The `.cmd` and PowerShell instructions below are for Windows.
+
 Open the fresh Unity project with [01_Open_Project.cmd](../../01_Open_Project.cmd). The project is `NoReturns/`; code, scenes and assets belong under `Assets/_NoReturns/`. Edit scenes, prefabs and materials through Unity Editor or official MCP. Bootstrap is currently an empty starting point.
 
 `powershell -NoProfile -File tools/unity.ps1 check` validates foundation settings. `setup` configures the initial foundation; it does not generate a game or replace authored scenes. Check connectivity with `python tools/unity_mcp.py editor_status`. MCP is not the game's multiplayer server.

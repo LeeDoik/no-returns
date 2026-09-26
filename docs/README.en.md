@@ -13,6 +13,8 @@
 
 [Open project](../01_Open_Project.cmd) · [Documentation rules](../AGENTS.md)
 
+[macOS development environment and Unity CLI](current/macos-development.en.md)
+
 [Pay, failure and shop design — test proposal](current/economy.en.md)
 
 [Executable carrying experiment — controls and current validation](current/carry-test.en.md)
