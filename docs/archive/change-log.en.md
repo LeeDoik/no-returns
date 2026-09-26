@@ -2,6 +2,10 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-09-26 — Sequence new Cinder art production
+
+The user described the goal of completing one scene in the previously chosen art direction and clarified that its resources still need to be created. Withdrew the assumption of placing ready-made assets and documented a proposed sequence in the [current Cinder guide](../current/cinder-blockout.en.md): production baseline, warehouse entrance/passage component concepts, models/reference area, then the full scene. Reviewed the existing environment concept and structure-first rules without treating old reuse candidates as completed current assets. No code, scene, resource generation, spending or play changes. Checked language parity and links; documentation has no new failures beyond 142 existing missing artifact links. New appearances and the first area are proposals; user quality approval remains unverified. Local commit only.
+
 ## 2026-09-26 — Correct the current development scene
 
 The user identified `Play_Cinder_Blockout.cmd` as the latest build. Compared its launch path, build code and Git history: CINDER-BLOCKOUT-01 from commit `6f4922a` dated 2026-09-17 builds `CinderDepotBlockout.unity` into `builds/CinderBlockout/NoReturns-CinderBlockout.exe` for Windows. The earlier Mac check used the separate, older `CarryRoom` experiment and does not establish validation of the latest map. Corrected the initial target selection.
