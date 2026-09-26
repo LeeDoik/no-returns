@@ -2,6 +2,12 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-09-26 — Editor, CLI and MCP verification after Mac license activation
+
+Confirmed active Unity Personal licensing after the user completed activation. The user directly accepted the first-launch Editor terms. Completed project import and compilation in Unity 6000.6.0f1 arm64; confirmed `ready`, `compiling=false`, `compilationFailed=false`, zero Console errors and 7 existing deprecated-API warnings. Passed discovery of 151 CLI commands, C# `eval`, opening `CarryRoom` and querying its hierarchy. A separate stdio MCP client also completed initialization → listing 151 tools → invoking `editor_status`. [Current environment](../current/macos-development.en.md).
+
+No game code or scene changes. Included only Unity's automatic clearing of the generated runtime list in URP global settings. This matches `RenderPipelineGraphicsSettingsContainer.OnAfterDeserialize/OnBeforeSerialize` in installed URP 17.6.0; authored settings are unchanged. Checked bilingual states/versions and links, with no new failures beyond 142 existing missing artifacts links. Automatic MCP exposure in a new Codex desktop session, Play mode, game builds and human controls remain unverified. Commit locally only; do not push to the public remote.
+
 ## 2026-09-26 — Apple Silicon Mac development environment
 
 Cloned the existing Windows repository on Mac and configured official Unity CLI 1.0.0-beta.11, Git LFS 3.8.0, login-shell PATH, Hub project registration and local Codex MCP settings. The user selected macOS and Windows. Retain Editor 6000.6.0f1 and Pipeline 0.7.0-exp.1. No game code, scene or asset changes. [Mac environment guide](../current/macos-development.en.md).

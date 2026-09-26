@@ -52,13 +52,16 @@ Actual macOS play, distribution signing/notarization and Windows player testing 
 - [x] Repository cloned; CLI version and PATH in a fresh login shell verified.
 - [x] Restored **296** LFS files totaling **852,525,080 bytes**, with zero remaining pointers and a successful `git lfs fsck`.
 - [x] Unity account signed in, project registered with Hub and project-specific Codex MCP configured.
-- [ ] Verify an active Unity license.
+- [x] Verified active Unity Personal licensing. The user directly accepted the first-launch Editor terms.
 - [x] Editor and Windows Mono module installed and `unity editors verify` passed. Verified the executable's `arm64` architecture and the macOS build-support directory.
-- [ ] Verify project compilation and a CLI connection to the running Editor.
+- [x] Verified compilation and live CLI connectivity: `ready`, no compilation failure, zero Console errors and 7 existing deprecated-API warnings.
+- [x] Passed discovery of 151 CLI commands, C# `eval`, opening/querying the `CarryRoom` scene, and MCP initialization/tool listing/actual `editor_status` invocation.
 - [ ] Verify automatic MCP loading in a new Codex session.
 - [ ] Verify macOS/Windows builds and actual gameplay.
 
-Installation is complete. Unity sign-in works, but there is no active license; Personal versus an existing license selection is pending. After activation, open the project to verify compilation and live CLI connectivity. Installation success is not recorded as successful gameplay.
+Development environment installation and live connection verification are complete. `CarryRoom` is open and unmodified. The 7 warnings concern existing object-search APIs in `FacilityArt`, `CarryRoom` and `ShipInteriorTrialBuild`. Play mode, game builds and human controls were not tested.
+
+During initial import, Unity cleared only the generated runtime list in the [URP global settings](../../NoReturns/Assets/Settings/UniversalRenderPipelineGlobalSettings.asset). The installed URP 17.6.0 `RenderPipelineGraphicsSettingsContainer` clears this list in the Editor and regenerates it during Player builds. Authored settings, game code and scenes remain unchanged. This automatic normalization is included in the record.
 
 Immediately after cloning, Git reported line-ending changes in two Windows launchers, although their raw bytes matched HEAD. Normalized their stored content to the existing `.gitattributes` and verified unchanged command content. `tools/check_docs.py` failed on **142** historical `artifacts/` links excluded from Git. The new documentation introduces no additional failures; do not fabricate historical validation outputs to fill the gaps.
 

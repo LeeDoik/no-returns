@@ -2,6 +2,12 @@
 
 [English](change-log.en.md)
 
+## 2026-09-26 — Mac 라이선스 활성화 후 에디터·CLI·MCP 검증
+
+사용자의 활성화 완료 후 Unity Personal 활성 상태를 확인했다. 첫 실행 에디터 약관은 사용자가 직접 동의했다. Unity 6000.6.0f1 arm64에서 프로젝트 가져오기·컴파일을 마치고 `ready`, `compiling=false`, `compilationFailed=false`, 콘솔 오류 0개와 기존 폐기 예정 API 경고 7개를 확인했다. CLI 명령 151개 조회와 C# `eval`, `CarryRoom` 열기·계층 조회를 통과했다. 별도 stdio MCP 클라이언트의 초기화 → 도구 목록 151개 → `editor_status` 호출도 성공했다. [현재 환경](../current/macos-development.ko.md).
+
+게임 코드·씬 변경 없음. Unity가 URP 전역 설정의 생성된 런타임 목록을 자동으로 비운 차이만 함께 기록했다. 설치된 URP 17.6.0의 `RenderPipelineGraphicsSettingsContainer.OnAfterDeserialize/OnBeforeSerialize` 동작과 일치하며 제작용 설정은 그대로다. 문서의 한영 상태·버전과 링크를 확인했고 기존 누락 artifacts 링크 142개 외 새 오류는 없다. 새 Codex 데스크톱 세션의 MCP 자동 노출·플레이 모드·게임 빌드·사람 조작감은 미검증이다. 로컬 커밋만 하며 공개 원격에는 푸시하지 않는다.
+
 ## 2026-09-26 — Apple Silicon Mac 개발 환경 구성
 
 Windows에서 개발하던 저장소를 Mac에 복제하고 공식 Unity CLI 1.0.0-beta.11, Git LFS 3.8.0, 로그인 셸 PATH, Hub 프로젝트 등록과 로컬 Codex MCP 설정을 구성했다. 사용자 대상은 macOS와 Windows다. 기존 에디터 6000.6.0f1과 Pipeline 0.7.0-exp.1을 유지한다. 게임 코드·씬·에셋 변경 없음. [맥 환경 가이드](../current/macos-development.ko.md).

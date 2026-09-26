@@ -1,6 +1,6 @@
 # 테스트·출시 체크리스트
 
-2026-09-26: [Mac 개발 환경](macos-development.ko.md) — Unity 6000.6.0f1 arm64·Windows Mono 모듈 설치 검사, CLI/PATH, LFS 원본 복원, Codex MCP 설정 인식 통과. 라이선스 선택·활성화 이후 컴파일·실제 연결·게임 빌드는 별도 검증한다.
+2026-09-26: [Mac 개발 환경](macos-development.ko.md) — Unity 6000.6.0f1 arm64·Windows Mono 설치, CLI/PATH, LFS 복원, Personal 활성화, 컴파일·CLI·MCP 실제 호출 통과. 명령 151개, 콘솔 오류 0개·기존 폐기 예정 API 경고 7개. `CarryRoom`을 변경 없이 열어 확인했다. 새 Codex 세션의 MCP 자동 노출, 플레이 모드와 양 플랫폼 게임 빌드는 미검증이다.
 
 0.9.1: [협동 HUD·현재 검증](crew-hud.ko.md). 플레이 안내와 4인 상태를 정리했다. 실제 사람 가독성 평가는 남아 있다.
 
