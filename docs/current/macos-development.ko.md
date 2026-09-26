@@ -4,6 +4,8 @@
 
 2026-09-26. 기존 Windows 프로젝트를 Apple Silicon Mac에서 이어서 개발한다. 사용자 지정 대상은 macOS와 Windows다. 게임 기능과 에디터·패키지 버전은 이 환경 구성에서 변경하지 않는다.
 
+현재 이어서 개발할 대상은 [CINDER-BLOCKOUT-01](cinder-blockout.ko.md)의 `CinderDepotBlockout` 씬이다. 사용자가 지정한 `Play_Cinder_Blockout.cmd`와 2026-09-17 커밋 `6f4922a`가 이 장면의 Windows 실행본을 가리킨다. 초기 환경 검사에 사용한 `CarryRoom`은 이전 운반 실험이며 최신 맵 검증을 대신하지 않는다. `builds/`는 Git 제외 대상이어서 기존 Windows 실행본은 이 맥에 복원되지 않았다.
+
 ## 구성
 
 | 구성 요소 | 기준 및 역할 |
@@ -27,6 +29,7 @@ unity --version
 unity open ./NoReturns
 unity status --project-path "$PWD/NoReturns" --format json
 unity command editor_status --caller plugin --skill unity-cli --project-path "$PWD/NoReturns" --format json
+unity command open_scene --path Assets/_NoReturns/Scenes/CinderDepotBlockout.unity --caller plugin --skill unity-cli --project-path "$PWD/NoReturns" --format json
 unity command --caller plugin --skill unity-cli --project-path "$PWD/NoReturns"
 ```
 
@@ -38,7 +41,7 @@ Codex에 자연어로 요청하면 C# 수정 후 컴파일과 실제 동작을 �
 
 다른 컴퓨터에서도 `git lfs install --local`, `git lfs pull`, `git lfs fsck` 순으로 에셋을 복원·검사한 뒤 에디터를 연다. `.meta`는 에셋과 함께 관리하고 캐시·로그·빌드·인증정보는 커밋하지 않는다. Windows용 `.cmd`, `tools/unity.ps1`, `tools/unity_mcp.py`에는 Windows 경로가 있으므로 맥에서는 직접 CLI 명령을 사용한다.
 
-다음은 CLI 사용 예이며 성공한 게임 빌드의 기록이 아니다. 현재 [기본 빌드 장면 목록](../../NoReturns/ProjectSettings/EditorBuildSettings.asset)은 `Bootstrap`만 활성화한다. 실제 게임 실행본을 만들려면 먼저 에디터에서 `CarryRoom` 등 의도한 장면을 포함하는 빌드 설정을 만든다. 기존 `CarryBuild`, `ShipInteriorTrialBuild`, `CinderBlockoutBuild`는 Windows 대상으로 고정돼 있으므로 그대로 macOS 빌드에 사용하지 않는다. 변경을 저장하고 이 프로젝트의 에디터를 닫은 뒤 실행한다.
+다음은 CLI 사용 예이며 성공한 게임 빌드의 기록이 아니다. 현재 [기본 빌드 장면 목록](../../NoReturns/ProjectSettings/EditorBuildSettings.asset)은 `Bootstrap`만 활성화한다. 실제 게임 실행본을 만들려면 먼저 에디터에서 `CinderDepotBlockout` 장면을 포함하는 빌드 설정을 만든다. 기존 `CarryBuild`, `ShipInteriorTrialBuild`, `CinderBlockoutBuild`는 Windows 대상으로 고정돼 있으므로 그대로 macOS 빌드에 사용하지 않는다. Cinder의 기존 Build 메뉴는 장면을 재생성하므로 직접 수정한 씬을 보존하려면 사용하지 않는다. 변경을 저장하고 이 프로젝트의 에디터를 닫은 뒤 실행한다.
 
 ```sh
 unity build ./NoReturns --target StandaloneOSX --output-path "$PWD/builds/macOS/NO_RETURNS.app"
@@ -71,10 +74,11 @@ unity command eval_file --file "$PWD/tools/unity_checks/FontCheck.cs" --caller p
 - [x] 프로젝트 컴파일과 열린 에디터의 CLI 연결 확인. `ready`, 컴파일 실패 없음, 콘솔 오류 0개, 기존 폐기 예정 API 경고 7개.
 - [x] CLI 명령 151개 조회, C# `eval`, `CarryRoom` 씬 열기·계층 조회, MCP 초기화·도구 목록·`editor_status` 실제 호출 통과.
 - [x] 포함 글꼴 검사, 재컴파일 후 `CarryRoom` Play Mode 시작·중지와 한국어 메뉴 표시 확인. 기존 로그를 보관하고 콘솔을 비운 새 실행 구간에서 오류 0개·경고 0개.
+- [x] 최신 작업 대상을 `CinderDepotBlockout`으로 정정하고 기존 씬을 변경 없이 열어 루트 계층 확인. 이 씬의 Mac Play·빌드는 아직 확인하지 않았다.
 - [ ] Codex 새 세션의 MCP 자동 로딩 확인.
 - [ ] macOS·Windows 빌드 및 실제 게임 동작 확인.
 
-개발 환경 설치와 실제 연결 검증을 완료했다. `CarryRoom` 씬은 열린 상태이며 변경되지 않았다. 컴파일 경고 7개는 `FacilityArt`, `CarryRoom`, `ShipInteriorTrialBuild`의 기존 객체 검색 API 사용에서 발생하며 수정하지 않았다. 메뉴 시작 확인을 넘는 실제 게임 진행·게임 빌드·사람 조작감 검증은 수행하지 않았다. 작은 Game 뷰에서 안내 문구와 종료 버튼이 겹치는 레이아웃 문제는 남아 있다.
+개발 환경 설치와 실제 연결 검증을 완료했다. 현재 `CinderDepotBlockout` 씬을 변경 없이 열어 두었다. 컴파일 경고 7개는 `FacilityArt`, `CarryRoom`, `ShipInteriorTrialBuild`의 기존 객체 검색 API 사용에서 발생하며 수정하지 않았다. 메뉴 시작 확인을 넘는 실제 게임 진행·게임 빌드·사람 조작감 검증은 수행하지 않았다. 작은 Game 뷰에서 안내 문구와 종료 버튼이 겹치는 레이아웃 문제는 남아 있다.
 
 첫 가져오기 때 Unity가 [URP 전역 설정](../../NoReturns/Assets/Settings/UniversalRenderPipelineGlobalSettings.asset)의 생성된 런타임 목록만 비웠다. 설치된 URP 17.6.0의 `RenderPipelineGraphicsSettingsContainer`는 에디터에서 이 목록을 비우고 Player 빌드 중 다시 생성한다. 제작용 설정 목록과 씬은 변경하지 않았다. 이 자동 정규화를 기록에 포함한다.
 

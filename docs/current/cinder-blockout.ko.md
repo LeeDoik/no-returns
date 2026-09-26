@@ -56,3 +56,5 @@ WASD 이동, 마우스 시야, E 상자 들기, Q 내려놓기, Shift 빈손 달
 
 
 Windows 실행 창에서도 한국어 HUD·상자·건물 표시를 확인했다. 시작 예외는 없지만 기존 URP DepthOfField/Panini 후처리 셰이더 제거 경고가 남는다. 언어 전환 및 E/Q 전체 조작의 사람 검증은 남겨 둔다.
+
+2026-09-26 정정: 최신 개발 대상은 이 장면이다. 맥에서는 Windows용 `.cmd` 대신 Unity에서 위 `CinderDepotBlockout.unity`를 연다. [Mac CLI 안내](macos-development.ko.md). 저장소의 기존 씬 열기·계층 확인만 완료했으며 Mac Play·빌드는 미검증이다. 초기 Mac 환경 검사의 `CarryRoom` 실행 결과는 이 장면의 검증 결과가 아니다.

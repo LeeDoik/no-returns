@@ -2,6 +2,12 @@
 
 [English](change-log.en.md)
 
+## 2026-09-26 — 최신 개발 장면 정정
+
+사용자가 `Play_Cinder_Blockout.cmd`를 최신 빌드로 지목해 실행 경로·생성 코드·Git 이력을 대조했다. 2026-09-17 커밋 `6f4922a`의 CINDER-BLOCKOUT-01은 `CinderDepotBlockout.unity`를 Windows 실행본 `builds/CinderBlockout/NoReturns-CinderBlockout.exe`로 빌드한다. 이전 Mac 확인의 `CarryRoom`은 별도 옛 운반 실험이었으며 최신 맵 확인으로 해석하면 안 된다. 초기 작업 대상 선택을 정정했다.
+
+기존 Cinder 씬을 CLI로 열고 active=true, dirty=false와 우주선·기본 도형 맵·직원·조명 루트를 확인했다. 코드·씬·빌드 설정 변경과 재생성·Play·빌드 실행 없음. `builds/`는 Git 제외 대상이며 해당 Windows 실행 파일은 이 맥에 없다. 현재 Mac 안내·장면 안내·검증 범위를 한영으로 갱신했다. 문서 검사는 기존 누락 artifacts 링크 142개 외 새 실패 없음. 로컬 커밋만 한다.
+
 ## 2026-09-26 — Mac 한국어 글꼴과 코드 재로딩 호환성
 
 환경 검증 중 `CarryRoom` 메뉴에서 Windows 시스템 글꼴 경고가 반복됐다. 설치된 Mac 글꼴로 이름을 바꿔도 TextCore의 글꼴 데이터 로딩이 실패함을 확인했다. [공용 글꼴](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryLanguage.cs)을 Resources의 Noto Sans KR Regular로 교체하고 원본 OTF 4,644,748바이트·OFL 원문·Unity 생성 메타데이터를 추가했다. 공식 notofonts/noto-cjk 파일과 Git blob 해시가 일치하며 수정하지 않았다. OTF는 LFS로 관리한다. 메뉴와 HUD 모두 같은 초기화 경로를 사용한다.

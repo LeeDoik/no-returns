@@ -4,6 +4,8 @@
 
 2026-09-26. Continue the existing Windows project on an Apple Silicon Mac. The user selected macOS and Windows as targets. This setup does not change game features or Editor/package versions.
 
+Continue development in the `CinderDepotBlockout` scene from [CINDER-BLOCKOUT-01](cinder-blockout.en.md). The user-identified `Play_Cinder_Blockout.cmd` and commit `6f4922a` dated 2026-09-17 point to its Windows player. `CarryRoom`, used for initial environment checks, is an earlier carrying experiment; those checks do not validate the latest map. The existing Windows player was not restored on this Mac because Git excludes `builds/`.
+
 ## Components
 
 | Component | Version and purpose |
@@ -27,6 +29,7 @@ unity --version
 unity open ./NoReturns
 unity status --project-path "$PWD/NoReturns" --format json
 unity command editor_status --caller plugin --skill unity-cli --project-path "$PWD/NoReturns" --format json
+unity command open_scene --path Assets/_NoReturns/Scenes/CinderDepotBlockout.unity --caller plugin --skill unity-cli --project-path "$PWD/NoReturns" --format json
 unity command --caller plugin --skill unity-cli --project-path "$PWD/NoReturns"
 ```
 
@@ -38,7 +41,7 @@ This Mac's Codex MCP configuration is at `.codex/config.toml` in the repository 
 
 On another computer, run `git lfs install --local`, `git lfs pull` and `git lfs fsck` to restore and check assets before opening the Editor. Track `.meta` files with assets; exclude caches, logs, builds and credentials. Windows `.cmd` launchers, `tools/unity.ps1` and `tools/unity_mcp.py` contain Windows paths, so use direct CLI commands on Mac.
 
-These CLI examples are not records of successful game builds. The current [default build-scene list](../../NoReturns/ProjectSettings/EditorBuildSettings.asset) enables only `Bootstrap`. Before producing a playable game, configure the intended scenes, such as `CarryRoom`, in the Editor. Existing `CarryBuild`, `ShipInteriorTrialBuild` and `CinderBlockoutBuild` scripts hard-code Windows and cannot be used unchanged for macOS builds. Save changes and close this project's Editor first.
+These CLI examples are not records of successful game builds. The current [default build-scene list](../../NoReturns/ProjectSettings/EditorBuildSettings.asset) enables only `Bootstrap`. Before producing a playable game, configure the `CinderDepotBlockout` scene in the Editor. Existing `CarryBuild`, `ShipInteriorTrialBuild` and `CinderBlockoutBuild` scripts hard-code Windows and cannot be used unchanged for macOS builds. The existing Cinder Build menu regenerates the scene; do not use it when preserving manual scene edits. Save changes and close this project's Editor first.
 
 ```sh
 unity build ./NoReturns --target StandaloneOSX --output-path "$PWD/builds/macOS/NO_RETURNS.app"
@@ -71,10 +74,11 @@ The [check](../../tools/unity_checks/FontCheck.cs) verifies dynamic-font loading
 - [x] Verified compilation and live CLI connectivity: `ready`, no compilation failure, zero Console errors and 7 existing deprecated-API warnings.
 - [x] Passed discovery of 151 CLI commands, C# `eval`, opening/querying the `CarryRoom` scene, and MCP initialization/tool listing/actual `editor_status` invocation.
 - [x] Passed bundled-font checks, starting/stopping `CarryRoom` Play mode after recompilation, and visual inspection of the Korean menu. After preserving previous logs and clearing the Console, the new run recorded zero errors and zero warnings.
+- [x] Corrected the current target to `CinderDepotBlockout`, opened the existing scene without changes and checked its root hierarchy. Mac Play mode/builds for this scene remain unverified.
 - [ ] Verify automatic MCP loading in a new Codex session.
 - [ ] Verify macOS/Windows builds and actual gameplay.
 
-Development environment installation and live connection verification are complete. `CarryRoom` is open and unmodified. The 7 compiler warnings concern existing object-search APIs in `FacilityArt`, `CarryRoom` and `ShipInteriorTrialBuild` and were not fixed. Gameplay beyond menu startup, game builds and human controls were not tested. A layout issue remains: the help text overlaps the quit button in the small Game view.
+Development environment installation and live connection verification are complete. `CinderDepotBlockout` is now open and unmodified. The 7 compiler warnings concern existing object-search APIs in `FacilityArt`, `CarryRoom` and `ShipInteriorTrialBuild` and were not fixed. Gameplay beyond menu startup, game builds and human controls were not tested. A layout issue remains: the help text overlaps the quit button in the small Game view.
 
 During initial import, Unity cleared only the generated runtime list in the [URP global settings](../../NoReturns/Assets/Settings/UniversalRenderPipelineGlobalSettings.asset). The installed URP 17.6.0 `RenderPipelineGraphicsSettingsContainer` clears this list in the Editor and regenerates it during Player builds. Authored settings and scenes remain unchanged. This automatic normalization is included in the record.
 

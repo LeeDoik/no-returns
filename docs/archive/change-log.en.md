@@ -2,6 +2,12 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-09-26 — Correct the current development scene
+
+The user identified `Play_Cinder_Blockout.cmd` as the latest build. Compared its launch path, build code and Git history: CINDER-BLOCKOUT-01 from commit `6f4922a` dated 2026-09-17 builds `CinderDepotBlockout.unity` into `builds/CinderBlockout/NoReturns-CinderBlockout.exe` for Windows. The earlier Mac check used the separate, older `CarryRoom` experiment and does not establish validation of the latest map. Corrected the initial target selection.
+
+Opened the existing Cinder scene through CLI and verified active=true, dirty=false and the ship, primitive map, employee and daylight roots. No code, scene or build-settings changes; no regeneration, Play mode or build invocation. Git excludes `builds/`, and that Windows executable is absent on this Mac. Updated the Mac guide, scene guide and validation scope in both languages. Documentation checks have no new failures beyond 142 existing missing artifact links. Local commit only.
+
 ## 2026-09-26 — Mac Korean font and code-reload compatibility
 
 Environment verification exposed repeated Windows-system-font warnings in the `CarryRoom` menu. Selecting an installed Mac font still failed to load font data through TextCore. Changed the [shared font](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryLanguage.cs) to Noto Sans KR Regular in Resources and added the unmodified 4,644,748-byte OTF, original OFL and Unity-generated metadata. The font matches the official notofonts/noto-cjk Git blob hash. Git LFS tracks the OTF. Menus and HUD use the same initialization path.

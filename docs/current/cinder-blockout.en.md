@@ -56,3 +56,5 @@ Local evidence: `artifacts/cinder-blockout/passage.txt`, `overview.png`, `spawn.
 
 
 The standalone Windows window also displayed the Korean HUD, parcel and buildings. No startup exceptions occurred, but existing URP warnings about stripped DepthOfField/Panini post-processing shaders remain. Human validation of language switching and the full E/Q controls remains outstanding.
+
+2026-09-26 correction: this scene is the current development target. On Mac, open `CinderDepotBlockout.unity` above in Unity instead of using the Windows `.cmd`. See the [Mac CLI guide](macos-development.en.md). Only opening the existing scene and checking its hierarchy have been verified; Mac Play mode/builds remain unverified. The initial Mac environment checks of `CarryRoom` do not validate this scene.
