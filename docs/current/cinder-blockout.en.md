@@ -2,9 +2,13 @@
 
 [한국어](cinder-blockout.ko.md)
 
-## 2026-10-01 — First production-batch preparation
+## 2026-10-01 — Gray structure review scene
 
-The [first 8 warehouse-unit brief](cinder-asset-prep.en.md) specifies trial dimensions, pivots and budgets for 5 structural units (floor, wall, door frame, ceiling and corner/end finish), followed by 3 presentation units (light, sign and empty rack). Compared the saved south entrance center (-18.6,0,-8.4)m, existing 3.2×3.3m opening and 4m ceiling underside against code. The first 6m inside is a proposed review segment, not a new corridor or route change. New structural/visual production, user approval, Unity Play and builds remain incomplete. This task prepared documents only.
+[First-asset production/review](cinder-asset-prep.en.md): assembled the warehouse exterior from prefabs for 5 structural units/11 variants in separate `CinderStructureReview`. Original scene unchanged. The review disables 10 original warehouse Renderers, retains 10 Colliders and adds no Colliders. Start 3m before the south entrance; carry cargo through the first 6m and return backwards. Passed Blender/FBX and Unity import, passage/jump/cargo-pose and Mac Editor Play E/Q checks. User structural/appearance approval, standalone builds and networking/AI/delivery remain unverified. The existing blockout-generation menus below do not build this review scene.
+
+## 2026-10-01 — Pre-production preparation record
+
+The [first 8 warehouse-unit brief](cinder-asset-prep.en.md) specifies trial dimensions, pivots and budgets for 5 structural units (floor, wall, door frame, ceiling and corner/end finish), followed by 3 presentation units (light, sign and empty rack). Compared the saved south entrance center (-18.6,0,-8.4)m, existing 3.2×3.3m opening and 4m ceiling underside against code. The first 6m inside is a proposed review segment, not a new corridor or route change. That task prepared documents only. Use the entry above and its linked production guide for the current structural-production/review state.
 
 2026-09-17 · CINDER-BLOCKOUT-01 · Separate spatial-validation scene
 

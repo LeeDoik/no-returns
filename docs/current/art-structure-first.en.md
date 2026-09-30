@@ -49,3 +49,7 @@ Separate quality judgment from successful file generation. In the reference area
 This investigation verified local execution of Blender **5.2.2 LTS** and Unity CLI **1.0.0-beta.11**. Game Development Studio skills are present, but `game-dev` was not found on the current PATH, so its production/validation CLI integration remains unverified. The recommended workflow does not establish successful execution of that plugin. No new installation, model production, scene changes or spending.
 
 Official capability references: [Blender command-line automation](https://docs.blender.org/manual/en/latest/advanced/command_line/index.html), [Unity prefabs](https://docs.unity.com/en-us/engine/6000.6/manual/working-with-gameobjects/prefabs/creating), [Unity CLI](https://docs.unity.com/en-us/unity-cli/unity-cli-reference).
+
+## 2026-10-01 — Cinder gray structure production
+
+The [5-unit production/review guide](cinder-asset-prep.en.md) connects 11 Blender sources/FBXs/visual prefabs, a separate Unity scene retaining original collision, actual Play-camera views and validation evidence. This is structural production. User structural satisfaction, new-appearance approval, 3 presentation units and shared surfaces remain outstanding. The review menu regenerates the review scene; preserve manual edits in a separate copy. Gray checks do not establish final-art or game quality.

@@ -4,12 +4,13 @@
 
 ## 2026-10-01 — First Cinder asset batch
 
-[Specifications, review views and evidence boundary](cinder-asset-prep.en.md). This task covers preparation and documentation checks; historical game/build passes do not validate the new batch.
+[Specifications, review views and evidence boundary](cinder-asset-prep.en.md). This records gray production and separate review-scene checks; historical game/build passes do not validate the new batch.
 
 - [x] Compared saved warehouse geometry against builder/carrying-code values.
 - [x] Checked bilingual names, dimensions, budgets, checkbox states and local links in the first 8-unit preparation documents. Full documentation retains 142 existing missing artifact links with no new failures.
-- [ ] Check units, axes, openings, pivots, UVs, normals and reimport for 5 Blender/FBX structural units.
-- [ ] Test E/Q carrying, rotation, passage, backwards movement and empty-handed jumping in a Cinder review scene; obtain user spatial feedback.
+- [x] Checked units, axes, openings, pivots, UVs, closed surfaces, normals, reimport and Unity import for 5 structural units/11 variants.
+- [x] Passed 6 forward/backward passages, 3 jumps and 48 cargo-pose samples in the separate review scene; verified E/Q, carrying passage/return and empty-handed jumping in Mac Editor Play. Zero compile errors, 7 existing warnings, zero new Play errors/warnings.
+- [ ] Obtain user spatial, edge carrying-rotation, wall-approach and joint-quality feedback. Standalone Mac/Windows builds were not tested in this task.
 - [ ] Review new appearance images and repeat the same views after shared surfaces, light, sign and an empty rack are applied.
 - [ ] After expanding the reference area, validate actual Cinder delivery, enemy AI, networking and human cooperation. Do not mark currently unconnected systems complete.
 

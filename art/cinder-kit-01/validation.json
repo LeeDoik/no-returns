@@ -1,0 +1,333 @@
+{
+  "status": "gray structural candidate; user approval pending",
+  "units": "metres",
+  "origin": "locally authored Blender primitives; no external model or generated texture",
+  "blender_version": "5.2.2 LTS",
+  "production_units": 5,
+  "fbx_count": 11,
+  "door_clear_m": [
+    3.2,
+    3.3
+  ],
+  "parts": [
+    {
+      "name": "NR_Cinder_Floor_A",
+      "min_m": [
+        -0.6,
+        -0.2,
+        -0.6
+      ],
+      "max_m": [
+        0.6,
+        0.0,
+        0.6
+      ],
+      "size_m": [
+        1.2,
+        0.2,
+        1.2
+      ],
+      "triangles": 12,
+      "budget": 200,
+      "uv_layers": 1,
+      "material_slots": 1,
+      "closed_outward_mesh": true,
+      "pivot_m": [
+        0,
+        0,
+        0
+      ],
+      "fbx_roundtrip": "pass"
+    },
+    {
+      "name": "NR_Cinder_Wall_A",
+      "min_m": [
+        -0.6,
+        0.0,
+        -0.15
+      ],
+      "max_m": [
+        0.6,
+        4.0,
+        0.15
+      ],
+      "size_m": [
+        1.2,
+        4.0,
+        0.3
+      ],
+      "triangles": 12,
+      "budget": 400,
+      "uv_layers": 1,
+      "material_slots": 1,
+      "closed_outward_mesh": true,
+      "pivot_m": [
+        0,
+        0,
+        0
+      ],
+      "fbx_roundtrip": "pass"
+    },
+    {
+      "name": "NR_Cinder_Wall_Fill035",
+      "min_m": [
+        -0.175,
+        0.0,
+        -0.15
+      ],
+      "max_m": [
+        0.175,
+        4.0,
+        0.15
+      ],
+      "size_m": [
+        0.35,
+        4.0,
+        0.3
+      ],
+      "triangles": 12,
+      "budget": 400,
+      "uv_layers": 1,
+      "material_slots": 1,
+      "closed_outward_mesh": true,
+      "pivot_m": [
+        0,
+        0,
+        0
+      ],
+      "fbx_roundtrip": "pass"
+    },
+    {
+      "name": "NR_Cinder_Wall_Fill090",
+      "min_m": [
+        -0.45,
+        0.0,
+        -0.15
+      ],
+      "max_m": [
+        0.45,
+        4.0,
+        0.15
+      ],
+      "size_m": [
+        0.9,
+        4.0,
+        0.3
+      ],
+      "triangles": 12,
+      "budget": 400,
+      "uv_layers": 1,
+      "material_slots": 1,
+      "closed_outward_mesh": true,
+      "pivot_m": [
+        0,
+        0,
+        0
+      ],
+      "fbx_roundtrip": "pass"
+    },
+    {
+      "name": "NR_Cinder_DoorFrame_A",
+      "min_m": [
+        -1.9,
+        0.0,
+        -0.15
+      ],
+      "max_m": [
+        1.9,
+        4.0,
+        0.15
+      ],
+      "size_m": [
+        3.8,
+        4.0,
+        0.3
+      ],
+      "triangles": 36,
+      "budget": 1200,
+      "uv_layers": 1,
+      "material_slots": 1,
+      "closed_outward_mesh": true,
+      "pivot_m": [
+        0,
+        0,
+        0
+      ],
+      "fbx_roundtrip": "pass"
+    },
+    {
+      "name": "NR_Cinder_Ceiling_A",
+      "min_m": [
+        -0.6,
+        0.0,
+        -0.6
+      ],
+      "max_m": [
+        0.6,
+        0.3,
+        0.6
+      ],
+      "size_m": [
+        1.2,
+        0.3,
+        1.2
+      ],
+      "triangles": 12,
+      "budget": 600,
+      "uv_layers": 1,
+      "material_slots": 1,
+      "closed_outward_mesh": true,
+      "pivot_m": [
+        0,
+        0,
+        0
+      ],
+      "fbx_roundtrip": "pass"
+    },
+    {
+      "name": "NR_Cinder_Ceiling_Edge",
+      "min_m": [
+        -0.075,
+        0.0,
+        -0.6
+      ],
+      "max_m": [
+        0.075,
+        0.3,
+        0.6
+      ],
+      "size_m": [
+        0.15,
+        0.3,
+        1.2
+      ],
+      "triangles": 12,
+      "budget": 600,
+      "uv_layers": 1,
+      "material_slots": 1,
+      "closed_outward_mesh": true,
+      "pivot_m": [
+        0,
+        0,
+        0
+      ],
+      "fbx_roundtrip": "pass"
+    },
+    {
+      "name": "NR_Cinder_Ceiling_Corner",
+      "min_m": [
+        -0.075,
+        0.0,
+        -0.075
+      ],
+      "max_m": [
+        0.075,
+        0.3,
+        0.075
+      ],
+      "size_m": [
+        0.15,
+        0.3,
+        0.15
+      ],
+      "triangles": 12,
+      "budget": 600,
+      "uv_layers": 1,
+      "material_slots": 1,
+      "closed_outward_mesh": true,
+      "pivot_m": [
+        0,
+        0,
+        0
+      ],
+      "fbx_roundtrip": "pass"
+    },
+    {
+      "name": "NR_Cinder_Beam_A",
+      "min_m": [
+        -0.6,
+        0.0,
+        -0.15
+      ],
+      "max_m": [
+        0.6,
+        0.3,
+        0.15
+      ],
+      "size_m": [
+        1.2,
+        0.3,
+        0.3
+      ],
+      "triangles": 12,
+      "budget": 600,
+      "uv_layers": 1,
+      "material_slots": 1,
+      "closed_outward_mesh": true,
+      "pivot_m": [
+        0,
+        0,
+        0
+      ],
+      "fbx_roundtrip": "pass"
+    },
+    {
+      "name": "NR_Cinder_Corner_A",
+      "min_m": [
+        -0.15,
+        0.0,
+        -0.15
+      ],
+      "max_m": [
+        0.15,
+        4.0,
+        0.15
+      ],
+      "size_m": [
+        0.3,
+        4.0,
+        0.3
+      ],
+      "triangles": 12,
+      "budget": 600,
+      "uv_layers": 1,
+      "material_slots": 1,
+      "closed_outward_mesh": true,
+      "pivot_m": [
+        0,
+        0,
+        0
+      ],
+      "fbx_roundtrip": "pass"
+    },
+    {
+      "name": "NR_Cinder_End_A",
+      "min_m": [
+        -0.075,
+        0.0,
+        -0.15
+      ],
+      "max_m": [
+        0.075,
+        4.0,
+        0.15
+      ],
+      "size_m": [
+        0.15,
+        4.0,
+        0.3
+      ],
+      "triangles": 12,
+      "budget": 600,
+      "uv_layers": 1,
+      "material_slots": 1,
+      "closed_outward_mesh": true,
+      "pivot_m": [
+        0,
+        0,
+        0
+      ],
+      "fbx_roundtrip": "pass"
+    }
+  ]
+}

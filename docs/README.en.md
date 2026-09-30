@@ -2,7 +2,9 @@
 
 [한국어](README.md)
 
-[Assets to make next — first 8 Cinder units](current/cinder-asset-prep.en.md): 5 structural units → light, sign and rack. Dimensions, pivots, surface budgets and review sequence.
+[Assets to review now — 5 gray Cinder structural units](current/cinder-asset-prep.en.md): 11 sources, separate Unity review scene and automated checks complete. Light, sign and rack follow user structural review.
+
+Existing Listener, baton and ship gameplay code/scenes are preserved. See [existing gameplay versus Cinder review scenes](current/cinder-asset-prep.en.md#location-of-existing-gameplay-systems). Gameplay integration into Cinder remains incomplete.
 
 2026-09-12 · SPACE-01. The current direction is PSX space-delivery mystery. These documents supersede previous plans.
 

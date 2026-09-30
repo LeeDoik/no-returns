@@ -4,7 +4,9 @@
 
 ## 2026-10-01 — Next asset task
 
-The [preparation brief](cinder-asset-prep.en.md) specifies names, trial dimensions, pivots, surface budgets and review conditions for the first 8 units. Next production is 5 gray structural units (floor, wall, door frame, ceiling and corner/end finish) plus a small assembly sample. Add light, sign and an empty rack after user structural review and new-appearance review. Model production, new images, Unity integration, Play and final quality review remain incomplete. Expand next to receipt-function assets, suppression/warning signals and other buildings. The 8 pre-existing ship-material changes are outside this task.
+Produced the 5 gray structural units (11 sources/FBXs/prefabs) and separate `CinderStructureReview` scene described in the [production/review guide](cinder-asset-prep.en.md). Completed Blender/FBX and Unity-import checks, passage/jump/cargo-pose checks, E/Q carrying/return/jump checks in Mac Editor Play and actual-camera image inspection. Next is direct user walking to assess space and cargo visibility. Add shared surfaces, light, sign and an empty rack after user structural and new-appearance reviews. User quality approval, standalone builds and final appearance remain incomplete. Expand next to receipt-function assets, suppression/warning signals and other buildings. The 8 pre-existing ship-material changes are outside this task.
+
+Cinder gameplay integration also remains. Review, connect and revalidate existing `CarryRoom` Listener navigation, baton and ship/delivery coordinates against current Cinder space. Their absence from the gray scene reflects missing integration, not deleted code.
 
 0.9.1: [Cooperative HUD and evidence](crew-hud.en.md). Reorganized gameplay instructions and four-player states. Human readability assessment remains outstanding.
 

@@ -49,3 +49,7 @@
 이번 조사에서 로컬 Blender **5.2.2 LTS**와 Unity CLI **1.0.0-beta.11** 실행을 확인했다. Game Development Studio 스킬은 존재하지만 현재 PATH에서 `game-dev` 실행 파일을 찾지 못했으므로 해당 CLI의 제작·검수 연결은 미검증이다. 추천 작업 체계가 그 플러그인의 실행 성공을 뜻하지 않는다. 신규 설치·모델 제작·씬 변경·비용 사용은 하지 않았다.
 
 공식 기능 근거: [Blender 명령행 자동화](https://docs.blender.org/manual/en/latest/advanced/command_line/index.html), [Unity 프리팹](https://docs.unity.com/en-us/engine/6000.6/manual/working-with-gameobjects/prefabs/creating), [Unity CLI](https://docs.unity.com/en-us/unity-cli/unity-cli-reference).
+
+## 2026-10-01 — Cinder 회색 구조 제작
+
+[구조 5종 제작·검토 안내](cinder-asset-prep.ko.md)에 Blender 원본/FBX/시각 프리팹 11개, 원본 충돌을 유지한 별도 Unity 씬, 실제 Play 카메라 화면과 검사 결과를 연결했다. 이번은 구조 제작 단계다. 사용자 구조 만족·새 외형 승인·표현 3종과 공통 표면은 남아 있다. 검토 메뉴는 검토 씬을 재생성하므로 수동 변경은 별도 사본에 보관한다. 회색 검사 결과를 최종 아트·게임 품질로 승계하지 않는다.

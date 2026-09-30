@@ -1,0 +1,26 @@
+{
+  "date": "2026-10-01",
+  "method": "Unity CLI Play mode; InputSystem.QueueStateEvent on live keyboard, camera poses set via API; not a human playtest",
+  "e_pickup_pass": true,
+  "forward": {
+    "forwardPass": true,
+    "position": "(-18.600, 0.035, -2.398)",
+    "carrying": true
+  },
+  "backward": {
+    "backwardPass": true,
+    "position": "(-18.600, 0.070, -11.401)",
+    "carrying": true
+  },
+  "release_and_jump": {
+    "qDropPass": true,
+    "jumpPass": true,
+    "rise_m": 0.634135962
+  },
+  "new_play_errors": 0,
+  "new_play_warnings": 0,
+  "compile_errors": 0,
+  "existing_compile_warnings": 7,
+  "user_structure_approval": false,
+  "standalone_build_tested": false
+}

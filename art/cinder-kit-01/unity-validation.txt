@@ -1,0 +1,21 @@
+NR_Cinder_Beam_A size=(1.200, 0.300, 0.300) pivot/UV PASS
+NR_Cinder_Ceiling_A size=(1.200, 0.300, 1.200) pivot/UV PASS
+NR_Cinder_Ceiling_Corner size=(0.150, 0.300, 0.150) pivot/UV PASS
+NR_Cinder_Ceiling_Edge size=(0.150, 0.300, 1.200) pivot/UV PASS
+NR_Cinder_Corner_A size=(0.300, 4.000, 0.300) pivot/UV PASS
+NR_Cinder_DoorFrame_A size=(3.800, 4.000, 0.300) pivot/UV PASS
+NR_Cinder_End_A size=(0.150, 4.000, 0.300) pivot/UV PASS
+NR_Cinder_Floor_A size=(1.200, 0.200, 1.200) pivot/UV PASS
+NR_Cinder_Wall_A size=(1.200, 4.000, 0.300) pivot/UV PASS
+NR_Cinder_Wall_Fill035 size=(0.350, 4.000, 0.300) pivot/UV PASS
+NR_Cinder_Wall_Fill090 size=(0.900, 4.000, 0.300) pivot/UV PASS
+passage lane=-1.1 direction=-1 PASS
+passage lane=-1.1 direction=1 PASS
+passage lane=0 direction=-1 PASS
+passage lane=0 direction=1 PASS
+passage lane=1.1 direction=-1 PASS
+passage lane=1.1 direction=1 PASS
+jump z=-8.4 PASS
+jump z=-7.8 PASS
+jump z=-2.4 PASS
+cargo center lane: 48 yaw/pitch/position samples PASS (runtime BoxCast pose)

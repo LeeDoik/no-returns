@@ -2,11 +2,11 @@
 
 [English](cinder-asset-prep.en.md)
 
-2026-10-01 · CINDER-ASSET-PREP-01 · **제작 준비 완료 / 구조·외형 제작과 사용자 품질 승인 미완료.** 현재 대상은 [Cinder 블록아웃](cinder-blockout.ko.md)이다. [구조 우선 제작 가이드](art-structure-first.ko.md)를 적용한다. 아래 새 모듈 치수와 예산은 첫 시험 제안이며 출시 규격이 아니다.
+2026-10-01 · CINDER-ASSET-PREP-01 · **회색 구조 제작·자동 검사 완료 / 사용자 구조 확인·외형 제작 미완료.** 현재 대상은 [Cinder 블록아웃](cinder-blockout.ko.md)이다. [구조 우선 제작 가이드](art-structure-first.ko.md)를 적용한다. 아래 새 모듈 치수와 예산은 첫 시험 제안이며 출시 규격이 아니다.
 
 ## 먼저 만들 것과 이유
 
-**창고 남측 입구와 입구 안쪽 6m를 첫 검토 구역으로 제안한다.** 반복되는 벽·바닥·천장과 출입구를 함께 볼 수 있어, 한 부품군을 나머지 건물에 넓히기 전에 접합·색·운반 여유를 확인할 수 있다. 현재 창고 내부에는 별도 복도가 없다. 6m는 검토할 길이 제안이며 새 복도 벽을 세우거나 기존 경로를 좁히는 결정이 아니다.
+**창고 남측 입구와 입구 안쪽 6m를 첫 검토 구역으로 사용한다.** 반복되는 벽·바닥·천장과 출입구를 함께 볼 수 있어, 한 부품군을 나머지 건물에 넓히기 전에 접합·색·운반 여유를 확인할 수 있다. 현재 창고 내부에는 별도 복도가 없다. 6m는 검토할 길이 제안이며 새 복도 벽을 세우거나 기존 경로를 좁히는 결정이 아니다.
 
 1. **구조 5종:** 바닥 → 직선 벽 → 문틀 → 천장·보 → 코너·끝 마감. 출입구와 공간의 공통 단면을 먼저 맞춘다.
 2. **표현 3종:** 작업등 → 표지판 → 빈 화물 선반. 출입구 식별과 사용 흔적을 더하되 선반은 문 앞을 비운다.
@@ -16,7 +16,7 @@
 
 ## 현재 구조에서 가져올 기준
 
-근거: [저장된 씬](../../NoReturns/Assets/_NoReturns/Scenes/CinderDepotBlockout.unity), [생성 코드](../../NoReturns/Assets/_NoReturns/Editor/CinderBlockoutBuild.cs), [이동·운반 코드](../../NoReturns/Assets/_NoReturns/Runtime/CinderBlockoutWalk.cs). 씬 파일의 창고 하위 Transform과 생성 코드 값을 대조했다. 실제 Play 검사는 이번에 하지 않았다.
+근거: [저장된 씬](../../NoReturns/Assets/_NoReturns/Scenes/CinderDepotBlockout.unity), [생성 코드](../../NoReturns/Assets/_NoReturns/Editor/CinderBlockoutBuild.cs), [이동·운반 코드](../../NoReturns/Assets/_NoReturns/Runtime/CinderBlockoutWalk.cs). 씬 파일의 창고 하위 Transform과 생성 코드 값을 대조했다. 준비 단계에는 정적 대조만 했으며, 아래 제작 검증에서 별도 검토 씬의 Mac Editor Play를 확인했다.
 
 | 항목 | 현재 시험값 | 제작 시 보존할 것 |
 |---|---|---|
@@ -33,7 +33,7 @@
 
 ## 부품별 제작 지시
 
-단위는 m, 아래 크기는 **Unity X×Y×Z** 기준이다. Blender는 Z-up, Unity는 Y-up이므로 내보내기/재가져오기에서 축·회전·단위를 확인한다. 재생성 원본은 Blender Python으로 작성하되 이번에는 스크립트나 모델을 만들지 않았다. 표의 이름은 새 원본의 안정된 이름 제안이다.
+단위는 m, 아래 크기는 **Unity X×Y×Z** 기준이다. Blender는 Z-up, Unity는 Y-up이므로 내보내기/재가져오기에서 축·회전·단위를 확인한다. [Blender 제작 스크립트](../../art/cinder-kit-01/build.py)로 회색 구조 5종과 변형 11개를 만들었다. 표의 이름과 시험 치수를 사용하며 작업등·표지판·선반은 아직 제작하지 않았다.
 
 | 순서 / 대응 ID | 원본 이름 | 시험 크기·피벗 | 형태와 통과 조건 | 삼각형 상한 후보 |
 |---|---|---|---|---|
@@ -41,12 +41,12 @@
 | 2 / ENV01 | `NR_Cinder_Wall_A` | 1.2×4×0.3. 하단 중심 피벗. | 앞·뒤·상단을 닫는다. 접합면은 평평하게, 색 띠 높이와 UV 밀도는 공통으로 유지한다. | 400 |
 | 3 / ENV03 | `NR_Cinder_DoorFrame_A` | 바깥 3.8×4×0.3, 안쪽 개구부 3.2×3.3. 개구부 바닥 중앙 피벗. | 문턱 없는 프레임. 양측 0.3m와 상부 0.7m 안에서 장식을 만든다. 문짝·개폐 기능은 별도다. | 1,200 |
 | 4 / ENV07 | `NR_Cinder_Ceiling_A` | 1.2×0.3×1.2. 하부 면 중앙 피벗, 배치 Y=4. | 하부를 마감한다. 보 변형은 기존 지붕 두께 안에서 먼저 검토하며 하단 Y=4를 보존한다. | 600 |
-| 5 / ENV02·05 | `NR_Cinder_Corner_A` / `NR_Cinder_End_A` | 두께 0.3, 높이 4. 코너는 벽 중심선 교차점 하단 피벗. | 안/바깥 코너와 노출 끝을 닫는다. 벽 길이 5.6m는 1.2m 4개+0.8m 보완형으로 맞추며 UV를 늘이지 않는다. | 600 |
+| 5 / ENV02·05 | `NR_Cinder_Corner_A` / `NR_Cinder_End_A` | 두께 0.3, 높이 4. 코너는 벽 중심선 교차점 하단 피벗. | 0.3×4×0.3 코너 접합부와 0.15×4×0.3 끝 마감을 닫는다. 프레임과 코너 폭을 제외한 전후면 벽은 5.15m=4×1.2+0.35, 측면 벽은 20.1m=16×1.2+0.9로 조립한다. UV를 늘이는 배치 스케일은 쓰지 않는다. | 600 |
 | 6 / FAC01 | `NR_Cinder_Lamp_A` | 0.6×0.2×0.18. 벽 부착면 중앙 피벗. | 따뜻한 발광 면과 외장을 분리한다. 실제 Light는 Unity가 소유한다. | 400 |
 | 7 / 새 표면 단위 | `NR_Cinder_Sign_A` | 1.2×0.6×0.02. 뒤 부착면 중앙 피벗. | 판과 글자 면을 분리한다. `WAREHOUSE` / 창고와 배송 방향 화살표를 검토용 문구로 사용한다. | 12 |
 | 8 / FAC02 | `NR_Cinder_Rack_A` | 2.4×2.4×0.6. 하단 중심 피벗. | 비어 있는 2단 선반. 상자는 별도이며 배송 화물 외형을 장식에 굳히지 않는다. 통로 밖에 배치한다. | 1,600 |
 
-1.2m 그리드는 창고 바닥 14.4/20.4m에 맞는 첫 모듈 제안이다. 모든 건물이나 3.2m 개구부가 이 그리드에 맞는다고 가정하지 않는다. 코너 외곽 치수·보 단면·표지 방향은 구조 원본에서 정리한다. 삼각형 상한은 **원본/변형 1개당 작업 예산 제안**이며 현재 모델 실측·성능 보장이 아니다. 첫 샘플에서 실루엣이 부족하면 근거를 기록하고 조정한다.
+1.2m 그리드는 창고 바닥 14.4/20.4m에 맞는 첫 모듈 제안이다. 모든 건물이나 3.2m 개구부가 이 그리드에 맞는다고 가정하지 않는다. 코너·끝·보 단면은 아래 구현값을 사용하며 표지 방향은 후속 검토다. 삼각형 상한은 **원본/변형 1개당 작업 예산 제안**이며 성능 보장이 아니다. 현재 실측은 문틀 36개, 나머지 원본은 각 12개 삼각형이다. 첫 샘플에서 실루엣이 부족하면 근거를 기록하고 조정한다.
 
 ## 공통 표면과 외형 참고
 
@@ -58,19 +58,19 @@
 
 ## 산출물과 저장 위치
 
-아래는 **향후 제작 목적지**이며 이번에 생성한 파일·폴더나 실행 가능한 제작 스크립트가 아니다.
+구조 원본과 별도 검토 씬을 다음 위치에 생성했다. 외형·텍스처·표현 3종은 후속 작업이다.
 
-- `art/cinder-kit-01/`: `build.py`, 구조 원본 `Cinder_Kit_Structure.blend`, 부품별 FBX, UV·재가져오기·치수 검사 결과 JSON, 같은 모델의 검토 이미지. 기존 우주선·Selected 원본을 덮어쓰지 않는다.
-- `NoReturns/Assets/_NoReturns/Art/CinderKit01/`: 검토를 통과한 게임용 FBX·텍스처·공용 재질과 Unity가 생성한 `.meta`.
-- `NoReturns/Assets/_NoReturns/Prefabs/CinderKit01/`: 모델 외형을 하위에 두고 충돌·광원·표시 연결을 소유할 프리팹. 실제 조립은 Editor/CLI로 하며 YAML을 직접 수정하지 않는다.
+- `art/cinder-kit-01/`: `build.py`, 구조 원본 `Cinder_Kit_Structure.blend`, UV·재가져오기·치수·Play 검사 결과, 같은 모델의 검토 이미지. 부품별 FBX는 아래 Unity 에셋 경로에 직접 출력한다. 기존 우주선·Selected 원본을 덮어쓰지 않는다.
+- `NoReturns/Assets/_NoReturns/Art/CinderKit01/`: 회색 구조 FBX 11개·단색 공용 재질 1개와 Unity가 생성한 `.meta`. 텍스처는 없다.
+- `NoReturns/Assets/_NoReturns/Prefabs/CinderKit01/`: 모델 외형을 하위에 둔 검토용 프리팹 11개. 이번 프리팹은 시각 모델만 소유하며 별도 검토 씬이 기존 창고 Collider 10개를 유지한다. 새 Collider·광원·표시 기능을 추가하지 않았다. Editor/CLI로 조립하며 YAML을 직접 수정하지 않는다.
 - 원본 이름별로 치수·피벗·삼각형·UV·재질 슬롯·출처·검사 결과·사용자 의견을 연결한다. 로컬 신규 형상·텍스처는 직접 제작 출처를 기록한다. 외부 파일을 도입할 때는 사용 범위와 라이선스를 먼저 확인한다. 기존 시안은 참고 자료다.
 - 모델·이미지·텍스처·`.blend`는 기존 `.gitattributes`의 Git LFS, 제작 코드·JSON·한영 문서는 일반 Git으로 관리한다. 빌드·로그·캐시·인증정보·개인 설정은 제외한다.
 
-현재 도구 확인: 로컬 `blender --version`은 **5.2.2 LTS**다. Unity 목표 **6000.6.0f1 / URP 17.6.0**은 [버전 파일](../../NoReturns/ProjectSettings/ProjectVersion.txt)과 [패키지](../../NoReturns/Packages/manifest.json) 기준이다. 현재 PATH에 `game-dev`가 없어 해당 CLI의 검사·정규화·패키지 제작 경로는 사용할 수 없다. 이번 준비에는 기존 로컬 제작 경로를 사용하며 새 설치·생성 서비스로 대체하지 않았다. Blender 새 모델 제작·FBX 재가져오기·Unity Cinder Play/빌드는 아직 이번 작업의 검증 범위가 아니다.
+현재 도구 확인: 로컬 `blender --version`은 **5.2.2 LTS**다. Unity 목표 **6000.6.0f1 / URP 17.6.0**은 [버전 파일](../../NoReturns/ProjectSettings/ProjectVersion.txt)과 [패키지](../../NoReturns/Packages/manifest.json) 기준이다. 현재 PATH에 `game-dev`가 없어 해당 CLI의 검사·정규화·패키지 제작 경로는 사용할 수 없다. 이번 준비에는 기존 로컬 제작 경로를 사용하며 새 설치·생성 서비스로 대체하지 않았다. Blender 모델 제작·FBX 재가져오기·별도 구조 검토 씬의 Mac Editor Play를 확인했다. 독립 Mac/Windows 실행본 빌드는 검사하지 않았다.
 
 ## 다음 작업과 통과 조건
 
-다음 실제 작업은 **구조 5종의 회색 원본과 조립 샘플**이다. 먼저 바닥·벽·문틀·천장을 맞추고 코너/끝 마감을 닫는다. 원본 Cinder 씬을 보존한 별도 검토 씬에 Editor/CLI로 배치한다. 기존 Create/Build Cinder 메뉴는 씬을 재생성하므로 수동 아트 검토 씬에서 실행하지 않는다.
+현재 **구조 5종의 회색 원본과 조립 샘플**을 제작했다. 원본 Cinder 씬을 보존한 `CinderStructureReview`에서 창고 외형 전체를 조립했으며, 남측 입구와 안쪽 6m가 사용자 검토 지점이다. 새 복도나 건물 확장은 없다. 다음은 사용자 구조 확인 후 공통 표면과 표현 3종이다. 기존 Create/Build Cinder 메뉴는 씬을 재생성하므로 수동 아트 검토 씬에서 실행하지 않는다.
 
 | 검토 시점 | 확인할 것 |
 |---|---|
@@ -81,14 +81,42 @@
 
 - [x] 현재 씬·생성/조작 코드·환경 시안과 제작 가이드를 대조했다.
 - [x] 우선 8종, 구조 선행 5종의 이름·규격 후보·피벗·표면 예산·검토 위치를 정리했다.
-- [ ] 구조 원본/FBX를 만들고 단위·축·치수·개구부·피벗·UV·법선을 검사한다.
-- [ ] 재가져오기에서 크기와 재질 슬롯이 유지되고, 겹친 기존 Renderer로 이음새가 깜빡이지 않는지 확인한다. 기존 Collider는 임의로 중복·삭제하지 않는다.
-- [ ] Unity에서 E/Q·문 통과·운반 회전·후진·빈손 점프를 검사하고 사용자의 공간감 의견을 기록한다.
+- [x] 구조 원본/FBX 11개의 단위·축·치수·개구부·피벗·UV·닫힌 면·법선·재가져오기를 검사했다.
+- [x] 재가져오기에서 크기·재질 슬롯을 확인했다. 원래 창고 Renderer 10개는 비활성화하고 Collider 10개는 유지했다. 새 조립물 Collider는 0개다.
+- [x] Unity의 자동 통과/점프·화물 자세 검사와 Mac Editor Play의 E/Q·운반 출입/후진·빈손 점프를 확인했다.
+- [ ] 사용자가 직접 걸어보고 공간감·화물 시야·접합면 품질 의견을 확인한다.
 - [ ] 사용자 구조 확인 후 제작용 다면·실제 시점 이미지에서 새 외형을 검토하고 승인 상태를 기록한다.
 - [ ] 공통 표면과 표현 3종을 적용한 기준 구역을 재검토한 뒤 다른 건물로 확장한다.
 
 온라인·적 AI·배송 판정은 현 Cinder 시험에 미연결이다. 이 구조 구역의 통과로 전체 게임·협동·재미·출시 품질을 완료 처리하지 않는다.
 
-## 이번 준비의 검증
+## 기존 플레이 시스템의 위치
 
-문서 작업만 수행했다. 새 코드·씬·모델·이미지·재질·빌드·유료 생성 변경은 없다. 한영 링크·규격 수치·이름·예산·체크 상태를 검사한다. 전체 문서 검사에는 작업 시작 전부터 로컬에 없는 `artifacts/` 근거 링크 **142개**가 있다. 이를 완료 자료로 만들어 채우지 않으며 이번 변경이 추가 누락을 만들었는지 별도로 비교한다. [검증 목록](05-validation.ko.md) · [Git 운영 기준](version-control.ko.md).
+| 씬/코드 | 현재 역할 |
+|---|---|
+| [CarryRoom](../../NoReturns/Assets/_NoReturns/Scenes/CarryRoom.unity) / [CarryRoom 코드](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs) | 기존 운반·배송·리스너·진압봉·협동 플레이. 리스너 모드는 기존 Windows [실행 런처](../../06_Play_Listener_Test.cmd)의 `--hazard`로 활성화한다. 일반 Editor Play는 기본 운반 모드다. |
+| [CarryThreat](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryThreat.cs) / [BatonVisual](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/BatonVisual.cs) / [BatonFeedback](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/BatonFeedback.cs) | 리스너 이동·추적·공격·저지와 진압봉 외형·충전·피드백 코드가 보존되어 있다. |
+| [CarryMission](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryMission.cs) / [ShipInteriorTrial](../../NoReturns/Assets/_NoReturns/Scenes/ShipInteriorTrial.unity) | 기존 우주선 항로·귀환·정산 로직과 별도 선내 구조 시험. 선내 시험 모델은 Cinder 배치에도 남아 있다. |
+| `CinderDepotBlockout` / `CinderStructureReview` | 맵 공간 시험 / 새 회색 에셋 검토. 이전 `CarryRoom`의 적·진압봉·배송 로직은 아직 연결하지 않았다. |
+
+이번 변경은 기존 런타임 코드를 삭제·교체하지 않는다. 리스너의 경로 격자와 우주선/배송 판정 좌표는 기존 시험 맵 기준이므로 Cinder에 연결하는 작업이 별도로 남아 있다. 단순히 에셋 씬을 열거나 `CarryRoom` 컴포넌트를 추가했다고 통합 완료로 보지 않는다. 기존 리스너 모드의 Mac 실행은 이번에 재검사하지 않았다.
+
+## 2026-10-01 — 회색 구조 제작과 검토 방법
+
+[검토 씬](../../NoReturns/Assets/_NoReturns/Scenes/CinderStructureReview.unity)을 열고 Play를 누른다. 남측 입구 3m 전방에서 시작하며 앞 오른쪽에 화물이 있다. WASD 이동, 마우스 시야, E 들기, Q 놓기, 빈손 Space 점프, F1 한영 전환, Esc 커서 해제다. 입구를 통과해 6m 들어간 뒤 돌아보거나 화물을 들고 후진한다. 원본 `CinderDepotBlockout`은 바이트 해시가 작업 시작과 같고, 시작 전 우주선 재질 변경 8개도 보존했다.
+
+[Unity 생성/검사 코드](../../NoReturns/Assets/_NoReturns/Editor/CinderStructureBuild.cs)의 `NO RETURNS/Trials/Create Cinder Structure Review` 메뉴는 현재 씬을 저장하고 Play를 중지한 뒤 실행한다. 이 메뉴는 **검토 씬을 재생성**하므로 수동 변경은 먼저 별도 사본에 보관한다. `Validate Cinder Structure Review` 메뉴로 단위/피벗/UV/재질·통로·점프·화물 자세 검사를 다시 실행할 수 있다. Blender 재생성: `blender --background --python art/cinder-kit-01/build.py`.
+
+5개 제작 단위를 **11개 원본/FBX/프리팹**으로 구현했다: Floor_A, Wall_A, Wall_Fill035, Wall_Fill090, DoorFrame_A, Ceiling_A, Ceiling_Edge, Ceiling_Corner, Beam_A, Corner_A, End_A. 코너는 벽 중심선 교차점의 0.3m 사각 접합부, 끝 마감은 폭 0.15m, 보는 1.2×0.3×0.3m다. 보·끝 마감은 원본/프리팹만 만들었으며 이번 닫힌 창고에는 배치하지 않았다. 천장 가장자리 0.15m 보완형으로 기존 지붕 외곽 14.7×20.7m까지 닫는다. 모든 조립 인스턴스는 배치 스케일 1이다.
+
+[Blender 검사 결과](../../art/cinder-kit-01/validation.json): 11개 치수·피벗·UV·닫힌 메시·양의 체적과 FBX 재가져오기·삼각형/재질 슬롯 일치 통과. 문틀 36개, 나머지는 각 12개 삼각형이다. [Unity 조립 실측](../../art/cinder-kit-01/unity-assembly.json): 시각 인스턴스 530개, 6,408개 삼각형, 기존 창고 Collider 10개 유지, 기존 활성 Renderer 0개, 새 Collider 0개. 이는 메시 수치이며 FPS/최종 성능 검증이 아니다.
+
+[Unity 구조 검사](../../art/cinder-kit-01/unity-validation.txt): 모델 11개, 3개 진입선의 전진/후진 6개, 빈손 점프 위치 3개, 중앙 진입선의 화물 자세 48개 통과. 화물 자세는 4개 위치×4개 yaw×3개 pitch(-80/0/80°)에서 실제 운반 BoxCast 위치를 검사한다. 가장자리 전체 회전·벽 접근의 사용자 조작 검증으로 확대 해석하지 않는다. 첫 통로 검사는 바닥에 놓인 화물 Collider에 막혔으며, 실제 운반처럼 그 Collider를 검사 동안 끄고 복구하도록 수정한 뒤 재생성·재검사를 통과했다.
+
+[Mac Editor Play 검사](../../art/cinder-kit-01/play-validation.json): Input System 키 상태를 API로 넣어 실제 Update의 E 들기, W 운반 출입, S 후진 복귀, Q 놓기, 빈손 Space 점프를 확인했다. 점프 상승 0.634135962m. 기준 카메라 위치·각도는 API로 맞췄으며 사람의 수동 조작 평가가 아니다. 컴파일 오류 0개, 기존 폐기 예정 API 경고 7개, 새 Play 구간 오류/경고 0개. 독립 실행본·온라인·AI·배송·최종 외형·사용자 승인은 미검증이다.
+
+검토 이미지: [동일 원본 부품 시트](../../art/cinder-kit-01/structure-sheet.png), [입구 빈손](../../art/cinder-kit-01/entry-empty.png), [입구 운반](../../art/cinder-kit-01/entry-carry.png), [안쪽 6m에서 뒤돌아본 운반 화면](../../art/cinder-kit-01/inside-rear-carry.png). Unity 이미지는 실제 Play 카메라 렌더이며 IMGUI 안내는 포함하지 않는다. 단색 회색 구조이고 최종 아트 시안은 아니다.
+
+한영 링크·수치·이름·예산·체크 상태와 Git LFS를 검사한다. 전체 문서 검사에는 작업 시작 전부터 로컬에 없는 `artifacts/` 근거 링크 **142개**가 있으며 새 실패는 없다. 빌드·로그·캐시·개인 설정은 커밋하지 않는다. [검증 목록](05-validation.ko.md) · [Git 운영 기준](version-control.ko.md).
+
+원본을 직접 수정하지 않은 Unity 생성 YAML·meta의 빈 필드 후행 공백 때문에 원시 staged `git diff --check`는 147곳을 보고한다. 코드·문서 범위 공백 검사는 통과하며, 후행 공백만 제외한 전체 staged 검사도 통과한다. 생성 파일을 공백 검사만을 위해 수동 편집하지 않았다.

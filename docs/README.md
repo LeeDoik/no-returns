@@ -2,7 +2,9 @@
 
 [English](README.en.md)
 
-[지금 만들 에셋 — Cinder 첫 8종 제작 준비](current/cinder-asset-prep.ko.md): 구조 5종 → 작업등·표지판·선반. 규격·피벗·표면 예산·검토 순서.
+[지금 검토할 에셋 — Cinder 회색 구조 5종](current/cinder-asset-prep.ko.md): 11개 원본·별도 Unity 검토 씬·자동 검사 완료. 사용자 구조 확인 후 작업등·표지판·선반.
+
+기존 리스너·진압봉·우주선 플레이 코드와 씬은 보존되어 있다. [플레이 시스템과 Cinder 검토 씬의 관계](current/cinder-asset-prep.ko.md#기존-플레이-시스템의-위치)를 먼저 확인한다. Cinder의 기능 통합은 미완료다.
 
 2026-09-12 · SPACE-01. 현행 방향은 PSX 우주 배송·미스터리다. 이전 기획보다 아래 문서가 우선한다.
 
