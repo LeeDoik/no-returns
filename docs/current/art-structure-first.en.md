@@ -31,3 +31,21 @@ The ship is currently iterating before the second gate. [Structure trial](ship-i
 Build interior work zones, routes and actual play first. After user review, derive the exterior dimensions by adding structure thickness and equipment clearance around that layout; obtain exterior art approval before production. Do not compress the interior to fit an exterior concept. Use only a temporary cover for visibility and entry checks during interior testing. The generation script now starts with an empty Blender scene and does not load the old exterior file.
 
 The new candidate arranges inspection, sealed storage and dispatch work asymmetrically around the space-delivery role. Automated checks and human satisfaction remain separate; scanner, lockers and receipt equipment are structural mockups in this task. This does not approve new economy or cargo rules.
+
+## 2026-09-30 — Recommended Cinder production workflow
+
+For quality and production efficiency, the recommendation is **modular environment production with Blender + Unity URP, completing a small reference area before expansion**. This is a judgment based on the current PSX direction and Cinder structure, not a comparative quality/time benchmark or approval of new appearances. The need to create new art remains unchanged.
+
+| Role | Recommended approach |
+|---|---|
+| Visual baseline | Extract color, silhouette and surface-density rules from the existing concepts and generate required production images. |
+| Structural walls, frames, floors and ceilings | Use Blender Python to control dimensions, pivots and joining faces. Retain editable values when regenerating the same part. |
+| Surfaces | Share materials and texture sets to align color and pattern scale across repeated parts. Individual image-generation results are not automatically final materials. |
+| Distinct props and organic forms | Use Tripo candidates when useful, then check dimensions, UVs and silhouettes in Blender. Follow the existing appearance and spending checks. |
+| Scene assembly and review | Repeat components as Unity prefabs and use Unity CLI to assist import, assembly and checks. Inspect actual first-person views, lighting and cargo clearance in the warehouse entrance/passage before expanding to all 5 buildings and outdoors. |
+
+Separate quality judgment from successful file generation. In the reference area, human review covers consistent colors/textures, readable silhouettes/entrances, seams, lighting and cargo visibility; automatic checks support units, pivots, UVs, missing textures and collision. Compare before/after views from matching reference cameras. Set performance targets and texture/mesh budgets after measuring the actual area rather than promising arbitrary numbers.
+
+This investigation verified local execution of Blender **5.2.2 LTS** and Unity CLI **1.0.0-beta.11**. Game Development Studio skills are present, but `game-dev` was not found on the current PATH, so its production/validation CLI integration remains unverified. The recommended workflow does not establish successful execution of that plugin. No new installation, model production, scene changes or spending.
+
+Official capability references: [Blender command-line automation](https://docs.blender.org/manual/en/latest/advanced/command_line/index.html), [Unity prefabs](https://docs.unity.com/en-us/engine/6000.6/manual/working-with-gameobjects/prefabs/creating), [Unity CLI](https://docs.unity.com/en-us/unity-cli/unity-cli-reference).

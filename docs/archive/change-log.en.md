@@ -2,6 +2,10 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-09-30 — Recommend a workflow for quality and efficiency
+
+Interpreted the user's framework question as the workflow from creating Cinder art to completing the Unity scene. Compared the current structure-first rules, need for new resources, installed URP and official tool documentation. Recorded a bilingual recommendation in the [production guide](../current/art-structure-first.en.md): Blender modules, shared surfaces, Unity prefabs/CLI and reference-area review. This is not a comparative quality/performance benchmark. Verified Blender 5.2.2 LTS and Unity CLI 1.0.0-beta.11 execution; `game-dev` was not found on the current PATH, so its integration remains unverified. No new models, images, installation, spending, code or scene changes. Left 8 pre-existing ship-material changes untouched and uncommitted. Documentation checks have no new failures beyond 142 existing missing artifact links. Local commit only.
+
 ## 2026-09-26 — Sequence new Cinder art production
 
 The user described the goal of completing one scene in the previously chosen art direction and clarified that its resources still need to be created. Withdrew the assumption of placing ready-made assets and documented a proposed sequence in the [current Cinder guide](../current/cinder-blockout.en.md): production baseline, warehouse entrance/passage component concepts, models/reference area, then the full scene. Reviewed the existing environment concept and structure-first rules without treating old reuse candidates as completed current assets. No code, scene, resource generation, spending or play changes. Checked language parity and links; documentation has no new failures beyond 142 existing missing artifact links. New appearances and the first area are proposals; user quality approval remains unverified. Local commit only.
