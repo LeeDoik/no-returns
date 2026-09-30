@@ -2,6 +2,8 @@
 
 [English](README.en.md)
 
+[지금 만들 에셋 — Cinder 첫 8종 제작 준비](current/cinder-asset-prep.ko.md): 구조 5종 → 작업등·표지판·선반. 규격·피벗·표면 예산·검토 순서.
+
 2026-09-12 · SPACE-01. 현행 방향은 PSX 우주 배송·미스터리다. 이전 기획보다 아래 문서가 우선한다.
 
 1. [게임 개요·최상위 기획](current/01-overview.ko.md)

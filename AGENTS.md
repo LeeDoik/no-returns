@@ -46,10 +46,10 @@
 
 ## Git 버전 관리 / Git version control
 
-- 모든 작업은 Git으로 관리한다. 완료 시 변경 범위를 검토하고 적절한 검사와 한국어·영어 문서 갱신 후 커밋한다. 연결된 비공개 원격 저장소에 일반 푸시하고 로컬 HEAD와 원격 일치를 확인한다.
+- 모든 작업은 Git으로 관리한다. 완료 시 변경 범위를 검토하고 적절한 검사와 한국어·영어 문서 갱신 후 커밋한다. 연결된 공개 원격 저장소에 일반 푸시하고 로컬 HEAD와 원격 일치를 확인한다.
 - 빌드·캐시·로그·인증정보·개인 환경 설정은 커밋하지 않는다. 모델·텍스처·Unity .meta·제작 스크립트는 재현에 필요한 소스로 관리한다.
 - 기존 이력을 보존한다. 강제 푸시·이력 재작성·타인 변경 되돌리기는 별도 요청 없이 수행하지 않는다. 실패한 검사와 미확인 사항을 문서와 최종 답변에 남긴다.
-- Manage every task in Git. At completion review scope, run appropriate checks, update Korean/English documents, commit, then use a normal push to the configured private remote and verify local HEAD matches it.
+- Manage every task in Git. At completion review scope, run appropriate checks, update Korean/English documents, commit, then use a normal push to the configured public remote and verify local HEAD matches it.
 - Exclude builds, caches, logs, credentials and personal settings. Track models, textures, Unity .meta files and production scripts needed to reproduce the project.
 - Preserve history. Do not force-push, rewrite history or revert others' work without a separate request. Record failing checks and unverified scope in documentation and the final response.
 

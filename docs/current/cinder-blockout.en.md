@@ -2,6 +2,10 @@
 
 [한국어](cinder-blockout.ko.md)
 
+## 2026-10-01 — First production-batch preparation
+
+The [first 8 warehouse-unit brief](cinder-asset-prep.en.md) specifies trial dimensions, pivots and budgets for 5 structural units (floor, wall, door frame, ceiling and corner/end finish), followed by 3 presentation units (light, sign and empty rack). Compared the saved south entrance center (-18.6,0,-8.4)m, existing 3.2×3.3m opening and 4m ceiling underside against code. The first 6m inside is a proposed review segment, not a new corridor or route change. New structural/visual production, user approval, Unity Play and builds remain incomplete. This task prepared documents only.
+
 2026-09-17 · CINDER-BLOCKOUT-01 · Separate spatial-validation scene
 
 ## Launch and scope

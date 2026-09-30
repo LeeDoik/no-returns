@@ -1,5 +1,11 @@
 # Map, art and technical production guide
 
+[한국어](03-guides.ko.md)
+
+## 2026-10-01 — Current Cinder asset-production preparation
+
+The [first 8-unit brief](cinder-asset-prep.en.md) is the entry point for new current environment assets. Propose the south warehouse entrance and a 6m interior review segment: 5 structural units first, then 3 presentation units (light, sign and rack). Dimensions/budgets are trial candidates; new structures, appearances and user quality approval remain incomplete. Distinguish existing CarryRoom gameplay records below from the current Cinder spatial trial.
+
 0.9.1: [Cooperative HUD and evidence](crew-hud.en.md). Reorganized gameplay instructions and four-player states. Human readability assessment remains outstanding.
 
 ## Current 0.9.0 — four-player cooperation
@@ -27,7 +33,6 @@
 
 0.8.5: replaced the reception bench with floor markings and connected terminal reactions. See [Receipt terminal](receipt-terminal.en.md) for current rules and verification status; this supersedes raised-bench descriptions.
 
-[한국어](03-guides.ko.md)
 
 0.8.4: two approved parcel/receipt models produced and visually integrated. Dynamic terminal state remains follow-up work. [Record](psx-props-01.en.md).
 

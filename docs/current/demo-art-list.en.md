@@ -2,6 +2,10 @@
 
 [한국어](demo-art-list.ko.md)
 
+## Priority for current Cinder production — 2026-10-01
+
+Current new-asset work follows the [first 8 warehouse-unit brief](cinder-asset-prep.en.md). The 44 units, R 10/N 34 labels and CSV below describe the 0.9.1 demo survey from 2026-09-13, not current Cinder completion or reuse-approval counts. Prepare the first batch again as new production candidates, including a new sign surface unit. Preserve the existing list, CSV and historical integration evidence.
+
 2026-09-13 · Audit/proposal against 0.9.1. Opened and inspected the source image after removing its leading path slash. The user targets the reference space and a complete demo cycle. This is a production plan, not individual appearance approval, completed production or release-quality certification.
 
 ## Demo scope

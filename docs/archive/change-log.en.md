@@ -2,6 +2,16 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-01 — Prepare 8 Cinder units and public Git operation
+
+The user requested preparation of the most necessary assets using the production guides. Completed preparation begun on 2026-09-30 in the [bilingual asset brief](../current/cinder-asset-prep.en.md). Compared current Cinder, warehouse Transforms, builder/carrying code and the environment concept. Recorded the south entrance/first 6m review area, 5 structural units before 3 presentation units, names, trial dimensions/pivots, triangle/texture budgets, output destinations and acceptance conditions. Added entry guidance preventing reuse counts in the old 44-unit list from being inherited as current completion. Updated documentation home, production guide, backlog, validation checklist and Cinder guide in both languages.
+
+The user requested replacing private-remote rules with public development. `gh repo view` confirmed origin LeeDoik/no-returns is PUBLIC/isPrivate=false, so remote visibility was not changed. Updated [AGENTS.md](../../AGENTS.md) and the [Git guide](../current/version-control.en.md), retaining normal pushes and HEAD verification. The push scope also includes the 6 existing local commits. Preserve historical local-only records and Git history.
+
+Evidence: Blender 5.2.2 LTS execution, Unity 6000.6.0f1/URP 17.6.0 settings, static comparison of saved warehouse/cargo dimensions, bilingual names/values/budgets/checkbox states/new-link checks and `git diff --check`. Full documentation checks fail because of 142 existing links to locally absent artifacts, with no new before/after failures. `git check-ignore` confirmed exclusions for personal Codex settings, Unity local paths/caches/UserSettings, .env, builds and artifacts. No new code, scenes, models, images, materials, paid generation or game checks. Preserve and exclude 8 pre-existing ship-material changes from the commit. `game-dev` is absent from the current PATH; new-model import, play and human structural/appearance quality review remain unverified.
+
+Additional checks: `git diff --check -- AGENTS.md docs` passed for this task's documentation/AGENTS scope, as did `git lfs fsck`. Full `git diff --check` failed on 16 trailing-whitespace locations in the 8 pre-existing materials. Their byte hashes match task start; they are neither modified nor committed.
+
 ## 2026-09-30 — Recommend a workflow for quality and efficiency
 
 Interpreted the user's framework question as the workflow from creating Cinder art to completing the Unity scene. Compared the current structure-first rules, need for new resources, installed URP and official tool documentation. Recorded a bilingual recommendation in the [production guide](../current/art-structure-first.en.md): Blender modules, shared surfaces, Unity prefabs/CLI and reference-area review. This is not a comparative quality/performance benchmark. Verified Blender 5.2.2 LTS and Unity CLI 1.0.0-beta.11 execution; `game-dev` was not found on the current PATH, so its integration remains unverified. No new models, images, installation, spending, code or scene changes. Left 8 pre-existing ship-material changes untouched and uncommitted. Documentation checks have no new failures beyond 142 existing missing artifact links. Local commit only.

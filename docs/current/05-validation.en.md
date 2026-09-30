@@ -1,5 +1,18 @@
 # Testing and release checklist
 
+[한국어](05-validation.ko.md)
+
+## 2026-10-01 — First Cinder asset batch
+
+[Specifications, review views and evidence boundary](cinder-asset-prep.en.md). This task covers preparation and documentation checks; historical game/build passes do not validate the new batch.
+
+- [x] Compared saved warehouse geometry against builder/carrying-code values.
+- [x] Checked bilingual names, dimensions, budgets, checkbox states and local links in the first 8-unit preparation documents. Full documentation retains 142 existing missing artifact links with no new failures.
+- [ ] Check units, axes, openings, pivots, UVs, normals and reimport for 5 Blender/FBX structural units.
+- [ ] Test E/Q carrying, rotation, passage, backwards movement and empty-handed jumping in a Cinder review scene; obtain user spatial feedback.
+- [ ] Review new appearance images and repeat the same views after shared surfaces, light, sign and an empty rack are applied.
+- [ ] After expanding the reference area, validate actual Cinder delivery, enemy AI, networking and human cooperation. Do not mark currently unconnected systems complete.
+
 2026-09-26: [Mac development environment](macos-development.en.md) — passed Unity 6000.6.0f1 arm64/Windows Mono installation, CLI/PATH, LFS restoration, Personal activation, compilation and actual CLI/MCP calls. Discovered 151 commands; zero compilation errors and 7 existing deprecated-API warnings. Passed bundled Korean-font checks and starting/stopping the `CarryRoom` menu after recompilation. The new run recorded zero Console errors/warnings. No scene changes. Automatic MCP exposure in a new Codex session, gameplay progression and game builds on both platforms remain unverified. Help text still overlaps the quit button in the small Game view.
 
 2026-09-26 correction: the current development target is `CinderDepotBlockout` from [CINDER-BLOCKOUT-01](cinder-blockout.en.md). Only opening the existing scene and checking its hierarchy have been verified; Mac Play mode/builds for this scene remain unverified. The `CarryRoom` results above do not validate the latest map.
@@ -31,7 +44,6 @@
 
 0.8.5: replaced the reception bench with floor markings and connected terminal reactions. See [Receipt terminal](receipt-terminal.en.md) for current rules and verification status; this supersedes raised-bench descriptions.
 
-[한국어](05-validation.ko.md)
 
 0.8.4: two approved parcel/receipt models produced and visually integrated. Dynamic terminal state remains follow-up work. [Record](psx-props-01.en.md).
 
