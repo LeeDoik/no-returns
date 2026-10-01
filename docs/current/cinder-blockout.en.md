@@ -2,6 +2,8 @@
 
 [한국어](cinder-blockout.ko.md)
 
+The current follow-up is [warehouse appearance proposal 01](../art/cinder-appearance-01.en.md). The [carrying-edge fix and 336-pose check](cinder-asset-prep.en.md#2026-10-01--carrying-edge-fix-and-appearance-proposals) passed; saved scenes and sizes are unchanged. User appearance review and actual art application remain outstanding.
+
 ## 2026-10-01 — Gray structure review scene
 
 [First-asset production/review](cinder-asset-prep.en.md): assembled the warehouse exterior from prefabs for 5 structural units/11 variants in separate `CinderStructureReview`. Original scene unchanged. The review disables 10 original warehouse Renderers, retains 10 Colliders and adds no Colliders. Start 3m before the south entrance; carry cargo through the first 6m and return backwards. Passed Blender/FBX and Unity import, passage/jump/cargo-pose and Mac Editor Play E/Q checks. The user found warehouse size acceptable; retain the current 14.4×20.4m. Carrying/joint quality, whole-structure/appearance approval, standalone builds and networking/AI/delivery remain unverified. The existing blockout-generation menus below do not build this review scene.

@@ -2,6 +2,8 @@
 
 [English](ship-interior-trial.en.md)
 
+2026-10-01 운반 수정: Cinder의 문·벽 근접 검사에서 발견한 겹침 처리의 복제 부분을 [공유 위치 계산](../../NoReturns/Assets/_NoReturns/Runtime/CinderBlockoutWalk.cs)의 `TrialCargoPose.Position` 호출로 교체했다. [현재 검사 근거](cinder-asset-prep.ko.md#2026-10-01--운반-가장자리-수정과-외형-시안)는 Cinder에서 검증한 결과다. 선내 씬·모델·재질·치수는 변경하지 않았으며 선내 씬의 Play·사람 운반 시야 재검증은 남아 있다.
+
 2026-09-15 · 내부부터 설계하는 우주 우체국 구조 후보다. 별도 시험 장면·Windows 빌드에 적용했으며 본 게임과 이전 아트 원본은 보존했다. [이전 상태](../archive/ship-interior-trial-03.ko.md).
 
 ## 우주 우체국 내부

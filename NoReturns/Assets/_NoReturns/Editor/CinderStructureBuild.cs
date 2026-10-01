@@ -150,13 +150,10 @@ public static class CinderStructureBuild {
             foreach (float z in new[] { -9f, -8.4f, -7.8f, -2.4f }) foreach (float yaw in new[] { 0f, 90f, 180f, 270f }) foreach (float pitch in new[] { -80f, 0, 80f }) {
                 var eye = new Vector3(-18.6f, 1.605f, z);
                 var rotation = Quaternion.Euler(pitch, yaw, 0);
-                var offset = rotation * new Vector3(0, -.54f, 1.1f);
-                var position = eye + offset;
-                if (Physics.BoxCast(eye, new Vector3(.4f, .325f, .325f), offset.normalized, out var hit, rotation, offset.magnitude, 1 << 0, QueryTriggerInteraction.Ignore))
-                    position = eye + offset.normalized * Mathf.Max(.15f, hit.distance - .04f);
+                var position = TrialCargoPose.Position(eye, rotation, (BoxCollider)parcelCollider);
                 if (Physics.CheckBox(position, new Vector3(.4f, .325f, .325f), rotation, 1 << 0, QueryTriggerInteraction.Ignore)) throw new Exception("Cargo overlap: " + z + "/" + yaw + "/" + pitch);
             }
-            results.Add("cargo center lane: 48 yaw/pitch/position samples PASS (runtime BoxCast pose)");
+            results.Add("cargo center lane: 48 yaw/pitch/position samples PASS (shared runtime pose)");
         } finally { parcelCollider.enabled = parcelEnabled; UnityEngine.Object.DestroyImmediate(probe); }
         File.WriteAllLines(Path.Combine(Output, "unity-validation.txt"), results);
         Debug.Log("CINDER STRUCTURE PASS: " + results.Count + " results");

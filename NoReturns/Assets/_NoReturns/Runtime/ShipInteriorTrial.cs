@@ -40,10 +40,7 @@ public sealed class ShipInteriorTrial : MonoBehaviour {
             carrying=true;parcel.GetComponent<Rigidbody>().isKinematic=true;parcel.GetComponent<Collider>().enabled=false;
         }
         if(parcel&&carrying){
-            Vector3 desired=eye.transform.TransformPoint(new Vector3(0,-.54f,1.1f));
-            Vector3 offset=desired-eye.transform.position;
-            if(Physics.BoxCast(eye.transform.position,new Vector3(.4f,.325f,.325f),offset.normalized,out var hit,eye.transform.rotation,offset.magnitude,1<<0,QueryTriggerInteraction.Ignore))
-                desired=eye.transform.position+offset.normalized*Mathf.Max(.15f,hit.distance-.04f);
+            Vector3 desired=TrialCargoPose.Position(eye.transform.position,eye.transform.rotation,parcel.GetComponent<BoxCollider>());
             parcel.transform.SetPositionAndRotation(desired,eye.transform.rotation);
             if(k.qKey.wasPressedThisFrame){carrying=false;parcel.GetComponent<Collider>().enabled=true;parcel.GetComponent<Rigidbody>().isKinematic=false;}
         }

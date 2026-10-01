@@ -2,6 +2,16 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-01 — Warehouse appearance proposals and close-carrying fix
+
+Following the user's next-step request, produced/inspected the [warehouse entrance proposal and 8-unit sheet](../art/cinder-appearance-01.en.md) with built-in imagegen. Referenced actual gray entrance/components and existing environment art; corrected the initial 3-level rack to 2. Saved 2 final PNGs, exact prompts, provenance and hashes in the project. New models, textures, materials, lights and rack have not been applied in Unity; user appearance review is next.
+
+Reproduced 38 door-edge/wall overlaps in 336 carrying poses. Replaced BoxCast from an overlapping eye position and forced minimum movement with cargo-height start separation followed by movement. Cinder, the interior structural trial and the structure checker now share `TrialCargoPose.Position`. The first correction left 36 overlaps because ComputePenetration did not operate on the disabled Collider. Temporarily enable the shape, exclude it on layer 2 and restore state in `finally`; final overlaps are zero. Corrected the checker's assumption that the original layer was 0 to preserve the actual saved value of 2. Saved the [runnable check](../../tools/unity_checks/CinderCarryEdgeCheck.cs), before/after JSONs and 2 actual gray-camera views.
+
+Validation: zero compilation/console errors, only 6 kinds of existing deprecated-warning messages. Passed 336 poses, E pickup, W passage, S return, Q drop, empty-handed Space jump, 11 models, 6 passages, 3 jump positions and 48 center cargo poses. Poses/keys were API-set and the actual Update invoked; this was not human manual play. User evaluation remains for cargo falling below the frame directly before a wall. Corrected initial CLI argument placement and launched the closed installed Editor to connect. Saved scenes, warehouse dimensions and 8 existing ship materials are unchanged. Interior-scene Play, standalone Mac/Windows builds, performance and networking/AI/delivery remain untested.
+
+Updated current specifications, guides, backlog and validation in both languages. Check document links, values, checkbox states, scoped whitespace and LFS. Full documentation retains 142 existing missing artifact links with no new failures. Verify LFS upload and HEAD agreement after a normal public-remote push. Generated perspective/proportions do not validate model dimensions or release quality.
+
 ## 2026-10-01 — User warehouse-size review
 
 The user confirmed: “I checked the warehouse. This size looks fine.” Recorded retention of the 14.4×20.4m warehouse floor in the [current production/review guide](../current/cinder-asset-prep.en.md), and updated the documentation home, production guide, blockout guide, backlog and validation checklist in both languages. Cargo visibility, edge rotation, wall approach, joint quality and new-appearance approval remain separate outstanding reviews. No code, scene or asset changes. The 8 pre-existing ship-material changes match initial hashes and are excluded from the commit.

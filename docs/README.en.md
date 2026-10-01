@@ -2,7 +2,7 @@
 
 [한국어](README.md)
 
-[Assets to review now — 5 gray Cinder structural units](current/cinder-asset-prep.en.md): 11 sources, separate Unity review scene and automated checks complete. The user reviewed warehouse size; retain its current dimensions. Light, sign and rack follow carrying, joint-quality and new-appearance reviews.
+[Appearances to review now — warehouse entrance proposal and 8-unit sheet](art/cinder-appearance-01.en.md). Retain current warehouse size; fixed edge carrying overlaps. [336 pose/input checks and next production steps](current/cinder-asset-prep.en.md#2026-10-01--carrying-edge-fix-and-appearance-proposals). Produce shared surfaces, light, sign and rack after user appearance review.
 
 Existing Listener, baton and ship gameplay code/scenes are preserved. See [existing gameplay versus Cinder review scenes](current/cinder-asset-prep.en.md#location-of-existing-gameplay-systems). Gameplay integration into Cinder remains incomplete.
 

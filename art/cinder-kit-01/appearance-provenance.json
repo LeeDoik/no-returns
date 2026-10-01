@@ -1,0 +1,55 @@
+{
+  "date": "2026-10-01",
+  "tool": "built-in image_gen",
+  "status": "appearance proposal; not production textures or game-ready assets",
+  "user_size_feedback_recorded": true,
+  "user_appearance_approved": false,
+  "prompts": {
+    "path": "art/cinder-kit-01/appearance-prompts.json",
+    "sha256": "1c89e05a2a5f01e46b4eb56aaef52725009d9c4bdace4ca7f59e29489dcdbbe7",
+    "bytes": 6062
+  },
+  "references": [
+    {
+      "path": "art/cinder-kit-01/entry-empty.png",
+      "sha256": "deaeaf2d99700cbabb20a4353f3ef93c08c4bf438a6bc1a9b7fe3941a8adab2d",
+      "bytes": 177357,
+      "width": 1280,
+      "height": 720
+    },
+    {
+      "path": "art/cinder-kit-01/structure-sheet.png",
+      "sha256": "fde706c1376852cb971c439f95660b7cf2d20219e4e65a028f5fa893fbf5ded4",
+      "bytes": 1013611,
+      "width": 1400,
+      "height": 1000
+    },
+    {
+      "path": "docs/art/space-concepts/environment-kit-01.png",
+      "sha256": "84a7f6816049e286e2707d8e9609550e6a2211d26b944a8161bf4a58c9148aeb",
+      "bytes": 2181089,
+      "width": 1536,
+      "height": 1024
+    }
+  ],
+  "outputs": [
+    {
+      "path": "art/cinder-kit-01/appearance-entry-01.png",
+      "sha256": "3ff703cf54d5953d2f651a41a05c5d4e4e08ba1a6ed00fbce98fc5b52c0da9cf",
+      "bytes": 1574839,
+      "width": 1672,
+      "height": 941
+    },
+    {
+      "path": "art/cinder-kit-01/appearance-components-01.png",
+      "sha256": "b64676decd44b6fb0ccafe3a0d56c153a6b1ee34bb43977004c16c3d96cf81bb",
+      "bytes": 1683746,
+      "width": 1536,
+      "height": 1024
+    }
+  ],
+  "iterations": {
+    "components": "initial rack had 3 levels; corrected to 2; rejected initial sheet not retained in project"
+  },
+  "geometry_verification": "Use existing FBXs and Unity checks; generated image proportions are not measurements."
+}

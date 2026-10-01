@@ -2,7 +2,7 @@
 
 [한국어](cinder-asset-prep.ko.md)
 
-2026-10-01 · CINDER-ASSET-PREP-01 · **Gray structures, automated checks and user size review complete / carrying and joint-quality review and appearance production incomplete.** The current target is the [Cinder blockout](cinder-blockout.en.md). Follow the [structure-first production guide](art-structure-first.en.md). New module dimensions and budgets below are initial trial proposals, not release specifications.
+2026-10-01 · CINDER-ASSET-PREP-01 · **Gray structures, automated checks, user size review and appearance proposals complete / user carrying, joint and appearance review and art application incomplete.** The current target is the [Cinder blockout](cinder-blockout.en.md). Follow the [structure-first production guide](art-structure-first.en.md). New module dimensions and budgets below are initial trial proposals, not release specifications.
 
 ## What to make first and why
 
@@ -88,10 +88,23 @@ Produced **gray sources and an assembly sample for the 5 structural units**. `Ci
 - [x] Verified automated passage/jump/cargo-pose checks and E/Q, carrying passage/return and empty-handed jumping in Mac Editor Play.
 - [x] The user inspected the warehouse size and found it acceptable. Retain the current 14.4×20.4m.
 - [ ] Obtain user feedback on cargo visibility, edge carrying-rotation, wall approach and joint quality.
-- [ ] After user structural review, review new appearances in production-oriented multi-view/gameplay images and record approval status.
+- [x] Generated, inspected and saved an entrance appearance proposal and 8-unit multi-view component sheet using actual structure references.
+- [ ] Obtain user review of new colors, textures, light, sign and rack appearances.
 - [ ] Recheck the reference area with shared surfaces and 3 presentation units before extending to other buildings.
 
 Networking, enemy AI and delivery judgement are not connected to the current Cinder trial. Passing this structural area cannot complete the whole game, cooperation, enjoyment or release quality.
+
+## 2026-10-01 — Carrying edge fix and appearance proposals
+
+Produced and inspected the [entrance proposal and 8-unit sheet](../art/cinder-appearance-01.en.md). Connected exact built-in imagegen prompts, provenance and hashes; user appearance approval remains pending. Applying new materials, textures, light, sign and rack in Unity is next. Do not use generated perspective/opening proportions as dimensional validation.
+
+Expanded carrying checks to 14 positions×8 yaw angles×3 pitch angles. The [pre-fix result](../../art/cinder-kit-01/carry-edge-before.json) found door-edge/wall overlaps in 38 of 336 samples. The original handling started BoxCast from an overlapping eye position and forced a minimum 0.15m displacement. `TrialCargoPose.Position` in the [shared carrying calculation](../../NoReturns/Assets/_NoReturns/Runtime/CinderBlockoutWalk.cs) separates a cargo-height start point for up to 4 passes before moving toward obstacles. Temporarily enable the query shape and exclude it on layer 2; restore its original Collider/layer state in `finally`. The [ship interior trial](../../NoReturns/Assets/_NoReturns/Runtime/ShipInteriorTrial.cs) and [structure checker](../../NoReturns/Assets/_NoReturns/Editor/CinderStructureBuild.cs), which used the same original handling, now share this calculation. Removed the copied old formula from actual carrying-position validation.
+
+[Final Play check](../../art/cinder-kit-01/carry-edge-validation.json): zero overlaps in 336 samples; passed E pickup, W passage, S backward return, Q drop and empty-handed Space jump. The [runnable check](../../tools/unity_checks/CinderCarryEdgeCheck.cs) queues Input System key states and invokes the actual `Update`, with API-set poses. This is not real-time human manual control. Repassed 11 model imports, 6 forward/backward passages, 3 jump positions and 48 center-lane cargo poses. [Compilation/console evidence](../../art/cinder-kit-01/appearance-checks.json): zero compilation and console errors; existing deprecated warnings remain.
+
+Actual gray views produced by the check: [door-edge carrying](../../art/cinder-kit-01/carry-edge-door.png) · [carrying directly before a wall](../../art/cinder-kit-01/carry-edge-wall.png). Inspected joints and partial cargo visibility. Cargo falls below the frame when directly against a wall, so user evaluation of this close view remains outstanding. Saved warehouse/interior scenes and the 8 existing materials were not changed. Ship-scene Play revalidation, standalone Mac/Windows builds, performance and networking/AI/delivery were not tested in this task.
+
+Rerun: enter Play in `CinderStructureReview`, then run `unity command run_script --project-path NoReturns --file ../tools/unity_checks/CinderCarryEdgeCheck.cs --caller plugin --skill unity-cli` from the repository root. Relative `--file` resolves against the Unity project `NoReturns/`; stop Play afterward. After user appearance review, produce shared surfaces and the 3 presentation units while preserving existing structure.
 
 ## Location of existing gameplay systems
 

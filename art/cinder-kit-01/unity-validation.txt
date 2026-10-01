@@ -18,4 +18,4 @@ passage lane=1.1 direction=1 PASS
 jump z=-8.4 PASS
 jump z=-7.8 PASS
 jump z=-2.4 PASS
-cargo center lane: 48 yaw/pitch/position samples PASS (runtime BoxCast pose)
+cargo center lane: 48 yaw/pitch/position samples PASS (shared runtime pose)

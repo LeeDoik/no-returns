@@ -2,6 +2,38 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace NoReturns.Trials {
+public static class TrialCargoPose {
+    public static Vector3 Position(Vector3 eye, Quaternion rotation, BoxCollider shape) {
+        var half = Vector3.Scale(shape.size * .5f, shape.transform.lossyScale);
+        var start = eye + rotation * new Vector3(0, -.54f, 0);
+        bool enabled = shape.enabled;
+        int layer = shape.gameObject.layer;
+        shape.enabled = true; // ComputePenetration needs an enabled collider in this Editor version.
+        shape.gameObject.layer = 2; // Keep the query shape out of its own casts.
+        try {
+            // ponytail: four separation passes cover trial box corners; review this bound for compound geometry.
+            for (int pass = 0; pass < 4; pass++) {
+                var contacts = Physics.OverlapBox(start, half, rotation, 1 << 0, QueryTriggerInteraction.Ignore);
+                if (contacts.Length == 0) break;
+                foreach (var obstacle in contacts) {
+                    if (obstacle == shape) continue;
+                    if (Physics.ComputePenetration(shape, start, rotation, obstacle, obstacle.transform.position,
+                        obstacle.transform.rotation, out var direction, out var distance))
+                        start += direction * (distance + .04f);
+                }
+            }
+            var desired = eye + rotation * new Vector3(0, -.54f, 1.1f);
+            var offset = desired - start;
+            if (Physics.BoxCast(start, half, offset.normalized, out var hit, rotation, offset.magnitude,
+                1 << 0, QueryTriggerInteraction.Ignore))
+                desired = start + offset.normalized * Mathf.Max(0, hit.distance - .04f);
+            return desired;
+        } finally {
+            shape.enabled = enabled;
+            shape.gameObject.layer = layer;
+        }
+    }
+}
 public sealed class CinderBlockoutWalk : MonoBehaviour {
     public const float JumpSpeed=5f, Gravity=18f;
     CharacterController body;
@@ -42,10 +74,7 @@ public sealed class CinderBlockoutWalk : MonoBehaviour {
             carrying=true;parcel.GetComponent<Rigidbody>().isKinematic=true;parcel.GetComponent<Collider>().enabled=false;
         }
         if(parcel&&carrying){
-            Vector3 desired=eye.transform.TransformPoint(new Vector3(0,-.54f,1.1f));
-            Vector3 offset=desired-eye.transform.position;
-            if(Physics.BoxCast(eye.transform.position,new Vector3(.4f,.325f,.325f),offset.normalized,out var hit,eye.transform.rotation,offset.magnitude,1<<0,QueryTriggerInteraction.Ignore))
-                desired=eye.transform.position+offset.normalized*Mathf.Max(.15f,hit.distance-.04f);
+            Vector3 desired=TrialCargoPose.Position(eye.transform.position,eye.transform.rotation,parcel.GetComponent<BoxCollider>());
             parcel.transform.SetPositionAndRotation(desired,eye.transform.rotation);
             if(k.qKey.wasPressedThisFrame){carrying=false;parcel.GetComponent<Collider>().enabled=true;parcel.GetComponent<Rigidbody>().isKinematic=false;}
         }

@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-01",
+  "unity_version": "6000.6.0f1",
+  "compilation_completed": true,
+  "compilation_failed": false,
+  "compile_errors": 0,
+  "unique_existing_deprecated_warnings": 6,
+  "other_console_warnings": 0,
+  "console_errors": 0,
+  "carry_edge_before": {
+    "samples": 336,
+    "overlaps": 38
+  },
+  "carry_edge_after": "carry-edge-validation.json",
+  "baseline_structure_checks": {
+    "imports": 11,
+    "passages": 6,
+    "jumps": 3,
+    "center_cargo_poses": 48
+  },
+  "human_controls_tested": false,
+  "standalone_build_tested": false,
+  "ship_interior_play_retested": false,
+  "saved_scene_changed": false,
+  "source_sha256": {
+    "NoReturns/Assets/_NoReturns/Runtime/CinderBlockoutWalk.cs": "ee2dfd19254c4d82914d1f532f4bd0bb95cd989dfec0d6a6884c3a2d32b2da6d",
+    "NoReturns/Assets/_NoReturns/Runtime/ShipInteriorTrial.cs": "559153a88619bb83b5bbec6b31242ebb4a04329c7fa2c62bdbdfb34e60e8ecdf",
+    "NoReturns/Assets/_NoReturns/Editor/CinderStructureBuild.cs": "6c5b5fb14509e8735df67c9cac81877f53a5212b1c94698467c9832a1e531920",
+    "tools/unity_checks/CinderCarryEdgeCheck.cs": "5f1d2c45396cf40280d16fa61a1664de8c2ea4d39275527cd0a14d767809a30b"
+  }
+}

@@ -2,6 +2,8 @@
 
 [한국어](ship-interior-trial.ko.md)
 
+2026-10-01 carrying fix: replaced the duplicated overlap handling exposed by Cinder door/wall proximity checks with `TrialCargoPose.Position` in the [shared position calculation](../../NoReturns/Assets/_NoReturns/Runtime/CinderBlockoutWalk.cs). [Current evidence](cinder-asset-prep.en.md#2026-10-01--carrying-edge-fix-and-appearance-proposals) was validated in Cinder. Interior scene/models/materials/dimensions are unchanged; interior Play and human carrying-visibility revalidation remain outstanding.
+
 2026-09-15 · Interior-first orbital post-office structural candidate. Applied to the isolated trial scene/Windows build; main game and earlier art sources are preserved. [Previous state](../archive/ship-interior-trial-03.en.md).
 
 ## Orbital post-office interior

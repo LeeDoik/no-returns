@@ -50,6 +50,8 @@ This investigation verified local execution of Blender **5.2.2 LTS** and Unity C
 
 Official capability references: [Blender command-line automation](https://docs.blender.org/manual/en/latest/advanced/command_line/index.html), [Unity prefabs](https://docs.unity.com/en-us/engine/6000.6/manual/working-with-gameobjects/prefabs/creating), [Unity CLI](https://docs.unity.com/en-us/unity-cli/unity-cli-reference).
 
+2026-10-01 follow-up: generated/inspected the [entrance proposal and 8-unit sheet](../art/cinder-appearance-01.en.md) and completed the [close-carrying checks and fix](cinder-asset-prep.en.md#2026-10-01--carrying-edge-fix-and-appearance-proposals). User appearance review and actual shared-surface/3-unit application are next. Images do not establish completed models/textures or dimension validation.
+
 ## 2026-10-01 — Cinder gray structure production
 
 The [5-unit production/review guide](cinder-asset-prep.en.md) connects 11 Blender sources/FBXs/visual prefabs, a separate Unity scene retaining original collision, actual Play-camera views and validation evidence. This is structural production. The user found warehouse size acceptable; retain the current 14.4×20.4m. Whole-structure review including carrying and joints, new-appearance approval, 3 presentation units and shared surfaces remain outstanding. The review menu regenerates the review scene; preserve manual edits in a separate copy. Gray checks do not establish final-art or game quality.
