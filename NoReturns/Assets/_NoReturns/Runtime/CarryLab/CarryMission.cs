@@ -49,11 +49,11 @@ public sealed class CarryMission {
     }
     public void Abort(){if(Phase>0&&Phase<4){Phase=4;ReturnPay=0;stable=0;}}
     public static string Objective(int phase)=>phase switch {
-        0=>"SHIP / [E] Select CINDER DEPOT route",
-        1=>"CINDER DEPOT selected / Crew aboard, then [E] AUTO ARRIVE",
-        2=>"Deliver sealed parcel onto the marked reception floor. [E] aboard: abort and return",
-        3=>"COLLECT RECEIPT [E] at terminal / Bring it back aboard, then [E] RETURN TO GET PAID",
-        _=>"SHIFT REPORT / [E] inside ship: prepare next shift"
+        0=>"SHIP / Open terminal to select CINDER DEPOT",
+        1=>"CINDER DEPOT / Board together, then depart at terminal",
+        2=>"Deliver parcel onto BAY 04 floor. Return through ship terminal.",
+        3=>"Collect the receipt at BAY 04. Return aboard and settle at ship terminal.",
+        _=>"SHIFT REPORT / Prepare next shift at ship terminal"
     };
 }
 }

@@ -2,6 +2,10 @@
 
 [한국어](README.md)
 
+## 2026-10-01 — Controls, ship and purchase UI 0.9.2
+
+[Current controls and running](current/controls-ui.en.md). E targeted use/ship terminal, left-click ground placement, hold right click to rotate parcel, wheel 0.75–1.6m reach, Q immediate release. Separate departure/return/purchase into native buttons showing boarding count, wallet, disabled reasons and zero-pay return confirmation. Esc settings provide 13 button rebindings, sensitivity, FOV, language/defaults. Menus block gameplay inputs while the world continues. Connect Cinder 120 CR beacon purchase/shared carrying/two 8-second signals. Version 0.9.2, protocol 11, TCP 27842. Preserve source map/delivery pay. Supersede E automatic progression/Esc shop and unconnected-Cinder-beacon statements below within this scope. Listener/baton/suppression/save integration and human quality assessment remain. [Actual validation scope](validation/controls-ui-0.9.2.json).
+
 [Current Cinder delivery, receipt and return settlement](current/four-player.en.md#2026-10-01--cinder-delivery-receipt-and-return-settlement): connect default four-window launch to delivery testing. Ship E preparation/arrival → BAY 04 floor acceptance → receipt E collection → all-aboard return/420 CR settlement → next shift. Preserve the source art scene. Retain movement testing with `start --map-only`/`check`. Listener/baton/suppression/beacon/save and four-human/other-PC/performance validation remain. [Actual validation scope](validation/cinder-delivery-01.json).
 
 [Current Cinder four-player test environment](current/four-player.en.md#2026-10-01--cinder-four-player-map-test-environment): start/stop 1 host and 3 Mac client windows for movement/shared-parcel carrying in the current map. **Mac build: 0 errors/7 existing warnings; pass 13 actual four-process checks, 7 existing rescue-rule conditions and 7 regular-mode defaults. Inspect 2 native 800×500 Korean HUD captures for crew 4/4, E/Q controls, reticle and team colors; also verify 4 manual processes/3 connections and shutdown.** Full Cinder delivery/Listener/baton integration and four-human/other-PC/performance validation remain pending.
@@ -49,7 +53,7 @@ Existing Listener, baton and ship gameplay code/scenes are preserved. See [exist
 
 [Current 0.9.0 — four-player launch and validation](current/four-player.en.md)
 
-[0.9.1 — cooperative HUD](current/crew-hud.en.md)
+[0.9.2 — cooperative HUD and menus](current/crew-hud.en.md)
 
 [One-cycle demo and 3D asset list](current/demo-art-list.en.md)
 

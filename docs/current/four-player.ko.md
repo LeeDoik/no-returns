@@ -2,6 +2,10 @@
 
 [English](four-player.en.md)
 
+## 2026-10-01 — 조작·우주선·구매 UI 0.9.2
+
+[현재 조작과 실행 안내](controls-ui.ko.md). E 대상 사용/선내 단말, 좌클릭 바닥 배치, 우클릭 유지 화물 회전, 휠 0.75–1.6m 거리, Q 즉시 놓기. 출발·귀환·구매를 실제 버튼으로 분리하고 탑승 인원·잔액·비활성 사유·0 CR 귀환 확인을 표시한다. Esc 조작 설정에 13개 버튼 재설정·감도·FOV·언어/기본값을 제공한다. 메뉴는 세계를 멈추지 않으며 게임 입력을 차단한다. Cinder 신호기 120 CR 구매·공유 운반·2회/8초 신호를 연결한다. 버전 0.9.2·프로토콜 11·TCP 27842. 기존 원본 맵/배송 보수는 유지한다. 아래의 E 자동 진행·Esc 구매 및 Cinder 신호기 미연결 상태를 이 구현 범위에서 대체한다. 리스너/진압봉/억제/저장 통합과 사람 품질 평가는 남아 있다. [실제 검증 범위](../validation/controls-ui-0.9.2.json).
+
 ## 2026-10-01 — Cinder 배송·영수증·귀환 정산
 
 **CINDER-DELIVERY-01 / 구현·자동 검증 범위는 아래 근거 참조.** 배송 장부와 CRT를 현재 맵의 별도 `CinderFourPlayerTest`에 연결했다. 원본 `CinderCompactSiteReview`의 아트/건물/하늘/물리 배치를 보존한다. 이후 재빌드는 원본을 복사하고 기존 수령 모델 1개·BoxCollider 1개·피드백·물리 표지 2개를 더한다. 원래 정적 화물 46개·CRT 3개를 기능 화물로 바꾸지 않는다. 새 모델/텍스처/패키지 없음. 버전 **0.9.1**, 프로토콜 **10**, TCP **27842**, 렌더 상한 **30fps**, 물리 **50Hz**, 카메라 **250m** 유지. [빌드 소스](../../NoReturns/Assets/_NoReturns/Editor/CinderFourPlayerBuild.cs) · [배송 장부](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryMission.cs).

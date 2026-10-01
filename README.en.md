@@ -2,6 +2,8 @@
 
 [한국어](README.md)
 
+[Current Mac Cinder 0.9.2 controls, ship and purchase UI](docs/current/controls-ui.en.md). Follow this guide for the latest four-window player and controls. Older Windows experiment builds below are outside this Mac validation scope.
+
 **A PSX-style cooperative space-delivery mystery.** Route selection triggers automatic spacecraft travel and landing. Employees deliver through dangerous sites, reinvesting pay in equipment and harder work.
 
 [Product design](docs/current/01-overview.en.md) · [Documentation](docs/README.en.md)

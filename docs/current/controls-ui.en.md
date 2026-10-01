@@ -1,0 +1,46 @@
+# Controls, ship and purchase UI — 0.9.2
+
+[한국어](controls-ui.ko.md)
+
+2026-10-01 · Implemented in the current Cinder Mac player. Follow the validation record below for verified scope. This supersedes earlier E automatic-departure/Esc-shop instructions.
+
+## Default controls
+
+| Action | Default input |
+|---|---|
+| Move / look | WASD / mouse |
+| Pick up aimed parcel/beacon, collect receipt, inspect terminal | E |
+| Rescue downed crew | Hold E beside teammate |
+| Place parcel on ground / set down beacon | Left click |
+| Rotate carried parcel | Hold right click + mouse |
+| Parcel reach | Wheel, 0.75–1.6m |
+| Release held item immediately | Q |
+| Empty-hand jump / quiet walk / call | Space / Shift / C |
+| Empty-hand baton / field log | Left click / Tab, existing hazard mode |
+| Ship terminal | E aboard, without directly departing/returning |
+| Menu/settings | Esc, fixed menu-close key |
+| Reset carrying lab | R, host `--map-only` test only |
+
+The parcel placement preview uses green/orange outlines for clear ground/blocked placement. Check the first collision within 2.8m, ground normal, parcel bounds and swept path. Walls, ceilings and obstructed spaces keep the parcel held. Rotation into walls/ground is also rejected. Q quickly releases at the current position. Place the beacon on ground ahead; active beacons cannot be collected. Right click/wheel apply only to the parcel.
+
+Bottom prompts follow the aimed target and rebound keys. Menus/log/rebinding block movement, item, baton and rescue inputs while the world and other employees continue. Mouse sensitivity defaults to 0.12, range 0.04–0.30; FOV defaults to 80, range 65–100. Rebind 13 button actions or restore defaults in Esc settings. Reject duplicate keys; Esc cancels rebinding. Bindings, sensitivity, FOV and language persist in personal PlayerPrefs. Automated four-window sessions do not write personal preferences. The Editor persistence check temporarily saves values while preserving and restoring the original preferences.
+
+## Ship and purchases
+
+E aboard → select route → confirm all crew aboard → **departure button**. Deliver/collect receipt → board together → **return/settlement button** → prepare next shift. Repeated E aboard never changes mission phase. Host controls departure, return, contracts and shared purchases; the server rechecks position, occupancy, phase and wallet. Returning without a receipt displays 0 CR and needs a second click. Preserve normal 300+120=420 CR settlement. Contract changes remain available only in existing hazard mode after the first delivery, during route selection.
+
+The same terminal's equipment card sells the **120 CR** beacon license: one shared device, **two 8-second** uses per shift. Disable purchases for insufficient funds, existing ownership, phases outside preparation/report and clients. Duplicate purchases never charge again. Cinder spawn is **(-20.7,1.23,-29)m**, above the y=1m deck. Physically carry the device into the field; placing aboard consumes no charge. Cinder connects purchase, carrying and signal/audio only; Listener distraction, baton, suppression and progression-save integration remain. Cinder license/wallet do not persist after session exit. Preserve existing hazard-mode host saving.
+
+Use matching uGUI presentation for connection, Esc, settings, ship and log. Use a 1280×720 CanvasScaler, native buttons/input/slider, EventSystem and GraphicRaycaster with mouse and default arrow/Enter navigation. English is production-copy source; include complete Korean counterparts in the same change.
+
+[Korean settings](../../art/cinder-kit-01/controls-settings-ko.png) · [Korean ship/shop](../../art/cinder-kit-01/controls-ship-shop-ko.png) · [English ship/shop](../../art/cinder-kit-01/controls-ship-shop-en.png)
+
+## Running, sources and remaining checks
+
+`python3 tools/cinder_four_player.py build` → `start` launches the latest four Mac windows. `stop` terminates only the owned session processes. [Four-player guide](four-player.en.md) · [Validation record](../validation/controls-ui-0.9.2.json).
+
+[Input](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryControls.cs) · [Controls/terminal/placement](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.Controls.cs) · [Ledger](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryMission.cs) · [Protocol 11](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryWire.cs) · [Native UI](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CrewHud.Menus.cs) · [Version settings](../../NoReturns/ProjectSettings/ProjectSettings.asset). Retain TCP 27842 and source map placement. Older protocol builds cannot connect.
+
+Mac build: 0 errors/7 existing warnings. Pass 48 four-process delivery/button/purchase/physical carrying checks, 17 native key/persistence/UI/target-priority/preview checks, 35 ledger checks, 10 HUD behavior/100 bilingual text-height checks. Also pass 13 final four-process movement/connection regression checks. Record 142 pre-existing missing links/0 new failures and four native scene trailing spaces separately.
+
+Automated checks/native screen review do not replace human control preference, rotation feel, readability or fun evaluation. Four humans, other-PC/LAN, latest Windows execution, extended stability and performance remain unverified. Add no new equipment types, inventory or packages.

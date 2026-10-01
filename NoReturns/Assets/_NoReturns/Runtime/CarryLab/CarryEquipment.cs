@@ -10,15 +10,17 @@ public sealed class CarryEquipment {
     float pulse;
     GameObject visual;
     AudioSource audio; AudioClip clip; int lastBeat=-1;
-    public void Begin(bool unlocked){Charges=unlocked?2:0;Remaining=0;pulse=0;Exists=unlocked;Carrier=-1;Position=new Vector3(-2,.22f,-7);}
+    bool cinder;
+    public void Begin(bool unlocked,bool cinder=false){Charges=unlocked?2:0;Remaining=0;pulse=0;Exists=unlocked;Carrier=-1;this.cinder=cinder;Position=cinder?new Vector3(-20.7f,1.23f,-29):new Vector3(-2,.22f,-7);}
     // Remote placement is no longer supported; stock must be carried from the ship.
     public bool Deploy(Vector3 player,Quaternion look,bool free,CarryMission mission)=>false;
+    public bool Target(Vector3 origin,Quaternion look){
+        if(!Exists||Carrier>=0||Remaining>0||visual==null)return false;
+        var delta=Position-origin;if(delta.magnitude>2.4f||Vector3.Angle(look*Vector3.forward,delta)>45)return false;
+        return Physics.Raycast(origin,delta.normalized,out var hit,delta.magnitude+.2f,~0,QueryTriggerInteraction.Ignore)&&hit.collider.gameObject==visual;
+    }
     public bool PickUp(int who,Vector3 player,Quaternion look,bool free){
-        if(!Exists||!free||Carrier>=0||Remaining>0)return false;
-        var origin=player+Vector3.up*1.57f;var delta=Position-origin;
-        if(delta.magnitude>2.4f||Vector3.Angle(look*Vector3.forward,delta)>45)return false;
-        if(!Physics.Raycast(origin,delta.normalized,out var hit,delta.magnitude+.2f)||hit.collider.gameObject!=visual)return false;
-        Carrier=who;return true;
+        if(!free||!Target(player+Vector3.up*1.57f,look))return false;Carrier=who;return true;
     }
     public bool PutDown(int who,Vector3 player,Quaternion look,bool field){
         if(Carrier!=who)return false;
@@ -27,15 +29,15 @@ public sealed class CarryEquipment {
         var p=hit.point+Vector3.up*.23f;
         foreach(var overlap in Physics.OverlapBox(p,new Vector3(.2f,.19f,.2f)))if(overlap.gameObject!=visual)return false;
         Carrier=-1;Position=p;
-        if(field&&!CarryMission.Aboard(p)&&Charges>0){Remaining=8;pulse=0;Charges--;}
+        if(field&&!CarryMission.Aboard(p,cinder)&&Charges>0){Remaining=8;pulse=0;Charges--;}
         return true;
     }
     public void Follow(Vector3 player,Quaternion look){if(Carrier>=0)Position=player+Vector3.up*1.57f+look*new Vector3(0,-.4f,.75f);}
-    public void RecoverCarrier(Vector3 player){if(Carrier>=0){Carrier=-1;Position=new Vector3(player.x,.23f,player.z);}}
+    public void RecoverCarrier(Vector3 player){if(Carrier>=0){Carrier=-1;Position=Physics.Raycast(player+Vector3.up,Vector3.down,out var ground,5,~0,QueryTriggerInteraction.Ignore)?ground.point+Vector3.up*.23f:player+Vector3.up*.23f;}}
     public void Tick(bool field,float dt,CarryThreat threat,CarryThreat extra=null){
         if(!field){Remaining=0;return;}
         if(Remaining<=0)return;
-        pulse-=dt;if(pulse<=0){threat.Hear(Position,12);extra?.Distract(Position,12);pulse=1;}
+        pulse-=dt;if(pulse<=0){threat?.Hear(Position,12);extra?.Distract(Position,12);pulse=1;}
         Remaining=Mathf.Max(0,Remaining-dt);
     }
     public void Apply(CarryState s){Carrier=s.beaconCarrier;Exists=s.beaconExists;Charges=s.charges;Remaining=s.beaconTime;Position=s.beaconPosition;}

@@ -1,0 +1,149 @@
+{
+  "date": "2026-10-01",
+  "version": "0.9.2",
+  "protocol": 11,
+  "status": "PASS within automated Mac scope",
+  "build": {
+    "status": "PASS",
+    "unity": "6000.6.0f1",
+    "output": "/Users/leedoik/WorkSpace/Game/No_Returns/builds/CinderFourPlayer/NoReturns.app",
+    "error": "",
+    "errors": 0,
+    "warnings": 7
+  },
+  "delivery": {
+    "status": "PASS",
+    "run": "artifacts/cinder-four-player/run-20261001-231635-2441eb",
+    "checks": [
+      "four Cinder delivery slots",
+      "settings menu opens",
+      "settings-ko",
+      "settings blocks movement and gameplay actions",
+      "settings closes",
+      "host ship terminal opens",
+      "ship button selects route",
+      "host ship terminal opens",
+      "departure requires all four aboard",
+      "host ship terminal opens",
+      "all aboard activates field",
+      "client cannot command return",
+      "host ship terminal opens",
+      "zero-pay return needs explicit confirmation",
+      "return without receipt pays zero",
+      "host ship terminal opens",
+      "next shift resets all four and receipt",
+      "host ship terminal opens",
+      "second route selected",
+      "host ship terminal opens",
+      "second field arrival",
+      "shared cargo picked up",
+      "rotation and reach replicate",
+      "blocked placement keeps cargo held",
+      "held cargo cannot complete delivery",
+      "precise BAY 04 placement and scan replicate",
+      "receipt prints on all peers without payment",
+      "printing completes on all peers",
+      "terminal-ko",
+      "English HUD toggle",
+      "terminal-en",
+      "receipt collected by one peer is shared",
+      "duplicate collection and outside crew do not pay",
+      "terminal-collected",
+      "host ship terminal opens",
+      "settlement is 300 plus 120 exactly once",
+      "ship-report",
+      "purchase is host-only",
+      "shop purchases once and spawns Cinder beacon",
+      "owned purchase cannot charge twice",
+      "ship-shop-owned",
+      "Korean ship UI toggle",
+      "ship-shop-owned-ko",
+      "client carries purchased physical beacon",
+      "aboard beacon placement preserves charges",
+      "host ship terminal opens",
+      "next shift keeps 300 and resets receipt",
+      "no runtime exceptions or invalid bounds"
+    ],
+    "count": 48,
+    "final_wallet_after_one_delivery_and_purchase": 300
+  },
+  "native_ui_controls": {
+    "status": "PASS",
+    "checks": 17
+  },
+  "native_ledger": {
+    "status": "PASS",
+    "checks": 35
+  },
+  "hud": {
+    "status": "PASS",
+    "behavior_checks": 10,
+    "two_language_phase_text_height_checks": 100
+  },
+  "movement_regression": {
+    "status": "PASS",
+    "count": 13,
+    "run": "artifacts/cinder-four-player/run-20261001-231844-132bed",
+    "checks": [
+      "Cinder mode and four peers replicated",
+      "slot 3 picks up shared parcel",
+      "non-owner cannot release cargo",
+      "slot 3 movement replicated",
+      "owner releases cargo on all peers",
+      "host reset returns all four to landing",
+      "four simultaneous controllers pass west lane",
+      "fifth peer rejected",
+      "disconnect preserves remaining slot identities",
+      "freed slot 2 rejoins",
+      "two native player captures",
+      "Cinder HUD evidence and Korean font",
+      "no runtime exceptions or invalid bounds in player logs"
+    ]
+  },
+  "screens": [
+    "art/cinder-kit-01/controls-settings-ko.png",
+    "art/cinder-kit-01/controls-ship-shop-ko.png",
+    "art/cinder-kit-01/controls-ship-shop-en.png"
+  ],
+  "tested_actions": [
+    "Native pointer raycast/button handler in four players",
+    "Settings block gameplay",
+    "Native rebinding/cancel/conflict/default/fresh-instance persistence",
+    "Rescue priority aboard",
+    "Cargo rotation/reach, blocked placement and precise reception-floor placement",
+    "Host/all-aboard restrictions and zero-pay return confirmation",
+    "Receipt shared once, 420 CR settlement, 120 CR purchase once, client beacon carrying, aboard placement without charge",
+    "Preview geometry edges verified after final render-only correction"
+  ],
+  "failures_and_repairs": [
+    "Physical-key hints followed Korean IME labels; use stable Latin physical-key names.",
+    "Runtime-created binding IDs prevented reliable restore; assign stable native binding IDs, verify fresh-instance restore.",
+    "Test menu-close command was overwritten before consumption; wait for close evidence before movement.",
+    "Delete/move evidence file gap caused a transient false settlement assertion; atomically replace evidence files.",
+    "Edit-mode pointer raycast was unsuitable for a live Canvas; check pointer raycasts in real players and click handlers in the isolated check.",
+    "One native build returned Unknown with zero errors/warnings; retry after refresh completed succeeded.",
+    "One preview check ran before refreshed assembly loaded; rerun after native compilation passed."
+  ],
+  "documentation": {
+    "existing_missing_link_errors": 142,
+    "new_errors": 0
+  },
+  "whitespace": {
+    "raw": "FAIL: four native scene trailing empty m_Name values",
+    "code_docs_evidence": "PASS",
+    "ignoring_native_trailing_space": "PASS"
+  },
+  "unverified": [
+    "Human key preference, rotation feel, readability and fun",
+    "Four human players, other-PC LAN and Windows latest execution",
+    "Extended stability and performance",
+    "Cinder Listener/baton/suppression and progression saving integration"
+  ],
+  "notes": [
+    "No packages, equipment types or inventory system added.",
+    "Cinder beacon signal/audio has no Listener to lure yet.",
+    "Cinder wallet/license are session-only; existing hazard save remains.",
+    "Final native build follows a render-only preview edge correction; full delivery logic was unchanged, final native preview check covers it.",
+    "Full delivery regression passed after the final source/build changes; native preview and target-priority checks also passed. Final movement regression recorded separately."
+  ]
+}

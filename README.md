@@ -2,6 +2,8 @@
 
 [English](README.en.md)
 
+[현재 맥 Cinder 0.9.2 조작·우주선·구매 UI](docs/current/controls-ui.ko.md). 최신 네 창 실행과 조작 안내는 이 문서를 따른다. 아래 이전 Windows 실험 빌드는 이번 맥 검증 범위에 포함하지 않는다.
+
 **PSX 스타일의 협동 우주 배송·미스터리 게임.** 항로 선택 후 우주선이 자동 이동·착륙하며, 직원들은 위험한 현장에서 배송을 수행하고 보수로 장비를 개선해 더 어려운 업무에 도전합니다.
 
 [최상위 기획서](docs/current/01-overview.ko.md) · [문서 홈](docs/README.md)

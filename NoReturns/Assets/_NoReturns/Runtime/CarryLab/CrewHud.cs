@@ -1,7 +1,7 @@
 using UnityEngine;
 namespace NoReturns.CarryLab {
 // Presentation only. No input, authority, mission progression or deadline disclosure.
-public sealed class CrewHud : MonoBehaviour {
+public sealed partial class CrewHud : MonoBehaviour {
     UnityEngine.UI.Text objective,wallet,cue,prompt,notice,center;
     readonly UnityEngine.UI.Text[] rows=new UnityEngine.UI.Text[4];
     GameObject surface;
@@ -34,6 +34,9 @@ public sealed class CrewHud : MonoBehaviour {
         var cross=Box("Reticle",new Vector2(.5f,.5f),new Vector2(.5f,.5f),Vector2.zero,new Vector2(24,30),false);
         center=Text(cross,"Aim",Vector2.zero,new Vector2(24,30),18);center.text="+";center.alignment=TextAnchor.MiddleCenter;
     }
+    public void SetMovement(string text){cue.text=text;}
+    public string ContextText=>prompt==null?"":prompt.text;
+    public void SetContext(string text){prompt.text=text;}
     public void Apply(CarryState s,int local,bool visible){
         if(surface==null)Build();surface.SetActive(visible);if(!visible)return;
         objective.text="NO RETURNS / "+T(CarryMission.Objective(s.phase));

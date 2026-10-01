@@ -27,6 +27,8 @@ def main():
         return all_state(lambda s: s.get("phase") == phase)
 
     def go(slot, x, z, pitch=0):
+        send(slot, ui="close")
+        lab.wait("gameplay controls resumed", lambda: lab.state(folders[slot], "ui.json").get("menu")=="", 5)
         lab.walk(send, folders, slot, x, z, pitch)
 
     def aboard(slot):
@@ -36,6 +38,11 @@ def main():
         go(slot, -20.7, -20.05)
         go(slot, -20.7, -25 if slot < 2 else -26.4)
         go(slot, x, -25 if slot < 2 else -26.4)
+
+    def ship_click():
+        send(0, ui="ship")
+        require("host ship terminal opens", lambda: lab.state(folders[0], "ui.json").get("menu") == "ship")
+        send(0, click="shipAction")
 
     def aim(slot, target, **values):
         p = lab.state(folders[0])["positions"][slot]
@@ -55,27 +62,45 @@ def main():
     try:
         require("four Cinder delivery slots", lambda: all_state(lambda s:
                 s.get("cinderReview") and s.get("players") == 4 and s.get("phase") == 0 and not s.get("hazard")))
+        send(2, ui="settings")
+        require("settings menu opens", lambda: lab.state(folders[2], "ui.json").get("menu")=="settings")
+        capture("settings-ko",2,(-20.7,2,-31))
+        start=lab.state(folders[0])["positions"][2]
+        send(2,x=1,z=1,interact=True,drop=True,place=True,action=True,shove=True)
+        time.sleep(.5)
+        assert lab.state(folders[0])["positions"][2]==start and same_phase(0), "Gameplay leaked through settings"
+        checks.append("settings blocks movement and gameplay actions")
+        send(2,ui="close")
+        require("settings closes",lambda: lab.state(folders[2],"ui.json").get("menu")=="")
         aboard(0)
-        send(0, interact=True)
-        require("ship E selects route", lambda: same_phase(1))
-        send(0, interact=True)
+        ship_click()
+        require("ship button selects route", lambda: same_phase(1))
+        ship_click()
         time.sleep(.5)
         assert same_phase(1), "Departure allowed while crew outside"
         checks.append("departure requires all four aboard")
         for i in range(1, 4):
             aboard(i)
-        send(0, interact=True)
+        ship_click()
         require("all aboard activates field", lambda: same_phase(2))
-        send(1, interact=True)
+        send(1, action=True, confirmReturn=True)
+        time.sleep(.4)
+        assert same_phase(2), "Client changed ship phase"
+        checks.append("client cannot command return")
+        ship_click()
+        time.sleep(.4)
+        assert same_phase(2), "Unconfirmed zero-pay return"
+        checks.append("zero-pay return needs explicit confirmation")
+        send(0, click="shipAction")
         require("return without receipt pays zero", lambda: same_phase(4) and all_state(lambda s: s.get("credits") == 0))
-        send(0, interact=True)
+        ship_click()
         require("next shift resets all four and receipt", lambda: same_phase(0) and all_state(lambda s:
                 s.get("receiptProgress") == 0 and not s.get("receiptCollected")))
         for i in range(4):
             aboard(i)
-        send(0, interact=True)
+        ship_click()
         require("second route selected", lambda: same_phase(1))
-        send(0, interact=True)
+        ship_click()
         require("second field arrival", lambda: same_phase(2))
         go(0, -20.7, -25)
         go(0, -20.7, -20.05)
@@ -83,6 +108,13 @@ def main():
         cargo = lab.state(folders[0])["cargo"]
         aim(0, (cargo["x"], cargo["y"], cargo["z"]), interact=True)
         require("shared cargo picked up", lambda: all_state(lambda s: s.get("holder") == 0))
+        before=lab.state(folders[0])["cargo"]
+        send(0,turnYaw=35,distance=1.5)
+        require("rotation and reach replicate",lambda: all_state(lambda s: abs(s["rotation"]["y"])>.2 and s["cargo"]["z"]>before["z"]+.2))
+        send(0,place=True)
+        time.sleep(.4)
+        assert all_state(lambda s:s.get("holder")==0), "Flat aim placed through a wall"
+        checks.append("blocked placement keeps cargo held")
         # Approved west/north route; actual carrying controls and collision, no teleports.
         route = [(-22.95, -19.65), (-22.95, 25.95), (12.75, 25.95),
                  (12.75, 14.2), (17.0, 14.2), (17.0, 11.6)]
@@ -91,8 +123,8 @@ def main():
         time.sleep(.4)
         assert same_phase(2) and all_state(lambda s: s.get("credits") == 0), "Held cargo accepted or paid"
         checks.append("held cargo cannot complete delivery")
-        send(0, pitch=45, drop=True)
-        require("BAY 04 scan progress replicates", lambda: all_state(lambda s: 0 < s.get("receiptProgress", 0) < 1), 8)
+        send(0, pitch=62, place=True)
+        require("precise BAY 04 placement and scan replicate", lambda: all_state(lambda s: 0 < s.get("receiptProgress", 0) < 1), 8)
         require("receipt prints on all peers without payment", lambda: same_phase(3) and all_state(lambda s: s.get("credits") == 0), 8)
         go(0, 14.9, 10.9)
         require("printing completes on all peers", lambda: all_state(lambda s: s.get("receiptReady")))
@@ -110,15 +142,35 @@ def main():
         capture("terminal-collected", 0, (14.91, 1.25, 12.17))
         for x, z in [(12.75, 10.9), (12.75, 25.95), (-22.95, 25.95), (-22.95, -20.05), (-20.7, -20.05), (-20.7, -25), (-21.65, -25)]:
             go(0, x, z)
-        send(0, interact=True)
+        ship_click()
         require("settlement is 300 plus 120 exactly once", lambda: same_phase(4) and all_state(lambda s:
                 s.get("credits") == 420 and s.get("receipt") == 300 and s.get("returnPay") == 120 and s.get("deliveries") == 1))
         time.sleep(.5)
         assert all_state(lambda s: s.get("credits") == 420), "Settlement paid twice"
         capture("ship-report", 0, (-20.7, 2.8, -31.2))
-        send(0, interact=True)
-        require("next shift keeps 420 and resets receipt", lambda: same_phase(0) and all_state(lambda s:
-                s.get("credits") == 420 and s.get("receiptProgress") == 0 and not s.get("receiptCollected")))
+        send(1, buy=True)
+        time.sleep(.4)
+        assert all_state(lambda s: s.get("credits") == 420 and not s.get("unlocked")), "Client purchased shared device"
+        checks.append("purchase is host-only")
+        send(0, click="buy")
+        require("shop purchases once and spawns Cinder beacon", lambda: all_state(lambda s: s.get("credits")==300 and s.get("unlocked") and s.get("charges")==2 and s.get("beaconExists")))
+        send(0, click="buy")
+        time.sleep(.4)
+        assert all_state(lambda s: s.get("credits")==300), "Duplicate purchase charged twice"
+        checks.append("owned purchase cannot charge twice")
+        capture("ship-shop-owned", 0, (-20.7, 2.8, -31.2))
+        send(0,toggleLanguage=True)
+        require("Korean ship UI toggle",lambda:lab.state(folders[0],"ui.json").get("language")=="ko")
+        capture("ship-shop-owned-ko",0,(-20.7,2.8,-31.2))
+        go(1,-20.7,-28)
+        device=lab.state(folders[0])["beaconPosition"]
+        aim(1,(device["x"],device["y"],device["z"]),interact=True)
+        require("client carries purchased physical beacon",lambda:all_state(lambda s:s.get("beaconCarrier")==1))
+        send(1,place=True)
+        require("aboard beacon placement preserves charges",lambda:all_state(lambda s:s.get("beaconCarrier")==-1 and s.get("charges")==2 and s.get("beaconTime")==0))
+        ship_click()
+        require("next shift keeps 300 and resets receipt", lambda: same_phase(0) and all_state(lambda s:
+                s.get("credits") == 300 and s.get("receiptProgress") == 0 and not s.get("receiptCollected")))
         logs = [p for p in run.rglob("player.log") if any(v in p.read_text(errors="replace")
                 for v in ("Exception:", "Invalid AABB", "Assertion failed", "Fatal Error"))]
         assert not logs, logs

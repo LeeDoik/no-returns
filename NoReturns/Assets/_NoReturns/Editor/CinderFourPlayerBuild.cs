@@ -36,7 +36,7 @@ public static class CinderFourPlayerBuild {
             terminal.AddComponent<BoxCollider>().size=new Vector3(.75f,1.6f,.65f);
             var feedback=new GameObject("BAY 04 receipt feedback");feedback.transform.position=offset;feedback.AddComponent<ReceiptFeedback>();
             CinderSitePropsBuild.Legend("BAY 04\nRECEPTION",14.9f,2.05f,12.5f,0,feedback.transform);
-            CinderSitePropsBuild.Legend("SHIFT\n[E] ABOARD",-20.7f,2.9f,-31.25f,180,feedback.transform);
+            CinderSitePropsBuild.Legend("SHIP\nTERMINAL",-20.7f,2.9f,-31.25f,180,feedback.transform);
             new GameObject("Cinder four-player map test").AddComponent<CarryRoom>().cinderReview=true;
             EditorSceneManager.SaveScene(scene);
             var directory=Path.GetFullPath("../builds/CinderFourPlayer");Directory.CreateDirectory(directory);
