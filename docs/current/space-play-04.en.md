@@ -2,6 +2,8 @@
 
 [한국어](space-play-04.ko.md)
 
+The historical `artifacts/` paths identify local evidence from the original run. These files are no longer retained here and are not included in the public repository. Historical passes are distinct from current revalidation.
+
 As of 0.6.0, host progression saves restore wallet, beacon license and successful-delivery count; shifts restart at ship preparation. Earlier session-only/no-save notes describe the state through 0.5.0. [Save rules and validation](space-play-05.en.md).
 
 2026-09-13 · Implementation of proposed test values. This does not finalize the release economy or include persistence.
@@ -27,11 +29,11 @@ Launch: [listener experiment](../../06_Play_Listener_Test.cmd), [same-PC partner
 
 ## 2026-09-13 validation results
 
-- Unity MCP compilation and Windows 0.5.0 build completed. Passed 17 rule checks covering standard/risk pay, duplicate payment/purchase rejection, authority/location/phase gates, retained license and shift reset. [Rule result](../../artifacts/space-play-04/rules-result.json).
-- Passed 24 [progression checks](../../artifacts/space-play-04/latest.json) in two actual Windows processes: normal delivery and fast return earn 420 CR → purchase for 120 CR → shared 300 CR wallet → risk contract → client beacon deployment, remote attraction and expiry.
-- Existing [rescue checks](../../artifacts/space-play-03/latest.json) passed 21 and [language checks](../../artifacts/language/latest.json) passed 9. These counts describe automated checks, not human evaluations.
+- Unity MCP compilation and Windows 0.5.0 build completed. Passed 17 rule checks covering standard/risk pay, duplicate payment/purchase rejection, authority/location/phase gates, retained license and shift reset. Rule result (`artifacts/space-play-04/rules-result.json`).
+- Passed 24 progression checks (`artifacts/space-play-04/latest.json`) in two actual Windows processes: normal delivery and fast return earn 420 CR → purchase for 120 CR → shared 300 CR wallet → risk contract → client beacon deployment, remote attraction and expiry.
+- Existing rescue checks (`artifacts/space-play-03/latest.json`) passed 21 and language checks (`artifacts/language/latest.json`) passed 9. These counts describe automated checks, not human evaluations.
 - The first progression attempt was caught during a slow return by the creature investigating cargo set-down. The 300 CR receipt remained secured. Changed the test return path to fast movement around the back of the yard without weakening game rules. Preserved the failed run evidence.
 - Added a temporary spatial beep and pulsating cylinder to the beacon. Full HUD/supply-panel capture and actual listening evaluation were not completed. The automated camera capture request was overwritten by subsequent movement input and produced no image; this is not visual approval.
 - Successful risk delivery and the full 630 CR settlement were not verified through the complete playable route. The 450+180 calculation was verified separately through Unity rule checks. Human fear, fun, pricing and beep readability remain unverified.
 
-[Carrying regression checks](../../artifacts/space-play-01/latest.json) also passed 17. Documentation links/counterparts passed across 190 documents.
+Carrying regression checks (`artifacts/space-play-01/latest.json`) also passed 17. Documentation links/counterparts passed across 190 documents.

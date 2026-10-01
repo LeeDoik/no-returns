@@ -2,6 +2,8 @@
 
 [ko](display-systems.ko.md)
 
+The historical `artifacts/` paths identify local evidence from the original run. These files are no longer retained here and are not included in the public repository. Historical passes are distinct from current revalidation.
+
 0.8.14 · Current implementation audit and changes.
 
 | Element | Current approach and decision |
@@ -23,7 +25,7 @@ The host determines game state; peers display the same values. Display changes d
 
 Windows build succeeded. Comparing terminal progress at 25% and 75% changed 212 front-view pixels, 0 rear-view pixels and 0 pixels behind an occluding wall. Confirmed progress stays inside the display. No measured performance improvement or release UI completion is claimed. Human readability, comfort and feel remain separate evaluations.
 
-[CRT validation](../../artifacts/space-foundation/crt-progress-result.json) · [Baton shader](../../NoReturns/Assets/_NoReturns/Resources/BatonDisplay.shader) · [Terminal shader](../../NoReturns/Assets/_NoReturns/Resources/ReceiptUI/ReceiptCRT.shader)
+CRT validation (`artifacts/space-foundation/crt-progress-result.json`) · [Baton shader](../../NoReturns/Assets/_NoReturns/Resources/BatonDisplay.shader) · [Terminal shader](../../NoReturns/Assets/_NoReturns/Resources/ReceiptUI/ReceiptCRT.shader)
 
 Final validation: passed 11 two-process baton display/recharge checks and 30 delivery/receipt/settlement checks. Terminal front/rear/wall-occlusion render checks passed. Inspected the in-game mid-charge baton display. Bilingual documentation checks passed for 216 documents. Human readability and performance measurements were not performed.
 

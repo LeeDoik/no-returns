@@ -2,9 +2,11 @@
 
 [English](05-validation.en.md)
 
+과거 검증의 `artifacts/` 경로는 당시 로컬 기록의 출처다. 현재 파일은 보관되어 있지 않고 공개 저장소에도 포함되지 않는다. 과거 통과 기록과 현재 재검증 완료는 구분한다.
+
 ## 2026-10-02 — 저장소·로컬 파일 정리
 
-[정리 범위와 보존 기준](repo-hygiene.ko.md). 참조 없는 Unity 검토 복사본과 Smart Wall 중복본 51개·44,900,041바이트를 제거하고, 낡은 로컬 시험/로그/캐시 115,418,532바이트와 LFS 캐시 246개(도구 표시 약 122MB)를 정리했다. 제작 원본·현재 에셋·과거 문서/커밋·기존 선내 재질 수정 8개는 보존한다. 게임 0.9.3·프로토콜 12 유지. Unity 전체 Assets 의존성 검사, LFS HEAD 무결성, 정리 후 맥 빌드 오류 0개·경고 4개 통과. 문서의 기존 누락 142개는 남아 있다. [파일별 근거](../validation/repo-cleanup-2026-10-02.json).
+[정리 범위와 보존 기준](repo-hygiene.ko.md). 참조 없는 Unity 검토 복사본과 Smart Wall 중복본 51개·44,900,041바이트를 제거하고, 낡은 로컬 시험/로그/캐시 115,418,532바이트와 LFS 캐시 246개(도구 표시 약 122MB)를 정리했다. 제작 원본·현재 에셋·과거 문서/커밋·기존 선내 재질 수정 8개는 보존한다. 게임 0.9.3·프로토콜 12 유지. Unity 전체 Assets 의존성 검사, LFS HEAD 무결성, 정리 후 맥 빌드 오류 0개·경고 4개 통과. 과거 로컬 근거 링크 142개를 현재 미보관인 출처로 명시했으며 문서 272개 링크/언어·체크 상태 검사 통과. [파일별 근거](../validation/repo-cleanup-2026-10-02.json).
 
 ## 2026-10-02 — Cinder 리스너·진압봉·구조 0.9.3
 
@@ -242,14 +244,14 @@
 
 ## 이번 작업의 검증 근거
 
-- [기반 설정 로그](../../artifacts/space-foundation/setup.log): 종료 코드 0, `SPACE-01 FOUNDATION PASS`.
+- 기반 설정 로그 (`artifacts/space-foundation/setup.log`): 종료 코드 0, `SPACE-01 FOUNDATION PASS`.
 - 공식 MCP의 `editor_status`: 새 `NoReturns` 경로, Unity 6000.6.0f1, `ready`, 컴파일·도메인 재로드 없음.
 - 문서 검사: 174개 Markdown 문서의 로컬 링크·언어 대응·체크 상태 통과. 현재 문서 01–05의 숫자 대응 통과.
 - [빌드 장면 설정](../../NoReturns/ProjectSettings/EditorBuildSettings.asset): 빈 `Bootstrap.unity`만 활성화. 실제 사람 플레이와 게임 실행본 검증은 하지 않았다.
 
 ## SPACE-ECO-01 — 제안 계산 검사
 
-- [x] [계산 검사](../../tools/check_economy_proposal.py): 배송 126개·미배송 126개 조합, 예시 5개와 이미지 지갑 흐름, 한영 수치·체크 상태 통과. [결과](../../artifacts/space-economy/check.json).
+- [x] [계산 검사](../../tools/check_economy_proposal.py): 배송 126개·미배송 126개 조합, 예시 5개와 이미지 지갑 흐름, 한영 수치·체크 상태 통과. 결과 (`artifacts/space-economy/check.json`).
 - [ ] [보수·실패·장비 경제 초안](economy.ko.md)의 실제 사람 밸런스 검사와 지급·저장·중복 처리 온라인 검사.
 
 산술 통과는 경제 균형이나 Unity 구현 검증이 아니다.
@@ -264,7 +266,7 @@
 
 ## SPACE-PLAY-01 검사 경계
 
-[운반 안내](carry-test.ko.md)와 [자동 검사 결과](../../artifacts/space-play-01/latest.json). Unity MCP·컴파일·Windows 빌드와 실제 두 프로세스 검사 17개 통과. URP 카메라 렌더를 시각 확인했으며 메뉴·HUD 전체 화면 검증과는 구분한다. 사람 조작감·재미, 다른 PC, 4인, WAN·Steam은 미검증이다. 이전 실패 근거는 보존한다.
+[운반 안내](carry-test.ko.md)와 자동 검사 결과 (`artifacts/space-play-01/latest.json`). Unity MCP·컴파일·Windows 빌드와 실제 두 프로세스 검사 17개 통과. URP 카메라 렌더를 시각 확인했으며 메뉴·HUD 전체 화면 검증과는 구분한다. 사람 조작감·재미, 다른 PC, 4인, WAN·Steam은 미검증이다. 이전 실패 근거는 보존한다.
 
 ## SPACE-PLAY-02
 
@@ -272,7 +274,7 @@
 
 ## 안내 언어 — 0.3.1
 
-기본 한국어, 메뉴의 한국어 / English 전환과 로컬 설정 유지 기능을 추가했다. [사용·제작 안내](carry-test.ko.md). 언어 선택은 온라인 게임 상태와 별개다. 검증 결과는 [언어 검사](../../artifacts/language/latest.json)에 기록한다.
+기본 한국어, 메뉴의 한국어 / English 전환과 로컬 설정 유지 기능을 추가했다. [사용·제작 안내](carry-test.ko.md). 언어 선택은 온라인 게임 상태와 별개다. 검증 결과는 언어 검사 (`artifacts/language/latest.json`)에 기록한다.
 
 언어 검증: 두 Windows 프로세스 자동 검사 9개 통과(기본 한국어·한글 글꼴·독립 전환·재실행 유지). 창 캡처가 게임 화면을 안정적으로 가져오지 못해 실제 화면의 줄바꿈·버튼 가독성은 시각 검증 미완료로 남긴다.
 

@@ -2,6 +2,8 @@
 
 0.8.14: [디스플레이 구현 기준·현행 검토](display-systems.ko.md).
 
+과거 검증의 `artifacts/` 경로는 당시 로컬 기록의 출처다. 현재 파일은 보관되어 있지 않고 공개 저장소에도 포함되지 않는다. 과거 통과 기록과 현재 재검증 완료는 구분한다.
+
 [en](next-equipment.en.md)
 
 0.8.13 · 내장 디스플레이 모델 적용.
@@ -21,7 +23,7 @@ Windows 빌드 성공. Blender 앞면 및 FBX 재가져오기에서 몸체/화�
 
 현재는 미리 만든 텍스처를 교체한다. 셰이더로 충전량을 직접 그리거나, UI를 RenderTexture에 그려 모델 재질에 입히거나, World Space Canvas를 사용할 수도 있다. 질문에 대한 설명이며 방식 변경은 하지 않았다. 작은 충전계는 셰이더가 적합한 후보이고 복잡한 터미널은 UI/RenderTexture를 검토한다.
 
-[Model](../../art/psx-baton-02/selected/validation.json) · [Feedback checks](../../artifacts/baton-feedback/latest.json) · [Resistance checks](../../artifacts/space-foundation/baton-resistance-result.json)
+[Model](../../art/psx-baton-02/selected/validation.json) · Feedback checks (`artifacts/baton-feedback/latest.json`) · Resistance checks (`artifacts/space-foundation/baton-resistance-result.json`)
 
 최종 검증: 두 프로세스 저지·다운·구조·긴급 회수 회귀 24개도 통과했다. 표시 검사 11개와 저항 로직 검사 3개는 별도 범위다.
 

@@ -2,6 +2,8 @@
 
 [English](controls-beacon.en.md)
 
+과거 검증의 `artifacts/` 경로는 당시 로컬 기록의 출처다. 현재 파일은 보관되어 있지 않고 공개 저장소에도 포함되지 않는다. 과거 통과 기록과 현재 재검증 완료는 구분한다.
+
 ## 2026-10-01 — 조작·우주선·구매 UI 0.9.2
 
 [현재 조작과 실행 안내](controls-ui.ko.md). E 대상 사용/선내 단말, 좌클릭 바닥 배치, 우클릭 유지 화물 회전, 휠 0.75–1.6m 거리, Q 즉시 놓기. 출발·귀환·구매를 실제 버튼으로 분리하고 탑승 인원·잔액·비활성 사유·0 CR 귀환 확인을 표시한다. Esc 조작 설정에 13개 버튼 재설정·감도·FOV·언어/기본값을 제공한다. 메뉴는 세계를 멈추지 않으며 게임 입력을 차단한다. Cinder 신호기 120 CR 구매·공유 운반·2회/8초 신호를 연결한다. 버전 0.9.2·프로토콜 11·TCP 27842. 기존 원본 맵/배송 보수는 유지한다. 아래의 E 자동 진행·Esc 구매 및 Cinder 신호기 미연결 상태를 이 구현 범위에서 대체한다. 리스너/진압봉/억제/저장 통합과 사람 품질 평가는 남아 있다. [실제 검증 범위](../validation/controls-ui-0.9.2.json).
@@ -21,4 +23,4 @@ E: 바라보는 화물·신호기 줍기, 영수증 회수, 단서 조사, 선�
 
 검증 결과: Windows 0.8.8 빌드, 실제 2개 프로세스 배송·E/Q 회귀 30항목, 시험 잔액을 사용한 신호기 구매·운반 14항목 통과. 신호기 재회수의 최종 검사는 우주선 출구 쪽에서 수행했다. 생물 순찰 지점에서 대기한 이전 시도는 다운되어 실패했으며 전투·위험 지역 재회수 난이도는 사람 검증 대상으로 남긴다. 문서 검사 210개 통과.
 
-[Build](../../artifacts/space-foundation/controls-build-result.json) · [E/Q delivery](../../artifacts/space-play-02/latest.json) · [Physical beacon](../../artifacts/physical-beacon/latest.json)
+Build (`artifacts/space-foundation/controls-build-result.json`) · E/Q delivery (`artifacts/space-play-02/latest.json`) · Physical beacon (`artifacts/physical-beacon/latest.json`)

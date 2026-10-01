@@ -2,9 +2,11 @@
 
 [한국어](03-guides.ko.md)
 
+The historical `artifacts/` paths identify local evidence from the original run. These files are no longer retained here and are not included in the public repository. Historical passes are distinct from current revalidation.
+
 ## 2026-10-02 — Repository and local file cleanup
 
-[Cleanup scope and retention policy](repo-hygiene.en.md). Remove 51 unreferenced Unity review copies/duplicate Smart Wall files (44,900,041 bytes), 115,418,532 bytes of stale local tests/logs/caches and 246 LFS cached objects (approximately 122MB reported). Preserve production sources, current assets, historical documents/commits and 8 existing ship material edits. Retain game 0.9.3 / protocol 12. Pass dependencies across all Unity Assets, LFS HEAD integrity and post-cleanup Mac build with 0 errors / 4 warnings. The 142 existing missing documentation links remain. [Per-file evidence](../validation/repo-cleanup-2026-10-02.json).
+[Cleanup scope and retention policy](repo-hygiene.en.md). Remove 51 unreferenced Unity review copies/duplicate Smart Wall files (44,900,041 bytes), 115,418,532 bytes of stale local tests/logs/caches and 246 LFS cached objects (approximately 122MB reported). Preserve production sources, current assets, historical documents/commits and 8 existing ship material edits. Retain game 0.9.3 / protocol 12. Pass dependencies across all Unity Assets, LFS HEAD integrity and post-cleanup Mac build with 0 errors / 4 warnings. Mark 142 historical local-evidence links as unretained provenance; all 272 documents pass link/language/checkbox checks. [Per-file evidence](../validation/repo-cleanup-2026-10-02.json).
 
 ## 2026-10-02 — Cinder Listener, baton and rescue 0.9.3
 
@@ -311,7 +313,7 @@ Visual check: verified matching code/main cargo appearance, two-handed carrying,
 
 ## Guidance language — 0.3.1
 
-Added Korean by default, the 한국어 / English menu toggle and persistence of the local preference. [Usage and production guide](carry-test.en.md). Language selection is separate from online game state. Results are recorded in the [language checks](../../artifacts/language/latest.json).
+Added Korean by default, the 한국어 / English menu toggle and persistence of the local preference. [Usage and production guide](carry-test.en.md). Language selection is separate from online game state. Results are recorded in the language checks (`artifacts/language/latest.json`).
 
 ## SPACE-PLAY-03 — LISTENER/rescue experiment (0.4.0)
 

@@ -2,6 +2,8 @@
 
 0.8.14: [Display implementation policy and current audit](display-systems.en.md).
 
+The historical `artifacts/` paths identify local evidence from the original run. These files are no longer retained here and are not included in the public repository. Historical passes are distinct from current revalidation.
+
 [ko](next-equipment.ko.md)
 
 0.8.13 · Integrated-display model applied.
@@ -21,7 +23,7 @@ Windows build succeeded. Blender front view and FBX roundtrip confirmed 2 body/s
 
 Currently swaps prepared textures. Alternatives include drawing charge directly in a shader, rendering UI into a RenderTexture applied to the model material, or using a World Space Canvas. This answers the question without changing implementation. A shader is a candidate for a small charge gauge; UI/RenderTexture can be considered for complex terminals.
 
-[Model](../../art/psx-baton-02/selected/validation.json) · [Feedback checks](../../artifacts/baton-feedback/latest.json) · [Resistance checks](../../artifacts/space-foundation/baton-resistance-result.json)
+[Model](../../art/psx-baton-02/selected/validation.json) · Feedback checks (`artifacts/baton-feedback/latest.json`) · Resistance checks (`artifacts/space-foundation/baton-resistance-result.json`)
 
 Final validation: all 24 two-process stun/down/rescue/emergency recovery regressions also passed. The 11 display checks and 3 resistance logic checks cover separate scopes.
 

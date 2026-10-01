@@ -1,0 +1,721 @@
+{
+  "date": "2026-10-02",
+  "scope": "Make historical unretained local evidence explicit; preserve original labels, paths, historical decisions and test outcomes. No gameplay changes.",
+  "replaced_links": {
+    "en": 71,
+    "ko": 71
+  },
+  "references": [
+    {
+      "document": "docs/archive/change-log.en.md",
+      "label": "check results",
+      "historical_local_path": "artifacts/space-economy/check.json"
+    },
+    {
+      "document": "docs/archive/change-log.en.md",
+      "label": "automated results",
+      "historical_local_path": "artifacts/space-play-01/latest.json"
+    },
+    {
+      "document": "docs/archive/change-log.en.md",
+      "label": "carrying results",
+      "historical_local_path": "artifacts/space-play-01/latest.json"
+    },
+    {
+      "document": "docs/archive/change-log.en.md",
+      "label": "delivery results",
+      "historical_local_path": "artifacts/space-play-02/latest.json"
+    },
+    {
+      "document": "docs/archive/change-log.en.md",
+      "label": "language checks",
+      "historical_local_path": "artifacts/language/latest.json"
+    },
+    {
+      "document": "docs/archive/change-log.en.md",
+      "label": "two-process evidence",
+      "historical_local_path": "artifacts/space-play-03/latest.json"
+    },
+    {
+      "document": "docs/archive/change-log.en.md",
+      "label": "Beacon results",
+      "historical_local_path": "artifacts/physical-beacon/latest.json"
+    },
+    {
+      "document": "docs/archive/change-log.en.md",
+      "label": "Carried",
+      "historical_local_path": "artifacts/physical-beacon/run-20260913-190229/carried.png"
+    },
+    {
+      "document": "docs/archive/change-log.en.md",
+      "label": "Delivery run",
+      "historical_local_path": "artifacts/space-play-02/run-20260913-190139"
+    },
+    {
+      "document": "docs/archive/change-log.ko.md",
+      "label": "검사 결과",
+      "historical_local_path": "artifacts/space-economy/check.json"
+    },
+    {
+      "document": "docs/archive/change-log.ko.md",
+      "label": "자동 결과",
+      "historical_local_path": "artifacts/space-play-01/latest.json"
+    },
+    {
+      "document": "docs/archive/change-log.ko.md",
+      "label": "운반 결과",
+      "historical_local_path": "artifacts/space-play-01/latest.json"
+    },
+    {
+      "document": "docs/archive/change-log.ko.md",
+      "label": "배송 결과",
+      "historical_local_path": "artifacts/space-play-02/latest.json"
+    },
+    {
+      "document": "docs/archive/change-log.ko.md",
+      "label": "언어 검사",
+      "historical_local_path": "artifacts/language/latest.json"
+    },
+    {
+      "document": "docs/archive/change-log.ko.md",
+      "label": "두 프로세스 근거",
+      "historical_local_path": "artifacts/space-play-03/latest.json"
+    },
+    {
+      "document": "docs/archive/change-log.ko.md",
+      "label": "Beacon results",
+      "historical_local_path": "artifacts/physical-beacon/latest.json"
+    },
+    {
+      "document": "docs/archive/change-log.ko.md",
+      "label": "Carried",
+      "historical_local_path": "artifacts/physical-beacon/run-20260913-190229/carried.png"
+    },
+    {
+      "document": "docs/archive/change-log.ko.md",
+      "label": "Delivery run",
+      "historical_local_path": "artifacts/space-play-02/run-20260913-190139"
+    },
+    {
+      "document": "docs/current/controls-beacon.ko.md",
+      "label": "Build",
+      "historical_local_path": "artifacts/space-foundation/controls-build-result.json"
+    },
+    {
+      "document": "docs/current/controls-beacon.ko.md",
+      "label": "E/Q delivery",
+      "historical_local_path": "artifacts/space-play-02/latest.json"
+    },
+    {
+      "document": "docs/current/controls-beacon.ko.md",
+      "label": "Physical beacon",
+      "historical_local_path": "artifacts/physical-beacon/latest.json"
+    },
+    {
+      "document": "docs/current/space-play-06.en.md",
+      "label": "Unity physics/rule checks",
+      "historical_local_path": "artifacts/space-play-06/rules-result.json"
+    },
+    {
+      "document": "docs/current/space-play-06.en.md",
+      "label": "two-process checks",
+      "historical_local_path": "artifacts/space-play-06/latest.json"
+    },
+    {
+      "document": "docs/current/space-play-06.en.md",
+      "label": "actual Korean journal screen",
+      "historical_local_path": "artifacts/space-play-06-ui/run-20260913-020950/host/screen.png"
+    },
+    {
+      "document": "docs/current/space-play-06.en.md",
+      "label": "rescue regression checks",
+      "historical_local_path": "artifacts/space-play-03/latest.json"
+    },
+    {
+      "document": "docs/current/receipt-terminal.en.md",
+      "label": "Build",
+      "historical_local_path": "artifacts/space-foundation/receipt-build-result.json"
+    },
+    {
+      "document": "docs/current/receipt-terminal.en.md",
+      "label": "Rules",
+      "historical_local_path": "artifacts/space-foundation/receipt-return-result.json"
+    },
+    {
+      "document": "docs/current/receipt-terminal.en.md",
+      "label": "Two processes",
+      "historical_local_path": "artifacts/space-play-02/latest.json"
+    },
+    {
+      "document": "docs/current/receipt-terminal.en.md",
+      "label": "Screen and slot",
+      "historical_local_path": "artifacts/space-play-02/run-20260913-180442/receipt-english.png"
+    },
+    {
+      "document": "docs/current/receipt-terminal.en.md",
+      "label": "Clue regression",
+      "historical_local_path": "artifacts/space-play-06/latest.json"
+    },
+    {
+      "document": "docs/current/receipt-terminal.en.md",
+      "label": "Surface/occlusion test",
+      "historical_local_path": "artifacts/space-foundation/crt-validation-result.json"
+    },
+    {
+      "document": "docs/current/receipt-terminal.en.md",
+      "label": "Front",
+      "historical_local_path": "artifacts/receipt-crt/front-ko.png"
+    },
+    {
+      "document": "docs/current/receipt-terminal.en.md",
+      "label": "Wall occlusion",
+      "historical_local_path": "artifacts/receipt-crt/blocked-a.png"
+    },
+    {
+      "document": "docs/current/space-play-04.en.md",
+      "label": "Rule result",
+      "historical_local_path": "artifacts/space-play-04/rules-result.json"
+    },
+    {
+      "document": "docs/current/space-play-04.en.md",
+      "label": "progression checks",
+      "historical_local_path": "artifacts/space-play-04/latest.json"
+    },
+    {
+      "document": "docs/current/space-play-04.en.md",
+      "label": "rescue checks",
+      "historical_local_path": "artifacts/space-play-03/latest.json"
+    },
+    {
+      "document": "docs/current/space-play-04.en.md",
+      "label": "language checks",
+      "historical_local_path": "artifacts/language/latest.json"
+    },
+    {
+      "document": "docs/current/space-play-04.en.md",
+      "label": "Carrying regression checks",
+      "historical_local_path": "artifacts/space-play-01/latest.json"
+    },
+    {
+      "document": "docs/current/next-equipment.ko.md",
+      "label": "Feedback checks",
+      "historical_local_path": "artifacts/baton-feedback/latest.json"
+    },
+    {
+      "document": "docs/current/next-equipment.ko.md",
+      "label": "Resistance checks",
+      "historical_local_path": "artifacts/space-foundation/baton-resistance-result.json"
+    },
+    {
+      "document": "docs/current/psx-beacon-01.ko.md",
+      "label": "Beacon results",
+      "historical_local_path": "artifacts/physical-beacon/latest.json"
+    },
+    {
+      "document": "docs/current/psx-beacon-01.ko.md",
+      "label": "Carried",
+      "historical_local_path": "artifacts/physical-beacon/run-20260913-190229/carried.png"
+    },
+    {
+      "document": "docs/current/psx-beacon-01.ko.md",
+      "label": "Delivery run",
+      "historical_local_path": "artifacts/space-play-02/run-20260913-190139"
+    },
+    {
+      "document": "docs/current/02-spec.en.md",
+      "label": "language checks",
+      "historical_local_path": "artifacts/language/latest.json"
+    },
+    {
+      "document": "docs/current/space-play-02.en.md",
+      "label": "automated carrying checks",
+      "historical_local_path": "artifacts/space-play-01/latest.json"
+    },
+    {
+      "document": "docs/current/space-play-02.en.md",
+      "label": "automated delivery checks",
+      "historical_local_path": "artifacts/space-play-02/latest.json"
+    },
+    {
+      "document": "docs/current/space-play-02.en.md",
+      "label": "language checks",
+      "historical_local_path": "artifacts/language/latest.json"
+    },
+    {
+      "document": "docs/current/space-play-05.en.md",
+      "label": "Save-file checks",
+      "historical_local_path": "artifacts/space-play-05/rules-result.json"
+    },
+    {
+      "document": "docs/current/space-play-05.en.md",
+      "label": "Executable checks",
+      "historical_local_path": "artifacts/space-play-05/latest.json"
+    },
+    {
+      "document": "docs/current/space-play-05.en.md",
+      "label": "rescue regression checks",
+      "historical_local_path": "artifacts/space-play-03/latest.json"
+    },
+    {
+      "document": "docs/current/display-systems.ko.md",
+      "label": "CRT validation",
+      "historical_local_path": "artifacts/space-foundation/crt-progress-result.json"
+    },
+    {
+      "document": "docs/current/04-backlog.ko.md",
+      "label": "언어 검사",
+      "historical_local_path": "artifacts/language/latest.json"
+    },
+    {
+      "document": "docs/current/03-guides.ko.md",
+      "label": "언어 검사",
+      "historical_local_path": "artifacts/language/latest.json"
+    },
+    {
+      "document": "docs/current/space-play-07.en.md",
+      "label": "east corridor",
+      "historical_local_path": "artifacts/space-play-07-ui/run-20260913-121023/east-corridor.png"
+    },
+    {
+      "document": "docs/current/space-play-07.en.md",
+      "label": "north detour",
+      "historical_local_path": "artifacts/space-play-07-ui/run-20260913-121023/north-detour.png"
+    },
+    {
+      "document": "docs/current/space-play-07.en.md",
+      "label": "41 expanded map/suppression checks",
+      "historical_local_path": "artifacts/space-play-07/run-20260913-121121/report.json"
+    },
+    {
+      "document": "docs/current/space-play-07.en.md",
+      "label": "Carrying 17",
+      "historical_local_path": "artifacts/space-play-01/run-20260913-121606/report.json"
+    },
+    {
+      "document": "docs/current/space-play-07.en.md",
+      "label": "Rescue/creature 21",
+      "historical_local_path": "artifacts/space-play-03/run-20260913-121626/report.json"
+    },
+    {
+      "document": "docs/current/space-play-07.en.md",
+      "label": "Existing delivery 6",
+      "historical_local_path": "artifacts/space-play-03-delivery/run-20260913-121705/report.json"
+    },
+    {
+      "document": "docs/current/space-play-07.en.md",
+      "label": "12 Unity rules checks",
+      "historical_local_path": "artifacts/global-hunt/rules-latest.json"
+    },
+    {
+      "document": "docs/current/space-play-07.en.md",
+      "label": "23 actual two-player checks",
+      "historical_local_path": "artifacts/global-hunt/run-20260913-124548/report.json"
+    },
+    {
+      "document": "docs/current/space-play-07.en.md",
+      "label": "21 normal-listener/shove/rescue regression checks",
+      "historical_local_path": "artifacts/space-play-03/run-20260913-125039/report.json"
+    },
+    {
+      "document": "docs/current/space-play-03.en.md",
+      "label": "two-executable checks",
+      "historical_local_path": "artifacts/space-play-03/latest.json"
+    },
+    {
+      "document": "docs/current/space-play-03.en.md",
+      "label": "quiet alternate-route delivery checks with an active creature",
+      "historical_local_path": "artifacts/space-play-03-delivery/latest.json"
+    },
+    {
+      "document": "docs/current/space-play-03.en.md",
+      "label": "solo down/automatic recovery checks",
+      "historical_local_path": "artifacts/space-play-03-solo/latest.json"
+    },
+    {
+      "document": "docs/current/space-play-03.en.md",
+      "label": "Build/payment-rule evidence",
+      "historical_local_path": "artifacts/space-play-03/build-and-ledger.json"
+    },
+    {
+      "document": "docs/current/05-validation.ko.md",
+      "label": "기반 설정 로그",
+      "historical_local_path": "artifacts/space-foundation/setup.log"
+    },
+    {
+      "document": "docs/current/05-validation.ko.md",
+      "label": "결과",
+      "historical_local_path": "artifacts/space-economy/check.json"
+    },
+    {
+      "document": "docs/current/05-validation.ko.md",
+      "label": "자동 검사 결과",
+      "historical_local_path": "artifacts/space-play-01/latest.json"
+    },
+    {
+      "document": "docs/current/05-validation.ko.md",
+      "label": "언어 검사",
+      "historical_local_path": "artifacts/language/latest.json"
+    },
+    {
+      "document": "docs/current/review-fixes.ko.md",
+      "label": "결과",
+      "historical_local_path": "artifacts/review-fixes/rules-report.txt"
+    },
+    {
+      "document": "docs/current/review-fixes.ko.md",
+      "label": "고정 실행 기록",
+      "historical_local_path": "artifacts/review-fixes/run-20260913-133845/report.json"
+    },
+    {
+      "document": "docs/current/review-fixes.ko.md",
+      "label": "전역 추적 23개",
+      "historical_local_path": "artifacts/global-hunt/run-20260913-133956/report.json"
+    },
+    {
+      "document": "docs/current/review-fixes.ko.md",
+      "label": "구조·밀치기 21개",
+      "historical_local_path": "artifacts/review-fixes/rescue-0.8.2.json"
+    },
+    {
+      "document": "docs/current/review-fixes.ko.md",
+      "label": "위험 지역 배송 6개",
+      "historical_local_path": "artifacts/review-fixes/delivery-0.8.2.json"
+    },
+    {
+      "document": "docs/current/carry-test.ko.md",
+      "label": "최신 결과",
+      "historical_local_path": "artifacts/space-play-01/latest.json"
+    },
+    {
+      "document": "docs/current/psx-tripo-kit-01.en.md",
+      "label": "Runtime corridor",
+      "historical_local_path": "artifacts/space-play-07-ui/run-20260913-165535/east-corridor.png"
+    },
+    {
+      "document": "docs/current/psx-tripo-kit-01.en.md",
+      "label": "Runtime detour",
+      "historical_local_path": "artifacts/space-play-07-ui/run-20260913-165535/north-detour.png"
+    },
+    {
+      "document": "docs/current/psx-tripo-kit-01.en.md",
+      "label": "Bounds checks",
+      "historical_local_path": "artifacts/space-foundation/art-fit-result.json"
+    },
+    {
+      "document": "docs/current/baton-mesh-fix.en.md",
+      "label": "Online display checks",
+      "historical_local_path": "artifacts/baton-feedback/latest.json"
+    },
+    {
+      "document": "docs/current/space-play-07.ko.md",
+      "label": "동쪽 회랑",
+      "historical_local_path": "artifacts/space-play-07-ui/run-20260913-121023/east-corridor.png"
+    },
+    {
+      "document": "docs/current/space-play-07.ko.md",
+      "label": "북쪽 우회로",
+      "historical_local_path": "artifacts/space-play-07-ui/run-20260913-121023/north-detour.png"
+    },
+    {
+      "document": "docs/current/space-play-07.ko.md",
+      "label": "확장 맵·억제장치 41개 검사",
+      "historical_local_path": "artifacts/space-play-07/run-20260913-121121/report.json"
+    },
+    {
+      "document": "docs/current/space-play-07.ko.md",
+      "label": "운반 17",
+      "historical_local_path": "artifacts/space-play-01/run-20260913-121606/report.json"
+    },
+    {
+      "document": "docs/current/space-play-07.ko.md",
+      "label": "구조·생물 21",
+      "historical_local_path": "artifacts/space-play-03/run-20260913-121626/report.json"
+    },
+    {
+      "document": "docs/current/space-play-07.ko.md",
+      "label": "기존 배송 6",
+      "historical_local_path": "artifacts/space-play-03-delivery/run-20260913-121705/report.json"
+    },
+    {
+      "document": "docs/current/space-play-07.ko.md",
+      "label": "Unity 규칙 12개 검사",
+      "historical_local_path": "artifacts/global-hunt/rules-latest.json"
+    },
+    {
+      "document": "docs/current/space-play-07.ko.md",
+      "label": "실제 두 실행본 23개 검사",
+      "historical_local_path": "artifacts/global-hunt/run-20260913-124548/report.json"
+    },
+    {
+      "document": "docs/current/space-play-07.ko.md",
+      "label": "일반 리스너·밀치기·구조 21개 회귀 검사",
+      "historical_local_path": "artifacts/space-play-03/run-20260913-125039/report.json"
+    },
+    {
+      "document": "docs/current/03-guides.en.md",
+      "label": "language checks",
+      "historical_local_path": "artifacts/language/latest.json"
+    },
+    {
+      "document": "docs/current/04-backlog.en.md",
+      "label": "language checks",
+      "historical_local_path": "artifacts/language/latest.json"
+    },
+    {
+      "document": "docs/current/display-systems.en.md",
+      "label": "CRT validation",
+      "historical_local_path": "artifacts/space-foundation/crt-progress-result.json"
+    },
+    {
+      "document": "docs/current/space-play-05.ko.md",
+      "label": "저장 파일 검사",
+      "historical_local_path": "artifacts/space-play-05/rules-result.json"
+    },
+    {
+      "document": "docs/current/space-play-05.ko.md",
+      "label": "실제 실행 검사",
+      "historical_local_path": "artifacts/space-play-05/latest.json"
+    },
+    {
+      "document": "docs/current/space-play-05.ko.md",
+      "label": "구조 회귀 검사",
+      "historical_local_path": "artifacts/space-play-03/latest.json"
+    },
+    {
+      "document": "docs/current/baton-mesh-fix.ko.md",
+      "label": "온라인 표시 검사",
+      "historical_local_path": "artifacts/baton-feedback/latest.json"
+    },
+    {
+      "document": "docs/current/psx-tripo-kit-01.ko.md",
+      "label": "실행 화면: 회랑",
+      "historical_local_path": "artifacts/space-play-07-ui/run-20260913-165535/east-corridor.png"
+    },
+    {
+      "document": "docs/current/psx-tripo-kit-01.ko.md",
+      "label": "실행 화면: 우회로",
+      "historical_local_path": "artifacts/space-play-07-ui/run-20260913-165535/north-detour.png"
+    },
+    {
+      "document": "docs/current/psx-tripo-kit-01.ko.md",
+      "label": "크기 검사",
+      "historical_local_path": "artifacts/space-foundation/art-fit-result.json"
+    },
+    {
+      "document": "docs/current/carry-test.en.md",
+      "label": "Latest result",
+      "historical_local_path": "artifacts/space-play-01/latest.json"
+    },
+    {
+      "document": "docs/current/review-fixes.en.md",
+      "label": "Result",
+      "historical_local_path": "artifacts/review-fixes/rules-report.txt"
+    },
+    {
+      "document": "docs/current/review-fixes.en.md",
+      "label": "Fixed run record",
+      "historical_local_path": "artifacts/review-fixes/run-20260913-133845/report.json"
+    },
+    {
+      "document": "docs/current/review-fixes.en.md",
+      "label": "23 global-hunt checks",
+      "historical_local_path": "artifacts/global-hunt/run-20260913-133956/report.json"
+    },
+    {
+      "document": "docs/current/review-fixes.en.md",
+      "label": "21 rescue/shove checks",
+      "historical_local_path": "artifacts/review-fixes/rescue-0.8.2.json"
+    },
+    {
+      "document": "docs/current/review-fixes.en.md",
+      "label": "6 hazardous-delivery checks",
+      "historical_local_path": "artifacts/review-fixes/delivery-0.8.2.json"
+    },
+    {
+      "document": "docs/current/05-validation.en.md",
+      "label": "Foundation setup log",
+      "historical_local_path": "artifacts/space-foundation/setup.log"
+    },
+    {
+      "document": "docs/current/05-validation.en.md",
+      "label": "Result",
+      "historical_local_path": "artifacts/space-economy/check.json"
+    },
+    {
+      "document": "docs/current/05-validation.en.md",
+      "label": "automated results",
+      "historical_local_path": "artifacts/space-play-01/latest.json"
+    },
+    {
+      "document": "docs/current/05-validation.en.md",
+      "label": "language checks",
+      "historical_local_path": "artifacts/language/latest.json"
+    },
+    {
+      "document": "docs/current/space-play-03.ko.md",
+      "label": "두 실행본 검사",
+      "historical_local_path": "artifacts/space-play-03/latest.json"
+    },
+    {
+      "document": "docs/current/space-play-03.ko.md",
+      "label": "활성 크리처 아래 조용한 우회 배송",
+      "historical_local_path": "artifacts/space-play-03-delivery/latest.json"
+    },
+    {
+      "document": "docs/current/space-play-03.ko.md",
+      "label": "솔로 다운·자동 회수",
+      "historical_local_path": "artifacts/space-play-03-solo/latest.json"
+    },
+    {
+      "document": "docs/current/space-play-03.ko.md",
+      "label": "빌드·보수 규칙 근거",
+      "historical_local_path": "artifacts/space-play-03/build-and-ledger.json"
+    },
+    {
+      "document": "docs/current/next-equipment.en.md",
+      "label": "Feedback checks",
+      "historical_local_path": "artifacts/baton-feedback/latest.json"
+    },
+    {
+      "document": "docs/current/next-equipment.en.md",
+      "label": "Resistance checks",
+      "historical_local_path": "artifacts/space-foundation/baton-resistance-result.json"
+    },
+    {
+      "document": "docs/current/space-play-04.ko.md",
+      "label": "규칙 결과",
+      "historical_local_path": "artifacts/space-play-04/rules-result.json"
+    },
+    {
+      "document": "docs/current/space-play-04.ko.md",
+      "label": "진행 검사",
+      "historical_local_path": "artifacts/space-play-04/latest.json"
+    },
+    {
+      "document": "docs/current/space-play-04.ko.md",
+      "label": "구조 검사",
+      "historical_local_path": "artifacts/space-play-03/latest.json"
+    },
+    {
+      "document": "docs/current/space-play-04.ko.md",
+      "label": "언어 검사",
+      "historical_local_path": "artifacts/language/latest.json"
+    },
+    {
+      "document": "docs/current/space-play-04.ko.md",
+      "label": "운반 회귀 검사",
+      "historical_local_path": "artifacts/space-play-01/latest.json"
+    },
+    {
+      "document": "docs/current/receipt-terminal.ko.md",
+      "label": "Build",
+      "historical_local_path": "artifacts/space-foundation/receipt-build-result.json"
+    },
+    {
+      "document": "docs/current/receipt-terminal.ko.md",
+      "label": "Rules",
+      "historical_local_path": "artifacts/space-foundation/receipt-return-result.json"
+    },
+    {
+      "document": "docs/current/receipt-terminal.ko.md",
+      "label": "Two processes",
+      "historical_local_path": "artifacts/space-play-02/latest.json"
+    },
+    {
+      "document": "docs/current/receipt-terminal.ko.md",
+      "label": "Screen and slot",
+      "historical_local_path": "artifacts/space-play-02/run-20260913-180442/receipt-english.png"
+    },
+    {
+      "document": "docs/current/receipt-terminal.ko.md",
+      "label": "Clue regression",
+      "historical_local_path": "artifacts/space-play-06/latest.json"
+    },
+    {
+      "document": "docs/current/receipt-terminal.ko.md",
+      "label": "표면·가림 검사",
+      "historical_local_path": "artifacts/space-foundation/crt-validation-result.json"
+    },
+    {
+      "document": "docs/current/receipt-terminal.ko.md",
+      "label": "정면",
+      "historical_local_path": "artifacts/receipt-crt/front-ko.png"
+    },
+    {
+      "document": "docs/current/receipt-terminal.ko.md",
+      "label": "벽 가림",
+      "historical_local_path": "artifacts/receipt-crt/blocked-a.png"
+    },
+    {
+      "document": "docs/current/space-play-06.ko.md",
+      "label": "Unity 물리·규칙 검사",
+      "historical_local_path": "artifacts/space-play-06/rules-result.json"
+    },
+    {
+      "document": "docs/current/space-play-06.ko.md",
+      "label": "실제 두 프로세스 검사",
+      "historical_local_path": "artifacts/space-play-06/latest.json"
+    },
+    {
+      "document": "docs/current/space-play-06.ko.md",
+      "label": "한국어 기록창 실제 화면",
+      "historical_local_path": "artifacts/space-play-06-ui/run-20260913-020950/host/screen.png"
+    },
+    {
+      "document": "docs/current/space-play-06.ko.md",
+      "label": "구조 회귀 검사",
+      "historical_local_path": "artifacts/space-play-03/latest.json"
+    },
+    {
+      "document": "docs/current/controls-beacon.en.md",
+      "label": "Build",
+      "historical_local_path": "artifacts/space-foundation/controls-build-result.json"
+    },
+    {
+      "document": "docs/current/controls-beacon.en.md",
+      "label": "E/Q delivery",
+      "historical_local_path": "artifacts/space-play-02/latest.json"
+    },
+    {
+      "document": "docs/current/controls-beacon.en.md",
+      "label": "Physical beacon",
+      "historical_local_path": "artifacts/physical-beacon/latest.json"
+    },
+    {
+      "document": "docs/current/space-play-02.ko.md",
+      "label": "운반 자동 검사",
+      "historical_local_path": "artifacts/space-play-01/latest.json"
+    },
+    {
+      "document": "docs/current/space-play-02.ko.md",
+      "label": "배송 자동 검사",
+      "historical_local_path": "artifacts/space-play-02/latest.json"
+    },
+    {
+      "document": "docs/current/space-play-02.ko.md",
+      "label": "언어 검사",
+      "historical_local_path": "artifacts/language/latest.json"
+    },
+    {
+      "document": "docs/current/02-spec.ko.md",
+      "label": "언어 검사",
+      "historical_local_path": "artifacts/language/latest.json"
+    },
+    {
+      "document": "docs/current/psx-beacon-01.en.md",
+      "label": "Beacon results",
+      "historical_local_path": "artifacts/physical-beacon/latest.json"
+    },
+    {
+      "document": "docs/current/psx-beacon-01.en.md",
+      "label": "Carried",
+      "historical_local_path": "artifacts/physical-beacon/run-20260913-190229/carried.png"
+    },
+    {
+      "document": "docs/current/psx-beacon-01.en.md",
+      "label": "Delivery run",
+      "historical_local_path": "artifacts/space-play-02/run-20260913-190139"
+    }
+  ],
+  "docs_check": "DOCS PASS: 272 maintained/archived entry documents"
+}

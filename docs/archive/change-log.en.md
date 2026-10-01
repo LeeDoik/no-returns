@@ -2,6 +2,14 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-02 — Historical local-evidence references in public documentation
+
+As further cleanup, convert 142 historical `artifacts/` hyperlinks absent from a public clone (71 Korean / 71 English) into textual provenance retaining original paths/labels. Add a note to affected documents explaining that files are no longer retained and distinguishing original verification from current revalidation. Preserve historical values, test outcomes, completion states and document paths; do not treat missing evidence as newly revalidated. [Complete conversion record](../validation/repo-doc-links-2026-10-02.json) · [Retention guide](../current/repo-hygiene.en.md). All **272 documents pass** link/language/checkbox checks. Resolve the 142 inherited failures present at the earlier cleanup stage. No game code/scene/version changes. The earlier 0-error / 4-warning Mac build and 13 actual four-process checks remain applicable; do not repeat gameplay tests for documentation changes.
+
+Unity CLI Editor-open attempts did not connect, returning no JSON output or rejecting an executable path. Launch the installed Editor executable directly with the project, then verify CLI ready and the saved current scene. Preserve the current scene/player for resumed development; suppression/outer integration, human control/fun and other-environment checks remain incomplete.
+
+The historical `artifacts/` paths identify local evidence from the original run. These files are no longer retained here and are not included in the public repository. Historical passes are distinct from current revalidation.
+
 ## 2026-10-02 — Public repository and local generated-file cleanup
 
 At the user's request, establish the [retention policy](../current/repo-hygiene.en.md) and update bilingual guides/backlog/checklist. Remove 24 unreferenced Unity Review models/textures, their .meta and 2 byte-identical Smart Wall candidate copies: 51 files / 44,900,041 bytes from the current Git tree. Check direct dependencies across all Unity Assets with native AssetDatabase before deleting; preserve byte-identical production originals for all binaries. Keep Unity production sources, Selected assets, existing experiment code/scenes and historical documents. Clear 30 stale local runs, a large Editor log and Python caches (115,418,532 bytes), plus 246 LFS cached objects (approximately 122MB reported); exclude .DS_Store. Existing evidence JSON run paths remain original execution provenance. Preserve the latest 3 validated raw runs, shared validation JSON/images and player.
@@ -564,7 +572,7 @@ Generated the requested [integrated sheet](../art/space-concepts/cargo-receipt-c
 
 ## 2026-09-12 — SPACE-ART-16 / SPACE-ECO-01
 
-Created requested purchase/upgrade and return-settlement images plus the [bilingual economy draft](../current/economy.en.md). Proposed shared pay, permanent unlocks, free basic redeployment, return bonus, optional-supply losses and save ownership; linked affected current docs. Visually checked image amounts; [check results](../../artifacts/space-economy/check.json) cover proposal arithmetic and language parity only. No game code or models changed. Image approval, actual balance, controls, online behavior and saving remain unverified.
+Created requested purchase/upgrade and return-settlement images plus the [bilingual economy draft](../current/economy.en.md). Proposed shared pay, permanent unlocks, free basic redeployment, return bonus, optional-supply losses and save ownership; linked affected current docs. Visually checked image amounts; check results (`artifacts/space-economy/check.json`) cover proposal arithmetic and language parity only. No game code or models changed. Image approval, actual balance, controls, online behavior and saving remain unverified.
 
 ## 2026-09-12 — Overview visualization inventory and next work
 
@@ -604,7 +612,7 @@ Investigated after the user repeated that no Unity window was visible. Correctin
 
 Fixed the stripped-shader runtime failure with a Resources material. Strengthened cargo height/travel checks reproduced cargo remaining on the floor due to initial overlap; fixed with a box sweep. Input-file exchange retries transient Windows locks. Added URP camera capture and removed placeholder text signs seen reversed through walls during visual inspection. Bootstrap and art concepts are preserved.
 
-[Guide](../current/carry-test.en.md), [automated results](../../artifacts/space-play-01/latest.json): 13 checks passed across two actual processes. Camera rendering inspection is not full HUD validation. Human controls/fun, separate PCs, 4 players, WAN, Steam and the complete delivery loop remain unverified. Earlier failed evidence was retained.
+[Guide](../current/carry-test.en.md), automated results (`artifacts/space-play-01/latest.json`): 13 checks passed across two actual processes. Camera rendering inspection is not full HUD validation. Human controls/fun, separate PCs, 4 players, WAN, Steam and the complete delivery loop remain unverified. Earlier failed evidence was retained.
 
 ## 2026-09-12 — SPACE-PLAY-02 view-relative carrying and delivery flow
 
@@ -612,11 +620,11 @@ User feedback: the previous build runs but cargo does not follow view. Confirmed
 
 Preserved carrying mode and added a separate delivery launch mode. Connected placeholder ship route selection/automatic arrival, stable reception, full-crew return/report/next shift, intact-cargo shared payment and duplicate-payment prevention. Mid-shift join blocking and abort without settlement on departure are temporary policies. Actual spacecraft, CINDER DEPOT, creatures, persistence and purchasing were not added.
 
-Evidence: [carrying results](../../artifacts/space-play-01/latest.json), [delivery results](../../artifacts/space-play-02/latest.json), [current guide](../current/space-play-02.en.md). Also corrected test-file read timing and automated routes that ignored bench height/teammate collision. Final pass status is recorded in the linked results and guide. Human controls/discomfort/fun, separate PCs, 4 players and WAN remain unverified. Documentation is updated in both languages.
+Evidence: carrying results (`artifacts/space-play-01/latest.json`), delivery results (`artifacts/space-play-02/latest.json`), [current guide](../current/space-play-02.en.md). Also corrected test-file read timing and automated routes that ignored bench height/teammate collision. Final pass status is recorded in the linked results and guide. Human controls/discomfort/fun, separate PCs, 4 players and WAN remain unverified. Documentation is updated in both languages.
 
 ## 2026-09-13 — Korean-default guidance and language toggle
 
-At user request, changed carrying/delivery menus, controls, objectives, pay and connection guidance to Korean by default and added a language button. English source remains; local PlayerPrefs retain the choice. Uses Windows Malgun Gothic. Replaced unavailable R reset guidance in delivery mode with F ship actions. Compile/build Windows 0.3.1 through Unity MCP; run [language checks](../../artifacts/language/latest.json) and documentation validation. The initial build failed because compilation was in progress; retried after compilation completed. Language checks do not validate cooperative fun or other operating systems.
+At user request, changed carrying/delivery menus, controls, objectives, pay and connection guidance to Korean by default and added a language button. English source remains; local PlayerPrefs retain the choice. Uses Windows Malgun Gothic. Replaced unavailable R reset guidance in delivery mode with F ship actions. Compile/build Windows 0.3.1 through Unity MCP; run language checks (`artifacts/language/latest.json`) and documentation validation. The initial build failed because compilation was in progress; retried after compilation completed. Language checks do not validate cooperative fun or other operating systems.
 
 Final result: 9 automated language checks and document link/language-counterpart checks passed. Game-window capture was unreliable; visual verification of wrapping and button readability remains incomplete.
 
@@ -624,7 +632,7 @@ Final result: 9 automated language checks and document link/language-counterpart
 
 Following the next-step request, added a separate LISTENER experiment. Connected sound investigation, obstacle-grid patrol, attack warning, empty-hand shove, down/cargo release, hold-R revival, all-down emergency recovery and secured-pay retention. Added Korean-default/English HUD, employee down pose and temporary warning audio. Source art and carrying/delivery modes remain. Final models, outer threats, suppression, shop and persistence were not added.
 
-[Current guide](../current/space-play-03.en.md), [two-process evidence](../../artifacts/space-play-03/latest.json). Hazard 21, carrying 17 and existing delivery 21 checks passed, as did the in-Unity secured-pay retention rule check. Fixed boundary sound suppression and strengthened shove tests to meet range conditions. Camera rendering shows the placeholder creature/downed teammate; full HUD, actual audio, fear and cooperative fun remain unverified. Windows 0.4.0, protocol 3.
+[Current guide](../current/space-play-03.en.md), two-process evidence (`artifacts/space-play-03/latest.json`). Hazard 21, carrying 17 and existing delivery 21 checks passed, as did the in-Unity secured-pay retention rule check. Fixed boundary sound suppression and strengthened shove tests to meet range conditions. Camera rendering shows the placeholder creature/downed teammate; full HUD, actual audio, fear and cooperative fun remain unverified. Windows 0.4.0, protocol 3.
 
 Additional evidence: active-creature alternate delivery 6 and solo recovery 6 checks passed. Bilingual numeric parity and documentation checks passed. Return while pursued and human play evaluation remain outstanding.
 
@@ -767,7 +775,7 @@ Applied the Tripo model of approved beacon 03 as the game appearance. Inspected 
 
 Validation: Windows 0.8.9 build succeeded. Two real processes passed 17 beacon checks (seeded test wallet) and 30 delivery/receipt regression checks. Reviewed aboard, carried and deployed captures. An initial capture immediately after camera rotation preceded network propagation; added a 0.5-second settling wait to the test and recaptured. Documentation checks passed for 212 documents. Human feel, fun and overall performance were not tested. Existing signal audio and orientation handling remain.
 
-[Beacon results](../../artifacts/physical-beacon/latest.json) · [Carried](../../artifacts/physical-beacon/run-20260913-190229/carried.png) · [Delivery run](../../artifacts/space-play-02/run-20260913-190139/)
+Beacon results (`artifacts/physical-beacon/latest.json`) · Carried (`artifacts/physical-beacon/run-20260913-190229/carried.png`) · Delivery run (`artifacts/space-play-02/run-20260913-190139`)
 
 ## 2026-09-13 — Next asset: shock baton
 

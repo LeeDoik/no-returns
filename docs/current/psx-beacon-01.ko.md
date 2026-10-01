@@ -2,6 +2,8 @@
 
 [English](psx-beacon-01.en.md)
 
+과거 검증의 `artifacts/` 경로는 당시 로컬 기록의 출처다. 현재 파일은 보관되어 있지 않고 공개 저장소에도 포함되지 않는다. 과거 통과 기록과 현재 재검증 완료는 구분한다.
+
 2026-09-13 · 제작 중
 
 승인된 장비 시트의 03 신호기를 분리해 Tripo Smart Mesh P2.0 비공개로 제작한다. 1개 메시·텍스처 생성에 65+20=85크레딧, 잔액 1145→1060을 확인했다. 원본·생성 결과를 보존하고 Blender에서 크기·UV·512 텍스처·FBX 재가져오기를 검사한 뒤 Unity에서 임시 원기둥 외형을 교체한다. E/Q 운반·구매·신호 지속시간과 사용 횟수는 유지한다. 생성 완료를 게임 적용 또는 사용자 품질 승인으로 간주하지 않는다.
@@ -14,6 +16,6 @@
 
 검증: Windows 0.8.9 빌드 성공. 실제 2개 프로세스 신호기 17개 검사(테스트 잔액 사용), 배송·영수증 회귀 30개 검사 통과. 우주선 생성·운반·현장 설치 캡처를 검토했다. 카메라를 돌린 즉시 찍은 초기 캡처는 네트워크 반영 전이어서 검사 도구에 0.5초 안정화 대기를 추가하고 재촬영했다. 문서 검사 212개 통과. 실제 사람의 조작감·재미·전체 성능 검증은 하지 않았다. 신호음과 방향 처리 방식은 기존 구현을 유지한다.
 
-[Beacon results](../../artifacts/physical-beacon/latest.json) · [Carried](../../artifacts/physical-beacon/run-20260913-190229/carried.png) · [Delivery run](../../artifacts/space-play-02/run-20260913-190139/)
+Beacon results (`artifacts/physical-beacon/latest.json`) · Carried (`artifacts/physical-beacon/run-20260913-190229/carried.png`) · Delivery run (`artifacts/space-play-02/run-20260913-190139`)
 
 사용자 확인: 2026-09-13, 적용 결과를 확인하고 다음 작업 진행을 요청했다. 이를 전체 조작감·재미 검증으로 확대 해석하지 않는다.

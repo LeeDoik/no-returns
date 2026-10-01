@@ -2,6 +2,8 @@
 
 [한국어](space-play-02.ko.md)
 
+The historical `artifacts/` paths identify local evidence from the original run. These files are no longer retained here and are not included in the public repository. Historical passes are distinct from current revalidation.
+
 2026-09-12. Internal validation plan for the approved next step. Scope and acceptance conditions follow writing-plans.
 
 1. Add a two-player failing check for cargo following only horizontal facing. Rotate an eye-relative local offset by full look rotation while retaining wall/floor collision. Test vertical view, ownership and collision for both host and client.
@@ -25,8 +27,8 @@ States: preparation, route selected, field, receipt confirmed, report. The field
 ## Current validation results
 
 - [x] Compilation and Windows 0.3.0 build through Unity MCP.
-- [x] 17 [automated carrying checks](../../artifacts/space-play-01/latest.json): vertical view, host/client synchronization, floor, walls, ownership and departure.
-- [x] 21 [automated delivery checks](../../artifacts/space-play-02/latest.json): actual movement in two executables, receipt/return/420 CR agreement, unpaid empty return, blocked return with partner outside, blocked reclaimed receipt, next shift and disconnection.
+- [x] 17 automated carrying checks (`artifacts/space-play-01/latest.json`): vertical view, host/client synchronization, floor, walls, ownership and departure.
+- [x] 21 automated delivery checks (`artifacts/space-play-02/latest.json`): actual movement in two executables, receipt/return/420 CR agreement, unpaid empty return, blocked return with partner outside, blocked reclaimed receipt, next shift and disconnection.
 - [ ] Human controls, visibility, discomfort, route understanding and fun evaluation.
 - [ ] Actual CINDER DEPOT map, threats, rescue, persistence, shop, 4 players and separate-PC validation.
 
@@ -34,4 +36,4 @@ Both modes ship in the existing `builds/CarryTest/NoReturns.exe`. Automated inpu
 
 ## Guidance language — 0.3.1
 
-Added Korean by default, the 한국어 / English menu toggle and persistence of the local preference. [Usage and production guide](carry-test.en.md). Language selection is separate from online game state. Results are recorded in the [language checks](../../artifacts/language/latest.json).
+Added Korean by default, the 한국어 / English menu toggle and persistence of the local preference. [Usage and production guide](carry-test.en.md). Language selection is separate from online game state. Results are recorded in the language checks (`artifacts/language/latest.json`).

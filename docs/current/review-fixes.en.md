@@ -2,6 +2,8 @@
 
 [한국어](review-fixes.ko.md)
 
+The historical `artifacts/` paths identify local evidence from the original run. These files are no longer retained here and are not included in the public repository. Historical passes are distinct from current revalidation.
+
 2026-09-13 · Rechecked the Claude Code review supplied by the user against current sources and executable builds. Not every reported item is treated as a reproduced defect. Applied fixes and defensive changes that preserve the design, retaining unverified and design issues below.
 
 ## Findings and changes
@@ -27,8 +29,8 @@ Rack placement lives in [CarryWorld](../../NoReturns/Assets/_NoReturns/Runtime/C
 ## Validation evidence
 
 - Before: the new Unity regression fixture returned PASS 1 / FAIL 8. The actual 0.8.1 player test also failed downed-host departure recovery. Dated failures remain under `artifacts/review-fixes/`.
-- After: [Unity rules/physics fixture](../../tools/check_review_fixes.py) passed 11 checks. It uses actual classes/colliders with accelerated time calls. Coverage includes both creatures reaching the step, simultaneous F, settlement 1 time, terminal collision, defensive ship exclusion and slit closure. [Result](../../artifacts/review-fixes/rules-report.txt).
-- After: [actual Windows regression](../../tools/test_review_fixes_build.py) passed 17 checks. It runs 2 executables with isolated saves and ordinary scripted input. Coverage includes down/departure recovery, movement/next shift, Korean rejection feedback, rejoin, synchronized down on the step and physical exclusion from the slit. [Fixed run record](../../artifacts/review-fixes/run-20260913-133845/report.json).
+- After: [Unity rules/physics fixture](../../tools/check_review_fixes.py) passed 11 checks. It uses actual classes/colliders with accelerated time calls. Coverage includes both creatures reaching the step, simultaneous F, settlement 1 time, terminal collision, defensive ship exclusion and slit closure. Result (`artifacts/review-fixes/rules-report.txt`).
+- After: [actual Windows regression](../../tools/test_review_fixes_build.py) passed 17 checks. It runs 2 executables with isolated saves and ordinary scripted input. Coverage includes down/departure recovery, movement/next shift, Korean rejection feedback, rejoin, synchronized down on the step and physical exclusion from the slit. Fixed run record (`artifacts/review-fixes/run-20260913-133845/report.json`).
 - Unity MCP build succeeded. [Play](../../06_Play_Listener_Test.cmd) · [Join locally](../../07_Join_Local_Listener.cmd).
 
 Scripted input and accelerated physics checks are distinct from human judgments of feel, fear and fun. This completion claim excludes 4-player play, Steam connectivity, external internet conditions and actual reproduction of target oscillation.
@@ -36,6 +38,6 @@ Scripted input and accelerated physics checks are distinct from human judgments 
 
 ## Additional regressions — 0.8.2
 
-Passed 12 Unity global-hunt checks and 17 Unity payment/authority/reset checks. Actual players passed [23 global-hunt checks](../../artifacts/global-hunt/run-20260913-133956/report.json), [21 rescue/shove checks](../../artifacts/review-fixes/rescue-0.8.2.json) and [6 hazardous-delivery checks](../../artifacts/review-fixes/delivery-0.8.2.json). Including the new suite, totals are 67 actual-player checks and 40 Unity rules/physics checks. Compared both players and did not use personal save files.
+Passed 12 Unity global-hunt checks and 17 Unity payment/authority/reset checks. Actual players passed 23 global-hunt checks (`artifacts/global-hunt/run-20260913-133956/report.json`), 21 rescue/shove checks (`artifacts/review-fixes/rescue-0.8.2.json`) and 6 hazardous-delivery checks (`artifacts/review-fixes/delivery-0.8.2.json`). Including the new suite, totals are 67 actual-player checks and 40 Unity rules/physics checks. Compared both players and did not use personal save files.
 
 The rules fixture constructs game objects directly in edit mode. Edit-mode error logs from the runtime Visual Destroy call remain a fixture limitation. They are not classified as player runtime errors; the tested physics queries exclude employee child colliders. Actual player logs did not contain that error, and compilation did not fail. This validation does not measure rendering quality or performance.

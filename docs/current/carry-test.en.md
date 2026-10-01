@@ -2,6 +2,8 @@
 
 ## Current 0.9.0 — four-player cooperation
 
+The historical `artifacts/` paths identify local evidence from the original run. These files are no longer retained here and are not included in the public repository. Historical passes are distinct from current revalidation.
+
 [Current rules, launch and validation](four-player.en.md). Supports 1 host and up to 3 clients joining during preparation. This supersedes historical two-player limits and unimplemented four-player statements below. Existing E/Q, baton, delivery and receipt collection rules remain. Steam registration is deferred at user request; other-PC, internet and human four-player fun validation remain outstanding.
 
 
@@ -40,7 +42,7 @@ Build through `NO RETURNS/Build Carry Test` in [CarryBuild.cs](../../NoReturns/A
 ## Results and remaining evaluation
 
 - [x] Unity MCP connection, editor compilation and Windows build succeeded.
-- [x] All 17 [two-process automated checks](../../tools/test_carry_build.py) passed. [Latest result](../../artifacts/space-play-01/latest.json).
+- [x] All 17 [two-process automated checks](../../tools/test_carry_build.py) passed. Latest result (`artifacts/space-play-01/latest.json`).
 - [x] Actual player-camera rendering inspected. Automated captures use URP camera output, not a complete menu/HUD screen capture.
 - [ ] Two humans evaluate visibility, latency, controls, discomfort and fun.
 - [ ] Separate PCs, WAN, Steam connectivity and 4-player validation.

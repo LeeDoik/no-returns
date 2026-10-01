@@ -2,6 +2,8 @@
 
 [한국어](space-play-07.ko.md)
 
+The historical `artifacts/` paths identify local evidence from the original run. These files are no longer retained here and are not included in the public repository. Historical passes are distinct from current revalidation.
+
 Current 0.8.2: fixed downed-host departure recovery, low-step routing/foot height, simultaneous F transitions, terminal collision, ship attack protection, the west rack slit and join-refusal feedback. Unreproduced target oscillation and the standing-host departure-abort policy remain design reviews. [Findings and evidence](review-fixes.en.md).
 
 2026-09-13 · Build 0.8.1 global-pursuit change. The 0.8.0 validation record is preserved separately below. Expanded the map together with suppression and the outer creature at the user's request. Values below are experimental, not release commitments.
@@ -32,7 +34,7 @@ Launch [06_Play_Listener_Test](../../06_Play_Listener_Test.cmd), and join on the
 
 ## Screen inspection and remaining evaluation
 
-Captured the [east corridor](../../artifacts/space-play-07-ui/run-20260913-121023/east-corridor.png) and [north detour](../../artifacts/space-play-07-ui/run-20260913-121023/north-detour.png) from an actual Windows window and inspected the walls, passages and stacks. These are preparation-phase 960×600 screens, not visual validation of every suppression stage. Human wayfinding, new route choices while carrying cargo, light/sound danger communication and replay appeal require separate play evaluation. Box props, creatures and the existing temporary HUD are not approved release art.
+Captured the east corridor (`artifacts/space-play-07-ui/run-20260913-121023/east-corridor.png`) and north detour (`artifacts/space-play-07-ui/run-20260913-121023/north-detour.png`) from an actual Windows window and inspected the walls, passages and stacks. These are preparation-phase 960×600 screens, not visual validation of every suppression stage. Human wayfinding, new route choices while carrying cargo, light/sound danger communication and replay appeal require separate play evaluation. Box props, creatures and the existing temporary HUD are not approved release art.
 
 
 ## Global automatic pursuit — 0.8.1
@@ -47,23 +49,23 @@ Validation order: use the [Unity rules fixture](../../tools/check_global_hunt.py
 
 ## Automated results — 0.8.0
 
-- [x] Passed [41 expanded map/suppression checks](../../artifacts/space-play-07/run-20260913-121121/report.json). Two actual Windows processes use ordinary input and real elapsed time. Includes 16 walking waypoints, preparation freeze, matching stages, gate waiting, entry grace, corridor movement, attack warning, ineffective shove, shared down state, ship safety, all-down recovery, report freeze and next-arrival reset.
+- [x] Passed 41 expanded map/suppression checks (`artifacts/space-play-07/run-20260913-121121/report.json`). Two actual Windows processes use ordinary input and real elapsed time. Includes 16 walking waypoints, preparation freeze, matching stages, gate waiting, entry grace, corridor movement, attack warning, ineffective shove, shared down state, ship safety, all-down recovery, report freeze and next-arrival reset.
 - [x] Unity MCP compilation and Windows build succeeded. Protocol 6, build 0.8.0.
 - [x] Inspected expanded walls, passages and stacks in actual preparation-phase player captures.
 - [ ] Human wayfinding, cue readability and cooperative fun evaluation.
 
 The first launch exposed a pre-construction creature-state initialization error, which was fixed. The next run exposed an automation driver continuing to its waypoint after emergency recovery. Stopping input at a waiting position corrected the driver, and the complete test passed again. Game reward/failure rules were not relaxed to satisfy the test.
 
-Existing regression checks also passed on the same 0.8.0 build: [Carrying 17](../../artifacts/space-play-01/run-20260913-121606/report.json) · [Rescue/creature 21](../../artifacts/space-play-03/run-20260913-121626/report.json) · [Existing delivery 6](../../artifacts/space-play-03-delivery/run-20260913-121705/report.json).
+Existing regression checks also passed on the same 0.8.0 build: Carrying 17 (`artifacts/space-play-01/run-20260913-121606/report.json`) · Rescue/creature 21 (`artifacts/space-play-03/run-20260913-121626/report.json`) · Existing delivery 6 (`artifacts/space-play-03-delivery/run-20260913-121705/report.json`).
 
 The temporary batch editor was closed normally after the work. Its exit log reports a JobTempAlloc allocation warning; this remains an investigation item and is not confirmed as a gameplay leak in the player.
 
 ## Global pursuit validation — 0.8.1
 
-- [x] Passed [12 Unity rules checks](../../artifacts/global-hunt/rules-latest.json). Accelerated steps verified occluded acquisition, north/southwest reach, nearest-crew selection, down/ship/disconnected exclusions, beacon distraction/reacquisition and pre-entry dormancy. Static wall/rack intersections were also checked along the northern pursuit path.
-- [x] Passed [23 actual two-player checks](../../artifacts/global-hunt/run-20260913-124548/report.json). Waited through real suppression time to verify acquisition over 35m away, moving destination updates, southern-edge attacks, target changes, down/recovery and next-arrival reset.
+- [x] Passed 12 Unity rules checks (`artifacts/global-hunt/rules-latest.json`). Accelerated steps verified occluded acquisition, north/southwest reach, nearest-crew selection, down/ship/disconnected exclusions, beacon distraction/reacquisition and pre-entry dormancy. Static wall/rack intersections were also checked along the northern pursuit path.
+- [x] Passed 23 actual two-player checks (`artifacts/global-hunt/run-20260913-124548/report.json`). Waited through real suppression time to verify acquisition over 35m away, moving destination updates, southern-edge attacks, target changes, down/recovery and next-arrival reset.
 - [ ] Human pursuit pressure, difficulty and beacon usefulness. Other PCs, network latency and 4 players were not covered.
 
 Building exceeded the MCP response limit of 60 seconds, but the Unity build log reported Success and the new executable passed validation. The old implementation failed silent distant acquisition behind walls; the change passed it. The southwest fixture was adjusted to inspect the down event rather than the final position after returning to patrol. Automated input does not substitute for a human fun assessment.
 
-The same 0.8.1 build also passed [21 normal-listener/shove/rescue regression checks](../../artifacts/space-play-03/run-20260913-125039/report.json).
+The same 0.8.1 build also passed 21 normal-listener/shove/rescue regression checks (`artifacts/space-play-03/run-20260913-125039/report.json`).

@@ -2,6 +2,8 @@
 
 [한국어](baton-mesh-fix.ko.md)
 
+The historical `artifacts/` paths identify local evidence from the original run. These files are no longer retained here and are not included in the public repository. Historical passes are distinct from current revalidation.
+
 The user reported surface holes or protruding fragments. Unity prefab rendering reproduced a long opening in the shell above the display. The previous preparation script deleted entire polygons when their centroids fell inside the screen coordinate range. Shell polygons extending beyond that boundary were also deleted, establishing the reproduced cause. Normal inspection also found faces requiring reorientation, but this does not establish the cause of every user-observed symptom.
 
 ## Changes
@@ -19,4 +21,4 @@ The repaired model retains 9694 source shell triangles and a separate screen. Le
 - [x] Ready and mid-charge executable captures confirm the restored shell and visible display.
 - [ ] User-controlled confirmation that all reported symptoms are resolved.
 
-[Model validation](../../art/psx-baton-02/selected/validation.json) · [Online display checks](../../artifacts/baton-feedback/latest.json). Captures/build logs are local in artifacts/baton-mesh and artifacts/baton-fix-build.json. These are scripted-input tests and rendered observations, not human impact-feel or 4-player validation.
+[Model validation](../../art/psx-baton-02/selected/validation.json) · Online display checks (`artifacts/baton-feedback/latest.json`). Captures/build logs are local in artifacts/baton-mesh and artifacts/baton-fix-build.json. These are scripted-input tests and rendered observations, not human impact-feel or 4-player validation.

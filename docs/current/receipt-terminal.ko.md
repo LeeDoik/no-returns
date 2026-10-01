@@ -2,6 +2,8 @@
 
 [English](receipt-terminal.en.md)
 
+과거 검증의 `artifacts/` 경로는 당시 로컬 기록의 출처다. 현재 파일은 보관되어 있지 않고 공개 저장소에도 포함되지 않는다. 과거 통과 기록과 현재 재검증 완료는 구분한다.
+
 0.8.14: [디스플레이 구현 기준·현행 검토](display-systems.ko.md).
 
 ## 2026-10-01 — Cinder 배송·영수증·귀환 정산
@@ -33,11 +35,11 @@
 
 Windows 0.8.6 빌드 성공. Unity 규칙 검사 9항목, 실제 2개 프로세스 배송·영수증·귀환 검사 29항목 통과. 단말기 자체 CRT와 슬롯 배출은 실제 게임 캡처로 검사했다. 자동 검사는 사람의 손맛·청감·재미를 대체하지 않는다.
 
-[Build](../../artifacts/space-foundation/receipt-build-result.json) · [Rules](../../artifacts/space-foundation/receipt-return-result.json) · [Two processes](../../artifacts/space-play-02/latest.json) · [Screen and slot](../../artifacts/space-play-02/run-20260913-180442/receipt-english.png)
+Build (`artifacts/space-foundation/receipt-build-result.json`) · Rules (`artifacts/space-foundation/receipt-return-result.json`) · Two processes (`artifacts/space-play-02/latest.json`) · Screen and slot (`artifacts/space-play-02/run-20260913-180442/receipt-english.png`)
 
 리스너가 활성화된 2개 프로세스의 단서·영수증·정산 검사 24항목도 통과했다. 제거한 기록기의 단서는 본체 단말기에서 공유되며 귀환 후 유지·다음 도착 초기화도 확인했다. 문서 검사 208개 통과.
 
-[Clue regression](../../artifacts/space-play-06/latest.json)
+Clue regression (`artifacts/space-play-06/latest.json`)
 
 ## CRT 표면 텍스처 수정 — 0.8.7
 
@@ -45,6 +47,6 @@ Windows 0.8.6 빌드 성공. Unity 규칙 검사 9항목, 실제 2개 프로세�
 
 제작: tools/make_receipt_ui.py가 한/영 상태 텍스처를 생성한다. ReceiptUI/ReceiptCRT.shader의 유리 표면 마스크는 현재 단말기 배치에 맞춰 측정한 좌표를 사용하므로 위치·크기를 바꿀 때 함께 조정해야 한다. 검증은 동일 카메라에서 UI 두 상태를 렌더해 비교한다. 정면에는 변화가 있어야 하며 뒷면·차폐 벽 뒤는 변화가 없어야 한다.
 
-[표면·가림 검사](../../artifacts/space-foundation/crt-validation-result.json) · [정면](../../artifacts/receipt-crt/front-ko.png) · [벽 가림](../../artifacts/receipt-crt/blocked-a.png)
+표면·가림 검사 (`artifacts/space-foundation/crt-validation-result.json`) · 정면 (`artifacts/receipt-crt/front-ko.png`) · 벽 가림 (`artifacts/receipt-crt/blocked-a.png`)
 
 0.8.7 최종 검증: 정면 상태 변경 673픽셀, 뒷면 0픽셀, 벽 차폐 0픽셀. 정면 변화는 CRT 내부 글자 영역에만 있었다. Windows 빌드·실제 2개 프로세스 29항목·문서 208개 통과. 실제 게임의 표면 UI도 확인했다.

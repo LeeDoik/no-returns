@@ -2,6 +2,8 @@
 
 [English](psx-tripo-kit-01.en.md)
 
+과거 검증의 `artifacts/` 경로는 당시 로컬 기록의 출처다. 현재 파일은 보관되어 있지 않고 공개 저장소에도 포함되지 않는다. 과거 통과 기록과 현재 재검증 완료는 구분한다.
+
 2026-09-13 · SPACE-ART-25 · 제작 중. 게임 버전 0.8.2는 변경하지 않았다.
 
 ## 2026-09-13 — 게임 적용 0.8.3
@@ -110,7 +112,7 @@ Unity 6000.6.0f1 PID 44980이 ready로 연결됐으며 editor_status 명령에�
 
 0.8.3: 선별 시설 6종의 게임 적용과 Windows 빌드를 완료했다. MCP 크기·충돌체 검사 6종 통과, 동쪽 회랑·북쪽 우회로 실제 실행 화면 확인. 벽·선반의 기존 충돌체와 운반 규칙은 유지한다. 전체 바닥 마감·조명 연출·반복 무늬·프레임 성능·사람 조작감 검증은 남아 있다.
 
-[실행 화면: 회랑](../../artifacts/space-play-07-ui/run-20260913-165535/east-corridor.png) · [실행 화면: 우회로](../../artifacts/space-play-07-ui/run-20260913-165535/north-detour.png) · [크기 검사](../../artifacts/space-foundation/art-fit-result.json)
+실행 화면: 회랑 (`artifacts/space-play-07-ui/run-20260913-165535/east-corridor.png`) · 실행 화면: 우회로 (`artifacts/space-play-07-ui/run-20260913-165535/north-detour.png`) · 크기 검사 (`artifacts/space-foundation/art-fit-result.json`)
 
 
 최종 0.8.3 실행본으로 방장·참가자 2개 Windows 프로세스의 자동 운반 회귀 17항목을 통과했다. 소유권 경쟁, 시야 추종, 놓기, 이탈 해제와 벽 충돌을 포함한다. 실제 사람의 조작감·재미 및 인터넷 지연 검증은 수행하지 않았다. 문서 검사 204개 통과.

@@ -2,6 +2,8 @@
 
 [en](display-systems.en.md)
 
+과거 검증의 `artifacts/` 경로는 당시 로컬 기록의 출처다. 현재 파일은 보관되어 있지 않고 공개 저장소에도 포함되지 않는다. 과거 통과 기록과 현재 재검증 완료는 구분한다.
+
 0.8.14 · 현행 구현 검토와 변경.
 
 | 요소 | 현재 방식과 결정 |
@@ -23,7 +25,7 @@
 
 Windows 빌드 성공. 단말기 진행률 25%와 75% 렌더 비교에서 정면 212픽셀 변경, 뒷면 0픽셀, 차폐 벽 뒤 0픽셀. 진행률이 화면 내부에만 보이는 것을 확인했다. 성능 수치 개선이나 출시 UI 완성을 주장하지 않는다. 사람의 실제 가독성·멀미·조작감은 별도 평가다.
 
-[CRT validation](../../artifacts/space-foundation/crt-progress-result.json) · [Baton shader](../../NoReturns/Assets/_NoReturns/Resources/BatonDisplay.shader) · [Terminal shader](../../NoReturns/Assets/_NoReturns/Resources/ReceiptUI/ReceiptCRT.shader)
+CRT validation (`artifacts/space-foundation/crt-progress-result.json`) · [Baton shader](../../NoReturns/Assets/_NoReturns/Resources/BatonDisplay.shader) · [Terminal shader](../../NoReturns/Assets/_NoReturns/Resources/ReceiptUI/ReceiptCRT.shader)
 
 최종 검증: 실제 두 프로세스 충격봉 표시·충전 11개, 배송·영수증·정산 30개 검사 통과. 단말기 정면·뒷면·벽 차폐 렌더 검사 통과. 게임 내 충격봉 중간 충전 화면 확인. 한영 문서 검사 216개 통과. 실제 사람의 가독성과 성능 측정은 미실시.
 

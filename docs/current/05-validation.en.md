@@ -2,9 +2,11 @@
 
 [한국어](05-validation.ko.md)
 
+The historical `artifacts/` paths identify local evidence from the original run. These files are no longer retained here and are not included in the public repository. Historical passes are distinct from current revalidation.
+
 ## 2026-10-02 — Repository and local file cleanup
 
-[Cleanup scope and retention policy](repo-hygiene.en.md). Remove 51 unreferenced Unity review copies/duplicate Smart Wall files (44,900,041 bytes), 115,418,532 bytes of stale local tests/logs/caches and 246 LFS cached objects (approximately 122MB reported). Preserve production sources, current assets, historical documents/commits and 8 existing ship material edits. Retain game 0.9.3 / protocol 12. Pass dependencies across all Unity Assets, LFS HEAD integrity and post-cleanup Mac build with 0 errors / 4 warnings. The 142 existing missing documentation links remain. [Per-file evidence](../validation/repo-cleanup-2026-10-02.json).
+[Cleanup scope and retention policy](repo-hygiene.en.md). Remove 51 unreferenced Unity review copies/duplicate Smart Wall files (44,900,041 bytes), 115,418,532 bytes of stale local tests/logs/caches and 246 LFS cached objects (approximately 122MB reported). Preserve production sources, current assets, historical documents/commits and 8 existing ship material edits. Retain game 0.9.3 / protocol 12. Pass dependencies across all Unity Assets, LFS HEAD integrity and post-cleanup Mac build with 0 errors / 4 warnings. Mark 142 historical local-evidence links as unretained provenance; all 272 documents pass link/language/checkbox checks. [Per-file evidence](../validation/repo-cleanup-2026-10-02.json).
 
 ## 2026-10-02 — Cinder Listener, baton and rescue 0.9.3
 
@@ -242,14 +244,14 @@ There is currently no releasable game player. Compiling an empty project does no
 
 ## Evidence from this task
 
-- [Foundation setup log](../../artifacts/space-foundation/setup.log): exit code 0, `SPACE-01 FOUNDATION PASS`.
+- Foundation setup log (`artifacts/space-foundation/setup.log`): exit code 0, `SPACE-01 FOUNDATION PASS`.
 - Official MCP `editor_status`: fresh `NoReturns` path, Unity 6000.6.0f1, `ready`, no compilation or domain reload in progress.
 - Documentation check: local links, language counterparts and checkbox parity passed across 174 Markdown documents. Numeric parity passed for current documents 01–05.
 - [Build scene settings](../../NoReturns/ProjectSettings/EditorBuildSettings.asset): only the empty `Bootstrap.unity` is enabled. No human playtest or game-player validation was performed.
 
 ## SPACE-ECO-01 — Proposal calculation checks
 
-- [x] [Calculation check](../../tools/check_economy_proposal.py): passed 126 delivered and 126 undelivered combinations, 5 examples, image wallet flow and bilingual numeric/checkbox parity. [Result](../../artifacts/space-economy/check.json).
+- [x] [Calculation check](../../tools/check_economy_proposal.py): passed 126 delivered and 126 undelivered combinations, 5 examples, image wallet flow and bilingual numeric/checkbox parity. Result (`artifacts/space-economy/check.json`).
 - [ ] Actual human balance checks and online payment/save/duplicate-processing checks in [Pay, failure and equipment economy draft](economy.en.md).
 
 Arithmetic passing does not validate economic balance or Unity implementation.
@@ -264,7 +266,7 @@ Concept image review does not replace these game checks.
 
 ## SPACE-PLAY-01 verification boundary
 
-[Carrying guide](carry-test.en.md) and [automated results](../../artifacts/space-play-01/latest.json). Unity MCP, compilation, Windows build and 17 checks across two actual processes passed. URP camera rendering was visually inspected, distinct from complete menu/HUD screen verification. Human controls/fun, separate PCs, 4 players, WAN and Steam remain unverified. Earlier failure evidence is preserved.
+[Carrying guide](carry-test.en.md) and automated results (`artifacts/space-play-01/latest.json`). Unity MCP, compilation, Windows build and 17 checks across two actual processes passed. URP camera rendering was visually inspected, distinct from complete menu/HUD screen verification. Human controls/fun, separate PCs, 4 players, WAN and Steam remain unverified. Earlier failure evidence is preserved.
 
 ## SPACE-PLAY-02
 
@@ -272,7 +274,7 @@ Concept image review does not replace these game checks.
 
 ## Guidance language — 0.3.1
 
-Added Korean by default, the 한국어 / English menu toggle and persistence of the local preference. [Usage and production guide](carry-test.en.md). Language selection is separate from online game state. Results are recorded in the [language checks](../../artifacts/language/latest.json).
+Added Korean by default, the 한국어 / English menu toggle and persistence of the local preference. [Usage and production guide](carry-test.en.md). Language selection is separate from online game state. Results are recorded in the language checks (`artifacts/language/latest.json`).
 
 Language validation: 9 automated checks passed across two Windows processes (Korean default, Korean glyph, independent toggles and restart persistence). Window capture did not reliably capture the game, so visual validation of wrapping/button readability remains incomplete.
 

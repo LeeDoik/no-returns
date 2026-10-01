@@ -2,6 +2,8 @@
 
 [English](space-play-05.en.md)
 
+과거 검증의 `artifacts/` 경로는 당시 로컬 기록의 출처다. 현재 파일은 보관되어 있지 않고 공개 저장소에도 포함되지 않는다. 과거 통과 기록과 현재 재검증 완료는 구분한다.
+
 2026-09-13 · 0.6.0 구현. 기존 리스너 실험의 보수 재투자를 재실행 후에도 유지한다. 전체 캠페인·근무 중 이어하기·Steam Cloud는 범위 밖이다.
 
 ## 규칙과 통과 조건
@@ -21,11 +23,11 @@
 
 [CarrySave](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarrySave.cs)는 저장·백업·형식 검사, [CarryMission](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryMission.cs)은 진행만 복원하는 생성자, [CarryRoom](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs)은 방장 불러오기·자동 저장·오류 안내를 담당한다. [빌드](../../NoReturns/Assets/_NoReturns/Editor/CarryBuild.cs)는 0.6.0이며 통신 규약 4는 유지한다.
 
-- [저장 파일 검사](../../artifacts/space-play-05/rules-result.json): Unity MCP에서 14개 통과. 저장 왕복, 완료 보수 유지, 미완료 근무 초기화, 임시 파일 무시, 백업 복구·복구 후 읽기, 체크섬·미래 버전 거절, 쓰기 실패를 검사했다.
-- [실제 실행 검사](../../artifacts/space-play-05/latest.json): 두 Windows 프로세스에서 35개 통과. 배송·구매·유인에 이어 종료·재실행, 잔액 300 CR와 사용권·해금 복원, 참가자 복제, 도착 시 2회 충전, 중복 보너스 방지, 손상 파일의 백업 복구를 검사했다. 참가자 저장 파일은 생성되지 않았다.
+- 저장 파일 검사 (`artifacts/space-play-05/rules-result.json`): Unity MCP에서 14개 통과. 저장 왕복, 완료 보수 유지, 미완료 근무 초기화, 임시 파일 무시, 백업 복구·복구 후 읽기, 체크섬·미래 버전 거절, 쓰기 실패를 검사했다.
+- 실제 실행 검사 (`artifacts/space-play-05/latest.json`): 두 Windows 프로세스에서 35개 통과. 배송·구매·유인에 이어 종료·재실행, 잔액 300 CR와 사용권·해금 복원, 참가자 복제, 도착 시 2회 충전, 중복 보너스 방지, 손상 파일의 백업 복구를 검사했다. 참가자 저장 파일은 생성되지 않았다.
 - 기존 경제 규칙 검사 17개도 다시 통과했다. 실제 사용자 저장 대신 격리된 검사 폴더만 사용했다. 검사 중 `InvalidDataException`이 복구 처리에서 빠진 문제를 발견해 명시적으로 처리하고 재검사했다.
 - 사람의 저장 안내 가독성·조작감, OS 전원 차단, 다른 PC·Steam Cloud·4인은 검증하지 않았다. 저장 실패 시 직전 정상 저장까지만 보장하며, 이전 0.5.0의 메모리 상태를 가져오는 기능은 없다.
 
 실행은 기존 [리스너 실험](../../06_Play_Listener_Test.cmd)과 [동일 PC 참가](../../07_Join_Local_Listener.cmd)를 사용한다. 파일 검사 도구는 [check_save_rules.py](../../tools/check_save_rules.py), 실제 실행은 `python tools/test_progression_build.py --save-restart`다.
 
-기존 [구조 회귀 검사](../../artifacts/space-play-03/latest.json)도 21개 통과했다. 문서 링크·언어 대응은 192개 문서에서 통과했다.
+기존 구조 회귀 검사 (`artifacts/space-play-03/latest.json`)도 21개 통과했다. 문서 링크·언어 대응은 192개 문서에서 통과했다.

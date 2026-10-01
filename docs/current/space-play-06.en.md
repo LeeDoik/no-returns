@@ -2,6 +2,8 @@
 
 [한국어](space-play-06.ko.md)
 
+The historical `artifacts/` paths identify local evidence from the original run. These files are no longer retained here and are not included in the public repository. Historical passes are distinct from current revalidation.
+
 2026-09-13 · 0.7.0 implementation and proposed test design. The mystery's identity and ending remain undecided.
 
 ## Play and rules
@@ -25,12 +27,12 @@ The first terminal is centered at (7.7, 1.35, 0), the second recorder at (-7.8, 
 
 ## Current validation
 
-- Passed 11 [Unity physics/rule checks](../../artifacts/space-play-06/rules-result.json): distance, facing away, wall occlusion, inspection phase, pre-receipt lock, duplicates and reset. Separately confirmed pre-delivery rejection with the ray actually hitting the recorder.
-- Passed 23 [two-process checks](../../artifacts/space-play-06/latest.json): client discovery sharing, journal input blocking with world progress, independent language rendering, post-receipt discovery, unchanged 420 CR pay, return reading and next-arrival reset. Capture-file creation is separate from pixel validation.
-- Hidden-window full captures were black. A separate visible window produced the [actual Korean journal screen](../../artifacts/space-play-06-ui/run-20260913-020950/host/screen.png); visually checked title, body, wrapping, close and language buttons. This shows the first clue and does not approve all resolutions or the full two-clue layout.
+- Passed 11 Unity physics/rule checks (`artifacts/space-play-06/rules-result.json`): distance, facing away, wall occlusion, inspection phase, pre-receipt lock, duplicates and reset. Separately confirmed pre-delivery rejection with the ray actually hitting the recorder.
+- Passed 23 two-process checks (`artifacts/space-play-06/latest.json`): client discovery sharing, journal input blocking with world progress, independent language rendering, post-receipt discovery, unchanged 420 CR pay, return reading and next-arrival reset. Capture-file creation is separate from pixel validation.
+- Hidden-window full captures were black. A separate visible window produced the actual Korean journal screen (`artifacts/space-play-06-ui/run-20260913-020950/host/screen.png`); visually checked title, body, wrapping, close and language buttons. This shows the first clue and does not approve all resolutions or the full two-clue layout.
 - The first executable check failed because the journal-close request was overwritten by movement input. Fixed the runner to await the closed state without weakening game controls. Preserved the failed evidence.
 - Human curiosity, fear, text understanding, feeling exposed while reading in the field and final-art quality are unverified. Suppression and time pressure remain subsequent work.
 
 Use [listener launch](../../06_Play_Listener_Test.cmd) and [same-PC join](../../07_Join_Local_Listener.cmd). Runners are [test_clues_build.py](../../tools/test_clues_build.py) and [check_clue_rules.py](../../tools/check_clue_rules.py).
 
-Existing [rescue regression checks](../../artifacts/space-play-03/latest.json) also passed 21.
+Existing rescue regression checks (`artifacts/space-play-03/latest.json`) also passed 21.

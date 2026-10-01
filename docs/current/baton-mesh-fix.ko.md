@@ -2,6 +2,8 @@
 
 [English](baton-mesh-fix.en.md)
 
+과거 검증의 `artifacts/` 경로는 당시 로컬 기록의 출처다. 현재 파일은 보관되어 있지 않고 공개 저장소에도 포함되지 않는다. 과거 통과 기록과 현재 재검증 완료는 구분한다.
+
 사용자가 표면에 구멍이 나거나 조각이 튀어나온다고 보고했다. Unity 프리팹 렌더에서 디스플레이 위 외장에 길게 열린 틈을 재현했다. 이전 제작 스크립트는 면의 중심점이 화면 좌표 범위에 들어오면 면 전체를 삭제했다. 경계를 넘어 이어지는 외장 면도 삭제된 것이 확인된 원인이다. 기존 메시의 면 방향 검사에서도 재정렬 대상이 나왔으나, 모든 사용자 증상이 그 때문이라고 단정하지 않는다.
 
 ## 변경
@@ -19,4 +21,4 @@
 - [x] 실행본 준비 완료·중간 충전 캡처에서 외장 복원과 디스플레이 표시 확인.
 - [ ] 사용자 조작으로 보고한 증상이 모두 해소됐는지 재확인.
 
-[모델 검사](../../art/psx-baton-02/selected/validation.json) · [온라인 표시 검사](../../artifacts/baton-feedback/latest.json). 캡처·빌드 로그는 로컬 artifacts/baton-mesh와 artifacts/baton-fix-build.json에 보관한다. 자동 입력 검사와 렌더 관찰이며 사람의 타격감·4인 검증은 아니다.
+[모델 검사](../../art/psx-baton-02/selected/validation.json) · 온라인 표시 검사 (`artifacts/baton-feedback/latest.json`). 캡처·빌드 로그는 로컬 artifacts/baton-mesh와 artifacts/baton-fix-build.json에 보관한다. 자동 입력 검사와 렌더 관찰이며 사람의 타격감·4인 검증은 아니다.

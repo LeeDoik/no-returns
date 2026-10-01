@@ -2,6 +2,8 @@
 
 [한국어](psx-tripo-kit-01.ko.md)
 
+The historical `artifacts/` paths identify local evidence from the original run. These files are no longer retained here and are not included in the public repository. Historical passes are distinct from current revalidation.
+
 2026-09-13 · SPACE-ART-25 · In production. Game version 0.8.2 remains unchanged.
 
 ## 2026-09-13 — In-game integration 0.8.3
@@ -110,7 +112,7 @@ Integration review caught the overwritten FBX root scale of 100; a parent object
 
 0.8.3: six selected facilities integrated and Windows build completed. MCP bounds/collider checks passed for six modules; actual east-corridor and north-detour screens inspected. Existing wall/rack colliders and carrying rules remain. Full floor finish, lighting, pattern repetition, frame performance and human feel remain open.
 
-[Runtime corridor](../../artifacts/space-play-07-ui/run-20260913-165535/east-corridor.png) · [Runtime detour](../../artifacts/space-play-07-ui/run-20260913-165535/north-detour.png) · [Bounds checks](../../artifacts/space-foundation/art-fit-result.json)
+Runtime corridor (`artifacts/space-play-07-ui/run-20260913-165535/east-corridor.png`) · Runtime detour (`artifacts/space-play-07-ui/run-20260913-165535/north-detour.png`) · Bounds checks (`artifacts/space-foundation/art-fit-result.json`)
 
 
 The final 0.8.3 build passed 17 automated carrying regressions using two Windows host/client processes, including ownership contention, view tracking, drop, disconnect release and wall collision. Human feel/fun and Internet latency were not tested. Documentation checks passed for 204 entries.

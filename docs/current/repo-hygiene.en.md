@@ -19,4 +19,6 @@ Production models, textures, Blender files, production scripts, Unity .meta, lic
 
 A fresh clone has fewer current files, but an ordinary deletion commit does not reduce historical GitHub LFS storage. This task cleans the current tree and local cache without erasing production history.
 
+Replace 142 broken historical local-evidence hyperlinks with provenance notation retaining original paths and labels. Explicitly mark files as no longer retained in both languages; preserve historical test outcomes, decisions and completion states. [Conversion record](../validation/repo-doc-links-2026-10-02.json). All 272 documents pass link/language/checkbox checks.
+
 Follow the [validation checklist](05-validation.en.md) and [change log](../archive/change-log.en.md) for verification and unknowns. The next implementation is Cinder suppression/outer integration in the [backlog](04-backlog.en.md).

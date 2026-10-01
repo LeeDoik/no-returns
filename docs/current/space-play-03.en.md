@@ -2,6 +2,8 @@
 
 [한국어](space-play-03.ko.md)
 
+The historical `artifacts/` paths identify local evidence from the original run. These files are no longer retained here and are not included in the public repository. Historical passes are distinct from current revalidation.
+
 2026-09-13 · Proposed test values. Apply only to `--hazard`, preserving carrying/delivery modes. This is not final art or the full release scope.
 
 ## Implementation plan and acceptance criteria
@@ -26,7 +28,7 @@ Protocol is 3. All connected executables must use the same version. The host dec
 
 ## Validation evidence
 
-The [two-executable checks](../../artifacts/space-play-03/latest.json) use actual movement/key input. The [test runner](../../tools/test_hazard_build.py) does not inject teleportation or direct down states. Distinguish the Unity mission-rule check of secured-pay retention from actual delivery/rescue execution. Human fear, controls, warning-audio readability and cooperative fun remain unverified.
+The two-executable checks (`artifacts/space-play-03/latest.json`) use actual movement/key input. The [test runner](../../tools/test_hazard_build.py) does not inject teleportation or direct down states. Distinguish the Unity mission-rule check of secured-pay retention from actual delivery/rescue execution. Human fear, controls, warning-audio readability and cooperative fun remain unverified.
 
 ## Confirmed results
 
@@ -39,4 +41,4 @@ The [two-executable checks](../../artifacts/space-play-03/latest.json) use actua
 
 Testing exposed an out-of-range shove attempt and boundary stopping tolerance. Strengthened the test to shove within range after an attack warning, and fixed outside sound disappearing just before the yard boundary. Automated state checks are not human fun evaluation.
 
-Additional executable validation: 6 [quiet alternate-route delivery checks with an active creature](../../artifacts/space-play-03-delivery/latest.json) passed; 6 [solo down/automatic recovery checks](../../artifacts/space-play-03-solo/latest.json) passed. [Build/payment-rule evidence](../../artifacts/space-play-03/build-and-ledger.json). Quiet-route validation covers receipt, not return while pursued.
+Additional executable validation: 6 quiet alternate-route delivery checks with an active creature (`artifacts/space-play-03-delivery/latest.json`) passed; 6 solo down/automatic recovery checks (`artifacts/space-play-03-solo/latest.json`) passed. Build/payment-rule evidence (`artifacts/space-play-03/build-and-ledger.json`). Quiet-route validation covers receipt, not return while pursued.
