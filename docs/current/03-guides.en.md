@@ -2,6 +2,12 @@
 
 [한국어](03-guides.ko.md)
 
+## 2026-10-01 — Run/regenerate the Cinder four-player test
+
+Follow [four-player usage, commands and limits](four-player.en.md#2026-10-01--cinder-four-player-map-test-environment). Save source art edits in `CinderCompactSiteReview`. `python3 tools/cinder_four_player.py build` copies the source into a separate test scene, removes the single employee/test parcel and attaches the existing four-player runtime. Manual test-scene edits are overwritten by the next build. Do not use the older source-regenerating Blockout Build menu for this task.
+
+Mac `07_Play_Cinder_4P.command`/`08_Stop_Cinder_4P.command` start/stop four windows; `check` validates actual-process joining, carrying, passage traversal and reconnect. TCP 27842, 30fps cap/50Hz physics/250m camera, version 0.9.1/protocol 10. Build with the Editor open, Play stopped and scene saved. Confirm completion with the native receipt. **Mac build: 0 errors/7 existing warnings; pass 13 actual four-process checks, 7 existing rescue-rule conditions and 7 regular-mode defaults. Inspect 2 native 800×500 Korean HUD captures for crew 4/4, E/Q controls, reticle and team colors; also verify 4 manual processes/3 connections and shutdown.** Add no new packages, online server, Steam or delivery/AI integration.
+
 ## 2026-10-01 — Open sky and zone boundaries
 
 [Current modification and checks](cinder-compact-site.en.md#2026-10-01--open-sky-and-zone-boundaries). Both modification stages are saved in the current scene. Reproduce in order: `Polish Cinder Scenery and Suppressor Visuals` → `Open Cinder Sky and Define Zones`; each stops with unsaved edits, Play or its existing root. Manage native assets through the [production source](../../NoReturns/Assets/_NoReturns/Editor/CinderBackgroundBuild.cs). Use `Validate Cinder Exterior Background`; prop/architecture/compact-site validation menus also route to current background validation. Preserve original `ArchitectureYard.asset`, using a new mesh with only selected cover triangles removed. Retain both original background state evidence and the current state after ceiling adjustment. No new ground colliders, lights, textures, external assets, dependencies or paid generation. Run checks from the repository root after saving/stopping Play.

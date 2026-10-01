@@ -2,6 +2,12 @@
 
 [English](03-guides.en.md)
 
+## 2026-10-01 — Cinder 4인 시험 실행·재생성
+
+[4인 시험 사용법·명령·한계](four-player.ko.md#2026-10-01--cinder-4인-맵-테스트-환경)를 따른다. 원본 아트 수정은 `CinderCompactSiteReview`에 저장한다. `python3 tools/cinder_four_player.py build`는 원본을 별도 시험 씬으로 복제하고 1인 직원/시험 화물을 제거한 뒤 기존 4인 런타임을 붙인다. 시험 씬의 수동 편집은 다음 빌드에서 덮어쓴다. 원본을 재생성하는 옛 Blockout Build 메뉴를 이 작업에 사용하지 않는다.
+
+맥의 `07_Play_Cinder_4P.command`/`08_Stop_Cinder_4P.command`로 네 창 실행/종료, `check`로 실제 프로세스 접속·운반·통로·재접속을 검사한다. TCP 27842, 30fps 상한/50Hz 물리/250m 카메라, 버전 0.9.1·프로토콜 10이다. Editor가 열린 상태에서 Play를 중지하고 씬을 저장해야 빌드한다. 빌드 완료는 native receipt로 확인한다. **맥 빌드 오류 0개·기존 경고 7개, 실제 네 프로세스 자동 검사 13개·기존 구조 규칙 7개·일반 모드 기본값 7개 통과. 800×500 한글 HUD 화면 2개에서 직원 4/4·E/Q 안내·조준점·팀 색을 확인했고 수동 네 프로세스/접속 3개·종료도 확인했다.** 새로운 패키지·온라인 서버·Steam·배송/AI 통합은 추가하지 않았다.
+
 ## 2026-10-01 — 하늘 개방과 구역 경계 정리
 
 [현재 수정과 검증](cinder-compact-site.ko.md#2026-10-01--하늘-개방과-구역-경계-정리). 현재 씬에는 두 수정 단계가 저장되어 있다. `Polish Cinder Scenery and Suppressor Visuals` → `Open Cinder Sky and Define Zones` 순서로 재현하며, 저장하지 않은 씬/Play/기존 해당 root에서는 중단한다. native 에셋은 [제작 코드](../../NoReturns/Assets/_NoReturns/Editor/CinderBackgroundBuild.cs)로 관리한다. 현재 검사는 `Validate Cinder Exterior Background`를 사용하고 소품·건물·조밀한 맵 검사 메뉴도 현재 배경 검사로 연결한다. 원래 `ArchitectureYard.asset`을 보존하고 차양 삼각형만 제거한 새 메시를 사용한다. 원래 배경 보존 근거와 현재 천장 조정 후 근거를 따로 보존한다. 새 지상 충돌체/광원/텍스처/외부 에셋/의존성/유료 생성 없음. 재검사는 저장 후 Play를 멈춘 상태에서 저장소 루트에서 실행한다.

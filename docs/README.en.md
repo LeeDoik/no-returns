@@ -2,6 +2,8 @@
 
 [한국어](README.md)
 
+[Current Cinder four-player test environment](current/four-player.en.md#2026-10-01--cinder-four-player-map-test-environment): start/stop 1 host and 3 Mac client windows for movement/shared-parcel carrying in the current map. **Mac build: 0 errors/7 existing warnings; pass 13 actual four-process checks, 7 existing rescue-rule conditions and 7 regular-mode defaults. Inspect 2 native 800×500 Korean HUD captures for crew 4/4, E/Q controls, reticle and team colors; also verify 4 manual processes/3 connections and shutdown.** Full Cinder delivery/Listener/baton integration and four-human/other-PC/performance validation remain pending.
+
 [Current open sky and zone boundaries](current/cinder-compact-site.en.md#2026-10-01--open-sky-and-zone-boundaries): open 82.8m² of west/north cover and adjust matching ceiling collision. Distinguish interior paving/exterior rocks with boundary bands/signs, adding 4 suppressor service pads, aged visuals and irregular rock placement. Pass 6,864 carrying poses, 94 actual carrying segments and rendering. User appearance, human four-player/performance and gameplay integration remain pending.
 
 [Current rocky territory/industrial background](current/cinder-compact-site.en.md#2026-10-01--rocky-territory-and-industrial-background-outside-the-field): place 59 rocks, 9 industrial visuals and 1 terrain surface outside the same scene. Hide gray guard visuals while retaining fall-prevention collision, map and lighting. Native terrain rendering, 6,864 carrying poses and 94 actual carrying segments pass. Background quality, gameplay integration and human four-player/performance checks remain.

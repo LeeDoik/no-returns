@@ -2,6 +2,10 @@
 
 [한국어](cinder-compact-site.ko.md)
 
+## 2026-10-01 — Cinder four-player movement/carrying test
+
+[CINDER-4P-01 usage, implementation and evidence](four-player.en.md#2026-10-01--cinder-four-player-map-test-environment). Connect 1 host + 3 clients, movement, shared-parcel E/Q and host reset in separate `CinderFourPlayerTest`. Preserve source `CinderCompactSiteReview` and art/physics placement. Provide TCP 27842, protocol 10, version 0.9.1, Mac four-window start/stop and rebuild/check tools. **Mac build: 0 errors/7 existing warnings; pass 13 actual four-process checks, 7 existing rescue-rule conditions and 7 regular-mode defaults. Inspect 2 native 800×500 Korean HUD captures for crew 4/4, E/Q controls, reticle and team colors; also verify 4 manual processes/3 connections and shutdown.** Delivery/Listener/baton/suppression/receipt integration and four-human/other-PC/performance validation remain pending. Supersede older environment tasks' unverified standalone/networking status only for this movement/carrying test; full gameplay integration remains incomplete.
+
 ## 2026-10-01 — Open sky and zone boundaries
 
 The user found the map too maze-like, so open **82.8m²** of west/north perimeter-route cover: west 3×14.4m and north 13.2×3m. Split the original 2 ceiling BoxColliders into 4 matching the retained covered pieces, removing invisible ceilings in the openings. Preserve 3/3.15m ground passages, 4 loops, buildings/ship/props and lighting. No game-version change.

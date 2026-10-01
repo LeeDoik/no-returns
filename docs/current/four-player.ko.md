@@ -2,6 +2,34 @@
 
 [English](four-player.en.md)
 
+## 2026-10-01 — Cinder 4인 맵 테스트 환경
+
+**CINDER-4P-01**: 현재 `CinderCompactSiteReview`에서 별도 `CinderFourPlayerTest`를 생성해 기존 방장 권한 `CarryRoom`의 직원 4명·이동·공유 화물 E/Q·초기화를 연결했다. 원본 아트 씬은 유지하며 매 빌드마다 시험 씬을 재생성한다. 일반 실험은 TCP **27841**, Cinder는 **27842**로 분리하고 `cinderReview`가 다른 수신 상태를 거절한다. 프로토콜 **10**·게임 버전 **0.9.1**을 유지한다. 시험 모드는 프레임 상한 **30fps**, 물리 **50Hz**, 카메라 거리 **250m**를 사용하며 성능 측정 결과는 아니다. [코드](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs) · [생성·빌드](../../NoReturns/Assets/_NoReturns/Editor/CinderFourPlayerBuild.cs).
+
+맥에서 [실행 파일](../../07_Play_Cinder_4P.command)을 더블클릭하면 방장 1명과 참가자 3명을 같은 PC의 `127.0.0.1`로 실행한다. [종료 파일](../../08_Stop_Cinder_4P.command)은 이 도구가 기록한 실행본/세션 식별자가 모두 일치하는 프로세스만 종료한다. 터미널을 닫아도 게임 창은 독립 실행되며 같은 세션을 복원하는 기능은 없다. 종료 후 다시 실행하면 새 방이다. 한 컴퓨터의 키보드·마우스는 선택한 창 하나를 조작하므로 실제 네 명의 조작감 평가는 별도 PC가 필요하다.
+
+```sh
+# 저장소 루트. 이 프로젝트의 Unity Editor를 열고 Play를 중지·씬을 저장한다.
+source ~/.unity/env
+python3 tools/cinder_four_player.py build
+python3 tools/cinder_four_player.py start
+python3 tools/cinder_four_player.py stop
+# 수동 창을 종료한 뒤 실제 네 프로세스 자동 검사
+python3 tools/cinder_four_player.py check
+```
+
+맥 실행본은 `builds/CinderFourPlayer/NoReturns.app`이다. 빌드는 Editor의 다음 update에서 수행하고 `artifacts/cinder-four-player/build.json`으로 완료·오류를 확인한다. CLI 요청의 5초 제한보다 긴 동기 빌드를 직접 호출하지 않는다. 빌드·개인 로그·세션 PID는 Git 제외이며 검토용 [검증 기록](../validation/cinder-four-player-01.json)만 보존한다. Python 표준 라이브러리만 사용한다. Windows 생성 메뉴/도구 경로도 제공하지만 이번 Windows 빌드·실행은 미검증이다.
+
+현재 조작은 WASD 이동·마우스 시점·E 공유 화물 집기·Q 본인 화물 놓기·Space 빈손 점프·Esc 메뉴·R 방장 초기화다. 주황/청록/보라/노랑 헬멧과 `CREW {0}/4`(직원 {0}/4)로 구분한다. 출발 위치는 우주선 앞, x=-21.7/-19.7m, z=-20.05/-18.65m, y=0.035m다. 화물은 (-20.7, 0.55, -18.5)m에서 시작한다. 다른 사람이 들던 화물을 놓을 수 없다. 다섯 번째 참가자는 거절하고 빈 슬롯은 이탈 후 재사용한다.
+
+같은 LAN에서 사람 4인이 시험하려면 같은 시험 실행본을 각 기기에 전달하고 직접 앱을 열어 한 명이 HOST, 나머지 세 명이 방장 LAN 주소로 JOIN한다. 방장의 TCP 27842 접속을 허용한다. 다른 PC·인터넷·Steam 연결은 이번에 검증하지 않았다. 자동 도구는 같은 PC 전용이다.
+
+**구축·검증 상태: 맥 빌드 오류 0개·기존 경고 7개, 실제 네 프로세스 자동 검사 13개·기존 구조 규칙 7개·일반 모드 기본값 7개 통과. 800×500 한글 HUD 화면 2개에서 직원 4/4·E/Q 안내·조준점·팀 색을 확인했고 수동 네 프로세스/접속 3개·종료도 확인했다.** 배송·수령/영수증·정산·리스너·진압봉·억제 단계·신호기·진행 저장은 Cinder에 미연결이다. `--hazard`/`--delivery`를 주어도 시험 모드는 활성화하지 않으며 기존 정적 리스너 표식은 시험 씬에서 숨긴다. 아래 기존 Windows 협동 게임의 통과 결과를 Cinder 전체 플레이 통과로 승계하지 않는다. 사람 네 명의 재미/교행·동시 화물 회전·성능·장시간 안정성은 남아 있다.
+
+![Cinder host / crew 4/4](../../art/cinder-kit-01/crew-player-0.png)
+
+![Cinder client / crew 4/4](../../art/cinder-kit-01/crew-player-3.png)
+
 2026-09-13 · 0.9.0 구현·자동 검증 완료. Unity·직접 LAN 방장 권한 구조를 유지한다. Steam과 운영자 서버는 범위 밖이다.
 
 - [x] CarryRoom/CarryWire: 방장 슬롯 0, 참가 슬롯 1~3, 연결별 입력·시간초과·수신 슬롯 배정. 슬롯 번호를 입력으로 신뢰하지 않는다. 프로토콜 10으로 구버전과 혼합하지 않는다.

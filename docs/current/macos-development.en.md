@@ -2,6 +2,10 @@
 
 [한국어](macos-development.ko.md)
 
+## 2026-10-01 — Current Cinder Mac four-player test
+
+The current environment/art source is `CinderCompactSiteReview`; the derived four-player test is `CinderFourPlayerTest`. [Four-player launch/build/evidence](four-player.en.md#2026-10-01--cinder-four-player-map-test-environment) supersedes the 2026-09-26 target/unverified-build record below. `CinderFourPlayerBuild` preserves the source and builds `builds/CinderFourPlayer/NoReturns.app`. **Mac build: 0 errors/7 existing warnings; pass 13 actual four-process checks, 7 existing rescue-rule conditions and 7 regular-mode defaults. Inspect 2 native 800×500 Korean HUD captures for crew 4/4, E/Q controls, reticle and team colors; also verify 4 manual processes/3 connections and shutdown.** Release signing/notarization, Windows execution, other-PC play, performance and full gameplay remain unverified separately.
+
 2026-09-26. Continue the existing Windows project on an Apple Silicon Mac. The user selected macOS and Windows as targets. This setup does not change game features or Editor/package versions.
 
 Continue development in the `CinderDepotBlockout` scene from [CINDER-BLOCKOUT-01](cinder-blockout.en.md). The user-identified `Play_Cinder_Blockout.cmd` and commit `6f4922a` dated 2026-09-17 point to its Windows player. `CarryRoom`, used for initial environment checks, is an earlier carrying experiment; those checks do not validate the latest map. The existing Windows player was not restored on this Mac because Git excludes `builds/`.

@@ -1,0 +1,711 @@
+{
+  "date": "2026-10-01",
+  "id": "CINDER-4P-01",
+  "version": "0.9.1",
+  "protocol": 10,
+  "scope": "Four native Mac processes on one PC; Cinder movement/carrying only.",
+  "source_scene": "NoReturns/Assets/_NoReturns/Scenes/CinderCompactSiteReview.unity",
+  "test_scene": "NoReturns/Assets/_NoReturns/Scenes/CinderFourPlayerTest.unity",
+  "test": {
+    "status": "PASS",
+    "checks": [
+      "Cinder mode and four peers replicated",
+      "slot 3 picks up shared parcel",
+      "non-owner cannot release cargo",
+      "slot 3 movement replicated",
+      "owner releases cargo on all peers",
+      "host reset returns all four to landing",
+      "four simultaneous controllers pass west lane",
+      "fifth peer rejected",
+      "disconnect preserves remaining slot identities",
+      "freed slot 2 rejoins",
+      "two native player captures",
+      "Cinder HUD evidence and Korean font",
+      "no runtime exceptions or invalid bounds in player logs"
+    ],
+    "scope": "Four native local processes, scripted input; human fun, LAN/WAN and performance remain unverified.",
+    "final_states": [
+      {
+        "protocol": 10,
+        "clueMask": 0,
+        "phase": -1,
+        "credits": 0,
+        "receipt": 0,
+        "returnPay": 0,
+        "tick": 1551,
+        "holder": -1,
+        "ack": 920,
+        "players": 4,
+        "recipient": 0,
+        "occupiedMask": 15,
+        "positions": [
+          {
+            "x": -24.000099182128906,
+            "y": 0.03499988093972206,
+            "z": -17.178586959838867
+          },
+          {
+            "x": -23.299991607666016,
+            "y": 0.03499988093972206,
+            "z": -12.130019187927246
+          },
+          {
+            "x": -22.59478759765625,
+            "y": 0.03499988093972206,
+            "z": -13.137094497680664
+          },
+          {
+            "x": -21.893041610717773,
+            "y": 0.03499988093972206,
+            "z": -12.228585243225098
+          }
+        ],
+        "yaws": [
+          25.0,
+          0.0,
+          0.0,
+          -125.0
+        ],
+        "p0": {
+          "x": -24.000099182128906,
+          "y": 0.03499988093972206,
+          "z": -17.178586959838867
+        },
+        "p1": {
+          "x": -23.299991607666016,
+          "y": 0.03499988093972206,
+          "z": -12.130019187927246
+        },
+        "cargo": {
+          "x": -20.700000762939453,
+          "y": 0.32499998807907104,
+          "z": -18.5
+        },
+        "rotation": {
+          "x": 2.623870898332825e-08,
+          "y": 2.1900420676956855e-07,
+          "z": 3.434832862581061e-09,
+          "w": 1.0
+        },
+        "beaconCarrier": -1,
+        "beaconExists": false,
+        "receiptCollected": false,
+        "receiptReady": false,
+        "receiptProgress": 0.0,
+        "yaw0": 25.0,
+        "yaw1": 0.0,
+        "shiftElapsed": 0.0,
+        "suppressionStage": 0,
+        "outerDanger": {
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "noiseTarget": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "state": 0,
+          "hits": 0,
+          "rescues": 0,
+          "evacuations": 0,
+          "noises": 0,
+          "pursuedPlayer": -1,
+          "down": [],
+          "rescue": [],
+          "cooldown": [],
+          "down0": false,
+          "down1": false,
+          "rescue0": 0.0,
+          "rescue1": 0.0,
+          "cooldown0": 0.0,
+          "cooldown1": 0.0,
+          "warning": 0.0
+        },
+        "unlocked": false,
+        "hard": false,
+        "deliveries": 0,
+        "charges": 0,
+        "beaconTime": 0.0,
+        "beaconPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "hazard": false,
+        "cinderReview": true,
+        "danger": {
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "noiseTarget": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "state": 0,
+          "hits": 0,
+          "rescues": 0,
+          "evacuations": 0,
+          "noises": 0,
+          "pursuedPlayer": -1,
+          "down": [],
+          "rescue": [],
+          "cooldown": [],
+          "down0": false,
+          "down1": false,
+          "rescue0": 0.0,
+          "rescue1": 0.0,
+          "cooldown0": 0.0,
+          "cooldown1": 0.0,
+          "warning": 0.0
+        },
+        "connected": true,
+        "message": "HOST / partner connected",
+        "rejection": ""
+      },
+      {
+        "protocol": 10,
+        "clueMask": 0,
+        "phase": -1,
+        "credits": 0,
+        "receipt": 0,
+        "returnPay": 0,
+        "tick": 1548,
+        "holder": -1,
+        "ack": 840,
+        "players": 4,
+        "recipient": 1,
+        "occupiedMask": 15,
+        "positions": [
+          {
+            "x": -24.000099182128906,
+            "y": 0.03499988093972206,
+            "z": -17.178586959838867
+          },
+          {
+            "x": -23.299991607666016,
+            "y": 0.03499988093972206,
+            "z": -12.130019187927246
+          },
+          {
+            "x": -22.59478759765625,
+            "y": 0.03499988093972206,
+            "z": -13.137094497680664
+          },
+          {
+            "x": -21.893041610717773,
+            "y": 0.03499988093972206,
+            "z": -12.228585243225098
+          }
+        ],
+        "yaws": [
+          25.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "p0": {
+          "x": -24.000099182128906,
+          "y": 0.03499988093972206,
+          "z": -17.178586959838867
+        },
+        "p1": {
+          "x": -23.299991607666016,
+          "y": 0.03499988093972206,
+          "z": -12.130019187927246
+        },
+        "cargo": {
+          "x": -20.700000762939453,
+          "y": 0.32499998807907104,
+          "z": -18.5
+        },
+        "rotation": {
+          "x": 2.623870898332825e-08,
+          "y": 2.1900420676956855e-07,
+          "z": 3.434832862581061e-09,
+          "w": 1.0
+        },
+        "beaconCarrier": -1,
+        "beaconExists": false,
+        "receiptCollected": false,
+        "receiptReady": false,
+        "receiptProgress": 0.0,
+        "yaw0": 25.0,
+        "yaw1": 0.0,
+        "shiftElapsed": 0.0,
+        "suppressionStage": 0,
+        "outerDanger": {
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "noiseTarget": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "state": 0,
+          "hits": 0,
+          "rescues": 0,
+          "evacuations": 0,
+          "noises": 0,
+          "pursuedPlayer": -1,
+          "down": [],
+          "rescue": [],
+          "cooldown": [],
+          "down0": false,
+          "down1": false,
+          "rescue0": 0.0,
+          "rescue1": 0.0,
+          "cooldown0": 0.0,
+          "cooldown1": 0.0,
+          "warning": 0.0
+        },
+        "unlocked": false,
+        "hard": false,
+        "deliveries": 0,
+        "charges": 0,
+        "beaconTime": 0.0,
+        "beaconPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "hazard": false,
+        "cinderReview": true,
+        "danger": {
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "noiseTarget": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "state": 0,
+          "hits": 0,
+          "rescues": 0,
+          "evacuations": 0,
+          "noises": 0,
+          "pursuedPlayer": -1,
+          "down": [],
+          "rescue": [],
+          "cooldown": [],
+          "down0": false,
+          "down1": false,
+          "rescue0": 0.0,
+          "rescue1": 0.0,
+          "cooldown0": 0.0,
+          "cooldown1": 0.0,
+          "warning": 0.0
+        },
+        "connected": true,
+        "message": "HOST / partner connected",
+        "rejection": ""
+      },
+      {
+        "protocol": 10,
+        "clueMask": 0,
+        "phase": -1,
+        "credits": 0,
+        "receipt": 0,
+        "returnPay": 0,
+        "tick": 1548,
+        "holder": -1,
+        "ack": 96,
+        "players": 4,
+        "recipient": 2,
+        "occupiedMask": 15,
+        "positions": [
+          {
+            "x": -24.000099182128906,
+            "y": 0.03499988093972206,
+            "z": -17.178586959838867
+          },
+          {
+            "x": -23.299991607666016,
+            "y": 0.03499988093972206,
+            "z": -12.130019187927246
+          },
+          {
+            "x": -22.59478759765625,
+            "y": 0.03499988093972206,
+            "z": -13.137094497680664
+          },
+          {
+            "x": -21.893041610717773,
+            "y": 0.03499988093972206,
+            "z": -12.228585243225098
+          }
+        ],
+        "yaws": [
+          25.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "p0": {
+          "x": -24.000099182128906,
+          "y": 0.03499988093972206,
+          "z": -17.178586959838867
+        },
+        "p1": {
+          "x": -23.299991607666016,
+          "y": 0.03499988093972206,
+          "z": -12.130019187927246
+        },
+        "cargo": {
+          "x": -20.700000762939453,
+          "y": 0.32499998807907104,
+          "z": -18.5
+        },
+        "rotation": {
+          "x": 2.623870898332825e-08,
+          "y": 2.1900420676956855e-07,
+          "z": 3.434832862581061e-09,
+          "w": 1.0
+        },
+        "beaconCarrier": -1,
+        "beaconExists": false,
+        "receiptCollected": false,
+        "receiptReady": false,
+        "receiptProgress": 0.0,
+        "yaw0": 25.0,
+        "yaw1": 0.0,
+        "shiftElapsed": 0.0,
+        "suppressionStage": 0,
+        "outerDanger": {
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "noiseTarget": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "state": 0,
+          "hits": 0,
+          "rescues": 0,
+          "evacuations": 0,
+          "noises": 0,
+          "pursuedPlayer": -1,
+          "down": [],
+          "rescue": [],
+          "cooldown": [],
+          "down0": false,
+          "down1": false,
+          "rescue0": 0.0,
+          "rescue1": 0.0,
+          "cooldown0": 0.0,
+          "cooldown1": 0.0,
+          "warning": 0.0
+        },
+        "unlocked": false,
+        "hard": false,
+        "deliveries": 0,
+        "charges": 0,
+        "beaconTime": 0.0,
+        "beaconPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "hazard": false,
+        "cinderReview": true,
+        "danger": {
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "noiseTarget": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "state": 0,
+          "hits": 0,
+          "rescues": 0,
+          "evacuations": 0,
+          "noises": 0,
+          "pursuedPlayer": -1,
+          "down": [],
+          "rescue": [],
+          "cooldown": [],
+          "down0": false,
+          "down1": false,
+          "rescue0": 0.0,
+          "rescue1": 0.0,
+          "cooldown0": 0.0,
+          "cooldown1": 0.0,
+          "warning": 0.0
+        },
+        "connected": true,
+        "message": "HOST / partner connected",
+        "rejection": ""
+      },
+      {
+        "protocol": 10,
+        "clueMask": 0,
+        "phase": -1,
+        "credits": 0,
+        "receipt": 0,
+        "returnPay": 0,
+        "tick": 1551,
+        "holder": -1,
+        "ack": 673,
+        "players": 4,
+        "recipient": 3,
+        "occupiedMask": 15,
+        "positions": [
+          {
+            "x": -24.000099182128906,
+            "y": 0.03499988093972206,
+            "z": -17.178586959838867
+          },
+          {
+            "x": -23.299991607666016,
+            "y": 0.03499988093972206,
+            "z": -12.130019187927246
+          },
+          {
+            "x": -22.59478759765625,
+            "y": 0.03499988093972206,
+            "z": -13.137094497680664
+          },
+          {
+            "x": -21.893041610717773,
+            "y": 0.03499988093972206,
+            "z": -12.228585243225098
+          }
+        ],
+        "yaws": [
+          25.0,
+          0.0,
+          0.0,
+          -125.0
+        ],
+        "p0": {
+          "x": -24.000099182128906,
+          "y": 0.03499988093972206,
+          "z": -17.178586959838867
+        },
+        "p1": {
+          "x": -23.299991607666016,
+          "y": 0.03499988093972206,
+          "z": -12.130019187927246
+        },
+        "cargo": {
+          "x": -20.700000762939453,
+          "y": 0.32499998807907104,
+          "z": -18.5
+        },
+        "rotation": {
+          "x": 2.623870898332825e-08,
+          "y": 2.1900420676956855e-07,
+          "z": 3.434832862581061e-09,
+          "w": 1.0
+        },
+        "beaconCarrier": -1,
+        "beaconExists": false,
+        "receiptCollected": false,
+        "receiptReady": false,
+        "receiptProgress": 0.0,
+        "yaw0": 25.0,
+        "yaw1": 0.0,
+        "shiftElapsed": 0.0,
+        "suppressionStage": 0,
+        "outerDanger": {
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "noiseTarget": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "state": 0,
+          "hits": 0,
+          "rescues": 0,
+          "evacuations": 0,
+          "noises": 0,
+          "pursuedPlayer": -1,
+          "down": [],
+          "rescue": [],
+          "cooldown": [],
+          "down0": false,
+          "down1": false,
+          "rescue0": 0.0,
+          "rescue1": 0.0,
+          "cooldown0": 0.0,
+          "cooldown1": 0.0,
+          "warning": 0.0
+        },
+        "unlocked": false,
+        "hard": false,
+        "deliveries": 0,
+        "charges": 0,
+        "beaconTime": 0.0,
+        "beaconPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "hazard": false,
+        "cinderReview": true,
+        "danger": {
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "noiseTarget": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "state": 0,
+          "hits": 0,
+          "rescues": 0,
+          "evacuations": 0,
+          "noises": 0,
+          "pursuedPlayer": -1,
+          "down": [],
+          "rescue": [],
+          "cooldown": [],
+          "down0": false,
+          "down1": false,
+          "rescue0": 0.0,
+          "rescue1": 0.0,
+          "cooldown0": 0.0,
+          "cooldown1": 0.0,
+          "warning": 0.0
+        },
+        "connected": true,
+        "message": "HOST / partner connected",
+        "rejection": ""
+      }
+    ],
+    "run": "artifacts/cinder-four-player/run-20261001-213805-e8ebf6"
+  },
+  "build": {
+    "result": "Succeeded",
+    "errors": 0,
+    "warnings": 7,
+    "messages": [
+      {
+        "type": "Warning",
+        "content": "Pre-baked collision is disabled on 18 mesh(es) referenced by Mesh Collider components in this build. In future versions of Unity, the build process will no longer automatically pre-bake collision for these meshes; enable pre-baked collision in the Mesh import settings. Use Project Auditor (Window > Analysis > Project Auditor > Game Objects) to find and fix similar issues across the project. Affected meshes:\n - 'Raised plant room' (triangle collision is disabled)\n - 'Entry hood' (triangle collision is disabled)\n - 'Sawtooth roof' (triangle collision is disabled)\n - 'Trial_WindowGlass_1' (triangle collision is disabled)\n - 'Vault roof' (triangle collision is disabled)\n - 'Industrial stack' (triangle collision is disabled)\n - 'Trial_WindowMullion_-0.75' (triangle collision is disabled)\n - 'Trial_WindowMullion_0.75' (triangle collision is disabled)\n - 'Octagonal control tower' (triangle collision is disabled)\n - 'Trial_WindowHeader' (triangle collision is disabled)\n - 'L upper annex' (triangle collision is disabled)\n - 'Trial_WindowGlass_2' (triangle collision is disabled)\n - 'Trial_WindowCheekL' (triangle collision is disabled)\n - 'Trial_WindowCheekR' (triangle collision is disabled)\n - 'Stepped annex' (triangle collision is disabled)\n - 'Trial_WindowSill' (triangle collision is disabled)\n - 'Trial_WindowGlass_0' (triangle collision is disabled)\n - 'Chamfer utility' (triangle collision is disabled)"
+      },
+      {
+        "type": "Warning",
+        "content": "Pipeline: No RuntimePipelineConfig asset found (Project Settings > Pipeline > Runtime). Pipeline will be disabled in Player builds."
+      },
+      {
+        "type": "Warning",
+        "content": "Assets/_NoReturns/Runtime/CarryLab/FacilityArt.cs(17,51): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'"
+      },
+      {
+        "type": "Warning",
+        "content": "Assets/_NoReturns/Runtime/CarryLab/FacilityArt.cs(17,13): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'"
+      },
+      {
+        "type": "Warning",
+        "content": "Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs(32,61): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'"
+      },
+      {
+        "type": "Warning",
+        "content": "Shader 'Hidden/Core/DebugOccluder': All SubShaders were stripped because their RenderPipeline tags do not match any active render pipeline asset configured for this build target. This shader will not render. Configure the matching RenderPipelineAsset in QualitySettings/GraphicsSettings, or remove this shader from the build."
+      },
+      {
+        "type": "Warning",
+        "content": "Shader 'Hidden/Core/DebugOcclusionTest': All SubShaders were stripped because their RenderPipeline tags do not match any active render pipeline asset configured for this build target. This shader will not render. Configure the matching RenderPipelineAsset in QualitySettings/GraphicsSettings, or remove this shader from the build."
+      }
+    ],
+    "scene": "Assets/_NoReturns/Scenes/CinderCompactSiteReview.unity"
+  },
+  "console": {
+    "sampledUtc": "2026-10-01T12:39:19.279491Z",
+    "ageMs": 235,
+    "compilationFailed": false,
+    "compiling": false,
+    "consoleErrors": 0,
+    "consoleWarnings": 0,
+    "consoleLogs": 0,
+    "seeded": true
+  },
+  "editor": {
+    "scene": "Assets/_NoReturns/Scenes/CinderCompactSiteReview.unity",
+    "dirty": false,
+    "playing": false
+  },
+  "legacy_rules": {
+    "checks": 7,
+    "status": "PASS",
+    "source": "tools/unity_checks/FourCrewRules.cs",
+    "full_flow_rerun": false
+  },
+  "legacy_defaults": {
+    "checks": 7,
+    "status": "PASS",
+    "result": "PASS: 7 legacy mode/port/spawn/wire conditions"
+  },
+  "preservation": {
+    "starting_files": 644,
+    "unchanged": 644,
+    "drift": [],
+    "excluded_from_commit": "8 pre-existing ship material edits; builds/cache/logs/personal settings"
+  },
+  "manual_launch": {
+    "processes": 4,
+    "host_connections": 3,
+    "status": "PASS",
+    "stop": "PASS: recorded player/session identities matched; all 4 exited; session file removed"
+  },
+  "screenshots": [
+    "art/cinder-kit-01/crew-player-0.png",
+    "art/cinder-kit-01/crew-player-3.png"
+  ],
+  "visual_review": "800x500 native HUD captures: crew 4/4, test objective, Korean E/Q controls, reticle and colored crew verified after reducing prompt/reticle font size from 21/24 to 18.",
+  "initial_failures": [
+    "Synchronous native build completed, but Pipeline request timed out after 5s. Replaced with next-update scheduling and receipt.",
+    "Receipt fields uint/int caused 2 compile errors; fixed to int.",
+    "First four-peer check assumed process startup equals connection order. Wait for slot assignment during automation.",
+    "Scripted route encountered West storage bays wall. Use the actual west passage.",
+    "Carried parcel encountered the teammate parked at x=-24. Move teammate north before crossing.",
+    "Empty-hand slot 3 encountered the grounded parcel. Walk south around it.",
+    "First HUD captures omitted action/reticle because font exceeded row bounds. Reduce sizes and recheck actual player captures."
+  ],
+  "unknowns": [
+    "Four human players, fun/control feel, simultaneous cargo rotation and complete-map passing",
+    "Other PCs, LAN/WAN, Steam, Windows build/execution",
+    "Measured frame performance, extended stability",
+    "Cinder delivery/receipt/settlement, Listener/baton, suppression/exterior, beacon/progression-save integration",
+    "Release signing/notarization",
+    "Native app inventory/window arrangement unavailable because Mac was locked; native render captures and OS process/socket checks available"
+  ],
+  "docs": {
+    "existing_missing_links": 142,
+    "new_failures": 0,
+    "checkbox_language_parity": "PASS",
+    "overall_status": "FAIL: 142 pre-existing missing historical artifact links"
+  },
+  "whitespace": {
+    "raw_status": "FAIL",
+    "native_scene_and_meta_trailing_spaces": 12,
+    "code_docs_evidence": "PASS",
+    "exclude_only_generated_trailing_spaces": "PASS"
+  }
+}

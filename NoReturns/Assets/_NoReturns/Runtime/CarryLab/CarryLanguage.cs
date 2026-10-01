@@ -23,6 +23,12 @@ public static class CarryLanguage {
         return english;
     }
     public static readonly Dictionary<string,string> Ko=new Dictionary<string,string>{
+        {"CINDER / FOUR-PLAYER MAP TEST","CINDER / 4인 맵 테스트"},
+        {"CREW {0}/4","직원 {0}/4"},
+        {"[E] Carry / [Q] Set down / Space jump / Esc menu","E 들기 · Q 내려놓기 · Space 점프 · Esc 메뉴"},
+        {"WASD move / Mouse look / R reset (host)","WASD 이동 · 마우스 시점 · R 초기화(방장)"},
+        {"Map mismatch / use the same test build","맵이 다릅니다. 같은 테스트 실행본으로 접속하세요."},
+        {"Direct LAN / TCP 27842\nSame PC: 127.0.0.1\nMap test / movement and carrying only.","직접 LAN / TCP 27842\n같은 PC: 127.0.0.1\n맵 시험 / 이동과 운반"},
         {"WALLET {0} CR / CREW {1}/4","잔액 {0} CR / 직원 {1}/4"},
         {"EMPTY","빈자리"},
         {"DOWN","구조 필요"},

@@ -2,6 +2,17 @@
 
 [한국어](04-backlog.ko.md)
 
+## 2026-10-01 — Four-player test environment and remaining integration
+
+[Current test scope](four-player.en.md#2026-10-01--cinder-four-player-map-test-environment).
+
+- [x] Build separate Cinder test scene/Mac player and start/stop tools for 1 host/3 clients.
+- [x] Mac build: 0 errors/7 existing warnings; pass 13 actual four-process checks, 7 existing rescue-rule conditions and 7 regular-mode defaults. Inspect 2 native 800×500 Korean HUD captures for crew 4/4, E/Q controls, reticle and team colors; also verify 4 manual processes/3 connections and shutdown.
+- [ ] Four-human controls/passing/simultaneous parcel rotation/navigation/fun, extended stability, performance, other-PC/LAN and Windows execution.
+- [ ] Integrate BAY 04 receipt facilities, delivery/receipt/settlement, Listener/baton, suppression/exterior, beacon and save at current Cinder coordinates.
+
+Do not treat the movement/carrying test as complete cooperative gameplay or quality approval.
+
 ## 2026-10-01 — Open sky and zone boundaries
 
 [Current environment](cinder-compact-site.en.md#2026-10-01--open-sky-and-zone-boundaries).

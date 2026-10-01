@@ -2,6 +2,34 @@
 
 [한국어](four-player.ko.md)
 
+## 2026-10-01 — Cinder four-player map test environment
+
+**CINDER-4P-01**: derive a separate `CinderFourPlayerTest` from the current `CinderCompactSiteReview`, connecting the existing host-authoritative `CarryRoom` crew of 4, movement, shared-parcel E/Q and reset. Preserve the source art scene and regenerate the test scene on each build. Regular experiments use TCP **27841**, Cinder uses **27842**, and clients reject snapshots with a different `cinderReview` value. Retain protocol **10** and game version **0.9.1**. The test caps rendering at **30fps**, runs physics at **50Hz** and sets camera distance to **250m**; these are settings, not measured performance. [Runtime](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs) · [scene generation/build](../../NoReturns/Assets/_NoReturns/Editor/CinderFourPlayerBuild.cs).
+
+On Mac, double-click the [launch file](../../07_Play_Cinder_4P.command) to start 1 host and 3 clients at same-PC `127.0.0.1`. The [stop file](../../08_Stop_Cinder_4P.command) terminates only recorded processes whose executable and session identifier both match. Game windows run independently after closing the terminal; persisted session restoration is unsupported. Restarting after stopping creates a new room. One computer's keyboard/mouse controls its selected window, so evaluating four human players requires separate PCs.
+
+```sh
+# Repository root. Open this project's Unity Editor, stop Play and save the scene.
+source ~/.unity/env
+python3 tools/cinder_four_player.py build
+python3 tools/cinder_four_player.py start
+python3 tools/cinder_four_player.py stop
+# Stop manual windows before checking four actual processes
+python3 tools/cinder_four_player.py check
+```
+
+The Mac player is `builds/CinderFourPlayer/NoReturns.app`. Build on the Editor's next update, confirming completion/errors through `artifacts/cinder-four-player/build.json`. Avoid directly invoking a synchronous build exceeding the CLI request's 5-second limit. Builds, personal logs and session PIDs are Git-excluded; preserve only the review [validation record](../validation/cinder-four-player-01.json). Use Python's standard library. Windows generation menu/tool paths are provided, but Windows build/execution is unverified in this task.
+
+Controls are WASD movement, mouse look, E shared-parcel pickup, Q release owned parcel, Space empty-hand jump, Esc menu and R host reset. Orange/cyan/purple/yellow helmets and `CREW {0}/4` identify crew. Spawn outside the ship at x=-21.7/-19.7m, z=-20.05/-18.65m, y=0.035m. Parcel starts at (-20.7, 0.55, -18.5)m. Peers cannot release another player's parcel. Reject a fifth client and reuse vacant slots after disconnect.
+
+For four human players on the same LAN, distribute the same test player to each device and open the app directly: one HOST, three JOIN using the host's LAN address. Allow TCP 27842 to the host. Other-PC/internet/Steam connections are unverified in this task. The automatic launcher targets one PC.
+
+**Implementation/validation status: Mac build: 0 errors/7 existing warnings; pass 13 actual four-process checks, 7 existing rescue-rule conditions and 7 regular-mode defaults. Inspect 2 native 800×500 Korean HUD captures for crew 4/4, E/Q controls, reticle and team colors; also verify 4 manual processes/3 connections and shutdown.** Cinder delivery, receipt collection/settlement, Listener, baton, suppression stages, beacon and progression save remain unconnected. `--hazard`/`--delivery` do not activate these systems in test mode; hide existing static Listener markers only in the test scene. Do not inherit full Cinder gameplay validation from the older Windows cooperation results below. Four-human fun/passing/simultaneous parcel rotation, performance and extended stability remain pending.
+
+![Cinder host / crew 4/4](../../art/cinder-kit-01/crew-player-0.png)
+
+![Cinder client / crew 4/4](../../art/cinder-kit-01/crew-player-3.png)
+
 2026-09-13 · 0.9.0 implemented and automated checks complete. Retain Unity and direct LAN host authority. Steam and operator servers are outside scope.
 
 - [x] CarryRoom/CarryWire: host slot 0, client slots 1~3, per-connection input/timeouts and recipient slot assignment. Do not trust input-supplied slot IDs. Protocol 10 prevents mixing old versions.

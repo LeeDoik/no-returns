@@ -2,6 +2,10 @@
 
 [English](macos-development.en.md)
 
+## 2026-10-01 — 현재 Cinder 맥 4인 시험
+
+현재 환경/아트 원본은 `CinderCompactSiteReview`, 파생 4인 시험은 `CinderFourPlayerTest`다. [4인 실행·빌드·검증 안내](four-player.ko.md#2026-10-01--cinder-4인-맵-테스트-환경)가 아래 2026-09-26의 대상/빌드 미확인 기록보다 우선한다. `CinderFourPlayerBuild`로 원본을 보존하며 `builds/CinderFourPlayer/NoReturns.app`을 만든다. **맥 빌드 오류 0개·기존 경고 7개, 실제 네 프로세스 자동 검사 13개·기존 구조 규칙 7개·일반 모드 기본값 7개 통과. 800×500 한글 HUD 화면 2개에서 직원 4/4·E/Q 안내·조준점·팀 색을 확인했고 수동 네 프로세스/접속 3개·종료도 확인했다.** 출시에 필요한 서명/공증·Windows 실행·다른 PC·성능·전체 게임 기능은 별도 미확인이다.
+
 2026-09-26. 기존 Windows 프로젝트를 Apple Silicon Mac에서 이어서 개발한다. 사용자 지정 대상은 macOS와 Windows다. 게임 기능과 에디터·패키지 버전은 이 환경 구성에서 변경하지 않는다.
 
 현재 이어서 개발할 대상은 [CINDER-BLOCKOUT-01](cinder-blockout.ko.md)의 `CinderDepotBlockout` 씬이다. 사용자가 지정한 `Play_Cinder_Blockout.cmd`와 2026-09-17 커밋 `6f4922a`가 이 장면의 Windows 실행본을 가리킨다. 초기 환경 검사에 사용한 `CarryRoom`은 이전 운반 실험이며 최신 맵 검증을 대신하지 않는다. `builds/`는 Git 제외 대상이어서 기존 Windows 실행본은 이 맥에 복원되지 않았다.
