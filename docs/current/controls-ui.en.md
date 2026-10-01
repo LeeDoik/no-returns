@@ -1,6 +1,10 @@
-# Controls, ship and purchase UI — 0.9.2
+# Controls, ship and purchase UI — 0.9.3
 
 [한국어](controls-ui.ko.md)
+
+## 2026-10-02 — Cinder Listener, baton and rescue 0.9.3
+
+[Current rules, running and production checks](cinder-listener.en.md). Connect one Listener's actual floor/obstacle grid movement, noise investigation, warning/attack, existing empty-hand left-click baton, hold-E rescue and all-down ship recovery to default Cinder delivery. Preserve normal 420 CR payment and source art scene. Judge safety using current Cinder ship coordinates; do not instantiate old suppression/outer/clue/save objects. Existing beacon pulses also attract Listener investigation. Keep peaceful delivery regression via `--delivery-only` and movement tests via `--map-only`. Version 0.9.3, protocol 12, TCP 27842. Supersede older unconnected-Cinder-Listener/baton/rescue statements below only within this scope. Suppression/outer creature, clues, progression saving and human quality remain pending. [Actual validation scope](../validation/cinder-listener-0.9.3.json).
 
 2026-10-01 · Implemented in the current Cinder Mac player. Follow the validation record below for verified scope. This supersedes earlier E automatic-departure/Esc-shop instructions.
 
@@ -16,7 +20,7 @@
 | Parcel reach | Wheel, 0.75–1.6m |
 | Release held item immediately | Q |
 | Empty-hand jump / quiet walk / call | Space / Shift / C |
-| Empty-hand baton / field log | Left click / Tab, existing hazard mode |
+| Empty-hand baton / field log | Left click (including Cinder) / Tab (legacy hazard only) |
 | Ship terminal | E aboard, without directly departing/returning |
 | Menu/settings | Esc, fixed menu-close key |
 | Reset carrying lab | R, host `--map-only` test only |
@@ -29,7 +33,7 @@ Bottom prompts follow the aimed target and rebound keys. Menus/log/rebinding blo
 
 E aboard → select route → confirm all crew aboard → **departure button**. Deliver/collect receipt → board together → **return/settlement button** → prepare next shift. Repeated E aboard never changes mission phase. Host controls departure, return, contracts and shared purchases; the server rechecks position, occupancy, phase and wallet. Returning without a receipt displays 0 CR and needs a second click. Preserve normal 300+120=420 CR settlement. Contract changes remain available only in existing hazard mode after the first delivery, during route selection.
 
-The same terminal's equipment card sells the **120 CR** beacon license: one shared device, **two 8-second** uses per shift. Disable purchases for insufficient funds, existing ownership, phases outside preparation/report and clients. Duplicate purchases never charge again. Cinder spawn is **(-20.7,1.23,-29)m**, above the y=1m deck. Physically carry the device into the field; placing aboard consumes no charge. Cinder connects purchase, carrying and signal/audio only; Listener distraction, baton, suppression and progression-save integration remain. Cinder license/wallet do not persist after session exit. Preserve existing hazard-mode host saving.
+The same terminal's equipment card sells the **120 CR** beacon license: one shared device, **two 8-second** uses per shift. Disable purchases for insufficient funds, existing ownership, phases outside preparation/report and clients. Duplicate purchases never charge again. Cinder spawn is **(-20.7,1.23,-29)m**, above the y=1m deck. Physically carry the device into the field; placing aboard consumes no charge. Cinder connects purchases, carrying, signal/audio and Listener investigation. Baton/rescue also work in default Cinder. Suppression/outer creature and progression-save integration remain. Cinder license/wallet do not persist after session exit. Preserve existing hazard-mode host saving.
 
 Use matching uGUI presentation for connection, Esc, settings, ship and log. Use a 1280×720 CanvasScaler, native buttons/input/slider, EventSystem and GraphicRaycaster with mouse and default arrow/Enter navigation. English is production-copy source; include complete Korean counterparts in the same change.
 
@@ -39,8 +43,8 @@ Use matching uGUI presentation for connection, Esc, settings, ship and log. Use 
 
 `python3 tools/cinder_four_player.py build` → `start` launches the latest four Mac windows. `stop` terminates only the owned session processes. [Four-player guide](four-player.en.md) · [Validation record](../validation/controls-ui-0.9.2.json).
 
-[Input](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryControls.cs) · [Controls/terminal/placement](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.Controls.cs) · [Ledger](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryMission.cs) · [Protocol 11](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryWire.cs) · [Native UI](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CrewHud.Menus.cs) · [Version settings](../../NoReturns/ProjectSettings/ProjectSettings.asset). Retain TCP 27842 and source map placement. Older protocol builds cannot connect.
+[Input](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryControls.cs) · [Controls/terminal/placement](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.Controls.cs) · [Ledger](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryMission.cs) · [Protocol 12](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryWire.cs) · [Native UI](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CrewHud.Menus.cs) · [Version settings](../../NoReturns/ProjectSettings/ProjectSettings.asset). Retain TCP 27842 and source map placement. Older protocol builds cannot connect.
 
-Mac build: 0 errors/7 existing warnings. Pass 48 four-process delivery/button/purchase/physical carrying checks, 17 native key/persistence/UI/target-priority/preview checks, 35 ledger checks, 10 HUD behavior/100 bilingual text-height checks. Also pass 13 final four-process movement/connection regression checks. Record 142 pre-existing missing links/0 new failures and four native scene trailing spaces separately.
+Previous 0.9.2 validation: Mac build, 0 errors/7 existing warnings. Pass 48 four-process delivery/button/purchase/physical carrying checks, 17 native key/persistence/UI/target-priority/preview checks, 35 ledger checks, 10 HUD behavior/100 bilingual text-height checks. Also pass 13 final four-process movement/connection regression checks. Record 142 pre-existing missing links/0 new failures and four native scene trailing spaces separately.
 
 Automated checks/native screen review do not replace human control preference, rotation feel, readability or fun evaluation. Four humans, other-PC/LAN, latest Windows execution, extended stability and performance remain unverified. Add no new equipment types, inventory or packages.

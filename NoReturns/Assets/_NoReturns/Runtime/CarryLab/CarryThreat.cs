@@ -15,7 +15,7 @@ namespace NoReturns.CarryLab {
 }
 // Host-owned experiment. Clients only display the replicated state.
 public sealed class CarryThreat {
-    public bool Hard; readonly bool outer; float searchClock,distraction; int pursuedPlayer=-1;
+    public bool Hard; readonly bool outer,cinder; float searchClock,distraction; int pursuedPlayer=-1;
     public readonly bool[] Down=new bool[4];
     public readonly float[] Rescue=new float[4],Cooldown=new float[4];
     readonly float[] protection=new float[4],stepClock=new float[4];
@@ -23,6 +23,7 @@ public sealed class CarryThreat {
     readonly Vector3[] patrol={new Vector3(1,0,5),new Vector3(1,0,7),new Vector3(-3,0,7),new Vector3(-3,0,5)};
     readonly Dictionary<Vector2Int,int> grid=new Dictionary<Vector2Int,int>();
     readonly List<Vector3> nodes=new List<Vector3>(),path=new List<Vector3>();
+    List<int>[] links;
     readonly GameObject body;
     readonly Material skin;
     readonly AudioSource audio;
@@ -31,8 +32,10 @@ public sealed class CarryThreat {
     int state,patrolIndex,victim,hits,rescues,evacuations,noises,displayState=-1;
     float timer,interest,allDown,stunResistance;
     bool gridBuilt;
-    public CarryThreat(CarryThreat parent=null){
-        outer=parent!=null;if(outer){Down=parent.Down;protection=parent.protection;patrol=new[]{new Vector3(13,0,28),new Vector3(10,0,0),new Vector3(2,0,-2),new Vector3(13,0,16)};position=patrol[0];}
+    public CarryThreat(CarryThreat parent=null,bool cinder=false){
+        this.cinder=cinder;outer=parent!=null;if(outer){Down=parent.Down;protection=parent.protection;patrol=new[]{new Vector3(13,0,28),new Vector3(10,0,0),new Vector3(2,0,-2),new Vector3(13,0,16)};}
+        else if(cinder)patrol=new[]{new Vector3(-23,0,2),new Vector3(-23,0,-10),new Vector3(-5,0,-10),new Vector3(-5,0,14),new Vector3(-23,0,14)};
+        position=patrol[0];
         body=new GameObject(outer?"OUTER placeholder":"LISTENER placeholder");skin=CarryWorld.Mat(new Color(.42f,.3f,.22f));
         Part("Torso",new Vector3(0,1.1f,0),outer?new Vector3(.25f,2.4f,.2f):new Vector3(.5f,1.4f,.35f));
         Part("Listening head",new Vector3(0,outer?2.6f:1.95f,0),outer?new Vector3(.8f,.18f,.2f):new Vector3(.85f,.35f,.45f));
@@ -56,22 +59,36 @@ public sealed class CarryThreat {
         }
         if(!supported)return false;foot.y=highest;return Clear(foot);
     }
-    void BuildGrid(){Physics.SyncTransforms();for(int z=outer?-13:3;z<=(outer?29:13);z++)for(int x=outer?-15:-8;x<=(outer?15:3);x++){if(WalkPoint(new Vector3(x,0,z),out var p)&&(!outer||!CarryMission.Aboard(p))){grid[new Vector2Int(x,z)]=nodes.Count;nodes.Add(p);}}gridBuilt=true;}
+    bool Aboard(Vector3 p)=>CarryMission.Aboard(p,cinder);
+    static bool ClearSegment(Vector3 a,Vector3 b){var delta=b-a;foreach(var hit in Physics.BoxCastAll(a+Vector3.up*.95f,new Vector3(.42f,.8f,.42f),delta.normalized,Quaternion.identity,delta.magnitude,~0,QueryTriggerInteraction.Ignore))if(Static(hit.collider))return false;return true;}
+    void BuildGrid(){
+        Physics.SyncTransforms();
+        // ponytail: one-metre static grid for this ground-level map; rebuild for moving geometry or vertical routes.
+        for(int z=cinder?-34:outer?-13:3;z<=(cinder?30:outer?29:13);z++)for(int x=cinder?-27:outer?-15:-8;x<=(cinder?25:outer?15:3);x++){
+            if(cinder&&Mathf.Abs(x+20.7f)<2&&z< -21)continue; // Keep the ship ramp and deck outside patrol paths.
+            if(WalkPoint(new Vector3(x,0,z),out var p)&&(!outer||!Aboard(p))){grid[new Vector2Int(x,z)]=nodes.Count;nodes.Add(p);}
+        }
+        links=new List<int>[nodes.Count];var offsets=new[]{Vector2Int.up,Vector2Int.down,Vector2Int.left,Vector2Int.right};
+        for(int n=0;n<nodes.Count;n++){
+            links[n]=new List<int>();var cell=new Vector2Int(Mathf.RoundToInt(nodes[n].x),Mathf.RoundToInt(nodes[n].z));
+            foreach(var offset in offsets)if(grid.TryGetValue(cell+offset,out int i)&&Mathf.Abs(nodes[i].y-nodes[n].y)<=StepHeight+.001f&&ClearSegment(nodes[n],nodes[i]))links[n].Add(i);
+        }
+        gridBuilt=true;
+    }
     int Nearest(Vector3 p){int result=0;float best=float.MaxValue;for(int i=0;i<nodes.Count;i++){float d=(nodes[i]-p).sqrMagnitude;if(d<best){best=d;result=i;}}return result;}
     void Route(Vector3 goal){
         if(!gridBuilt)BuildGrid();path.Clear();if(nodes.Count==0)return;
         int start=Nearest(position),end=Nearest(goal);var parents=new int[nodes.Count];Array.Fill(parents,-1);parents[start]=start;
         var queue=new Queue<int>();queue.Enqueue(start);
-        var offsets=new[]{Vector2Int.up,Vector2Int.down,Vector2Int.left,Vector2Int.right};
-        while(queue.Count>0&&parents[end]<0){int n=queue.Dequeue();var cell=new Vector2Int(Mathf.RoundToInt(nodes[n].x),Mathf.RoundToInt(nodes[n].z));foreach(var offset in offsets)if(grid.TryGetValue(cell+offset,out int i)&&parents[i]<0&&Mathf.Abs(nodes[i].y-nodes[n].y)<=StepHeight+.001f){parents[i]=n;queue.Enqueue(i);}}
-        if(parents[end]<0)return;var reverse=new List<Vector3>();for(int n=end;n!=start;n=parents[n])reverse.Add(nodes[n]);reverse.Reverse();path.AddRange(reverse);
+        while(queue.Count>0&&parents[end]<0){int n=queue.Dequeue();foreach(int i in links[n])if(parents[i]<0){parents[i]=n;queue.Enqueue(i);}}
+        if(parents[end]<0)return;var reverse=new List<Vector3>();for(int n=end;n!=start;n=parents[n])reverse.Add(nodes[n]);reverse.Reverse();if(Vector3.Distance(position,nodes[start])>.03f)path.Add(nodes[start]);path.AddRange(reverse);
     }
-    public void Hear(Vector3 source,float range){if(outer)return;if(state==2||state==3||state==4||CarryMission.Aboard(source)||Vector3.Distance(position,source)>range)return;noiseTarget=source;noises++;state=1;interest=5;Route(source);}
+    public void Hear(Vector3 source,float range){if(outer)return;if(state==2||state==3||state==4||Aboard(source)||Vector3.Distance(position,source)>range)return;noiseTarget=source;noises++;state=1;interest=5;Route(source);}
     // The outer creature knows crew positions after entry; geometry still controls movement.
     void SearchCrew(Vector3[] players,int mask){
         int chosen=-1;float best=float.MaxValue;
         for(int i=0;i<players.Length;i++){
-            if((mask&(1<<i))==0||Down[i]||CarryMission.Aboard(players[i]))continue;
+            if((mask&(1<<i))==0||Down[i]||Aboard(players[i]))continue;
             float distance=(players[i]-position).sqrMagnitude;
             if(distance<best){chosen=i;best=distance;}
         }
@@ -81,7 +98,7 @@ public sealed class CarryThreat {
     // Beacon pulses briefly override global pursuit; ordinary footsteps/calls do not.
     public void Distract(Vector3 source,float range){
         if(!outer){Hear(source,range);return;}
-        if(state>=2||CarryMission.Aboard(source)||Vector3.Distance(position,source)>range)return;
+        if(state>=2||Aboard(source)||Vector3.Distance(position,source)>range)return;
         pursuedPlayer=-1;noiseTarget=source;noises++;state=1;interest=5;distraction=1.2f;Route(source);
     }
     public void Reset(){Array.Clear(Down,0,4);Array.Clear(Rescue,0,4);Array.Clear(Cooldown,0,4);Array.Clear(protection,0,4);gridBuilt=false;grid.Clear();nodes.Clear();position=patrol[0];state=0;patrolIndex=0;timer=0;stunResistance=0;allDown=0;searchClock=0;distraction=0;pursuedPlayer=-1;interest=0;Array.Clear(stepClock,0,4);Array.Clear(previous,0,4);path.Clear();}
@@ -107,10 +124,10 @@ public sealed class CarryThreat {
             distraction=Mathf.Max(0,distraction-dt);searchClock-=dt;
             if(state<2&&distraction<=0&&searchClock<=0){searchClock=.8f;SearchCrew(players,mask);}
         }
-        if(state==2){timer-=dt;if(timer<=0){if((mask&(1<<victim))!=0&&!Down[victim]&&!CarryMission.Aboard(players[victim])&&protection[victim]<=0&&Vector3.Distance(players[victim],position)<1.5f&&Sight(position,players[victim])){Down[victim]=true;hits++;}state=3;timer=4;}}
+        if(state==2){timer-=dt;if(timer<=0){if((mask&(1<<victim))!=0&&!Down[victim]&&!Aboard(players[victim])&&protection[victim]<=0&&Vector3.Distance(players[victim],position)<1.5f&&Sight(position,players[victim])){Down[victim]=true;hits++;}state=3;timer=4;}}
         else if(state==3||state==4){timer-=dt;if(timer<=0){if(state==4)stunResistance=2;state=0;path.Clear();}}
         else {
-            int close=-1;for(int i=0;i<count;i++)if((mask&(1<<i))!=0&&!Down[i]&&!CarryMission.Aboard(players[i])&&protection[i]<=0&&Vector3.Distance(position,players[i])<1.3f&&Sight(position,players[i])){close=i;break;}
+            int close=-1;for(int i=0;i<count;i++)if((mask&(1<<i))!=0&&!Down[i]&&!Aboard(players[i])&&protection[i]<=0&&Vector3.Distance(position,players[i])<1.3f&&Sight(position,players[i])){close=i;break;}
             if(close>=0){state=2;timer=(Hard||outer)?.9f:1.2f;victim=close;path.Clear();}
             else {
                 if(state==1){interest-=dt;if(interest<=0){state=0;path.Clear();}}

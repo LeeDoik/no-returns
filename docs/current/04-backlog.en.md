@@ -2,7 +2,16 @@
 
 [한국어](04-backlog.ko.md)
 
-## 2026-10-02 — Recommended next order
+## 2026-10-02 — Cinder Listener, baton and rescue 0.9.3
+
+[Current rules, running and production checks](cinder-listener.en.md). Connect one Listener's actual floor/obstacle grid movement, noise investigation, warning/attack, existing empty-hand left-click baton, hold-E rescue and all-down ship recovery to default Cinder delivery. Preserve normal 420 CR payment and source art scene. Judge safety using current Cinder ship coordinates; do not instantiate old suppression/outer/clue/save objects. Existing beacon pulses also attract Listener investigation. Keep peaceful delivery regression via `--delivery-only` and movement tests via `--map-only`. Version 0.9.3, protocol 12, TCP 27842. Supersede older unconnected-Cinder-Listener/baton/rescue statements below only within this scope. Suppression/outer creature, clues, progression saving and human quality remain pending. [Actual validation scope](../validation/cinder-listener-0.9.3.json).
+
+- [x] Implement current Cinder noise/path/attack/baton/down/rescue/emergency aboard recovery and pass 31 actual four-process checks.
+- [x] Verify 92 route endpoints, 2,400 patrol collision steps, 5 rescue conditions, 17 controls/UI, 35 ledger, 13/100 HUD conditions, 48 delivery/UI and 13 movement/network regression checks, 4 legacy patrol endpoints and bilingual native screens.
+- [ ] About 5 minutes of human controls and four-human cooperation/warning-audio/appearance quality review, distinct from automated passing.
+- [ ] Suppression/outer/clues/progression saving, separate active-Listener normal receipt return/purchased-beacon distraction checks, other-PC/LAN/Windows/extended stability/performance.
+
+## 2026-10-02 — Previous 0.9.2 investigation and recommendation
 
 After current 0.9.2, recommend **brief human control review → Cinder Listener/baton/rescue integration → suppression/exterior and beacon distraction → progression saving**. This is not implementation of new gameplay or user quality approval.
 

@@ -7,7 +7,7 @@ import cinder_four_player as lab
 
 
 def main():
-    run, processes, folders, _ = lab.launch(True)
+    run, processes, folders, _ = lab.launch(True, hazard=False)
     checks, seq = [], 1
     report = dict(status="FAIL", run=str(run), checks=checks)
 

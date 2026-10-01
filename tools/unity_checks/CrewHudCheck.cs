@@ -16,6 +16,11 @@ public static class CrewHudCheck {
    CarryLanguage.Toggle();hud.Apply(s,2,true);Check(texts.Any(t=>t.text.Contains("RESCUING 50%")),"English toggle");
    hud.Apply(s,2,false);Check(!go.GetComponentInChildren<Canvas>(true).gameObject.activeSelf,"menu hides HUD");
    var scaler=go.GetComponentInChildren<UnityEngine.UI.CanvasScaler>(true);Check(scaler.referenceResolution==new Vector2(1280,720),"reference resolution");
+   s.cinderReview=true;s.positions=Array.ConvertAll(new[]{0,1,2,3},i=>new Vector3(-20.7f,1.035f,-25-i));hud.Apply(s,2,true);
+   Check(texts.Any(t=>t.text.Contains("RESCUING 50%")),"Cinder rescue prompt survives ship hint");
+   s.danger.rescue[2]=0;s.danger.down[2]=true;hud.Apply(s,2,true);Check(texts.Any(t=>t.text.Contains("DOWN / wait")),"Cinder down prompt survives ship hint");
+   Check(texts.All(t=>!t.text.Contains("SUPPRESSOR")),"Cinder does not disclose legacy suppression cue");
+   s.danger.down[2]=false;s.cinderReview=false;
    s.holder=-1;s.beaconCarrier=-1;s.danger.rescue[2]=0;
    for(int language=0;language<2;language++){
     for(int phase=0;phase<5;phase++){s.phase=phase;hud.Apply(s,2,true);Canvas.ForceUpdateCanvases();foreach(var t in texts)Check(t.preferredHeight<=t.rectTransform.rect.height+.1f,"text fits "+language+"/"+phase+"/"+t.name);}

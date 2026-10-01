@@ -90,7 +90,7 @@ def state(folder, name="state.json"):
         return {}
 
 
-def launch(automated=False, delivery=True):
+def launch(automated=False, delivery=True, hazard=True):
     binary = player()
     if not binary.is_file():
         raise RuntimeError("Build the player first: python3 tools/cinder_four_player.py build")
@@ -109,6 +109,8 @@ def launch(automated=False, delivery=True):
         args = [str(binary), "--host"] if slot == 0 else [str(binary), "--join", "127.0.0.1"]
         if not delivery:
             args += ["--map-only"]
+        elif not hazard:
+            args += ["--delivery-only"]
         args += ["--cinder-session", token, "-screen-width", "800", "-screen-height", "500",
                  "-screen-fullscreen", "0", "-logFile", str(folder / "player.log")]
         if automated:
@@ -185,7 +187,7 @@ def check():
     report = dict(status="FAIL", run=str(run), checks=checks)
     try:
         require("Cinder mode and four peers replicated", lambda: all_state(lambda s:
-            s.get("cinderReview") and s.get("protocol") == 11 and s.get("players") == 4
+            s.get("cinderReview") and s.get("protocol") == 12 and s.get("players") == 4
             and s.get("phase") == -1 and not s.get("hazard")))
         send(3, yaw=-81.5, pitch=45, interact=True)
         require("slot 3 picks up shared parcel", lambda: all_state(lambda s: s.get("holder") == 3))
@@ -265,6 +267,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("action", choices=("build", "start", "stop", "check"))
     parser.add_argument("--map-only", action="store_true", help="Start movement/carrying without the delivery loop")
+    parser.add_argument("--delivery-only", action="store_true", help="Start delivery without the Listener")
     args = parser.parse_args()
     if args.action == "build":
         binary = shutil.which("unity") or str(Path.home() / ".unity/bin/unity")
@@ -284,7 +287,7 @@ def main():
             raise RuntimeError(report)
         print("Built:", player())
     elif args.action == "start":
-        launch(delivery=not args.map_only)
+        launch(delivery=not args.map_only, hazard=not args.delivery_only)
     elif args.action == "stop":
         stop()
     else:

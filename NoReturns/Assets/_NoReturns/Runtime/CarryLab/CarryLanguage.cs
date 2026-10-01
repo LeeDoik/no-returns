@@ -79,6 +79,8 @@ public static class CarryLanguage {
         {" OPEN SHIP TERMINAL"," 우주선 단말 열기"},
         {"RESCUING {0}% / keep holding ","구조 중 {0}% / 계속 누르기 "},
         {" hold to rescue"," 유지해 구조"},
+        {" quiet · "," 조용히 걷기 · "},{" call · "," 소리내기 · "},{" baton"," 진압봉"},{" baton ready in {0}s"," 진압봉 준비 {0}초"},
+        {"LISTENER / watch the warning; keep quiet","리스너 / 경고를 보고 피하세요 · 조용히 이동"},
         {" COLLECT RECEIPT"," 영수증 회수"},
         {" INSPECT TERMINAL"," 단말 조사"},
         {" PICK UP BEACON"," 신호기 들기"},

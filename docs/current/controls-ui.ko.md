@@ -1,6 +1,10 @@
-# 조작·우주선·구매 UI — 0.9.2
+# 조작·우주선·구매 UI — 0.9.3
 
 [English](controls-ui.en.md)
+
+## 2026-10-02 — Cinder 리스너·진압봉·구조 0.9.3
+
+[현재 규칙·실행·제작 검사](cinder-listener.ko.md). 기본 Cinder 배송에 리스너 1개의 실제 바닥/장애물 격자 이동·소음 조사·경고/공격, 기존 빈손 좌클릭 진압봉, E 유지 구조·전원 다운 선내 회수를 연결했다. 정상 배송 420 CR과 원본 아트 씬을 보존한다. 선내 안전을 현재 Cinder 좌표로 판정하고 옛 억제/외곽/단서/저장 객체는 생성하지 않는다. 신호기 신호는 기존 리스너 소음 조사에도 연결된다. `--delivery-only`로 위험 없는 배송 회귀, `--map-only`로 이동 시험을 유지한다. 버전 0.9.3·프로토콜 12·TCP 27842. 아래 과거 Cinder 리스너/진압봉/구조 미연결 상태를 이 범위에서 대체한다. 억제/외곽·단서·진행 저장과 사람 품질 평가는 남아 있다. [실제 검증 범위](../validation/cinder-listener-0.9.3.json).
 
 2026-10-01 · 구현 · 현재 Cinder 맥 실행본에 적용. 검증 범위는 아래 기록을 따른다. 이 문서가 이전 E 자동 출발·Esc 구매 안내보다 우선한다.
 
@@ -16,7 +20,7 @@
 | 화물 운반 거리 | 휠, 0.75–1.6m |
 | 물건 즉시 놓기 | Q |
 | 빈손 점프 / 조용히 걷기 / 소리 내기 | Space / Shift / C |
-| 빈손 진압봉 / 현장 기록 | 좌클릭 / Tab, 기존 위험 모드 |
+| 빈손 진압봉 / 현장 기록 | 좌클릭(Cinder 포함) / Tab(옛 위험 모드만) |
 | 우주선 단말 | 선내에서 E, 출발·귀환을 직접 실행하지 않음 |
 | 메뉴·설정 | Esc, 메뉴 닫기 고정 |
 | 운반 실험 초기화 | R, 방장의 `--map-only` 시험만 |
@@ -29,7 +33,7 @@
 
 선내 E → 항로 선택 → 전원 탑승 확인 → **출발 버튼**. 배송 후 영수증 회수 → 전원 탑승 → **귀환·정산 버튼** → 다음 근무 준비. 선내에서 E를 반복해도 근무 단계는 바뀌지 않는다. 출발·귀환·계약 변경·공용 구매는 방장이 수행하고 서버가 위치·탑승·단계·잔액을 다시 검사한다. 영수증 없는 귀환은 보수 0 CR 안내 후 다시 클릭해야 한다. 정상 정산 300+120=420 CR은 유지한다. 계약 변경은 기존 위험 모드의 첫 배송 이후 항로 선택 단계에만 가능하다.
 
-같은 단말의 장비 카드에서 유인 신호기 사용권 **120 CR**, 공용 1개, 근무마다 **2회·각 8초**를 구매한다. 부족한 잔액·구매 완료·준비/정산 외 단계·참가자 버튼을 비활성화한다. 중복 구매는 재차 결제되지 않는다. Cinder 선내 생성 위치는 **(-20.7,1.23,-29)m**, 갑판 y=1m 위다. 실제 장비를 들고 나가며 선내 배치는 횟수를 소모하지 않는다. Cinder에서는 구매·운반·신호/음향만 연결했고 리스너 유인·진압봉·억제·진행 저장 통합은 남아 있다. Cinder 사용권/잔액은 세션 종료 후 저장하지 않는다. 기존 위험 모드의 방장 저장은 유지한다.
+같은 단말의 장비 카드에서 유인 신호기 사용권 **120 CR**, 공용 1개, 근무마다 **2회·각 8초**를 구매한다. 부족한 잔액·구매 완료·준비/정산 외 단계·참가자 버튼을 비활성화한다. 중복 구매는 재차 결제되지 않는다. Cinder 선내 생성 위치는 **(-20.7,1.23,-29)m**, 갑판 y=1m 위다. 실제 장비를 들고 나가며 선내 배치는 횟수를 소모하지 않는다. Cinder에서는 구매·운반·신호/음향과 리스너 소음 조사를 연결한다. 기본 Cinder에서 진압봉/구조도 동작한다. 억제/외곽·진행 저장 통합은 남아 있다. Cinder 사용권/잔액은 세션 종료 후 저장하지 않는다. 기존 위험 모드의 방장 저장은 유지한다.
 
 접속·Esc·설정·우주선·기록을 같은 uGUI 방식으로 표시한다. 1280×720 CanvasScaler, 실제 버튼/입력창/슬라이더, EventSystem과 GraphicRaycaster를 사용하며 마우스와 기본 방향키/Enter 탐색을 지원한다. 영어가 게임 문구 원문이며 한글 대응본을 같은 변경에 포함한다.
 
@@ -39,8 +43,8 @@
 
 `python3 tools/cinder_four_player.py build` → `start`로 최신 맥 네 창을 실행한다. `stop`은 해당 세션 프로세스만 종료한다. [4인 실행 가이드](four-player.ko.md) · [검증 기록](../validation/controls-ui-0.9.2.json).
 
-[입력](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryControls.cs) · [조작·단말·배치](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.Controls.cs) · [장부](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryMission.cs) · [프로토콜 11](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryWire.cs) · [native UI](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CrewHud.Menus.cs) · [버전 설정](../../NoReturns/ProjectSettings/ProjectSettings.asset). TCP 27842와 원본 맵 배치는 유지한다. 구버전 프로토콜과 섞어 접속할 수 없다.
+[입력](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryControls.cs) · [조작·단말·배치](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.Controls.cs) · [장부](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryMission.cs) · [프로토콜 12](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryWire.cs) · [native UI](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CrewHud.Menus.cs) · [버전 설정](../../NoReturns/ProjectSettings/ProjectSettings.asset). TCP 27842와 원본 맵 배치는 유지한다. 구버전 프로토콜과 섞어 접속할 수 없다.
 
-맥 빌드 오류 0개·기존 경고 7개. 네 프로세스 배송·버튼·구매/실물 운반 검사 48개, native 키/저장/UI/대상 우선순위/미리보기 17개, 장부 35개, HUD 상태 10개·한영 텍스트 높이 100개 통과. 최종 네 프로세스 이동·접속 회귀 13개도 통과했다. 기존 문서 누락 링크 142개/새 실패 0개, native 씬 후행 공백 4개는 별도로 기록했다.
+이전 0.9.2 검증: 맥 빌드 오류 0개·기존 경고 7개. 네 프로세스 배송·버튼·구매/실물 운반 검사 48개, native 키/저장/UI/대상 우선순위/미리보기 17개, 장부 35개, HUD 상태 10개·한영 텍스트 높이 100개 통과. 최종 네 프로세스 이동·접속 회귀 13개도 통과했다. 기존 문서 누락 링크 142개/새 실패 0개, native 씬 후행 공백 4개는 별도로 기록했다.
 
 자동 검사와 native 화면 검토는 사람의 키 배치 선호·회전 감각·가독성·재미 검증을 대신하지 않는다. 사람 네 명, 다른 PC/LAN, Windows 최신 실행, 장시간 안정성과 성능은 미확인이다. 새 장비 종류·인벤토리·패키지는 추가하지 않았다.

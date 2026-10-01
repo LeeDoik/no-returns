@@ -91,8 +91,8 @@ public sealed partial class CarryRoom {
             playHud.SetMenuButton("shipAction",action,host&&((s.phase!=1&&s.phase!=2&&s.phase!=3)||all));
             playHud.SetMenuButton("buy",s.unlocked?"OWNED":s.credits<120?"INSUFFICIENT FUNDS / 120 CR":"Buy beacon license",host&&!s.unlocked&&s.credits>=120&&(s.phase==0||s.phase==4));
             playHud.SetMenuText("Stock",s.unlocked?string.Format(T("USES {0}/2 / SHARED DEVICE"),s.charges):"Buy during preparation or shift report");
-            playHud.SetMenuButton("contract",s.hard?"RISK / receipt 450 + return 180":"STANDARD / receipt 300 + return 120",host&&s.phase==1&&s.deliveries>0&&s.hazard);
-        }else if(kind=="home"||kind=="pause")playHud.SetMenuText("Status",status+(hazard&&active?"\n"+(hosting?T(saveNotice):T("Using host progress / personal save unchanged")):""));
+            playHud.SetMenuButton("contract",s.hard?"RISK / receipt 450 + return 180":"STANDARD / receipt 300 + return 120",host&&s.phase==1&&s.deliveries>0&&s.hazard&&!cinderReview);
+        }else if(kind=="home"||kind=="pause")playHud.SetMenuText("Status",status+(hazard&&!cinderReview&&active?"\n"+(hosting?T(saveNotice):T("Using host progress / personal save unchanged")):""));
     }
     bool Placement(int who,out Vector3 position,out Quaternion rotation){
         position=cargo.position;rotation=Quaternion.Euler(0,inputs[who].yaw+inputs[who].turnYaw,0);
@@ -123,10 +123,11 @@ public sealed partial class CarryRoom {
         if(RescueNearby())return controls.Key(4)+T(" hold to rescue");
         var origin=eye.transform.position;var look=eye.transform.rotation;
         if(missionPhase==3&&!receiptCollected&&ReceiptFeedback.CanReach(origin,look))return controls.Key(4)+T(" COLLECT RECEIPT");
-        if(hazard&&clues.Target(origin,look)>=0)return controls.Key(4)+T(" INSPECT TERMINAL");
+        if(clues!=null&&clues.Target(origin,look)>=0)return controls.Key(4)+T(" INSPECT TERMINAL");
         if(equipment.Target(origin,look))return controls.Key(4)+T(" PICK UP BEACON");
         if(ParcelTarget(local,look))return controls.Key(4)+T(" PICK UP PARCEL");
         if(AboardLocal&&missionPhase>=0)return controls.Key(4)+T(" OPEN SHIP TERMINAL");
+        if(hazard&&(missionPhase==2||missionPhase==3)){float cooldown=danger==null?0:danger.CooldownAt(local);return controls.Key(9)+T(" quiet · ")+controls.Key(10)+T(" call · ")+controls.Key(6)+(cooldown>0?string.Format(T(" baton ready in {0}s"),Mathf.CeilToInt(cooldown)):T(" baton"));}
         return T("Aim at a nearby object to use it / Esc settings");
     }
 }
