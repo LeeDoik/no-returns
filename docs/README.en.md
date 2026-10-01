@@ -2,7 +2,7 @@
 
 [한국어](README.md)
 
-[Compact the entire map inside the suppression field](current/cinder-compact-site.en.md). `CinderCompactSiteReview` is the current review scene. Bring 5 buildings and the ship together, adding 6 auxiliary utility volumes to form 3/3.15m alleys and 4 circulation loops. Passed 94 movement segments, 17 four-body lanes and carrying checks. The earlier interior-only maze was an incorrect scope interpretation and is excluded from the current target. Next is direct whole-site review.
+[Current compact map and prop placement](current/cinder-compact-site.en.md). The user approved the whole-site direction. Add 47 groups of racks, pallets, desks, cabinets, drums, pipes, roof equipment and labels in the same `CinderCompactSiteReview`. Preserve 3/3.15m alleys, 4 loops, 94 movement segments and 17 four-body lanes. Passed 5,904 carrying poses and actual movement. Prop quality and human four-player review remain.
 
 Existing Listener, baton and ship gameplay code/scenes are preserved. See [existing gameplay versus Cinder review scenes](current/cinder-asset-prep.en.md#location-of-existing-gameplay-systems). Gameplay integration into Cinder remains incomplete.
 

@@ -2,7 +2,7 @@
 
 [한국어](cinder-blockout.ko.md)
 
-The current environment target is [CinderCompactSiteReview, compacting the entire suppression-field site](cinder-compact-site.en.md). Exclude the earlier interior-only maze from the current target. Preserve original blockout, gray, warehouse/five-building appearance and earlier maze scenes. Values and 41 original straight routes below are historical, not acceptance of the new whole layout. Check 94 movement segments including relocated building entries, alleys and the ship ramp, 17 four-body lanes and carrying poses/movement. User quality, human passing, receipt facilities and gameplay integration remain.
+The current environment is [CinderCompactSiteReview with the whole map and props](cinder-compact-site.en.md). After user approval of the whole-map direction, place 47 prop groups in the same scene. Retain 94 movement segments and 17 four-body lanes; pass 5,904 prop-adjacent carrying poses and actual carrying checks. Preserve original, gray, appearance and earlier maze scenes. Values and 41 original straight routes below are historical, not current acceptance criteria. Prop quality, human passing, receipt facilities and gameplay integration remain.
 
 ## 2026-10-01 — Gray structure review scene
 

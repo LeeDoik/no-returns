@@ -1,0 +1,34 @@
+{
+  "scene": "Assets/_NoReturns/Scenes/CinderCompactSiteReview.unity",
+  "source_layout_user_approved": true,
+  "prop_groups": 47,
+  "groups": {
+    "Rack": 5,
+    "Pallet": 7,
+    "Workbench": 5,
+    "Cabinet": 4,
+    "Drums": 3,
+    "Roof machinery": 6,
+    "Pipes": 6,
+    "High wall vent": 5,
+    "Legend": 6
+  },
+  "placed_meshes": 108,
+  "triangles": 205055,
+  "added_box_colliders": 56,
+  "static_freight_visuals": 46,
+  "static_desk_crts": 3,
+  "facility_labels": [
+    "A\nWAREHOUSE",
+    "SIDE\nOFFICE",
+    "BAY 04\nDISPATCH",
+    "C SERVICE\nPOWER",
+    "STORAGE\nFREIGHT",
+    "BAY 04\nNORTH LOOP"
+  ],
+  "preserved_base_route_poses": 159,
+  "carrying_pose_positions": 246,
+  "interactive_props": false,
+  "layout_changed": false,
+  "user_prop_quality_review": false
+}

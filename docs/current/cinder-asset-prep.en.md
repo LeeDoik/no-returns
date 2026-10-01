@@ -2,7 +2,7 @@
 
 [한국어](cinder-asset-prep.ko.md)
 
-**Follow the [entire layout inside the suppression field](cinder-compact-site.en.md) for current structure and next work.** Correct the interior-only interpretation by bringing 5 buildings/the ship closer and composing 6 auxiliary volumes, 3/3.15m outdoor alleys and 4 loops. Exclude the earlier interior maze partitions from the current target. Direct whole-site review precedes terminal production.
+**Follow [whole-layout prop production/checks](cinder-compact-site.en.md) for current structure, props and next work.** The user approved the whole suppression-field map direction; add 47 prop groups to the same scene. Retain 3/3.15m alleys, 4 loops, 94 movement segments and 17 four-body lanes. Prop quality/human passing and receipt facilities/gameplay-coordinate integration remain. Below records first-warehouse production; exclude the earlier interior maze from the current target.
 
 2026-10-01 · CINDER-ASSET-PREP-01 · **User approval of aged warehouse style, shared appearance expanded to 5 buildings and automated checks passed / user review of the expansion incomplete.** Follow [current map scope, review scene and next production](cinder-map-appearance.en.md). Below are specifications, production and checks for the first warehouse batch.
 

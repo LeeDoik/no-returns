@@ -1,0 +1,509 @@
+{
+  "date": "2026-10-01",
+  "scene": "Assets/_NoReturns/Scenes/CinderCompactSiteReview.unity",
+  "source_commit": "580070d3bb29cbd2bab3ebca1dbade12526c6302",
+  "scope": "Static area-specific props in the approved compact site; preserve building, ship, original route and runtime",
+  "native_props_validation": {
+    "scene": "Assets/_NoReturns/Scenes/CinderCompactSiteReview.unity",
+    "source_layout_user_approved": true,
+    "prop_groups": 47,
+    "groups": {
+      "Rack": 5,
+      "Pallet": 7,
+      "Workbench": 5,
+      "Cabinet": 4,
+      "Drums": 3,
+      "Roof machinery": 6,
+      "Pipes": 6,
+      "High wall vent": 5,
+      "Legend": 6
+    },
+    "placed_meshes": 108,
+    "triangles": 205055,
+    "added_box_colliders": 56,
+    "static_freight_visuals": 46,
+    "static_desk_crts": 3,
+    "facility_labels": [
+      "A\nWAREHOUSE",
+      "SIDE\nOFFICE",
+      "BAY 04\nDISPATCH",
+      "C SERVICE\nPOWER",
+      "STORAGE\nFREIGHT",
+      "BAY 04\nNORTH LOOP"
+    ],
+    "preserved_base_route_poses": 159,
+    "carrying_pose_positions": 246,
+    "interactive_props": false,
+    "layout_changed": false,
+    "user_prop_quality_review": false
+  },
+  "native_structure_validation": {
+    "scene": "Assets/_NoReturns/Scenes/CinderCompactSiteReview.unity",
+    "field_size_m": [
+      53.55,
+      65.4
+    ],
+    "core_site_size_m": [
+      47.55,
+      59.4
+    ],
+    "building_count": 5,
+    "solid_auxiliary_blocks": 6,
+    "original_building_box_colliders": 50,
+    "relocated_ship_collision_preserved": true,
+    "original_remaining_box_colliders": 59,
+    "building_layout": [
+      {
+        "name": "A WAREHOUSE",
+        "center": "(-14.100, -0.100, 1.800)",
+        "size": "(14.400, 0.200, 20.400)"
+      },
+      {
+        "name": "SIDE OFFICE",
+        "center": "(-14.100, -0.100, 19.800)",
+        "size": "(14.400, 0.200, 9.000)"
+      },
+      {
+        "name": "BAY 04",
+        "center": "(12.750, -0.100, 15.900)",
+        "size": "(13.800, 0.200, 16.800)"
+      },
+      {
+        "name": "C SERVICE",
+        "center": "(13.350, -0.100, -6.900)",
+        "size": "(12.600, 0.200, 22.200)"
+      },
+      {
+        "name": "STORAGE",
+        "center": "(5.250, -0.100, -24.900)",
+        "size": "(28.800, 0.200, 7.200)"
+      }
+    ],
+    "standard_alley_width_m": 3,
+    "slightly_wider_alley_m": 3.15,
+    "movement_segments": 94,
+    "four_body_lanes": 17,
+    "closed_site_loops": 4,
+    "interior_maze_removed": true,
+    "field_is_physical_wall": false,
+    "sheltered_route_m": 94.0,
+    "central_route_m": 79.1,
+    "surfaces_vertices": 10192,
+    "added_colliders": 22,
+    "added_lights": 16,
+    "kit_mesh_instances": 383,
+    "user_layout_review": false,
+    "human_four_player_review": false
+  },
+  "carry_validation": {
+    "scene": "CinderCompactSiteReview",
+    "static_pose_count": 5904,
+    "carrying_segments": 94,
+    "samples": 407130,
+    "overlap_count": 0,
+    "touching_contacts": 57,
+    "penetration_tolerance_m": 1e-05,
+    "failures": [],
+    "input_checks": {
+      "pickup": true,
+      "forward": true,
+      "backward": true,
+      "drop": true,
+      "jump": true
+    },
+    "method": "Play mode, API-set poses, reflected actual CinderBlockoutWalk.Update; not human controls"
+  },
+  "resolved_previous_carry_failure": {
+    "scene": "CinderCompactSiteReview",
+    "static_pose_count": 6120,
+    "carrying_segments": 0,
+    "samples": 6120,
+    "overlap_count": 8,
+    "touching_contacts": 57,
+    "penetration_tolerance_m": 1e-05,
+    "failures": [
+      {
+        "point": [
+          -7.445,
+          0.035,
+          21.3
+        ],
+        "yaw": 225.0,
+        "pitch": 0.0,
+        "depth": 0.145305634,
+        "cargo": [
+          -7.41734743,
+          1.065,
+          21.2904263
+        ],
+        "collider": "East wall"
+      },
+      {
+        "point": [
+          -7.445,
+          0.035,
+          21.3
+        ],
+        "yaw": 225.0,
+        "pitch": 80.0,
+        "depth": 0.218135357,
+        "cargo": [
+          -7.380933,
+          0.427941322,
+          21.54097
+        ],
+        "collider": "East wall"
+      },
+      {
+        "point": [
+          -7.445,
+          0.035,
+          21.3
+        ],
+        "yaw": 315.0,
+        "pitch": 0.0,
+        "depth": 0.145305157,
+        "cargo": [
+          -7.417348,
+          1.065,
+          21.3095722
+        ],
+        "collider": "East wall"
+      },
+      {
+        "point": [
+          -7.445,
+          0.035,
+          21.3
+        ],
+        "yaw": 315.0,
+        "pitch": 80.0,
+        "depth": 0.2181344,
+        "cargo": [
+          -7.38093328,
+          0.427941442,
+          21.0590286
+        ],
+        "collider": "East wall"
+      },
+      {
+        "point": [
+          8.0825,
+          0.035,
+          -12.8250008
+        ],
+        "yaw": 45.0,
+        "pitch": 80.0,
+        "depth": 0.005047798,
+        "cargo": [
+          7.789068,
+          0.427941442,
+          -12.8223867
+        ],
+        "collider": "Cabinet"
+      },
+      {
+        "point": [
+          8.0825,
+          0.035,
+          -14.775
+        ],
+        "yaw": 135.0,
+        "pitch": 80.0,
+        "depth": 0.005048752,
+        "cargo": [
+          7.7890687,
+          0.427941322,
+          -14.7776146
+        ],
+        "collider": "Cabinet"
+      },
+      {
+        "point": [
+          8.0825,
+          0.035,
+          -9.925
+        ],
+        "yaw": 45.0,
+        "pitch": 80.0,
+        "depth": 0.005047798,
+        "cargo": [
+          7.789068,
+          0.427941442,
+          -9.922386
+        ],
+        "collider": "Cabinet"
+      },
+      {
+        "point": [
+          8.0825,
+          0.035,
+          -11.874999
+        ],
+        "yaw": 135.0,
+        "pitch": 80.0,
+        "depth": 0.005047798,
+        "cargo": [
+          7.7890687,
+          0.427941322,
+          -11.877615
+        ],
+        "collider": "Cabinet"
+      }
+    ],
+    "input_checks": {
+      "pickup": false,
+      "forward": false,
+      "backward": false,
+      "drop": false,
+      "jump": false
+    },
+    "method": "Play mode, API-set poses, reflected actual CinderBlockoutWalk.Update; not human controls"
+  },
+  "layout_fix": "Face cabinet fronts into rooms and mount cabinet backs against walls; remove body-sized rear gaps that cannot fit rotating cargo. No runtime change.",
+  "shared_snapshot_fix": "Handle scene-root Colliders without parents in ColliderState; preserve descendant formatting for existing callers.",
+  "final_play_console_ground_truth": {
+    "sampledUtc": "2026-10-01T08:33:10.410647Z",
+    "ageMs": 10,
+    "compilationFailed": false,
+    "compiling": false,
+    "consoleErrors": 0,
+    "consoleWarnings": 0,
+    "consoleLogs": 0,
+    "seeded": true
+  },
+  "compile_errors": 0,
+  "existing_compile_warning_unique_messages": 6,
+  "existing_compile_warnings": [
+    "Assets/_NoReturns/Editor/ShipInteriorTrialBuild.cs(16,20): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'",
+    "Assets/_NoReturns/Editor/ShipInteriorTrialBuild.cs(26,26): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'",
+    "Assets/_NoReturns/Editor/ShipInteriorTrialBuild.cs(26,77): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'",
+    "Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs(30,44): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'",
+    "Assets/_NoReturns/Runtime/CarryLab/FacilityArt.cs(17,13): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'",
+    "Assets/_NoReturns/Runtime/CarryLab/FacilityArt.cs(17,51): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'"
+  ],
+  "play_diagnostics": [],
+  "starting_file_count": 159,
+  "preserved_file_count": 158,
+  "starting_sha256": {
+    "NoReturns/Assets/_NoReturns/Scenes/Bootstrap.unity": "fd4be60a38d388f9c9b082073dd6614d18575fefdf3110397bb3a7a04bbcfa96",
+    "NoReturns/Assets/_NoReturns/Scenes/CarryRoom.unity.meta": "d513e4f03a2608fac5b0f021d4d40a4577ffff6dd9acbf2f929aba9a1e7e2cf9",
+    "NoReturns/Assets/_NoReturns/Scenes/CinderStructureReview.unity.meta": "41f98420e969ce27903603d1e7c4d5ca174efffd504a95b1f9aacbd3534f91eb",
+    "NoReturns/Assets/_NoReturns/Scenes/CinderAppearanceReview.unity.meta": "ea6d49be2a7087c08e1fa8ec9f55a5acaa50715f6f3d03c8a02e9114bd4f74c4",
+    "NoReturns/Assets/_NoReturns/Scenes/CinderDepotBlockout.unity.meta": "4ec37c1770fdd9570dccf1bf0a46c8326379a594e3c9f55c05d8e7389aaaa2c3",
+    "NoReturns/Assets/_NoReturns/Scenes/ShipInteriorTrial.unity": "4e813c72b5f3a2fea15f8a51ad1d1c43100555f6c5075e420ff4938c91ae3e53",
+    "NoReturns/Assets/_NoReturns/Scenes/CarryRoom.unity": "f02fa34c179faf5647f3c9d4c938d27e9361407b79fa3355b317e15dc519784f",
+    "NoReturns/Assets/_NoReturns/Scenes/CinderDepotBlockout.unity": "0ddfe56f0b3b51ef88cff938335a24973aae2057d36ce0e0417d0057ef4a3b6c",
+    "NoReturns/Assets/_NoReturns/Scenes/CinderCompactSiteReview.unity.meta": "c04ad1ba2cd6c45aa495f414ab020cb0c60486458f095ef26b38eee85ceb4e0e",
+    "NoReturns/Assets/_NoReturns/Scenes/CinderMapAppearanceReview.unity.meta": "655bfac443f2c5e1363986779ab910b1cbea7076653924b8ceeb8d2b9bf59139",
+    "NoReturns/Assets/_NoReturns/Scenes/ShipInteriorTrial.unity.meta": "666aa40651c5123a7d1516bca67327f134ce8b6c998cda0ab025638a324e0a7a",
+    "NoReturns/Assets/_NoReturns/Scenes/CinderMazeReview.unity": "973cde3ec1f18bb33edaa4c76fafe1f2a8ee0f070fb9bb2f560dfa16bb79a2a8",
+    "NoReturns/Assets/_NoReturns/Scenes/CinderMazeReview.unity.meta": "0177fbfb5a5bc1892bb6103b2524094f4df036cd8fdb08c20f9921cdff4eb2bc",
+    "NoReturns/Assets/_NoReturns/Scenes/CinderAppearanceReview.unity": "227a111d3d7ca85fba3c85d78cfc2f02ed5ebf69dacb48e1bc345dc09708183a",
+    "NoReturns/Assets/_NoReturns/Scenes/CinderCompactSiteReview.unity": "1674b55731916c6793b7e9596220845e5bcd1ce80ac9396681d11ba3ad4046c7",
+    "NoReturns/Assets/_NoReturns/Scenes/Bootstrap.unity.meta": "02e06d1ba6ef89fa6e4237f64a26b63c0ca9bc18063491eaf04b37617ae46d17",
+    "NoReturns/Assets/_NoReturns/Scenes/CinderStructureReview.unity": "771407c320b81d20491615ba80304dc65dcbf9881a5837092326ece71e44d770",
+    "NoReturns/Assets/_NoReturns/Scenes/CinderMapAppearanceReview.unity": "1f01cf8d67afebf50471019f7eb388b9564efe7cd254f3891e531b8273519116",
+    "NoReturns/Assets/_NoReturns/Art/CinderKit01.meta": "bd3befefdc534ea0c110a127f17555a4c41a0c7bc77824cac06bf70b4c2a2742",
+    "NoReturns/Assets/_NoReturns/Art/CinderMapFills01.meta": "e4be52e15230358f671a9db088c8b73a4a6936c4cb8e3a83ae87533b0b6d281e",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01.meta": "e0647a01dfb8b3de08455c0bbddbda9e1e7072d0cd9f3004586c1ca3ea55142c",
+    "NoReturns/Assets/_NoReturns/Art/CinderCompactSite01.meta": "0f775579d169dbbf666137c1765d36736de9a1b901e633a218babe99ff1f49a0",
+    "NoReturns/Assets/_NoReturns/Art/CinderBlockout.meta": "c047724f9e9996a8da21a18b36e4ad49d2f725bf4ff08924ec24271e540f03f9",
+    "NoReturns/Assets/_NoReturns/Art/CinderMapFills01/NR_Cinder_Wall_Fill065.fbx": "c64b0895c645961b10a2b28dc6eb7a62b786f4cdcfd63891af263210a983af16",
+    "NoReturns/Assets/_NoReturns/Art/CinderMapFills01/NR_Cinder_Floor_Half.fbx.meta": "209714df793e75c4a2b3fe5d87c93cb9a1c4d973825261ba91b4e2a3eb66416a",
+    "NoReturns/Assets/_NoReturns/Art/CinderMapFills01/NR_Cinder_Ceiling_Quarter.fbx.meta": "e426f33c6c9ec92189c2937379cee1de9ede73a82fb5ccc99fff1778b5b480b1",
+    "NoReturns/Assets/_NoReturns/Art/CinderMapFills01/NR_Cinder_Wall_Fill005.fbx": "325f6d9bf2099808cc7397b9898026b35617548850da92b5075241728af701c2",
+    "NoReturns/Assets/_NoReturns/Art/CinderMapFills01/NR_Cinder_Floor_Quarter.fbx": "76379eec83655704d5b2668b7c0a2a04c3d73bb71fe2c3c0c6d2c413ebbc6165",
+    "NoReturns/Assets/_NoReturns/Art/CinderMapFills01/NR_Cinder_Floor_Quarter.fbx.meta": "36770ef35c2007e3884879d0136f11b42377b323b1200e86253409d965f93b55",
+    "NoReturns/Assets/_NoReturns/Art/CinderMapFills01/NR_Cinder_Floor_Half.fbx": "17f1542d040658ac67431612a53276f96b5e844711dcca4c1404d05c9da39267",
+    "NoReturns/Assets/_NoReturns/Art/CinderMapFills01/NR_Cinder_Wall_Fill005.fbx.meta": "bd16fdd5f7548005c3125bb27444b8c162c6f73458b03fc7b8b268a7a06be80b",
+    "NoReturns/Assets/_NoReturns/Art/CinderMapFills01/NR_Cinder_Ceiling_Half.fbx": "e381177ef50fd26b99fc52b9475232e10f616447afc67e045ab04e67a05dd234",
+    "NoReturns/Assets/_NoReturns/Art/CinderMapFills01/NR_Cinder_Wall_Fill030.fbx": "91dd9900b82ed53e6aa7b5a3f67ce4d283a07cb4e7469ddd9460db3adf5bb707",
+    "NoReturns/Assets/_NoReturns/Art/CinderMapFills01/NR_Cinder_Wall_Fill030.fbx.meta": "660ce84b53ee344cafb1e7c89dd694abb61da128a4c46c7538195c7d430d70d3",
+    "NoReturns/Assets/_NoReturns/Art/CinderMapFills01/NR_Cinder_Wall_Fill065.fbx.meta": "a4e174ce52088f53c8ace23929b9aea847360b345313cf166e57bb8216bf242c",
+    "NoReturns/Assets/_NoReturns/Art/CinderMapFills01/NR_Cinder_Ceiling_Edge_Half.fbx": "1644577213c9dc2dc199f292040b87512230830b68774fbdcdb9f307d63ce81d",
+    "NoReturns/Assets/_NoReturns/Art/CinderMapFills01/NR_Cinder_Ceiling_Half.fbx.meta": "e5757d31938a13afe8af19e10ac1f173f038e54d3152d8652293d89204442813",
+    "NoReturns/Assets/_NoReturns/Art/CinderMapFills01/NR_Cinder_Ceiling_Quarter.fbx": "4fe9b365138c74bfdbe88362fd3750c4a64065090deb5972df0954d10f32f7b0",
+    "NoReturns/Assets/_NoReturns/Art/CinderMapFills01/NR_Cinder_Ceiling_Edge_Half.fbx.meta": "b20d6ebfab4cb5dee093e1676eb53110a61e4a44c4742f2b8bf271533723b863",
+    "NoReturns/Assets/_NoReturns/Art/CinderKit01/NR_Cinder_Corner_A.fbx": "b091a9d939ec4d599c080e740e3052bdecc1a7736781f34c3fc49ef2b58524d8",
+    "NoReturns/Assets/_NoReturns/Art/CinderKit01/NR_Cinder_Ceiling_Edge.fbx": "9eaecf48ac46460300f7ec9b59773ecc1b4dfaca54164db693e1287f322c6008",
+    "NoReturns/Assets/_NoReturns/Art/CinderKit01/NR_Cinder_Corner_A.fbx.meta": "fc5233a454cd8a45517de97249f918b1abedc2f63bd695974df91102ec0cfa23",
+    "NoReturns/Assets/_NoReturns/Art/CinderKit01/NR_Cinder_Wall_A.fbx.meta": "0a4097c14a4fadb7ce60736688cf3ede982d5f16b74dcb321466ec903ca7351a",
+    "NoReturns/Assets/_NoReturns/Art/CinderKit01/NR_Cinder_Ceiling_A.fbx.meta": "c06d187cf1f56b78f6fca2dd11dded368c38462fdd4c2902d61eefb9c0345c1c",
+    "NoReturns/Assets/_NoReturns/Art/CinderKit01/NR_Cinder_Beam_A.fbx": "4f942b5456a6b69200c31c8f21e5b5d5e91f2265467b414359c975868566753c",
+    "NoReturns/Assets/_NoReturns/Art/CinderKit01/NR_Cinder_Wall_Fill035.fbx.meta": "35595970806e51101fb8870fb23a516f944bec87d1ac12406a91f1e8209ae30a",
+    "NoReturns/Assets/_NoReturns/Art/CinderKit01/NR_Cinder_DoorFrame_A.fbx": "471bd86bf15dca51ef89a53619f85a2fd78278119ec8a7fb88d8c666ba0fbbaf",
+    "NoReturns/Assets/_NoReturns/Art/CinderKit01/NR_Cinder_Wall_A.fbx": "75cfb65509d7506427a0544a68c1491a3d30869146ce30111032ab61ed01608e",
+    "NoReturns/Assets/_NoReturns/Art/CinderKit01/NR_Cinder_Floor_A.fbx.meta": "0f46f2d043311c3a424809597c512d0dd80d13251766e9775014c177e17552f0",
+    "NoReturns/Assets/_NoReturns/Art/CinderKit01/NR_Cinder_Ceiling_A.fbx": "61fae294ff76c6f7798d346e066a08923346793ec57d8dbf709e99511fbde693",
+    "NoReturns/Assets/_NoReturns/Art/CinderKit01/NR_Cinder_Ceiling_Corner.fbx.meta": "170d39588843b5401e0e60664fbcc043180c68cc5915e69a0fe77069f3ac2a4e",
+    "NoReturns/Assets/_NoReturns/Art/CinderKit01/Cinder_Structure_Gray.mat": "7923d36284d1a19bc0d5931901596d120772656e8452e1eebe420595c2e13d47",
+    "NoReturns/Assets/_NoReturns/Art/CinderKit01/NR_Cinder_End_A.fbx.meta": "95bc1fe9ada18d8b1333ec6e78550aeee402b5f964344c6e9ad06d6dafc4299a",
+    "NoReturns/Assets/_NoReturns/Art/CinderKit01/NR_Cinder_Wall_Fill035.fbx": "c5b5186758868e5e93871af0752687a45834dc95400f6b0951520d9837793599",
+    "NoReturns/Assets/_NoReturns/Art/CinderKit01/NR_Cinder_DoorFrame_A.fbx.meta": "75e5829f10abf177dc64f4c8ba8de9f3410f7ea77b9d8bde9f3eef6682477ea1",
+    "NoReturns/Assets/_NoReturns/Art/CinderKit01/NR_Cinder_Floor_A.fbx": "ea965801d97867007ebacc8d7666e02f3d99b3707cdf3e75e8df81af194d6ad7",
+    "NoReturns/Assets/_NoReturns/Art/CinderKit01/NR_Cinder_Wall_Fill090.fbx": "94f020a49be7ece2be052b532c43b2a5b717451a8c42e1aa478a0ebb15149bc8",
+    "NoReturns/Assets/_NoReturns/Art/CinderKit01/NR_Cinder_Wall_Fill090.fbx.meta": "1ea4ac8678b9f95edde9de4f92e953b5bb7e7e4bcb7920deff3222e66b325667",
+    "NoReturns/Assets/_NoReturns/Art/CinderKit01/Cinder_Structure_Gray.mat.meta": "9ee285d8347fe8e2795b20568923d135b9e99b0221f690feb8d25b87b0018d96",
+    "NoReturns/Assets/_NoReturns/Art/CinderKit01/NR_Cinder_Beam_A.fbx.meta": "6e532e6df841e94200f270b5b31d48314810fe9a18fdec09481f6f6cb52b5fd8",
+    "NoReturns/Assets/_NoReturns/Art/CinderKit01/NR_Cinder_Ceiling_Edge.fbx.meta": "cff3e281cc4ac5587be0e1dad232942b27d2bb92e8171f7e692c1ae5f09a7c24",
+    "NoReturns/Assets/_NoReturns/Art/CinderKit01/NR_Cinder_Ceiling_Corner.fbx": "9ad97b73eb94d516d191c3a20ea770458cc41ac0df87a272e6ac67e021734c79",
+    "NoReturns/Assets/_NoReturns/Art/CinderKit01/NR_Cinder_End_A.fbx": "002c21aa60abc63798a438c536f9c9134c6b82a21a934921355f06fa70ea3cd2",
+    "NoReturns/Assets/_NoReturns/Art/CinderBlockout/Shortcut.mat": "9108ff77e82e77dfeefcf13bf3cc6c7cdd67d6e7c72684ab3a1a0301a7997882",
+    "NoReturns/Assets/_NoReturns/Art/CinderBlockout/Roof.mat.meta": "de3dc2317e00c20582fe7d6d35e7ca17170f3c30daddc9641204cf67a577c1c9",
+    "NoReturns/Assets/_NoReturns/Art/CinderBlockout/Covered route.mat.meta": "08417f32e3368650b792674f0a4ad3da28370f1bf3d14f18b98cc9c57331d552",
+    "NoReturns/Assets/_NoReturns/Art/CinderBlockout/Outdoor.mat.meta": "765ce8a4cb36897ec59798b77178b3247752a57bfed6d047b2cec0556b29ce87",
+    "NoReturns/Assets/_NoReturns/Art/CinderBlockout/Indoor.mat.meta": "43a4f71b663fc20c6b39eb3bc6fb1c2fc44bf52d657e53e995346ba64724103a",
+    "NoReturns/Assets/_NoReturns/Art/CinderBlockout/Outdoor.mat": "34496451b633b93deef4900f207dd6e06683c05682de6f669fae68013eeeb682",
+    "NoReturns/Assets/_NoReturns/Art/CinderBlockout/Indoor.mat": "3dfe820a7fb55e2bf7031d0bf0f165173b3ea794d8e9a163b9349826fbe50fe5",
+    "NoReturns/Assets/_NoReturns/Art/CinderBlockout/Listener marker.mat.meta": "e4ce2bbf95714188e31c833eae81786c24e565b91f6bc665b0878c715d11ab93",
+    "NoReturns/Assets/_NoReturns/Art/CinderBlockout/Roof.mat": "d5df61ab1a293adfa6b77fbb93595379f6988cfbf08c278d6f636081c0fa46d3",
+    "NoReturns/Assets/_NoReturns/Art/CinderBlockout/Building.mat.meta": "d55510bf866604997384c8761148956db5e564b07df345b8ff7d9ebf819ea12c",
+    "NoReturns/Assets/_NoReturns/Art/CinderBlockout/Building.mat": "8958dd661a87c2f2aeaea483beb039902a8c7739e9d6773a33a93c9d95012bcb",
+    "NoReturns/Assets/_NoReturns/Art/CinderBlockout/Shortcut.mat.meta": "17e7d532c619fb8a53cd2812867f7166c25d011158d2196ab3b6ecb7c5e0e439",
+    "NoReturns/Assets/_NoReturns/Art/CinderBlockout/Listener marker.mat": "40dbaffd80ec7bc411bf3214aa64a56b21434c6d180127def6f0e3478ca49106",
+    "NoReturns/Assets/_NoReturns/Art/CinderBlockout/Covered route.mat": "d979184817a3d9e8cbd46718908c6cc713b683d995667e5e2a47cf8425311c5b",
+    "NoReturns/Assets/_NoReturns/Art/CinderCompactSite01/SuppressionField.mat.meta": "5cdd2a391139bc97f7a6e701bd419a6d9892b7381301ecc41ede888e62a46f7c",
+    "NoReturns/Assets/_NoReturns/Art/CinderCompactSite01/SuppressionField.mat": "61b30288cf8cf5dff627acf0de1336649e73e42c13e5df7581c71340c01b924c",
+    "NoReturns/Assets/_NoReturns/Art/CinderCompactSite01/CompactTileSurfaces.asset": "d480e7ce2f08e93c043561e53482d8ab18d584e7d985a971051c682ba617c96c",
+    "NoReturns/Assets/_NoReturns/Art/CinderCompactSite01/CompactTileSurfaces.asset.meta": "adf4ad45fe908cd199036c5e2defc1aa84ffb2b602a52abf5e437b8f55385c7b",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/Cinder_Surface_Atlas.png.meta": "d263a9e62838903bf81b66182bbbe9bf8a529c0c4d141c25e439f3e487e7a6b8",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Corner_A.fbx": "674918cd54738964135190ff61509cdbfa531dd08e43d883bae245a77fbe58d9",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Ceiling_Edge.fbx": "842ea341be20d28f01c438cb918c803f55f3628842edcac29cf63cc5163dd509",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Sign_A.fbx.meta": "4ddbd53551e5928414de3061e148895dc2d6771aa13225cdaac131ca9789b845",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Corner_A.fbx.meta": "402c903a58ea697ff85922af990f6a2b49297c8d3ff131fa139b181adf2fd331",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Wall_A.fbx.meta": "7df9d9c7b5c1d43d300b62206218019eea5e087d85320091b188c3f28c8f8ac5",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/Cinder_Sign.mat.meta": "98f66b99007cd6e04f58c29f6f87bcf4882bc14dd036a765da19559efa98f19f",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/Cinder_Lamp_Emission.mat.meta": "baf666370e65ff0df787100ded123a32c3a11efd59a7df3a2b04a3a402a6a774",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Ceiling_A.fbx.meta": "4677efe04fe29c5d3e1d35d2908d79c5973404eccab7d4751842f2633a3c1f4e",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Sign_A.fbx": "d2d0734529064b74d744f6a9d7d51ae6be4e0adde76fca1c36be9040bc47a1a0",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Beam_A.fbx": "e6dd81c197935c506caad2585a2d3c42c9475a16d29ff9d8862e760055622937",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Wall_Fill035.fbx.meta": "3af3f09e0615255600559161759e69d6dcbfb2b056f3fb07f848477649002577",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_DoorFrame_A.fbx": "0e651a8e6b170bc7d944e191600c4d1f73f0307108427f87a9692193ddeb15e1",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Rack_A.fbx": "171be707d2f1d4e06df7b9ae8b182702b5c882344140012a7030db3d7661f0fa",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Lamp_A.fbx": "c45ec00ac65be796769cbfcad44b21a492af0c3ddbeb86dc4913b39ccfbf1dba",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Wall_A.fbx": "91ed644534a34568033279445bc30e1429a6544024696a83f9d2591effe74762",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/Cinder_Sign.mat": "1f1d740f1c041537524800f91a247eb1b194ed460a774c883decb3080cae1b41",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Floor_A.fbx.meta": "3211976fa4ad6de06d910fa6881ea5ed560842fa840268664a0002f6f920ccf5",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Ceiling_A.fbx": "6779fcaf8c2f519181daf9097ee5c920fd3dc055f735adc58ab7d9f95c9ef58d",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Ceiling_Corner.fbx.meta": "386086f0c6b9d8ead7a390349708e60ba54f36f91bd33914548f19591c0a363d",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Lamp_A.fbx.meta": "10081eeb8182968def0a60c00bc6a3eaeecc4c8e7da5bcd2ceedd057712b9195",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_End_A.fbx.meta": "6fc4b1b7f5362e139748921971e7df381b184638a668cd5cd4c835db805610b7",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Wall_Fill035.fbx": "cb53fbec107eb21c571fc3abdb44deb877e654bfb865e352096f7d618135afef",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_DoorFrame_A.fbx.meta": "e16f8276f2206d6ffe1bbda1dab71d3be6e9e5e856bc6021a992ad8474099bf1",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/Cinder_Lamp_Emission.mat": "04b0e0c392854f3172607c2391b024ab8f0f3039d043be0bef40cc25d4932801",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/Cinder_Warehouse_Sign.png.meta": "7dafe7769da9e1668d23066a7439c1d1c4a7713b82111da3538510d5273ae5eb",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/Cinder_Surface.mat.meta": "4eb33fad5b0dcc1920bcb8efd5fa51918dc64ed07818b1d96024dcc537eaf818",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Floor_A.fbx": "d2b833c9efad3400189b7b92d3ebb840a80b24ff7ab500afae21a0c1a3018244",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Wall_Fill090.fbx": "7c389f9ccfaa4a79be96c35e69a687ec88c1f28db626c9e41ef6da710ebb8952",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/Cinder_Surface_Atlas.png": "ddc651c2b8c83046fbc2da899141d741b8002e9953b7115d5e07817903532838",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Rack_A.fbx.meta": "6a05453c54c9d8254a09ea01e567a3a10eadc4cfe388a89f61b3a61f29fc610b",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Wall_Fill090.fbx.meta": "e53168e60358acef55e0f7216789e49d7f8d4a1add29c196e3717aa56d0a2048",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Beam_A.fbx.meta": "d911de5ad6ce637f46f0036e74896930ce1c21ea80976a6c0c1c75c299b9aeb3",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/Cinder_Warehouse_Sign.png": "8d67c4d5fc8ea34c87421672c12491b6f5088a578821b0c38f6cb94daa62e638",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Ceiling_Edge.fbx.meta": "fc8225cbcf473fb57c8cac5f3ef2d91ff31b518fce399b72a93d596d25b6083d",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Ceiling_Corner.fbx": "8648a565c707115a74485d70f06dc678509f06f7f0620749270a5cf3fee8b4a1",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/Cinder_Surface.mat": "b05061ab9192a0fcddc20bd33e5f9f86da2011709b4bab98d67dbe3321fc1f84",
+    "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_End_A.fbx": "55e414e68d29571e5580652e571b09dbd6a160e2e2c284c4dca02f446232bb81",
+    "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials.meta": "5415606d3ad2af25be6f62d594cdf720363ef09290d049956c47aa9dcf17d77b",
+    "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Glazing.mat.meta": "8a4b1f1bd387af0478b24cf624e3837d440a542c4bf3b705df0284f57bc4fbfc",
+    "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Glazing.mat": "5a5aa52508220f6c03b681b320b6bb103f8430b209787c0c6430cb935dec9a58",
+    "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Screen.mat.meta": "f3c3bd1e97cc2f6dbf4455f78ccb812f4b1584271fa1d1e6d0fdeacb19b4690e",
+    "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Burgundy.mat": "69786651c5296d152651780892fccf50182f6c709c107c0d66789000b1f44abe",
+    "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Lamp.mat": "cf9126990e129f6e54ab804aed468369d5dec32c6f93db9beb2223443b8464bd",
+    "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Ivory.mat": "e7783e95afc06de86d769ffa0d5af4c24f31e6685f51aa94d78d9c4b90a5038c",
+    "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Glazing.mat": "ed8c0255c2559eeab683b0531330cd6d58c2fb1db676f2e91ccc06e7d4078839",
+    "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/tripo_122c8a19_891e_44c2_8d47_8745b6e46de5.mat.meta": "309c7b486215ff32e57d08d2e65fa1366c1a491d13091a89d4dde8a401b2f802",
+    "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Lamp.mat.meta": "7eb7e064c8b1b6ce0b78cc031126288b2e2703adbfa30c6e0e9660a182f01e96",
+    "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Cyan.mat": "40dcffb791b4728f5be3381136c32dd69ddff0ac0a0828825a52c21470a99c40",
+    "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Graphite.mat.meta": "cf10a9ede089e2ec747c1ac19415b599630821db870e091b1350b44529b3413f",
+    "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Graphite.mat": "aadb9f31bb7aa0f43c2e0058924261840558e38627caf405ee87e8d69a13f00e",
+    "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Orange.mat.meta": "b8dab1a0f9a3dc92c020ff54c00b426728bbea2487df12b28ed5b18ae627090a",
+    "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Orange.mat": "7ec6b0b3230c19611fe54fab98732c4fabdfc3c8442bdad14549eb4ea08fc303",
+    "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Glazing.mat.meta": "6daaeb9062d470fb69f5c783c7930a30b3d8ac8c1011a59a5d4f3c600cce3ec4",
+    "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Cyan.mat.meta": "f16df6e73f0123e01ef4a9b434d7c0831a023a3cf5d38961c3a9064600fe4e77",
+    "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Screen.mat": "fe1e8b0b7d2cb30d239e2379c78a21ecc4e66450d6cd8b78cbb8187757f63985",
+    "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Ivory.mat.meta": "5647fbfeb485755221f2a8684e744374d97c1b4d7fc28624f019d32633b6bded",
+    "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/tripo_122c8a19_891e_44c2_8d47_8745b6e46de5.mat": "f2a5ac8f857e36d1c98794f45bcb4e33c4e6a107bf0c8c931e64e0f1fa5816e1",
+    "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Burgundy.mat.meta": "d61a2d0193dc21e933d2769dfecfecd57219705b74fe9b80ea213b40bf21aec9",
+    "NoReturns/Assets/_NoReturns/Art/PSXProps01/Selected.meta": "89ddbe0ff8b3d77440b5a1a6317d36a03f67f066726d4f08ea382a4a22064d89",
+    "NoReturns/Assets/_NoReturns/Art/PSXProps01/Selected/NR_Baton_BaseColor_512.png.meta": "64590ada5a8469644d2b0f99267b9abd6335396caa2a0ad7d5338e4fe492d95d",
+    "NoReturns/Assets/_NoReturns/Art/PSXProps01/Selected/NR_Beacon_BaseColor_512.png.meta": "75fcb050f2ccd7d7eb602b16b323a286cedd799718a0d5dd5fb7cc7a4ea2f3fb",
+    "NoReturns/Assets/_NoReturns/Art/PSXProps01/Selected/NR_Parcel_BaseColor_512.png": "e8c091617629aca6099d674832fcb6f0946079d50856a2141a9b23bf16dd1ff2",
+    "NoReturns/Assets/_NoReturns/Art/PSXProps01/Selected/NR_Parcel_Selected.fbx.meta": "3f5151116e794ec240fd8635ad811d7852459f3f3fb7751970f11e0f85fc4b6c",
+    "NoReturns/Assets/_NoReturns/Art/PSXProps01/Selected/NR_Parcel_BaseColor_512.png.meta": "68a46d8dedcfacde377890b5bfb743e2efd31a7144ef696efd198b09c606db80",
+    "NoReturns/Assets/_NoReturns/Art/PSXProps01/Selected/NR_Receipt_Selected.fbx.meta": "ce57e0827319707c6d744391b5ff5e5b9692e74c6d75a5c7e01433db3ba5b332",
+    "NoReturns/Assets/_NoReturns/Art/PSXProps01/Selected/NR_Beacon_Selected.fbx.meta": "54ea791e6f043db541402cc633703afee9d7ca043561a8f8f10f25a15bbd1bad",
+    "NoReturns/Assets/_NoReturns/Art/PSXProps01/Selected/NR_Baton_BaseColor_512.png": "ddf46699f565e27870f8544c737ac45a7ff028fc3d0a257ff1c1df0233c51cca",
+    "NoReturns/Assets/_NoReturns/Art/PSXProps01/Selected/NR_Receipt_Selected.fbx": "c4a3862324d26e7d2f8c6ac48045ca30e54d10f8f295fa27776868d280e56306",
+    "NoReturns/Assets/_NoReturns/Art/PSXProps01/Selected/NR_Parcel_Selected.fbx": "1eb5e34177edc04d89fde7771272f3c3346f802b2e218f54764903db91fbbaa2",
+    "NoReturns/Assets/_NoReturns/Art/PSXProps01/Selected/NR_Receipt_BaseColor_512.png.meta": "3d3f94e2b42a9ef2611402b67ddaabfe6d8f39cd8e65128411c476016e93e7a6",
+    "NoReturns/Assets/_NoReturns/Art/PSXProps01/Selected/NR_Receipt_BaseColor_512.png": "2b0a843ddeb2af9b743b579bff054b41bae69b23a0ea99b00918f61bbf01842b",
+    "NoReturns/Assets/_NoReturns/Art/PSXProps01/Selected/NR_Baton_Selected.fbx.meta": "66e007ef976b7ee445049eaa7175af5dc18059354a25b8f3b8479e930d7a18e1",
+    "NoReturns/Assets/_NoReturns/Art/PSXProps01/Selected/NR_Beacon_Selected.fbx": "213c40ffbd0eb474d1f3d26969588864a7723f21de261ff61ba18ebb29da3efc",
+    "NoReturns/Assets/_NoReturns/Art/PSXProps01/Selected/NR_Baton_Selected.fbx": "741e8043b5b8721526b72ae123dafe8bd283ba094a8e33bab51e80de073677e7",
+    "NoReturns/Assets/_NoReturns/Art/PSXProps01/Selected/NR_Beacon_BaseColor_512.png": "3a8ee92d6a50d455bc3578c115636d102bea3cd0c4ceda21b2e86aba51ab4106",
+    "NoReturns/Assets/_NoReturns/Runtime/CinderBlockoutWalk.cs.meta": "bc066ff2f4fbf74129da7165e1b600cb761e821a3a0fca178fe18638762948b6",
+    "NoReturns/Assets/_NoReturns/Runtime/CinderBlockoutWalk.cs": "c371467cb43034d5118abecd3720deedc41f103471110d1e68646fc7823e5926"
+  },
+  "intentionally_changed_files": {
+    "NoReturns/Assets/_NoReturns/Scenes/CinderCompactSiteReview.unity": "e758dc8124ab4ad6197f72b765629d5121595034ff1f4c266b11e7ab4883724e"
+  },
+  "excluded_existing_ship_material_edits": [
+    "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Burgundy.mat",
+    "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Cyan.mat",
+    "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Glazing.mat",
+    "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Graphite.mat",
+    "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Ivory.mat",
+    "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Lamp.mat",
+    "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Orange.mat",
+    "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Screen.mat"
+  ],
+  "screenshots": {
+    "art/cinder-kit-01/props-bay-carry.png": "5f781ddf31d5ca78a37c8825e24a7fd6f2ab2754f7fae47845bbd69c75e3d9f9",
+    "art/cinder-kit-01/props-bay-dispatch.png": "b644cadcd9932a66b644237df98ffff92a346dccf39365042898b47d1c6b85ce",
+    "art/cinder-kit-01/props-central-carry.png": "33058b020c1fd56c383e398d599aa849b7cf80e273bfc08aab273197b26f6329",
+    "art/cinder-kit-01/props-central-junction.png": "62074d3491168a0972df0427cd55cb11f1dfb18e6c317a7dc0167538778fc177",
+    "art/cinder-kit-01/props-exterior-machinery.png": "4ce85f9c6c9feb3ad9e9a4cca21356eb75a335671f5d57ade6337a32162f10b1",
+    "art/cinder-kit-01/props-facility-sign.png": "0dfdbbd738b00e5c304b33d7e986e2c2252c8e8f40218eabc7275230ceb722b8",
+    "art/cinder-kit-01/props-field-cutaway.png": "85f90d7960d259725cd433a31ff9d0d72ab1f5309861005a5b0e581a866d82af",
+    "art/cinder-kit-01/props-landing-empty.png": "8417179179befbe779df11e286b661046f201bf2f69584d28eb0e8fd43c09e52",
+    "art/cinder-kit-01/props-north-covered.png": "a6a7710bdbfa9352c5a88e6808c81553d416fb4f540bce314b474c8f3ff011a1",
+    "art/cinder-kit-01/props-office-link.png": "5767ef7dc21e2c966d02aaa70712c7dba61321938a67d7fec746c2fbc8d02bd0",
+    "art/cinder-kit-01/props-office-workbenches.png": "29ce9aa3c351aad4fdbc95b299c9844301ea28a7c831f56d3d68585a5312913f",
+    "art/cinder-kit-01/props-overview.png": "002748a92a74ce0de5043ceaf0ac095ebe5174bbb6d691f5acec2732a14561ab",
+    "art/cinder-kit-01/props-service-equipment.png": "3f3c162b5eb01d70987db4562a0a75d8c6514904e33c895ede90dca999d29b3f",
+    "art/cinder-kit-01/props-service-loop.png": "4d6326b884a310e17ca776a067287818fe320e28d9d5e53ede6b23094e3ae867",
+    "art/cinder-kit-01/props-storage-freight.png": "e0902a3a8fa27fff80e46490e60624e3ce0ebcfb55d1447e622aed13b929cf23",
+    "art/cinder-kit-01/props-warehouse-racks.png": "20b1f2a8c05409046ba9d98e127afd7614b812831ffa9470f58e7222069e9ea2",
+    "art/cinder-kit-01/props-west-covered.png": "540b982fd6a60e1c820ad7012a527f42c4bbf2671e7f5d828aa2bf28b0677634"
+  },
+  "reviewed_screenshot_count": 17,
+  "unneeded_tmp_import": "TMP_Settings probe triggered package resources; delete unused task-created Assets/TextMesh Pro through AssetDatabase. Labels use builtin LegacyRuntime.ttf and native world-space UGUI.",
+  "user_whole_site_direction_approved": true,
+  "user_prop_quality_review": false,
+  "human_four_player_review": false,
+  "performance_review": false,
+  "standalone_builds": false,
+  "cinder_gameplay_integration": false,
+  "final_editor_state": {
+    "scene": "Assets/_NoReturns/Scenes/CinderCompactSiteReview.unity",
+    "dirty": false,
+    "playing": false
+  },
+  "documentation_check": {
+    "status": "failed_existing_links_only",
+    "baseline_missing_links": 142,
+    "current_missing_links": 142,
+    "new_failures": 0,
+    "paired_current_measurements": "passed",
+    "command": "python3 tools/check_docs.py"
+  },
+  "staged_whitespace_check": {
+    "raw_status": "failed_generated_unity_fields_only",
+    "generated_trailing_whitespace_count": 153,
+    "code_documents_evidence": "passed",
+    "full_check_ignoring_generated_trailing_whitespace": "passed",
+    "source_native_yaml_not_hand_edited": true
+  }
+}

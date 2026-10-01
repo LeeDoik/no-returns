@@ -2,7 +2,41 @@
 
 [English](cinder-compact-site.en.md)
 
-2026-10-01 · CINDER-COMPACT-SITE-01 · **전체 구역 밀도 수정·자동 이동/운반 검사 완료 / 사용자 품질·사람 4인 검토 미완료.** 게임 버전은 바꾸지 않는다.
+2026-10-01 · CINDER-COMPACT-SITE-01 · **전체 맵 방향 사용자 승인·소품 배치와 자동 검사 완료 / 소품 품질·사람 4인 검토 미완료.** 게임 버전은 바꾸지 않는다.
+
+## 2026-10-01 — 구역별 소품 배치
+
+사용자가 “그래 느낌 괜찮네 그러면 이제 이 맵을 더 개선해보자. 소품이나 오브젝트 배치같은거.”라고 전체 맵의 방향을 승인했다. 같은 `CinderCompactSiteReview`에 **소품 묶음 47개**를 추가했다. 건물 위치·크기·3/3.15m 골목·네 순환로·우주선·기존 이동 구간과 운반 런타임을 유지한다. 소품 외형의 사용자 평가와 사람 4인 실제 교행은 아직 하지 않았다.
+
+| 묶음 | 수 | 배치·역할 |
+|---|---|---|
+| Rack | 5 | 창고·BAY 04·설비동·보관동의 벽 쪽 화물 선반 |
+| Pallet | 7 | 창고·BAY 04·보관동·착륙장 적재 화물 |
+| Workbench | 5 | 포장·사무·발송·설비 작업대 |
+| Cabinet | 4 | 사무실·BAY 04·설비동의 벽에 붙인 전력함 |
+| Drums | 3 | 창고·설비동·보관동, 묶음당 드럼통 3개 |
+| Roof machinery | 6 | 닫힌 보조 건물 지붕의 설비 |
+| Pipes | 6 | 높은 벽면 배관, 묶음당 3m 배관 2개 |
+| High wall vent | 5 | 높은 벽면 환기구 |
+| Legend | 6 | 출입구·북쪽 순환로의 물리적 시설 표지 |
+
+기존 화물 외형 46개와 CRT 외형 3개(사무실 2, 발송 작업대 1)를 재사용했다. 모두 정적 소품이며 수령 판정·영수증 회수·E/Q 상호작용은 연결하지 않았다. 실제 시험 운반 화물은 기존 것을 유지한다. 표지의 영어 원문은 `A / WAREHOUSE`, `SIDE / OFFICE`, `BAY 04 / DISPATCH`, `C SERVICE / POWER`, `STORAGE / FREIGHT`, `BAY 04 / NORTH LOOP`이며 `/`는 줄바꿈이다.
+
+[소품 제작·배치·검사 코드](../../NoReturns/Assets/_NoReturns/Editor/CinderSitePropsBuild.cs)가 팔레트·전력함·작업대·드럼통·환기구·지붕 설비·배관·표지판의 native 메시 8개를 만든다. [CinderSiteProps01](../../NoReturns/Assets/_NoReturns/Art/CinderSiteProps01/)에 저장하고 기존 노후 아틀라스·선반·Parcel/Receipt 모델을 재사용한다. 새 텍스처·외부 에셋·의존성·폰트는 추가하지 않았다. 표지 글자는 내장 `LegacyRuntime.ttf`와 world-space UGUI를 사용하며 클릭을 받지 않는다. 추가 소품군은 메시 배치 108개·삼각형 205,055개·예약 체적 BoxCollider 56개다. 기존 모델의 삼각형을 포함한 배치 합계이며 FPS나 최종 최적화 예산이 아니다. 배관 중심 높이 3.15/3.55m·환기구 하단 2.9m·지붕 설비 하단 4.3m로 골목 몸체 공간을 비운다.
+
+첫 보완 검사의 전력함 뒤/옆 8개 자세에서 화물 겹침을 발견했다. 전력함 정면을 방 안으로 향하게 하고 뒷면을 벽에 밀착해 몸만 들어갈 수 있는 틈을 없앴다. 기존 운반 코드는 바꾸지 않았다. 최종 246개 몸체 위치×24방향/시선 = **5,904개 운반 자세**, 실제 이동 94구간, native 침투 검사 **407,130회에서 겹침 0건**, 경계 접촉 57건, 허용치 0.00001m. E/W/S/Q·빈손 점프 통과. 소품 양끝·벽/선반 주변을 추가 검사하며 기존 유효 위치 159개·양방향 이동 94구간·네 몸체 통로 17곳은 유지한다. API 위치 설정과 실제 `CinderBlockoutWalk.Update` 키 이벤트 검사이며 사람 실시간 조작은 아니다.
+
+원래 씬의 소품 외 모든 BoxCollider 월드 설정을 대조했다. 시작 파일 159개 중 의도적으로 수정한 현재 씬 1개를 제외한 158개 해시가 같다. 기존 선내 재질 변경 8개는 커밋 제외. 공유 충돌 기록 함수는 씬 루트 Collider의 부모가 없는 경우를 처리하도록 보완했다. 실제 카메라 17개 화면을 검토했고 상면 촬영 때만 지붕/지붕 설비를 숨긴 뒤 복원했다. 컴파일 오류 0개·기존 obsolete 경고 6종·최종 Play 오류/경고 0개. TMP 설정 확인이 불필요한 리소스를 자동 임포트해 해당 작업 생성 폴더만 native API로 제거했으며 최종 소품은 TMP를 쓰지 않는다.
+
+근거: [소품 실측](../../art/cinder-kit-01/props-layout-validation.json), [구조 실측](../../art/cinder-kit-01/props-unity-validation.json), [이동/네 몸체 검사](../../art/cinder-kit-01/props-passage-validation.txt), [운반 검사](../../art/cinder-kit-01/props-carry-edge-validation.json), [보존·이전 실패·화면·검사 기록](../../art/cinder-kit-01/props-checks.json). 전체 문서 검사는 기존 누락 링크 142개로 실패하며 새 실패는 없다. 아래 `site-` 결과는 소품 배치 전 구조 작업의 기록이다.
+
+![화물 선반과 적재물](../../art/cinder-kit-01/props-warehouse-racks.png)
+
+[사무 작업대](../../art/cinder-kit-01/props-office-workbenches.png) · [발송 작업대](../../art/cinder-kit-01/props-bay-dispatch.png) · [시설 표지](../../art/cinder-kit-01/props-facility-sign.png) · [지붕·벽면 설비](../../art/cinder-kit-01/props-exterior-machinery.png) · [소품 배치 상면](../../art/cinder-kit-01/props-field-cutaway.png).
+
+현재 씬에 이미 배치했다. `NO RETURNS/Trials/Add Cinder Site Props`는 Play 중·미저장·다른 씬·기존 소품군이 있으면 중단하여 수동 편집을 보호한다. `Validate Cinder Site Props`로 검사하고 Play에서 [공통 운반 검사](../../tools/unity_checks/CinderCarryEdgeCheck.cs)를 실행하면 `props-` 결과를 만든다. 기존 `site-` 근거는 덮어쓰지 않는다. 다음은 소품 밀도/운반 시야의 직접 평가, BAY 04 수령 시설·기능 좌표 통합이다. 사람 4인·AI/배송/억제/진압봉/온라인·경계 밖 환경·성능·독립 빌드는 미검증이다.
+
+원시 staged 공백 검사는 Unity 생성 씬·메시·meta의 후행 공백 153곳으로 실패한다. 코드·문서·근거와 이 생성 공백만 제외한 전체 검사는 통과했다. 공백 검사만을 위한 native YAML 수동 편집은 하지 않았다.
 
 ## 수정한 범위
 
@@ -35,7 +69,8 @@
 - [x] 이동 가능한 자세 159곳×8 yaw×3 pitch = 3,816개 정적 운반 자세와 실제 `CinderBlockoutWalk.Update` 운반 94개 구간. 총 침투 검사 237,148회에서 겹침 0건; 경계 접촉 57건, 허용 깊이 0.00001m. E/W/S/Q·빈손 점프 통과. 구간마다 API로 시작 자세를 설정한 키 이벤트 검사이며 사람 조작은 아니다.
 - [x] 기존 건물/우주선 로컬 충돌, 표면 UV·스케일, 시작 파일 75개 중 의도적으로 수정한 공통 운반 코드 1개를 제외한 74개 해시 보존 확인. 기존 선내 재질 변경 8개는 커밋 제외. 컴파일 오류 0개·기존 obsolete 경고 8회(중복 제외 6개), 최종 Play 콘솔 오류/경고 0개.
 - [x] 실제 카메라 10개 화면 촬영·검토. 전체 상면 촬영 때만 천장/보조 지붕을 숨기고 복원했다. 현재 씬의 지붕과 바닥은 유지한다.
-- [ ] 사용자 전체 구역 밀도·길찾기·긴 골목/분기 시야·컨셉 방향 확인, 사람 4인 교행과 화물 회전 감각.
+- [x] 사용자 전체 맵 방향 승인.
+- [ ] 소품 품질·길찾기·긴 골목/분기 시야와 사람 4인 교행·화물 회전 감각.
 - [ ] 보조 볼륨의 최종 설비/적재물 외형, 경계 바깥 암석/환경, 수령 단말기와 AI/배송/억제/진압봉/온라인의 새 좌표 통합·성능·독립 빌드.
 
 [이동·네 몸체 검사](../../art/cinder-kit-01/site-passage-validation.txt), [운반 검사](../../art/cinder-kit-01/site-carry-edge-validation.json), [보존·검사 기록](../../art/cinder-kit-01/site-checks.json). 전체 문서는 기존 artifacts 링크 누락 142개로 실패하며 새 실패는 없다.
@@ -46,4 +81,4 @@
 
 [서쪽 지붕 경로](../../art/cinder-kit-01/site-west-covered.png) · [중앙 분기](../../art/cinder-kit-01/site-central-junction.png) · [중앙 운반 골목](../../art/cinder-kit-01/site-central-carry.png) · [지붕 포함 전체 모습](../../art/cinder-kit-01/site-overview.png).
 
-Unity에서 `CinderCompactSiteReview`를 열고 Play 한다. 우주선 경사로 앞에서 시작하며 WASD 이동, 마우스 시야, E 들기, Q 놓기, 빈손 Space 점프다. `Validate Compact Cinder Site Review`로 재검사하고, Play에서 [운반 검사](../../tools/unity_checks/CinderCarryEdgeCheck.cs)를 Unity CLI `run_script`로 실행한 뒤 종료한다. 결과는 `site-` 접두사로 보존한다. 다음은 전체 구조 직접 검토 후 수령 설비와 기능 좌표 통합이다.
+Unity에서 `CinderCompactSiteReview`를 열고 Play 한다. 우주선 경사로 앞에서 시작하며 WASD 이동, 마우스 시야, E 들기, Q 놓기, 빈손 Space 점프다. `Validate Compact Cinder Site Review`로 재검사하고, Play에서 [운반 검사](../../tools/unity_checks/CinderCarryEdgeCheck.cs)를 Unity CLI `run_script`로 실행한 뒤 종료한다. 소품 없는 구조 검사는 `site-`, 현재 소품이 있는 씬의 검사는 `props-` 접두사를 쓴다. 소품 추가 후 검사는 위 항목을 따른다. 다음은 소품 직접 검토 후 수령 설비와 기능 좌표 통합이다.

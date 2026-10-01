@@ -2,6 +2,17 @@
 
 [한국어](05-validation.ko.md)
 
+## 2026-10-01 — Current whole-site prop placement
+
+[Props, running and evidence](cinder-compact-site.en.md). The `site-` counts below record the structure before props.
+
+- [x] Record user approval of whole-site direction. Check 47 prop groups, 46 freight visuals, 3 CRTs, 6 labels, 8 native meshes, 108 placements, 205,055 triangles and 56 reserved BoxColliders.
+- [x] Preserve original scene BoxCollider world settings, 159 occupiable positions, 94 movement segments and 17 four-body lanes. Match 158 of 159 starting file hashes, excluding the current scene.
+- [x] Resolve 8 failing cabinet-gap poses by correcting placement. Pass 5,904 carrying poses, 94 actual carrying segments and 407,130 penetration checks with 0 overlaps; E/W/S/Q and empty-handed jumping passed.
+- [x] Review 17 actual camera views, label readability and restoration of hidden roofs. 0 compile errors, 6 existing obsolete warning types, final Play 0 errors/warnings. Retain 142 existing missing documentation links with 0 new failures.
+- [ ] Prop quality, human four-player passing/simultaneous cargo rotation, distant patterns, performance and standalone builds.
+- [ ] Receipt facilities, AI/delivery/suppression/baton/networking integration at current Cinder coordinates and context beyond the field.
+
 ## 2026-10-01 — Relocating the entire suppression-field site
 
 [Current whole layout, running and evidence](cinder-compact-site.en.md). The interior maze below records the earlier incorrect scope.
@@ -10,7 +21,8 @@
 - [x] Preserved local collision on 50 building BoxColliders/the ship; checked 59 Colliders in the original group, 22 in the new group, native tile UVs, placement scale 1 and 74 of 75 starting file hashes, excluding the corrected shared carrying source.
 - [x] Passed 94 bidirectional movement segments, 17 four-body lanes, 3,816 static carrying poses and 94 actual carrying segments. 237,148 penetration checks with 0 overlaps; E/W/S/Q and empty-handed jumping passed.
 - [x] Reviewed 10 actual camera views and restored inspection-only roof hiding. 0 compile errors, 8 existing obsolete warning emissions (6 unique), final Play 0 errors/warnings. Full documentation retains 142 existing missing links with 0 new failures.
-- [ ] User whole-site density, junction/long-alley sight lines, navigation, human four-player passing/cargo rotation review.
+- [x] User approval of whole-site direction.
+- [ ] Prop quality, junction/long-alley sight lines, navigation, human four-player passing/cargo rotation review.
 - [ ] Final auxiliary facilities/cargo, context beyond the field, receipt facilities, new-coordinate Cinder AI/delivery/suppression/baton/networking integration, performance and standalone builds.
 
 ## 2026-10-01 — Earlier 3m interior-maze record

@@ -186,7 +186,8 @@ public static class CinderCompactSiteBuild {
         ("Freight power link",P(-10.8f,-16.35f),P(-10.8f,-13.35f),3)
     };
     [MenuItem("NO RETURNS/Trials/Validate Compact Cinder Site Review")]
-    public static void Validate() {
+    public static void Validate() => ValidateWithPrefix("site-");
+    public static void ValidateWithPrefix(string prefix) {
         if(EditorSceneManager.GetActiveScene().path!=ScenePath)throw new Exception("Open compact site review.");Physics.SyncTransforms();
         var baseline=Newtonsoft.Json.Linq.JObject.Parse(File.ReadAllText(Path.Combine(Output,"site-local-collision-baseline.json")));
         var original=GameObject.Find("Cinder Depot editable primitive blockout").transform;
@@ -227,14 +228,14 @@ public static class CinderCompactSiteBuild {
         } finally {foreach(var cc in probes)if(cc)UnityEngine.Object.DestroyImmediate(cc.gameObject);parcel.enabled=enabled;}
         if(GameObject.Find("Cinder compact maze partitions"))throw new Exception("Rejected interior maze leaked into site.");
         foreach(string name in Names){var b=Floor(name);if(!Field.Contains(new Vector2(b.min.x,b.min.z))||!Field.Contains(new Vector2(b.max.x,b.max.z)))throw new Exception("Building outside field");}
-        File.WriteAllLines(Path.Combine(Output,"site-passage-validation.txt"),results);
+        File.WriteAllLines(Path.Combine(Output,prefix+"passage-validation.txt"),results);
         var result=new {scene=ScenePath,field_size_m=new[]{Field.width,Field.height},core_site_size_m=new[]{47.55f,59.4f},building_count=5,solid_auxiliary_blocks=Solids.Length,original_building_box_colliders=50,relocated_ship_collision_preserved=true,original_remaining_box_colliders=59,
             building_layout=Names.Select(n=>new{name=n,center=Floor(n).center.ToString("F3"),size=Floor(n).size.ToString("F3")}),standard_alley_width_m=3,slightly_wider_alley_m=3.15f,
             movement_segments=Routes().Count*2,four_body_lanes=CrewLanes().Count,closed_site_loops=Loops.Length,interior_maze_removed=true,field_is_physical_wall=false,
             sheltered_route_m=Delivery(true).Zip(Delivery(true).Skip(1),(a,b)=>Vector3.Distance(a,b)).Sum(),central_route_m=Delivery(false).Zip(Delivery(false).Skip(1),(a,b)=>Vector3.Distance(a,b)).Sum(),
             surfaces_vertices=Root.Find("Compact yard and utility roofs").GetComponent<MeshFilter>().sharedMesh.vertexCount,added_colliders=Root.GetComponentsInChildren<Collider>().Length,added_lights=Root.GetComponentsInChildren<Light>().Length,kit_mesh_instances=Root.GetComponentsInChildren<MeshFilter>().Length-1,
             user_layout_review=false,human_four_player_review=false};
-        File.WriteAllText(Path.Combine(Output,"site-unity-validation.json"),Newtonsoft.Json.JsonConvert.SerializeObject(result,Newtonsoft.Json.Formatting.Indented)+"\n");Debug.Log("COMPACT CINDER SITE PASS: "+results.Count);
+        File.WriteAllText(Path.Combine(Output,prefix+"unity-validation.json"),Newtonsoft.Json.JsonConvert.SerializeObject(result,Newtonsoft.Json.Formatting.Indented)+"\n");Debug.Log("COMPACT CINDER SITE PASS: "+results.Count);
     }
 }
 }

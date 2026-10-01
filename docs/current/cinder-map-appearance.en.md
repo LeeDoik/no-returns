@@ -2,7 +2,7 @@
 
 [한국어](cinder-map-appearance.ko.md)
 
-**[CinderCompactSiteReview for the entire suppression-field site](cinder-compact-site.en.md) now takes priority.** Below records the approved shared appearance before relocation. The new scene moves five buildings/the ship and forms outdoor alleys, auxiliary utility masses and connecting roofs; it excludes the interior-only maze. Do not inherit this record’s 0 new Colliders, preservation of 109 world coordinates or original route passes as results for the new whole layout.
+**[CinderCompactSiteReview with whole-site layout and props](cinder-compact-site.en.md) is current.** After user approval of the whole-map direction, place 47 prop groups reusing the aged atlas, rack and freight/CRT visuals. Below records shared appearance before relocation/props; do not inherit its 0 new Colliders, preservation of 109 world coordinates or earlier route passes for the current dressed scene. Follow the linked current structure/prop checks and outstanding quality status.
 
 2026-10-01 · CINDER-MAP-APPEARANCE-01 · **User approval of aged warehouse style / shared appearance applied to 5 buildings and automated checks passed / user review of the expansion incomplete.** This does not change the game version or declare the entire map finished.
 

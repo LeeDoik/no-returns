@@ -22,7 +22,7 @@ public static class CinderMapAppearanceBuild {
     }
 
     internal static string ColliderState(Transform root) => Newtonsoft.Json.JsonConvert.SerializeObject(
-        root.GetComponentsInChildren<BoxCollider>().Select(c => new {name = c.transform.parent.name + "/" + c.name,
+        root.GetComponentsInChildren<BoxCollider>().Select(c => new {name = (c.transform.parent ? c.transform.parent.name : "<scene>") + "/" + c.name,
             c.enabled, c.isTrigger, c.gameObject.layer, position = c.transform.position.ToString("F6"), rotation = c.transform.rotation.ToString("F6"),
             scale = c.transform.lossyScale.ToString("F6"), center = c.center.ToString("F6"), size = c.size.ToString("F6")}));
 
