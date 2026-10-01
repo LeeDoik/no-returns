@@ -14,12 +14,13 @@ using UnityEngine.InputSystem.LowLevel;
 public static class CinderCarryEdgeCheck {
     public static async Task<object> Main() {
         string scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        bool site = scene == "CinderCompactSiteReview";
         bool maze = scene == "CinderMazeReview";
-        bool map = maze || scene == "CinderMapAppearanceReview";
+        bool map = site || maze || scene == "CinderMapAppearanceReview";
         bool appearance = map || scene == "CinderAppearanceReview";
         if (!EditorApplication.isPlaying || (!appearance && scene != "CinderStructureReview"))
             throw new InvalidOperationException("Open a Cinder structure/appearance review and enter Play first.");
-        string prefix = maze ? "maze-" : map ? "map-" : appearance ? "production-" : "";
+        string prefix = site ? "site-" : maze ? "maze-" : map ? "map-" : appearance ? "production-" : "";
         var walk = UnityEngine.Object.FindAnyObjectByType<CinderBlockoutWalk>();
         var body = walk.GetComponent<CharacterController>();
         var parcel = GameObject.Find("Trial carried parcel");
@@ -53,9 +54,10 @@ public static class CinderCarryEdgeCheck {
                 points.Add(new Vector3(x, .035f, floor.center.z));
         }
         if (maze) points = NoReturns.Editor.CinderMazeBuild.PosePoints();
+        if (site) points = NoReturns.Editor.CinderCompactSiteBuild.PosePoints();
         var failures = new List<object>();
         int samples = 0, touching_contacts = 0, carrying_segments = 0;
-        if (maze) foreach (var point in points) {
+        if (maze || site) foreach (var point in points) {
             var center = point + body.center;
             float capOffset = body.height / 2 - body.radius;
             if (Physics.CheckCapsule(center - Vector3.up * capOffset, center + Vector3.up * capOffset, body.radius, 1 << 0, QueryTriggerInteraction.Ignore))
@@ -96,21 +98,23 @@ public static class CinderCarryEdgeCheck {
                 InputSystem.QueueStateEvent(Keyboard.current, new KeyboardState(pressed));
                 InputSystem.Update();
             };
-            body.enabled = false; walk.transform.SetPositionAndRotation(new Vector3(-18.6f,.035f,-11.4f),Quaternion.identity); body.enabled = true;
-            typeof(CinderBlockoutWalk).GetField("yaw",flags).SetValue(walk,0f);
+            var smokeStart = site ? NoReturns.Editor.CinderCompactSiteBuild.Spawn : new Vector3(-18.6f,.035f,-11.4f);
+            body.enabled = false; walk.transform.SetPositionAndRotation(smokeStart,Quaternion.identity); body.enabled = true;
+            typeof(CinderBlockoutWalk).GetField("yaw",flags).SetValue(walk,site ? 90f : 0f);
             typeof(CinderBlockoutWalk).GetField("pitch",flags).SetValue(walk,0f);
             typeof(CinderBlockoutWalk).GetField("vertical",flags).SetValue(walk,0f);
             typeof(CinderBlockoutWalk).GetField("carrying",flags).SetValue(walk,false);
-            parcel.transform.position = new Vector3(-18.1f,.35f,-10.6f);
+            parcel.transform.position = smokeStart + new Vector3(.5f,.315f,.8f);
             parcel.GetComponent<Collider>().enabled = true;
             keys(new[]{Key.E}); update.Invoke(walk,null);
             pickup = (bool)typeof(CinderBlockoutWalk).GetField("carrying",flags).GetValue(walk);
-            float travel = maze ? 4.8f : 9f;
+            float travel = maze || site ? 4.8f : 9f;
             int steps = Mathf.CeilToInt(travel / (3f * Time.deltaTime));
             keys(new[]{Key.W}); for(int i=0;i<steps;i++) update.Invoke(walk,null);
-            forward = Mathf.Abs(walk.transform.position.z - (-11.4f + travel)) < .2f;
+            var smokeEnd = smokeStart + (site ? Vector3.right : Vector3.forward) * travel;
+            var smokeError = walk.transform.position - smokeEnd; smokeError.y = 0; forward = smokeError.magnitude < .2f;
             keys(new[]{Key.S}); for(int i=0;i<steps;i++) update.Invoke(walk,null);
-            backward = Mathf.Abs(walk.transform.position.z + 11.4f) < .2f;
+            smokeError = walk.transform.position - smokeStart; smokeError.y = 0; backward = smokeError.magnitude < .2f;
             keys(new[]{Key.Q}); update.Invoke(walk,null);
             drop = !(bool)typeof(CinderBlockoutWalk).GetField("carrying",flags).GetValue(walk) && parcel.GetComponent<Collider>().enabled;
             float start = walk.transform.position.y, peak = start;
@@ -119,10 +123,10 @@ public static class CinderCarryEdgeCheck {
                 update.Invoke(walk,null); peak = Mathf.Max(peak,walk.transform.position.y);
             }
             jump = peak-start > .55f;
-            if (maze && pickup && forward && backward && drop && jump) {
+            if ((maze || site) && pickup && forward && backward && drop && jump) {
                 typeof(CinderBlockoutWalk).GetField("carrying",flags).SetValue(walk,true);
                 parcel.GetComponent<Collider>().enabled=false; parcel.GetComponent<Rigidbody>().isKinematic=true;
-                foreach (var route in NoReturns.Editor.CinderMazeBuild.Routes()) foreach (bool reverse in new[] {false,true}) {
+                foreach (var route in site ? NoReturns.Editor.CinderCompactSiteBuild.Routes() : NoReturns.Editor.CinderMazeBuild.Routes()) foreach (bool reverse in new[] {false,true}) {
                     var a = reverse ? route.b : route.a; var b = reverse ? route.a : route.b;
                     float yaw = Mathf.Atan2(b.x-a.x,b.z-a.z)*Mathf.Rad2Deg;
                     body.enabled=false; walk.transform.position=a; body.enabled=true;
@@ -155,7 +159,18 @@ public static class CinderCarryEdgeCheck {
                     views.Add(("inside-rear-carry.png",new Vector3(-18.6f,.035f,-2.4f),180f,true));
                     views.Add(("rack-empty.png",new Vector3(-22.6f,.035f,-4.0f),240f,false));
                 }
-                if (maze) {
+                if (site) {
+                    views.Clear();
+                    views.Add(("landing-empty.png",NoReturns.Editor.CinderCompactSiteBuild.Spawn,180,false));
+                    views.Add(("west-covered.png",new Vector3(-22.95f,.035f,-14.1f),0,false));
+                    views.Add(("office-link.png",new Vector3(-20.7f,.035f,13.65f),90,false));
+                    views.Add(("central-junction.png",new Vector3(-5.25f,.035f,-4.35f),90,false));
+                    views.Add(("central-carry.png",new Vector3(4.125f,.035f,2.55f),0,true));
+                    views.Add(("north-covered.png",new Vector3(-12,.035f,25.95f),90,false));
+                    views.Add(("bay-carry.png",new Vector3(12.75f,.035f,5.85f),0,true));
+                    views.Add(("service-loop.png",new Vector3(21.3f,.035f,-6.9f),0,false));
+                    views.Add(("overview.png",new Vector3(3,60,-61),0,false));
+                } else if (maze) {
                     views.Clear();
                     views.Add(("entry-empty.png", new Vector3(-18.6f,.035f,-7.1f), 90, false));
                     views.Add(("entry-carry.png", new Vector3(-18.6f,.035f,-7.1f), 90, true));
@@ -195,29 +210,41 @@ public static class CinderCarryEdgeCheck {
                         target.Release();UnityEngine.Object.DestroyImmediate(target);UnityEngine.Object.DestroyImmediate(pixels);
                     }
                 }
-                if (maze) {
+                if (maze || site) {
                     // Cutaway is an inspection capture only. Restore the native scene renderers afterward.
                     var roofs = new List<Renderer>();
                     foreach (var renderer in UnityEngine.Object.FindObjectsByType<Renderer>())
-                        if (renderer.enabled && (renderer.name.Contains("roof") || renderer.transform.GetComponentsInParent<Transform>().Any(t => t.name.StartsWith("NR_Cinder_Ceiling_"))))
+                        if (renderer.enabled && renderer.name != "Compact yard and utility roofs" && (renderer.name.Contains("roof") || renderer.transform.GetComponentsInParent<Transform>().Any(t => t.name.StartsWith("NR_Cinder_Ceiling_"))))
                             roofs.Add(renderer);
+                    MeshFilter compactSurface = site ? GameObject.Find("Compact yard and utility roofs").GetComponent<MeshFilter>() : null;
+                    Mesh originalSurface = compactSurface ? compactSurface.sharedMesh : null;
+                    Mesh cutawaySurface = null;
                     var oldPosition = camera.transform.position; var oldRotation = camera.transform.rotation; bool ortho = camera.orthographic;
                     float oldSize = camera.orthographicSize; var target = new RenderTexture(1280,1280,24); var pixels = new Texture2D(1280,1280,TextureFormat.RGB24,false);
                     var oldTarget = camera.targetTexture; var oldActive = RenderTexture.active;
                     try {
                         foreach (var roof in roofs) roof.enabled = false;
+                        if (compactSurface) {
+                            cutawaySurface = UnityEngine.Object.Instantiate(originalSurface);
+                            var vertices = cutawaySurface.vertices; var indices = cutawaySurface.triangles; var ground = new List<int>();
+                            for(int n=0;n<indices.Length;n+=3) if(vertices[indices[n]].y<.01f) ground.AddRange(new[]{indices[n],indices[n+1],indices[n+2]});
+                            cutawaySurface.triangles=ground.ToArray();compactSurface.sharedMesh=cutawaySurface;
+                        }
                         parcel.GetComponent<Renderer>().enabled = false;
                         camera.orthographic = true;
-                        foreach (string name in new[] {"A WAREHOUSE","SIDE OFFICE","BAY 04","C SERVICE","STORAGE"}) {
-                            var floor = GameObject.Find("Cinder Depot editable primitive blockout").transform.Find(name).Find(name+" floor").GetComponent<Renderer>().bounds;
+                        foreach (string name in site ? new[]{"FIELD"} : new[] {"A WAREHOUSE","SIDE OFFICE","BAY 04","C SERVICE","STORAGE"}) {
+                            var field = NoReturns.Editor.CinderCompactSiteBuild.Field;
+                            var floor = site ? new Bounds(new Vector3(field.center.x,0,field.center.y),new Vector3(field.width,0,field.height)) : GameObject.Find("Cinder Depot editable primitive blockout").transform.Find(name).Find(name+" floor").GetComponent<Renderer>().bounds;
                             camera.transform.SetPositionAndRotation(new Vector3(floor.center.x,40,floor.center.z), Quaternion.Euler(90,0,0));
                             camera.orthographicSize = Mathf.Max(floor.size.x,floor.size.z)/2+1.8f;
                             await Task.Delay(100); camera.targetTexture = target; camera.Render(); RenderTexture.active = target;
                             pixels.ReadPixels(new Rect(0,0,1280,1280),0,0); pixels.Apply();
-                            string label = name == "A WAREHOUSE" ? "warehouse" : name.ToLowerInvariant().Replace(' ','-');
-                            File.WriteAllBytes(Path.GetFullPath("../art/cinder-kit-01/maze-"+label+"-cutaway.png"), pixels.EncodeToPNG());
+                            string label = site ? "field" : name == "A WAREHOUSE" ? "warehouse" : name.ToLowerInvariant().Replace(' ','-');
+                            File.WriteAllBytes(Path.GetFullPath("../art/cinder-kit-01/"+prefix+label+"-cutaway.png"), pixels.EncodeToPNG());
                         }
                     } finally {
+                        if (compactSurface) compactSurface.sharedMesh=originalSurface;
+                        if (cutawaySurface) UnityEngine.Object.DestroyImmediate(cutawaySurface);
                         foreach (var roof in roofs) roof.enabled = true;
                         camera.transform.SetPositionAndRotation(oldPosition,oldRotation); camera.orthographic = ortho; camera.orthographicSize = oldSize;
                         camera.targetTexture = oldTarget; RenderTexture.active = oldActive; target.Release();

@@ -26,6 +26,16 @@ public static class CinderMapAppearanceBuild {
             c.enabled, c.isTrigger, c.gameObject.layer, position = c.transform.position.ToString("F6"), rotation = c.transform.rotation.ToString("F6"),
             scale = c.transform.lossyScale.ToString("F6"), center = c.center.ToString("F6"), size = c.size.ToString("F6")}));
 
+    internal static GameObject PlacePart(string part, Transform parent, Vector3 position, float yaw = 0) {
+        string path = "Assets/_NoReturns/Prefabs/CinderMapFills01/NR_Cinder_" + part + ".prefab";
+        if (!File.Exists(path)) path = "Assets/_NoReturns/Prefabs/CinderAppearance01/NR_Cinder_" + part + ".prefab";
+        var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(path);
+        if (!prefab) throw new Exception("Missing module: " + part);
+        var obj = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+        obj.transform.SetParent(parent); obj.transform.SetPositionAndRotation(position, Quaternion.Euler(0, yaw, 0));
+        return obj;
+    }
+
     [MenuItem("NO RETURNS/Trials/Create Cinder Map Appearance Review")]
     public static void Create() {
         if (EditorApplication.isPlaying || EditorSceneManager.GetActiveScene().isDirty)
@@ -56,13 +66,7 @@ public static class CinderMapAppearanceBuild {
             var bounds = original.Find(name + " floor").GetComponent<Renderer>().bounds;
             foreach (var renderer in original.GetComponentsInChildren<Renderer>()) renderer.enabled = false;
             var assembly = new GameObject(name).transform; assembly.SetParent(map);
-            void Place(string part, Vector3 position, float yaw = 0) {
-                string folder = File.Exists(Prefabs + "/NR_Cinder_" + part + ".prefab") ? Prefabs : "Assets/_NoReturns/Prefabs/CinderAppearance01";
-                var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(folder + "/NR_Cinder_" + part + ".prefab");
-                if (!prefab) throw new Exception("Missing module: " + part);
-                var obj = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
-                obj.transform.SetParent(assembly); obj.transform.SetPositionAndRotation(position, Quaternion.Euler(0, yaw, 0));
-            }
+            void Place(string part, Vector3 position, float yaw = 0) => PlacePart(part, assembly, position, yaw);
             float x0 = bounds.min.x, x1 = bounds.max.x, z0 = bounds.min.z, z1 = bounds.max.z, cx = bounds.center.x;
             foreach (var x in Segments(x0, bounds.size.x)) foreach (var z in Segments(z0, bounds.size.z)) {
                 bool halfX = x.length < 1.19f, halfZ = z.length < 1.19f;

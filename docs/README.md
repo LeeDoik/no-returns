@@ -2,7 +2,7 @@
 
 [English](README.en.md)
 
-[4명이 나란히 지나는 폭 3m의 내부 미로](current/cinder-maze-layout.ko.md). 다섯 건물에 꺾이는 길과 양쪽 우회로를 추가한 `CinderMazeReview`가 현재 검토 씬이다. 이동 156개 구간·네 몸체 통로 19곳·운반 검사를 통과했으며, 다음은 직접 조작감 확인이다.
+[억제 범위 안의 전체 맵을 조밀하게 재배치](current/cinder-compact-site.ko.md). `CinderCompactSiteReview`가 현재 검토 씬이다. 건물 5개와 우주선을 모으고 보조 설비 볼륨 6개로 폭 3/3.15m 골목·순환로 4개를 구성했다. 이동 94개 구간·네 몸체 통로 17곳·운반 검사를 통과했다. 실내만 좁혔던 이전 미로는 잘못 해석한 범위로 현행에서 제외했다. 다음은 전체 구역의 직접 검토다.
 
 기존 리스너·진압봉·우주선 플레이 코드와 씬은 보존되어 있다. [플레이 시스템과 Cinder 검토 씬의 관계](current/cinder-asset-prep.ko.md#기존-플레이-시스템의-위치)를 먼저 확인한다. Cinder의 기능 통합은 미완료다.
 

@@ -5,29 +5,33 @@ namespace NoReturns.Trials {
 public static class TrialCargoPose {
     public static Vector3 Position(Vector3 eye, Quaternion rotation, BoxCollider shape) {
         var half = Vector3.Scale(shape.size * .5f, shape.transform.lossyScale);
-        var start = eye + rotation * new Vector3(0, -.54f, 0);
         bool enabled = shape.enabled;
         int layer = shape.gameObject.layer;
         shape.enabled = true; // ComputePenetration needs an enabled collider in this Editor version.
         shape.gameObject.layer = 2; // Keep the query shape out of its own casts.
         try {
-            // ponytail: four separation passes cover trial box corners; review this bound for compound geometry.
-            for (int pass = 0; pass < 4; pass++) {
-                var contacts = Physics.OverlapBox(start, half, rotation, 1 << 0, QueryTriggerInteraction.Ignore);
-                if (contacts.Length == 0) break;
-                foreach (var obstacle in contacts) {
-                    if (obstacle == shape) continue;
-                    if (Physics.ComputePenetration(shape, start, rotation, obstacle, obstacle.transform.position,
-                        obstacle.transform.rotation, out var direction, out var distance))
-                        start += direction * (distance + .04f);
+            Vector3 Separate(Vector3 position) {
+                // ponytail: four separation passes cover trial box corners; review this bound for compound geometry.
+                for (int pass = 0; pass < 4; pass++) {
+                    var contacts = Physics.OverlapBox(position, half, rotation, 1 << 0, QueryTriggerInteraction.Ignore);
+                    if (contacts.Length == 0) break;
+                    foreach (var obstacle in contacts) {
+                        if (obstacle == shape) continue;
+                        if (Physics.ComputePenetration(shape, position, rotation, obstacle, obstacle.transform.position,
+                            obstacle.transform.rotation, out var direction, out var distance))
+                            position += direction * (distance + .04f);
+                    }
                 }
+                return position;
             }
+            var start = Separate(eye + rotation * new Vector3(0, -.54f, 0));
             var desired = eye + rotation * new Vector3(0, -.54f, 1.1f);
             var offset = desired - start;
             if (Physics.BoxCast(start, half, offset.normalized, out var hit, rotation, offset.magnitude,
                 1 << 0, QueryTriggerInteraction.Ignore))
                 desired = start + offset.normalized * Mathf.Max(0, hit.distance - .04f);
-            return desired;
+            // A sweep can miss a grazing corner; validate its resulting pose with the same native separation.
+            return Separate(desired);
         } finally {
             shape.enabled = enabled;
             shape.gameObject.layer = layer;

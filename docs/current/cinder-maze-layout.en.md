@@ -2,9 +2,9 @@
 
 [한국어](cinder-maze-layout.ko.md)
 
-2026-10-01 · CINDER-MAZE-01 · **Requested interior layout implemented and automated movement/carrying checks passed / user control feel and human four-player review incomplete.** No game-version change.
+2026-10-01 · CINDER-MAZE-01 · **Incorrectly scoped interior-only work — superseded; records retained.** The user clarified that the request covered the entire map inside the suppression field. The current target is [CinderCompactSiteReview whole-site layout](cinder-compact-site.en.md); the 24 partitions and 156 route checks below describe only the earlier scene. No game-version change.
 
-## Current layout
+## Earlier-scene layout record
 
 The user requested a compact, slightly maze-like layout with enough width for roughly four people to barely pass. Interpret this as four people abreast and add partitions inside five buildings in [separate CinderMazeReview](../../NoReturns/Assets/_NoReturns/Scenes/CinderMazeReview.unity). Standard clear width is **3.0m**, wall-center pitch 3.3m, wall thickness 0.3m and height 4m. Alternating side passages require turns; one partition in each building opens both ends to provide a circulation loop, keeping the entire interior from becoming one mandatory out-and-back path.
 
@@ -40,6 +40,6 @@ Add 24 partition Colliders, 157 existing wall-module placements and 1,884 triang
 
 Open `CinderMazeReview` in Unity and enter Play. Start at the south warehouse entrance; WASD movement, mouse view, E pickup, Q drop and empty-handed Space jump. Run `NO RETURNS/Trials/Validate Cinder Maze Review` for structure/passage checks. In Play, run the [existing carrying-check script](../../tools/unity_checks/CinderCarryEdgeCheck.cs) through Unity CLI `run_script`, then stop Play. Results use the `maze-` prefix. `Create Cinder Maze Review` stops when the file exists, preserving manual edits.
 
-Next is direct review of route density and navigation feel. Once suitable, continue with the BAY 04 receipt terminal/floor marking, connecting routes and outdoor finishes. This layout request takes priority over the earlier appearance document's terminal-first order.
+Do not use this interior-only maze as the next review target. Review the current [whole suppression-field layout](cinder-compact-site.en.md), then continue receipt facilities and gameplay integration. Preserve the run instructions and automated checks above as reproduction evidence for the earlier task.
 
 Raw staged whitespace checks fail on 4 trailing blank fields in Unity-generated scene/meta files. Code/document/evidence checks and the full staged check ignoring only generated trailing whitespace passed. No manual Unity YAML edits.

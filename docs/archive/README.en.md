@@ -2,6 +2,10 @@
 
 [한국어](README.md)
 
+## 2026-10-01 — Correcting the interior-only Cinder scope
+
+[Earlier interior maze and checks](../current/cinder-maze-layout.en.md) are historical, preserving existing paths/scenes. The user requested the entire map inside the suppression field, so exclude this work from the current target. Follow the [whole-site layout](../current/cinder-compact-site.en.md); do not inherit earlier checks as acceptance of the new layout.
+
 ## 2026-09-12 — restart as PSX space delivery
 
 Previous Godot/Unity games, art and builds were deleted. Documents and existing Git history remain; this does not imply copies of deleted uncommitted files were kept. The [deletion manifest](space-reset-deletion-manifest.json) is not a backup.

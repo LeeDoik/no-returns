@@ -2,6 +2,10 @@
 
 [English](README.en.md)
 
+## 2026-10-01 — 실내만 좁힌 Cinder 범위 정정
+
+[이전 실내 미로·검사 기록](../current/cinder-maze-layout.ko.md)은 기존 경로와 씬을 보존한 역사 자료다. 사용자가 요청한 범위는 억제기 내부 전체 맵이므로 현행 대상에서 제외했다. 최신 기준은 [전체 구역 배치](../current/cinder-compact-site.ko.md)이며 이전 검증 수치를 새 배치로 승계하지 않는다.
+
 ## 2026-09-12 — PSX 우주 배송으로 재출발
 
 기존 Godot와 Unity 게임·아트·빌드는 삭제했다. 보관한 것은 문서와 Git의 기존 이력이며, 삭제된 미커밋 파일의 복사본을 보관했다는 뜻이 아니다. [삭제 목록](space-reset-deletion-manifest.json)은 백업이 아니다.

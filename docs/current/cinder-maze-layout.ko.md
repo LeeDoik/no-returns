@@ -2,9 +2,9 @@
 
 [English](cinder-maze-layout.en.md)
 
-2026-10-01 · CINDER-MAZE-01 · **요청한 내부 구조 구현·자동 이동/운반 검사 완료 / 사용자 조작감·사람 4인 검토 미완료.** 게임 버전은 바꾸지 않는다.
+2026-10-01 · CINDER-MAZE-01 · **잘못 해석한 실내 전용 범위 — 현행에서 제외, 기록 보존.** 사용자는 억제기 내부 전체 맵을 요청했다고 정정했다. 현재 기준은 [CinderCompactSiteReview 전체 배치](cinder-compact-site.ko.md)이며 아래 24개 칸막이·156개 경로 검사는 이전 씬만 설명한다. 게임 버전은 바꾸지 않는다.
 
-## 현재 구조
+## 이전 씬의 구조 기록
 
 사용자 요청: “사람 한 4명정도가 겨우 지나갈 정도의 너비로 오밀조밀하게, 약간 미로 같이.” 4명이 나란히 지나는 기준으로 해석해 [별도 CinderMazeReview 씬](../../NoReturns/Assets/_NoReturns/Scenes/CinderMazeReview.unity)의 다섯 건물 내부에 칸막이를 추가했다. 기본 유효 폭은 **3.0m**, 벽 중심 간격 3.3m, 벽 두께 0.3m·높이 4m다. 양 끝을 번갈아 돌아야 하는 길에 건물마다 한 곳씩 양쪽 갈림길을 두어 순환할 수 있게 했다. 전체가 하나의 강제 왕복길이 되지 않도록 한다.
 
@@ -40,6 +40,6 @@
 
 Unity에서 `CinderMazeReview`를 열고 Play 한다. 창고 남측 입구에서 시작하며 WASD 이동, 마우스 시야, E 들기, Q 놓기, 빈손 Space 점프다. `NO RETURNS/Trials/Validate Cinder Maze Review`로 구조/통로를 재검사한다. Play에서 [기존 운반 검사 스크립트](../../tools/unity_checks/CinderCarryEdgeCheck.cs)를 Unity CLI `run_script`로 실행한 뒤 Play를 종료한다. 결과는 `maze-` 접두사로 보존한다. `Create Cinder Maze Review`는 기존 파일이 있으면 중단하므로 수동 수정 결과를 덮어쓰지 않는다.
 
-다음은 이 밀도와 길찾기 감각에 대한 직접 검토다. 통로가 맞으면 BAY 04 수령 단말기/바닥 표시와 연결 통로·야외 마감으로 이어간다. 이전 외형 문서의 단말기 우선 순서는 이번 구조 요청으로 뒤로 이동했다.
+이 실내 전용 미로를 다음 검토 대상으로 사용하지 않는다. [억제 범위 전체 배치](cinder-compact-site.ko.md)를 현재 대상으로 확인한 뒤 수령 설비·기능 통합으로 이어간다. 위 실행 방법과 자동 검사는 이전 작업의 재현 기록으로 보존한다.
 
 원시 staged 공백 검사는 Unity가 생성한 씬·meta 빈 필드 후행 공백 4곳으로 실패한다. 코드·문서·근거 검사와 이 자동 생성 공백만 제외한 전체 staged 검사는 통과했다. Unity YAML을 수동 편집하지 않았다.

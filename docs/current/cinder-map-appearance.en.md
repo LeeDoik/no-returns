@@ -2,7 +2,7 @@
 
 [한국어](cinder-map-appearance.ko.md)
 
-**[Narrow interior maze CinderMazeReview](cinder-maze-layout.en.md) now takes priority for layout review.** Below records the shared appearance and preserved source layout. The new scene adds 3m passages and 24 partition Colliders; this document's 0-new-Collider and original straight-route passes are not maze results.
+**[CinderCompactSiteReview for the entire suppression-field site](cinder-compact-site.en.md) now takes priority.** Below records the approved shared appearance before relocation. The new scene moves five buildings/the ship and forms outdoor alleys, auxiliary utility masses and connecting roofs; it excludes the interior-only maze. Do not inherit this record’s 0 new Colliders, preservation of 109 world coordinates or original route passes as results for the new whole layout.
 
 2026-10-01 · CINDER-MAP-APPEARANCE-01 · **User approval of aged warehouse style / shared appearance applied to 5 buildings and automated checks passed / user review of the expansion incomplete.** This does not change the game version or declare the entire map finished.
 
@@ -61,6 +61,6 @@ The existing work-light material stored `_EMISSION` alongside the `EmissiveIsBla
 
 Open the map scene in Unity and enter Play, starting at the south warehouse entrance. WASD movement, mouse view, E pickup, Q drop, empty-handed Space jump, F1 language toggle and Esc cursor release. Recheck with `NoReturns.Editor.CinderMapAppearanceBuild.Validate()`; in Play run the existing [carrying check](../../tools/unity_checks/CinderCarryEdgeCheck.cs), then stop Play. New receipts/views use the `map-` prefix without overwriting warehouse evidence.
 
-Current priority is user review of the [narrow interior maze](cinder-maze-layout.en.md). This layout request preceded the earlier BAY 04 receipt terminal/floor-marking production order. Review density/navigation/carrying feel, then continue terminals, connecting routes and outdoor finishes. Review existing CarryRoom receipt rules while distinguishing visual placement from actual delivery integration.
+Current priority is user review of the [entire layout inside the suppression field](cinder-compact-site.en.md). Correct the interior-only interpretation by composing building spacing, yards and utility masses together. Review whole-site density/navigation/carrying feel, then continue BAY 04 receipt terminal/floor marking and coordinate integration of existing CarryRoom systems. Distinguish visual layout from actual delivery integration.
 
 Raw staged whitespace checks fail on 106 trailing blank fields in Unity-generated scene/prefab/meta files. Code/document/evidence checks passed, as did the full staged check ignoring only generated trailing whitespace. Did not hand-edit Unity YAML solely for whitespace checks.

@@ -2,7 +2,7 @@
 
 [한국어](cinder-asset-prep.ko.md)
 
-**Follow the [four-abreast interior maze](cinder-maze-layout.en.md) for current added structure and next work.** Reuse aged appearance and add 24 partitions defining 3m passages. Direct narrow-layout review takes priority over terminal production.
+**Follow the [entire layout inside the suppression field](cinder-compact-site.en.md) for current structure and next work.** Correct the interior-only interpretation by bringing 5 buildings/the ship closer and composing 6 auxiliary volumes, 3/3.15m outdoor alleys and 4 loops. Exclude the earlier interior maze partitions from the current target. Direct whole-site review precedes terminal production.
 
 2026-10-01 · CINDER-ASSET-PREP-01 · **User approval of aged warehouse style, shared appearance expanded to 5 buildings and automated checks passed / user review of the expansion incomplete.** Follow [current map scope, review scene and next production](cinder-map-appearance.en.md). Below are specifications, production and checks for the first warehouse batch.
 
@@ -74,7 +74,7 @@ Current tool check: local `blender --version` reports **5.2.2 LTS**. Unity targe
 
 ## Next task and acceptance gates
 
-Preserve the first warehouse batch's **gray sources/assembly sample for 5 structural units** and south-entrance/first-6m records. Following aged-style approval, expanded [shared appearance across 5 buildings](cinder-map-appearance.en.md), then built the requested [narrow interior maze](cinder-maze-layout.en.md) in a separate scene. Next: maze control/passing-feel review, then BAY 04 receipt terminal/floor marking. Existing Create/Build Cinder menus regenerate scenes; do not run them on manually authored art-review scenes.
+Preserve the first warehouse batch’s **5 gray structural sources and assembled sample**, south entrance and first-6m record. Reuse the approved [five-building appearance](cinder-map-appearance.en.md) to compose the [new whole-site suppression-field layout](cinder-compact-site.en.md). The earlier interior-only maze remains historical as an incorrect scope interpretation. Next: whole-site density/navigation/passing review, then BAY 04 receipt facilities and gameplay-coordinate integration. Existing Create/Build menus regenerate scenes, so avoid them in manually edited review scenes. The new Create menu stops if its file exists.
 
 | Review view | What to inspect |
 |---|---|

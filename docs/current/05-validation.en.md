@@ -2,7 +2,18 @@
 
 [한국어](05-validation.ko.md)
 
-## 2026-10-01 — 3m interior maze
+## 2026-10-01 — Relocating the entire suppression-field site
+
+[Current whole layout, running and evidence](cinder-compact-site.en.md). The interior maze below records the earlier incorrect scope.
+
+- [x] Relocated 5 buildings/the ship; checked 6 auxiliary volumes, 3/3.15m alleys, 4 loops and 94/79.1m routes reaching the same BAY 04.
+- [x] Preserved local collision on 50 building BoxColliders/the ship; checked 59 Colliders in the original group, 22 in the new group, native tile UVs, placement scale 1 and 74 of 75 starting file hashes, excluding the corrected shared carrying source.
+- [x] Passed 94 bidirectional movement segments, 17 four-body lanes, 3,816 static carrying poses and 94 actual carrying segments. 237,148 penetration checks with 0 overlaps; E/W/S/Q and empty-handed jumping passed.
+- [x] Reviewed 10 actual camera views and restored inspection-only roof hiding. 0 compile errors, 8 existing obsolete warning emissions (6 unique), final Play 0 errors/warnings. Full documentation retains 142 existing missing links with 0 new failures.
+- [ ] User whole-site density, junction/long-alley sight lines, navigation, human four-player passing/cargo rotation review.
+- [ ] Final auxiliary facilities/cargo, context beyond the field, receipt facilities, new-coordinate Cinder AI/delivery/suppression/baton/networking integration, performance and standalone builds.
+
+## 2026-10-01 — Earlier 3m interior-maze record
 
 [Current layout, scope and evidence](cinder-maze-layout.en.md).
 
@@ -11,7 +22,7 @@
 - [x] Passed 9,312 static carrying poses and 156 actual carrying segments, 22,196 native penetration checks total with 0 overlaps. E/W/S/Q and empty-handed jumping passed.
 - [x] Reviewed 13 actual Play-camera views, retained saved ceilings and preserved 73 starting files. 0 compile errors; 3 existing obsolete warnings; final Play 0 errors/warnings. No new documentation failures beyond 142 existing missing links.
 - [ ] User navigation/carrying rotation/repeated-wall quality and human four-player passing/simultaneous cornering feel.
-- [ ] Outdoor layout/spacing, receipt facilities, Cinder delivery/AI/networking, performance and standalone builds.
+- [ ] Earlier-scene human quality review remains incomplete; follow the whole-site entry above for current outdoor layout/spacing.
 
 ## 2026-10-01 — Shared Cinder building appearance expansion
 
