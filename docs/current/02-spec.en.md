@@ -2,6 +2,10 @@
 
 [한국어](02-spec.ko.md)
 
+## 2026-10-01 — Varied Cinder building structure
+
+[Current building forms/measurements](cinder-compact-site.en.md#2026-10-01--varied-building-outlines-and-structural-modules) are the environment baseline. Apply 9 structural module types and 11 native meshes; replace 2 actual ground outlines/colliders of the central utility/northern annex with 8-sided/stepped shapes. Place warehouse sawtooth roofs, storage vault roofs, office L-shaped upper room, octagonal control room, plant rooms, stacks and entry canopies. Retain the 5 main-building interiors, ship, 3/3.15m alleys, 4 loops, 47 prop groups, 40 lights, sky and runtime. Upper rooms are static visuals; new floor access/interaction and Cinder gameplay integration remain incomplete. User appearance-quality review is pending.
+
 ## 2026-10-01 — Current whole-site Cinder layout
 
 [Current whole map, props and checks](cinder-compact-site.en.md) defines the environment. The user approved the whole-site direction. Retain 5 buildings, the ship, 6 auxiliary volumes, 3/3.15m alleys and 4 loops; add 47 prop groups to the same scene. The 46 freight visuals and 3 CRT visuals are static props without receipt/E/Q functionality. Exclude the 24 interior-only partitions from the current target. CarryRoom delivery, Listener, baton, suppression mechanics and networking below remain unconnected to Cinder. Prop quality, human four-player passing, receipt facilities and new-coordinate integration remain.

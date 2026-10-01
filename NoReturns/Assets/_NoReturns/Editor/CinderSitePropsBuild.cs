@@ -20,21 +20,21 @@ public static class CinderSitePropsBuild {
     static Vector3 V(float x,float y,float z) => new Vector3(x,y,z);
 
     // Small native meshes reuse the approved atlas. No provider or new texture is required.
-    sealed class Shape {
+    internal sealed class Shape {
         readonly List<Vector3> vertices=new List<Vector3>();
         readonly List<Vector2> uv=new List<Vector2>();
         readonly List<int> triangles=new List<int>();
-        void Quad(Vector3 a,Vector3 b,Vector3 c,Vector3 d,bool rust) {
+        public void Quad(Vector3 a,Vector3 b,Vector3 c,Vector3 d,bool rust,Vector2[] coordinates=null) {
             int i=vertices.Count; vertices.AddRange(new[]{a,b,c,d});
             // Existing graphite/rust rectangles, inset by a pixel to avoid adjacent atlas regions.
             float x=rust?257:385,y=rust?1:129;
-            uv.AddRange(new[]{new Vector2(x/512,y/512),new Vector2((x+126)/512,y/512),new Vector2((x+126)/512,(y+126)/512),new Vector2(x/512,(y+126)/512)});
+            uv.AddRange(coordinates??new[]{new Vector2(x/512,y/512),new Vector2((x+126)/512,y/512),new Vector2((x+126)/512,(y+126)/512),new Vector2(x/512,(y+126)/512)});
             triangles.AddRange(new[]{i,i+1,i+2,i,i+2,i+3});
         }
-        void Triangle(Vector3 a,Vector3 b,Vector3 c,bool rust) {
+        public void Triangle(Vector3 a,Vector3 b,Vector3 c,bool rust,Vector2[] coordinates=null) {
             int i=vertices.Count;vertices.AddRange(new[]{a,b,c});
             float x=rust?257:385,y=rust?1:129;
-            uv.AddRange(new[]{new Vector2((x+63)/512,(y+63)/512),new Vector2(x/512,y/512),new Vector2((x+126)/512,y/512)});
+            uv.AddRange(coordinates??new[]{new Vector2((x+63)/512,(y+63)/512),new Vector2(x/512,y/512),new Vector2((x+126)/512,y/512)});
             triangles.AddRange(new[]{i,i+1,i+2});
         }
         public void Box(Vector3 p,Vector3 s,bool rust=false) {
@@ -56,10 +56,11 @@ public static class CinderSitePropsBuild {
                 Triangle(V(0,high,0),r,s,rust);
             }
         }
-        public Mesh Save(string name) {
-            string path=Art+"/"+name+".asset";
-            var existing=AssetDatabase.LoadAssetAtPath<Mesh>(path);if(existing)return existing;
+        public Mesh Save(string name,string directory=Art,bool replace=false) {
+            string path=directory+"/"+name+".asset";
+            var existing=AssetDatabase.LoadAssetAtPath<Mesh>(path);if(existing&&!replace)return existing;
             var mesh=new Mesh{name=name};mesh.SetVertices(vertices);mesh.SetUVs(0,uv);mesh.SetTriangles(triangles,0);mesh.RecalculateNormals();mesh.RecalculateBounds();
+            if(existing) { EditorUtility.CopySerialized(mesh,existing);UnityEngine.Object.DestroyImmediate(mesh);EditorUtility.SetDirty(existing);return existing; }
             AssetDatabase.CreateAsset(mesh,path);return mesh;
         }
     }
@@ -184,6 +185,7 @@ public static class CinderSitePropsBuild {
     }
     [MenuItem("NO RETURNS/Trials/Validate Cinder Site Props")]
     public static void Validate() {
+        if(GameObject.Find(CinderArchitectureBuild.RootName)) { CinderArchitectureBuild.Validate(); return; }
         if(EditorSceneManager.GetActiveScene().path!=CinderCompactSiteBuild.ScenePath||!GameObject.Find(RootName))throw new Exception("Open dressed compact site.");
         if(File.Exists(Path.Combine(Output,"props-collision-baseline.json"))&&SceneCollision()!=File.ReadAllText(Path.Combine(Output,"props-collision-baseline.json")).TrimEnd())throw new Exception("Approved site collision changed.");
         CinderCompactSiteBuild.ValidateWithPrefix("props-");

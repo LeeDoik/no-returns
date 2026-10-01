@@ -22,6 +22,7 @@ public static class CinderSkyBuild {
             throw new InvalidOperationException("Supported native sky and existing directional light are required.");
         string collision = Collision();
         string localLights = LocalLights();
+        int poses = NoReturns.Editor.CinderSitePropsBuild.PosePoints().Count;
         var sky = AssetDatabase.LoadAssetAtPath<Material>(MaterialPath);
         if (!sky) { sky = new Material(shader) { name = "Cinder dusk sky" }; AssetDatabase.CreateAsset(sky, MaterialPath); }
         sky.shader = shader; sky.shaderKeywords = new string[0];
@@ -38,7 +39,7 @@ public static class CinderSkyBuild {
         RenderSettings.fogColor = new Color(.34f, .27f, .38f);
         RenderSettings.fogStartDistance = 35; RenderSettings.fogEndDistance = 115;
         DynamicGI.UpdateEnvironment();
-        if (Collision() != collision || LocalLights() != localLights || NoReturns.Editor.CinderSitePropsBuild.PosePoints().Count != 246)
+        if (Collision() != collision || LocalLights() != localLights || NoReturns.Editor.CinderSitePropsBuild.PosePoints().Count != poses)
             throw new Exception("Sky setup changed collision, local lights or occupiable prop poses.");
         if (RenderSettings.skybox != sky || !RenderSettings.fog || RenderSettings.fogEndDistance <= RenderSettings.fogStartDistance)
             throw new Exception("Invalid sky or fog settings.");
@@ -49,7 +50,7 @@ public static class CinderSkyBuild {
             ambient_mode = RenderSettings.ambientMode.ToString(), ambient_color = Rgba(RenderSettings.ambientLight),
             fog_mode = RenderSettings.fogMode.ToString(), fog_color = Rgba(RenderSettings.fogColor),
             fog_start_m = RenderSettings.fogStartDistance, fog_end_m = RenderSettings.fogEndDistance,
-            collision_preserved = true, local_lights_preserved = true, occupiable_prop_positions = 246,
+            collision_preserved = true, local_lights_preserved = true, occupiable_prop_positions = poses,
             geometry_changed = false, runtime_changed = false, dynamic_weather = false, user_sky_quality_review = false
         };
         AssetDatabase.SaveAssets(); EditorSceneManager.SaveScene(scene);

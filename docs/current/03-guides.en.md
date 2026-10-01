@@ -2,6 +2,10 @@
 
 [한국어](03-guides.ko.md)
 
+## 2026-10-01 — Building-form module production/placement
+
+Follow [current structural modules, dimensions, checks and running](cinder-compact-site.en.md#2026-10-01--varied-building-outlines-and-structural-modules). Reuse the existing mesh tool/aged atlas to produce 9 structural module types and supporting surfaces as 11 native Unity meshes. Unit placement scale 1; polygon roofs retain 1.2m UV-tile density. The 2 replaced ground outlines use static MeshColliders; elevated structures/canopies leave passage headroom. `Add Varied Cinder Architecture` stops with unsaved edits, Play or an existing root. Check using `Validate Varied Cinder Architecture`, routed `Validate Cinder Site Props` and the shared Play carrying check, recording `architecture-`. Current sky preservation compares actual valid-pose counts rather than a fixed 246. Preserve earlier `sky-`/`props-`/`site-` records. No new textures, external assets or dependencies.
+
 ## 2026-10-01 — Current Cinder asset-production preparation
 
 Follow [current whole-map prop production/checks](cinder-compact-site.en.md). Reuse the approved aged atlas, rack and freight/CRT models; create only the 8 needed prop meshes natively in Unity. No new textures, external assets or dependencies. Preserve original structure, 159 body positions, 94 segments and 17 four-body lanes. Place shelves/pallets near walls, cabinet backs flush against walls, and pipes/vents/equipment on high walls/roofs. Avoid rear gaps that fit only bodies but not rotating cargo. Six labels use builtin-font physical world-space UGUI; 46 freight and 3 CRT visuals are static. Keep saved roofs, hiding/restoring them only for cutaway captures. `Add Cinder Site Props` does not overwrite existing prop groups/unsaved edits. Store `Validate Cinder Site Props` structure results and pre-sky Play carrying evidence under `props-`. Next: prop-quality review and BAY 04 receipt facilities/gameplay-coordinate integration.

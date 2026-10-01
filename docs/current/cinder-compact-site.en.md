@@ -2,7 +2,41 @@
 
 [한국어](cinder-compact-site.ko.md)
 
-2026-10-01 · CINDER-COMPACT-SITE-01 · **Whole-site direction approved; props/dusk sky applied and automated checks passed / sky/prop quality and human four-player review incomplete.** No game-version change.
+2026-10-01 · CINDER-COMPACT-SITE-01 / CINDER-ARCHITECTURE-01 · **Whole-site direction approved; varied architecture applied and automated checks passed / current appearance, visibility and human four-player review incomplete.** No game-version change.
+
+## 2026-10-01 — Varied building outlines and structural modules
+
+The user requested a broader asset kit and varied building forms like the concepts instead of the current rectangular-wall layout. Produce and place **9 structural module types** in the same `CinderCompactSiteReview`. Follow the clipped corners, bent outlines and height changes in the [suppression-field concept](../art/space-concepts/cinder-depot-suppression-01.png) and [overhead concept](../art/space-concepts/cinder-depot-overhead-01.png). Change actual ground visuals/collision of Sorting island to an 8-sided chamfered outline and North control annex to a 6-vertex stepped outline with a recessed corner. Preserve interior floors, doors and wall collision of the 5 main buildings and the ship, adding distinct upper silhouettes and entry depth. No game-version change.
+
+| Module | X×Y×Z size (m) | Placements/purpose |
+|---|---|---|
+| Chamfer utility | 6.3×4.3×7.2 | 1 · central 8-sided utility building |
+| Stepped annex | 6.3×4.3×17.1 | 1 · northern stepped annex |
+| Sawtooth roof | 7.2×1.5×6.8 | 6 · warehouse sawtooth roof |
+| Vault roof | 7.2×1.9×7.2 | 4 · storage arched roof |
+| L upper annex | 8×2.1×6 | 1 · office L-shaped upper room |
+| Octagonal control tower | 4.8×3.4×4.8 | 1 · BAY 04 octagonal control room |
+| Raised plant room | 3.9×2.2×5.4 | 3 · elevated north/service plant rooms |
+| Entry hood | 4.6×0.79×1.2 | 6 · entrance canopies, minimum height 3.36m |
+| Industrial stack | 1.66×4×1.66 | 2 · service exhaust stacks |
+
+Add floor-infill and a copy of the existing yard/retained roofs excluding only replaced roofs: **11 native mesh assets** in total. The new `Cinder varied architecture` root has 26 placements including 1 floor infill, 4,021 triangles and 25 static MeshColliders. The existing surface object separately uses the yard-surface copy. Maximum height 8.3m, unit placement scale 1. Preserve the 2 original annex groups inactive in the scene, replacing rectangular collision with static MeshColliders matching the new polygons. Fill newly exposed corners/recesses; retain 47 prop groups, 6 physical labels, 40 local lights and sky/fog. Position the northern upper plant room clear of existing roof equipment.
+
+[Producer/placement/checks](../../NoReturns/Assets/_NoReturns/Editor/CinderArchitectureBuild.cs), [reused mesh tool](../../NoReturns/Assets/_NoReturns/Editor/CinderSitePropsBuild.cs), [native asset folder](../../NoReturns/Assets/_NoReturns/Art/CinderArchitecture01/), [measurements](../../art/cinder-kit-01/architecture-layout-validation.json). Reuse the aged atlas/material. No new textures, external models, dependencies, shader or paid generation. Clip polygon tops into 1.2m tiles, fixing stretched large-triangle patterns; pass UV-density calculations on 140 Chamfer utility cap triangles. Pass reimport of all 11 new meshes and saved-scene reopening. Save native assets through Unity APIs without hand-editing YAML.
+
+Already applied in the current scene. Save/stop Play, then run `NO RETURNS/Trials/Validate Varied Cinder Architecture`. `Validate Cinder Site Props` routes into current architecture checks without overwriting earlier props- evidence. In Play, execute the [shared carrying check](../../tools/unity_checks/CinderCarryEdgeCheck.cs) using Unity CLI `run_script`. Current results/captures use `architecture-`; preserve earlier `sky-`, `props-` and `site-`. `Add Varied Cinder Architecture` stops in another scene, with unsaved edits, during Play or with an existing architecture root. Preserve manual edits before regenerating the current layout. Sky reapplication checks preservation against the current valid-pose count rather than the previous fixed 246.
+
+Validation: UV bounds, nondegenerate triangles, positive signed volume of static collision meshes and scale. Retain 94 ground-movement segments, 17 four-body lanes, 3/3.15m minimum widths, 4 loops and both delivery routes. Including new corner/recess samples: 286 body positions×24 directions/pitches = 6,864 carrying poses. Mac Editor Play: 94 actual carrying segments and 340,268 penetration checks with 0 overlaps, 103 contacts, tolerance 0.00001m. E/W/S/Q and empty-handed jumping passed. API poses, actual Update and key events, not real-time human controls. Capture 21 actual cameras and review 8 key views. Restore capture-only roof/upper-room hiding. 0 compile/sky-shader errors; 3 existing obsolete warning messages in this Editor recompilation, 0 new-source warnings and final Play 0 errors/warnings. Match 434 of 435 starting file hashes, excluding the current scene; exclude 8 pre-existing ship-material edits from the commit.
+
+1 preservation check failed after Play because same-named lights enumerated in a different order. Verify all original row values as a multiset, then fix the false positive with ordinal ordering by path+position. A Python/native ordering difference required 1 further retry; final reopened-scene check passed. No actual light/collision changes. Correct the initial CLI timeout spelling to `--timeout_ms`; not a game-compilation error.
+
+[Movement/four-body checks](../../art/cinder-kit-01/architecture-passage-validation.txt) · [carrying checks](../../art/cinder-kit-01/architecture-carry-edge-validation.json) · [preservation/check record](../../art/cinder-kit-01/architecture-checks.json). Full documentation fails on 142 existing missing links with no new failures. User quality review of building forms, canopy visibility, wayfinding and cargo rotation, human four-player play, performance, standalone builds, outer environment and Cinder gameplay integration remain unverified. Upper rooms/stacks/canopies are static environment assets; no new floor access, stairs or interaction. Sky/prop/structure numbers below record earlier stages.
+
+![Varied building silhouettes](../../art/cinder-kit-01/architecture-exterior-machinery.png)
+
+[Chamfered utility building](../../art/cinder-kit-01/architecture-sorting-chamfer.png) · [stepped outline](../../art/cinder-kit-01/architecture-annex-step.png) · [entry canopies](../../art/cinder-kit-01/architecture-office-link.png) · [current ground-outline cutaway](../../art/cinder-kit-01/architecture-field-cutaway.png).
+
+Raw staged whitespace fails on 201 trailing blanks in Unity-generated mesh/meta empty fields. Code/document/evidence whitespace and the full staged check ignoring only these generated trailing blanks passed. Verify 21 PNG LFS pointers and `git lfs fsck --pointers`. Did not hand-edit native YAML solely for whitespace checks.
 
 ## 2026-10-01 — Sky and distant atmosphere
 

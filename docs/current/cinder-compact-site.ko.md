@@ -2,7 +2,41 @@
 
 [English](cinder-compact-site.en.md)
 
-2026-10-01 · CINDER-COMPACT-SITE-01 · **전체 맵 방향 사용자 승인·소품과 황혼 스카이 적용·자동 검사 완료 / 하늘·소품 품질과 사람 4인 검토 미완료.** 게임 버전은 바꾸지 않는다.
+2026-10-01 · CINDER-COMPACT-SITE-01 / CINDER-ARCHITECTURE-01 · **전체 맵 방향 사용자 승인·다양한 건물 구조 적용·자동 검사 완료 / 현재 외형·시야와 사람 4인 검토 미완료.** 게임 버전은 바꾸지 않는다.
+
+## 2026-10-01 — 다양한 건물 윤곽과 구조 모듈
+
+사용자는 직사각형 벽 중심인 현재 맵을 컨셉 사진처럼 다양한 건물 형태로 구성해 달라고 요청했다. 같은 `CinderCompactSiteReview`에 **구조 모듈 9종**을 제작·배치했다. [억제 범위 컨셉](../art/space-concepts/cinder-depot-suppression-01.png)과 [상면 컨셉](../art/space-concepts/cinder-depot-overhead-01.png)의 잘린 모서리·꺾인 윤곽·단차를 기준으로 삼았다. 중앙 Sorting island는 모서리를 자른 8각형, North control annex는 한쪽 모서리가 들어간 6꼭짓점 계단형 윤곽으로 실제 지상 외형과 충돌체를 바꿨다. 주요 건물 5개의 실내 바닥·문·벽 충돌과 우주선은 유지하고, 건물별 상부 실루엣과 입구 깊이를 추가했다. 게임 버전은 바꾸지 않는다.
+
+| 모듈 | 크기 X×Y×Z (m) | 배치 수·역할 |
+|---|---|---|
+| Chamfer utility | 6.3×4.3×7.2 | 1 · 중앙 8각 설비동 |
+| Stepped annex | 6.3×4.3×17.1 | 1 · 북쪽 계단형 부속동 |
+| Sawtooth roof | 7.2×1.5×6.8 | 6 · 창고 톱니형 지붕 |
+| Vault roof | 7.2×1.9×7.2 | 4 · 보관동 아치 지붕 |
+| L upper annex | 8×2.1×6 | 1 · 사무동 L자 상부실 |
+| Octagonal control tower | 4.8×3.4×4.8 | 1 · BAY 04 팔각 관제실 |
+| Raised plant room | 3.9×2.2×5.4 | 3 · 북쪽/설비동의 높은 설비실 |
+| Entry hood | 4.6×0.79×1.2 | 6 · 입구 차양, 최저 높이 3.36m |
+| Industrial stack | 1.66×4×1.66 | 2 · 설비동 산업용 배기탑 |
+
+모듈 외에 바닥 보충 메시와 기존 야외 바닥/유지 지붕에서 교체 대상 지붕만 제외한 복사본을 더해 **native 메시 에셋 11개**다. 새 루트 `Cinder varied architecture`는 바닥 보충 1개를 포함해 배치 26개·삼각형 4,021개·정적 MeshCollider 25개다. 야외 표면 복사본은 기존 표면 오브젝트가 별도로 사용한다. 최고 높이 8.3m, 배치 스케일 1. 기존 2개 부속동 그룹은 씬에 비활성 상태로 보존하며, 직사각형 충돌체를 새 다각형의 정적 MeshCollider로 교체했다. 새 모서리/후퇴부에는 바닥을 채웠고, 소품 묶음 47개·물리적 표지 6개·로컬 광원 40개·스카이/안개는 유지했다. 북쪽 상부 설비실은 기존 지붕 장비와 겹치지 않게 배치했다.
+
+[제작·배치·검사 코드](../../NoReturns/Assets/_NoReturns/Editor/CinderArchitectureBuild.cs), [재사용 메시 도구](../../NoReturns/Assets/_NoReturns/Editor/CinderSitePropsBuild.cs), [native 에셋 폴더](../../NoReturns/Assets/_NoReturns/Art/CinderArchitecture01/), [실측](../../art/cinder-kit-01/architecture-layout-validation.json). 기존 노후 아틀라스와 재질을 재사용한다. 새 텍스처·외부 모델·의존성·셰이더·유료 생성은 없다. 다각형 상단을 1.2m 타일로 잘라 무늬가 큰 삼각형으로 늘어나는 문제를 수정했고, Chamfer utility 상단 140개 삼각형의 UV 밀도 계산을 통과했다. 새 메시 11개 재가져오기와 저장 씬 재열기 후 검사도 통과했다. native 에셋은 Unity API로 저장하며 YAML을 수동 편집하지 않는다.
+
+이미 현재 씬에 적용되어 있다. 저장·Play 종료 후 `NO RETURNS/Trials/Validate Varied Cinder Architecture`로 검사한다. `Validate Cinder Site Props`도 현재 구조 검사로 연결되며 과거 props- 근거를 덮어쓰지 않는다. Play에서는 [공유 운반 검사](../../tools/unity_checks/CinderCarryEdgeCheck.cs)를 Unity CLI `run_script`로 실행한다. 현재 결과/화면은 `architecture-`, 이전 `sky-`·`props-`·`site-`는 보존한다. `Add Varied Cinder Architecture`는 다른 씬·미저장·Play·기존 구조 루트에서 중단한다. 현재 배치를 재생성할 때는 수동 변경을 먼저 보존한다. 스카이 재적용은 현재 유효 위치 수를 기준으로 보존 검사를 하며 이전 고정값 246개를 요구하지 않는다.
+
+검증: UV 범위·비퇴화 삼각형·정적 충돌 메시의 양수 방향 체적·스케일 확인. 기존 지상 이동 94구간·네 몸체 통로 17곳·3/3.15m 최소 폭·4개 순환로·두 배송 경로를 유지했다. 변경한 모서리/후퇴부 표본을 포함해 몸체 위치 286개×24방향/시선 = 운반 자세 6,864개. Mac Editor Play 실제 운반 94구간·침투 검사 340,268회에서 겹침 0건·접촉 103건, 허용치 0.00001m. E/W/S/Q·빈손 점프 통과. API 자세·실제 Update·키 이벤트 검사이며 사람 실시간 조작은 아니다. 실제 카메라 21개를 촬영하고 주요 8개 시점을 검토했다. 촬영용 지붕/상부실 숨김은 복원했다. 컴파일/스카이 셰이더 오류 0개·이번 Editor 재컴파일에서 기존 obsolete 경고 3종·새 소스 경고 0개·최종 Play 오류/경고 0개. 시작 파일 435개 중 현재 씬을 제외한 434개 해시 일치, 기존 선내 재질 변경 8개는 커밋 제외.
+
+재검사에서 같은 이름의 광원들이 Play 종료 후 다른 순서로 열거되어 보존 검사 1건이 실패했다. 모든 원래 기록의 값이 같음을 집합으로 확인하고 경로+위치의 ordinal 순서로 정렬해 오탐을 수정했다. Python/native 정렬 순서 차이로 1건 추가 재시도한 뒤 최종 재열기 검사 통과. 실제 광원/충돌 변경은 없었다. 최초 CLI timeout 옵션 표기는 `--timeout_ms`로 수정했으며 게임 컴파일 오류가 아니다.
+
+[이동·네 몸체 검사](../../art/cinder-kit-01/architecture-passage-validation.txt) · [운반 검사](../../art/cinder-kit-01/architecture-carry-edge-validation.json) · [보존·검사 기록](../../art/cinder-kit-01/architecture-checks.json). 전체 문서 검사는 기존 누락 링크 142개로 실패하며 새 실패 없음. 건물 형태·차양 시야·길찾기·운반 회전의 사용자 품질, 사람 4인, 성능·독립 빌드·경계 밖 환경·Cinder 게임 기능 연결은 미검증이다. 상부실·배기탑·차양은 정적 환경 에셋이며 새 층 진입/계단/상호작용을 구현하지 않았다. 아래 스카이·소품·구조 수치는 이전 단계 기록이다.
+
+![다양한 건물 실루엣](../../art/cinder-kit-01/architecture-exterior-machinery.png)
+
+[모서리를 자른 설비동](../../art/cinder-kit-01/architecture-sorting-chamfer.png) · [계단형 윤곽](../../art/cinder-kit-01/architecture-annex-step.png) · [입구 차양](../../art/cinder-kit-01/architecture-office-link.png) · [현재 지상 윤곽 상면](../../art/cinder-kit-01/architecture-field-cutaway.png).
+
+원시 staged 공백 검사는 Unity 생성 메시·meta의 빈 필드 후행 공백 201곳으로 실패한다. 코드·문서·근거 공백 검사와 이 생성 후행 공백만 제외한 전체 staged 검사는 통과했다. PNG LFS 포인터 21개와 `git lfs fsck --pointers` 확인 완료. 공백 검사만을 위한 native YAML 수동 편집은 하지 않았다.
 
 ## 2026-10-01 — 스카이와 원거리 분위기
 

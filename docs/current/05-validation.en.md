@@ -2,6 +2,16 @@
 
 [한국어](05-validation.ko.md)
 
+## 2026-10-01 — Varied building forms
+
+[Current structure, running and evidence](cinder-compact-site.en.md#2026-10-01--varied-building-outlines-and-structural-modules).
+
+- [x] Verify 9 structural module types, 11 meshes, 26 placements, 4,021 triangles, 25 static MeshColliders and scale 1. Replace 2 ground outlines; preserve main interiors/ship, 47 prop groups, 6 labels, 40 local lights and sky.
+- [x] Pass 94 movement segments, 17 four-body lanes, 3/3.15m widths and 4 loops. 286 body positions, 6,864 carrying poses, 94 actual carrying segments and 340,268 penetration checks with 0 overlaps, 103 contacts; E/W/S/Q and empty-handed jumping passed.
+- [x] Pass UV/nondegenerate triangles/positive signed volume, cap-tile density on 140 triangles, reimport of 11 meshes and scene reopening. Capture 21 cameras, review 8 key views, restore upper-structure hiding. 0 compile/sky-shader errors, 3 observed existing Editor warning messages, 0 new-source warnings and final Play 0 errors/warnings.
+- [x] Preserve 434 of 435 starting hashes, excluding the current scene. No new failures beyond 142 existing missing document links. Fix light-record ordering false positive without data changes.
+- [ ] User appearance/visibility/wayfinding, human four-player play, performance, standalone builds, outer environment and gameplay integration. Upper-room access/interaction is unimplemented.
+
 ## 2026-10-01 — Dusk sky and distant haze
 
 [Current settings, running and evidence](cinder-compact-site.en.md#2026-10-01--sky-and-distant-atmosphere).

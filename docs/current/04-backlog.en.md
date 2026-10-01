@@ -2,6 +2,10 @@
 
 [한국어](04-backlog.ko.md)
 
+## 2026-10-01 — Work after varied building structure
+
+[Current structure/checks](cinder-compact-site.en.md#2026-10-01--varied-building-outlines-and-structural-modules): apply 9 module types, 11 meshes, 26 placements and 2 replaced ground outlines. Pass 94 movement segments, 17 four-body lanes and 6,864 carrying poses. Next: user review of building silhouettes, canopy visibility, new-corner wayfinding/cargo rotation. Upper-room access/stairs/interaction, human four-player play, performance, standalone builds, outer environment and Cinder receipt/AI/suppression/baton/networking coordinate integration remain incomplete. Earlier whole-map direction approval does not approve this appearance.
+
 ## 2026-10-01 — Next asset task
 
 The user approved the feel of the [current whole map](cinder-compact-site.en.md). Place 47 prop groups, 46 static freight visuals, 3 CRTs and 6 labels in the same scene, retaining 94 movement segments and 17 four-body lanes. 5,904 carrying poses, 94 actual carrying segments and 407,130 penetration checks yielded 0 overlaps. Next: direct prop density/navigation/carrying visibility and human four-player passing review → BAY 04 receipt facilities/marking and AI/delivery coordinate integration → finer auxiliary-equipment appearance and context beyond the field. Preserve existing scenes, building sizes and carrying code. Props have no delivery/receipt functionality; distant repetition, performance and standalone builds remain incomplete.

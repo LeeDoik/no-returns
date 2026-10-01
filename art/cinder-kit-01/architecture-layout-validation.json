@@ -1,0 +1,33 @@
+{
+  "scene": "Assets/_NoReturns/Scenes/CinderCompactSiteReview.unity",
+  "replaced_auxiliary_footprints": 2,
+  "ground_shapes": [
+    "8-sided chamfer",
+    "6-sided stepped outline"
+  ],
+  "meshes": [
+    "Assets/_NoReturns/Art/CinderArchitecture01/ArchitectureYard.asset",
+    "Assets/_NoReturns/Art/CinderArchitecture01/Chamfer utility.asset",
+    "Assets/_NoReturns/Art/CinderArchitecture01/Entry hood.asset",
+    "Assets/_NoReturns/Art/CinderArchitecture01/Industrial stack.asset",
+    "Assets/_NoReturns/Art/CinderArchitecture01/L upper annex.asset",
+    "Assets/_NoReturns/Art/CinderArchitecture01/Notch floor infill.asset",
+    "Assets/_NoReturns/Art/CinderArchitecture01/Octagonal control tower.asset",
+    "Assets/_NoReturns/Art/CinderArchitecture01/Raised plant room.asset",
+    "Assets/_NoReturns/Art/CinderArchitecture01/Sawtooth roof.asset",
+    "Assets/_NoReturns/Art/CinderArchitecture01/Stepped annex.asset",
+    "Assets/_NoReturns/Art/CinderArchitecture01/Vault roof.asset"
+  ],
+  "placements": 26,
+  "triangles": 4021,
+  "new_static_mesh_colliders": 25,
+  "local_lights": 40,
+  "retained_state_preserved": true,
+  "carrying_pose_positions": 286,
+  "highest_architecture_m": 8.3,
+  "unit_scale": true,
+  "preserved_prop_groups": 47,
+  "physical_labels": 6,
+  "interactive_upper_rooms": false,
+  "user_architecture_quality_review": false
+}

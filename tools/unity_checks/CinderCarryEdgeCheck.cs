@@ -17,12 +17,13 @@ public static class CinderCarryEdgeCheck {
         bool site = scene == "CinderCompactSiteReview";
         bool props = site && GameObject.Find(NoReturns.Editor.CinderSitePropsBuild.RootName);
         bool sky = props && AssetDatabase.GetAssetPath(RenderSettings.skybox) == NoReturns.Editor.CinderSkyBuild.MaterialPath;
+        bool architecture = site && GameObject.Find(NoReturns.Editor.CinderArchitectureBuild.RootName);
         bool maze = scene == "CinderMazeReview";
         bool map = site || maze || scene == "CinderMapAppearanceReview";
         bool appearance = map || scene == "CinderAppearanceReview";
         if (!EditorApplication.isPlaying || (!appearance && scene != "CinderStructureReview"))
             throw new InvalidOperationException("Open a Cinder structure/appearance review and enter Play first.");
-        string prefix = sky ? "sky-" : props ? "props-" : site ? "site-" : maze ? "maze-" : map ? "map-" : appearance ? "production-" : "";
+        string prefix = architecture ? "architecture-" : sky ? "sky-" : props ? "props-" : site ? "site-" : maze ? "maze-" : map ? "map-" : appearance ? "production-" : "";
         var walk = UnityEngine.Object.FindAnyObjectByType<CinderBlockoutWalk>();
         var body = walk.GetComponent<CharacterController>();
         var parcel = GameObject.Find("Trial carried parcel");
@@ -58,6 +59,7 @@ public static class CinderCarryEdgeCheck {
         if (maze) points = NoReturns.Editor.CinderMazeBuild.PosePoints();
         if (site) points = NoReturns.Editor.CinderCompactSiteBuild.PosePoints();
         if (props) points = NoReturns.Editor.CinderSitePropsBuild.PosePoints();
+        if (architecture) points = NoReturns.Editor.CinderArchitectureBuild.PosePoints();
         var failures = new List<object>();
         int samples = 0, touching_contacts = 0, carrying_segments = 0;
         if (maze || site) foreach (var point in points) {
@@ -182,6 +184,11 @@ public static class CinderCarryEdgeCheck {
                         views.Add(("exterior-machinery.png",new Vector3(30,18,-35),319,false));
                         views.Add(("facility-sign.png",new Vector3(16.2f,.035f,4.5f),0,false));
                         if (sky) views.Add(("upward.png",NoReturns.Editor.CinderCompactSiteBuild.Spawn,70,false));
+                        if (architecture) {
+                            views.Add(("sorting-chamfer.png",new Vector3(-5.25f,.035f,-4.35f),45,false));
+                            views.Add(("annex-step.png",new Vector3(4.125f,.035f,25.95f),215,false));
+                            views.Add(("roof-silhouettes.png",new Vector3(-31,14,-39),35,false));
+                        }
                     }
                 } else if (maze) {
                     views.Clear();
@@ -205,7 +212,7 @@ public static class CinderCarryEdgeCheck {
                 foreach(var view in views) {
                     body.enabled=false;walk.transform.position=view.point;body.enabled=true;
                     typeof(CinderBlockoutWalk).GetField("yaw",flags).SetValue(walk,view.yaw);
-                    typeof(CinderBlockoutWalk).GetField("pitch",flags).SetValue(walk,view.name == "overview.png" ? 40f : view.name == "exterior-machinery.png" ? 25f : view.name == "upward.png" ? -35f : 0f);
+                    typeof(CinderBlockoutWalk).GetField("pitch",flags).SetValue(walk,view.name == "overview.png" ? 40f : view.name == "exterior-machinery.png" || view.name == "roof-silhouettes.png" ? 25f : view.name == "upward.png" ? -35f : 0f);
                     typeof(CinderBlockoutWalk).GetField("carrying",flags).SetValue(walk,view.carry);
                     parcel.GetComponent<Renderer>().enabled=view.carry;
                     update.Invoke(walk,null);
@@ -227,7 +234,7 @@ public static class CinderCarryEdgeCheck {
                     // Cutaway is an inspection capture only. Restore the native scene renderers afterward.
                     var roofs = new List<Renderer>();
                     foreach (var renderer in UnityEngine.Object.FindObjectsByType<Renderer>())
-                        if (renderer.enabled && renderer.name != "Compact yard and utility roofs" && (renderer.name.Contains("roof") || renderer.transform.GetComponentsInParent<Transform>().Any(t => t.name.StartsWith("NR_Cinder_Ceiling_") || t.name == "Roof machinery")))
+                        if (renderer.enabled && renderer.name != "Compact yard and utility roofs" && (renderer.name.Contains("roof") || renderer.transform.GetComponentsInParent<Transform>().Any(t => t.name.StartsWith("NR_Cinder_Ceiling_") || t.name == "Roof machinery" || (architecture && renderer.bounds.min.y > 3 && t.name == NoReturns.Editor.CinderArchitectureBuild.RootName))))
                             roofs.Add(renderer);
                     MeshFilter compactSurface = site ? GameObject.Find("Compact yard and utility roofs").GetComponent<MeshFilter>() : null;
                     Mesh originalSurface = compactSurface ? compactSurface.sharedMesh : null;
