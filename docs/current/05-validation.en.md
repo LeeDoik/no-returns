@@ -2,6 +2,17 @@
 
 [한국어](05-validation.ko.md)
 
+## 2026-10-01 — 3m interior maze
+
+[Current layout, scope and evidence](cinder-maze-layout.en.md).
+
+- [x] Verified 157 existing wall modules, 24 partition Colliders, visual/collision bounds, 3m width, scale 1 and preservation of 109 original BoxColliders.
+- [x] Passed 156 bidirectional movement segments and four simultaneous bodies through 19 interior straight lanes.
+- [x] Passed 9,312 static carrying poses and 156 actual carrying segments, 22,196 native penetration checks total with 0 overlaps. E/W/S/Q and empty-handed jumping passed.
+- [x] Reviewed 13 actual Play-camera views, retained saved ceilings and preserved 73 starting files. 0 compile errors; 3 existing obsolete warnings; final Play 0 errors/warnings. No new documentation failures beyond 142 existing missing links.
+- [ ] User navigation/carrying rotation/repeated-wall quality and human four-player passing/simultaneous cornering feel.
+- [ ] Outdoor layout/spacing, receipt facilities, Cinder delivery/AI/networking, performance and standalone builds.
+
 ## 2026-10-01 — Shared Cinder building appearance expansion
 
 [Current scope, measurements and review scene](cinder-map-appearance.en.md).

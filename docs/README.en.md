@@ -2,7 +2,7 @@
 
 [한국어](README.md)
 
-[Approved aged appearance expanded to 5 buildings](current/cinder-map-appearance.en.md). Applied floors, walls, frames, ceilings and work lights to the office, BAY 04, service and storage buildings in separate `CinderMapAppearanceReview`. Next: BAY 04 receipt terminal and floor marking.
+[Interior maze with 3m passages for four people abreast](current/cinder-maze-layout.en.md). `CinderMazeReview` is the current review scene, with turns and two-sided detours in five buildings. Passed 156 movement segments, 19 four-body lanes and carrying checks; next is direct control-feel review.
 
 Existing Listener, baton and ship gameplay code/scenes are preserved. See [existing gameplay versus Cinder review scenes](current/cinder-asset-prep.en.md#location-of-existing-gameplay-systems). Gameplay integration into Cinder remains incomplete.
 

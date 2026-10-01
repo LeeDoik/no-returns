@@ -2,9 +2,9 @@
 
 [한국어](02-spec.ko.md)
 
-## 2026-10-01 — Current Cinder map appearance
+## 2026-10-01 — Current Cinder interior layout
 
-[Shared appearance across 5 buildings, review scene and checks](cinder-map-appearance.en.md) defines current environment production. The user approved the aged warehouse style for expansion to existing buildings. Placement, openings, collision and carrying rules are preserved; the CarryRoom Listener, baton, delivery and networking described below remain unconnected to Cinder. User review of the expansion, outdoor finishes and receipt facilities remain.
+[Current interior maze, review scene and checks](cinder-maze-layout.en.md) defines environment layout. Retain the approved [aged appearance](cinder-map-appearance.en.md) and add standard 3m turning/circulation routes inside five buildings. Preserve existing outer/outdoor collision and add 24 interior partition Colliders. CarryRoom delivery, Listener, baton and networking below remain unconnected to Cinder. Human four-player passing/corner carrying feel, outdoor and receipt facilities remain.
 
 0.9.1: [Cooperative HUD and evidence](crew-hud.en.md). Reorganized gameplay instructions and four-player states. Human readability assessment remains outstanding.
 

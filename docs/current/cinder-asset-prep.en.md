@@ -2,6 +2,8 @@
 
 [한국어](cinder-asset-prep.ko.md)
 
+**Follow the [four-abreast interior maze](cinder-maze-layout.en.md) for current added structure and next work.** Reuse aged appearance and add 24 partitions defining 3m passages. Direct narrow-layout review takes priority over terminal production.
+
 2026-10-01 · CINDER-ASSET-PREP-01 · **User approval of aged warehouse style, shared appearance expanded to 5 buildings and automated checks passed / user review of the expansion incomplete.** Follow [current map scope, review scene and next production](cinder-map-appearance.en.md). Below are specifications, production and checks for the first warehouse batch.
 
 ## What to make first and why
@@ -72,7 +74,7 @@ Current tool check: local `blender --version` reports **5.2.2 LTS**. Unity targe
 
 ## Next task and acceptance gates
 
-Preserve the first warehouse batch's **gray sources/assembly sample for 5 structural units** and south entrance/first 6m review points. Following approval of the aged style, expanded [shared appearance across 5 buildings](cinder-map-appearance.en.md) in a separate map scene. Next: BAY 04 receipt terminal/floor marking and user review of the expansion. Existing Create/Build Cinder menus regenerate the scene; do not run them on a manually authored art-review scene.
+Preserve the first warehouse batch's **gray sources/assembly sample for 5 structural units** and south-entrance/first-6m records. Following aged-style approval, expanded [shared appearance across 5 buildings](cinder-map-appearance.en.md), then built the requested [narrow interior maze](cinder-maze-layout.en.md) in a separate scene. Next: maze control/passing-feel review, then BAY 04 receipt terminal/floor marking. Existing Create/Build Cinder menus regenerate scenes; do not run them on manually authored art-review scenes.
 
 | Review view | What to inspect |
 |---|---|

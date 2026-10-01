@@ -1,0 +1,48 @@
+{
+  "scene": "Assets/_NoReturns/Scenes/CinderMazeReview.unity",
+  "partition_colliders": 24,
+  "wall_modules": 157,
+  "triangles": 1884,
+  "standard_clear_width_m": 3.0,
+  "door_clear_width_m": 3.2,
+  "movement_segments": 156,
+  "four_body_lanes": 19,
+  "body_diameter_m": 0.68,
+  "four_body_span_m": 2.81,
+  "five_body_minimum_span_m": 3.4,
+  "original_map_scene_preserved": true,
+  "human_four_player_review": false,
+  "buildings": [
+    {
+      "name": "A WAREHOUSE",
+      "partitions": 5,
+      "passage_gaps": "RLBRL",
+      "axis": "Z"
+    },
+    {
+      "name": "SIDE OFFICE",
+      "partitions": 3,
+      "passage_gaps": "LBR",
+      "axis": "X"
+    },
+    {
+      "name": "BAY 04",
+      "partitions": 4,
+      "passage_gaps": "RLBR",
+      "axis": "Z"
+    },
+    {
+      "name": "C SERVICE",
+      "partitions": 5,
+      "passage_gaps": "LRBLR",
+      "axis": "Z"
+    },
+    {
+      "name": "STORAGE",
+      "partitions": 7,
+      "passage_gaps": "LRLBRLR",
+      "axis": "X"
+    }
+  ],
+  "method": "Native CharacterController.Move both directions; four simultaneous controllers in every 3m internal straight lane. Human carrying/passing feel remains unreviewed."
+}

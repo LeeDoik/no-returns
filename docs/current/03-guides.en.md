@@ -4,7 +4,7 @@
 
 ## 2026-10-01 — Current Cinder asset-production preparation
 
-The user approved the aged warehouse style from the [first 8-unit production brief](cinder-asset-prep.en.md). Expanded the [shared appearance across 5 buildings](cinder-map-appearance.en.md) in a separate review scene; next is the BAY 04 receipt terminal/floor marking. Preserve existing dimensions, collision and UV density while checking surfaces, terminal screens and cargo clearance. Distinguish automated passes from user quality review of the expansion. CarryRoom records below do not establish Cinder gameplay integration.
+Reuse wall modules from the approved [aged appearance](cinder-map-appearance.en.md) for the [narrow interior maze](cinder-maze-layout.en.md). Check standard clear width 3m, thickness 0.3m, height 4m, placement scale 1 and visual/collision bounds agreement. Preserve outer collision and add 24 interior partitions in a separate group. Keep saved ceilings; hide them only for inspection captures. Next is direct carrying/four-player passing-feel review, then the BAY 04 receipt terminal/floor marking. Distinguish automated passes from user quality review.
 
 0.9.1: [Cooperative HUD and evidence](crew-hud.en.md). Reorganized gameplay instructions and four-player states. Human readability assessment remains outstanding.
 

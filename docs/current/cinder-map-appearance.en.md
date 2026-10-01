@@ -2,6 +2,8 @@
 
 [한국어](cinder-map-appearance.ko.md)
 
+**[Narrow interior maze CinderMazeReview](cinder-maze-layout.en.md) now takes priority for layout review.** Below records the shared appearance and preserved source layout. The new scene adds 3m passages and 24 partition Colliders; this document's 0-new-Collider and original straight-route passes are not maze results.
+
 2026-10-01 · CINDER-MAP-APPEARANCE-01 · **User approval of aged warehouse style / shared appearance applied to 5 buildings and automated checks passed / user review of the expansion incomplete.** This does not change the game version or declare the entire map finished.
 
 ## Scope and reference
@@ -59,6 +61,6 @@ The existing work-light material stored `_EMISSION` alongside the `EmissiveIsBla
 
 Open the map scene in Unity and enter Play, starting at the south warehouse entrance. WASD movement, mouse view, E pickup, Q drop, empty-handed Space jump, F1 language toggle and Esc cursor release. Recheck with `NoReturns.Editor.CinderMapAppearanceBuild.Validate()`; in Play run the existing [carrying check](../../tools/unity_checks/CinderCarryEdgeCheck.cs), then stop Play. New receipts/views use the `map-` prefix without overwriting warehouse evidence.
 
-Next priority: BAY 04 receipt terminal and receipt floor marking. Establish structure, screen plane, receipt slot and cargo clearance before placement with this palette. Review existing CarryRoom receipt rules while recording visual placement separately from actual delivery integration. Follow with connecting-route/outdoor finishes and suppression facilities.
+Current priority is user review of the [narrow interior maze](cinder-maze-layout.en.md). This layout request preceded the earlier BAY 04 receipt terminal/floor-marking production order. Review density/navigation/carrying feel, then continue terminals, connecting routes and outdoor finishes. Review existing CarryRoom receipt rules while distinguishing visual placement from actual delivery integration.
 
 Raw staged whitespace checks fail on 106 trailing blank fields in Unity-generated scene/prefab/meta files. Code/document/evidence checks passed, as did the full staged check ignoring only generated trailing whitespace. Did not hand-edit Unity YAML solely for whitespace checks.

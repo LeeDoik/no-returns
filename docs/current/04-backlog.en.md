@@ -4,7 +4,7 @@
 
 ## 2026-10-01 — Next asset task
 
-The user approved the aged warehouse style as the map reference; expanded [shared appearance to the office, BAY 04, service and storage buildings](cinder-map-appearance.en.md). Passed empty-handed/carrying views, 2,352 poses and 41 existing routes in new `CinderMapAppearanceReview`. Next production: BAY 04 receipt terminal/floor marking → connecting-route/outdoor finishes and suppression facilities. User review of expanded visibility, joints, repeated textures and lighting density, distant shimmer, performance and standalone builds remain. Preserve warehouse/gray/original scenes and existing gameplay code.
+The request for a compact maze roughly four people wide takes priority over terminal production. [Current CinderMazeReview](cinder-maze-layout.en.md) implements standard 3m passages, turns and two-sided circulation inside five buildings. Passed 156 movement segments, 19 four-body straight lanes, 9,312 static carrying poses and actual carrying movement. Next: user navigation/carrying visibility and human four-player passing feel → BAY 04 receipt terminal/marking → connecting routes/outdoor density/finish and suppression facilities. Preserve original/gray/appearance scenes, building placement and ship. Outdoor spacing, distant repetition, performance and standalone builds remain incomplete.
 
 Cinder gameplay integration also remains. Review, connect and revalidate existing `CarryRoom` Listener navigation, baton and ship/delivery coordinates against current Cinder space. Their absence from the gray scene reflects missing integration, not deleted code.
 

@@ -2,7 +2,7 @@
 
 [English](README.en.md)
 
-[승인한 노후 외형을 건물 5개로 확장](current/cinder-map-appearance.ko.md). 사무실·BAY 04·설비동·보관동의 바닥·벽·문틀·천장·작업등을 별도 `CinderMapAppearanceReview`에 적용했다. 다음은 BAY 04 수령 단말기·바닥 표시 제작이다.
+[4명이 나란히 지나는 폭 3m의 내부 미로](current/cinder-maze-layout.ko.md). 다섯 건물에 꺾이는 길과 양쪽 우회로를 추가한 `CinderMazeReview`가 현재 검토 씬이다. 이동 156개 구간·네 몸체 통로 19곳·운반 검사를 통과했으며, 다음은 직접 조작감 확인이다.
 
 기존 리스너·진압봉·우주선 플레이 코드와 씬은 보존되어 있다. [플레이 시스템과 Cinder 검토 씬의 관계](current/cinder-asset-prep.ko.md#기존-플레이-시스템의-위치)를 먼저 확인한다. Cinder의 기능 통합은 미완료다.
 

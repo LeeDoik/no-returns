@@ -2,7 +2,7 @@
 
 [한국어](cinder-blockout.ko.md)
 
-The current environment review target is the [separate Unity scene extending the approved aged style to 5 buildings](cinder-map-appearance.en.md). Preserve original blockout/gray/warehouse appearance scenes. Passed 41 existing routes and 2,352 carrying poses; user review of the expansion, receipt facilities and outdoor finishes remain.
+The current environment target is [CinderMazeReview with 3m interior maze passages](cinder-maze-layout.en.md). Preserve original blockout, gray and warehouse/five-building appearance scenes. Values and 41 original straight routes below describe the original blockout, not maze acceptance. Check the new interior with 156 movement segments and carrying poses/movement. User control feel, receipt facilities and outdoor finishes remain.
 
 ## 2026-10-01 — Gray structure review scene
 

@@ -1,0 +1,175 @@
+PASS A WAREHOUSE row 0 forward
+PASS A WAREHOUSE row 0 reverse
+PASS A WAREHOUSE row 1 forward
+PASS A WAREHOUSE row 1 reverse
+PASS A WAREHOUSE row 2 forward
+PASS A WAREHOUSE row 2 reverse
+PASS A WAREHOUSE row 3 forward
+PASS A WAREHOUSE row 3 reverse
+PASS A WAREHOUSE row 4 forward
+PASS A WAREHOUSE row 4 reverse
+PASS A WAREHOUSE row 5 forward
+PASS A WAREHOUSE row 5 reverse
+PASS A WAREHOUSE turn 0R forward
+PASS A WAREHOUSE turn 0R reverse
+PASS A WAREHOUSE turn 1L forward
+PASS A WAREHOUSE turn 1L reverse
+PASS A WAREHOUSE turn 2L forward
+PASS A WAREHOUSE turn 2L reverse
+PASS A WAREHOUSE turn 2R forward
+PASS A WAREHOUSE turn 2R reverse
+PASS A WAREHOUSE turn 3R forward
+PASS A WAREHOUSE turn 3R reverse
+PASS A WAREHOUSE turn 4L forward
+PASS A WAREHOUSE turn 4L reverse
+PASS A WAREHOUSE door False forward
+PASS A WAREHOUSE door False reverse
+PASS A WAREHOUSE vestibule False forward
+PASS A WAREHOUSE vestibule False reverse
+PASS A WAREHOUSE door True forward
+PASS A WAREHOUSE door True reverse
+PASS A WAREHOUSE vestibule True forward
+PASS A WAREHOUSE vestibule True reverse
+PASS SIDE OFFICE row 0 forward
+PASS SIDE OFFICE row 0 reverse
+PASS SIDE OFFICE row 1 forward
+PASS SIDE OFFICE row 1 reverse
+PASS SIDE OFFICE row 2 forward
+PASS SIDE OFFICE row 2 reverse
+PASS SIDE OFFICE row 3 forward
+PASS SIDE OFFICE row 3 reverse
+PASS SIDE OFFICE turn 0L forward
+PASS SIDE OFFICE turn 0L reverse
+PASS SIDE OFFICE turn 1L forward
+PASS SIDE OFFICE turn 1L reverse
+PASS SIDE OFFICE turn 1R forward
+PASS SIDE OFFICE turn 1R reverse
+PASS SIDE OFFICE turn 2R forward
+PASS SIDE OFFICE turn 2R reverse
+PASS SIDE OFFICE door False forward
+PASS SIDE OFFICE door False reverse
+PASS SIDE OFFICE vestibule False forward
+PASS SIDE OFFICE vestibule False reverse
+PASS SIDE OFFICE door True forward
+PASS SIDE OFFICE door True reverse
+PASS SIDE OFFICE vestibule True forward
+PASS SIDE OFFICE vestibule True reverse
+PASS BAY 04 row 0 forward
+PASS BAY 04 row 0 reverse
+PASS BAY 04 row 1 forward
+PASS BAY 04 row 1 reverse
+PASS BAY 04 row 2 forward
+PASS BAY 04 row 2 reverse
+PASS BAY 04 row 3 forward
+PASS BAY 04 row 3 reverse
+PASS BAY 04 row 4 forward
+PASS BAY 04 row 4 reverse
+PASS BAY 04 turn 0R forward
+PASS BAY 04 turn 0R reverse
+PASS BAY 04 turn 1L forward
+PASS BAY 04 turn 1L reverse
+PASS BAY 04 turn 2L forward
+PASS BAY 04 turn 2L reverse
+PASS BAY 04 turn 2R forward
+PASS BAY 04 turn 2R reverse
+PASS BAY 04 turn 3R forward
+PASS BAY 04 turn 3R reverse
+PASS BAY 04 door False forward
+PASS BAY 04 door False reverse
+PASS BAY 04 vestibule False forward
+PASS BAY 04 vestibule False reverse
+PASS BAY 04 door True forward
+PASS BAY 04 door True reverse
+PASS BAY 04 vestibule True forward
+PASS BAY 04 vestibule True reverse
+PASS C SERVICE row 0 forward
+PASS C SERVICE row 0 reverse
+PASS C SERVICE row 1 forward
+PASS C SERVICE row 1 reverse
+PASS C SERVICE row 2 forward
+PASS C SERVICE row 2 reverse
+PASS C SERVICE row 3 forward
+PASS C SERVICE row 3 reverse
+PASS C SERVICE row 4 forward
+PASS C SERVICE row 4 reverse
+PASS C SERVICE row 5 forward
+PASS C SERVICE row 5 reverse
+PASS C SERVICE turn 0L forward
+PASS C SERVICE turn 0L reverse
+PASS C SERVICE turn 1R forward
+PASS C SERVICE turn 1R reverse
+PASS C SERVICE turn 2L forward
+PASS C SERVICE turn 2L reverse
+PASS C SERVICE turn 2R forward
+PASS C SERVICE turn 2R reverse
+PASS C SERVICE turn 3L forward
+PASS C SERVICE turn 3L reverse
+PASS C SERVICE turn 4R forward
+PASS C SERVICE turn 4R reverse
+PASS C SERVICE door False forward
+PASS C SERVICE door False reverse
+PASS C SERVICE vestibule False forward
+PASS C SERVICE vestibule False reverse
+PASS C SERVICE door True forward
+PASS C SERVICE door True reverse
+PASS C SERVICE vestibule True forward
+PASS C SERVICE vestibule True reverse
+PASS STORAGE row 0 forward
+PASS STORAGE row 0 reverse
+PASS STORAGE row 1 forward
+PASS STORAGE row 1 reverse
+PASS STORAGE row 2 forward
+PASS STORAGE row 2 reverse
+PASS STORAGE row 3 forward
+PASS STORAGE row 3 reverse
+PASS STORAGE row 4 forward
+PASS STORAGE row 4 reverse
+PASS STORAGE row 5 forward
+PASS STORAGE row 5 reverse
+PASS STORAGE row 6 forward
+PASS STORAGE row 6 reverse
+PASS STORAGE row 7 forward
+PASS STORAGE row 7 reverse
+PASS STORAGE turn 0L forward
+PASS STORAGE turn 0L reverse
+PASS STORAGE turn 1R forward
+PASS STORAGE turn 1R reverse
+PASS STORAGE turn 2L forward
+PASS STORAGE turn 2L reverse
+PASS STORAGE turn 3L forward
+PASS STORAGE turn 3L reverse
+PASS STORAGE turn 3R forward
+PASS STORAGE turn 3R reverse
+PASS STORAGE turn 4R forward
+PASS STORAGE turn 4R reverse
+PASS STORAGE turn 5L forward
+PASS STORAGE turn 5L reverse
+PASS STORAGE turn 6R forward
+PASS STORAGE turn 6R reverse
+PASS STORAGE door False forward
+PASS STORAGE door False reverse
+PASS STORAGE vestibule False forward
+PASS STORAGE vestibule False reverse
+PASS STORAGE door True forward
+PASS STORAGE door True reverse
+PASS STORAGE vestibule True forward
+PASS STORAGE vestibule True reverse
+PASS four bodies / A WAREHOUSE row 1 / clear 3.000m
+PASS four bodies / A WAREHOUSE row 2 / clear 3.000m
+PASS four bodies / A WAREHOUSE row 3 / clear 3.000m
+PASS four bodies / A WAREHOUSE row 4 / clear 3.000m
+PASS four bodies / SIDE OFFICE row 1 / clear 3.000m
+PASS four bodies / SIDE OFFICE row 2 / clear 3.000m
+PASS four bodies / BAY 04 row 1 / clear 3.000m
+PASS four bodies / BAY 04 row 2 / clear 3.000m
+PASS four bodies / BAY 04 row 3 / clear 3.000m
+PASS four bodies / C SERVICE row 1 / clear 3.000m
+PASS four bodies / C SERVICE row 2 / clear 3.000m
+PASS four bodies / C SERVICE row 3 / clear 3.000m
+PASS four bodies / C SERVICE row 4 / clear 3.000m
+PASS four bodies / STORAGE row 1 / clear 3.000m
+PASS four bodies / STORAGE row 2 / clear 3.000m
+PASS four bodies / STORAGE row 3 / clear 3.000m
+PASS four bodies / STORAGE row 4 / clear 3.000m
+PASS four bodies / STORAGE row 5 / clear 3.000m
+PASS four bodies / STORAGE row 6 / clear 3.000m
