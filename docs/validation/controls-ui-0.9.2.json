@@ -145,5 +145,12 @@
     "Cinder wallet/license are session-only; existing hazard save remains.",
     "Final native build follows a render-only preview edge correction; full delivery logic was unchanged, final native preview check covers it.",
     "Full delivery regression passed after the final source/build changes; native preview and target-priority checks also passed. Final movement regression recorded separately."
-  ]
+  ],
+  "manual_launch": {
+    "status": "PASS:4 native processes and 3 established host connections",
+    "run": "artifacts/cinder-four-player/run-20261001-232235-b510df",
+    "test_input_files": 0,
+    "human_input_verified": false,
+    "left_running": true
+  }
 }
