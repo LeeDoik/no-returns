@@ -2,7 +2,7 @@
 
 [한국어](cinder-appearance-01.ko.md)
 
-2026-10-01 · **User concept approval and Unity reference-area application complete / user quality review of the applied result incomplete.** This proposes appearances for the 14.4×20.4m warehouse in the [current production brief](../current/cinder-asset-prep.en.md). Retain the user-reviewed size. PNGs below are approved references; actual model/material/texture application is linked in the [latest production record](../current/cinder-asset-prep.en.md#2026-10-01--applying-the-approved-appearance).
+2026-10-01 · **Concept approval, first application and aged texture revision complete / user quality review of the revision incomplete.** This proposes appearances for the 14.4×20.4m warehouse in the [current production brief](../current/cinder-asset-prep.en.md). Retain the user-reviewed size. PNGs below are approved references; actual model/material/texture application is linked in the [latest production record](../current/cinder-asset-prep.en.md#2026-10-01--aged-texture-revision).
 
 ![Warehouse entrance appearance proposal](../../art/cinder-kit-01/appearance-entry-01.png)
 
@@ -38,6 +38,8 @@ Generated with built-in imagegen using the actual gray entrance/component sheet 
 This task's carrying checks and fix are recorded separately in the [production/review guide](../current/cinder-asset-prep.en.md). Automated passes do not replace human visibility/control evaluation or approval of these appearances.
 
 ## Actual Unity application views
+
+The user found the first actual application too clean and requested dirty, aged textures. Actual views below show the current revision. [Aged texture production/checks](../current/cinder-asset-prep.en.md#2026-10-01--aged-texture-revision), [first-application entry](../../art/cinder-kit-01/clean-entry-before.png) and [first-application rack](../../art/cinder-kit-01/clean-rack-before.png). Concept-direction approval is distinct from quality approval of the revision.
 
 ![Empty-handed warehouse entrance](../../art/cinder-kit-01/production-entry-empty.png)
 

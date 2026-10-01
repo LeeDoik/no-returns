@@ -2,6 +2,14 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-01 — Cinder aged texture revision
+
+Addressed user feedback that the actual colors were too clean by adding yellowed walls/rust drips, peeling red paint, grime at bases/seams, floor wear, ceiling stains and sign corrosion. Preserved 2 built-in imagegen sources, actual prompts and reference/output hashes; replaced runtime textures at 512×512 / 256×128 using native Blender resizing. Replaced the producer's direct-painting block with source normalization and added `--surfaces-only` to update the appearance Blender source without exporting FBXs. No lighting, geometry, collision, placement or gameplay changes. [Production/review guide](../current/cinder-asset-prep.en.md#2026-10-01--aged-texture-revision).
+
+Validation: passed 14 Blender/Unity reimports and surface settings, 6 passages, 3 jumps, 48 center-lane cargo poses, Mac Editor Play 432 poses with 0 penetrations, E/W/S/Q and empty-handed jumping. Inspected 6 matching actual camera views and preserved first-application entry/rack comparisons. Current compilation status has 0 errors; Play console has 0 errors/warnings. No forced compilation or real-time human input. [Check/preservation receipt](../../art/cinder-kit-01/aged-checks.json): starting hashes match on 14 FBXs, 14 prefabs, 3 materials, 3 scenes and 8 pre-existing ship-material edits, 44 files total. Corrected a missing class namespace in the initial CLI validation expression and passed; this was not a project compilation failure.
+
+Updated current production criteria, appearance record, guide, backlog, validation, documentation home and history in both languages. Full documentation fails on 142 existing missing artifact links with no new failures. Check scoped whitespace/Git LFS and verify upload/HEAD equality after a normal push to the public remote. Exclude pre-existing ship-material edits from the commit. User quality of the revision, all-part multi-view review, distant patterns, performance, standalone Mac/Windows builds, ship Play and networking/AI/delivery remain unverified.
+
 ## 2026-10-01 — Produced and applied approved Cinder appearances
 
 Applied user-approved colors, textures, work lights, sign and empty 2-tier rack in the [separate appearance review scene](../../NoReturns/Assets/_NoReturns/Scenes/CinderAppearanceReview.unity). Approval: “Yes, let's go with this feel” (original: “어 이 느낌으로 가자”). Reused the gray Blender source and added 14 appearance FBXs/prefabs, directly painted 512×512 shared surfaces and a 256×128 sign, 3 URP Lit materials and reproduction code. Matched all 530 warehouse structural surfaces and placed 5 lights, 1 sign and 1 rack at the entrance/first 6m. The rack owns only 1 Collider reserving its storage volume. Retained the 14.4×20.4m warehouse, 3.2×3.3m opening, ceiling underside at 4m and 10 original Colliders. Hid 12 blockout labels that showed through walls in the appearance scene. Other buildings and existing carrying runtime are unchanged.

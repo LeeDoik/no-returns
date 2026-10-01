@@ -1,0 +1,389 @@
+{
+  "date": "2026-10-01",
+  "reference_commit": "d216e862cf77a381e19b9b93a85c0b06ea50cade",
+  "change": "Aged shared surface/sign textures; geometry, UVs, lighting, scenes and runtime preserved.",
+  "user_feedback": "Applied colors too clean; requested dirty/aged approved concept appearance.",
+  "user_concept_approved": true,
+  "user_aged_result_approved": false,
+  "blender": {
+    "version": "5.2.2 LTS",
+    "roundtrip_parts": 14,
+    "passed": true,
+    "surface_only_export": true
+  },
+  "unity": {
+    "version": "6000.6.0f1",
+    "imported_parts": 14,
+    "texture_settings_passed": true,
+    "compilation_status": {
+      "status": "completed",
+      "failed": false,
+      "errors": [],
+      "compilationFailed": false
+    },
+    "forced_recompile": false,
+    "play_console": {
+      "error": 0,
+      "warn": 0,
+      "log": 0
+    },
+    "structural_checks": {
+      "passages": 6,
+      "jump_positions": 3,
+      "center_cargo_poses": 48,
+      "passed": true
+    }
+  },
+  "carry_checks": {
+    "scene": "CinderAppearanceReview",
+    "samples": 432,
+    "overlap_count": 0,
+    "touching_contacts": 6,
+    "penetration_tolerance_m": 1e-05,
+    "failures": [],
+    "input_checks": {
+      "pickup": true,
+      "forward": true,
+      "backward": true,
+      "drop": true,
+      "jump": true
+    },
+    "method": "Play mode, API-set poses, reflected actual CinderBlockoutWalk.Update; not human controls"
+  },
+  "visual_review": {
+    "method": "Viewed actual Play camera PNGs; API-set camera poses, not human real-time controls.",
+    "views": 6,
+    "sign_readable": true,
+    "empty_two_tier_rack": true,
+    "aged_surfaces_visible": true,
+    "first_application_comparisons": [
+      "art/cinder-kit-01/clean-entry-before.png",
+      "art/cinder-kit-01/clean-rack-before.png"
+    ]
+  },
+  "preserved": [
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/Cinder_Lamp_Emission.mat",
+      "sha256_before": "2817689486e3e85872a9d135dbd0cf4f21d08b55e2525b2c62c135a21547c1a4",
+      "sha256_after": "2817689486e3e85872a9d135dbd0cf4f21d08b55e2525b2c62c135a21547c1a4"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/Cinder_Sign.mat",
+      "sha256_before": "1f1d740f1c041537524800f91a247eb1b194ed460a774c883decb3080cae1b41",
+      "sha256_after": "1f1d740f1c041537524800f91a247eb1b194ed460a774c883decb3080cae1b41"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/Cinder_Surface.mat",
+      "sha256_before": "b05061ab9192a0fcddc20bd33e5f9f86da2011709b4bab98d67dbe3321fc1f84",
+      "sha256_after": "b05061ab9192a0fcddc20bd33e5f9f86da2011709b4bab98d67dbe3321fc1f84"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Beam_A.fbx",
+      "sha256_before": "e6dd81c197935c506caad2585a2d3c42c9475a16d29ff9d8862e760055622937",
+      "sha256_after": "e6dd81c197935c506caad2585a2d3c42c9475a16d29ff9d8862e760055622937"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Ceiling_A.fbx",
+      "sha256_before": "6779fcaf8c2f519181daf9097ee5c920fd3dc055f735adc58ab7d9f95c9ef58d",
+      "sha256_after": "6779fcaf8c2f519181daf9097ee5c920fd3dc055f735adc58ab7d9f95c9ef58d"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Ceiling_Corner.fbx",
+      "sha256_before": "8648a565c707115a74485d70f06dc678509f06f7f0620749270a5cf3fee8b4a1",
+      "sha256_after": "8648a565c707115a74485d70f06dc678509f06f7f0620749270a5cf3fee8b4a1"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Ceiling_Edge.fbx",
+      "sha256_before": "842ea341be20d28f01c438cb918c803f55f3628842edcac29cf63cc5163dd509",
+      "sha256_after": "842ea341be20d28f01c438cb918c803f55f3628842edcac29cf63cc5163dd509"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Corner_A.fbx",
+      "sha256_before": "674918cd54738964135190ff61509cdbfa531dd08e43d883bae245a77fbe58d9",
+      "sha256_after": "674918cd54738964135190ff61509cdbfa531dd08e43d883bae245a77fbe58d9"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_DoorFrame_A.fbx",
+      "sha256_before": "0e651a8e6b170bc7d944e191600c4d1f73f0307108427f87a9692193ddeb15e1",
+      "sha256_after": "0e651a8e6b170bc7d944e191600c4d1f73f0307108427f87a9692193ddeb15e1"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_End_A.fbx",
+      "sha256_before": "55e414e68d29571e5580652e571b09dbd6a160e2e2c284c4dca02f446232bb81",
+      "sha256_after": "55e414e68d29571e5580652e571b09dbd6a160e2e2c284c4dca02f446232bb81"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Floor_A.fbx",
+      "sha256_before": "d2b833c9efad3400189b7b92d3ebb840a80b24ff7ab500afae21a0c1a3018244",
+      "sha256_after": "d2b833c9efad3400189b7b92d3ebb840a80b24ff7ab500afae21a0c1a3018244"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Lamp_A.fbx",
+      "sha256_before": "c45ec00ac65be796769cbfcad44b21a492af0c3ddbeb86dc4913b39ccfbf1dba",
+      "sha256_after": "c45ec00ac65be796769cbfcad44b21a492af0c3ddbeb86dc4913b39ccfbf1dba"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Rack_A.fbx",
+      "sha256_before": "171be707d2f1d4e06df7b9ae8b182702b5c882344140012a7030db3d7661f0fa",
+      "sha256_after": "171be707d2f1d4e06df7b9ae8b182702b5c882344140012a7030db3d7661f0fa"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Sign_A.fbx",
+      "sha256_before": "d2d0734529064b74d744f6a9d7d51ae6be4e0adde76fca1c36be9040bc47a1a0",
+      "sha256_after": "d2d0734529064b74d744f6a9d7d51ae6be4e0adde76fca1c36be9040bc47a1a0"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Wall_A.fbx",
+      "sha256_before": "91ed644534a34568033279445bc30e1429a6544024696a83f9d2591effe74762",
+      "sha256_after": "91ed644534a34568033279445bc30e1429a6544024696a83f9d2591effe74762"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Wall_Fill035.fbx",
+      "sha256_before": "cb53fbec107eb21c571fc3abdb44deb877e654bfb865e352096f7d618135afef",
+      "sha256_after": "cb53fbec107eb21c571fc3abdb44deb877e654bfb865e352096f7d618135afef"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Wall_Fill090.fbx",
+      "sha256_before": "7c389f9ccfaa4a79be96c35e69a687ec88c1f28db626c9e41ef6da710ebb8952",
+      "sha256_after": "7c389f9ccfaa4a79be96c35e69a687ec88c1f28db626c9e41ef6da710ebb8952"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Glazing.mat",
+      "sha256_before": "ed8c0255c2559eeab683b0531330cd6d58c2fb1db676f2e91ccc06e7d4078839",
+      "sha256_after": "ed8c0255c2559eeab683b0531330cd6d58c2fb1db676f2e91ccc06e7d4078839"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Burgundy.mat",
+      "sha256_before": "69786651c5296d152651780892fccf50182f6c709c107c0d66789000b1f44abe",
+      "sha256_after": "69786651c5296d152651780892fccf50182f6c709c107c0d66789000b1f44abe"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Cyan.mat",
+      "sha256_before": "40dcffb791b4728f5be3381136c32dd69ddff0ac0a0828825a52c21470a99c40",
+      "sha256_after": "40dcffb791b4728f5be3381136c32dd69ddff0ac0a0828825a52c21470a99c40"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Glazing.mat",
+      "sha256_before": "5a5aa52508220f6c03b681b320b6bb103f8430b209787c0c6430cb935dec9a58",
+      "sha256_after": "5a5aa52508220f6c03b681b320b6bb103f8430b209787c0c6430cb935dec9a58"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Graphite.mat",
+      "sha256_before": "aadb9f31bb7aa0f43c2e0058924261840558e38627caf405ee87e8d69a13f00e",
+      "sha256_after": "aadb9f31bb7aa0f43c2e0058924261840558e38627caf405ee87e8d69a13f00e"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Ivory.mat",
+      "sha256_before": "e7783e95afc06de86d769ffa0d5af4c24f31e6685f51aa94d78d9c4b90a5038c",
+      "sha256_after": "e7783e95afc06de86d769ffa0d5af4c24f31e6685f51aa94d78d9c4b90a5038c"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Lamp.mat",
+      "sha256_before": "cf9126990e129f6e54ab804aed468369d5dec32c6f93db9beb2223443b8464bd",
+      "sha256_after": "cf9126990e129f6e54ab804aed468369d5dec32c6f93db9beb2223443b8464bd"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Orange.mat",
+      "sha256_before": "7ec6b0b3230c19611fe54fab98732c4fabdfc3c8442bdad14549eb4ea08fc303",
+      "sha256_after": "7ec6b0b3230c19611fe54fab98732c4fabdfc3c8442bdad14549eb4ea08fc303"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Screen.mat",
+      "sha256_before": "fe1e8b0b7d2cb30d239e2379c78a21ecc4e66450d6cd8b78cbb8187757f63985",
+      "sha256_after": "fe1e8b0b7d2cb30d239e2379c78a21ecc4e66450d6cd8b78cbb8187757f63985"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/tripo_122c8a19_891e_44c2_8d47_8745b6e46de5.mat",
+      "sha256_before": "f2a5ac8f857e36d1c98794f45bcb4e33c4e6a107bf0c8c931e64e0f1fa5816e1",
+      "sha256_after": "f2a5ac8f857e36d1c98794f45bcb4e33c4e6a107bf0c8c931e64e0f1fa5816e1"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Prefabs/CinderAppearance01/NR_Cinder_Beam_A.prefab",
+      "sha256_before": "a675ce5a09ee5c1904483608c7d8fff9ee927d3bf57c6e944bfd4097c48b6540",
+      "sha256_after": "a675ce5a09ee5c1904483608c7d8fff9ee927d3bf57c6e944bfd4097c48b6540"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Prefabs/CinderAppearance01/NR_Cinder_Ceiling_A.prefab",
+      "sha256_before": "2f03f18d5ce79b813b8f6eb366517cbc30caf4b3b5beecbe47104b59446d5c1a",
+      "sha256_after": "2f03f18d5ce79b813b8f6eb366517cbc30caf4b3b5beecbe47104b59446d5c1a"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Prefabs/CinderAppearance01/NR_Cinder_Ceiling_Corner.prefab",
+      "sha256_before": "1ad35a1dbe87fd090bb6080902cff8f786862097897a7fb7af8987b89a58eb9f",
+      "sha256_after": "1ad35a1dbe87fd090bb6080902cff8f786862097897a7fb7af8987b89a58eb9f"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Prefabs/CinderAppearance01/NR_Cinder_Ceiling_Edge.prefab",
+      "sha256_before": "1f929736ce34ad650b89ec6c246abb953e95cc900505ac617a34e4f7da32cbfa",
+      "sha256_after": "1f929736ce34ad650b89ec6c246abb953e95cc900505ac617a34e4f7da32cbfa"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Prefabs/CinderAppearance01/NR_Cinder_Corner_A.prefab",
+      "sha256_before": "5a332938be4a6e2ab486c137e6084dbc4c8bf25800ad454eb870b4d1e0984496",
+      "sha256_after": "5a332938be4a6e2ab486c137e6084dbc4c8bf25800ad454eb870b4d1e0984496"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Prefabs/CinderAppearance01/NR_Cinder_DoorFrame_A.prefab",
+      "sha256_before": "b86593197ebf8ea233e2c5c5c131e852aadd3b48d63f39b22094e5f6d8f19a3b",
+      "sha256_after": "b86593197ebf8ea233e2c5c5c131e852aadd3b48d63f39b22094e5f6d8f19a3b"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Prefabs/CinderAppearance01/NR_Cinder_End_A.prefab",
+      "sha256_before": "364f0196e7a67b06192f75b112ad00a98d651e39d0f3f2f3bd62e1a8a64f832b",
+      "sha256_after": "364f0196e7a67b06192f75b112ad00a98d651e39d0f3f2f3bd62e1a8a64f832b"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Prefabs/CinderAppearance01/NR_Cinder_Floor_A.prefab",
+      "sha256_before": "0b3e26a98477e96dd2a6815cd3754c71dc6f091ed5fb6ee6ecaaeeb4ac1fc1b5",
+      "sha256_after": "0b3e26a98477e96dd2a6815cd3754c71dc6f091ed5fb6ee6ecaaeeb4ac1fc1b5"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Prefabs/CinderAppearance01/NR_Cinder_Lamp_A.prefab",
+      "sha256_before": "6ec864b2333fe18be0a9f01a149a55e7393124cd9ace10135996977abeb502ab",
+      "sha256_after": "6ec864b2333fe18be0a9f01a149a55e7393124cd9ace10135996977abeb502ab"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Prefabs/CinderAppearance01/NR_Cinder_Rack_A.prefab",
+      "sha256_before": "14dba89ef1460ee3faaf6673a5ce7b8dfb90ebff190c9c462f365998520c8153",
+      "sha256_after": "14dba89ef1460ee3faaf6673a5ce7b8dfb90ebff190c9c462f365998520c8153"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Prefabs/CinderAppearance01/NR_Cinder_Sign_A.prefab",
+      "sha256_before": "ad0bc5ec4255681fc9ccdbe4e15dbc0750e47aae1fce593ecc0db0bc226ccfb6",
+      "sha256_after": "ad0bc5ec4255681fc9ccdbe4e15dbc0750e47aae1fce593ecc0db0bc226ccfb6"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Prefabs/CinderAppearance01/NR_Cinder_Wall_A.prefab",
+      "sha256_before": "f70083347a5300863856bafd96af76d91c537bc298388cf39941c7511e326e4e",
+      "sha256_after": "f70083347a5300863856bafd96af76d91c537bc298388cf39941c7511e326e4e"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Prefabs/CinderAppearance01/NR_Cinder_Wall_Fill035.prefab",
+      "sha256_before": "f61b844a35caf8f34d13fd4f051f1cbb21d87de9373e591034a93eae9e3602f0",
+      "sha256_after": "f61b844a35caf8f34d13fd4f051f1cbb21d87de9373e591034a93eae9e3602f0"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Prefabs/CinderAppearance01/NR_Cinder_Wall_Fill090.prefab",
+      "sha256_before": "b504ef8497fc92e6dfdd35a02572d76fe47a655b9ad509dc23c59876503083e0",
+      "sha256_after": "b504ef8497fc92e6dfdd35a02572d76fe47a655b9ad509dc23c59876503083e0"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Scenes/CinderAppearanceReview.unity",
+      "sha256_before": "227a111d3d7ca85fba3c85d78cfc2f02ed5ebf69dacb48e1bc345dc09708183a",
+      "sha256_after": "227a111d3d7ca85fba3c85d78cfc2f02ed5ebf69dacb48e1bc345dc09708183a"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Scenes/CinderDepotBlockout.unity",
+      "sha256_before": "0ddfe56f0b3b51ef88cff938335a24973aae2057d36ce0e0417d0057ef4a3b6c",
+      "sha256_after": "0ddfe56f0b3b51ef88cff938335a24973aae2057d36ce0e0417d0057ef4a3b6c"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Scenes/CinderStructureReview.unity",
+      "sha256_before": "771407c320b81d20491615ba80304dc65dcbf9881a5837092326ece71e44d770",
+      "sha256_after": "771407c320b81d20491615ba80304dc65dcbf9881a5837092326ece71e44d770"
+    }
+  ],
+  "unverified": [
+    "User quality of aged result",
+    "All-part front/rear/side/top quality",
+    "Distant pattern shimmer",
+    "Performance",
+    "Standalone Mac/Windows builds",
+    "Ship-scene Play",
+    "Cinder networking/AI/delivery integration"
+  ],
+  "cli_validation_retry": "Qualified NoReturns.Editor classes after the first eval expression omitted the namespace. Project compilation status did not fail.",
+  "documentation": {
+    "full_passed": false,
+    "existing_missing_artifact_links": 142,
+    "new_failures": 0,
+    "bilingual_values_and_checkboxes_match": true
+  },
+  "evidence_files": [
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/Cinder_Surface_Atlas.png",
+      "bytes": 461366,
+      "sha256": "ddc651c2b8c83046fbc2da899141d741b8002e9953b7115d5e07817903532838"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/Cinder_Warehouse_Sign.png",
+      "bytes": 60155,
+      "sha256": "8d67c4d5fc8ea34c87421672c12491b6f5088a578821b0c38f6cb94daa62e638"
+    },
+    {
+      "path": "art/cinder-kit-01/Cinder_Kit_Appearance.blend",
+      "bytes": 642324,
+      "sha256": "1b4a0849ba6de77bb004d1677633e5243017c9b7b16d32ed38186891b575f7a5"
+    },
+    {
+      "path": "art/cinder-kit-01/aged-atlas-source.png",
+      "bytes": 2388822,
+      "sha256": "62ba9d91dffa8c1924f3529683b15b5374f18e7af3c2b155018a7dbcee6f83a9"
+    },
+    {
+      "path": "art/cinder-kit-01/aged-sign-source.png",
+      "bytes": 2436135,
+      "sha256": "20b515f43b463a3f97a8282da16731b9994758d8bb97798fab695cebe778fa9c"
+    },
+    {
+      "path": "art/cinder-kit-01/aged-texture-provenance.json",
+      "bytes": 6038,
+      "sha256": "f1ae50eabd275bea878437fc1ccd84da6cd63e9fa88c7026d08807b73ab53dd1"
+    },
+    {
+      "path": "art/cinder-kit-01/build_appearance.py",
+      "bytes": 8755,
+      "sha256": "3e211a8d0247caff39e7e67f8f8116bede76419dc42765f3789080d53d0b23d3"
+    },
+    {
+      "path": "art/cinder-kit-01/production-carry-edge-door.png",
+      "bytes": 829658,
+      "sha256": "6603ee73ae438283079bd05a565e0447df7f3b2f645f8d77ba94bd4ad6543ac9"
+    },
+    {
+      "path": "art/cinder-kit-01/production-carry-edge-validation.json",
+      "bytes": 386,
+      "sha256": "524ef9093edc2b7a5bc763d29a8c7d0a25d9d0ce37abfeb006219aae8fe2dbf4"
+    },
+    {
+      "path": "art/cinder-kit-01/production-carry-edge-wall.png",
+      "bytes": 357911,
+      "sha256": "01593bf1705cbd599e0e4dc1d6214ecbf89315afb86d83582b1dd33866ec279b"
+    },
+    {
+      "path": "art/cinder-kit-01/production-entry-carry.png",
+      "bytes": 869956,
+      "sha256": "33d563f2ca9bd27cc18ce5ada5ccd8b170a4916c0a4faf2f72d29d17a1315b6c"
+    },
+    {
+      "path": "art/cinder-kit-01/production-entry-empty.png",
+      "bytes": 944935,
+      "sha256": "e769882c429f2427c663388d97cd9debabf797d856a2d6356510859f9344aaa1"
+    },
+    {
+      "path": "art/cinder-kit-01/production-inside-rear-carry.png",
+      "bytes": 757687,
+      "sha256": "75742d5bb7ae1c06d961f23fed5e0d905145d6989ff11ee19663f117a2e0ad17"
+    },
+    {
+      "path": "art/cinder-kit-01/production-rack-empty.png",
+      "bytes": 1207580,
+      "sha256": "97a8b2696ef09df4c6e15ffcf806ff450cee58dc01a97bd1779af18b4288d740"
+    },
+    {
+      "path": "art/cinder-kit-01/production-structure-validation.txt",
+      "bytes": 1006,
+      "sha256": "8c40a83926b877cfee0c6023f3cde66619705ed59c4e098fa885b5548e622250"
+    },
+    {
+      "path": "art/cinder-kit-01/production-unity-validation.json",
+      "bytes": 2915,
+      "sha256": "682c485c242deac7a2e89ff22613dd1a30a08eb48568d3c488f0f3625b0fc501"
+    },
+    {
+      "path": "art/cinder-kit-01/production-validation.json",
+      "bytes": 9563,
+      "sha256": "1a203ecaa968a1cef238dd6dff94ad86251e4211dae52da75935c674af38f98a"
+    }
+  ]
+}

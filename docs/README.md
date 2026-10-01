@@ -2,7 +2,7 @@
 
 [English](README.en.md)
 
-[승인한 외형의 실제 Unity 화면](art/cinder-appearance-01.ko.md). 상아색 패널·적갈색 띠·작업등·표지·빈 2단 선반을 별도 `CinderAppearanceReview`에 적용했다. [제작·432개 운반 자세 검사·검토 씬 안내](current/cinder-asset-prep.ko.md#2026-10-01--승인된-외형의-실제-적용). 다음은 실제 적용 결과의 사용자 시야·접합면·품질 확인이다.
+[현재 Unity 노후 질감 화면](art/cinder-appearance-01.ko.md). 첫 적용이 너무 깔끔하다는 사용자 의견에 따라 변색·녹물·벗겨진 도장·바닥 때를 추가했다. [수정·검사·검토 씬 안내](current/cinder-asset-prep.ko.md#2026-10-01--노후-질감-수정). 다음은 수정 결과의 사용자 품질 확인이다.
 
 기존 리스너·진압봉·우주선 플레이 코드와 씬은 보존되어 있다. [플레이 시스템과 Cinder 검토 씬의 관계](current/cinder-asset-prep.ko.md#기존-플레이-시스템의-위치)를 먼저 확인한다. Cinder의 기능 통합은 미완료다.
 

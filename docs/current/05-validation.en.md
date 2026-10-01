@@ -16,6 +16,8 @@
 - [ ] Obtain user cargo-visibility, edge carrying-rotation, wall-approach and joint-quality feedback. Standalone Mac/Windows builds were not tested in this task.
 - [x] User concept-direction approval and shared surfaces, work lights, sign and empty 2-tier rack in separate `CinderAppearanceReview`.
 - [x] Checked 14 new FBXs, 2 textures, 0 penetrations in 432 carrying poses, E/W/S/Q, empty-handed jump and matching empty-handed/carrying views. 0 compile errors and 0 errors/warnings in the final Play console. [Evidence](cinder-asset-prep.en.md#2026-10-01--applying-the-approved-appearance).
+- [x] Recorded feedback that the first application was too clean; applied 2 imagegen-aged surfaces, normalized to 512×512 / 256×128, rechecked 14 imports/432 poses, inspected 6 actual camera views and matched hashes on 44 preserved files. [Revision evidence](cinder-asset-prep.en.md#2026-10-01--aged-texture-revision).
+- [ ] Obtain user quality review of the aged texture revision.
 - [ ] User appearance, visibility and joint-quality review of the actual result; all-part multi-view review, distant shimmer and performance. Ship-scene Play revalidation remains separate.
 - [ ] After expanding the reference area, validate actual Cinder delivery, enemy AI, networking and human cooperation. Do not mark currently unconnected systems complete.
 

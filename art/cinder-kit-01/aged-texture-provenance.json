@@ -1,0 +1,85 @@
+{
+  "date": "2026-10-01",
+  "tool": "built-in imagegen",
+  "reason": "User reported that the implemented warehouse was too clean and requested the dirty, aged approved concept appearance.",
+  "reference_commit": "d216e862cf77a381e19b9b93a85c0b06ea50cade",
+  "edits": [
+    {
+      "source": "art/cinder-kit-01/aged-atlas-source.png",
+      "target": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/Cinder_Surface_Atlas.png",
+      "prompt": "Use-case: texture asset edit. Image 1 is the EDIT TARGET: an existing square flat UV texture atlas. Image 2 is STYLE REFERENCE ONLY: approved aged industrial warehouse concept.\nEdit ONLY the atlas of image 1. Return ONE square, flat, front-on, edge-to-edge game texture, preferably 1024x1024. Absolutely preserve all rectangular regions, their coordinates, all panel seams, the red stripe's height, and material identities from image 1. No perspective, scene, props, labels, new grids or layout lines.\nExisting atlas layout at 512x512 reference coordinates: wall = x0..255,y0..511; floor = x256..511,y0..255; ceiling = x256..383,y256..383; graphite frame = x384..511,y256..383; red rack paint = x256..383,y384..511; unused graphite = x384..511,y384..511. The wall horizontal seam stays at y152, rust-red wall stripe at y288..370, dark base trim at y484..511. Scale all coordinates proportionally to output resolution.\nThe user finds the current atlas too pristine and wants clearly dirty, old, used surfaces matching image 2. Replace nearly flat immaculate fields with worn dirty ivory paint, broad irregular muted tan and brown discoloration, embedded grime, water streaks and rust bleeding from seams/fasteners. Add chipped red paint exposing dull brown metal, rust clusters on touch edges, scuffed charcoal graphite, accumulated dirt at base edges. Dirty the horizontal wall seam and upper edges too, not just the bottom. Preserve the overall ivory/red/graphite palette and reading of the doorway. Broad flat fields should look aged at gameplay distance, with coarse restrained blocky wear details at close distance. No evenly sprinkled procedural confetti, no uniform random-noise overlay, no glossy wet look.\nFloor: muted dark brown-gray aged slabs, broad low-contrast scuffs and dirt collecting in its existing edge seams. Ceiling: aged ivory, smoky grime at seams, subtle broad staining. Graphite frame: matte charcoal with rusty brown edge wear. Rack paint: faded rust-red chipped and abraded.\nKeep low-resolution PSX-style pixel texture character of image 2, neutral flat base-color lighting. Do NOT paint directional cast shadows, bloom, glowing lights, baked specular shine, text or logos. Opaque background. Precisely preserve atlas geometry and stripe/seam locations.",
+      "target_size": [
+        512,
+        512
+      ],
+      "files": [
+        {
+          "path": "art/cinder-kit-01/aged-atlas-source.png",
+          "sha256": "62ba9d91dffa8c1924f3529683b15b5374f18e7af3c2b155018a7dbcee6f83a9",
+          "bytes": 2388822,
+          "size": [
+            1254,
+            1254
+          ]
+        },
+        {
+          "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/Cinder_Surface_Atlas.png",
+          "sha256": "ddc651c2b8c83046fbc2da899141d741b8002e9953b7115d5e07817903532838",
+          "bytes": 461366,
+          "size": [
+            512,
+            512
+          ]
+        }
+      ]
+    },
+    {
+      "source": "art/cinder-kit-01/aged-sign-source.png",
+      "target": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/Cinder_Warehouse_Sign.png",
+      "prompt": "Use-case: texture asset edit. Image 1 is EDIT TARGET: a flat rectangular WAREHOUSE sign texture with a right arrow. Image 2 is STYLE REFERENCE ONLY: old dirty industrial warehouse.\nReturn ONE flat 2:1 rectangular sign texture, preferably 1024x512. Preserve image 1 composition, exact black word \"WAREHOUSE\", its letterforms and right-pointing arrow, text/arrow positions, framing and screw positions. Keep lettering and arrow clearly legible.\nThe current sign is too clean. Make ivory paint aged, yellow-brown and patchily faded, with rusty chipped corners, dark grime along borders, faint drip stains below the screws, coarse scraped paint and small scratches. Match the worn industrial PSX texture feel of image 2, not a glossy photo. Concentrate the strongest wear on edges; add enough irregular low-contrast dirt on the broad face that it looks old, without obscuring letters. Flat base color, no perspective, lights, cast shadows, scene or extra labels. Opaque background.",
+      "target_size": [
+        256,
+        128
+      ],
+      "files": [
+        {
+          "path": "art/cinder-kit-01/aged-sign-source.png",
+          "sha256": "20b515f43b463a3f97a8282da16731b9994758d8bb97798fab695cebe778fa9c",
+          "bytes": 2436135,
+          "size": [
+            1774,
+            887
+          ]
+        },
+        {
+          "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/Cinder_Warehouse_Sign.png",
+          "sha256": "8d67c4d5fc8ea34c87421672c12491b6f5088a578821b0c38f6cb94daa62e638",
+          "bytes": 60155,
+          "size": [
+            256,
+            128
+          ]
+        }
+      ]
+    }
+  ],
+  "normalization": "Native Blender image.scale; resolution only. Existing UV regions and texture GUIDs retained.",
+  "provider_scope": "No external generation provider, paid-provider call or concept-image cropping.",
+  "references": [
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/Cinder_Surface_Atlas.png",
+      "sha256": "5f4b39284b254db39a622e905ee38118264063367482ff9af299a233e570e338",
+      "bytes": 7837
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/Cinder_Warehouse_Sign.png",
+      "sha256": "22cf44eb8114f1c55ba05290d023d1c3103edfeea575bd40d4823c4d25ef5180",
+      "bytes": 667
+    },
+    {
+      "path": "art/cinder-kit-01/appearance-entry-01.png",
+      "sha256": "3ff703cf54d5953d2f651a41a05c5d4e4e08ba1a6ed00fbce98fc5b52c0da9cf",
+      "bytes": 1574839
+    }
+  ]
+}

@@ -2,7 +2,7 @@
 
 [한국어](README.md)
 
-[Actual Unity views of the approved appearance](art/cinder-appearance-01.en.md). Applied ivory panels, rust-red stripes, work lights, sign and an empty 2-tier rack in separate `CinderAppearanceReview`. [Production, 432 carrying poses and review-scene instructions](current/cinder-asset-prep.en.md#2026-10-01--applying-the-approved-appearance). Next is user visibility, joint and quality review of the applied result.
+[Current aged Unity appearance](art/cinder-appearance-01.en.md). Following user feedback that the first application was too clean, added discoloration, rust drips, peeling paint and floor grime. [Revision, checks and review-scene instructions](current/cinder-asset-prep.en.md#2026-10-01--aged-texture-revision). Next is user quality review of the revision.
 
 Existing Listener, baton and ship gameplay code/scenes are preserved. See [existing gameplay versus Cinder review scenes](current/cinder-asset-prep.en.md#location-of-existing-gameplay-systems). Gameplay integration into Cinder remains incomplete.
 

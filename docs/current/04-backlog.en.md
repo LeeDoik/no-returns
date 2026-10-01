@@ -4,6 +4,8 @@
 
 ## 2026-10-01 — Next asset task
 
+Following user feedback that the first application was too clean, applied an [aged texture revision](cinder-asset-prep.en.md#2026-10-01--aged-texture-revision). Retained models, lighting and placement while replacing textures and rechecking matching views and automated checks. The revision is the next quality-review target.
+
 Preserve the 5 gray structural units/11 variants and `CinderStructureReview` in the [production/review guide](cinder-asset-prep.en.md). Following user concept approval, applied shared surfaces and the 3 presentation units in separate `CinderAppearanceReview`. Retain the 14.4×20.4m warehouse and opening. Passed 14 FBX imports, 2 textures, 432 carrying poses, E/W/S/Q and empty-handed jump checks. User visibility, joint and quality review of the [actual result](../art/cinder-appearance-01.en.md) is next. All-part multi-view review, distant shimmer, performance, ship Play and standalone Mac/Windows builds remain. After review retain receipt-function assets → suppression/warning signals → other buildings.
 
 Cinder gameplay integration also remains. Review, connect and revalidate existing `CarryRoom` Listener navigation, baton and ship/delivery coordinates against current Cinder space. Their absence from the gray scene reflects missing integration, not deleted code.

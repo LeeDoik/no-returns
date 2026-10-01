@@ -1,10 +1,11 @@
 {
   "date": "2026-10-01",
-  "origin": "direct local Blender geometry and deterministic original pixel paint; no concept cropping or external font",
+  "origin": "direct local Blender geometry; built-in imagegen aged texture edits, native Blender resolution normalization; no concept cropping",
+  "texture_provenance": "art/cinder-kit-01/aged-texture-provenance.json",
   "blender_version": "5.2.2 LTS",
   "user_concept_approved": true,
   "user_final_appearance_review": false,
-  "wall_stripe_y_m": [
+  "wall_stripe_target_y_m": [
     1.1,
     1.75
   ],
@@ -425,18 +426,18 @@
     },
     {
       "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/Cinder_Surface_Atlas.png",
-      "sha256": "5f4b39284b254db39a622e905ee38118264063367482ff9af299a233e570e338",
-      "bytes": 7837
+      "sha256": "ddc651c2b8c83046fbc2da899141d741b8002e9953b7115d5e07817903532838",
+      "bytes": 461366
     },
     {
       "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/Cinder_Warehouse_Sign.png",
-      "sha256": "22cf44eb8114f1c55ba05290d023d1c3103edfeea575bd40d4823c4d25ef5180",
-      "bytes": 667
+      "sha256": "8d67c4d5fc8ea34c87421672c12491b6f5088a578821b0c38f6cb94daa62e638",
+      "bytes": 60155
     },
     {
       "path": "art/cinder-kit-01/Cinder_Kit_Appearance.blend",
-      "sha256": "7bcf115a09e263b36e0c479b9ff61c4c5ffd7d202f0defa774ffb1e543cdea6a",
-      "bytes": 126165
+      "sha256": "1b4a0849ba6de77bb004d1677633e5243017c9b7b16d32ed38186891b575f7a5",
+      "bytes": 642324
     }
   ]
 }

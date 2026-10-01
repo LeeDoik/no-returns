@@ -2,7 +2,7 @@
 
 [English](cinder-appearance-01.en.md)
 
-2026-10-01 · **사용자 외형 시안 승인·Unity 기준 구역 적용 완료 / 실제 적용 결과의 사용자 품질 평가 미완료.** [현재 제작 기준](../current/cinder-asset-prep.ko.md)의 14.4×20.4m 창고를 위한 외형 제안이다. 사용자가 확인한 크기를 유지한다. 아래 PNG는 승인된 참고 시안이며 실제 모델·재질·텍스처 적용 결과는 [최신 제작 기록](../current/cinder-asset-prep.ko.md#2026-10-01--승인된-외형의-실제-적용)에 연결한다.
+2026-10-01 · **시안 승인·첫 적용 후 노후 질감 수정 완료 / 수정 결과의 사용자 품질 평가 미완료.** [현재 제작 기준](../current/cinder-asset-prep.ko.md)의 14.4×20.4m 창고를 위한 외형 제안이다. 사용자가 확인한 크기를 유지한다. 아래 PNG는 승인된 참고 시안이며 실제 모델·재질·텍스처 적용 결과는 [최신 제작 기록](../current/cinder-asset-prep.ko.md#2026-10-01--노후-질감-수정)에 연결한다.
 
 ![창고 입구 외형 제안](../../art/cinder-kit-01/appearance-entry-01.png)
 
@@ -38,6 +38,8 @@
 이번 운반 검사와 수정 결과는 [제작·검토 안내](../current/cinder-asset-prep.ko.md)에 별도로 기록한다. 자동 통과는 사람의 시야·조작감 평가나 이 외형의 승인을 대신하지 않는다.
 
 ## 실제 Unity 적용 화면
+
+사용자는 첫 실제 적용이 “너무 깔끔”하다고 평가해 더럽고 오래된 질감을 요청했다. 아래 실제 화면은 수정된 현재 결과다. [노후 질감 제작·검사 기록](../current/cinder-asset-prep.ko.md#2026-10-01--노후-질감-수정) · [첫 적용 입구](../../art/cinder-kit-01/clean-entry-before.png) · [첫 적용 선반](../../art/cinder-kit-01/clean-rack-before.png). 시안 방향 승인과 수정 결과의 품질 승인은 별개다.
 
 ![창고 입구 빈손](../../art/cinder-kit-01/production-entry-empty.png)
 
