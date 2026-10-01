@@ -2,6 +2,16 @@
 
 [한국어](02-spec.ko.md)
 
+## 2026-10-01 — Open sky and zone boundaries
+
+The user found the map too maze-like, so open **82.8m²** of west/north perimeter-route cover: west 3×14.4m and north 13.2×3m. Split the original 2 ceiling BoxColliders into 4 matching the retained covered pieces, removing invisible ceilings in the openings. Preserve 3/3.15m ground passages, 4 loops, buildings/ship/props and lighting. No game-version change.
+
+Distinguish paving within the 53.55×65.4m field from rough mineral ground outside, adding flat rust-colored boundary bands and 2 physical labels. English source strings are `FIELD / INTERIOR` and `OUTER / BASIN`. Add **4 service pads measuring 2.4×2.4m** around the corner suppressors, retaining approach space. Boundaries/pads are visual markings and add no ground colliders or suppression gameplay.
+
+Review also found regular rock rows and blue suppressor blocks. Apply fixed seed 137 to irregular positions/yaw and distant peak/ridge selection for the existing 59 rocks. Hide only the original 4 suppressor Renderers, adding aged masts, cabinets and small green signal visuals inside their original 1×5×1m collision envelopes. Signals reuse the existing Unlit material and are not new Lights. Produce 4 native meshes (mast/signal/open-cover yard surfaces/boundary and pads), reusing existing meshes/materials/label tooling. Retain 69 background placements/4,624 triangles; add 8 suppressor placements/864 triangles and 3 boundary/label placements/48 triangles. Preserve original ground collision, 47 prop groups, 26 architecture placements, 40 local lights, sky, 35–115m fog and runtime.
+
+[Current checks and production](cinder-compact-site.en.md#2026-10-01--open-sky-and-zone-boundaries). This modifies the visual environment; suppression/exterior creatures/delivery/Listener/baton/network integration remain incomplete. User quality and human four-player/performance review remain.
+
 ## 2026-10-01 — Current Cinder exterior background
 
 Apply [current background, dimensions and checks](cinder-compact-site.en.md#2026-10-01--rocky-territory-and-industrial-background-outside-the-field). 59 rocks, 9 industrial visuals and 1 exterior surface total 69 placements and 4,624 triangles. Produce 8 native meshes, 2 materials and 1 native 128×128 mineral texture; reuse the industrial stack. Leave the 53.55×65.4m field footprint empty, retaining layout, collision, sky, 35–115m fog, 40 local lights and runtime. Hide only Renderers of 4 gray guards, retaining existing fall-prevention Colliders. 0 new background Colliders/Lights. The exterior is static scenery; new traversal areas, outer creatures and suppression/delivery behavior remain unimplemented. User background quality, human four-player play and performance checks remain. Distinguish the user's confirmation of preceding buildings from overall quality approval.

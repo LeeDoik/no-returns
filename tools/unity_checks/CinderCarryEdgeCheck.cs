@@ -24,7 +24,12 @@ public static class CinderCarryEdgeCheck {
         bool appearance = map || scene == "CinderAppearanceReview";
         if (!EditorApplication.isPlaying || (!appearance && scene != "CinderStructureReview"))
             throw new InvalidOperationException("Open a Cinder structure/appearance review and enter Play first.");
-        string prefix = background ? "background-" : architecture ? "architecture-" : sky ? "sky-" : props ? "props-" : site ? "site-" : maze ? "maze-" : map ? "map-" : appearance ? "production-" : "";
+        float initialDeltaTime=Time.deltaTime;
+        // Ephemeral compilation can stall a Play frame; do not simulate every step with that stalled delta.
+        for(int frame=0;frame<20&&(Time.deltaTime<=0||Time.deltaTime>1f/30);frame++)await Task.Delay(100);
+        float simulationDeltaTime=Time.deltaTime;
+        if(simulationDeltaTime<=0||simulationDeltaTime>1f/30)throw new Exception("Wait for a stable Play frame before the carry check.");
+        string prefix = background ? NoReturns.Editor.CinderBackgroundBuild.EvidencePrefix : architecture ? "architecture-" : sky ? "sky-" : props ? "props-" : site ? "site-" : maze ? "maze-" : map ? "map-" : appearance ? "production-" : "";
         var walk = UnityEngine.Object.FindAnyObjectByType<CinderBlockoutWalk>();
         var body = walk.GetComponent<CharacterController>();
         var parcel = GameObject.Find("Trial carried parcel");
@@ -112,6 +117,7 @@ public static class CinderCarryEdgeCheck {
             typeof(CinderBlockoutWalk).GetField("carrying",flags).SetValue(walk,false);
             parcel.transform.position = smokeStart + new Vector3(.5f,.315f,.8f);
             parcel.GetComponent<Collider>().enabled = true;
+            Physics.SyncTransforms();
             keys(new[]{Key.E}); update.Invoke(walk,null);
             pickup = (bool)typeof(CinderBlockoutWalk).GetField("carrying",flags).GetValue(walk);
             float travel = maze || site ? 4.8f : 9f;
@@ -215,11 +221,18 @@ public static class CinderCarryEdgeCheck {
                     views.Add(("east-refinery.png",new Vector3(24.8f,.035f,25),25,false));
                     views.Add(("landing-crags.png",NoReturns.Editor.CinderCompactSiteBuild.Spawn,270,false));
                     views.Add(("background-panorama.png",new Vector3(-31,17,-41),35,false));
+                    if(GameObject.Find(NoReturns.Editor.CinderBackgroundBuild.PolishRootName))views.Add(("suppressor-close.png",new Vector3(-25.95f,.035f,-28),180,false));
+                    if(GameObject.Find(NoReturns.Editor.CinderBackgroundBuild.ZoneRootName)) {
+                        views.Add(("open-sky-west.png",new Vector3(-22.95f,.035f,-4),0,false));
+                        views.Add(("zone-boundary.png",new Vector3(-25.3f,.035f,-18),270,false));
+                        views.Add(("suppressor-pad.png",new Vector3(-28.5f,.035f,-31),130,false));
+                        views.Add(("open-sky-north.png",new Vector3(-2,.035f,25.95f),90,false));
+                    }
                 }
                 foreach(var view in views) {
                     body.enabled=false;walk.transform.position=view.point;body.enabled=true;
                     typeof(CinderBlockoutWalk).GetField("yaw",flags).SetValue(walk,view.yaw);
-                    typeof(CinderBlockoutWalk).GetField("pitch",flags).SetValue(walk,view.name == "overview.png" ? 40f : view.name == "west-crags.png" || view.name == "east-refinery.png" ? -10f : view.name == "background-panorama.png" ? 23f : view.name == "exterior-machinery.png" || view.name == "roof-silhouettes.png" ? 25f : view.name == "upward.png" ? -35f : 0f);
+                    typeof(CinderBlockoutWalk).GetField("pitch",flags).SetValue(walk,view.name == "overview.png" ? 40f : view.name == "suppressor-pad.png" || view.name == "zone-boundary.png" ? 10f : view.name == "open-sky-west.png" || view.name == "open-sky-north.png" ? -30f : view.name == "west-crags.png" || view.name == "east-refinery.png" || view.name == "suppressor-close.png" ? -10f : view.name == "background-panorama.png" ? 23f : view.name == "exterior-machinery.png" || view.name == "roof-silhouettes.png" ? 25f : view.name == "upward.png" ? -35f : 0f);
                     typeof(CinderBlockoutWalk).GetField("carrying",flags).SetValue(walk,view.carry);
                     parcel.GetComponent<Renderer>().enabled=view.carry;
                     update.Invoke(walk,null);
@@ -282,7 +295,7 @@ public static class CinderCarryEdgeCheck {
             }
         }
         string output = Path.GetFullPath("../art/cinder-kit-01/"+prefix+"carry-edge-validation.json");
-        var result = new {scene,static_pose_count=points.Count*24,carrying_segments,samples,overlap_count=failures.Count,touching_contacts,penetration_tolerance_m=.00001f,failures,
+        var result = new {scene,initial_delta_time_s=initialDeltaTime,simulation_delta_time_s=simulationDeltaTime,static_pose_count=points.Count*24,carrying_segments,samples,overlap_count=failures.Count,touching_contacts,penetration_tolerance_m=.00001f,failures,
             input_checks=new {pickup,forward,backward,drop,jump},
             method="Play mode, API-set poses, reflected actual CinderBlockoutWalk.Update; not human controls"};
         File.WriteAllText(output, Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented));

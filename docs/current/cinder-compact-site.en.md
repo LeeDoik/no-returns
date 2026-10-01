@@ -2,7 +2,38 @@
 
 [한국어](cinder-compact-site.ko.md)
 
-2026-10-01 · CINDER-COMPACT-SITE-01 / CINDER-ARCHITECTURE-01 / CINDER-BACKGROUND-01 · **Whole-site direction approved; varied architecture/background applied and automated checks passed / current appearance, visibility and human four-player review incomplete.** No game-version change.
+## 2026-10-01 — Open sky and zone boundaries
+
+The user found the map too maze-like, so open **82.8m²** of west/north perimeter-route cover: west 3×14.4m and north 13.2×3m. Split the original 2 ceiling BoxColliders into 4 matching the retained covered pieces, removing invisible ceilings in the openings. Preserve 3/3.15m ground passages, 4 loops, buildings/ship/props and lighting. No game-version change.
+
+Distinguish paving within the 53.55×65.4m field from rough mineral ground outside, adding flat rust-colored boundary bands and 2 physical labels. English source strings are `FIELD / INTERIOR` and `OUTER / BASIN`. Add **4 service pads measuring 2.4×2.4m** around the corner suppressors, retaining approach space. Boundaries/pads are visual markings and add no ground colliders or suppression gameplay.
+
+Review also found regular rock rows and blue suppressor blocks. Apply fixed seed 137 to irregular positions/yaw and distant peak/ridge selection for the existing 59 rocks. Hide only the original 4 suppressor Renderers, adding aged masts, cabinets and small green signal visuals inside their original 1×5×1m collision envelopes. Signals reuse the existing Unlit material and are not new Lights. Produce 4 native meshes (mast/signal/open-cover yard surfaces/boundary and pads), reusing existing meshes/materials/label tooling. Retain 69 background placements/4,624 triangles; add 8 suppressor placements/864 triangles and 3 boundary/label placements/48 triangles. Preserve original ground collision, 47 prop groups, 26 architecture placements, 40 local lights, sky, 35–115m fog and runtime.
+
+Validation: remove roof triangles in the openings, confirm upward Raycasts hit no invisible ceiling, constrain suppressor visuals to existing collision envelopes and keep all background triangles outside the field. Pass 94 movement segments, 17 four-body lanes, 286 valid positions, 6,864 carrying poses and 94 actual carrying segments. 274,484 penetration checks, 0 overlaps, 103 contacts; E/W/S/Q and empty-hand jumping pass. Native terrain rendering changes 71,212 pixels (640×360; 10,000 threshold); reimport/reopen 4 meshes and the scene. Capture 30 views, inspect 9 key views and restore cutaway hiding. 0 compilation errors, 3 existing Editor warning types, 0 new-source warnings and final Play 0 errors/warnings. Preserve 608 of 609 starting file hashes, excluding the current scene; exclude 8 existing ship-material edits. Remove 0 original native scene IDs.
+
+Two initial automated carrying runs reported pickup/jump input failures. Add Physics.SyncTransforms for teleported smoke-test body/cargo and stable-frame waiting, then pass reruns without changing runtime controls. Correct the first service-pad capture position that fell inside the ship. One immediate console-status query failed to connect during domain reload; the subsequent query confirmed successful compilation. Preserve historical `background-`/`architecture-`/`sky-`/`props-`/`site-` evidence; current checks write `polish-`. Documentation checking retains only 142 existing missing links, with 0 new failures. Raw staged whitespace checking fails at 74 native-generated trailing-space locations; code/document/evidence and overall checking excluding those generated spaces pass.
+
+User appearance quality, boundary readability, human four-player passing/simultaneous carrying, performance, standalone builds, exterior creatures/suppression stages and Cinder gameplay integration remain pending. This request does not establish overall quality approval.
+
+Both modification stages are saved in the current scene. Reproduce in order: `Polish Cinder Scenery and Suppressor Visuals` → `Open Cinder Sky and Define Zones`; each stops with unsaved edits, Play or its existing root. Manage native assets through the [production source](../../NoReturns/Assets/_NoReturns/Editor/CinderBackgroundBuild.cs). Use `Validate Cinder Exterior Background`; prop/architecture/compact-site validation menus also route to current background validation. Preserve original `ArchitectureYard.asset`, using a new mesh with only selected cover triangles removed. Retain both original background state evidence and the current state after ceiling adjustment. No new ground colliders, lights, textures, external assets, dependencies or paid generation. Run checks from the repository root after saving/stopping Play.
+
+```bash
+source ~/.unity/env
+unity command eval --code 'NoReturns.Editor.CinderBackgroundBuild.Validate(); return true;' --project-path "$PWD/NoReturns" --caller plugin --skill unity-cli --format json
+unity command run_script --file "$PWD/tools/unity_checks/CinderBackgroundRenderCheck.cs" --entry CinderBackgroundRenderCheck.Main --project-path "$PWD/NoReturns" --caller plugin --skill unity-cli --format json
+unity command editor_play --project-path "$PWD/NoReturns" --caller plugin --skill unity-cli --format json
+unity command run_script --file "$PWD/tools/unity_checks/CinderCarryEdgeCheck.cs" --entry CinderCarryEdgeCheck.Main --timeout_ms 180000 --project-path "$PWD/NoReturns" --caller plugin --skill unity-cli --format json
+unity command editor_stop --project-path "$PWD/NoReturns" --caller plugin --skill unity-cli --format json
+```
+
+[Layout](../../art/cinder-kit-01/polish-layout-validation.json) · [carrying](../../art/cinder-kit-01/polish-carry-edge-validation.json) · [rendering](../../art/cinder-kit-01/polish-render-validation.json) · [preservation/check record](../../art/cinder-kit-01/polish-checks.json).
+
+![Opened north passage](../../art/cinder-kit-01/polish-open-sky-north.png)
+
+![Suppressor service pad](../../art/cinder-kit-01/polish-suppressor-pad.png)
+
+2026-10-01 · CINDER-COMPACT-SITE-01 / CINDER-ARCHITECTURE-01 / CINDER-BACKGROUND-01 / CINDER-SCENERY-POLISH-01 · **Whole-site direction approved; varied architecture/background applied and automated checks passed / current appearance, visibility and human four-player review incomplete.** No game-version change.
 
 ## 2026-10-01 — Rocky territory and industrial background outside the field
 

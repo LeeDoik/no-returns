@@ -130,8 +130,10 @@ public static class CinderSitePropsBuild {
         var g=Group("Pipes / "+name,V(x,3.15f,z),yaw);
         foreach(float y in new[]{0f,.4f})Model("Pipe 3m",g,V(0,y,0),true,Quaternion.Euler(90,0,0));
     }
-    static void Legend(string label,float x,float y,float z,float yaw) {
-        var g=Group("Legend / "+label.Replace('\n',' '),V(x,y,z),yaw);Model("Legend board",g,Vector3.zero,false);
+    internal static void Legend(string label,float x,float y,float z,float yaw,Transform parent=null) {
+        var g=parent?new GameObject("Legend / "+label.Replace('\n',' ')).transform:Group("Legend / "+label.Replace('\n',' '),V(x,y,z),yaw);
+        if(parent) {g.SetParent(parent);g.SetPositionAndRotation(V(x,y,z),Quaternion.Euler(0,yaw,0));}
+        Model("Legend board",g,Vector3.zero,false);
         var canvasObj=new GameObject("Physical facility label",typeof(RectTransform),typeof(Canvas));canvasObj.transform.SetParent(g,false);
         canvasObj.transform.localPosition=V(0,0,-.025f);canvasObj.transform.localScale=Vector3.one*.001f;
         var rect=canvasObj.GetComponent<RectTransform>();rect.sizeDelta=new Vector2(1400,680);

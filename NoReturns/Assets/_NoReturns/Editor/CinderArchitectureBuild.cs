@@ -184,6 +184,7 @@ public static class CinderArchitectureBuild {
     }
     [MenuItem("NO RETURNS/Trials/Validate Varied Cinder Architecture")]
     public static void Validate() {
+        if(GameObject.Find(CinderBackgroundBuild.RootName)) { CinderBackgroundBuild.Validate();return; }
         if(EditorSceneManager.GetActiveScene().path!=CinderCompactSiteBuild.ScenePath||!GameObject.Find(RootName))throw new Exception("Open architecture-enabled compact site.");
         if(PreservedState()!=File.ReadAllText(Path.Combine(Output,"architecture-preserved-state.json")).TrimEnd())throw new Exception("Retained scene state changed.");
         CinderCompactSiteBuild.ValidateWithPrefix("architecture-");

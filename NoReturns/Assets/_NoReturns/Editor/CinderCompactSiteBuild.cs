@@ -186,7 +186,10 @@ public static class CinderCompactSiteBuild {
         ("Freight power link",P(-10.8f,-16.35f),P(-10.8f,-13.35f),3)
     };
     [MenuItem("NO RETURNS/Trials/Validate Compact Cinder Site Review")]
-    public static void Validate() => ValidateWithPrefix("site-");
+    public static void Validate() {
+        if(GameObject.Find(CinderBackgroundBuild.RootName)) { CinderBackgroundBuild.Validate();return; }
+        ValidateWithPrefix("site-");
+    }
     public static void ValidateWithPrefix(string prefix) {
         if(EditorSceneManager.GetActiveScene().path!=ScenePath)throw new Exception("Open compact site review.");Physics.SyncTransforms();
         var baseline=Newtonsoft.Json.Linq.JObject.Parse(File.ReadAllText(Path.Combine(Output,"site-local-collision-baseline.json")));

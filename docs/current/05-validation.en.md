@@ -2,6 +2,17 @@
 
 [한국어](05-validation.ko.md)
 
+## 2026-10-01 — Open sky and zone boundaries
+
+[Current evidence](cinder-compact-site.en.md#2026-10-01--open-sky-and-zone-boundaries).
+
+- [x] Remove 82.8m² of cover, pass upward Raycasts and adjust 2 ceiling colliders into 4. Preserve ground collision and suppressor envelopes; 0 new ground colliders/Lights. Apply 2 signs, 4 pads and 4 native meshes.
+- [x] Pass 94 movement segments, 17 four-body lanes, 286 valid positions, 6,864 carrying poses, 94 actual carrying segments and 274,484 penetration checks: 0 overlaps, 103 contacts, E/W/S/Q/empty-hand jumping.
+- [x] Terrain rendering changes 71,212 pixels/640×360/10,000 threshold; reimport 4 meshes/reopen the scene, capture 30 views/inspect 9 key views. 0 compilation errors, 3 existing warning types, 0 new-source warnings and final Play 0 errors/warnings.
+- [x] After 2 initial automated input failures, fix test teleport synchronization/frame waiting and pass reruns. Preserve 608 of 609 starting files, remove 0 original scene IDs, exclude 8 pre-existing ship-material edits and preserve historical evidence.
+- [x] Align paired documents; 142 existing missing links/0 new failures. Record raw whitespace failure at 74 native-generated locations; pass overall checking excluding generated trailing spaces and code/document/evidence whitespace checking.
+- [ ] User appearance/boundary readability, human four-player controls, performance/standalone builds and Cinder gameplay integration.
+
 ## 2026-10-01 — Exterior background and actual rendering
 
 [Current background, running and evidence](cinder-compact-site.en.md#2026-10-01--rocky-territory-and-industrial-background-outside-the-field).

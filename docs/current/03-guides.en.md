@@ -2,6 +2,20 @@
 
 [한국어](03-guides.ko.md)
 
+## 2026-10-01 — Open sky and zone boundaries
+
+[Current modification and checks](cinder-compact-site.en.md#2026-10-01--open-sky-and-zone-boundaries). Both modification stages are saved in the current scene. Reproduce in order: `Polish Cinder Scenery and Suppressor Visuals` → `Open Cinder Sky and Define Zones`; each stops with unsaved edits, Play or its existing root. Manage native assets through the [production source](../../NoReturns/Assets/_NoReturns/Editor/CinderBackgroundBuild.cs). Use `Validate Cinder Exterior Background`; prop/architecture/compact-site validation menus also route to current background validation. Preserve original `ArchitectureYard.asset`, using a new mesh with only selected cover triangles removed. Retain both original background state evidence and the current state after ceiling adjustment. No new ground colliders, lights, textures, external assets, dependencies or paid generation. Run checks from the repository root after saving/stopping Play.
+
+```bash
+source ~/.unity/env
+unity command eval --code 'NoReturns.Editor.CinderBackgroundBuild.Validate(); return true;' --project-path "$PWD/NoReturns" --caller plugin --skill unity-cli --format json
+unity command run_script --file "$PWD/tools/unity_checks/CinderBackgroundRenderCheck.cs" --entry CinderBackgroundRenderCheck.Main --project-path "$PWD/NoReturns" --caller plugin --skill unity-cli --format json
+unity command editor_play --project-path "$PWD/NoReturns" --caller plugin --skill unity-cli --format json
+unity command run_script --file "$PWD/tools/unity_checks/CinderCarryEdgeCheck.cs" --entry CinderCarryEdgeCheck.Main --timeout_ms 180000 --project-path "$PWD/NoReturns" --caller plugin --skill unity-cli --format json
+unity command editor_stop --project-path "$PWD/NoReturns" --caller plugin --skill unity-cli --format json
+```
+
+
 ## 2026-10-01 — Exterior background production/render checks
 
 Follow [current background, assets and commands](cinder-compact-site.en.md#2026-10-01--rocky-territory-and-industrial-background-outside-the-field). Reuse the existing Shape mesh tool and aged industrial atlas; produce 8 native meshes, 2 materials and 1 native 128×128 mineral texture. 69 placements, 4,624 triangles, unit scale 1 and 0 new Colliders/Lights. Orient repeating terrain/rock UVs by face and check finite values. `Add Cinder Exterior Background` stops with unsaved changes, Play or an existing root. Use `Validate Cinder Exterior Background`, routed `Validate Cinder Site Props`, stopped-Editor `CinderBackgroundRenderCheck.Main` and the shared Play carrying check. Current evidence uses `background-`; preserve earlier `architecture-`/`sky-`/`props-`/`site-` records. Shared mesh replacement uses native setters on the existing Mesh to preserve GUIDs while updating actual rendering. Track the deterministic texture source/native asset; no external assets, dependencies or paid generation. Structure/sky-stage prefixes below are historical evidence.

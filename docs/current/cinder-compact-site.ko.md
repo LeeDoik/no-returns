@@ -2,7 +2,38 @@
 
 [English](cinder-compact-site.en.md)
 
-2026-10-01 · CINDER-COMPACT-SITE-01 / CINDER-ARCHITECTURE-01 / CINDER-BACKGROUND-01 · **전체 맵 방향 사용자 승인·다양한 건물·외곽 배경 적용·자동 검사 완료 / 현재 외형·시야와 사람 4인 검토 미완료.** 게임 버전은 바꾸지 않는다.
+## 2026-10-01 — 하늘 개방과 구역 경계 정리
+
+사용자가 맵이 지나치게 미로처럼 느껴진다고 해 서쪽·북쪽 외곽 통로 차양 **82.8㎡**를 열었다. 서쪽 3×14.4m, 북쪽 13.2×3m 구간이다. 차양 두 곳의 원래 천장 BoxCollider 2개를 남은 차양에 맞춰 4개로 나누고 열린 부분의 보이지 않는 천장을 없앴다. 지상 통로 폭 3/3.15m·순환로 4개·건물/우주선/소품·조명은 유지했다. 게임 버전 변경 없음.
+
+53.55×65.4m 억제 범위 안의 포장 바닥과 밖의 거친 광물 지면을 구분하고, 평평한 녹슨 경계 띠와 물리 표지 2개를 더했다. 영문 원문은 `FIELD / INTERIOR`(억제 범위 내부), `OUTER / BASIN`(외곽 분지)이다. 네 모서리 억제기 주변에는 **2.4×2.4m 정비 패드 4개**를 놓고 주변 접근 공간을 유지했다. 경계·패드는 시각 표시이며 새 지상 충돌체나 억제 게임 기능을 추가하지 않는다.
+
+검토에서 일정한 암석 줄과 파란 억제기 직육면체를 발견해 함께 수정했다. 기존 암석 59개의 위치·회전·원거리 봉우리/능선 선택을 고정 seed 137로 불규칙하게 바꾼다. 억제기 원래 Renderer 4개만 숨기고 1×5×1m 충돌 범위 안에 녹슨 기둥·기계함·작은 녹색 신호 외형을 더했다. 신호는 기존 Unlit 재질을 재사용하며 새 Light가 아니다. native 메시 4개(기둥/신호/열린 차양 바닥 묶음/경계·패드), 기존 메시·재질·표지 도구를 재사용한다. 배경 69개·4,624삼각형 유지, 억제기 8배치·864삼각형 및 경계/표지 3배치·48삼각형 추가. 원래 지상 충돌·47소품 묶음·26구조 배치·40로컬 광원·스카이·35–115m 안개·런타임은 유지했다.
+
+검증: 열린 차양 삼각형 제거·위쪽 Raycast로 보이지 않는 천장 없음, 억제기 외형이 기존 충돌 범위 안에 있음, 모든 배경 삼각형이 억제 범위 밖에 있음 확인. 이동 94구간·네 몸체 통로 17곳·유효 위치 286개·운반 자세 6,864개·실제 운반 94구간 통과. 침투 검사 274,484회, 겹침 0건·접촉 103건, E/W/S/Q·빈손 점프 통과. 지면 렌더 차이 71,212픽셀(640×360, 기준 10,000), 메시 4개 재import/씬 재열기 통과. 실제 화면 30개를 촬영해 주요 9개를 검토하고 촬영용 지붕 숨김을 복원했다. 컴파일 오류 0개, 기존 Editor 경고 3종, 새 소스 경고 0개, 최종 Play 오류/경고 0개. 시작 파일 609개 중 현재 씬을 제외한 608개 해시 일치; 기존 선내 재질 변경 8개 제외. 기존 native 씬 ID 삭제 0개.
+
+초기 자동 운반 검사 2회에서 들기/점프 입력 실패가 있었다. 검사 준비에 텔레포트한 몸체·화물의 Physics.SyncTransforms와 안정된 프레임 대기를 추가한 뒤 다시 통과했다. 게임 런타임 조작 코드는 변경하지 않았다. 첫 정비 패드 촬영 위치가 우주선 안에 들어간 것을 바깥 위치로 수정했다. 컴파일 재로딩 중 즉시 콘솔 상태 조회 연결이 한 차례 실패했지만 후속 조회는 컴파일 성공을 확인했다. 과거 `background-`/`architecture-`/`sky-`/`props-`/`site-` 근거를 보존하고 현재 검사는 `polish-`에 기록한다. 문서 검사에는 기존 누락 링크 142개만 남으며 새 실패 0개다. raw staged 공백 검사는 native 생성 후행 공백 74곳으로 실패한다; 코드·문서·근거 및 생성 후행 공백만 제외한 전체 검사는 통과했다.
+
+사용자 외형 품질·경계 가독성·실제 네 명 통과/동시 운반·성능·독립 빌드·외곽 생물/억제 단계·Cinder 플레이 시스템 통합은 검증/구현 대기다. 이번 요청을 전체 품질 승인으로 처리하지 않는다.
+
+현재 씬에는 두 수정 단계가 저장되어 있다. `Polish Cinder Scenery and Suppressor Visuals` → `Open Cinder Sky and Define Zones` 순서로 재현하며, 저장하지 않은 씬/Play/기존 해당 root에서는 중단한다. native 에셋은 [제작 코드](../../NoReturns/Assets/_NoReturns/Editor/CinderBackgroundBuild.cs)로 관리한다. 현재 검사는 `Validate Cinder Exterior Background`를 사용하고 소품·건물·조밀한 맵 검사 메뉴도 현재 배경 검사로 연결한다. 원래 `ArchitectureYard.asset`을 보존하고 차양 삼각형만 제거한 새 메시를 사용한다. 원래 배경 보존 근거와 현재 천장 조정 후 근거를 따로 보존한다. 새 지상 충돌체/광원/텍스처/외부 에셋/의존성/유료 생성 없음. 재검사는 저장 후 Play를 멈춘 상태에서 저장소 루트에서 실행한다.
+
+```bash
+source ~/.unity/env
+unity command eval --code 'NoReturns.Editor.CinderBackgroundBuild.Validate(); return true;' --project-path "$PWD/NoReturns" --caller plugin --skill unity-cli --format json
+unity command run_script --file "$PWD/tools/unity_checks/CinderBackgroundRenderCheck.cs" --entry CinderBackgroundRenderCheck.Main --project-path "$PWD/NoReturns" --caller plugin --skill unity-cli --format json
+unity command editor_play --project-path "$PWD/NoReturns" --caller plugin --skill unity-cli --format json
+unity command run_script --file "$PWD/tools/unity_checks/CinderCarryEdgeCheck.cs" --entry CinderCarryEdgeCheck.Main --timeout_ms 180000 --project-path "$PWD/NoReturns" --caller plugin --skill unity-cli --format json
+unity command editor_stop --project-path "$PWD/NoReturns" --caller plugin --skill unity-cli --format json
+```
+
+[배치](../../art/cinder-kit-01/polish-layout-validation.json) · [운반](../../art/cinder-kit-01/polish-carry-edge-validation.json) · [렌더](../../art/cinder-kit-01/polish-render-validation.json) · [보존과 검사 기록](../../art/cinder-kit-01/polish-checks.json).
+
+![열린 북쪽 통로](../../art/cinder-kit-01/polish-open-sky-north.png)
+
+![억제기 정비 패드](../../art/cinder-kit-01/polish-suppressor-pad.png)
+
+2026-10-01 · CINDER-COMPACT-SITE-01 / CINDER-ARCHITECTURE-01 / CINDER-BACKGROUND-01 / CINDER-SCENERY-POLISH-01 · **전체 맵 방향 사용자 승인·다양한 건물·외곽 배경 적용·자동 검사 완료 / 현재 외형·시야와 사람 4인 검토 미완료.** 게임 버전은 바꾸지 않는다.
 
 ## 2026-10-01 — 억제 범위 밖 암석 지대와 산업 배경
 

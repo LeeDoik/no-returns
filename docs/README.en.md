@@ -2,6 +2,8 @@
 
 [한국어](README.md)
 
+[Current open sky and zone boundaries](current/cinder-compact-site.en.md#2026-10-01--open-sky-and-zone-boundaries): open 82.8m² of west/north cover and adjust matching ceiling collision. Distinguish interior paving/exterior rocks with boundary bands/signs, adding 4 suppressor service pads, aged visuals and irregular rock placement. Pass 6,864 carrying poses, 94 actual carrying segments and rendering. User appearance, human four-player/performance and gameplay integration remain pending.
+
 [Current rocky territory/industrial background](current/cinder-compact-site.en.md#2026-10-01--rocky-territory-and-industrial-background-outside-the-field): place 59 rocks, 9 industrial visuals and 1 terrain surface outside the same scene. Hide gray guard visuals while retaining fall-prevention collision, map and lighting. Native terrain rendering, 6,864 carrying poses and 94 actual carrying segments pass. Background quality, gameplay integration and human four-player/performance checks remain.
 
 [Current varied building forms](current/cinder-compact-site.en.md#2026-10-01--varied-building-outlines-and-structural-modules): produce/place 9 structural module types and 11 native meshes. Change silhouettes with a central 8-sided utility building, northern stepped outline, warehouse sawtooth/storage vault roofs, upper rooms, control tower, stacks and canopies. Pass 94 movement segments, 17 four-body lanes and 6,864 carrying poses. Appearance quality and human four-player review remain.

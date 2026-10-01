@@ -1,0 +1,58 @@
+{
+  "scene": "Assets/_NoReturns/Scenes/CinderCompactSiteReview.unity",
+  "field_size_m": [
+    53.55,
+    65.4
+  ],
+  "core_site_size_m": [
+    47.55,
+    59.4
+  ],
+  "building_count": 5,
+  "solid_auxiliary_blocks": 6,
+  "original_building_box_colliders": 50,
+  "relocated_ship_collision_preserved": true,
+  "original_remaining_box_colliders": 59,
+  "building_layout": [
+    {
+      "name": "A WAREHOUSE",
+      "center": "(-14.100, -0.100, 1.800)",
+      "size": "(14.400, 0.200, 20.400)"
+    },
+    {
+      "name": "SIDE OFFICE",
+      "center": "(-14.100, -0.100, 19.800)",
+      "size": "(14.400, 0.200, 9.000)"
+    },
+    {
+      "name": "BAY 04",
+      "center": "(12.750, -0.100, 15.900)",
+      "size": "(13.800, 0.200, 16.800)"
+    },
+    {
+      "name": "C SERVICE",
+      "center": "(13.350, -0.100, -6.900)",
+      "size": "(12.600, 0.200, 22.200)"
+    },
+    {
+      "name": "STORAGE",
+      "center": "(5.250, -0.100, -24.900)",
+      "size": "(28.800, 0.200, 7.200)"
+    }
+  ],
+  "standard_alley_width_m": 3,
+  "slightly_wider_alley_m": 3.15,
+  "movement_segments": 94,
+  "four_body_lanes": 17,
+  "closed_site_loops": 4,
+  "interior_maze_removed": true,
+  "field_is_physical_wall": false,
+  "sheltered_route_m": 94.0,
+  "central_route_m": 79.1,
+  "surfaces_vertices": 10192,
+  "added_colliders": 22,
+  "added_lights": 16,
+  "kit_mesh_instances": 315,
+  "user_layout_review": false,
+  "human_four_player_review": false
+}

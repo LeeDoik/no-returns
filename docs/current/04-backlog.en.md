@@ -2,6 +2,17 @@
 
 [한국어](04-backlog.ko.md)
 
+## 2026-10-01 — Open sky and zone boundaries
+
+[Current environment](cinder-compact-site.en.md#2026-10-01--open-sky-and-zone-boundaries).
+
+- [x] Remove 82.8m² of cover and matching invisible ceilings; apply boundary bands, 2 signs and 4 suppressor pads measuring 2.4×2.4m.
+- [x] Reduce repetitive placement of 59 rocks, replace 4 suppressor visuals and retain ground collision/40 lights/runtime. Pass 6,864 carrying poses, 94 actual carrying segments and terrain rendering.
+- [ ] User review of sky opening, navigation, boundary readability and pad appearance.
+- [ ] Human four-player passing/simultaneous carrying, performance/standalone builds and exterior/suppression/delivery/Listener/baton/network integration.
+
+Distinguish earlier overall direction approval from new appearance-quality approval.
+
 ## 2026-10-01 — Work after applying the background
 
 Save the [current exterior background](cinder-compact-site.en.md#2026-10-01--rocky-territory-and-industrial-background-outside-the-field) in the same scene. Distinguish implemented scenery from quality/gameplay validation.

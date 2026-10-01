@@ -28,7 +28,7 @@ public static class CinderBackgroundRenderCheck {
             var result=new {scene=UnityEngine.SceneManagement.SceneManager.GetActiveScene().name,width=640,height=360,
                 terrain_visibility_changed_pixels=changed,minimum_changed_pixels=10000,renderers_restored=true,
                 method="Actual native Camera.Render with terrain enabled/disabled; no image library"};
-            File.WriteAllText(Path.GetFullPath("../art/cinder-kit-01/background-render-validation.json"),Newtonsoft.Json.JsonConvert.SerializeObject(result,Newtonsoft.Json.Formatting.Indented)+"\n");
+            File.WriteAllText(Path.GetFullPath("../art/cinder-kit-01/"+NoReturns.Editor.CinderBackgroundBuild.EvidencePrefix+"render-validation.json"),Newtonsoft.Json.JsonConvert.SerializeObject(result,Newtonsoft.Json.Formatting.Indented)+"\n");
             return result;
         } finally {
             terrain.enabled=enabled;camera.targetTexture=null;RenderTexture.active=old;target.Release();

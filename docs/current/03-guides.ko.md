@@ -2,6 +2,20 @@
 
 [English](03-guides.en.md)
 
+## 2026-10-01 — 하늘 개방과 구역 경계 정리
+
+[현재 수정과 검증](cinder-compact-site.ko.md#2026-10-01--하늘-개방과-구역-경계-정리). 현재 씬에는 두 수정 단계가 저장되어 있다. `Polish Cinder Scenery and Suppressor Visuals` → `Open Cinder Sky and Define Zones` 순서로 재현하며, 저장하지 않은 씬/Play/기존 해당 root에서는 중단한다. native 에셋은 [제작 코드](../../NoReturns/Assets/_NoReturns/Editor/CinderBackgroundBuild.cs)로 관리한다. 현재 검사는 `Validate Cinder Exterior Background`를 사용하고 소품·건물·조밀한 맵 검사 메뉴도 현재 배경 검사로 연결한다. 원래 `ArchitectureYard.asset`을 보존하고 차양 삼각형만 제거한 새 메시를 사용한다. 원래 배경 보존 근거와 현재 천장 조정 후 근거를 따로 보존한다. 새 지상 충돌체/광원/텍스처/외부 에셋/의존성/유료 생성 없음. 재검사는 저장 후 Play를 멈춘 상태에서 저장소 루트에서 실행한다.
+
+```bash
+source ~/.unity/env
+unity command eval --code 'NoReturns.Editor.CinderBackgroundBuild.Validate(); return true;' --project-path "$PWD/NoReturns" --caller plugin --skill unity-cli --format json
+unity command run_script --file "$PWD/tools/unity_checks/CinderBackgroundRenderCheck.cs" --entry CinderBackgroundRenderCheck.Main --project-path "$PWD/NoReturns" --caller plugin --skill unity-cli --format json
+unity command editor_play --project-path "$PWD/NoReturns" --caller plugin --skill unity-cli --format json
+unity command run_script --file "$PWD/tools/unity_checks/CinderCarryEdgeCheck.cs" --entry CinderCarryEdgeCheck.Main --timeout_ms 180000 --project-path "$PWD/NoReturns" --caller plugin --skill unity-cli --format json
+unity command editor_stop --project-path "$PWD/NoReturns" --caller plugin --skill unity-cli --format json
+```
+
+
 ## 2026-10-01 — 외곽 배경 제작·렌더 검사
 
 [현재 배경·에셋·실행 명령](cinder-compact-site.ko.md#2026-10-01--억제-범위-밖-암석-지대와-산업-배경)을 따른다. 기존 Shape 메시 도구와 노후 산업 아틀라스를 재사용하고 native 메시 8개·재질 2개·128×128 광물 텍스처 1개를 제작한다. 배치 69개·삼각형 4,624개, 스케일 1, 신규 Collider/Light 0개다. 지면과 암석의 반복 UV는 면 방향에 맞추고 유한 값을 검사한다. `Add Cinder Exterior Background`는 미저장/Play/기존 루트에서 중단한다. `Validate Cinder Exterior Background`와 연결된 `Validate Cinder Site Props`, 정지 상태의 `CinderBackgroundRenderCheck.Main`, Play의 공통 운반 검사를 사용한다. 현재 근거 접두사는 `background-`, 이전 `architecture-`/`sky-`/`props-`/`site-`는 보존한다. 공용 메시 갱신은 기존 Mesh의 native setter를 사용해 GUID와 실제 렌더 갱신을 함께 유지한다. 새 텍스처는 결정적 제작 소스와 native asset으로 관리하며 외부 에셋/의존성/유료 생성은 없다. 아래 구조·스카이 단계 접두사는 과거 근거다.
