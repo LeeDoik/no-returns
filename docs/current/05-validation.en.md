@@ -10,7 +10,8 @@
 - [x] Checked bilingual names, dimensions, budgets, checkbox states and local links in the first 8-unit preparation documents. Full documentation retains 142 existing missing artifact links with no new failures.
 - [x] Checked units, axes, openings, pivots, UVs, closed surfaces, normals, reimport and Unity import for 5 structural units/11 variants.
 - [x] Passed 6 forward/backward passages, 3 jumps and 48 cargo-pose samples in the separate review scene; verified E/Q, carrying passage/return and empty-handed jumping in Mac Editor Play. Zero compile errors, 7 existing warnings, zero new Play errors/warnings.
-- [ ] Obtain user spatial, edge carrying-rotation, wall-approach and joint-quality feedback. Standalone Mac/Windows builds were not tested in this task.
+- [x] 2026-10-01 user warehouse-size review: found acceptable; retain the current 14.4×20.4m. No dimension changes.
+- [ ] Obtain user cargo-visibility, edge carrying-rotation, wall-approach and joint-quality feedback. Standalone Mac/Windows builds were not tested in this task.
 - [ ] Review new appearance images and repeat the same views after shared surfaces, light, sign and an empty rack are applied.
 - [ ] After expanding the reference area, validate actual Cinder delivery, enemy AI, networking and human cooperation. Do not mark currently unconnected systems complete.
 

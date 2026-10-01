@@ -2,6 +2,12 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-01 — User warehouse-size review
+
+The user confirmed: “I checked the warehouse. This size looks fine.” Recorded retention of the 14.4×20.4m warehouse floor in the [current production/review guide](../current/cinder-asset-prep.en.md), and updated the documentation home, production guide, blockout guide, backlog and validation checklist in both languages. Cargo visibility, edge rotation, wall approach, joint quality and new-appearance approval remain separate outstanding reviews. No code, scene or asset changes. The 8 pre-existing ship-material changes match initial hashes and are excluded from the commit.
+
+Validation covers document links, language counterparts, values, checkbox states and scoped whitespace. Full documentation retains 142 existing missing artifact links with no new failures. No new Play, automated game checks or standalone Mac/Windows builds were run. User size feedback does not validate functionality, final appearance or release quality. Verify local HEAD matches the public remote after a normal push.
+
 ## 2026-10-01 — Produce 5 gray Cinder structural units and separate review scene
 
 Following the user's request to start, implemented the 5 prepared gray structural units. Created the [Blender source](../../art/cinder-kit-01/build.py), `.blend`, 11 variant FBXs/visual prefabs, 1 shared solid-color material, [Unity builder/checker](../../NoReturns/Assets/_NoReturns/Editor/CinderStructureBuild.cs) and separate `CinderStructureReview` scene. Wall infills are 0.35/0.9m after subtracting frame/corner widths; 0.15m ceiling-edge finishes close the roof. Warehouse visuals contain 530 instances/6,408 triangles; retain 3.2×3.3m openings, ceiling underside Y=4m and floor Y=0. Disabled only the review's 10 original warehouse Renderers, retained 10 Colliders and added 0 Colliders. Original Cinder scene and 8 pre-existing ship materials match initial hashes and are excluded from the commit. No new corridor, other-building art, textures, 3 presentation units or paid generation.

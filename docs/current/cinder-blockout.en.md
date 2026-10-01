@@ -4,7 +4,7 @@
 
 ## 2026-10-01 — Gray structure review scene
 
-[First-asset production/review](cinder-asset-prep.en.md): assembled the warehouse exterior from prefabs for 5 structural units/11 variants in separate `CinderStructureReview`. Original scene unchanged. The review disables 10 original warehouse Renderers, retains 10 Colliders and adds no Colliders. Start 3m before the south entrance; carry cargo through the first 6m and return backwards. Passed Blender/FBX and Unity import, passage/jump/cargo-pose and Mac Editor Play E/Q checks. User structural/appearance approval, standalone builds and networking/AI/delivery remain unverified. The existing blockout-generation menus below do not build this review scene.
+[First-asset production/review](cinder-asset-prep.en.md): assembled the warehouse exterior from prefabs for 5 structural units/11 variants in separate `CinderStructureReview`. Original scene unchanged. The review disables 10 original warehouse Renderers, retains 10 Colliders and adds no Colliders. Start 3m before the south entrance; carry cargo through the first 6m and return backwards. Passed Blender/FBX and Unity import, passage/jump/cargo-pose and Mac Editor Play E/Q checks. The user found warehouse size acceptable; retain the current 14.4×20.4m. Carrying/joint quality, whole-structure/appearance approval, standalone builds and networking/AI/delivery remain unverified. The existing blockout-generation menus below do not build this review scene.
 
 ## 2026-10-01 — Pre-production preparation record
 

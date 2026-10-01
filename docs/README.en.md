@@ -2,7 +2,7 @@
 
 [한국어](README.md)
 
-[Assets to review now — 5 gray Cinder structural units](current/cinder-asset-prep.en.md): 11 sources, separate Unity review scene and automated checks complete. Light, sign and rack follow user structural review.
+[Assets to review now — 5 gray Cinder structural units](current/cinder-asset-prep.en.md): 11 sources, separate Unity review scene and automated checks complete. The user reviewed warehouse size; retain its current dimensions. Light, sign and rack follow carrying, joint-quality and new-appearance reviews.
 
 Existing Listener, baton and ship gameplay code/scenes are preserved. See [existing gameplay versus Cinder review scenes](current/cinder-asset-prep.en.md#location-of-existing-gameplay-systems). Gameplay integration into Cinder remains incomplete.
 

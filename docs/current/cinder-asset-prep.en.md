@@ -2,7 +2,7 @@
 
 [한국어](cinder-asset-prep.ko.md)
 
-2026-10-01 · CINDER-ASSET-PREP-01 · **Gray structures and automated checks complete / user structural review and appearance production incomplete.** The current target is the [Cinder blockout](cinder-blockout.en.md). Follow the [structure-first production guide](art-structure-first.en.md). New module dimensions and budgets below are initial trial proposals, not release specifications.
+2026-10-01 · CINDER-ASSET-PREP-01 · **Gray structures, automated checks and user size review complete / carrying and joint-quality review and appearance production incomplete.** The current target is the [Cinder blockout](cinder-blockout.en.md). Follow the [structure-first production guide](art-structure-first.en.md). New module dimensions and budgets below are initial trial proposals, not release specifications.
 
 ## What to make first and why
 
@@ -28,6 +28,8 @@ Evidence: [saved scene](../../NoReturns/Assets/_NoReturns/Scenes/CinderDepotBloc
 | Employee | Height 1.8m, radius 0.34m | Use the actual CharacterController for structural checks. |
 | View | Eye height 1.57m, FOV 80° | Compare empty-handed and cargo-carrying views. |
 | Carried cargo | 0.8×0.65×0.65m | Test camera-front carrying, rotation and wall approach through actual controls. |
+
+2026-10-01 user feedback: “I checked the warehouse. This size looks fine.” Record positive feedback on warehouse size and retain the current 14.4×20.4m floor. No code, scene or asset dimensions changed. This does not extend approval to cargo visibility, edge rotation, wall approach, joint quality or new appearances.
 
 Door, ceiling, employee and cargo values are existing trial values, not final dimensions approved by the user. The historical 41 passage checks do not validate new visuals, cargo rotation or cooperation.
 
@@ -84,7 +86,8 @@ Produced **gray sources and an assembly sample for the 5 structural units**. `Ci
 - [x] Checked units, axes, dimensions, openings, pivots, UVs, closed surfaces, normals and reimport for 11 structural sources/FBXs.
 - [x] Checked reimported size/material slots. Disabled 10 original warehouse Renderers and retained 10 Colliders; the new assembly has 0 Colliders.
 - [x] Verified automated passage/jump/cargo-pose checks and E/Q, carrying passage/return and empty-handed jumping in Mac Editor Play.
-- [ ] Obtain direct user walking, spatial, cargo-view and joint-quality feedback.
+- [x] The user inspected the warehouse size and found it acceptable. Retain the current 14.4×20.4m.
+- [ ] Obtain user feedback on cargo visibility, edge carrying-rotation, wall approach and joint quality.
 - [ ] After user structural review, review new appearances in production-oriented multi-view/gameplay images and record approval status.
 - [ ] Recheck the reference area with shared surfaces and 3 presentation units before extending to other buildings.
 
