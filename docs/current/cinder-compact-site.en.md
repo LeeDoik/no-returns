@@ -2,7 +2,35 @@
 
 [한국어](cinder-compact-site.ko.md)
 
-2026-10-01 · CINDER-COMPACT-SITE-01 · **Whole-site direction approved by user; props placed and automated checks passed / prop quality and human four-player review incomplete.** No game-version change.
+2026-10-01 · CINDER-COMPACT-SITE-01 · **Whole-site direction approved; props/dusk sky applied and automated checks passed / sky/prop quality and human four-player review incomplete.** No game-version change.
+
+## 2026-10-01 — Sky and distant atmosphere
+
+At the user's request to set up the sky (original: “그래 그럼 이제 스카이 설정하자.”), apply mauve dusk, subtle clouds and distant haze in the same `CinderCompactSiteReview`. Follow the mauve-background/warm-work-light pairing in the [suppression-field concept](../art/space-concepts/cinder-depot-suppression-01.png) and [concept 02](../art/space-concepts/concept-02.png). Reject the initial builtin `Skybox/Procedural` preview because its rendered yellow horizon does not fit. The final sky uses Unity's builtin `Skybox/Cubemap` with a **64×64 pixel, 6-face RGBA32 cubemap**. Native code creates and saves static direction-space noise/color gradients without a custom shader, external imagery, dependency or weather system.
+
+| Setting | Current value |
+|---|---|
+| Sky material/texture | `Cinder_Dusk_Sky.mat` / `Cinder_Dusk_Cube.asset` |
+| Sky exposure/rotation | 1 / 0° |
+| Cubemap top RGB / horizon RGB / bottom RGB | (0.12,0.09,0.18) / (0.34,0.27,0.38) / (0.24,0.19,0.29) |
+| Directional intensity/rotation X/Y/Z | 0.55 / (24,-30,0)°; Inspector Y=330° |
+| Directional RGB | (0.84,0.76,0.91) |
+| Ambient | Flat, RGB (0.45,0.40,0.45) |
+| Fog | Linear, RGB (0.34,0.27,0.38), start 35m/end 115m |
+
+Keep nearby alleys, freight and labels within the fog start distance; distant facilities/background blend toward the horizon color. Preserve settings/placement of all 40 existing local lights, including interior/cabin lights. Lower directional/ambient illumination to increase warm-work-light contrast. No changes to building, ship, prop placement, collision or carrying runtime. The static sky is not connected to suppression stages or a day/night cycle. This does not complete outer terrain/creature models or light baking.
+
+Evidence/reapplication: [sky settings, producer and checks](../../NoReturns/Assets/_NoReturns/Editor/CinderSkyBuild.cs), [sky material](../../NoReturns/Assets/_NoReturns/Art/CinderCompactSite01/Cinder_Dusk_Sky.mat), [cubemap](../../NoReturns/Assets/_NoReturns/Art/CinderCompactSite01/Cinder_Dusk_Cube.asset), [settings measurements](../../art/cinder-kit-01/sky-settings-validation.json). Save the current scene and stop Play, then run `NO RETURNS/Trials/Apply Cinder Dusk Sky` to reapply this preset/cubemap. Adjust manually in Lighting's Environment, the material and `Blockout daylight`. The menu resets manual sky tuning to the preset, so preserve required values first. It stops in another scene, with unsaved edits or during Play.
+
+Validation: preserve original collision, 246 occupiable prop-adjacent positions and local lights; pass 94 movement segments and 17 four-body lanes. Mac Editor Play: 5,904 carrying poses, 94 actual carrying segments and 25,942 penetration checks with 0 overlaps, 57 contacts; E/W/S/Q and empty-handed jumping passed. API poses/key events, not real-time human controls. Review 18 actual camera captures of sky, alleys, carrying visibility, labels and interiors; restore inspection-only roof hiding. 0 compile/sky-shader errors, 6 existing obsolete warning types and final Play 0 errors/warnings. Match 312 of 313 starting file hashes, excluding the current scene; exclude 8 pre-existing ship-material edits from the commit. Preserve earlier `props-` evidence; route current carrying/captures into `sky-` using the saved sky-material path.
+
+[Movement/four-body checks](../../art/cinder-kit-01/sky-passage-validation.txt) · [carrying checks](../../art/cinder-kit-01/sky-carry-edge-validation.json) · [preservation/check record](../../art/cinder-kit-01/sky-checks.json). Full documentation fails on 142 existing missing links with no new failures. User sky/fog-quality review, final danger-signal readability, human four-player play, performance, standalone builds and gameplay integration remain unverified. Prop/structure counts below record earlier work before sky setup.
+
+![Current sky and alley](../../art/cinder-kit-01/sky-upward.png)
+
+[Alley labels](../../art/cinder-kit-01/sky-office-link.png) · [Carrying visibility](../../art/cinder-kit-01/sky-central-carry.png) · [Interior](../../art/cinder-kit-01/sky-warehouse-racks.png) · [Exterior/distant haze](../../art/cinder-kit-01/sky-exterior-machinery.png).
+
+Raw staged whitespace fails on 10 trailing blanks in Unity-generated cubemap/material/meta empty fields. Code/document/evidence whitespace and the full staged check ignoring only these generated trailing blanks passed. Verify 18 Git LFS PNG pointers and `git lfs fsck --pointers`. Did not hand-edit native YAML solely for whitespace checks.
 
 ## 2026-10-01 — Area-specific prop placement
 
@@ -34,7 +62,7 @@ Evidence: [prop measurements](../../art/cinder-kit-01/props-layout-validation.js
 
 [Office desks](../../art/cinder-kit-01/props-office-workbenches.png) · [Dispatch desk](../../art/cinder-kit-01/props-bay-dispatch.png) · [Facility label](../../art/cinder-kit-01/props-facility-sign.png) · [Roof/wall equipment](../../art/cinder-kit-01/props-exterior-machinery.png) · [Prop layout cutaway](../../art/cinder-kit-01/props-field-cutaway.png).
 
-Props are already placed in the current scene. `NO RETURNS/Trials/Add Cinder Site Props` stops during Play, with unsaved changes, in another scene or when the prop group already exists, protecting manual edits. Run `Validate Cinder Site Props`, then the [shared carrying check](../../tools/unity_checks/CinderCarryEdgeCheck.cs) in Play for `props-` results. Preserve existing `site-` receipts. Next: direct prop-density/carrying-visibility assessment, BAY 04 receipt facilities and gameplay-coordinate integration. Human four-player play, AI/delivery/suppression/baton/networking, context beyond the field, performance and standalone builds remain unverified.
+Props are already placed in the current scene. `NO RETURNS/Trials/Add Cinder Site Props` stops during Play, with unsaved changes, in another scene or when the prop group already exists, protecting manual edits. Run `Validate Cinder Site Props`, then the [shared carrying check](../../tools/unity_checks/CinderCarryEdgeCheck.cs) in Play: `props-` without the sky, `sky-` in the current sky-enabled scene. Preserve existing `site-` receipts. Next: direct prop-density/carrying-visibility assessment, BAY 04 receipt facilities and gameplay-coordinate integration. Human four-player play, AI/delivery/suppression/baton/networking, context beyond the field, performance and standalone builds remain unverified.
 
 Raw staged whitespace fails on 153 trailing blanks in Unity-generated scene/mesh/meta files. Code/document/evidence and the full check ignoring only these generated blanks passed. Did not hand-edit native YAML solely for whitespace checks.
 
@@ -81,4 +109,4 @@ Raw staged whitespace fails on 30 trailing blank fields in Unity-generated scene
 
 [West sheltered route](../../art/cinder-kit-01/site-west-covered.png) · [Central junction](../../art/cinder-kit-01/site-central-junction.png) · [Central carrying alley](../../art/cinder-kit-01/site-central-carry.png) · [Overview with roofs](../../art/cinder-kit-01/site-overview.png).
 
-Open `CinderCompactSiteReview` in Unity and enter Play. Start in front of the ship ramp; WASD movement, mouse view, E pickup, Q drop and empty-handed Space jump. Recheck with `Validate Compact Cinder Site Review`; in Play run the [carrying check](../../tools/unity_checks/CinderCarryEdgeCheck.cs) via Unity CLI `run_script`, then stop Play. The undressed structure uses `site-`; the current dressed scene uses `props-`. Follow the prop checks above. Next: direct prop review, then receipt facilities and gameplay-coordinate integration.
+Open `CinderCompactSiteReview` in Unity and enter Play. Start in front of the ship ramp; WASD movement, mouse view, E pickup, Q drop and empty-handed Space jump. Recheck with `Validate Compact Cinder Site Review`; in Play run the [carrying check](../../tools/unity_checks/CinderCarryEdgeCheck.cs) via Unity CLI `run_script`, then stop Play. The undressed structure uses `site-`; the dressed scene without the sky uses `props-`; the current sky-enabled scene uses `sky-`. Follow the prop checks above. Next: direct prop review, then receipt facilities and gameplay-coordinate integration.

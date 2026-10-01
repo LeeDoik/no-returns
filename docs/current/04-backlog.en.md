@@ -6,6 +6,8 @@
 
 The user approved the feel of the [current whole map](cinder-compact-site.en.md). Place 47 prop groups, 46 static freight visuals, 3 CRTs and 6 labels in the same scene, retaining 94 movement segments and 17 four-body lanes. 5,904 carrying poses, 94 actual carrying segments and 407,130 penetration checks yielded 0 overlaps. Next: direct prop density/navigation/carrying visibility and human four-player passing review → BAY 04 receipt facilities/marking and AI/delivery coordinate integration → finer auxiliary-equipment appearance and context beyond the field. Preserve existing scenes, building sizes and carrying code. Props have no delivery/receipt functionality; distant repetition, performance and standalone builds remain incomplete.
 
+Apply the current [dusk sky/distant haze](cinder-compact-site.en.md#2026-10-01--sky-and-distant-atmosphere) in the same scene; verify 5,904 carrying poses, 94 movement segments and 25,942 penetration checks with 0 overlaps. Include sky/fog, work-light contrast and final danger-signal readability in the next quality review. Distinguish applying the environment direction from user-quality approval/performance verification. Weather/day-night changes are outside this implementation scope.
+
 Cinder gameplay integration also remains. Review, connect and revalidate existing `CarryRoom` Listener navigation, baton and ship/delivery coordinates against current Cinder space. Their absence from the gray scene reflects missing integration, not deleted code.
 
 0.9.1: [Cooperative HUD and evidence](crew-hud.en.md). Reorganized gameplay instructions and four-player states. Human readability assessment remains outstanding.

@@ -16,12 +16,13 @@ public static class CinderCarryEdgeCheck {
         string scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
         bool site = scene == "CinderCompactSiteReview";
         bool props = site && GameObject.Find(NoReturns.Editor.CinderSitePropsBuild.RootName);
+        bool sky = props && AssetDatabase.GetAssetPath(RenderSettings.skybox) == NoReturns.Editor.CinderSkyBuild.MaterialPath;
         bool maze = scene == "CinderMazeReview";
         bool map = site || maze || scene == "CinderMapAppearanceReview";
         bool appearance = map || scene == "CinderAppearanceReview";
         if (!EditorApplication.isPlaying || (!appearance && scene != "CinderStructureReview"))
             throw new InvalidOperationException("Open a Cinder structure/appearance review and enter Play first.");
-        string prefix = props ? "props-" : site ? "site-" : maze ? "maze-" : map ? "map-" : appearance ? "production-" : "";
+        string prefix = sky ? "sky-" : props ? "props-" : site ? "site-" : maze ? "maze-" : map ? "map-" : appearance ? "production-" : "";
         var walk = UnityEngine.Object.FindAnyObjectByType<CinderBlockoutWalk>();
         var body = walk.GetComponent<CharacterController>();
         var parcel = GameObject.Find("Trial carried parcel");
@@ -180,6 +181,7 @@ public static class CinderCarryEdgeCheck {
                         views.Add(("storage-freight.png",new Vector3(12f,.035f,-24.9f),110,false));
                         views.Add(("exterior-machinery.png",new Vector3(30,18,-35),319,false));
                         views.Add(("facility-sign.png",new Vector3(16.2f,.035f,4.5f),0,false));
+                        if (sky) views.Add(("upward.png",NoReturns.Editor.CinderCompactSiteBuild.Spawn,70,false));
                     }
                 } else if (maze) {
                     views.Clear();
@@ -203,7 +205,7 @@ public static class CinderCarryEdgeCheck {
                 foreach(var view in views) {
                     body.enabled=false;walk.transform.position=view.point;body.enabled=true;
                     typeof(CinderBlockoutWalk).GetField("yaw",flags).SetValue(walk,view.yaw);
-                    typeof(CinderBlockoutWalk).GetField("pitch",flags).SetValue(walk,view.name == "overview.png" ? 40f : view.name == "exterior-machinery.png" ? 25f : 0f);
+                    typeof(CinderBlockoutWalk).GetField("pitch",flags).SetValue(walk,view.name == "overview.png" ? 40f : view.name == "exterior-machinery.png" ? 25f : view.name == "upward.png" ? -35f : 0f);
                     typeof(CinderBlockoutWalk).GetField("carrying",flags).SetValue(walk,view.carry);
                     parcel.GetComponent<Renderer>().enabled=view.carry;
                     update.Invoke(walk,null);

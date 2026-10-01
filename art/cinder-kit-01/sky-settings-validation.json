@@ -1,0 +1,41 @@
+{
+  "scene": "Assets/_NoReturns/Scenes/CinderCompactSiteReview.unity",
+  "material": "Assets/_NoReturns/Art/CinderCompactSite01/Cinder_Dusk_Sky.mat",
+  "shader": "Skybox/Cubemap",
+  "shader_supported": true,
+  "cubemap": "Assets/_NoReturns/Art/CinderCompactSite01/Cinder_Dusk_Cube.asset",
+  "cubemap_face_size": 64,
+  "cubemap_faces": 6,
+  "exposure": 1.0,
+  "directional_intensity": 0.55,
+  "directional_color": [
+    0.84,
+    0.76,
+    0.91,
+    1.0
+  ],
+  "directional_rotation": "(24.000, 330.000, 0.000)",
+  "ambient_mode": "Flat",
+  "ambient_color": [
+    0.45,
+    0.4,
+    0.45,
+    1.0
+  ],
+  "fog_mode": "Linear",
+  "fog_color": [
+    0.34,
+    0.27,
+    0.38,
+    1.0
+  ],
+  "fog_start_m": 35.0,
+  "fog_end_m": 115.0,
+  "collision_preserved": true,
+  "local_lights_preserved": true,
+  "occupiable_prop_positions": 246,
+  "geometry_changed": false,
+  "runtime_changed": false,
+  "dynamic_weather": false,
+  "user_sky_quality_review": false
+}

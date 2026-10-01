@@ -2,6 +2,16 @@
 
 [한국어](05-validation.ko.md)
 
+## 2026-10-01 — Dusk sky and distant haze
+
+[Current settings, running and evidence](cinder-compact-site.en.md#2026-10-01--sky-and-distant-atmosphere).
+
+- [x] Check builtin Skybox/Cubemap, 64×64 pixel 6-face RGBA32 cubemap, 35–115m Linear fog and lighting values. 0 sky-shader errors; preserve 40 local lights, collision and 246 occupiable positions.
+- [x] Pass 94 movement segments, 17 four-body lanes, 5,904 carrying poses and 94 actual carrying segments. 25,942 penetration checks with 0 overlaps; E/W/S/Q and empty-handed jumping passed.
+- [x] Review 18 actual cameras, label/carrying visibility, interior contrast and roof restoration. Match 312 of 313 starting hashes, excluding the current scene. 0 compile errors, 6 existing obsolete warning types and final Play 0 errors/warnings.
+- [x] Preserve earlier props- evidence; verify current sky- check/capture paths. No new failures beyond 142 existing missing documentation links.
+- [ ] User sky/fog quality, final danger-signal readability, human four-player play, performance, standalone builds and gameplay integration.
+
 ## 2026-10-01 — Current whole-site prop placement
 
 [Props, running and evidence](cinder-compact-site.en.md). The `site-` counts below record the structure before props.

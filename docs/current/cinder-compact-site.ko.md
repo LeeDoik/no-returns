@@ -2,7 +2,35 @@
 
 [English](cinder-compact-site.en.md)
 
-2026-10-01 · CINDER-COMPACT-SITE-01 · **전체 맵 방향 사용자 승인·소품 배치와 자동 검사 완료 / 소품 품질·사람 4인 검토 미완료.** 게임 버전은 바꾸지 않는다.
+2026-10-01 · CINDER-COMPACT-SITE-01 · **전체 맵 방향 사용자 승인·소품과 황혼 스카이 적용·자동 검사 완료 / 하늘·소품 품질과 사람 4인 검토 미완료.** 게임 버전은 바꾸지 않는다.
+
+## 2026-10-01 — 스카이와 원거리 분위기
+
+사용자 요청 “그래 그럼 이제 스카이 설정하자.”에 따라 같은 `CinderCompactSiteReview`에 보랏빛 황혼·옅은 구름·원거리 안개를 적용했다. [억제 범위 컨셉](../art/space-concepts/cinder-depot-suppression-01.png)과 [컨셉 02](../art/space-concepts/concept-02.png)의 보랏빛 배경/따뜻한 작업등 조합을 참고했다. 기본 `Skybox/Procedural` 시도는 실제 화면의 노란 지평선이 맞지 않아 채택하지 않았다. 최종 하늘은 Unity 기본 `Skybox/Cubemap`과 **64×64 픽셀 6면 RGBA32 큐브맵**이다. 방향 좌표 노이즈와 색 그라데이션을 native 코드로 만들어 정적으로 저장하며 별도 셰이더·외부 이미지·의존성·날씨 시스템은 추가하지 않았다.
+
+| 설정 | 현재 값 |
+|---|---|
+| 스카이 재질/텍스처 | `Cinder_Dusk_Sky.mat` / `Cinder_Dusk_Cube.asset` |
+| 스카이 노출·회전 | 1 / 0° |
+| 큐브맵 상단 RGB / 지평선 RGB / 하단 RGB | (0.12,0.09,0.18) / (0.34,0.27,0.38) / (0.24,0.19,0.29) |
+| 방향광 강도·회전 X/Y/Z | 0.55 / (24,-30,0)°; Inspector Y=330° |
+| 방향광 RGB | (0.84,0.76,0.91) |
+| 환경광 | Flat, RGB (0.45,0.40,0.45) |
+| 안개 | Linear, RGB (0.34,0.27,0.38), 시작 35m·끝 115m |
+
+가까운 골목·화물·표지는 안개 시작 거리 안에 두고, 먼 시설/배경은 지평선 색에 섞인다. 실내/선내 작업등을 포함한 기존 로컬 광원 40개의 설정·배치를 유지했다. 방향광과 환경광을 낮추어 따뜻한 작업등 대비를 키웠다. 건물·우주선·소품 배치·충돌·운반 런타임 변경은 없다. 새 하늘은 정적 배경이며 억제 단계 변화나 주야 순환과 연결하지 않았다. 경계 밖 지형/크리쳐 모델과 조명 베이크를 완료한 것은 아니다.
+
+근거와 재적용: [스카이 설정·제작·검사 코드](../../NoReturns/Assets/_NoReturns/Editor/CinderSkyBuild.cs), [스카이 재질](../../NoReturns/Assets/_NoReturns/Art/CinderCompactSite01/Cinder_Dusk_Sky.mat), [큐브맵](../../NoReturns/Assets/_NoReturns/Art/CinderCompactSite01/Cinder_Dusk_Cube.asset), [설정 실측](../../art/cinder-kit-01/sky-settings-validation.json). 현재 씬을 저장하고 Play를 종료한 뒤 `NO RETURNS/Trials/Apply Cinder Dusk Sky`를 실행하면 이 프리셋과 큐브맵을 재적용한다. 수동 조정은 Lighting의 Environment, 해당 재질과 `Blockout daylight`에서 한다. 메뉴는 수동 스카이 조정을 프리셋으로 되돌리므로 먼저 필요한 값을 보존한다. 다른 씬/미저장 상태/Play 중에는 중단한다.
+
+검증: 기존 충돌·246개 소품 주변 유효 위치·로컬 광원 보존, 이동 94구간·네 몸체 통로 17곳 통과. Mac Editor Play 운반 자세 5,904개·실제 운반 94구간·침투 검사 25,942회에서 겹침 0건, 경계 접촉 57건, E/W/S/Q·빈손 점프 통과. API 자세/키 이벤트 검사이며 사람 실시간 조작은 아니다. 실제 카메라 18개로 하늘·골목·운반 시야·표지·실내를 검토했고 촬영용 지붕 숨김을 복원했다. 컴파일/스카이 셰이더 오류 0개·기존 obsolete 경고 6종·최종 Play 오류/경고 0개. 시작 파일 313개 중 현재 씬을 제외한 312개 해시 일치, 기존 선내 재질 변경 8개는 커밋 제외. 기존 `props-` 근거를 유지하고 현재 운반/촬영 근거는 저장된 스카이 재질 경로로 구분해 `sky-`에 쓴다.
+
+[이동/네 몸체 검사](../../art/cinder-kit-01/sky-passage-validation.txt) · [운반 검사](../../art/cinder-kit-01/sky-carry-edge-validation.json) · [보존·검사 기록](../../art/cinder-kit-01/sky-checks.json). 전체 문서 검사는 기존 누락 링크 142개로 실패하며 새 실패 없음. 하늘/안개 품질의 사용자 평가·최종 위험 표식 가독성·사람 4인·성능·독립 빌드·게임 기능 연결은 미검증이다. 아래 소품/구조 수치는 스카이 적용 전 기록이다.
+
+![현재 하늘과 골목](../../art/cinder-kit-01/sky-upward.png)
+
+[골목 표지](../../art/cinder-kit-01/sky-office-link.png) · [화물 운반 시야](../../art/cinder-kit-01/sky-central-carry.png) · [실내](../../art/cinder-kit-01/sky-warehouse-racks.png) · [시설 외부와 원거리 안개](../../art/cinder-kit-01/sky-exterior-machinery.png).
+
+원시 staged 공백 검사는 Unity 생성 큐브맵·재질·meta의 빈 필드 후행 공백 10곳으로 실패한다. 코드·문서·근거 공백 검사와 이 생성 후행 공백만 제외한 전체 staged 검사는 통과했다. Git LFS PNG 포인터 18개와 `git lfs fsck --pointers`를 확인했다. 공백 검사만을 위해 native YAML을 수동 편집하지 않았다.
 
 ## 2026-10-01 — 구역별 소품 배치
 
@@ -34,7 +62,7 @@
 
 [사무 작업대](../../art/cinder-kit-01/props-office-workbenches.png) · [발송 작업대](../../art/cinder-kit-01/props-bay-dispatch.png) · [시설 표지](../../art/cinder-kit-01/props-facility-sign.png) · [지붕·벽면 설비](../../art/cinder-kit-01/props-exterior-machinery.png) · [소품 배치 상면](../../art/cinder-kit-01/props-field-cutaway.png).
 
-현재 씬에 이미 배치했다. `NO RETURNS/Trials/Add Cinder Site Props`는 Play 중·미저장·다른 씬·기존 소품군이 있으면 중단하여 수동 편집을 보호한다. `Validate Cinder Site Props`로 검사하고 Play에서 [공통 운반 검사](../../tools/unity_checks/CinderCarryEdgeCheck.cs)를 실행하면 `props-` 결과를 만든다. 기존 `site-` 근거는 덮어쓰지 않는다. 다음은 소품 밀도/운반 시야의 직접 평가, BAY 04 수령 시설·기능 좌표 통합이다. 사람 4인·AI/배송/억제/진압봉/온라인·경계 밖 환경·성능·독립 빌드는 미검증이다.
+현재 씬에 이미 배치했다. `NO RETURNS/Trials/Add Cinder Site Props`는 Play 중·미저장·다른 씬·기존 소품군이 있으면 중단하여 수동 편집을 보호한다. `Validate Cinder Site Props`로 검사하고 Play에서 [공통 운반 검사](../../tools/unity_checks/CinderCarryEdgeCheck.cs)를 실행한다. 스카이 없는 소품 씬은 `props-`, 현재 스카이 포함 씬은 `sky-` 결과를 만든다. 기존 `site-` 근거는 덮어쓰지 않는다. 다음은 소품 밀도/운반 시야의 직접 평가, BAY 04 수령 시설·기능 좌표 통합이다. 사람 4인·AI/배송/억제/진압봉/온라인·경계 밖 환경·성능·독립 빌드는 미검증이다.
 
 원시 staged 공백 검사는 Unity 생성 씬·메시·meta의 후행 공백 153곳으로 실패한다. 코드·문서·근거와 이 생성 공백만 제외한 전체 검사는 통과했다. 공백 검사만을 위한 native YAML 수동 편집은 하지 않았다.
 
@@ -81,4 +109,4 @@
 
 [서쪽 지붕 경로](../../art/cinder-kit-01/site-west-covered.png) · [중앙 분기](../../art/cinder-kit-01/site-central-junction.png) · [중앙 운반 골목](../../art/cinder-kit-01/site-central-carry.png) · [지붕 포함 전체 모습](../../art/cinder-kit-01/site-overview.png).
 
-Unity에서 `CinderCompactSiteReview`를 열고 Play 한다. 우주선 경사로 앞에서 시작하며 WASD 이동, 마우스 시야, E 들기, Q 놓기, 빈손 Space 점프다. `Validate Compact Cinder Site Review`로 재검사하고, Play에서 [운반 검사](../../tools/unity_checks/CinderCarryEdgeCheck.cs)를 Unity CLI `run_script`로 실행한 뒤 종료한다. 소품 없는 구조 검사는 `site-`, 현재 소품이 있는 씬의 검사는 `props-` 접두사를 쓴다. 소품 추가 후 검사는 위 항목을 따른다. 다음은 소품 직접 검토 후 수령 설비와 기능 좌표 통합이다.
+Unity에서 `CinderCompactSiteReview`를 열고 Play 한다. 우주선 경사로 앞에서 시작하며 WASD 이동, 마우스 시야, E 들기, Q 놓기, 빈손 Space 점프다. `Validate Compact Cinder Site Review`로 재검사하고, Play에서 [운반 검사](../../tools/unity_checks/CinderCarryEdgeCheck.cs)를 Unity CLI `run_script`로 실행한 뒤 종료한다. 소품 없는 구조 검사는 `site-`, 소품이 있고 스카이가 없는 씬은 `props-`, 현재 스카이 포함 씬은 `sky-` 접두사를 쓴다. 소품 추가 후 검사는 위 항목을 따른다. 다음은 소품 직접 검토 후 수령 설비와 기능 좌표 통합이다.

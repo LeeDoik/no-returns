@@ -2,6 +2,8 @@
 
 [한국어](README.md)
 
+[Current sky and distant atmosphere](current/cinder-compact-site.en.md#2026-10-01--sky-and-distant-atmosphere): apply a static mauve sky, 35–115m fog and reduced ambient/directional light in the same scene. Retain 40 local lights, map placement, collision and runtime. Inspect 18 actual captures and carrying checks; user sky-quality/final danger-signal readability review remains pending.
+
 [Current compact map and prop placement](current/cinder-compact-site.en.md). The user approved the whole-site direction. Add 47 groups of racks, pallets, desks, cabinets, drums, pipes, roof equipment and labels in the same `CinderCompactSiteReview`. Preserve 3/3.15m alleys, 4 loops, 94 movement segments and 17 four-body lanes. Passed 5,904 carrying poses and actual movement. Prop quality and human four-player review remain.
 
 Existing Listener, baton and ship gameplay code/scenes are preserved. See [existing gameplay versus Cinder review scenes](current/cinder-asset-prep.en.md#location-of-existing-gameplay-systems). Gameplay integration into Cinder remains incomplete.

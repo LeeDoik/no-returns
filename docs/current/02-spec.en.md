@@ -6,6 +6,8 @@
 
 [Current whole map, props and checks](cinder-compact-site.en.md) defines the environment. The user approved the whole-site direction. Retain 5 buildings, the ship, 6 auxiliary volumes, 3/3.15m alleys and 4 loops; add 47 prop groups to the same scene. The 46 freight visuals and 3 CRT visuals are static props without receipt/E/Q functionality. Exclude the 24 interior-only partitions from the current target. CarryRoom delivery, Listener, baton, suppression mechanics and networking below remain unconnected to Cinder. Prop quality, human four-player passing, receipt facilities and new-coordinate integration remain.
 
+The same scene now uses [dusk sky, lighting and distant haze](cinder-compact-site.en.md#2026-10-01--sky-and-distant-atmosphere). Apply a static cubemap and 35–115m fog; preserve 40 local lights, placement, collision and runtime. Day/night/weather/suppression-stage integration and user sky-quality review remain incomplete.
+
 0.9.1: [Cooperative HUD and evidence](crew-hud.en.md). Reorganized gameplay instructions and four-player states. Human readability assessment remains outstanding.
 
 ## Current 0.9.0 — four-player cooperation
