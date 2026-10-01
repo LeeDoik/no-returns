@@ -2,6 +2,12 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-02 — Investigate and order the next development steps
+
+The user asked what to do next. Read current documentation home, 0.9.2 controls, backlog/validation and participant/all-aboard code. No code, scene or gameplay changes. Previous four manual processes were stopped. Recommend about 5 minutes of human control review → existing Listener/baton/rescue in current Cinder → suppression/exterior and actual beacon distraction → progression saving/other-environment validation. Update paired [backlog](../current/04-backlog.en.md) and [checklist](../current/05-validation.en.md). Record this as a recommendation, without marking implementation or human quality assessment complete.
+
+Validation covers current document/process/code inspection and document links/language checkbox consistency. Do not run game, compilation or play checks. Full documentation check fails on 142 existing missing links, with 0 new failures; changed-document whitespace checks pass. Human input, current-map Listener/baton/suppression/distraction/progression saving, other-PC/LAN, Windows and extended stability/performance remain unverified or incomplete. Preserve/exclude eight pre-existing ship-material edits from this commit.
+
 ## 2026-10-01 — Controls, ship and purchase UI 0.9.2
 
 The user requested an overall improvement to object controls, ship departure, purchases and key layout. Reuse existing uGUI HUD, Input System, ledger and beacon. E targets objects/opens the aboard terminal; native buttons handle departure/return. Enforce host authority, all-aboard and confirmed zero-pay return in server/UI. Add left-click precise ground placement/preview, hold right-click parcel rotation, wheel 0.75–1.6m reach and Q immediate release. Retain wall/ground collision and blocked-placement rejection. Nearby rescue and aimed parcel/beacon take priority over the ship menu.

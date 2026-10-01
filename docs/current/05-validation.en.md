@@ -2,6 +2,17 @@
 
 [한국어](05-validation.ko.md)
 
+## 2026-10-02 — Recommended next order
+
+After current 0.9.2, recommend **brief human control review → Cinder Listener/baton/rescue integration → suppression/exterior and beacon distraction → progression saving**. This is not implementation of new gameplay or user quality approval.
+
+- [ ] Play a delivery for about 5 minutes, checking awkward/confusing parcel rotation, reach, ground placement and ship departure/return/purchase buttons. Four-process automated checks do not replace this human assessment.
+- [ ] Connect existing Listener sound response/movement/attacks, empty-hand baton defense and teammate down/rescue to current Cinder corridors/collision. First validate a delivery segment where evasion, defense and rescue are available choices.
+- [ ] Then connect risks inside/outside suppression and actual Listener distraction by the purchased beacon. Do not treat current purchase/carrying/signal/audio as completed distraction.
+- [ ] Review combined delivery/purchase/return behavior before Cinder progression saving and other-PC/LAN, Windows, performance/extended stability checks.
+
+[Current controls](controls-ui.en.md) · [Existing Listener/rescue rules](space-play-03.en.md). During this 2026-10-02 investigation, the previous four manual processes were no longer running. Verify from [code](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.Network.cs) that all-aboard checks include only current participants, including a one-person room; do not claim game execution or human input verification in this investigation.
+
 ## 2026-10-01 — Controls, ship and purchase UI 0.9.2
 
 [Current controls and running](controls-ui.en.md). E targeted use/ship terminal, left-click ground placement, hold right click to rotate parcel, wheel 0.75–1.6m reach, Q immediate release. Separate departure/return/purchase into native buttons showing boarding count, wallet, disabled reasons and zero-pay return confirmation. Esc settings provide 13 button rebindings, sensitivity, FOV, language/defaults. Menus block gameplay inputs while the world continues. Connect Cinder 120 CR beacon purchase/shared carrying/two 8-second signals. Version 0.9.2, protocol 11, TCP 27842. Preserve source map/delivery pay. Supersede E automatic progression/Esc shop and unconnected-Cinder-beacon statements below within this scope. Listener/baton/suppression/save integration and human quality assessment remain. [Actual validation scope](../validation/controls-ui-0.9.2.json).
