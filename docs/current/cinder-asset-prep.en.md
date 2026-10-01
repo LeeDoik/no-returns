@@ -2,7 +2,7 @@
 
 [한국어](cinder-asset-prep.ko.md)
 
-2026-10-01 · CINDER-ASSET-PREP-01 · **Addressed user feedback that the first application was too clean: aged texture revision and automated checks complete / user quality review of the revision incomplete.** The current target is the [Cinder blockout](cinder-blockout.en.md). Follow the [structure-first production guide](art-structure-first.en.md). New module dimensions and budgets below are initial trial proposals, not release specifications.
+2026-10-01 · CINDER-ASSET-PREP-01 · **User approval of aged warehouse style, shared appearance expanded to 5 buildings and automated checks passed / user review of the expansion incomplete.** Follow [current map scope, review scene and next production](cinder-map-appearance.en.md). Below are specifications, production and checks for the first warehouse batch.
 
 ## What to make first and why
 
@@ -72,7 +72,7 @@ Current tool check: local `blender --version` reports **5.2.2 LTS**. Unity targe
 
 ## Next task and acceptance gates
 
-Produced **gray sources and an assembly sample for the 5 structural units**. `CinderStructureReview` preserves original Cinder and assembles the entire warehouse exterior; the south entrance and first 6m inside are user review points. No new corridor or building expansion. Approved shared surfaces and the 3 presentation units are now applied in separate `CinderAppearanceReview`. Next is user visibility, joint and quality review of the applied result. Existing Create/Build Cinder menus regenerate the scene; do not run them on a manually authored art-review scene.
+Preserve the first warehouse batch's **gray sources/assembly sample for 5 structural units** and south entrance/first 6m review points. Following approval of the aged style, expanded [shared appearance across 5 buildings](cinder-map-appearance.en.md) in a separate map scene. Next: BAY 04 receipt terminal/floor marking and user review of the expansion. Existing Create/Build Cinder menus regenerate the scene; do not run them on a manually authored art-review scene.
 
 | Review view | What to inspect |
 |---|---|
@@ -91,7 +91,7 @@ Produced **gray sources and an assembly sample for the 5 structural units**. `Ci
 - [x] Generated, inspected and saved an entrance appearance proposal and 8-unit multi-view component sheet using actual structure references.
 - [x] User approved the concept direction for new colors, textures, light, sign and rack.
 - [x] Applied shared surfaces and the 3 presentation units, repeated empty-handed/carrying views and automated checks.
-- [ ] Obtain user quality review of the applied result before expanding to other buildings.
+- [x] Expanded shared appearance across 5 buildings after user approval of the aged map style. User review of the expansion remains.
 
 Networking, enemy AI and delivery judgement are not connected to the current Cinder trial. Passing this structural area cannot complete the whole game, cooperation, enjoyment or release quality.
 
@@ -168,3 +168,5 @@ Reproduce surfaces only: `blender --background --python art/cinder-kit-01/build_
 With current textures, passed 14 Blender reimports, Unity imports/surface settings, 6 passages, 3 jumps and 48 center-lane cargo poses. Mac Editor Play automated checks passed 432 poses with 0 penetrations, E/W/S/Q and empty-handed jumping. Current compilation status reports 0 errors; Play console has 0 errors/warnings. No forced new compilation or real-time human input test. Inspected 6 actual camera views. [Current entry](../../art/cinder-kit-01/production-entry-empty.png) and [current rack](../../art/cinder-kit-01/production-rack-empty.png); first-application comparisons are preserved as [entry](../../art/cinder-kit-01/clean-entry-before.png) and [rack](../../art/cinder-kit-01/clean-rack-before.png).
 
 User quality feedback on the revision, all-part multi-view review, distant patterns, performance, standalone Mac/Windows builds, ship Play and networking/AI/delivery remain unverified. Documentation retains 142 existing missing artifact links with no new failures.
+
+2026-10-01 user feedback: “Let's build the map with this feel and move on” (original: “그래 이런 느낌으로 맵을 구성하자. 다음으로 넘어가자”). Approved the aged revision as the map style reference. Subsequently [expanded shared appearances to 5 buildings](cinder-map-appearance.en.md); user review of the expansion is separate. Earlier incomplete approval records retain their historical status.

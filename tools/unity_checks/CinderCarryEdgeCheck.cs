@@ -9,14 +9,15 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
 
-// Run through Unity CLI run_script in CinderStructureReview or CinderAppearanceReview Play. Stop Play afterward.
+// Run through Unity CLI run_script in a Cinder structure/appearance/map review Play. Stop Play afterward.
 public static class CinderCarryEdgeCheck {
     public static async Task<object> Main() {
         string scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-        bool appearance = scene == "CinderAppearanceReview";
+        bool map = scene == "CinderMapAppearanceReview";
+        bool appearance = map || scene == "CinderAppearanceReview";
         if (!EditorApplication.isPlaying || (!appearance && scene != "CinderStructureReview"))
             throw new InvalidOperationException("Open a Cinder structure/appearance review and enter Play first.");
-        string prefix = appearance ? "production-" : "";
+        string prefix = map ? "map-" : appearance ? "production-" : "";
         var walk = UnityEngine.Object.FindAnyObjectByType<CinderBlockoutWalk>();
         var body = walk.GetComponent<CharacterController>();
         var parcel = GameObject.Find("Trial carried parcel");
@@ -40,6 +41,14 @@ public static class CinderCarryEdgeCheck {
             points.Add(new Vector3(-24.52f, .035f, -5.4f));
             points.Add(new Vector3(-25.275f, .035f, -3.825f));
             points.Add(new Vector3(-25.275f, .035f, -6.975f));
+        }
+        var buildings = new[] {"SIDE OFFICE", "BAY 04", "C SERVICE", "STORAGE"};
+        if (map) foreach (string name in buildings) {
+            var floor = GameObject.Find("Cinder Depot editable primitive blockout").transform.Find(name).Find(name + " floor").GetComponent<Renderer>().bounds;
+            foreach (float z in new[] {floor.min.z, floor.max.z}) foreach (float x in new[] {-1.1f, 0f, 1.1f})
+                foreach (float offset in new[] {-.6f, 0f, .6f}) points.Add(new Vector3(floor.center.x + x, .035f, z + offset));
+            foreach (float x in new[] {floor.min.x + .525f, floor.max.x - .525f})
+                points.Add(new Vector3(x, .035f, floor.center.z));
         }
         var failures = new List<object>();
         int samples = 0, touching_contacts = 0;
@@ -112,10 +121,19 @@ public static class CinderCarryEdgeCheck {
                     views.Add(("inside-rear-carry.png",new Vector3(-18.6f,.035f,-2.4f),180f,true));
                     views.Add(("rack-empty.png",new Vector3(-22.6f,.035f,-4.0f),240f,false));
                 }
+                if (map) {
+                    foreach (string name in buildings) {
+                        var floor = GameObject.Find("Cinder Depot editable primitive blockout").transform.Find(name).Find(name + " floor").GetComponent<Renderer>().bounds;
+                        string label = name.ToLowerInvariant().Replace(' ', '-');
+                        views.Add((label + "-empty.png", new Vector3(floor.center.x, .035f, floor.min.z - 3), 0, false));
+                        views.Add((label + "-carry.png", new Vector3(floor.center.x, .035f, floor.min.z + 2), 0, true));
+                    }
+                    views.Add(("overview.png", new Vector3(50, 55, -55), 315, false));
+                }
                 foreach(var view in views) {
                     body.enabled=false;walk.transform.position=view.point;body.enabled=true;
                     typeof(CinderBlockoutWalk).GetField("yaw",flags).SetValue(walk,view.yaw);
-                    typeof(CinderBlockoutWalk).GetField("pitch",flags).SetValue(walk,0f);
+                    typeof(CinderBlockoutWalk).GetField("pitch",flags).SetValue(walk,view.name == "overview.png" ? 40f : 0f);
                     typeof(CinderBlockoutWalk).GetField("carrying",flags).SetValue(walk,view.carry);
                     parcel.GetComponent<Renderer>().enabled=view.carry;
                     update.Invoke(walk,null);

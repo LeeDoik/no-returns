@@ -2,6 +2,17 @@
 
 [한국어](05-validation.ko.md)
 
+## 2026-10-01 — Shared Cinder building appearance expansion
+
+[Current scope, measurements and review scene](cinder-map-appearance.en.md).
+
+- [x] Recorded user approval of the aged warehouse as the map style reference.
+- [x] Checked 8 Blender/FBX fills, Unity imports/UVs, floor/roof area, placement scale 1 and emission reimport. 0 new Colliders; preserved settings/placement of 109 existing BoxColliders.
+- [x] Passed 41 existing movement routes, 6 warehouse passages, 3 jumps, 48 center-lane cargo poses, Mac Editor Play 2,352 poses with 0 penetrations, E/W/S/Q and empty-handed jumping. 0 compile errors; 0 errors/warnings in the final Play console.
+- [x] Captured 15 actual Play-camera views; reviewed building empty-handed/carrying views and overall placement. Bilingual/link checks have 0 new failures beyond 142 existing missing links.
+- [ ] User review of expansion visibility, joints, repeated patterns and lighting density; distant shimmer/performance, standalone Mac/Windows builds and ship Play.
+- [ ] Receipt facilities, outdoor/connecting routes, suppression facilities and Cinder delivery/AI/networking integration checks.
+
 ## 2026-10-01 — First Cinder asset batch
 
 [Specifications, review views and evidence boundary](cinder-asset-prep.en.md). This records gray production and separate review-scene checks; historical game/build passes do not validate the new batch.
@@ -17,7 +28,7 @@
 - [x] User concept-direction approval and shared surfaces, work lights, sign and empty 2-tier rack in separate `CinderAppearanceReview`.
 - [x] Checked 14 new FBXs, 2 textures, 0 penetrations in 432 carrying poses, E/W/S/Q, empty-handed jump and matching empty-handed/carrying views. 0 compile errors and 0 errors/warnings in the final Play console. [Evidence](cinder-asset-prep.en.md#2026-10-01--applying-the-approved-appearance).
 - [x] Recorded feedback that the first application was too clean; applied 2 imagegen-aged surfaces, normalized to 512×512 / 256×128, rechecked 14 imports/432 poses, inspected 6 actual camera views and matched hashes on 44 preserved files. [Revision evidence](cinder-asset-prep.en.md#2026-10-01--aged-texture-revision).
-- [ ] Obtain user quality review of the aged texture revision.
+- [x] User approved the aged texture revision as the map style reference.
 - [ ] User appearance, visibility and joint-quality review of the actual result; all-part multi-view review, distant shimmer and performance. Ship-scene Play revalidation remains separate.
 - [ ] After expanding the reference area, validate actual Cinder delivery, enemy AI, networking and human cooperation. Do not mark currently unconnected systems complete.
 

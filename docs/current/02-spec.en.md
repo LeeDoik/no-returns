@@ -1,5 +1,11 @@
 # Current game specification — SPACE-01
 
+[한국어](02-spec.ko.md)
+
+## 2026-10-01 — Current Cinder map appearance
+
+[Shared appearance across 5 buildings, review scene and checks](cinder-map-appearance.en.md) defines current environment production. The user approved the aged warehouse style for expansion to existing buildings. Placement, openings, collision and carrying rules are preserved; the CarryRoom Listener, baton, delivery and networking described below remain unconnected to Cinder. User review of the expansion, outdoor finishes and receipt facilities remain.
+
 0.9.1: [Cooperative HUD and evidence](crew-hud.en.md). Reorganized gameplay instructions and four-player states. Human readability assessment remains outstanding.
 
 ## Current 0.9.0 — four-player cooperation
@@ -26,8 +32,6 @@
 0.8.6: original CRT/slot alignment, duplicate recorder removed, payment requires receipt collection and return. [Current receipt rules](receipt-terminal.en.md) supersede immediate-payment descriptions.
 
 0.8.5: replaced the reception bench with floor markings and connected terminal reactions. See [Receipt terminal](receipt-terminal.en.md) for current rules and verification status; this supersedes raised-bench descriptions.
-
-[한국어](02-spec.ko.md)
 
 0.8.4: two approved parcel/receipt models produced and visually integrated. Dynamic terminal state remains follow-up work. [Record](psx-props-01.en.md).
 

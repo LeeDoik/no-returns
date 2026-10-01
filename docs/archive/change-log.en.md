@@ -2,6 +2,18 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-01 — Expanding the approved aged appearance to 5 buildings
+
+The user approved the aged warehouse style as the map reference and requested the next step. Extended common floors, walls, frames, ceilings and work lights to the office, BAY 04, service and storage buildings in separate `CinderMapAppearanceReview`. Added 8 Blender fill sources/FBXs/prefabs for existing dimensional remainders and assembly/validation code. Reuse the atlas with placement scale 1; added 1,696 placements, 20,736 triangles and 16 work lights, with 0 new Colliders. No changes to placement, doors, collision or carrying runtime. Outdoor/connecting-route and functional facilities retain trial appearances. [Current scope, views and measurements](../current/cinder-map-appearance.en.md).
+
+The work-light material stored `_EMISSION` alongside `EmissiveIsBlack`, causing reimport to remove the emission keyword. Corrected the shared producer/material to `BakedEmissive`; forced reimport passed emission-preservation checks. No color/Point Light changes or lightmap baking. Of 82 starting files, 81 hashes match, excluding this 1 corrected material. Exclude 8 pre-existing ship-material edits from the commit.
+
+Validation: 8 fills passed closed surfaces, dimensions, pivots, UV range/reimport agreement, Unity imports, floor/roof area and shared material checks. Compared settings/placement on 109 existing BoxColliders and retained 50 building Colliders. Passed 41 movement routes, 6 warehouse passages, 3 jumps, 48 center-lane cargo poses, Mac Editor Play 2,352 poses with 0 penetrations, E/W/S/Q and empty-handed jumping. Captured 15 actual camera views and reviewed building empty-handed/carrying views, warehouse entry and overall placement. 0 compile errors; 0 errors/warnings in the final Play console. Automated keys/API poses, not real-time human input. [Check/preservation hashes](../../art/cinder-kit-01/map-checks.json).
+
+Updated current specifications, production guides, backlog, validation, documentation home and user-approval record in both languages. Full documentation fails on 142 existing missing artifact links with no new failures. Check code/document/evidence whitespace and LFS; verify uploads/HEAD equality after a normal push to the public remote. User expansion quality, distant patterns, performance, standalone Mac/Windows builds, ship Play and Cinder delivery/Listener/baton/networking integration remain unverified. Next: BAY 04 receipt terminal/floor marking production.
+
+Raw staged whitespace checks fail on 106 trailing blank fields in Unity-generated scene/prefab/meta files. Code/document/evidence checks passed, as did the full staged check ignoring only generated trailing whitespace. Did not hand-edit Unity YAML solely for whitespace checks.
+
 ## 2026-10-01 — Cinder aged texture revision
 
 Addressed user feedback that the actual colors were too clean by adding yellowed walls/rust drips, peeling red paint, grime at bases/seams, floor wear, ceiling stains and sign corrosion. Preserved 2 built-in imagegen sources, actual prompts and reference/output hashes; replaced runtime textures at 512×512 / 256×128 using native Blender resizing. Replaced the producer's direct-painting block with source normalization and added `--surfaces-only` to update the appearance Blender source without exporting FBXs. No lighting, geometry, collision, placement or gameplay changes. [Production/review guide](../current/cinder-asset-prep.en.md#2026-10-01--aged-texture-revision).

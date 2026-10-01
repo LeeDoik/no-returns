@@ -51,6 +51,7 @@ public static class CinderAppearanceBuild {
         var emission = Material("Cinder_Lamp_Emission", null);
         emission.SetColor("_BaseColor", new Color(1, .7f, .25f));
         emission.SetColor("_EmissionColor", new Color(2, 1.05f, .24f));
+        emission.globalIlluminationFlags = MaterialGlobalIlluminationFlags.BakedEmissive;
         emission.EnableKeyword("_EMISSION");
         var parts = new Dictionary<string, GameObject>();
         foreach (var file in Directory.GetFiles(Art, "*.fbx")) {
@@ -116,7 +117,11 @@ public static class CinderAppearanceBuild {
 
     [MenuItem("NO RETURNS/Trials/Validate Cinder Appearance Review")]
     public static void Validate() {
-        if (EditorSceneManager.GetActiveScene().path != ScenePath) throw new Exception("Open the appearance review scene.");
+        bool map = EditorSceneManager.GetActiveScene().path == CinderMapAppearanceBuild.ScenePath;
+        if (!map && EditorSceneManager.GetActiveScene().path != ScenePath) throw new Exception("Open an appearance review scene.");
+        var emission = AssetDatabase.LoadAssetAtPath<Material>(Art + "/Cinder_Lamp_Emission.mat");
+        if (!emission.IsKeywordEnabled("_EMISSION") || (emission.globalIlluminationFlags & MaterialGlobalIlluminationFlags.AnyEmissive) == 0)
+            throw new Exception("Work-light emission is disabled; fix the material before validating.");
         foreach (string name in new[] {"Cinder_Surface_Atlas", "Cinder_Warehouse_Sign"}) {
             string path = Art + "/" + name + ".png";
             var texture = AssetDatabase.LoadAssetAtPath<Texture2D>(path);
@@ -160,13 +165,13 @@ public static class CinderAppearanceBuild {
             || assembly.GetComponentsInChildren<Collider>().Length != 0 || props.GetComponentsInChildren<Collider>().Length != 1
             || props.GetComponentsInChildren<Light>().Length != 5) throw new Exception("Scene ownership/count mismatch");
         foreach (var renderer in warehouse.GetComponentsInChildren<Renderer>()) if (renderer.enabled) throw new Exception("Duplicate warehouse renderer");
-        var result = new {scene = ScenePath, imported_parts = checks, structural_instances = assembly.childCount,
+        var result = new {scene = EditorSceneManager.GetActiveScene().path, imported_parts = checks, structural_instances = assembly.childCount,
             original_colliders = 10, new_rack_colliders = 1, work_lights = 5, presentation_instances = props.childCount,
             structural_triangles = assembly.GetComponentsInChildren<MeshFilter>().Sum(m => m.sharedMesh.triangles.Length / 3),
             presentation_triangles = props.GetComponentsInChildren<MeshFilter>().Sum(m => m.sharedMesh.triangles.Length / 3),
             atlas_px = new[] {512, 512}, sign_px = new[] {256, 128}, filtering = "Point + mipmaps, uncompressed sRGB",
             user_concept_approved = true, user_final_appearance_review = false};
-        File.WriteAllText(Path.Combine(Output, "production-unity-validation.json"), Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented) + "\n");
+        File.WriteAllText(Path.Combine(Output, map ? "map-warehouse-validation.json" : "production-unity-validation.json"), Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented) + "\n");
         Debug.Log("CINDER APPEARANCE PASS: 14 imported parts; 530 structures; 7 props; original collision retained");
     }
 }

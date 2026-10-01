@@ -2,7 +2,7 @@
 
 [한국어](README.md)
 
-[Current aged Unity appearance](art/cinder-appearance-01.en.md). Following user feedback that the first application was too clean, added discoloration, rust drips, peeling paint and floor grime. [Revision, checks and review-scene instructions](current/cinder-asset-prep.en.md#2026-10-01--aged-texture-revision). Next is user quality review of the revision.
+[Approved aged appearance expanded to 5 buildings](current/cinder-map-appearance.en.md). Applied floors, walls, frames, ceilings and work lights to the office, BAY 04, service and storage buildings in separate `CinderMapAppearanceReview`. Next: BAY 04 receipt terminal and floor marking.
 
 Existing Listener, baton and ship gameplay code/scenes are preserved. See [existing gameplay versus Cinder review scenes](current/cinder-asset-prep.en.md#location-of-existing-gameplay-systems). Gameplay integration into Cinder remains incomplete.
 

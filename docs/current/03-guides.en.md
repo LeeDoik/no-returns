@@ -4,7 +4,7 @@
 
 ## 2026-10-01 — Current Cinder asset-production preparation
 
-The [first 8-unit brief](cinder-asset-prep.en.md) is the entry point for new current environment assets. Propose the south warehouse entrance and a 6m interior review segment: 5 structural units first, then 3 presentation units (light, sign and rack). Dimensions/budgets are trial candidates; new structures, appearances and user quality approval remain incomplete. Distinguish existing CarryRoom gameplay records below from the current Cinder spatial trial.
+The user approved the aged warehouse style from the [first 8-unit production brief](cinder-asset-prep.en.md). Expanded the [shared appearance across 5 buildings](cinder-map-appearance.en.md) in a separate review scene; next is the BAY 04 receipt terminal/floor marking. Preserve existing dimensions, collision and UV density while checking surfaces, terminal screens and cargo clearance. Distinguish automated passes from user quality review of the expansion. CarryRoom records below do not establish Cinder gameplay integration.
 
 0.9.1: [Cooperative HUD and evidence](crew-hud.en.md). Reorganized gameplay instructions and four-player states. Human readability assessment remains outstanding.
 

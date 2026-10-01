@@ -2,7 +2,7 @@
 
 [English](cinder-appearance-01.en.md)
 
-2026-10-01 · **시안 승인·첫 적용 후 노후 질감 수정 완료 / 수정 결과의 사용자 품질 평가 미완료.** [현재 제작 기준](../current/cinder-asset-prep.ko.md)의 14.4×20.4m 창고를 위한 외형 제안이다. 사용자가 확인한 크기를 유지한다. 아래 PNG는 승인된 참고 시안이며 실제 모델·재질·텍스처 적용 결과는 [최신 제작 기록](../current/cinder-asset-prep.ko.md#2026-10-01--노후-질감-수정)에 연결한다.
+2026-10-01 · **노후 질감의 맵 스타일 사용자 승인 / 확장 결과 검토 미완료.** [현재 제작 기준](../current/cinder-asset-prep.ko.md)의 14.4×20.4m 창고를 위한 외형 제안이다. 사용자가 확인한 크기를 유지한다. 아래 PNG는 승인된 참고 시안이며 실제 모델·재질·텍스처 적용 결과는 [최신 제작 기록](../current/cinder-asset-prep.ko.md#2026-10-01--노후-질감-수정)에 연결한다.
 
 ![창고 입구 외형 제안](../../art/cinder-kit-01/appearance-entry-01.png)
 
@@ -46,3 +46,5 @@
 ![빈 2단 선반](../../art/cinder-kit-01/production-rack-empty.png)
 
 [입구 운반 화면](../../art/cinder-kit-01/production-entry-carry.png) · [검토 씬](../../NoReturns/Assets/_NoReturns/Scenes/CinderAppearanceReview.unity). 참고 시안과 별도로 실제 Play 카메라에서 촬영했다.
+
+사용자가 “그래 이런 느낌으로 맵을 구성하자. 다음으로 넘어가자”라고 노후 질감을 맵의 스타일 기준으로 승인했다. [건물 5개 확장 화면·검사](../current/cinder-map-appearance.ko.md)가 현재 다음 단계 결과다. 이 승인은 전체 맵 동선·운반 시야·전 부품 품질의 완료와 다르다.

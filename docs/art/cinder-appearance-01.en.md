@@ -2,7 +2,7 @@
 
 [한국어](cinder-appearance-01.ko.md)
 
-2026-10-01 · **Concept approval, first application and aged texture revision complete / user quality review of the revision incomplete.** This proposes appearances for the 14.4×20.4m warehouse in the [current production brief](../current/cinder-asset-prep.en.md). Retain the user-reviewed size. PNGs below are approved references; actual model/material/texture application is linked in the [latest production record](../current/cinder-asset-prep.en.md#2026-10-01--aged-texture-revision).
+2026-10-01 · **User approval of aged map style / expansion review incomplete.** This proposes appearances for the 14.4×20.4m warehouse in the [current production brief](../current/cinder-asset-prep.en.md). Retain the user-reviewed size. PNGs below are approved references; actual model/material/texture application is linked in the [latest production record](../current/cinder-asset-prep.en.md#2026-10-01--aged-texture-revision).
 
 ![Warehouse entrance appearance proposal](../../art/cinder-kit-01/appearance-entry-01.png)
 
@@ -46,3 +46,5 @@ The user found the first actual application too clean and requested dirty, aged 
 ![Empty 2-tier rack](../../art/cinder-kit-01/production-rack-empty.png)
 
 [Carrying entrance view](../../art/cinder-kit-01/production-entry-carry.png) · [Review scene](../../NoReturns/Assets/_NoReturns/Scenes/CinderAppearanceReview.unity). Captured with the actual Play camera, separate from the reference concepts.
+
+The user approved the aged texture as the map style: “Let's build the map with this feel and move on” (original: “그래 이런 느낌으로 맵을 구성하자. 다음으로 넘어가자”). [5-building expansion views/checks](../current/cinder-map-appearance.en.md) are the current next-stage result. This does not complete review of all map routes, cargo visibility or all-part quality.

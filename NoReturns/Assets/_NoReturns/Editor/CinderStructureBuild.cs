@@ -91,7 +91,8 @@ public static class CinderStructureBuild {
 
     [MenuItem("NO RETURNS/Trials/Validate Cinder Structure Review")]
     public static void Validate() {
-        bool appearance = EditorSceneManager.GetActiveScene().path == CinderAppearanceBuild.ScenePath;
+        bool map = EditorSceneManager.GetActiveScene().path == CinderMapAppearanceBuild.ScenePath;
+        bool appearance = map || EditorSceneManager.GetActiveScene().path == CinderAppearanceBuild.ScenePath;
         if (!appearance && EditorSceneManager.GetActiveScene().path != ScenePath) throw new Exception("Open a Cinder structure/appearance review scene.");
         var results = new List<string>();
         foreach (var path in Directory.GetFiles(Prefabs, "*.prefab")) {
@@ -156,7 +157,7 @@ public static class CinderStructureBuild {
             }
             results.Add("cargo center lane: 48 yaw/pitch/position samples PASS (shared runtime pose)");
         } finally { parcelCollider.enabled = parcelEnabled; UnityEngine.Object.DestroyImmediate(probe); }
-        File.WriteAllLines(Path.Combine(Output, appearance ? "production-structure-validation.txt" : "unity-validation.txt"), results);
+        File.WriteAllLines(Path.Combine(Output, map ? "map-structure-validation.txt" : appearance ? "production-structure-validation.txt" : "unity-validation.txt"), results);
         Debug.Log("CINDER STRUCTURE PASS: " + results.Count + " results");
     }
 }

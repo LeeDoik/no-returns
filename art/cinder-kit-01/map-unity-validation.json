@@ -1,0 +1,33 @@
+{
+  "scene": "Assets/_NoReturns/Scenes/CinderMapAppearanceReview.unity",
+  "fill_imports": 8,
+  "original_collision_preserved": true,
+  "original_building_colliders": 50,
+  "added_buildings": [
+    {
+      "name": "SIDE OFFICE",
+      "instances": 282,
+      "triangles": 3480
+    },
+    {
+      "name": "BAY 04",
+      "instances": 450,
+      "triangles": 5496
+    },
+    {
+      "name": "C SERVICE",
+      "instances": 546,
+      "triangles": 6648
+    },
+    {
+      "name": "STORAGE",
+      "instances": 418,
+      "triangles": 5112
+    }
+  ],
+  "added_work_lights": 16,
+  "new_colliders": 0,
+  "unit_placement_scale": true,
+  "user_palette_approved": true,
+  "user_expansion_review": false
+}

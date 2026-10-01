@@ -1,0 +1,159 @@
+{
+  "date": "2026-10-01",
+  "blender_version": "5.2.2 LTS",
+  "origin": "Cropped approved local geometry and UVs; existing aged atlas, no new generated imagery",
+  "parts": [
+    {
+      "name": "NR_Cinder_Floor_Half",
+      "source": "NR_Cinder_Floor_A",
+      "size_m": [
+        0.6,
+        0.2,
+        1.2
+      ],
+      "min_m": [
+        -0.3,
+        -0.2,
+        -0.6
+      ],
+      "triangles": 12,
+      "uv_density_preserved": true,
+      "closed_outward_mesh": true,
+      "fbx_roundtrip": "pass",
+      "sha256": "17f1542d040658ac67431612a53276f96b5e844711dcca4c1404d05c9da39267"
+    },
+    {
+      "name": "NR_Cinder_Floor_Quarter",
+      "source": "NR_Cinder_Floor_A",
+      "size_m": [
+        0.6,
+        0.2,
+        0.6
+      ],
+      "min_m": [
+        -0.3,
+        -0.2,
+        -0.3
+      ],
+      "triangles": 12,
+      "uv_density_preserved": true,
+      "closed_outward_mesh": true,
+      "fbx_roundtrip": "pass",
+      "sha256": "76379eec83655704d5b2668b7c0a2a04c3d73bb71fe2c3c0c6d2c413ebbc6165"
+    },
+    {
+      "name": "NR_Cinder_Ceiling_Half",
+      "source": "NR_Cinder_Ceiling_A",
+      "size_m": [
+        0.6,
+        0.3,
+        1.2
+      ],
+      "min_m": [
+        -0.3,
+        0.0,
+        -0.6
+      ],
+      "triangles": 12,
+      "uv_density_preserved": true,
+      "closed_outward_mesh": true,
+      "fbx_roundtrip": "pass",
+      "sha256": "e381177ef50fd26b99fc52b9475232e10f616447afc67e045ab04e67a05dd234"
+    },
+    {
+      "name": "NR_Cinder_Ceiling_Quarter",
+      "source": "NR_Cinder_Ceiling_A",
+      "size_m": [
+        0.6,
+        0.3,
+        0.6
+      ],
+      "min_m": [
+        -0.3,
+        0.0,
+        -0.3
+      ],
+      "triangles": 12,
+      "uv_density_preserved": true,
+      "closed_outward_mesh": true,
+      "fbx_roundtrip": "pass",
+      "sha256": "4fe9b365138c74bfdbe88362fd3750c4a64065090deb5972df0954d10f32f7b0"
+    },
+    {
+      "name": "NR_Cinder_Ceiling_Edge_Half",
+      "source": "NR_Cinder_Ceiling_Edge",
+      "size_m": [
+        0.15,
+        0.3,
+        0.6
+      ],
+      "min_m": [
+        -0.075,
+        0.0,
+        -0.3
+      ],
+      "triangles": 12,
+      "uv_density_preserved": true,
+      "closed_outward_mesh": true,
+      "fbx_roundtrip": "pass",
+      "sha256": "1644577213c9dc2dc199f292040b87512230830b68774fbdcdb9f307d63ce81d"
+    },
+    {
+      "name": "NR_Cinder_Wall_Fill005",
+      "source": "NR_Cinder_Wall_A",
+      "size_m": [
+        0.05,
+        4.0,
+        0.3
+      ],
+      "min_m": [
+        -0.025,
+        0.0,
+        -0.15
+      ],
+      "triangles": 12,
+      "uv_density_preserved": true,
+      "closed_outward_mesh": true,
+      "fbx_roundtrip": "pass",
+      "sha256": "325f6d9bf2099808cc7397b9898026b35617548850da92b5075241728af701c2"
+    },
+    {
+      "name": "NR_Cinder_Wall_Fill030",
+      "source": "NR_Cinder_Wall_A",
+      "size_m": [
+        0.3,
+        4.0,
+        0.3
+      ],
+      "min_m": [
+        -0.15,
+        0.0,
+        -0.15
+      ],
+      "triangles": 12,
+      "uv_density_preserved": true,
+      "closed_outward_mesh": true,
+      "fbx_roundtrip": "pass",
+      "sha256": "91dd9900b82ed53e6aa7b5a3f67ce4d283a07cb4e7469ddd9460db3adf5bb707"
+    },
+    {
+      "name": "NR_Cinder_Wall_Fill065",
+      "source": "NR_Cinder_Wall_A",
+      "size_m": [
+        0.65,
+        4.0,
+        0.3
+      ],
+      "min_m": [
+        -0.325,
+        0.0,
+        -0.15
+      ],
+      "triangles": 12,
+      "uv_density_preserved": true,
+      "closed_outward_mesh": true,
+      "fbx_roundtrip": "pass",
+      "sha256": "c64b0895c645961b10a2b28dc6eb7a62b786f4cdcfd63891af263210a983af16"
+    }
+  ]
+}

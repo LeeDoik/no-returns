@@ -2,7 +2,7 @@
 
 [English](cinder-blockout.en.md)
 
-현재 외형 검토 대상은 [승인한 시안을 적용한 별도 Unity 씬](../../NoReturns/Assets/_NoReturns/Scenes/CinderAppearanceReview.unity)이다. [공통 표면·표현 3종과 432개 운반 자세 검사](cinder-asset-prep.ko.md#2026-10-01--승인된-외형의-실제-적용)를 완료했다. 원본 블록아웃과 회색 씬은 보존한다. [실제 화면](../art/cinder-appearance-01.ko.md)의 사용자 시야·접합면·품질 확인이 다음이다.
+현재 환경 검토 대상은 [건물 5개에 승인한 노후 질감을 확장한 별도 Unity 씬](cinder-map-appearance.ko.md)이다. 원본 블록아웃·회색·창고 외형 씬을 보존한다. 기존 경로 41개와 운반 자세 2,352개 검사를 통과했으며, 확장 결과의 사용자 검토와 수령 설비·야외 마감은 남아 있다.
 
 ## 2026-10-01 — 회색 구조 검토 씬
 

@@ -2,7 +2,7 @@
 
 [한국어](cinder-blockout.ko.md)
 
-The current appearance target is the [separate Unity scene applying approved concepts](../../NoReturns/Assets/_NoReturns/Scenes/CinderAppearanceReview.unity). Completed [shared surfaces, 3 presentation units and 432 carrying poses](cinder-asset-prep.en.md#2026-10-01--applying-the-approved-appearance). Preserve original blockout and gray scenes. User visibility, joint and quality review of the [actual views](../art/cinder-appearance-01.en.md) is next.
+The current environment review target is the [separate Unity scene extending the approved aged style to 5 buildings](cinder-map-appearance.en.md). Preserve original blockout/gray/warehouse appearance scenes. Passed 41 existing routes and 2,352 carrying poses; user review of the expansion, receipt facilities and outdoor finishes remain.
 
 ## 2026-10-01 — Gray structure review scene
 
