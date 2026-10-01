@@ -2,6 +2,10 @@
 
 [English](03-guides.en.md)
 
+## 2026-10-01 — 외곽 배경 제작·렌더 검사
+
+[현재 배경·에셋·실행 명령](cinder-compact-site.ko.md#2026-10-01--억제-범위-밖-암석-지대와-산업-배경)을 따른다. 기존 Shape 메시 도구와 노후 산업 아틀라스를 재사용하고 native 메시 8개·재질 2개·128×128 광물 텍스처 1개를 제작한다. 배치 69개·삼각형 4,624개, 스케일 1, 신규 Collider/Light 0개다. 지면과 암석의 반복 UV는 면 방향에 맞추고 유한 값을 검사한다. `Add Cinder Exterior Background`는 미저장/Play/기존 루트에서 중단한다. `Validate Cinder Exterior Background`와 연결된 `Validate Cinder Site Props`, 정지 상태의 `CinderBackgroundRenderCheck.Main`, Play의 공통 운반 검사를 사용한다. 현재 근거 접두사는 `background-`, 이전 `architecture-`/`sky-`/`props-`/`site-`는 보존한다. 공용 메시 갱신은 기존 Mesh의 native setter를 사용해 GUID와 실제 렌더 갱신을 함께 유지한다. 새 텍스처는 결정적 제작 소스와 native asset으로 관리하며 외부 에셋/의존성/유료 생성은 없다. 아래 구조·스카이 단계 접두사는 과거 근거다.
+
 ## 2026-10-01 — 건물 형태 모듈 제작·배치
 
 [현재 구조 모듈·치수·검사·실행](cinder-compact-site.ko.md#2026-10-01--다양한-건물-윤곽과-구조-모듈)을 따른다. 기존 메시 도구·노후 아틀라스를 재사용해 구조 모듈 9종과 보충 표면을 native Unity 메시 11개로 만들었다. 배치 스케일 1, 다각형 지붕은 1.2m UV 타일 밀도를 유지한다. 지상 윤곽 교체 2곳은 정적 MeshCollider, 높은 상부 구조/입구 차양은 통로 머리 공간을 비운다. `Add Varied Cinder Architecture`는 미저장/Play/기존 루트에서 중단한다. 현재 검사는 `Validate Varied Cinder Architecture` 또는 연결된 `Validate Cinder Site Props`, Play 공유 운반 검사로 하며 `architecture-`에 보관한다. 현재 스카이 보존 검사는 고정 246개 대신 실제 유효 위치 수를 비교한다. 이전 `sky-`/`props-`/`site-`는 기록으로 보존한다. 새 텍스처·외부 에셋·의존성 없음.

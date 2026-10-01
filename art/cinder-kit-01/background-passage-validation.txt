@@ -1,0 +1,111 @@
+PASS Site loop 1 1 forward
+PASS Site loop 1 1 reverse
+PASS Site loop 1 2 forward
+PASS Site loop 1 2 reverse
+PASS Site loop 1 3 forward
+PASS Site loop 1 3 reverse
+PASS Site loop 1 4 forward
+PASS Site loop 1 4 reverse
+PASS Site loop 2 1 forward
+PASS Site loop 2 1 reverse
+PASS Site loop 2 2 forward
+PASS Site loop 2 2 reverse
+PASS Site loop 2 3 forward
+PASS Site loop 2 3 reverse
+PASS Site loop 2 4 forward
+PASS Site loop 2 4 reverse
+PASS Site loop 3 1 forward
+PASS Site loop 3 1 reverse
+PASS Site loop 3 2 forward
+PASS Site loop 3 2 reverse
+PASS Site loop 3 3 forward
+PASS Site loop 3 3 reverse
+PASS Site loop 3 4 forward
+PASS Site loop 3 4 reverse
+PASS Site loop 3 5 forward
+PASS Site loop 3 5 reverse
+PASS Site loop 3 6 forward
+PASS Site loop 3 6 reverse
+PASS Site loop 4 1 forward
+PASS Site loop 4 1 reverse
+PASS Site loop 4 2 forward
+PASS Site loop 4 2 reverse
+PASS Site loop 4 3 forward
+PASS Site loop 4 3 reverse
+PASS Site loop 4 4 forward
+PASS Site loop 4 4 reverse
+PASS Sheltered delivery 1 forward
+PASS Sheltered delivery 1 reverse
+PASS Sheltered delivery 2 forward
+PASS Sheltered delivery 2 reverse
+PASS Sheltered delivery 3 forward
+PASS Sheltered delivery 3 reverse
+PASS Sheltered delivery 4 forward
+PASS Sheltered delivery 4 reverse
+PASS Sheltered delivery 5 forward
+PASS Sheltered delivery 5 reverse
+PASS Central delivery 1 forward
+PASS Central delivery 1 reverse
+PASS Central delivery 2 forward
+PASS Central delivery 2 reverse
+PASS Central delivery 3 forward
+PASS Central delivery 3 reverse
+PASS Central delivery 4 forward
+PASS Central delivery 4 reverse
+PASS Central delivery 5 forward
+PASS Central delivery 5 reverse
+PASS Central delivery 6 forward
+PASS Central delivery 6 reverse
+PASS Central delivery 7 forward
+PASS Central delivery 7 reverse
+PASS Central delivery 8 forward
+PASS Central delivery 8 reverse
+PASS Central delivery 9 forward
+PASS Central delivery 9 reverse
+PASS Central delivery 10 forward
+PASS Central delivery 10 reverse
+PASS A WAREHOUSE through both doors 1 forward
+PASS A WAREHOUSE through both doors 1 reverse
+PASS A WAREHOUSE through both doors 2 forward
+PASS A WAREHOUSE through both doors 2 reverse
+PASS SIDE OFFICE through both doors 1 forward
+PASS SIDE OFFICE through both doors 1 reverse
+PASS SIDE OFFICE through both doors 2 forward
+PASS SIDE OFFICE through both doors 2 reverse
+PASS BAY 04 through both doors 1 forward
+PASS BAY 04 through both doors 1 reverse
+PASS BAY 04 through both doors 2 forward
+PASS BAY 04 through both doors 2 reverse
+PASS C SERVICE through both doors 1 forward
+PASS C SERVICE through both doors 1 reverse
+PASS C SERVICE through both doors 2 forward
+PASS C SERVICE through both doors 2 reverse
+PASS STORAGE through both doors 1 forward
+PASS STORAGE through both doors 1 reverse
+PASS STORAGE through both doors 2 forward
+PASS STORAGE through both doors 2 reverse
+PASS Office north link 1 forward
+PASS Office north link 1 reverse
+PASS Bay east link 1 forward
+PASS Bay east link 1 reverse
+PASS Storage landing gate 1 forward
+PASS Storage landing gate 1 reverse
+PASS Ship ramp forward
+PASS Ship ramp reverse
+PASS four bodies / West warehouse / clear 3.000m
+PASS four bodies / West office / clear 3.000m
+PASS four bodies / North covered / clear 3.000m
+PASS four bodies / Warehouse office link / clear 3.000m
+PASS four bodies / Warehouse east / clear 3.000m
+PASS four bodies / Warehouse south / clear 3.000m
+PASS four bodies / Sorting north / clear 3.000m
+PASS four bodies / Sorting south / clear 3.000m
+PASS four bodies / North annex bay / clear 3.150m
+PASS four bodies / Sorting service / clear 3.150m
+PASS four bodies / Power service / clear 3.150m
+PASS four bodies / Bay service link / clear 3.000m
+PASS four bodies / Service storage link / clear 3.000m
+PASS four bodies / East perimeter / clear 3.000m
+PASS four bodies / Storage south / clear 3.000m
+PASS four bodies / Storage west / clear 3.000m
+PASS four bodies / Freight power link / clear 3.000m

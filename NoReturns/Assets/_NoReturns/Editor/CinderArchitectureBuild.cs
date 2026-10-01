@@ -129,7 +129,7 @@ public static class CinderArchitectureBuild {
         return obj;
     }
     static string ObjectPath(Component c) => string.Join("/",c.GetComponentsInParent<Transform>(true).Reverse().Select(t=>t.name));
-    static string PreservedState() {
+    internal static string PreservedState() {
         bool Altered(Component c) => c.GetComponentsInParent<Transform>(true).Any(t=>t.name==RootName||Replaced.Contains(t.name));
         var colliders=UnityEngine.Object.FindObjectsByType<Collider>(FindObjectsInactive.Include).Where(c=>!Altered(c)).OrderBy(c=>ObjectPath(c)+c.bounds.ToString("F6"),StringComparer.Ordinal);
         var lights=UnityEngine.Object.FindObjectsByType<Light>(FindObjectsInactive.Include).OrderBy(l=>ObjectPath(l)+l.transform.position.ToString("F6"),StringComparer.Ordinal);

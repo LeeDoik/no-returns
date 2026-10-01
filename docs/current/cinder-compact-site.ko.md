@@ -2,7 +2,40 @@
 
 [English](cinder-compact-site.en.md)
 
-2026-10-01 · CINDER-COMPACT-SITE-01 / CINDER-ARCHITECTURE-01 · **전체 맵 방향 사용자 승인·다양한 건물 구조 적용·자동 검사 완료 / 현재 외형·시야와 사람 4인 검토 미완료.** 게임 버전은 바꾸지 않는다.
+2026-10-01 · CINDER-COMPACT-SITE-01 / CINDER-ARCHITECTURE-01 / CINDER-BACKGROUND-01 · **전체 맵 방향 사용자 승인·다양한 건물·외곽 배경 적용·자동 검사 완료 / 현재 외형·시야와 사람 4인 검토 미완료.** 게임 버전은 바꾸지 않는다.
+
+## 2026-10-01 — 억제 범위 밖 암석 지대와 산업 배경
+
+사용자가 앞선 건물 변경을 확인하고 배경 제작을 요청했다. 같은 `CinderCompactSiteReview`에 [억제 범위 컨셉](../art/space-concepts/cinder-depot-suppression-01.png)의 황량한 외곽을 적용했다. **암석 59개·산업 시설 외형 9개·외곽 지면 1개**, 총 배치 69개·삼각형 4,624개다. 가까운 낮은 암석, 뒤쪽 산봉우리, 북동쪽 사일로·정유 시설·가대를 층으로 배치하고 기존 35–115m 안개로 거리를 표현한다. 배경 품질에 대한 사용자 의견은 대기이며, 앞선 “확인”을 사람 조작·성능·전체 품질 승인으로 확대하지 않는다. 게임 버전은 바꾸지 않는다.
+
+| native 에셋 | 제작 기준·배치 |
+|---|---|
+| Basalt crag / Split ridge / Distant peak / Loose boulder | 4종 · 암석 59개. 기준 높이 8.5/13/23/2.1m, 불규칙 꼭짓점과 지면 아래 밑부분 포함. 실제 경계는 메시로 검사 |
+| Barren basin | 300×280m 외곽 지면 1개. 억제 범위 53.55×65.4m 안쪽은 비우고 기존 바닥 유지 |
+| Abandoned silo / Distant refinery / Derelict gantry | 신규 3종 · 사일로 3개·정유 시설 2개·가대 1개 |
+| Refinery exhaust | 기존 Industrial stack 메시 재사용 3개 |
+
+신규 native 메시 8개·재질 2개·128×128 RGBA32 광물 텍스처 1개를 [제작 소스](../../NoReturns/Assets/_NoReturns/Editor/CinderBackgroundBuild.cs)로 만든다. 텍스처는 고정 seed로 만든 거친 광물/자갈 무늬이며 Repeat·Point·mipmap, 면 방향에 맞춘 0.35회/m UV를 사용한다. 산업 시설은 기존 노후 아틀라스와 메시 도구를 재사용한다. 배치 스케일 1, 신규 Collider/Light 0개, 배경의 그림자 투사는 꺼 둔다. 기존 회색 경계 4개는 Renderer만 숨기고 추락 방지 Collider는 유지한다. 기존 건물·우주선·소품 47묶음·구조 배치 26개·로컬 광원 40개·하늘/안개·런타임은 보존한다. 외곽은 정적 시각 배경이며 신규 이동 구역·외부 생물·억제 기능을 구현하지 않는다. 기존 억제 선은 시각 표식이고 실제 게임 경계가 아니다.
+
+검증: 모든 배경 삼각형의 수평 경계가 억제 범위와 겹치지 않음, 유한 UV·비퇴화 삼각형·위쪽 지면 방향·스케일/지원 셰이더·기존 상태 보존 통과. 이동 94구간·네 몸체 통로 17곳·몸체 위치 286개·운반 자세 6,864개·실제 운반 94구간 통과. 최종 침투 검사 26,902회·겹침 0건·접촉 103건, E/W/S/Q·빈손 점프 통과. 새 메시 8개 재가져오기·씬 재열기 후에도 실제 지면 렌더 비교에서 640×360 화면의 55,914픽셀이 달라짐을 확인했다. [렌더 회귀 검사](../../tools/unity_checks/CinderBackgroundRenderCheck.cs)는 지면 표시/숨김 차이가 10,000픽셀 미만이면 실패한다. 최종 카메라 25개를 촬영하고 주요 8개를 검토했으며 촬영용 상부 숨김을 복원했다. 컴파일/셰이더 오류 0개·관찰한 기존 Editor 경고 3종·새 소스 경고 0개·최종 Play/렌더 검사 콘솔 오류/경고 0개.
+
+초기 지면 방향 오류를 수정했다. 메시 갱신이 데이터에는 반영되지만 실제 렌더에는 남는 문제를 표시/숨김 화면의 동일 해시로 재현했다. 공용 `Shape.Save(replace=true)`를 `CopySerialized` 대신 기존 Mesh의 Clear/SetVertices/SetUVs/SetTriangles·법선/경계 재계산으로 바꾸어 GUID를 보존하면서 렌더 버퍼도 갱신한다. 재가져오기만으로는 해결되지 않았으며 위 렌더 회귀 검사로 수정 결과를 확인했다. 검사 카메라의 targetTexture 해제 순서 오류도 수정했다. 촬영이 자동 추가한 URP 광원 데이터 41개를 제거하고 재실행 뒤 원래 0개 상태와 저장된 씬을 확인했다. 임시 Python 이미지 비교는 PIL 부재로 실패했고 native 픽셀 비교로 대체했다. 시작 파일 485개 중 현재 씬을 제외한 484개 해시를 유지하며 기존 선내 재질 변경 8개는 커밋에서 제외한다.
+
+![현재 외곽 배경](../../art/cinder-kit-01/background-background-panorama.png)
+
+[배치 검사](../../art/cinder-kit-01/background-layout-validation.json) · [운반 검사](../../art/cinder-kit-01/background-carry-edge-validation.json) · [렌더 검사](../../art/cinder-kit-01/background-render-validation.json) · [검사·보존 기록](../../art/cinder-kit-01/background-checks.json).
+
+### 제작·검사 실행
+
+이미 배경 루트 `Cinder exterior background`가 저장되어 있다. `NO RETURNS/Trials/Add Cinder Exterior Background`는 다른 씬·미저장 편집·Play·기존 배경 루트에서 중단한다. 검사 메뉴는 `Validate Cinder Exterior Background`; 기존 `Validate Cinder Site Props`도 현행 배경 검사로 연결했다. 저장 후 Play를 종료하고 아래 명령을 저장소 루트에서 실행한다. 기존 [공통 운반 검사](../../tools/unity_checks/CinderCarryEdgeCheck.cs)는 Play에서 실행하며 현재 배경이 있으면 `background-`에 검사/촬영을 기록한다. 이전 `architecture-`/`sky-`/`props-`/`site-` 근거를 보존한다.
+
+```bash
+source ~/.unity/env
+unity command eval --code 'NoReturns.Editor.CinderBackgroundBuild.Validate(); return true;' --project-path "$PWD/NoReturns" --caller plugin --skill unity-cli --format json
+unity command run_script --file "$PWD/tools/unity_checks/CinderBackgroundRenderCheck.cs" --entry CinderBackgroundRenderCheck.Main --project-path "$PWD/NoReturns" --caller plugin --skill unity-cli --format json
+```
+
+전체 문서 검사는 기존 누락 링크 142개로 실패하며 새 실패는 없다. 원시 staged 공백 검사는 Unity 생성 파일의 후행 공백 163곳으로 실패한다. 코드/문서/근거 검사와 이 생성 후행 공백만 제외한 전체 검사는 통과한다. 사용자 배경 밀도/반복 무늬/시설 시야·최종 위험 표식 가독성·사람 4인·성능·독립 빌드·외곽 게임 기능·Cinder 기능 통합은 미확인이다. 아래 구조/스카이/소품 수치는 이전 단계의 근거이며 현행 검사 접두사는 `background-`다.
 
 ## 2026-10-01 — 다양한 건물 윤곽과 구조 모듈
 
@@ -30,7 +63,7 @@
 
 재검사에서 같은 이름의 광원들이 Play 종료 후 다른 순서로 열거되어 보존 검사 1건이 실패했다. 모든 원래 기록의 값이 같음을 집합으로 확인하고 경로+위치의 ordinal 순서로 정렬해 오탐을 수정했다. Python/native 정렬 순서 차이로 1건 추가 재시도한 뒤 최종 재열기 검사 통과. 실제 광원/충돌 변경은 없었다. 최초 CLI timeout 옵션 표기는 `--timeout_ms`로 수정했으며 게임 컴파일 오류가 아니다.
 
-[이동·네 몸체 검사](../../art/cinder-kit-01/architecture-passage-validation.txt) · [운반 검사](../../art/cinder-kit-01/architecture-carry-edge-validation.json) · [보존·검사 기록](../../art/cinder-kit-01/architecture-checks.json). 전체 문서 검사는 기존 누락 링크 142개로 실패하며 새 실패 없음. 건물 형태·차양 시야·길찾기·운반 회전의 사용자 품질, 사람 4인, 성능·독립 빌드·경계 밖 환경·Cinder 게임 기능 연결은 미검증이다. 상부실·배기탑·차양은 정적 환경 에셋이며 새 층 진입/계단/상호작용을 구현하지 않았다. 아래 스카이·소품·구조 수치는 이전 단계 기록이다.
+[이동·네 몸체 검사](../../art/cinder-kit-01/architecture-passage-validation.txt) · [운반 검사](../../art/cinder-kit-01/architecture-carry-edge-validation.json) · [보존·검사 기록](../../art/cinder-kit-01/architecture-checks.json). 전체 문서 검사는 기존 누락 링크 142개로 실패하며 새 실패 없음. 건물 형태·차양 시야·길찾기·운반 회전의 사용자 품질, 사람 4인, 성능·독립 빌드·배경 품질·Cinder 게임 기능 연결은 미검증이다. 상부실·배기탑·차양은 정적 환경 에셋이며 새 층 진입/계단/상호작용을 구현하지 않았다. 아래 스카이·소품·구조 수치는 이전 단계 기록이다.
 
 ![다양한 건물 실루엣](../../art/cinder-kit-01/architecture-exterior-machinery.png)
 
@@ -96,7 +129,7 @@
 
 [사무 작업대](../../art/cinder-kit-01/props-office-workbenches.png) · [발송 작업대](../../art/cinder-kit-01/props-bay-dispatch.png) · [시설 표지](../../art/cinder-kit-01/props-facility-sign.png) · [지붕·벽면 설비](../../art/cinder-kit-01/props-exterior-machinery.png) · [소품 배치 상면](../../art/cinder-kit-01/props-field-cutaway.png).
 
-현재 씬에 이미 배치했다. `NO RETURNS/Trials/Add Cinder Site Props`는 Play 중·미저장·다른 씬·기존 소품군이 있으면 중단하여 수동 편집을 보호한다. `Validate Cinder Site Props`로 검사하고 Play에서 [공통 운반 검사](../../tools/unity_checks/CinderCarryEdgeCheck.cs)를 실행한다. 스카이 없는 소품 씬은 `props-`, 현재 스카이 포함 씬은 `sky-` 결과를 만든다. 기존 `site-` 근거는 덮어쓰지 않는다. 다음은 소품 밀도/운반 시야의 직접 평가, BAY 04 수령 시설·기능 좌표 통합이다. 사람 4인·AI/배송/억제/진압봉/온라인·경계 밖 환경·성능·독립 빌드는 미검증이다.
+현재 씬에 이미 배치했다. `NO RETURNS/Trials/Add Cinder Site Props`는 Play 중·미저장·다른 씬·기존 소품군이 있으면 중단하여 수동 편집을 보호한다. `Validate Cinder Site Props`로 검사하고 Play에서 [공통 운반 검사](../../tools/unity_checks/CinderCarryEdgeCheck.cs)를 실행한다. 스카이 없는 소품 씬은 `props-`, 현재 스카이 포함 씬은 `sky-` 결과를 만든다. 기존 `site-` 근거는 덮어쓰지 않는다. 다음은 소품 밀도/운반 시야의 직접 평가, BAY 04 수령 시설·기능 좌표 통합이다. 사람 4인·AI/배송/억제/진압봉/온라인·배경 품질·성능·독립 빌드는 미검증이다.
 
 원시 staged 공백 검사는 Unity 생성 씬·메시·meta의 후행 공백 153곳으로 실패한다. 코드·문서·근거와 이 생성 공백만 제외한 전체 검사는 통과했다. 공백 검사만을 위한 native YAML 수동 편집은 하지 않았다.
 

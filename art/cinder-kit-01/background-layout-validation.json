@@ -1,0 +1,23 @@
+{
+  "scene": "Assets/_NoReturns/Scenes/CinderCompactSiteReview.unity",
+  "mesh_assets": 8,
+  "materials": 2,
+  "native_mineral_texture_size": 128,
+  "placements": 69,
+  "triangles": 4624,
+  "rock_placements": 59,
+  "industrial_placements": 9,
+  "basin_size_m": [
+    300,
+    280
+  ],
+  "outside_field": true,
+  "unit_scale": true,
+  "new_colliders": 0,
+  "new_lights": 0,
+  "invisible_retained_fall_guards": 4,
+  "retained_state_preserved": true,
+  "carrying_pose_positions": 286,
+  "interactive_exterior": false,
+  "user_background_quality_review": false
+}

@@ -2,7 +2,40 @@
 
 [한국어](cinder-compact-site.ko.md)
 
-2026-10-01 · CINDER-COMPACT-SITE-01 / CINDER-ARCHITECTURE-01 · **Whole-site direction approved; varied architecture applied and automated checks passed / current appearance, visibility and human four-player review incomplete.** No game-version change.
+2026-10-01 · CINDER-COMPACT-SITE-01 / CINDER-ARCHITECTURE-01 / CINDER-BACKGROUND-01 · **Whole-site direction approved; varied architecture/background applied and automated checks passed / current appearance, visibility and human four-player review incomplete.** No game-version change.
+
+## 2026-10-01 — Rocky territory and industrial background outside the field
+
+The user checked the preceding building change and requested the background. Apply the barren exterior of the [suppression-field concept](../art/space-concepts/cinder-depot-suppression-01.png) in the same `CinderCompactSiteReview`. **59 rocks, 9 industrial visuals and 1 exterior surface** total 69 placements and 4,624 triangles. Layer lower nearby crags, distant peaks and northeastern silos/refinery/gantry, using retained 35–115m fog for distance. User background-quality feedback remains pending; the preceding confirmation does not establish human controls, performance or overall quality approval. No game-version change.
+
+| Native asset | Production basis/placements |
+|---|---|
+| Basalt crag / Split ridge / Distant peak / Loose boulder | 4 types, 59 rocks. Nominal heights 8.5/13/23/2.1m, with irregular vertices and buried bases; check actual mesh bounds |
+| Barren basin | 1 exterior surface, 300×280m. Leave the 53.55×65.4m suppression footprint empty, retaining the original floor |
+| Abandoned silo / Distant refinery / Derelict gantry | 3 new types: 3 silos, 2 refineries and 1 gantry |
+| Refinery exhaust | 3 reused Industrial stack meshes |
+
+Produce 8 new native meshes, 2 materials and 1 native 128×128 RGBA32 mineral texture with the [production source](../../NoReturns/Assets/_NoReturns/Editor/CinderBackgroundBuild.cs). The fixed-seed rough mineral/gravel texture uses Repeat, Point, mipmaps and face-oriented UVs at 0.35 repeats/m. Industry reuses the aged atlas and existing mesh tool. Unit placement scale 1, 0 new Colliders/Lights, background shadow casting disabled. Hide only the Renderers of 4 gray boundary guards, retaining their fall-prevention Colliders. Preserve existing buildings, ship, 47 prop groups, 26 architectural placements, 40 local lights, sky/fog and runtime. The exterior is static scenery; no new traversal area, outer creatures or suppression behavior. The existing field line remains a visual marker rather than an implemented gameplay boundary.
+
+Validation: all background triangles' horizontal bounds remain outside the field; finite UVs, nondegenerate triangles, upward terrain winding, scale/supported shader and retained state pass. Pass 94 movement segments, 17 four-body lanes, 286 body positions, 6,864 carrying poses and 94 actual carrying segments. Final 26,902 penetration checks yielded 0 overlaps and 103 contacts; E/W/S/Q and empty-hand jumping pass. After reimporting 8 meshes and reopening the scene, terrain visibility changes 55,914 pixels of an actual 640×360 framebuffer. The [render regression check](../../tools/unity_checks/CinderBackgroundRenderCheck.cs) fails below 10,000 changed pixels when toggling terrain visibility. Capture 25 final views, inspect 8 key views and restore cutaway hiding. 0 compile/shader errors, 3 observed existing Editor warning types, 0 new-source warnings and final Play/render-check console 0 errors/warnings.
+
+Fix initial terrain winding. Reproduce mesh updates reaching serialized data while leaving stale rendered geometry: terrain enabled/disabled captures have identical hashes. Replace `CopySerialized` in shared `Shape.Save(replace=true)` with Clear/SetVertices/SetUVs/SetTriangles and normal/bounds recalculation on the existing Mesh, retaining its GUID and updating render buffers. Reimport alone did not resolve this; the render regression check confirms the fix. Fix inspection-camera targetTexture cleanup order. Remove 41 URP light-data components automatically added by inspection rendering; rerun and confirm the original 0-component state and saved scene. An optional temporary Python image comparison failed because PIL was unavailable; replace it with native pixel comparison. Preserve 484 of 485 starting file hashes, excluding the current scene, and exclude 8 pre-existing ship-material edits from the commit.
+
+![Current exterior background](../../art/cinder-kit-01/background-background-panorama.png)
+
+[Layout checks](../../art/cinder-kit-01/background-layout-validation.json) · [carrying checks](../../art/cinder-kit-01/background-carry-edge-validation.json) · [render check](../../art/cinder-kit-01/background-render-validation.json) · [preservation/check record](../../art/cinder-kit-01/background-checks.json).
+
+### Production and checks
+
+The `Cinder exterior background` root is already saved. `NO RETURNS/Trials/Add Cinder Exterior Background` stops in another scene, with unsaved edits, during Play or with an existing background root. Use `Validate Cinder Exterior Background`; `Validate Cinder Site Props` also routes to current background validation. Save and stop Play, then run the following from the repository root. Run the existing [shared carrying check](../../tools/unity_checks/CinderCarryEdgeCheck.cs) in Play; an existing background writes checks/captures to `background-`. Preserve earlier `architecture-`/`sky-`/`props-`/`site-` evidence.
+
+```bash
+source ~/.unity/env
+unity command eval --code 'NoReturns.Editor.CinderBackgroundBuild.Validate(); return true;' --project-path "$PWD/NoReturns" --caller plugin --skill unity-cli --format json
+unity command run_script --file "$PWD/tools/unity_checks/CinderBackgroundRenderCheck.cs" --entry CinderBackgroundRenderCheck.Main --project-path "$PWD/NoReturns" --caller plugin --skill unity-cli --format json
+```
+
+Full documentation fails on 142 existing missing links with no new failures. Raw staged whitespace fails on 163 trailing-space locations in Unity-generated files. Code/document/evidence checks and the overall check excluding only those generated trailing spaces pass. User background density/repetition/facility visibility, final danger-signal readability, human four-player play, performance, standalone builds, exterior gameplay and Cinder gameplay integration remain unverified. Structure/sky/prop numbers below record earlier stages; current checks use `background-`.
 
 ## 2026-10-01 — Varied building outlines and structural modules
 
@@ -30,7 +63,7 @@ Validation: UV bounds, nondegenerate triangles, positive signed volume of static
 
 1 preservation check failed after Play because same-named lights enumerated in a different order. Verify all original row values as a multiset, then fix the false positive with ordinal ordering by path+position. A Python/native ordering difference required 1 further retry; final reopened-scene check passed. No actual light/collision changes. Correct the initial CLI timeout spelling to `--timeout_ms`; not a game-compilation error.
 
-[Movement/four-body checks](../../art/cinder-kit-01/architecture-passage-validation.txt) · [carrying checks](../../art/cinder-kit-01/architecture-carry-edge-validation.json) · [preservation/check record](../../art/cinder-kit-01/architecture-checks.json). Full documentation fails on 142 existing missing links with no new failures. User quality review of building forms, canopy visibility, wayfinding and cargo rotation, human four-player play, performance, standalone builds, outer environment and Cinder gameplay integration remain unverified. Upper rooms/stacks/canopies are static environment assets; no new floor access, stairs or interaction. Sky/prop/structure numbers below record earlier stages.
+[Movement/four-body checks](../../art/cinder-kit-01/architecture-passage-validation.txt) · [carrying checks](../../art/cinder-kit-01/architecture-carry-edge-validation.json) · [preservation/check record](../../art/cinder-kit-01/architecture-checks.json). Full documentation fails on 142 existing missing links with no new failures. User quality review of building forms, canopy visibility, wayfinding and cargo rotation, human four-player play, performance, standalone builds, background quality and Cinder gameplay integration remain unverified. Upper rooms/stacks/canopies are static environment assets; no new floor access, stairs or interaction. Sky/prop/structure numbers below record earlier stages.
 
 ![Varied building silhouettes](../../art/cinder-kit-01/architecture-exterior-machinery.png)
 
@@ -96,7 +129,7 @@ Evidence: [prop measurements](../../art/cinder-kit-01/props-layout-validation.js
 
 [Office desks](../../art/cinder-kit-01/props-office-workbenches.png) · [Dispatch desk](../../art/cinder-kit-01/props-bay-dispatch.png) · [Facility label](../../art/cinder-kit-01/props-facility-sign.png) · [Roof/wall equipment](../../art/cinder-kit-01/props-exterior-machinery.png) · [Prop layout cutaway](../../art/cinder-kit-01/props-field-cutaway.png).
 
-Props are already placed in the current scene. `NO RETURNS/Trials/Add Cinder Site Props` stops during Play, with unsaved changes, in another scene or when the prop group already exists, protecting manual edits. Run `Validate Cinder Site Props`, then the [shared carrying check](../../tools/unity_checks/CinderCarryEdgeCheck.cs) in Play: `props-` without the sky, `sky-` in the current sky-enabled scene. Preserve existing `site-` receipts. Next: direct prop-density/carrying-visibility assessment, BAY 04 receipt facilities and gameplay-coordinate integration. Human four-player play, AI/delivery/suppression/baton/networking, context beyond the field, performance and standalone builds remain unverified.
+Props are already placed in the current scene. `NO RETURNS/Trials/Add Cinder Site Props` stops during Play, with unsaved changes, in another scene or when the prop group already exists, protecting manual edits. Run `Validate Cinder Site Props`, then the [shared carrying check](../../tools/unity_checks/CinderCarryEdgeCheck.cs) in Play: `props-` without the sky, `sky-` in the current sky-enabled scene. Preserve existing `site-` receipts. Next: direct prop-density/carrying-visibility assessment, BAY 04 receipt facilities and gameplay-coordinate integration. Human four-player play, AI/delivery/suppression/baton/networking, background quality, performance and standalone builds remain unverified.
 
 Raw staged whitespace fails on 153 trailing blanks in Unity-generated scene/mesh/meta files. Code/document/evidence and the full check ignoring only these generated blanks passed. Did not hand-edit native YAML solely for whitespace checks.
 
@@ -133,7 +166,7 @@ Values/reproduction: [layout/check code](../../NoReturns/Assets/_NoReturns/Edito
 - [x] Captured/reviewed 10 actual camera views. Temporarily hid ceilings/auxiliary roofs only for the whole-site cutaway and restored them. Saved roofs and floors remain intact.
 - [x] User approval of whole-site direction.
 - [ ] Prop quality, navigation, long-alley/junction sight lines, human four-player passing and cargo rotation feel.
-- [ ] Final facility/cargo appearance for auxiliary volumes, rocks/context beyond the field, receipt terminal and new-coordinate integration of AI/delivery/suppression/baton/networking, performance and standalone builds.
+- [ ] Final facility/cargo appearance for auxiliary volumes, background quality, receipt terminal and new-coordinate integration of AI/delivery/suppression/baton/networking, performance and standalone builds.
 
 [Movement/four-body checks](../../art/cinder-kit-01/site-passage-validation.txt), [carrying checks](../../art/cinder-kit-01/site-carry-edge-validation.json), [preservation/check record](../../art/cinder-kit-01/site-checks.json). Full documentation fails on 142 existing missing artifact links with no new failures.
 

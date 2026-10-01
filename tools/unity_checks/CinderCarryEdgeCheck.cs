@@ -18,12 +18,13 @@ public static class CinderCarryEdgeCheck {
         bool props = site && GameObject.Find(NoReturns.Editor.CinderSitePropsBuild.RootName);
         bool sky = props && AssetDatabase.GetAssetPath(RenderSettings.skybox) == NoReturns.Editor.CinderSkyBuild.MaterialPath;
         bool architecture = site && GameObject.Find(NoReturns.Editor.CinderArchitectureBuild.RootName);
+        bool background = site && GameObject.Find(NoReturns.Editor.CinderBackgroundBuild.RootName);
         bool maze = scene == "CinderMazeReview";
         bool map = site || maze || scene == "CinderMapAppearanceReview";
         bool appearance = map || scene == "CinderAppearanceReview";
         if (!EditorApplication.isPlaying || (!appearance && scene != "CinderStructureReview"))
             throw new InvalidOperationException("Open a Cinder structure/appearance review and enter Play first.");
-        string prefix = architecture ? "architecture-" : sky ? "sky-" : props ? "props-" : site ? "site-" : maze ? "maze-" : map ? "map-" : appearance ? "production-" : "";
+        string prefix = background ? "background-" : architecture ? "architecture-" : sky ? "sky-" : props ? "props-" : site ? "site-" : maze ? "maze-" : map ? "map-" : appearance ? "production-" : "";
         var walk = UnityEngine.Object.FindAnyObjectByType<CinderBlockoutWalk>();
         var body = walk.GetComponent<CharacterController>();
         var parcel = GameObject.Find("Trial carried parcel");
@@ -209,10 +210,16 @@ public static class CinderCarryEdgeCheck {
                     }
                     views.Add(("overview.png", new Vector3(50, 55, -55), 315, false));
                 }
+                if(background) {
+                    views.Add(("west-crags.png",new Vector3(-26,.035f,-18),270,false));
+                    views.Add(("east-refinery.png",new Vector3(24.8f,.035f,25),25,false));
+                    views.Add(("landing-crags.png",NoReturns.Editor.CinderCompactSiteBuild.Spawn,270,false));
+                    views.Add(("background-panorama.png",new Vector3(-31,17,-41),35,false));
+                }
                 foreach(var view in views) {
                     body.enabled=false;walk.transform.position=view.point;body.enabled=true;
                     typeof(CinderBlockoutWalk).GetField("yaw",flags).SetValue(walk,view.yaw);
-                    typeof(CinderBlockoutWalk).GetField("pitch",flags).SetValue(walk,view.name == "overview.png" ? 40f : view.name == "exterior-machinery.png" || view.name == "roof-silhouettes.png" ? 25f : view.name == "upward.png" ? -35f : 0f);
+                    typeof(CinderBlockoutWalk).GetField("pitch",flags).SetValue(walk,view.name == "overview.png" ? 40f : view.name == "west-crags.png" || view.name == "east-refinery.png" ? -10f : view.name == "background-panorama.png" ? 23f : view.name == "exterior-machinery.png" || view.name == "roof-silhouettes.png" ? 25f : view.name == "upward.png" ? -35f : 0f);
                     typeof(CinderBlockoutWalk).GetField("carrying",flags).SetValue(walk,view.carry);
                     parcel.GetComponent<Renderer>().enabled=view.carry;
                     update.Invoke(walk,null);

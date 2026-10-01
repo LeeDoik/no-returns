@@ -1,0 +1,9 @@
+{
+  "scene": "CinderCompactSiteReview",
+  "width": 640,
+  "height": 360,
+  "terrain_visibility_changed_pixels": 55914,
+  "minimum_changed_pixels": 10000,
+  "renderers_restored": true,
+  "method": "Actual native Camera.Render with terrain enabled/disabled; no image library"
+}

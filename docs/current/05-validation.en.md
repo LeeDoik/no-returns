@@ -2,6 +2,17 @@
 
 [한국어](05-validation.ko.md)
 
+## 2026-10-01 — Exterior background and actual rendering
+
+[Current background, running and evidence](cinder-compact-site.en.md#2026-10-01--rocky-territory-and-industrial-background-outside-the-field).
+
+- [x] 8 native meshes, 2 materials, 1 native 128×128 texture, 69 placements, 4,624 triangles, unit scale 1. All triangles' horizontal bounds remain outside the field; 0 new Colliders/Lights. Retain 4 fall guards, 40 local lights, buildings/props/sky.
+- [x] Pass 94 movement segments, 17 four-body lanes, 286 body positions, 6,864 carrying poses and 94 actual carrying segments. 26,902 penetration checks, 0 overlaps, 103 contacts; E/W/S/Q and empty-hand jumping pass.
+- [x] Terrain winding, finite UVs, nondegenerate triangles and supported shader checks; reimport 8 meshes/reopen scene. Terrain enabled/disabled difference: 55,914 pixels in actual 640×360 native rendering, above the 10,000 threshold. Fix mesh render-buffer updates and inspection-camera cleanup. Capture 25 views, inspect 8 key views and restore cutaway hiding.
+- [x] 0 compile/shader errors, 3 observed existing Editor warning types, 0 new-source warnings and final Play/render console 0 errors/warnings. Preserve 484 of 485 starting file hashes, excluding the current scene; exclude 8 existing ship-material edits.
+- [x] Update paired documentation; no new failures beyond 142 existing missing links. Record 163 raw staged generated trailing-space locations; verify code/document/evidence checks and overall check excluding those generated spaces.
+- [ ] User background quality, danger-signal readability, human four-player play, performance, standalone builds, exterior gameplay and Cinder gameplay integration.
+
 ## 2026-10-01 — Varied building forms
 
 [Current structure, running and evidence](cinder-compact-site.en.md#2026-10-01--varied-building-outlines-and-structural-modules).
@@ -10,7 +21,7 @@
 - [x] Pass 94 movement segments, 17 four-body lanes, 3/3.15m widths and 4 loops. 286 body positions, 6,864 carrying poses, 94 actual carrying segments and 340,268 penetration checks with 0 overlaps, 103 contacts; E/W/S/Q and empty-handed jumping passed.
 - [x] Pass UV/nondegenerate triangles/positive signed volume, cap-tile density on 140 triangles, reimport of 11 meshes and scene reopening. Capture 21 cameras, review 8 key views, restore upper-structure hiding. 0 compile/sky-shader errors, 3 observed existing Editor warning messages, 0 new-source warnings and final Play 0 errors/warnings.
 - [x] Preserve 434 of 435 starting hashes, excluding the current scene. No new failures beyond 142 existing missing document links. Fix light-record ordering false positive without data changes.
-- [ ] User appearance/visibility/wayfinding, human four-player play, performance, standalone builds, outer environment and gameplay integration. Upper-room access/interaction is unimplemented.
+- [ ] User appearance/visibility/wayfinding, human four-player play, performance, standalone builds, background quality and gameplay integration. Upper-room access/interaction is unimplemented.
 
 ## 2026-10-01 — Dusk sky and distant haze
 
@@ -31,7 +42,7 @@
 - [x] Resolve 8 failing cabinet-gap poses by correcting placement. Pass 5,904 carrying poses, 94 actual carrying segments and 407,130 penetration checks with 0 overlaps; E/W/S/Q and empty-handed jumping passed.
 - [x] Review 17 actual camera views, label readability and restoration of hidden roofs. 0 compile errors, 6 existing obsolete warning types, final Play 0 errors/warnings. Retain 142 existing missing documentation links with 0 new failures.
 - [ ] Prop quality, human four-player passing/simultaneous cargo rotation, distant patterns, performance and standalone builds.
-- [ ] Receipt facilities, AI/delivery/suppression/baton/networking integration at current Cinder coordinates and context beyond the field.
+- [ ] Receipt facilities, AI/delivery/suppression/baton/networking integration at current Cinder coordinates and background quality.
 
 ## 2026-10-01 — Relocating the entire suppression-field site
 
@@ -43,7 +54,7 @@
 - [x] Reviewed 10 actual camera views and restored inspection-only roof hiding. 0 compile errors, 8 existing obsolete warning emissions (6 unique), final Play 0 errors/warnings. Full documentation retains 142 existing missing links with 0 new failures.
 - [x] User approval of whole-site direction.
 - [ ] Prop quality, junction/long-alley sight lines, navigation, human four-player passing/cargo rotation review.
-- [ ] Final auxiliary facilities/cargo, context beyond the field, receipt facilities, new-coordinate Cinder AI/delivery/suppression/baton/networking integration, performance and standalone builds.
+- [ ] Final auxiliary facilities/cargo, background quality, receipt facilities, new-coordinate Cinder AI/delivery/suppression/baton/networking integration, performance and standalone builds.
 
 ## 2026-10-01 — Earlier 3m interior-maze record
 

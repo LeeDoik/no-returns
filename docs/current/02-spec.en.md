@@ -2,6 +2,10 @@
 
 [한국어](02-spec.ko.md)
 
+## 2026-10-01 — Current Cinder exterior background
+
+Apply [current background, dimensions and checks](cinder-compact-site.en.md#2026-10-01--rocky-territory-and-industrial-background-outside-the-field). 59 rocks, 9 industrial visuals and 1 exterior surface total 69 placements and 4,624 triangles. Produce 8 native meshes, 2 materials and 1 native 128×128 mineral texture; reuse the industrial stack. Leave the 53.55×65.4m field footprint empty, retaining layout, collision, sky, 35–115m fog, 40 local lights and runtime. Hide only Renderers of 4 gray guards, retaining existing fall-prevention Colliders. 0 new background Colliders/Lights. The exterior is static scenery; new traversal areas, outer creatures and suppression/delivery behavior remain unimplemented. User background quality, human four-player play and performance checks remain. Distinguish the user's confirmation of preceding buildings from overall quality approval.
+
 ## 2026-10-01 — Varied Cinder building structure
 
 [Current building forms/measurements](cinder-compact-site.en.md#2026-10-01--varied-building-outlines-and-structural-modules) are the environment baseline. Apply 9 structural module types and 11 native meshes; replace 2 actual ground outlines/colliders of the central utility/northern annex with 8-sided/stepped shapes. Place warehouse sawtooth roofs, storage vault roofs, office L-shaped upper room, octagonal control room, plant rooms, stacks and entry canopies. Retain the 5 main-building interiors, ship, 3/3.15m alleys, 4 loops, 47 prop groups, 40 lights, sky and runtime. Upper rooms are static visuals; new floor access/interaction and Cinder gameplay integration remain incomplete. User appearance-quality review is pending.

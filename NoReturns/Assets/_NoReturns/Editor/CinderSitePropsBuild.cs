@@ -59,8 +59,9 @@ public static class CinderSitePropsBuild {
         public Mesh Save(string name,string directory=Art,bool replace=false) {
             string path=directory+"/"+name+".asset";
             var existing=AssetDatabase.LoadAssetAtPath<Mesh>(path);if(existing&&!replace)return existing;
-            var mesh=new Mesh{name=name};mesh.SetVertices(vertices);mesh.SetUVs(0,uv);mesh.SetTriangles(triangles,0);mesh.RecalculateNormals();mesh.RecalculateBounds();
-            if(existing) { EditorUtility.CopySerialized(mesh,existing);UnityEngine.Object.DestroyImmediate(mesh);EditorUtility.SetDirty(existing);return existing; }
+            var mesh=existing?existing:new Mesh{name=name};mesh.Clear();
+            mesh.SetVertices(vertices);mesh.SetUVs(0,uv);mesh.SetTriangles(triangles,0);mesh.RecalculateNormals();mesh.RecalculateBounds();
+            if(existing) { EditorUtility.SetDirty(mesh);return mesh; }
             AssetDatabase.CreateAsset(mesh,path);return mesh;
         }
     }
@@ -185,6 +186,7 @@ public static class CinderSitePropsBuild {
     }
     [MenuItem("NO RETURNS/Trials/Validate Cinder Site Props")]
     public static void Validate() {
+        if(GameObject.Find(CinderBackgroundBuild.RootName)) { CinderBackgroundBuild.Validate(); return; }
         if(GameObject.Find(CinderArchitectureBuild.RootName)) { CinderArchitectureBuild.Validate(); return; }
         if(EditorSceneManager.GetActiveScene().path!=CinderCompactSiteBuild.ScenePath||!GameObject.Find(RootName))throw new Exception("Open dressed compact site.");
         if(File.Exists(Path.Combine(Output,"props-collision-baseline.json"))&&SceneCollision()!=File.ReadAllText(Path.Combine(Output,"props-collision-baseline.json")).TrimEnd())throw new Exception("Approved site collision changed.");

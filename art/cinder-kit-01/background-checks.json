@@ -1,0 +1,158 @@
+{
+  "date": "2026-10-01",
+  "scene": "NoReturns/Assets/_NoReturns/Scenes/CinderCompactSiteReview.unity",
+  "source": "NoReturns/Assets/_NoReturns/Editor/CinderBackgroundBuild.cs",
+  "starting_files": 485,
+  "unchanged_starting_files": 484,
+  "intentionally_changed_starting_files": [
+    "NoReturns/Assets/_NoReturns/Scenes/CinderCompactSiteReview.unity"
+  ],
+  "preexisting_ship_material_edits_excluded": 8,
+  "editor_reimport_and_reopen": {
+    "reimported": 8,
+    "dirty": false,
+    "playing": false,
+    "compilation_failed": false,
+    "shader_errors": false
+  },
+  "final_carry_check": {
+    "scene": "CinderCompactSiteReview",
+    "static_pose_count": 6864,
+    "carrying_segments": 94,
+    "samples": 26902,
+    "overlap_count": 0,
+    "touching_contacts": 103,
+    "penetration_tolerance_m": 1e-05,
+    "failures": [],
+    "input_checks": {
+      "pickup": true,
+      "forward": true,
+      "backward": true,
+      "drop": true,
+      "jump": true
+    },
+    "method": "Play mode, API-set poses, reflected actual CinderBlockoutWalk.Update; not human controls"
+  },
+  "render_regression": {
+    "scene": "CinderCompactSiteReview",
+    "width": 640,
+    "height": 360,
+    "terrain_visibility_changed_pixels": 55914,
+    "minimum_changed_pixels": 10000,
+    "renderers_restored": true,
+    "method": "Actual native Camera.Render with terrain enabled/disabled; no image library"
+  },
+  "final_console": {
+    "sampledUtc": "2026-10-01T11:24:19.232499Z",
+    "ageMs": 83,
+    "compilationFailed": false,
+    "compiling": false,
+    "consoleErrors": 0,
+    "consoleWarnings": 0,
+    "consoleLogs": 4,
+    "seeded": true
+  },
+  "observed_existing_editor_warning_types": 3,
+  "new_source_warning_types": 0,
+  "final_play_console": {
+    "sampledUtc": "2026-10-01T11:17:38.157397Z",
+    "ageMs": 190,
+    "compilationFailed": false,
+    "compiling": false,
+    "consoleErrors": 0,
+    "consoleWarnings": 0,
+    "consoleLogs": 0,
+    "seeded": true
+  },
+  "captures": [
+    "art/cinder-kit-01/background-annex-step.png",
+    "art/cinder-kit-01/background-background-panorama.png",
+    "art/cinder-kit-01/background-bay-carry.png",
+    "art/cinder-kit-01/background-bay-dispatch.png",
+    "art/cinder-kit-01/background-central-carry.png",
+    "art/cinder-kit-01/background-central-junction.png",
+    "art/cinder-kit-01/background-east-refinery.png",
+    "art/cinder-kit-01/background-exterior-machinery.png",
+    "art/cinder-kit-01/background-facility-sign.png",
+    "art/cinder-kit-01/background-field-cutaway.png",
+    "art/cinder-kit-01/background-landing-crags.png",
+    "art/cinder-kit-01/background-landing-empty.png",
+    "art/cinder-kit-01/background-north-covered.png",
+    "art/cinder-kit-01/background-office-link.png",
+    "art/cinder-kit-01/background-office-workbenches.png",
+    "art/cinder-kit-01/background-overview.png",
+    "art/cinder-kit-01/background-roof-silhouettes.png",
+    "art/cinder-kit-01/background-service-equipment.png",
+    "art/cinder-kit-01/background-service-loop.png",
+    "art/cinder-kit-01/background-sorting-chamfer.png",
+    "art/cinder-kit-01/background-storage-freight.png",
+    "art/cinder-kit-01/background-upward.png",
+    "art/cinder-kit-01/background-warehouse-racks.png",
+    "art/cinder-kit-01/background-west-covered.png",
+    "art/cinder-kit-01/background-west-crags.png"
+  ],
+  "key_views_inspected": [
+    "background-panorama",
+    "east-refinery",
+    "west-crags",
+    "landing-crags",
+    "exterior-machinery",
+    "field-cutaway",
+    "central-carry",
+    "upward"
+  ],
+  "historical_architecture_sky_props_site_receipts_preserved": true,
+  "issues_resolved": [
+    "Initial terrain winding failed native validation; reverse terrain triangles.",
+    "CopySerialized left stale render buffers despite updated mesh data; unchanged terrain visibility captures reproduced it, reimport alone did not fix it. Shared Shape.Save now mutates the existing native Mesh through Clear and setters, preserving GUIDs and updating rendering.",
+    "Render-check camera targetTexture must be cleared before releasing its target; fixed cleanup and final console is clear.",
+    "Optional Python pixel comparison unavailable because PIL was absent; replaced with native framebuffer comparison.",
+    "Native inspection rendering automatically added 41 URP light-data components. Restore the original zero-component state; the render check now removes only newly added components."
+  ],
+  "documentation_check": {
+    "exit_code": 1,
+    "existing_missing_links": 142,
+    "new_failures": 0
+  },
+  "raw_staged_whitespace": {
+    "exit_code": 2,
+    "unity_generated_trailing_space_locations": 163,
+    "manual_native_yaml_edits": false
+  },
+  "unknowns": [
+    "User background-quality review",
+    "Human four-player play",
+    "Performance",
+    "Standalone builds",
+    "Exterior access/creatures/suppression behavior",
+    "Cinder gameplay integration"
+  ],
+  "scope": {
+    "new_colliders": 0,
+    "new_lights": 0,
+    "runtime_changed": false,
+    "native_editor_asset_creation": true,
+    "external_assets_dependencies_paid_generation": false
+  },
+  "final_scene": {
+    "urp_light_data": 0,
+    "dirty": false,
+    "playing": false
+  },
+  "inspection_added_urp_light_data_removed": 41,
+  "code_document_evidence_whitespace_passed": true,
+  "generated_trailing_space_exclusion_check_passed": true,
+  "lfs_fsck_pointers_passed": true,
+  "scene_serialization_review": {
+    "old_blocks_preserved": 6980,
+    "old_object_ids_removed": 0,
+    "modified_existing_renderer_blocks": 4,
+    "other_modified_existing_blocks": [
+      "SceneRoots: append background root"
+    ],
+    "new_scene_mesh_renderers": 69,
+    "native_scene_serialization_only": true
+  },
+  "paired_numeric_document_checks_passed": 7,
+  "lfs_png_pointers_checked": 25
+}

@@ -2,6 +2,10 @@
 
 [한국어](03-guides.ko.md)
 
+## 2026-10-01 — Exterior background production/render checks
+
+Follow [current background, assets and commands](cinder-compact-site.en.md#2026-10-01--rocky-territory-and-industrial-background-outside-the-field). Reuse the existing Shape mesh tool and aged industrial atlas; produce 8 native meshes, 2 materials and 1 native 128×128 mineral texture. 69 placements, 4,624 triangles, unit scale 1 and 0 new Colliders/Lights. Orient repeating terrain/rock UVs by face and check finite values. `Add Cinder Exterior Background` stops with unsaved changes, Play or an existing root. Use `Validate Cinder Exterior Background`, routed `Validate Cinder Site Props`, stopped-Editor `CinderBackgroundRenderCheck.Main` and the shared Play carrying check. Current evidence uses `background-`; preserve earlier `architecture-`/`sky-`/`props-`/`site-` records. Shared mesh replacement uses native setters on the existing Mesh to preserve GUIDs while updating actual rendering. Track the deterministic texture source/native asset; no external assets, dependencies or paid generation. Structure/sky-stage prefixes below are historical evidence.
+
 ## 2026-10-01 — Building-form module production/placement
 
 Follow [current structural modules, dimensions, checks and running](cinder-compact-site.en.md#2026-10-01--varied-building-outlines-and-structural-modules). Reuse the existing mesh tool/aged atlas to produce 9 structural module types and supporting surfaces as 11 native Unity meshes. Unit placement scale 1; polygon roofs retain 1.2m UV-tile density. The 2 replaced ground outlines use static MeshColliders; elevated structures/canopies leave passage headroom. `Add Varied Cinder Architecture` stops with unsaved edits, Play or an existing root. Check using `Validate Varied Cinder Architecture`, routed `Validate Cinder Site Props` and the shared Play carrying check, recording `architecture-`. Current sky preservation compares actual valid-pose counts rather than a fixed 246. Preserve earlier `sky-`/`props-`/`site-` records. No new textures, external assets or dependencies.
