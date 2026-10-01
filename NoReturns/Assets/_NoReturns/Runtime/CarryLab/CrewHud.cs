@@ -39,20 +39,23 @@ public sealed class CrewHud : MonoBehaviour {
         objective.text="NO RETURNS / "+T(CarryMission.Objective(s.phase));
         if(s.phase<0)objective.text="NO RETURNS / "+T("Move the parcel through the passage and onto the marked floor.");
         wallet.text=string.Format(T("WALLET {0} CR / CREW {1}/4"),s.credits,s.players);
-        if(s.cinderReview){objective.text=T("CINDER / FOUR-PLAYER MAP TEST");wallet.text=string.Format(T("CREW {0}/4"),s.players);}
+        if(s.cinderReview&&s.phase<0){objective.text=T("CINDER / FOUR-PLAYER MAP TEST");wallet.text=string.Format(T("CREW {0}/4"),s.players);}
         for(int i=0;i<4;i++){
-            bool present=(s.occupiedMask&(1<<i))!=0;string state=!present?"EMPTY":s.danger!=null&&s.danger.IsDown(i)?"DOWN":s.holder==i?"CARGO":s.beaconCarrier==i?"BEACON":!s.cinderReview&&s.positions!=null&&CarryMission.Aboard(s.positions[i])?"ABOARD":"IN FIELD";
+            bool present=(s.occupiedMask&(1<<i))!=0;string state=!present?"EMPTY":s.danger!=null&&s.danger.IsDown(i)?"DOWN":s.holder==i?"CARGO":s.beaconCarrier==i?"BEACON":s.positions!=null&&CarryMission.Aboard(s.positions[i],s.cinderReview)?"ABOARD":"IN FIELD";
             rows[i].text=(i+1).ToString("00")+" / "+T(state)+(i==local?" / "+T("YOU"):"");rows[i].color=present?Colors[i]:new Color(.42f,.45f,.43f);
         }
         bool down=s.danger!=null&&s.danger.IsDown(local),hands=s.holder==local||s.beaconCarrier==local;
         string action=down?"DOWN / wait for teammate rescue. All down: emergency recovery.":hands?"[Q] SET DOWN   /   HANDS OCCUPIED":s.phase==3&&!s.receiptCollected?"Collect receipt at terminal [E] / No pay until return":"[E] Interact / Hold E rescue / LMB baton / Tab log / Esc menu";
         prompt.text=T(action);
-        if(s.cinderReview)prompt.text=T(hands?"[Q] SET DOWN   /   HANDS OCCUPIED":"[E] Carry / [Q] Set down / Space jump / Esc menu");
+        if(s.cinderReview&&s.phase<0)prompt.text=T(hands?"[Q] SET DOWN   /   HANDS OCCUPIED":"[E] Carry / [Q] Set down / Space jump / Esc menu");
         if(!down&&s.danger!=null&&s.danger.RescueAt(local)>0)prompt.text=string.Format(T("RESCUING {0}% / keep holding E"),Mathf.Clamp(Mathf.RoundToInt(s.danger.RescueAt(local)/2.5f*100),0,100));
         cue.text=s.hazard&&(s.phase==2||s.phase==3)?T(CarrySuppression.Cue(s.suppressionStage)):T("WASD move / Mouse look / Shift quiet walk");
-        if(s.cinderReview)cue.text=T("WASD move / Mouse look / R reset (host)");
+        if(s.cinderReview){
+            cue.text=T(s.phase<0?"WASD move / Mouse look / R reset (host)":"WASD move / Mouse look / E ship action / Esc menu");
+            if(s.phase>=0)prompt.text=T(CarryMission.Aboard(s.positions[local],true)?"[E] SHIP ACTION / all crew aboard to depart or return":hands?"[Q] SET DOWN   /   HANDS OCCUPIED":s.phase==3&&!s.receiptCollected?"Collect receipt at terminal [E] / No pay until return":"[E] Carry / [Q] Set down / Space jump / Esc menu");
+        }
         // No creature AI state or remaining suppression seconds on the HUD.
-        notice.text=s.phase==3&&s.receiptCollected?T("Receipt collected / return aboard to get paid"):T(s.message??"");
+        notice.text=s.phase==4?string.Format(T("RECEIPT {0} + RETURN {1} CR"),s.receipt,s.returnPay):s.phase==3&&s.receiptCollected?T("Receipt collected / return aboard to get paid"):T(s.message??"");
     }
 }
 }

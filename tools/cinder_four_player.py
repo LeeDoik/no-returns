@@ -90,7 +90,7 @@ def state(folder, name="state.json"):
         return {}
 
 
-def launch(automated=False):
+def launch(automated=False, delivery=True):
     binary = player()
     if not binary.is_file():
         raise RuntimeError("Build the player first: python3 tools/cinder_four_player.py build")
@@ -107,6 +107,8 @@ def launch(automated=False):
         folder.mkdir(exist_ok=True)
         folders[slot] = folder
         args = [str(binary), "--host"] if slot == 0 else [str(binary), "--join", "127.0.0.1"]
+        if not delivery:
+            args += ["--map-only"]
         args += ["--cinder-session", token, "-screen-width", "800", "-screen-height", "500",
                  "-screen-fullscreen", "0", "-logFile", str(folder / "player.log")]
         if automated:
@@ -143,8 +145,26 @@ def launch(automated=False):
         raise
 
 
+def walk(send, folders, slot, x, z, pitch=0):
+    end = time.monotonic() + 20
+    while time.monotonic() < end:
+        positions = state(folders[0]).get("positions")
+        if not positions:
+            time.sleep(.08)
+            continue
+        p = positions[slot]
+        dx, dz = x - p["x"], z - p["z"]
+        distance = math.hypot(dx, dz)
+        if distance < .15:
+            send(slot, pitch=pitch)
+            return
+        send(slot, yaw=math.degrees(math.atan2(dx, dz)), z=min(1, distance * 2), pitch=pitch)
+        time.sleep(.08)
+    raise AssertionError(f"Blocked movement: slot {slot} to {(x, z)}; {state(folders[0])}")
+
+
 def check():
-    run, processes, folders, start = launch(True)
+    run, processes, folders, start = launch(True, delivery=False)
     checks, seq = [], 1
 
     def send(slot, **values):
@@ -160,21 +180,7 @@ def check():
         checks.append(name)
 
     def go(slot, x, z):
-        end = time.monotonic() + 20
-        while time.monotonic() < end:
-            positions = state(folders[0]).get("positions")
-            if not positions:
-                time.sleep(.08)
-                continue
-            p = positions[slot]
-            dx, dz = x - p["x"], z - p["z"]
-            distance = math.hypot(dx, dz)
-            if distance < .15:
-                send(slot)
-                return
-            send(slot, yaw=math.degrees(math.atan2(dx, dz)), z=min(1, distance * 2))
-            time.sleep(.08)
-        raise AssertionError(f"Blocked movement: slot {slot} to {(x, z)}; {state(folders[0])}")
+        walk(send, folders, slot, x, z)
 
     report = dict(status="FAIL", run=str(run), checks=checks)
     try:
@@ -258,6 +264,7 @@ def check():
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("action", choices=("build", "start", "stop", "check"))
+    parser.add_argument("--map-only", action="store_true", help="Start movement/carrying without the delivery loop")
     args = parser.parse_args()
     if args.action == "build":
         binary = shutil.which("unity") or str(Path.home() / ".unity/bin/unity")
@@ -277,7 +284,7 @@ def main():
             raise RuntimeError(report)
         print("Built:", player())
     elif args.action == "start":
-        launch()
+        launch(delivery=not args.map_only)
     elif args.action == "stop":
         stop()
     else:

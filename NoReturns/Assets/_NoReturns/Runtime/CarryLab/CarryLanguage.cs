@@ -23,6 +23,11 @@ public static class CarryLanguage {
         return english;
     }
     public static readonly Dictionary<string,string> Ko=new Dictionary<string,string>{
+        {"CINDER / DELIVERY LOOP","CINDER / 배송 사이클"},
+        {"Direct LAN / TCP 27842\nSame PC: 127.0.0.1\nBAY 04 receipt / return aboard to settle.","직접 LAN / TCP 27842\n같은 PC: 127.0.0.1\nBAY 04 수령 · 우주선 귀환 후 정산"},
+        {"WASD move / Mouse look / E ship action / Esc menu","WASD 이동 · 마우스 시점 · E 우주선 진행 · Esc 메뉴"},
+        {"[E] SHIP ACTION / all crew aboard to depart or return","E 우주선 진행 · 출발/귀환 시 전원 탑승"},
+        {"RECEIPT {0} + RETURN {1} CR","수령 {0} + 귀환 {1} CR"},
         {"CINDER / FOUR-PLAYER MAP TEST","CINDER / 4인 맵 테스트"},
         {"CREW {0}/4","직원 {0}/4"},
         {"[E] Carry / [Q] Set down / Space jump / Esc menu","E 들기 · Q 내려놓기 · Space 점프 · Esc 메뉴"},

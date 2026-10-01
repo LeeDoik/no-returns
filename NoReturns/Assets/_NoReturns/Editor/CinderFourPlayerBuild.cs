@@ -30,6 +30,13 @@ public static class CinderFourPlayerBuild {
             UnityEngine.Object.DestroyImmediate(GameObject.Find("Trial carried parcel"));
             foreach(var renderer in scene.GetRootGameObjects().SelectMany(g=>g.GetComponentsInChildren<Renderer>()))
                 if(renderer.name.StartsWith("Listener zone"))renderer.enabled=false;
+            var offset=CarryMission.CinderReceiptOffset;
+            FacilityArt.Place("Receipt",new Vector3(-8.1f,.8f,9)+offset,new Vector3(.75f,1.6f,.65f),180);
+            var terminal=new GameObject("Receipt terminal collision");terminal.transform.position=new Vector3(-8.1f,.8f,9)+offset;
+            terminal.AddComponent<BoxCollider>().size=new Vector3(.75f,1.6f,.65f);
+            var feedback=new GameObject("BAY 04 receipt feedback");feedback.transform.position=offset;feedback.AddComponent<ReceiptFeedback>();
+            CinderSitePropsBuild.Legend("BAY 04\nRECEPTION",14.9f,2.05f,12.5f,0,feedback.transform);
+            CinderSitePropsBuild.Legend("SHIFT\n[E] ABOARD",-20.7f,2.9f,-31.25f,180,feedback.transform);
             new GameObject("Cinder four-player map test").AddComponent<CarryRoom>().cinderReview=true;
             EditorSceneManager.SaveScene(scene);
             var directory=Path.GetFullPath("../builds/CinderFourPlayer");Directory.CreateDirectory(directory);

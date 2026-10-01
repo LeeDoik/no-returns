@@ -2,6 +2,8 @@
 
 [한국어](README.md)
 
+[Current Cinder delivery, receipt and return settlement](current/four-player.en.md#2026-10-01--cinder-delivery-receipt-and-return-settlement): connect default four-window launch to delivery testing. Ship E preparation/arrival → BAY 04 floor acceptance → receipt E collection → all-aboard return/420 CR settlement → next shift. Preserve the source art scene. Retain movement testing with `start --map-only`/`check`. Listener/baton/suppression/beacon/save and four-human/other-PC/performance validation remain. [Actual validation scope](validation/cinder-delivery-01.json).
+
 [Current Cinder four-player test environment](current/four-player.en.md#2026-10-01--cinder-four-player-map-test-environment): start/stop 1 host and 3 Mac client windows for movement/shared-parcel carrying in the current map. **Mac build: 0 errors/7 existing warnings; pass 13 actual four-process checks, 7 existing rescue-rule conditions and 7 regular-mode defaults. Inspect 2 native 800×500 Korean HUD captures for crew 4/4, E/Q controls, reticle and team colors; also verify 4 manual processes/3 connections and shutdown.** Full Cinder delivery/Listener/baton integration and four-human/other-PC/performance validation remain pending.
 
 [Current open sky and zone boundaries](current/cinder-compact-site.en.md#2026-10-01--open-sky-and-zone-boundaries): open 82.8m² of west/north cover and adjust matching ceiling collision. Distinguish interior paving/exterior rocks with boundary bands/signs, adding 4 suppressor service pads, aged visuals and irregular rock placement. Pass 6,864 carrying poses, 94 actual carrying segments and rendering. User appearance, human four-player/performance and gameplay integration remain pending.

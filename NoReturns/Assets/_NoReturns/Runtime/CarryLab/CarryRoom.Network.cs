@@ -10,7 +10,7 @@ public sealed partial class CarryRoom {
     Vector3 Spawn(int slot)=>cinderReview?new Vector3(-20.7f+(slot%2==0?-1:1),.035f,-20.05f+(slot<2?0:1.4f)):new Vector3(slot%2==0?-1:1,0,slot<2?-5:-7);
     Vector3[] Positions(){var p=new Vector3[4];for(int i=0;i<4;i++)p[i]=workers[i].transform.position;return p;}
     float[] Yaws(){var v=new float[4];for(int i=0;i<4;i++)v[i]=hosting?inputs[i].yaw:target?.yaws!=null?target.yaws[i]:0;return v;}
-    bool AllAboard(){for(int i=0;i<4;i++)if(Present(i)&&(!CarryMission.Aboard(workers[i].transform.position)||(hazard&&threat.Down[i])))return false;return true;}
+    bool AllAboard(){for(int i=0;i<4;i++)if(Present(i)&&(!CarryMission.Aboard(workers[i].transform.position,cinderReview)||(hazard&&threat.Down[i])))return false;return true;}
     bool AnyOtherDown(int slot){for(int i=0;i<4;i++)if(i!=slot&&Present(i)&&danger!=null&&danger.IsDown(i))return true;return false;}
     void Broadcast(){for(int i=1;i<4;i++)if(connections[i]!=null){var snapshot=Snapshot();snapshot.recipient=i;snapshot.ack=inputs[i].seq;connections[i].Send(JsonUtility.ToJson(snapshot));}}
     void RemovePeer(int slot){

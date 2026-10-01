@@ -2,6 +2,10 @@
 
 [English](macos-development.en.md)
 
+## 2026-10-01 — Cinder 배송·영수증·귀환 정산
+
+[CINDER-DELIVERY-01 실행·좌표·검증](four-player.ko.md#2026-10-01--cinder-배송영수증귀환-정산). 별도 `CinderFourPlayerTest`에서 우주선 E 준비/도착 → BAY 04 바닥 배송 → CRT 영수증 E 회수 → 전원 탑승·E 귀환·420 CR 정산 → 다음 근무를 연결했다. 버전 0.9.1·프로토콜 10·TCP 27842 유지. 기존 배송 장부·화물·CRT·KO/EN 화면과 표지 도구를 재사용한다. 원본 환경 씬은 그대로이며 아래 이전 단계의 배송/수령 미연결 표기는 이 시험 범위에서 대체된다. 기본 실행은 배송, `start --map-only`와 `check`는 이전 이동 시험이다. 리스너/진압봉/억제/신호기/저장, 사람 네 명·다른 PC·성능은 미완료다. 실제 자동 검사 근거는 [검증 기록](../validation/cinder-delivery-01.json)을 따른다.
+
 ## 2026-10-01 — 현재 Cinder 맥 4인 시험
 
 현재 환경/아트 원본은 `CinderCompactSiteReview`, 파생 4인 시험은 `CinderFourPlayerTest`다. [4인 실행·빌드·검증 안내](four-player.ko.md#2026-10-01--cinder-4인-맵-테스트-환경)가 아래 2026-09-26의 대상/빌드 미확인 기록보다 우선한다. `CinderFourPlayerBuild`로 원본을 보존하며 `builds/CinderFourPlayer/NoReturns.app`을 만든다. **맥 빌드 오류 0개·기존 경고 7개, 실제 네 프로세스 자동 검사 13개·기존 구조 규칙 7개·일반 모드 기본값 7개 통과. 800×500 한글 HUD 화면 2개에서 직원 4/4·E/Q 안내·조준점·팀 색을 확인했고 수동 네 프로세스/접속 3개·종료도 확인했다.** 출시에 필요한 서명/공증·Windows 실행·다른 PC·성능·전체 게임 기능은 별도 미확인이다.

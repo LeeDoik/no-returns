@@ -2,6 +2,10 @@
 
 [한국어](demo-art-list.ko.md)
 
+## 2026-10-01 — Cinder delivery, receipt and return settlement
+
+[CINDER-DELIVERY-01 usage, coordinates and evidence](four-player.en.md#2026-10-01--cinder-delivery-receipt-and-return-settlement). In separate `CinderFourPlayerTest`, connect ship E preparation/arrival → BAY 04 floor delivery → CRT receipt E collection → all crew aboard/E return/420 CR settlement → next shift. Retain version 0.9.1, protocol 10 and TCP 27842. Reuse the existing delivery ledger, parcel, CRT, KO/EN screen and label tooling. Preserve the source environment scene; supersede older unconnected-delivery/receipt statements below only within this test scope. Default launch is delivery; `start --map-only` and `check` retain the movement test. Listener/baton/suppression/beacon/save and four-human/other-PC/performance validation remain incomplete. Actual automated evidence is in the [validation record](../validation/cinder-delivery-01.json).
+
 ## Priority for current Cinder production — 2026-10-01
 
 Current new-asset work follows the [first 8 warehouse-unit brief](cinder-asset-prep.en.md). The 44 units, R 10/N 34 labels and CSV below describe the 0.9.1 demo survey from 2026-09-13, not current Cinder completion or reuse-approval counts. Prepare the first batch again as new production candidates, including a new sign surface unit. Preserve the existing list, CSV and historical integration evidence.

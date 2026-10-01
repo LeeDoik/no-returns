@@ -1,0 +1,181 @@
+{
+  "id": "CINDER-DELIVERY-01",
+  "date": "2026-10-01",
+  "status": "PASS",
+  "version": "0.9.1",
+  "protocol": 10,
+  "build": {
+    "status": "PASS",
+    "unity": "6000.6.0f1",
+    "error": "",
+    "errors": 0,
+    "warnings": 7
+  },
+  "native_process_delivery": {
+    "status": "PASS",
+    "count": 23,
+    "checks": [
+      "four Cinder delivery slots",
+      "ship E selects route",
+      "departure requires all four aboard",
+      "all aboard activates field",
+      "return without receipt pays zero",
+      "next shift resets all four and receipt",
+      "second route selected",
+      "second field arrival",
+      "shared cargo picked up",
+      "held cargo cannot complete delivery",
+      "BAY 04 scan progress replicates",
+      "receipt prints on all peers without payment",
+      "printing completes on all peers",
+      "terminal-ko",
+      "English HUD toggle",
+      "terminal-en",
+      "receipt collected by one peer is shared",
+      "duplicate collection and outside crew do not pay",
+      "terminal-collected",
+      "settlement is 300 plus 120 exactly once",
+      "ship-report",
+      "next shift keeps 420 and resets receipt",
+      "no runtime exceptions or invalid bounds"
+    ],
+    "run": "artifacts/cinder-four-player/run-20261001-220358-e05252",
+    "scope": "4 native Mac processes; one employee physically carries to BAY 04 and returns, all four physically board. Human handling/fun, WAN, AI and progression saving remain unverified.",
+    "final_wallets": [
+      420,
+      420,
+      420,
+      420
+    ],
+    "final_deliveries": [
+      1,
+      1,
+      1,
+      1
+    ],
+    "reset_receipts": true
+  },
+  "ledger": {
+    "status": "PASS",
+    "checks": 35
+  },
+  "crt_surface": {
+    "status": "PASS",
+    "width": 480,
+    "height": 320,
+    "rows": [
+      {
+        "cinder": false,
+        "view": "front",
+        "changed": 1597
+      },
+      {
+        "cinder": false,
+        "view": "rear",
+        "changed": 0
+      },
+      {
+        "cinder": false,
+        "view": "wall",
+        "changed": 0
+      },
+      {
+        "cinder": true,
+        "view": "front",
+        "changed": 1596
+      },
+      {
+        "cinder": true,
+        "view": "rear",
+        "changed": 0
+      },
+      {
+        "cinder": true,
+        "view": "wall",
+        "changed": 0
+      }
+    ]
+  },
+  "bay_four_body_lane": {
+    "status": "PASS",
+    "checks": 132
+  },
+  "existing_rescue_rules": {
+    "status": "PASS",
+    "count": 7,
+    "source": "tools/unity_checks/FourCrewRules.cs"
+  },
+  "source_preservation": {
+    "count": 648,
+    "preserved": 647,
+    "expected_changes": [
+      "NoReturns/Assets/_NoReturns/Scenes/CinderFourPlayerTest.unity"
+    ],
+    "excluded_existing_ship_material_changes": 8,
+    "urp_settings_restored": true
+  },
+  "screenshots": [
+    "art/cinder-kit-01/delivery-terminal-ko.png",
+    "art/cinder-kit-01/delivery-ship-report.png"
+  ],
+  "unverified": [
+    "Four-human fun/controls/passing/rotating cargo",
+    "Other-PC LAN/WAN and Windows runtime",
+    "Performance/extended stability",
+    "Listener/baton/suppression/exterior/beacon/progression saving in Cinder",
+    "Release signing/notarization"
+  ],
+  "failures_retained": [
+    "First scripted boarding/exit blocked by physical crew; corrected waiting positions and route, collision retained.",
+    "Scripted eastward carry hit dispatch bench; route approaches reception via z=14.2 instead.",
+    "One intermediate run intentionally stopped to move receipt terminal outside the central lane.",
+    "Initial CRT render probe overwrote model pivot with bounds center; retained native placement pivot, then front/rear/wall test passed.",
+    "Unavailable asset_database CLI alias; refreshed through native AssetDatabase.Refresh. No source compilation failure.",
+    "CRT probe cleanup initially released its active camera target; detach targetTexture before release, final rerun has 0 new Editor errors."
+  ],
+  "movement_regression": {
+    "status": "PASS",
+    "count": 13,
+    "checks": [
+      "Cinder mode and four peers replicated",
+      "slot 3 picks up shared parcel",
+      "non-owner cannot release cargo",
+      "slot 3 movement replicated",
+      "owner releases cargo on all peers",
+      "host reset returns all four to landing",
+      "four simultaneous controllers pass west lane",
+      "fifth peer rejected",
+      "disconnect preserves remaining slot identities",
+      "freed slot 2 rejoins",
+      "two native player captures",
+      "Cinder HUD evidence and Korean font",
+      "no runtime exceptions or invalid bounds in player logs"
+    ],
+    "run": "artifacts/cinder-four-player/run-20261001-220607-e5ad46"
+  },
+  "documentation": {
+    "existing_missing_links": 142,
+    "new_missing_links": 0,
+    "language_counterparts_and_checkbox_states": "PASS",
+    "numbers_reviewed": "PASS; one/1 and fifth/5 are equivalent KO/EN source wording."
+  },
+  "editor_final": {
+    "compilationFailed": false,
+    "compiling": false,
+    "new_errors_after_crt_cleanup_fix": 0
+  },
+  "manual_launcher": {
+    "status": "PASS",
+    "processes": 4,
+    "host_established_connections": 3,
+    "test_dir": false,
+    "run": "artifacts/cinder-four-player/run-20261001-221048-bdaddc",
+    "editor_open_scene": "Assets/_NoReturns/Scenes/CinderFourPlayerTest.unity",
+    "editor_scene_dirty": false
+  },
+  "whitespace": {
+    "raw_staged": "FAIL: 4 native-generated scene trailing empty fields",
+    "code_documents_evidence": "PASS",
+    "overall_ignoring_generated_trailing_spaces": "PASS"
+  }
+}

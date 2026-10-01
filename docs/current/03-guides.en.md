@@ -2,6 +2,10 @@
 
 [한국어](03-guides.ko.md)
 
+## 2026-10-01 — Cinder delivery, receipt and return settlement
+
+[CINDER-DELIVERY-01 usage, coordinates and evidence](four-player.en.md#2026-10-01--cinder-delivery-receipt-and-return-settlement). In separate `CinderFourPlayerTest`, connect ship E preparation/arrival → BAY 04 floor delivery → CRT receipt E collection → all crew aboard/E return/420 CR settlement → next shift. Retain version 0.9.1, protocol 10 and TCP 27842. Reuse the existing delivery ledger, parcel, CRT, KO/EN screen and label tooling. Preserve the source environment scene; supersede older unconnected-delivery/receipt statements below only within this test scope. Default launch is delivery; `start --map-only` and `check` retain the movement test. Listener/baton/suppression/beacon/save and four-human/other-PC/performance validation remain incomplete. Actual automated evidence is in the [validation record](../validation/cinder-delivery-01.json).
+
 ## 2026-10-01 — Run/regenerate the Cinder four-player test
 
 Follow [four-player usage, commands and limits](four-player.en.md#2026-10-01--cinder-four-player-map-test-environment). Save source art edits in `CinderCompactSiteReview`. `python3 tools/cinder_four_player.py build` copies the source into a separate test scene, removes the single employee/test parcel and attaches the existing four-player runtime. Manual test-scene edits are overwritten by the next build. Do not use the older source-regenerating Blockout Build menu for this task.

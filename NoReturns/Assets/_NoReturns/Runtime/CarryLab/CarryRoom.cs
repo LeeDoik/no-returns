@@ -48,7 +48,7 @@ public sealed partial class CarryRoom : MonoBehaviour {
         ResetRoom();
         var args=Environment.GetCommandLineArgs();
         hazard=!cinderReview&&Array.IndexOf(args,"--hazard")>=0;if(hazard){threat=new CarryThreat();outer=new CarryThreat(threat);suppression=new CarrySuppression();danger=threat.Snapshot();outerDanger=outer.Snapshot();clues=new CarryClues();}
-        if(hazard||(!cinderReview&&Array.IndexOf(args,"--delivery")>=0)){mission=new CarryMission();missionPhase=0;}
+        if(hazard||Array.IndexOf(args,"--delivery")>=0||(cinderReview&&Array.IndexOf(args,"--map-only")<0)){mission=new CarryMission(cinder:cinderReview);missionPhase=0;}
         for(int i=0;i<args.Length;i++) {
 #if CARRY_TEST_AUTOMATION || UNITY_EDITOR
             if(args[i]=="--test-dir"&&i+1<args.Length)testFolder=args[++i];
@@ -112,7 +112,7 @@ public sealed partial class CarryRoom : MonoBehaviour {
                 ResolveUse(i,input);
                 if(equipment.Carrier==i){input.rescue=false;input.shove=false;}
                 if(hazard){
-                    bool aboard=CarryMission.Aboard(workers[i].transform.position);
+                    bool aboard=CarryMission.Aboard(workers[i].transform.position,cinderReview);
                     if(input.inspect)status=clues.Inspect(workers[i].transform.position+Vector3.up*1.57f,Quaternion.Euler(input.pitch,input.yaw,0),mission.Phase);
                     if(input.buy){bool bought=mission.BuyBeacon(i==0,aboard);if(bought)equipment.Begin(true);status=bought?"Beacon license purchased":"Purchase unavailable: host, ship/report, 120 CR required";}
                     if(input.contract)status=mission.ToggleContract(i==0,aboard)?"Contract changed":"Select route aboard after first delivery; host only";
@@ -122,7 +122,7 @@ public sealed partial class CarryRoom : MonoBehaviour {
                 if(input.action&&mission!=null&&mission.Phase==phaseAtTick){
                     int before=mission.Phase;
                     bool all=AllAboard();
-                    if(mission.Act(CarryMission.Aboard(workers[i].transform.position),all)){equipment.Begin(mission.BeaconUnlocked);ResetRoom();}
+                    if(mission.Act(CarryMission.Aboard(workers[i].transform.position,cinderReview),all)){equipment.Begin(mission.BeaconUnlocked);ResetRoom();}
                     if(hazard&&before==1&&mission.Phase==2){clues.Clear();suppression.Begin();outer.Reset();}
                 }
                 input.action=false;
@@ -164,7 +164,7 @@ public sealed partial class CarryRoom : MonoBehaviour {
     void ResolveUse(int who,CarryInput input){
         if(!input.interact)return;
         input.interact=false;
-        if(holder==who||equipment.Carrier==who){if(mission!=null&&CarryMission.Aboard(workers[who].transform.position))input.action=true;return;}
+        if(holder==who||equipment.Carrier==who){if(mission!=null&&CarryMission.Aboard(workers[who].transform.position,cinderReview))input.action=true;return;}
         var pos=workers[who].transform.position;var origin=pos+Vector3.up*1.57f;var look=Quaternion.Euler(input.pitch,input.yaw,0);
         if(hazard&&threat.RescueTarget(who,Positions(),occupiedMask)>=0)return;
         if(mission!=null&&mission.Phase==3&&!mission.ReceiptCollected&&ReceiptFeedback.CanReach(origin,look)){input.interact=true;return;}
@@ -172,7 +172,7 @@ public sealed partial class CarryRoom : MonoBehaviour {
         if(hazard&&equipment.PickUp(who,pos,look,holder!=who))return;
         var delta=cargo.position-(pos+Vector3.up*1.45f);
         if((mission==null||mission.Phase==2)&&holder<0&&delta.magnitude<=2.4f&&Vector3.Angle(look*Vector3.forward,delta)<65&&Physics.Raycast(pos+Vector3.up*1.45f,delta.normalized,out var hit,delta.magnitude+.1f)&&hit.collider==cargoCollider){input.interact=true;return;}
-        if(mission!=null&&CarryMission.Aboard(pos)){input.action=true;return;}
+        if(mission!=null&&CarryMission.Aboard(pos,cinderReview)){input.action=true;return;}
         
     }
     void Interact(int who){
@@ -190,7 +190,7 @@ public sealed partial class CarryRoom : MonoBehaviour {
     void Release(){if(cargo==null)return;if(holder>=0)Physics.IgnoreCollision(cargoCollider,workers[holder],false);holder=-1;cargo.isKinematic=false;cargo.linearVelocity=Vector3.zero;cargo.angularVelocity=Vector3.zero;}
     CarryState Snapshot()=>new CarryState{cinderReview=cinderReview,positions=Positions(),yaws=Yaws(),occupiedMask=occupiedMask,recipient=local,beaconCarrier=equipment.Carrier,beaconExists=equipment.Exists,receiptCollected=receiptCollected,receiptReady=receiptReady,receiptProgress=receiptProgress,shiftElapsed=suppression==null?0:suppression.Elapsed,suppressionStage=suppression==null?0:suppression.Stage,outerDanger=outerDanger,clueMask=clues==null?0:clues.Mask,unlocked=unlocked,hard=hard,deliveries=deliveries,charges=equipment.Charges,beaconTime=equipment.Remaining,beaconPosition=equipment.Position,hazard=hazard,danger=danger,phase=missionPhase,credits=credits,receipt=receipt,returnPay=returnPay,tick=tick,holder=holder,p0=workers[0].transform.position,p1=workers[1].transform.position,yaw0=inputs[0].yaw,yaw1=inputs[1].yaw,cargo=cargo.position,rotation=cargo.rotation,players=CrewCount,connected=peer,ack=inputs[local].seq,message=status};
     [Serializable] class UiEvidence {public string language,host,objective,status,firstRecord,secondRecord,suppressionCue;public bool koreanGlyph,journalOpen;}
-    void WriteEvidence(CarryState s){if(testFolder==null)return;try{File.WriteAllText(Path.Combine(testFolder,"ui.json"),JsonUtility.ToJson(new UiEvidence{suppressionCue=suppression==null?null:T(CarrySuppression.Cue(suppression.Stage)),journalOpen=journalOpen,firstRecord=T(clues!=null&&(clues.Mask&1)!=0?CarryClues.FirstBody:"Not discovered"),secondRecord=T(clues!=null&&(clues.Mask&2)!=0?CarryClues.SecondBody:"Not discovered"),language=CarryLanguage.Korean?"ko":"en",host=T("HOST"),objective=T(cinderReview?"CINDER / FOUR-PLAYER MAP TEST":CarryMission.Objective(missionPhase)),status=T(status),koreanGlyph=CarryLanguage.Font.HasCharacter('한')}));File.WriteAllText(Path.Combine(testFolder,"state.tmp"),JsonUtility.ToJson(s));var path=Path.Combine(testFolder,"state.json");if(File.Exists(path))File.Delete(path);File.Move(Path.Combine(testFolder,"state.tmp"),path);}catch(IOException){} }
+    void WriteEvidence(CarryState s){if(testFolder==null)return;try{File.WriteAllText(Path.Combine(testFolder,"ui.json"),JsonUtility.ToJson(new UiEvidence{suppressionCue=suppression==null?null:T(CarrySuppression.Cue(suppression.Stage)),journalOpen=journalOpen,firstRecord=T(clues!=null&&(clues.Mask&1)!=0?CarryClues.FirstBody:"Not discovered"),secondRecord=T(clues!=null&&(clues.Mask&2)!=0?CarryClues.SecondBody:"Not discovered"),language=CarryLanguage.Korean?"ko":"en",host=T("HOST"),objective=T(cinderReview&&missionPhase<0?"CINDER / FOUR-PLAYER MAP TEST":CarryMission.Objective(missionPhase)),status=T(status),koreanGlyph=CarryLanguage.Font.HasCharacter('한')}));File.WriteAllText(Path.Combine(testFolder,"state.tmp"),JsonUtility.ToJson(s));var path=Path.Combine(testFolder,"state.json");if(File.Exists(path))File.Delete(path);File.Move(Path.Combine(testFolder,"state.tmp"),path);}catch(IOException){} }
     void LateUpdate(){if(eye==null)return;eye.transform.position=workers[local].transform.position+Vector3.up*(hazard&&danger!=null&&danger.IsDown(local)?.55f:1.57f);eye.transform.rotation=Quaternion.Euler(pitch,yaw,0);
         // Apply before every render, including the inactive startup menu.
         for(int i=0;i<4;i++){bool visible=i!=local&&Present(i);foreach(var r in bodies[i])r.enabled=visible;}
@@ -218,8 +218,8 @@ public sealed partial class CarryRoom : MonoBehaviour {
         GUI.skin.font=CarryLanguage.Font;GUI.skin.label.wordWrap=true;
         GUI.skin.label.fontSize=18;GUI.skin.button.fontSize=20;GUI.skin.textField.fontSize=20;
         if(active&&journalOpen&&clues!=null){DrawJournal();return;}
-        if(!active||menu){GUI.Box(new Rect(20,20,560,440),"");Label(new Rect(40,38,500,35),cinderReview?"CINDER / FOUR-PLAYER MAP TEST":hazard?"NO RETURNS / LISTENER TEST":missionPhase<0?"NO RETURNS / CARRY TEST":"NO RETURNS / DELIVERY LOOP");Label(new Rect(40,78,480,55),status);
-            if(!active){if(Button(new Rect(40,140,220,45),"HOST"))StartHost();address=GUI.TextField(new Rect(40,202,300,38),address,64);if(Button(new Rect(355,200,170,42),"JOIN"))StartJoin();Label(new Rect(40,252,480,80),cinderReview?"Direct LAN / TCP 27842\nSame PC: 127.0.0.1\nMap test / movement and carrying only.":"Direct LAN / TCP 27841\nSame PC: 127.0.0.1\nAllow host through Windows Firewall if prompted.");}
+        if(!active||menu){GUI.Box(new Rect(20,20,560,440),"");Label(new Rect(40,38,500,35),cinderReview?(missionPhase<0?"CINDER / FOUR-PLAYER MAP TEST":"CINDER / DELIVERY LOOP"):hazard?"NO RETURNS / LISTENER TEST":missionPhase<0?"NO RETURNS / CARRY TEST":"NO RETURNS / DELIVERY LOOP");Label(new Rect(40,78,480,55),status);
+            if(!active){if(Button(new Rect(40,140,220,45),"HOST"))StartHost();address=GUI.TextField(new Rect(40,202,300,38),address,64);if(Button(new Rect(355,200,170,42),"JOIN"))StartJoin();Label(new Rect(40,252,480,80),cinderReview?"Direct LAN / TCP 27842\nSame PC: 127.0.0.1\nBAY 04 receipt / return aboard to settle.":"Direct LAN / TCP 27841\nSame PC: 127.0.0.1\nAllow host through Windows Firewall if prompted.");}
             else{if(Button(new Rect(40,140,220,45),"RESUME")){menu=false;SetCursor(true);}if(Button(new Rect(280,140,220,45),"LEAVE SESSION"))Disconnect();Label(new Rect(40,200,480,70),missionPhase<0?"WASD move / Mouse look / E interact / Q set down\nSpace jump (empty hands) / R reset (host)":"WASD move / Mouse look / E interact / Q set down\nSpace jump (empty hands) / E ship action");}
             if(active){Label(new Rect(40,270,100,30),T("FOV")+" "+Mathf.RoundToInt(eye.fieldOfView));eye.fieldOfView=GUI.HorizontalSlider(new Rect(150,285,340,20),eye.fieldOfView,65,100);}
             if(Button(new Rect(40,315,220,35),"QUIT"))Application.Quit();if(Button(new Rect(40,375,480,42),"한국어 / English  ·  "+(CarryLanguage.Korean?"한국어":"English")))CarryLanguage.Toggle();

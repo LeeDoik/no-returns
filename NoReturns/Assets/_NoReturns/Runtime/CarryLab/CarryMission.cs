@@ -2,7 +2,10 @@ using UnityEngine;
 namespace NoReturns.CarryLab {
 // Host-owned ledger; restore progression only, never an unfinished shift.
 public sealed class CarryMission {
-    public CarryMission(CarryProgress progress=null){
+    public static readonly Vector3 CinderReceiptOffset=new Vector3(23,0,3.4f);
+    readonly bool cinder;
+    public CarryMission(CarryProgress progress=null,bool cinder=false){
+        this.cinder=cinder;
         if(progress==null)return;
         Credits=progress.credits;SuccessfulDeliveries=progress.deliveries;BeaconUnlocked=progress.beacon;
     }
@@ -26,7 +29,9 @@ public sealed class CarryMission {
     public bool ReceiptReady=>Phase==3&&printTime>=.75f;
     public bool CollectReceipt(){if(!ReceiptReady||ReceiptCollected)return false;ReceiptCollected=true;return true;}
     public float ReceiptProgress=>Phase==3?1:Phase==2?Mathf.Clamp01(stable/.75f):0;
-    public static bool Aboard(Vector3 p)=>Mathf.Abs(p.x)<3 && p.z< -3.8f && p.z> -10 && p.y<2;
+    public static bool Aboard(Vector3 p,bool cinder=false)=>cinder
+        ? Mathf.Abs(p.x+20.7f)<1.5f && p.z< -24.8f && p.z> -30.9f && p.y>.8f && p.y<3
+        : Mathf.Abs(p.x)<3 && p.z< -3.8f && p.z> -10 && p.y<2;
     public bool Act(bool aboard,bool allAboard){
         if(!aboard)return false;
         if(Phase==0){Phase=1;return false;}
@@ -37,6 +42,7 @@ public sealed class CarryMission {
     public void Tick(Vector3 p,Vector3 velocity,int holder,float dt){
         if(Phase==3){printTime+=dt;return;}
         if(Phase!=2)return;
+        if(cinder)p-=CinderReceiptOffset;
         bool onBench=holder<0 && p.x> -7.05f && p.x< -4.95f && p.z>8.4f && p.z<9.6f && p.y>.2f && p.y<.65f && velocity.sqrMagnitude<.04f;
         stable=onBench?stable+dt:0;
         if(stable>=.75f){Phase=3;printTime=0;}

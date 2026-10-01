@@ -2,6 +2,10 @@
 
 [English](03-guides.en.md)
 
+## 2026-10-01 — Cinder 배송·영수증·귀환 정산
+
+[CINDER-DELIVERY-01 실행·좌표·검증](four-player.ko.md#2026-10-01--cinder-배송영수증귀환-정산). 별도 `CinderFourPlayerTest`에서 우주선 E 준비/도착 → BAY 04 바닥 배송 → CRT 영수증 E 회수 → 전원 탑승·E 귀환·420 CR 정산 → 다음 근무를 연결했다. 버전 0.9.1·프로토콜 10·TCP 27842 유지. 기존 배송 장부·화물·CRT·KO/EN 화면과 표지 도구를 재사용한다. 원본 환경 씬은 그대로이며 아래 이전 단계의 배송/수령 미연결 표기는 이 시험 범위에서 대체된다. 기본 실행은 배송, `start --map-only`와 `check`는 이전 이동 시험이다. 리스너/진압봉/억제/신호기/저장, 사람 네 명·다른 PC·성능은 미완료다. 실제 자동 검사 근거는 [검증 기록](../validation/cinder-delivery-01.json)을 따른다.
+
 ## 2026-10-01 — Cinder 4인 시험 실행·재생성
 
 [4인 시험 사용법·명령·한계](four-player.ko.md#2026-10-01--cinder-4인-맵-테스트-환경)를 따른다. 원본 아트 수정은 `CinderCompactSiteReview`에 저장한다. `python3 tools/cinder_four_player.py build`는 원본을 별도 시험 씬으로 복제하고 1인 직원/시험 화물을 제거한 뒤 기존 4인 런타임을 붙인다. 시험 씬의 수동 편집은 다음 빌드에서 덮어쓴다. 원본을 재생성하는 옛 Blockout Build 메뉴를 이 작업에 사용하지 않는다.

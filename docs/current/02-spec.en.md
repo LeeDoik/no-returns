@@ -2,6 +2,10 @@
 
 [한국어](02-spec.ko.md)
 
+## 2026-10-01 — Cinder delivery, receipt and return settlement
+
+[CINDER-DELIVERY-01 usage, coordinates and evidence](four-player.en.md#2026-10-01--cinder-delivery-receipt-and-return-settlement). In separate `CinderFourPlayerTest`, connect ship E preparation/arrival → BAY 04 floor delivery → CRT receipt E collection → all crew aboard/E return/420 CR settlement → next shift. Retain version 0.9.1, protocol 10 and TCP 27842. Reuse the existing delivery ledger, parcel, CRT, KO/EN screen and label tooling. Preserve the source environment scene; supersede older unconnected-delivery/receipt statements below only within this test scope. Default launch is delivery; `start --map-only` and `check` retain the movement test. Listener/baton/suppression/beacon/save and four-human/other-PC/performance validation remain incomplete. Actual automated evidence is in the [validation record](../validation/cinder-delivery-01.json).
+
 ## 2026-10-01 — Cinder four-player movement/carrying test
 
 [CINDER-4P-01 usage, implementation and evidence](four-player.en.md#2026-10-01--cinder-four-player-map-test-environment). Connect 1 host + 3 clients, movement, shared-parcel E/Q and host reset in separate `CinderFourPlayerTest`. Preserve source `CinderCompactSiteReview` and art/physics placement. Provide TCP 27842, protocol 10, version 0.9.1, Mac four-window start/stop and rebuild/check tools. **Mac build: 0 errors/7 existing warnings; pass 13 actual four-process checks, 7 existing rescue-rule conditions and 7 regular-mode defaults. Inspect 2 native 800×500 Korean HUD captures for crew 4/4, E/Q controls, reticle and team colors; also verify 4 manual processes/3 connections and shutdown.** Delivery/Listener/baton/suppression/receipt integration and four-human/other-PC/performance validation remain pending. Supersede older environment tasks' unverified standalone/networking status only for this movement/carrying test; full gameplay integration remains incomplete.

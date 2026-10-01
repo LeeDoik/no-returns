@@ -1,8 +1,12 @@
 # Receipt terminal
 
+[한국어](receipt-terminal.ko.md)
+
 0.8.14: [Display implementation policy and current audit](display-systems.en.md).
 
-[한국어](receipt-terminal.ko.md)
+## 2026-10-01 — Cinder delivery, receipt and return settlement
+
+[CINDER-DELIVERY-01 usage, coordinates and evidence](four-player.en.md#2026-10-01--cinder-delivery-receipt-and-return-settlement). In separate `CinderFourPlayerTest`, connect ship E preparation/arrival → BAY 04 floor delivery → CRT receipt E collection → all crew aboard/E return/420 CR settlement → next shift. Retain version 0.9.1, protocol 10 and TCP 27842. Reuse the existing delivery ledger, parcel, CRT, KO/EN screen and label tooling. Preserve the source environment scene; supersede older unconnected-delivery/receipt statements below only within this test scope. Default launch is delivery; `start --map-only` and `check` retain the movement test. Listener/baton/suppression/beacon/save and four-human/other-PC/performance validation remain incomplete. Actual automated evidence is in the [validation record](../validation/cinder-delivery-01.json).
 
 2026-09-13 · 0.8.7 · Implemented · verification scope below
 
@@ -10,7 +14,7 @@
 
 Set the parcel inside the 3m wide by 2m deep floor outline centered at (-6,0,9). Acceptance requires its center strictly inside x=-7.05~-4.95, z=8.4~9.6, y=0.2~0.65m, no holder, and speed below 0.2m/s for 0.75 seconds. This does not pay money.
 
-Receipt printing completes after 0.75 seconds. Look at the terminal within 2.4m and press [E] to collect. Either teammate can collect it as shared team inventory. It does not require separate physics carrying or occupy a hand slot. Duplicate collection is rejected. Once everyone is aboard, [F] return/settlement pays standard 300+120=420 or risk 450+180=630 once. Successful delivery count increases then. Returning without collection, emergency recovery or mid-shift disconnect pays nothing for that shift. Previously earned balance remains. Next shift resets receipt state.
+Receipt printing completes after 0.75 seconds. Look at the terminal within 2.4m and press [E] to collect. Either teammate can collect it as shared team inventory. It does not require separate physics carrying or occupy a hand slot. Duplicate collection is rejected. Once everyone is aboard, [E] return/settlement pays standard 300+120=420 or risk 450+180=630 once. Successful delivery count increases then. Returning without collection, emergency recovery or mid-shift disconnect pays nothing for that shift. Previously earned balance remains. Next shift resets receipt state.
 
 ## Appearance and production guide
 
@@ -39,7 +43,7 @@ Also passed 24 clue/receipt/settlement checks in two processes with the Listener
 
 Removed the separate TextMesh and font material. Six states in Korean and English are rendered into individual 256×256 textures, displayed only on the original CRT glass surface. The case texture remains. ReceiptCRT uses opaque depth writes, depth testing and backface culling so walls or the terminal itself occlude the text. No UI object floats in front of the screen. Delivery, receipt, pay and protocol 8 remain unchanged.
 
-Production: tools/make_receipt_ui.py generates KO/EN state textures. The glass mask in ReceiptUI/ReceiptCRT.shader uses measured coordinates for the current placement; moving or resizing the terminal requires adjusting it. Validation compares two UI states from the same camera. Front pixels must change; rear and wall-occluded views must not change.
+Production: tools/make_receipt_ui.py generates KO/EN state textures. The glass mask in ReceiptUI/ReceiptCRT.shader uses measured coordinates with the current feedback-root translation offset; resizing or rotating the terminal requires adjusting it. Validation compares two UI states from the same camera. Front pixels must change; rear and wall-occluded views must not change.
 
 [Surface/occlusion test](../../artifacts/space-foundation/crt-validation-result.json) · [Front](../../artifacts/receipt-crt/front-ko.png) · [Wall occlusion](../../artifacts/receipt-crt/blocked-a.png)
 

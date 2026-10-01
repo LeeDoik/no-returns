@@ -7,13 +7,13 @@ public sealed class ReceiptFeedback : MonoBehaviour {
  void Awake(){
   signal=CarryWorld.Mat(new Color(.9f,.55f,.08f));signal.EnableKeyword("_EMISSION");
   for(int i=0;i<2;i++){
-   Visual("Reception floor outline",new Vector3(-6,.014f,8+i*2),new Vector3(3,.008f,.07f),signal).transform.SetParent(transform);
-   Visual("Reception floor outline",new Vector3(-7.5f+i*3,.014f,9),new Vector3(.07f,.008f,2),signal).transform.SetParent(transform);
+   Visual("Reception floor outline",new Vector3(-6,.014f,8+i*2),new Vector3(3,.008f,.07f),signal).transform.SetParent(transform,false);
+   Visual("Reception floor outline",new Vector3(-7.5f+i*3,.014f,9),new Vector3(.07f,.008f,2),signal).transform.SetParent(transform,false);
   }
-  scan=Visual("Reception scanner",new Vector3(-6,.02f,9),new Vector3(2.85f,.008f,.045f),signal).transform;scan.SetParent(transform);
-  paper=Visual("Printed receipt",Slot,new Vector3(.16f,.01f,.01f),CarryWorld.Mat(new Color(.8f,.77f,.63f))).transform;paper.SetParent(transform);
+  scan=Visual("Reception scanner",new Vector3(-6,.02f,9),new Vector3(2.85f,.008f,.045f),signal).transform;scan.SetParent(transform,false);
+  paper=Visual("Printed receipt",Slot,new Vector3(.16f,.01f,.01f),CarryWorld.Mat(new Color(.8f,.77f,.63f))).transform;paper.SetParent(transform,false);
   var audioObject=new GameObject("Terminal audio");audioObject.transform.SetParent(transform);sound=audioObject.AddComponent<AudioSource>();sound.spatialBlend=1;sound.minDistance=2;sound.maxDistance=14;sound.rolloffMode=AudioRolloffMode.Linear;sound.volume=.25f;
-  sound.transform.position=new Vector3(-8.1f,1,9);
+  sound.transform.localPosition=new Vector3(-8.1f,1,9);
   scanning=Tone("Scanner motor",.75f,false);confirmed=Tone("Receipt confirmation",.5f,true);
  }
  static AudioClip Tone(string name,float duration,bool chime){
@@ -30,12 +30,11 @@ public sealed class ReceiptFeedback : MonoBehaviour {
   if(!screenMaterial){var terminal=GameObject.Find("PSX Receipt");var template=Resources.Load<Material>("ReceiptUI/Screen");if(terminal&&template){screenMaterial=new Material(template);foreach(var renderer in terminal.GetComponentsInChildren<Renderer>()){screenMaterial.SetTexture("_BaseMap",renderer.sharedMaterial.GetTexture("_BaseMap"));renderer.sharedMaterial=screenMaterial;}}}
   string key=(state==2?(collected?"collected":ready?"take":"print"):state==1?"scan":state==0?"place":"standby")+(CarryLanguage.Korean?"-ko":"-en");
   if(screenMaterial&&key!=screenKey){screenMaterial.SetTexture("_ScreenMap",Resources.Load<Texture2D>("ReceiptUI/"+key));screenKey=key;}
-  if(screenMaterial)screenMaterial.SetFloat("_Progress",state==1?Mathf.Clamp01(progress):-1);
-  scan.gameObject.SetActive(state==1);scan.position=new Vector3(-6,.024f,Mathf.Lerp(8.08f,9.92f,progress));
+  if(screenMaterial){screenMaterial.SetFloat("_Progress",state==1?Mathf.Clamp01(progress):-1);screenMaterial.SetVector("_ScreenOffset",transform.position);}
+  scan.gameObject.SetActive(state==1);scan.localPosition=new Vector3(-6,.024f,Mathf.Lerp(8.08f,9.92f,progress));
   if(state!=previous){sound.Stop();if(state==1)sound.PlayOneShot(scanning);if(state==2&&previous>=0){sound.PlayOneShot(confirmed);printed=0;}previous=state;}
-  paper.gameObject.SetActive(state==2&&!collected);if(state==2){printed=Mathf.Min(1,printed+Time.deltaTime*1.5f);paper.localScale=new Vector3(.16f,.01f,.01f+.28f*printed);paper.position=Slot+Vector3.back*(.005f+.14f*printed);}else printed=0;
+  paper.gameObject.SetActive(state==2&&!collected);if(state==2){printed=Mathf.Min(1,printed+Time.deltaTime*1.5f);paper.localScale=new Vector3(.16f,.01f,.01f+.28f*printed);paper.localPosition=Slot+Vector3.back*(.005f+.14f*printed);}else printed=0;
  }
  void OnDestroy(){if(screenMaterial)Destroy(screenMaterial);if(scanning)Destroy(scanning);if(confirmed)Destroy(confirmed);}
 }
 }
-

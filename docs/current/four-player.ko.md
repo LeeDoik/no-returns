@@ -2,6 +2,40 @@
 
 [English](four-player.en.md)
 
+## 2026-10-01 — Cinder 배송·영수증·귀환 정산
+
+**CINDER-DELIVERY-01 / 구현·자동 검증 범위는 아래 근거 참조.** 배송 장부와 CRT를 현재 맵의 별도 `CinderFourPlayerTest`에 연결했다. 원본 `CinderCompactSiteReview`의 아트/건물/하늘/물리 배치를 보존한다. 이후 재빌드는 원본을 복사하고 기존 수령 모델 1개·BoxCollider 1개·피드백·물리 표지 2개를 더한다. 원래 정적 화물 46개·CRT 3개를 기능 화물로 바꾸지 않는다. 새 모델/텍스처/패키지 없음. 버전 **0.9.1**, 프로토콜 **10**, TCP **27842**, 렌더 상한 **30fps**, 물리 **50Hz**, 카메라 **250m** 유지. [빌드 소스](../../NoReturns/Assets/_NoReturns/Editor/CinderFourPlayerBuild.cs) · [배송 장부](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryMission.cs).
+
+1. [07_Play_Cinder_4P.command](../../07_Play_Cinder_4P.command)를 실행하면 방장 1명과 참가자 3명이 배송 준비 상태로 시작한다. 우주선 경사로를 올라가 E로 항로를 선택한다. 전원이 실제 선내로 들어온 뒤 다시 E로 도착한다. 비행 연출은 없다.
+2. 밖의 밀봉 화물을 E로 들고 BAY 04로 이동한다. 바닥 표시 중심 **(17,0,12.4)m**, 외곽 **3×2m**. 화물 중심 **x=15.95~18.05, z=11.8~13, y=0.2~0.65m**의 열린 범위에서 손을 뗀 채 속도 **0.2m/s 미만**으로 **0.75초** 안정되어야 수령한다. Q로 내려놓는다. 들고 있는 화물은 수령하지 않는다.
+3. **0.75초** 인쇄 후 단말 중심 **(14.9,0.8,12.4)m**를 바라보고 **2.4m** 안에서 E로 영수증을 회수한다. 누구나 회수할 수 있는 팀 공용 상태이며 손을 차지하지 않는다. 배송/회수 시점에는 지급하지 않는다.
+4. 전원이 선내로 돌아온 뒤 E로 귀환한다. 기본 수령 **300 + 귀환 120 = 420 CR**을 한 번 지급하고 HUD에 내역을 표시한다. 회수 없는 귀환/도중 접속 이탈은 새 보수 0이며 기존 잔액은 유지한다. E로 다음 근무를 준비하면 화물/직원 출발 위치와 영수증 상태를 초기화한다. 종료 후 잔액 복원은 이 모드에 없다.
+
+탑승 범위는 **|x+20.7|<1.5, -30.9<z<-24.8, 0.8<y<3m**이다. 실제 선내 바닥의 높이는 1m이며 경사로/밖에서 누르는 E는 출발/귀환을 진행하지 않는다. 수령 장치를 중앙 이동축 밖에 두어 기존 BAY 04 남북 이동을 유지한다. 원본 아트 씬은 기존 단독 검토를 유지한다. Unity Editor에서 배송을 시험하려면 파생 씬 `CinderFourPlayerTest`를 열고 Play → HOST/JOIN을 선택한다.
+
+```sh
+source ~/.unity/env
+python3 tools/cinder_four_player.py build
+python3 tools/cinder_four_player.py start
+python3 tools/cinder_four_player.py stop
+python3 tools/test_cinder_delivery.py
+# 이전 이동/운반·5번째 거절·재접속 회귀
+python3 tools/cinder_four_player.py check
+python3 tools/cinder_four_player.py start --map-only
+```
+
+수동 실행은 `--test-dir` 없이 실제 키보드/마우스를 받는다. 같은 LAN 네 명은 동일 실행본에서 HOST 1명/JOIN 3명, 방장 주소와 TCP 27842를 사용한다. 한 PC의 네 창은 선택한 한 창만 키보드/마우스를 받는다. [08_Stop_Cinder_4P.command](../../08_Stop_Cinder_4P.command)는 현재 시험 프로세스만 종료한다.
+
+CRT는 기존 유리 마스크에 피드백 루트의 평행이동 `_ScreenOffset`만 적용한다. 같은 크기/방향의 수령기를 옮기는 현재 배치를 지원한다. 크기나 회전을 바꾸면 유리·종이 배출 위치를 다시 실측해야 한다. 기본 좌표의 옛 실험은 offset 0을 유지한다. [표현 소스](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/ReceiptFeedback.cs) · [셰이더](../../NoReturns/Assets/_NoReturns/Resources/ReceiptUI/ReceiptCRT.shader).
+
+[자동 검사·보존 근거](../validation/cinder-delivery-01.json). `DeliveryRules.Run`은 기존/Cinder 장부 **35개** 조건, `ReceiptSurfaceCheck.Run`은 양쪽 좌표의 앞/뒤/벽 가림 **6개** 조건을 검사한다. 480×320 화면에서 기존 전면 **1,597픽셀**, Cinder 전면 **1,596픽셀**만 바뀌고 후면/벽 가림은 **0픽셀**이다. 실제 네 프로세스 배송 검사는 네 명의 물리적 탑승·직원 1명의 서쪽/북쪽 우회로 운반·귀환, 공유 회수/무보수 귀환/전원 확인/1회 지급/다음 근무 초기화를 확인한다. 원본 씬을 통과한 옛 검사와 파생 씬의 이번 검증을 구분한다. 사람 조작·재미·다른 PC/WAN·Windows 실행·성능·리스너/진압봉/억제/신호기/진행 저장은 미확인이다.
+
+**검증 완료:** 맥 빌드 오류 **0개**·기존 경고 **7개**, 실제 네 프로세스 배송 **23개**, 기존/Cinder 장부 **35개**, CRT 표면/가림 **6개**, BAY 04 네 몸체 통로 위치 **132개**, 기존 구조 규칙 **7개** 통과. KO/EN 수령·종이 배출/회수·420 CR 정산 화면을 확인했다. 기존 이동/운반·거절·재접속 회귀 **13개**도 최종 빌드로 통과했다.
+
+![BAY 04 수령기](../../art/cinder-kit-01/delivery-terminal-ko.png)
+
+![선내 정산](../../art/cinder-kit-01/delivery-ship-report.png)
+
 ## 2026-10-01 — Cinder 4인 맵 테스트 환경
 
 **CINDER-4P-01**: 현재 `CinderCompactSiteReview`에서 별도 `CinderFourPlayerTest`를 생성해 기존 방장 권한 `CarryRoom`의 직원 4명·이동·공유 화물 E/Q·초기화를 연결했다. 원본 아트 씬은 유지하며 매 빌드마다 시험 씬을 재생성한다. 일반 실험은 TCP **27841**, Cinder는 **27842**로 분리하고 `cinderReview`가 다른 수신 상태를 거절한다. 프로토콜 **10**·게임 버전 **0.9.1**을 유지한다. 시험 모드는 프레임 상한 **30fps**, 물리 **50Hz**, 카메라 거리 **250m**를 사용하며 성능 측정 결과는 아니다. [코드](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs) · [생성·빌드](../../NoReturns/Assets/_NoReturns/Editor/CinderFourPlayerBuild.cs).

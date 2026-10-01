@@ -2,6 +2,40 @@
 
 [한국어](four-player.ko.md)
 
+## 2026-10-01 — Cinder delivery, receipt and return settlement
+
+**CINDER-DELIVERY-01 / see evidence below for implementation and automated scope.** Connect the delivery ledger and CRT in separate `CinderFourPlayerTest`. Preserve source `CinderCompactSiteReview` art/buildings/sky/physics. Rebuilding copies the source and adds 1 existing receipt model, 1 BoxCollider, feedback and 2 physical labels. Do not turn the original 46 static freight/3 CRTs into gameplay cargo. No new models/textures/packages. Retain version **0.9.1**, protocol **10**, TCP **27842**, render cap **30fps**, physics **50Hz** and camera **250m**. [Build source](../../NoReturns/Assets/_NoReturns/Editor/CinderFourPlayerBuild.cs) · [ledger](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryMission.cs).
+
+1. Run [07_Play_Cinder_4P.command](../../07_Play_Cinder_4P.command) to start 1 host and 3 clients in delivery preparation. Walk up the ship ramp and press E to select the route. After everyone physically boards, press E again to arrive. No flight presentation.
+2. E carry the sealed parcel outside to BAY 04. Floor center **(17,0,12.4)m**, outline **3×2m**. Acceptance requires an unheld parcel center strictly within **x=15.95~18.05, z=11.8~13, y=0.2~0.65m**, speed below **0.2m/s**, stable for **0.75 seconds**. Q sets it down. Held parcels cannot be accepted.
+3. After **0.75 seconds** printing, look at terminal center **(14.9,0.8,12.4)m** within **2.4m** and press E to collect. Any crew member can collect this shared state; it occupies no hand slot. Delivery/collection do not pay immediately.
+4. Everyone returns aboard, then E returns the ship. Standard receipt **300 + return 120 = 420 CR** pays once; the HUD shows the breakdown. Returning without collection/mid-shift disconnect pays 0 new credits and retains the secured balance. E prepares the next shift, resetting parcel/employee spawn and receipt state. This mode does not restore balance after exit.
+
+Boarding bounds are **|x+20.7|<1.5, -30.9<z<-24.8, 0.8<y<3m**. The physical deck is 1m high; E on the ramp/outside does not advance departure/return. Keep the receipt device outside the central movement axis, retaining BAY 04 south/north traversal. The source art scene retains its solo review. For Editor delivery testing, open derived `CinderFourPlayerTest`, Play and choose HOST/JOIN.
+
+```sh
+source ~/.unity/env
+python3 tools/cinder_four_player.py build
+python3 tools/cinder_four_player.py start
+python3 tools/cinder_four_player.py stop
+python3 tools/test_cinder_delivery.py
+# Retained movement/carrying, fifth-client rejection and reconnect regression
+python3 tools/cinder_four_player.py check
+python3 tools/cinder_four_player.py start --map-only
+```
+
+Manual launch takes actual keyboard/mouse without `--test-dir`. Four LAN humans use the same executable, 1 HOST/3 JOIN, host address and TCP 27842. Four windows on one PC accept keyboard/mouse only in the selected window. [08_Stop_Cinder_4P.command](../../08_Stop_Cinder_4P.command) stops only this test's processes.
+
+The CRT applies only the feedback root's translation `_ScreenOffset` to the measured glass mask. Support the current terminal at unchanged size/orientation; resizing/rotation requires new glass/paper measurements. Old experiments retain offset 0. [Presentation source](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/ReceiptFeedback.cs) · [shader](../../NoReturns/Assets/_NoReturns/Resources/ReceiptUI/ReceiptCRT.shader).
+
+[Automated/preservation evidence](../validation/cinder-delivery-01.json). `DeliveryRules.Run` checks **35** legacy/Cinder ledger conditions; `ReceiptSurfaceCheck.Run` checks **6** front/rear/wall conditions at both coordinates. At 480×320, the legacy front changes **1,597 pixels** and the Cinder front **1,596 pixels**, rear/wall views **0 pixels**. The real four-process delivery check covers physical boarding by all four, one employee carrying through the west/north detour and back, shared receipt/empty return/all-aboard/one payment/next-shift reset. Distinguish old source-scene checks from this derived-scene validation. Human controls/fun, other-PC/WAN, Windows execution, performance and Listener/baton/suppression/beacon/progression saving remain unverified.
+
+**Verified:** Mac build **0 errors/7 existing warnings**, **23** real four-process delivery checks, **35** legacy/Cinder ledger conditions, **6** CRT surface/occlusion conditions, **132** BAY 04 four-body lane positions and **7** existing rescue rules pass. Inspect KO/EN receipt, paper ejection/collection and 420 CR report captures. Retained movement/carrying/rejection/reconnect regression also passes **13** checks on the final build.
+
+![BAY 04 terminal](../../art/cinder-kit-01/delivery-terminal-ko.png)
+
+![Ship settlement](../../art/cinder-kit-01/delivery-ship-report.png)
+
 ## 2026-10-01 — Cinder four-player map test environment
 
 **CINDER-4P-01**: derive a separate `CinderFourPlayerTest` from the current `CinderCompactSiteReview`, connecting the existing host-authoritative `CarryRoom` crew of 4, movement, shared-parcel E/Q and reset. Preserve the source art scene and regenerate the test scene on each build. Regular experiments use TCP **27841**, Cinder uses **27842**, and clients reject snapshots with a different `cinderReview` value. Retain protocol **10** and game version **0.9.1**. The test caps rendering at **30fps**, runs physics at **50Hz** and sets camera distance to **250m**; these are settings, not measured performance. [Runtime](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs) · [scene generation/build](../../NoReturns/Assets/_NoReturns/Editor/CinderFourPlayerBuild.cs).
