@@ -1,0 +1,442 @@
+{
+  "date": "2026-10-01",
+  "origin": "direct local Blender geometry and deterministic original pixel paint; no concept cropping or external font",
+  "blender_version": "5.2.2 LTS",
+  "user_concept_approved": true,
+  "user_final_appearance_review": false,
+  "wall_stripe_y_m": [
+    1.1,
+    1.75
+  ],
+  "rack_shelf_center_y_m": [
+    0.22,
+    1.32
+  ],
+  "parts": [
+    {
+      "name": "NR_Cinder_Floor_A",
+      "min_m": [
+        -0.6,
+        -0.2,
+        -0.6
+      ],
+      "max_m": [
+        0.6,
+        0.0,
+        0.6
+      ],
+      "size_m": [
+        1.2,
+        0.2,
+        1.2
+      ],
+      "triangles": 12,
+      "materials": [
+        "Cinder_Surface"
+      ],
+      "closed_outward_mesh": true,
+      "fbx_roundtrip": "pass"
+    },
+    {
+      "name": "NR_Cinder_Wall_A",
+      "min_m": [
+        -0.6,
+        0.0,
+        -0.15
+      ],
+      "max_m": [
+        0.6,
+        4.0,
+        0.15
+      ],
+      "size_m": [
+        1.2,
+        4.0,
+        0.3
+      ],
+      "triangles": 12,
+      "materials": [
+        "Cinder_Surface"
+      ],
+      "closed_outward_mesh": true,
+      "fbx_roundtrip": "pass"
+    },
+    {
+      "name": "NR_Cinder_Wall_Fill035",
+      "min_m": [
+        -0.175,
+        0.0,
+        -0.15
+      ],
+      "max_m": [
+        0.175,
+        4.0,
+        0.15
+      ],
+      "size_m": [
+        0.35,
+        4.0,
+        0.3
+      ],
+      "triangles": 12,
+      "materials": [
+        "Cinder_Surface"
+      ],
+      "closed_outward_mesh": true,
+      "fbx_roundtrip": "pass"
+    },
+    {
+      "name": "NR_Cinder_Wall_Fill090",
+      "min_m": [
+        -0.45,
+        0.0,
+        -0.15
+      ],
+      "max_m": [
+        0.45,
+        4.0,
+        0.15
+      ],
+      "size_m": [
+        0.9,
+        4.0,
+        0.3
+      ],
+      "triangles": 12,
+      "materials": [
+        "Cinder_Surface"
+      ],
+      "closed_outward_mesh": true,
+      "fbx_roundtrip": "pass"
+    },
+    {
+      "name": "NR_Cinder_DoorFrame_A",
+      "min_m": [
+        -1.9,
+        0.0,
+        -0.15
+      ],
+      "max_m": [
+        1.9,
+        4.0,
+        0.15
+      ],
+      "size_m": [
+        3.8,
+        4.0,
+        0.3
+      ],
+      "triangles": 36,
+      "materials": [
+        "Cinder_Surface"
+      ],
+      "closed_outward_mesh": true,
+      "fbx_roundtrip": "pass"
+    },
+    {
+      "name": "NR_Cinder_Ceiling_A",
+      "min_m": [
+        -0.6,
+        0.0,
+        -0.6
+      ],
+      "max_m": [
+        0.6,
+        0.3,
+        0.6
+      ],
+      "size_m": [
+        1.2,
+        0.3,
+        1.2
+      ],
+      "triangles": 12,
+      "materials": [
+        "Cinder_Surface"
+      ],
+      "closed_outward_mesh": true,
+      "fbx_roundtrip": "pass"
+    },
+    {
+      "name": "NR_Cinder_Ceiling_Edge",
+      "min_m": [
+        -0.075,
+        0.0,
+        -0.6
+      ],
+      "max_m": [
+        0.075,
+        0.3,
+        0.6
+      ],
+      "size_m": [
+        0.15,
+        0.3,
+        1.2
+      ],
+      "triangles": 12,
+      "materials": [
+        "Cinder_Surface"
+      ],
+      "closed_outward_mesh": true,
+      "fbx_roundtrip": "pass"
+    },
+    {
+      "name": "NR_Cinder_Ceiling_Corner",
+      "min_m": [
+        -0.075,
+        0.0,
+        -0.075
+      ],
+      "max_m": [
+        0.075,
+        0.3,
+        0.075
+      ],
+      "size_m": [
+        0.15,
+        0.3,
+        0.15
+      ],
+      "triangles": 12,
+      "materials": [
+        "Cinder_Surface"
+      ],
+      "closed_outward_mesh": true,
+      "fbx_roundtrip": "pass"
+    },
+    {
+      "name": "NR_Cinder_Beam_A",
+      "min_m": [
+        -0.6,
+        0.0,
+        -0.15
+      ],
+      "max_m": [
+        0.6,
+        0.3,
+        0.15
+      ],
+      "size_m": [
+        1.2,
+        0.3,
+        0.3
+      ],
+      "triangles": 12,
+      "materials": [
+        "Cinder_Surface"
+      ],
+      "closed_outward_mesh": true,
+      "fbx_roundtrip": "pass"
+    },
+    {
+      "name": "NR_Cinder_Corner_A",
+      "min_m": [
+        -0.15,
+        0.0,
+        -0.15
+      ],
+      "max_m": [
+        0.15,
+        4.0,
+        0.15
+      ],
+      "size_m": [
+        0.3,
+        4.0,
+        0.3
+      ],
+      "triangles": 12,
+      "materials": [
+        "Cinder_Surface"
+      ],
+      "closed_outward_mesh": true,
+      "fbx_roundtrip": "pass"
+    },
+    {
+      "name": "NR_Cinder_End_A",
+      "min_m": [
+        -0.075,
+        0.0,
+        -0.15
+      ],
+      "max_m": [
+        0.075,
+        4.0,
+        0.15
+      ],
+      "size_m": [
+        0.15,
+        4.0,
+        0.3
+      ],
+      "triangles": 12,
+      "materials": [
+        "Cinder_Surface"
+      ],
+      "closed_outward_mesh": true,
+      "fbx_roundtrip": "pass"
+    },
+    {
+      "name": "NR_Cinder_Lamp_A",
+      "min_m": [
+        -0.3,
+        -0.1,
+        0.0
+      ],
+      "max_m": [
+        0.3,
+        0.1,
+        0.18
+      ],
+      "size_m": [
+        0.6,
+        0.2,
+        0.18
+      ],
+      "triangles": 24,
+      "materials": [
+        "Cinder_Surface",
+        "Cinder_Lamp_Emission"
+      ],
+      "closed_outward_mesh": true,
+      "fbx_roundtrip": "pass"
+    },
+    {
+      "name": "NR_Cinder_Sign_A",
+      "min_m": [
+        -0.6,
+        -0.3,
+        0.0
+      ],
+      "max_m": [
+        0.6,
+        0.3,
+        0.02
+      ],
+      "size_m": [
+        1.2,
+        0.6,
+        0.02
+      ],
+      "triangles": 12,
+      "materials": [
+        "Cinder_Surface",
+        "Cinder_Sign"
+      ],
+      "closed_outward_mesh": true,
+      "fbx_roundtrip": "pass"
+    },
+    {
+      "name": "NR_Cinder_Rack_A",
+      "min_m": [
+        -1.2,
+        0.0,
+        -0.3
+      ],
+      "max_m": [
+        1.2,
+        2.4,
+        0.3
+      ],
+      "size_m": [
+        2.4,
+        2.4,
+        0.6
+      ],
+      "triangles": 84,
+      "materials": [
+        "Cinder_Surface"
+      ],
+      "closed_outward_mesh": true,
+      "fbx_roundtrip": "pass"
+    }
+  ],
+  "files": [
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Beam_A.fbx",
+      "sha256": "e6dd81c197935c506caad2585a2d3c42c9475a16d29ff9d8862e760055622937",
+      "bytes": 18684
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Ceiling_A.fbx",
+      "sha256": "6779fcaf8c2f519181daf9097ee5c920fd3dc055f735adc58ab7d9f95c9ef58d",
+      "bytes": 18684
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Ceiling_Corner.fbx",
+      "sha256": "8648a565c707115a74485d70f06dc678509f06f7f0620749270a5cf3fee8b4a1",
+      "bytes": 18700
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Ceiling_Edge.fbx",
+      "sha256": "842ea341be20d28f01c438cb918c803f55f3628842edcac29cf63cc5163dd509",
+      "bytes": 18684
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Corner_A.fbx",
+      "sha256": "674918cd54738964135190ff61509cdbfa531dd08e43d883bae245a77fbe58d9",
+      "bytes": 18684
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_DoorFrame_A.fbx",
+      "sha256": "0e651a8e6b170bc7d944e191600c4d1f73f0307108427f87a9692193ddeb15e1",
+      "bytes": 18908
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_End_A.fbx",
+      "sha256": "55e414e68d29571e5580652e571b09dbd6a160e2e2c284c4dca02f446232bb81",
+      "bytes": 18684
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Floor_A.fbx",
+      "sha256": "d2b833c9efad3400189b7b92d3ebb840a80b24ff7ab500afae21a0c1a3018244",
+      "bytes": 18684
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Lamp_A.fbx",
+      "sha256": "c45ec00ac65be796769cbfcad44b21a492af0c3ddbeb86dc4913b39ccfbf1dba",
+      "bytes": 19884
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Rack_A.fbx",
+      "sha256": "171be707d2f1d4e06df7b9ae8b182702b5c882344140012a7030db3d7661f0fa",
+      "bytes": 19404
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Sign_A.fbx",
+      "sha256": "d2d0734529064b74d744f6a9d7d51ae6be4e0adde76fca1c36be9040bc47a1a0",
+      "bytes": 21004
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Wall_A.fbx",
+      "sha256": "91ed644534a34568033279445bc30e1429a6544024696a83f9d2591effe74762",
+      "bytes": 18700
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Wall_Fill035.fbx",
+      "sha256": "cb53fbec107eb21c571fc3abdb44deb877e654bfb865e352096f7d618135afef",
+      "bytes": 18716
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/NR_Cinder_Wall_Fill090.fbx",
+      "sha256": "7c389f9ccfaa4a79be96c35e69a687ec88c1f28db626c9e41ef6da710ebb8952",
+      "bytes": 18716
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/Cinder_Surface_Atlas.png",
+      "sha256": "5f4b39284b254db39a622e905ee38118264063367482ff9af299a233e570e338",
+      "bytes": 7837
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/CinderAppearance01/Cinder_Warehouse_Sign.png",
+      "sha256": "22cf44eb8114f1c55ba05290d023d1c3103edfeea575bd40d4823c4d25ef5180",
+      "bytes": 667
+    },
+    {
+      "path": "art/cinder-kit-01/Cinder_Kit_Appearance.blend",
+      "sha256": "7bcf115a09e263b36e0c479b9ff61c4c5ffd7d202f0defa774ffb1e543cdea6a",
+      "bytes": 126165
+    }
+  ]
+}

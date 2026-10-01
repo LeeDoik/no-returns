@@ -2,7 +2,7 @@
 
 [한국어](README.md)
 
-[Appearances to review now — warehouse entrance proposal and 8-unit sheet](art/cinder-appearance-01.en.md). Retain current warehouse size; fixed edge carrying overlaps. [336 pose/input checks and next production steps](current/cinder-asset-prep.en.md#2026-10-01--carrying-edge-fix-and-appearance-proposals). Produce shared surfaces, light, sign and rack after user appearance review.
+[Actual Unity views of the approved appearance](art/cinder-appearance-01.en.md). Applied ivory panels, rust-red stripes, work lights, sign and an empty 2-tier rack in separate `CinderAppearanceReview`. [Production, 432 carrying poses and review-scene instructions](current/cinder-asset-prep.en.md#2026-10-01--applying-the-approved-appearance). Next is user visibility, joint and quality review of the applied result.
 
 Existing Listener, baton and ship gameplay code/scenes are preserved. See [existing gameplay versus Cinder review scenes](current/cinder-asset-prep.en.md#location-of-existing-gameplay-systems). Gameplay integration into Cinder remains incomplete.
 

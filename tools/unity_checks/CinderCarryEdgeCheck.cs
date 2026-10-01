@@ -2,17 +2,21 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Threading.Tasks;
 using NoReturns.Trials;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.LowLevel;
 
-// Run through Unity CLI run_script in CinderStructureReview Play mode. Stop Play afterward.
+// Run through Unity CLI run_script in CinderStructureReview or CinderAppearanceReview Play. Stop Play afterward.
 public static class CinderCarryEdgeCheck {
-    public static object Main() {
-        if (!EditorApplication.isPlaying || UnityEngine.SceneManagement.SceneManager.GetActiveScene().name != "CinderStructureReview")
-            throw new InvalidOperationException("Open CinderStructureReview and enter Play mode first.");
+    public static async Task<object> Main() {
+        string scene = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
+        bool appearance = scene == "CinderAppearanceReview";
+        if (!EditorApplication.isPlaying || (!appearance && scene != "CinderStructureReview"))
+            throw new InvalidOperationException("Open a Cinder structure/appearance review and enter Play first.");
+        string prefix = appearance ? "production-" : "";
         var walk = UnityEngine.Object.FindAnyObjectByType<CinderBlockoutWalk>();
         var body = walk.GetComponent<CharacterController>();
         var parcel = GameObject.Find("Trial carried parcel");
@@ -31,8 +35,14 @@ public static class CinderCarryEdgeCheck {
             foreach (float z in new[] {-9f, -8.4f, -7.8f, -2.4f}) points.Add(new Vector3(x, .035f, z));
         points.Add(new Vector3(-25.275f, .035f, -2.4f));
         points.Add(new Vector3(-11.925f, .035f, -2.4f));
+        if (appearance) { // Approach the new reserved rack volume from the aisle and both ends.
+            points.Add(new Vector3(-24.5f, .035f, -5.4f));
+            points.Add(new Vector3(-24.52f, .035f, -5.4f));
+            points.Add(new Vector3(-25.275f, .035f, -3.825f));
+            points.Add(new Vector3(-25.275f, .035f, -6.975f));
+        }
         var failures = new List<object>();
-        int samples = 0;
+        int samples = 0, touching_contacts = 0;
         foreach (var point in points) foreach (float yaw in new[] {0f,45f,90f,135f,180f,225f,270f,315f})
             foreach (float pitch in new[] {-80f,0f,80f}) {
                 body.enabled = false; walk.transform.position = point; body.enabled = true;
@@ -47,8 +57,17 @@ public static class CinderCarryEdgeCheck {
                 var overlaps = Physics.OverlapBox(parcel.transform.position, new Vector3(.4f,.325f,.325f),
                     parcel.transform.rotation, 1 << 0, QueryTriggerInteraction.Ignore);
                 samples++;
-                if (overlaps.Length > 0) failures.Add(new {point=new[]{point.x,point.y,point.z},yaw,pitch,
-                    cargo=new[]{parcel.transform.position.x,parcel.transform.position.y,parcel.transform.position.z},collider=overlaps[0].name});
+                var shape = parcel.GetComponent<BoxCollider>();
+                shape.enabled = true; // Native penetration checks require the enabled query shape.
+                try {
+                    foreach (var obstacle in overlaps) {
+                        if (Physics.ComputePenetration(shape, parcel.transform.position, parcel.transform.rotation,
+                            obstacle, obstacle.transform.position, obstacle.transform.rotation, out var direction, out var depth) && depth > .00001f)
+                            failures.Add(new {point=new[]{point.x,point.y,point.z},yaw,pitch,depth,
+                                cargo=new[]{parcel.transform.position.x,parcel.transform.position.y,parcel.transform.position.z},collider=obstacle.name});
+                        else touching_contacts++; // OverlapBox includes touching bounds; these are not penetrating volumes.
+                    }
+                } finally { shape.enabled = false; }
             }
         bool pickup = false, forward = false, backward = false, drop = false, jump = false;
         if (failures.Count == 0) {
@@ -83,30 +102,42 @@ public static class CinderCarryEdgeCheck {
                 typeof(CinderBlockoutWalk).GetField("carrying",flags).SetValue(walk,true);
                 parcel.GetComponent<Collider>().enabled = false;
                 parcel.GetComponent<Rigidbody>().isKinematic = true;
-                var views = new[] {
-                    new {name="carry-edge-door.png",point=new Vector3(-19.7f,.035f,-8.4f),yaw=45f},
-                    new {name="carry-edge-wall.png",point=new Vector3(-25.275f,.035f,-2.4f),yaw=270f}
+                var views = new List<(string name, Vector3 point, float yaw, bool carry)> {
+                    ("carry-edge-door.png",new Vector3(-19.7f,.035f,-8.4f),45f,true),
+                    ("carry-edge-wall.png",new Vector3(-25.275f,.035f,-2.4f),270f,true)
                 };
+                if (appearance) {
+                    views.Add(("entry-empty.png",new Vector3(-18.6f,.035f,-11.4f),0f,false));
+                    views.Add(("entry-carry.png",new Vector3(-18.6f,.035f,-11.4f),0f,true));
+                    views.Add(("inside-rear-carry.png",new Vector3(-18.6f,.035f,-2.4f),180f,true));
+                    views.Add(("rack-empty.png",new Vector3(-22.6f,.035f,-4.0f),240f,false));
+                }
                 foreach(var view in views) {
                     body.enabled=false;walk.transform.position=view.point;body.enabled=true;
                     typeof(CinderBlockoutWalk).GetField("yaw",flags).SetValue(walk,view.yaw);
+                    typeof(CinderBlockoutWalk).GetField("pitch",flags).SetValue(walk,0f);
+                    typeof(CinderBlockoutWalk).GetField("carrying",flags).SetValue(walk,view.carry);
+                    parcel.GetComponent<Renderer>().enabled=view.carry;
                     update.Invoke(walk,null);
+                    Physics.SyncTransforms();
+                    await Task.Delay(100); // Let Unity submit changed renderer transforms before the camera capture.
                     var target=new RenderTexture(1280,720,24);
                     var pixels=new Texture2D(1280,720,TextureFormat.RGB24,false);
                     var oldTarget=camera.targetTexture;var oldActive=RenderTexture.active;
                     try {
                         camera.targetTexture=target;camera.Render();RenderTexture.active=target;
                         pixels.ReadPixels(new Rect(0,0,1280,720),0,0);pixels.Apply();
-                        File.WriteAllBytes(Path.GetFullPath("../art/cinder-kit-01/"+view.name),pixels.EncodeToPNG());
+                        File.WriteAllBytes(Path.GetFullPath("../art/cinder-kit-01/"+prefix+view.name),pixels.EncodeToPNG());
                     } finally {
                         camera.targetTexture=oldTarget;RenderTexture.active=oldActive;
                         target.Release();UnityEngine.Object.DestroyImmediate(target);UnityEngine.Object.DestroyImmediate(pixels);
                     }
                 }
+                parcel.GetComponent<Renderer>().enabled=true;
             }
         }
-        string output = Path.GetFullPath("../art/cinder-kit-01/carry-edge-validation.json");
-        var result = new {scene="CinderStructureReview",samples,overlap_count=failures.Count,failures,
+        string output = Path.GetFullPath("../art/cinder-kit-01/"+prefix+"carry-edge-validation.json");
+        var result = new {scene,samples,overlap_count=failures.Count,touching_contacts,penetration_tolerance_m=.00001f,failures,
             input_checks=new {pickup,forward,backward,drop,jump},
             method="Play mode, API-set poses, reflected actual CinderBlockoutWalk.Update; not human controls"};
         File.WriteAllText(output, Newtonsoft.Json.JsonConvert.SerializeObject(result, Newtonsoft.Json.Formatting.Indented));

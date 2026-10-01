@@ -2,7 +2,7 @@
 
 [English](README.en.md)
 
-[지금 검토할 외형 — 창고 입구 예상도·8종 부품 시트](art/cinder-appearance-01.ko.md). 현재 창고 크기를 유지하며 운반 가장자리 겹침을 수정했다. [336개 자세·조작 검사와 다음 제작 단계](current/cinder-asset-prep.ko.md#2026-10-01--운반-가장자리-수정과-외형-시안). 사용자 외형 확인 후 공통 표면·작업등·표지판·선반을 제작한다.
+[승인한 외형의 실제 Unity 화면](art/cinder-appearance-01.ko.md). 상아색 패널·적갈색 띠·작업등·표지·빈 2단 선반을 별도 `CinderAppearanceReview`에 적용했다. [제작·432개 운반 자세 검사·검토 씬 안내](current/cinder-asset-prep.ko.md#2026-10-01--승인된-외형의-실제-적용). 다음은 실제 적용 결과의 사용자 시야·접합면·품질 확인이다.
 
 기존 리스너·진압봉·우주선 플레이 코드와 씬은 보존되어 있다. [플레이 시스템과 Cinder 검토 씬의 관계](current/cinder-asset-prep.ko.md#기존-플레이-시스템의-위치)를 먼저 확인한다. Cinder의 기능 통합은 미완료다.
 

@@ -2,7 +2,7 @@
 
 [한국어](cinder-appearance-01.ko.md)
 
-2026-10-01 · **Entrance proposal and 8-unit sheet produced and visually reviewed / user appearance approval and Unity application incomplete.** This proposes appearances for the 14.4×20.4m warehouse in the [current production brief](../current/cinder-asset-prep.en.md). Retain the size reviewed by the user; new models, materials and textures have not been applied to the game.
+2026-10-01 · **User concept approval and Unity reference-area application complete / user quality review of the applied result incomplete.** This proposes appearances for the 14.4×20.4m warehouse in the [current production brief](../current/cinder-asset-prep.en.md). Retain the user-reviewed size. PNGs below are approved references; actual model/material/texture application is linked in the [latest production record](../current/cinder-asset-prep.en.md#2026-10-01--applying-the-approved-appearance).
 
 ![Warehouse entrance appearance proposal](../../art/cinder-kit-01/appearance-entry-01.png)
 
@@ -27,11 +27,20 @@ Continue ivory panels, rust-red bands, dark framing and warm work lights from th
 
 Generated with built-in imagegen using the actual gray entrance/component sheet and existing environment proposal as references. The initial component sheet showed 3 rack levels; corrected it to 2 and inspected the final large and secondary views. Reviewed 8 entries, the `WAREHOUSE` text, an empty rack and front/back/side/top reference views. The sheet also illustrates a lamp mounted on the frame, but production keeps it a separate part. Images do not validate orthographic projection, exact dimensions, UVs, repeat connections, lighting intensity or performance.
 
-[Actual prompt set](../../art/cinder-kit-01/appearance-prompts.json) · [Generation provenance and file hashes](../../art/cinder-kit-01/appearance-provenance.json). No API/CLI fallback generation or Tripo invocation. Retain the existing trial budgets of one shared 512×512 BaseColor and one 256×128 sign image; actual textures do not exist yet.
+[Actual prompt set](../../art/cinder-kit-01/appearance-prompts.json) · [Generation provenance and file hashes](../../art/cinder-kit-01/appearance-provenance.json). No API/CLI fallback generation or Tripo invocation. Retain the existing trial budgets of one shared 512×512 BaseColor and one 256×128 sign image; actual textures at these sizes were directly authored after approval; generated concepts were not used as final textures.
 
 - [x] Generated, inspected and saved the entrance proposal and 8-unit sheet in the project.
 - [x] Corrected the rack to 2 levels and connected exact prompts, references and final PNG hashes.
-- [ ] Obtain user review of colors, texture density, light, sign and rack appearances.
-- [ ] Apply the reviewed appearances to existing structure and repeat empty-handed/carrying views.
+- [x] User approved the concept direction for colors, texture density, light, sign and rack: “Yes, let's go with this feel.”
+- [x] Applied approved appearances to a separate Unity scene and repeated empty-handed/carrying views and automated checks.
+- [ ] Obtain user feedback on visibility, joints and quality of the applied result.
 
 This task's carrying checks and fix are recorded separately in the [production/review guide](../current/cinder-asset-prep.en.md). Automated passes do not replace human visibility/control evaluation or approval of these appearances.
+
+## Actual Unity application views
+
+![Empty-handed warehouse entrance](../../art/cinder-kit-01/production-entry-empty.png)
+
+![Empty 2-tier rack](../../art/cinder-kit-01/production-rack-empty.png)
+
+[Carrying entrance view](../../art/cinder-kit-01/production-entry-carry.png) · [Review scene](../../NoReturns/Assets/_NoReturns/Scenes/CinderAppearanceReview.unity). Captured with the actual Play camera, separate from the reference concepts.

@@ -1,0 +1,16 @@
+{
+  "scene": "CinderAppearanceReview",
+  "samples": 432,
+  "overlap_count": 0,
+  "touching_contacts": 6,
+  "penetration_tolerance_m": 1E-05,
+  "failures": [],
+  "input_checks": {
+    "pickup": true,
+    "forward": true,
+    "backward": true,
+    "drop": true,
+    "jump": true
+  },
+  "method": "Play mode, API-set poses, reflected actual CinderBlockoutWalk.Update; not human controls"
+}

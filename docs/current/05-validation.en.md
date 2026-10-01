@@ -14,7 +14,9 @@
 - [x] Fixed 38 → 0 overlaps in 336 door/wall proximity poses; rechecked E/W/S/Q and empty-handed jump. [Evidence](cinder-asset-prep.en.md#2026-10-01--carrying-edge-fix-and-appearance-proposals).
 - [x] Generated/inspected the [entrance proposal and 8-unit sheet](../art/cinder-appearance-01.en.md), recorded provenance/hashes and corrected 3 rack levels to 2.
 - [ ] Obtain user cargo-visibility, edge carrying-rotation, wall-approach and joint-quality feedback. Standalone Mac/Windows builds were not tested in this task.
-- [ ] Obtain user appearance review and repeat the same views after shared surfaces, light, sign and an empty rack are applied. Ship-scene Play revalidation remains separate.
+- [x] User concept-direction approval and shared surfaces, work lights, sign and empty 2-tier rack in separate `CinderAppearanceReview`.
+- [x] Checked 14 new FBXs, 2 textures, 0 penetrations in 432 carrying poses, E/W/S/Q, empty-handed jump and matching empty-handed/carrying views. 0 compile errors and 0 errors/warnings in the final Play console. [Evidence](cinder-asset-prep.en.md#2026-10-01--applying-the-approved-appearance).
+- [ ] User appearance, visibility and joint-quality review of the actual result; all-part multi-view review, distant shimmer and performance. Ship-scene Play revalidation remains separate.
 - [ ] After expanding the reference area, validate actual Cinder delivery, enemy AI, networking and human cooperation. Do not mark currently unconnected systems complete.
 
 2026-09-26: [Mac development environment](macos-development.en.md) — passed Unity 6000.6.0f1 arm64/Windows Mono installation, CLI/PATH, LFS restoration, Personal activation, compilation and actual CLI/MCP calls. Discovered 151 commands; zero compilation errors and 7 existing deprecated-API warnings. Passed bundled Korean-font checks and starting/stopping the `CarryRoom` menu after recompilation. The new run recorded zero Console errors/warnings. No scene changes. Automatic MCP exposure in a new Codex session, gameplay progression and game builds on both platforms remain unverified. Help text still overlaps the quit button in the small Game view.

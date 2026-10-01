@@ -2,7 +2,7 @@
 
 [한국어](cinder-asset-prep.ko.md)
 
-2026-10-01 · CINDER-ASSET-PREP-01 · **Gray structures, automated checks, user size review and appearance proposals complete / user carrying, joint and appearance review and art application incomplete.** The current target is the [Cinder blockout](cinder-blockout.en.md). Follow the [structure-first production guide](art-structure-first.en.md). New module dimensions and budgets below are initial trial proposals, not release specifications.
+2026-10-01 · CINDER-ASSET-PREP-01 · **User concept approval, shared surfaces, 3 presentation units and automated checks complete / user visibility, joint and quality review of the applied result incomplete.** The current target is the [Cinder blockout](cinder-blockout.en.md). Follow the [structure-first production guide](art-structure-first.en.md). New module dimensions and budgets below are initial trial proposals, not release specifications.
 
 ## What to make first and why
 
@@ -35,7 +35,7 @@ Door, ceiling, employee and cargo values are existing trial values, not final di
 
 ## Per-component production instructions
 
-Units are meters; dimensions below use **Unity X×Y×Z**. Blender uses Z-up and Unity Y-up, so check axes, rotation and units through export/reimport. The [Blender production script](../../art/cinder-kit-01/build.py) creates 5 gray structural units with 11 variants. It uses the names and trial dimensions below; light, sign and rack remain unproduced.
+Units are meters; dimensions below use **Unity X×Y×Z**. Blender uses Z-up and Unity Y-up, so check axes, rotation and units through export/reimport. The [Blender production script](../../art/cinder-kit-01/build.py) creates 5 gray structural units with 11 variants. It uses the names and trial dimensions below. After approval, the [appearance producer](../../art/cinder-kit-01/build_appearance.py) added shared surfaces, light, sign and an empty 2-tier rack.
 
 | Order / related ID | Source name | Trial dimensions/pivot | Shape and acceptance condition | Proposed triangle ceiling |
 |---|---|---|---|---|
@@ -60,7 +60,7 @@ Prepare the first 8 units for **direct local Blender authoring**. Tripo calls an
 
 ## Deliverables and destinations
 
-Structural sources and a separate review scene were created in these locations. Appearance, textures and the 3 presentation units remain future work.
+Preserve the gray sources and review scene below. Separate appearance, texture and 3-unit deliverables are linked in the latest application record below.
 
 - `art/cinder-kit-01/`: `build.py`, structural source `Cinder_Kit_Structure.blend`, UV/reimport/dimension/Play results and review images from the same model. Per-component FBXs are output directly to the Unity asset path below. Do not overwrite ship or Selected sources.
 - `NoReturns/Assets/_NoReturns/Art/CinderKit01/`: 11 gray structural FBXs, 1 shared solid-color material and Unity-generated `.meta` files. No textures.
@@ -72,7 +72,7 @@ Current tool check: local `blender --version` reports **5.2.2 LTS**. Unity targe
 
 ## Next task and acceptance gates
 
-Produced **gray sources and an assembly sample for the 5 structural units**. `CinderStructureReview` preserves original Cinder and assembles the entire warehouse exterior; the south entrance and first 6m inside are user review points. No new corridor or building expansion. Next are shared surfaces and the 3 presentation units after user structural review. Existing Create/Build Cinder menus regenerate the scene; do not run them on a manually authored art-review scene.
+Produced **gray sources and an assembly sample for the 5 structural units**. `CinderStructureReview` preserves original Cinder and assembles the entire warehouse exterior; the south entrance and first 6m inside are user review points. No new corridor or building expansion. Approved shared surfaces and the 3 presentation units are now applied in separate `CinderAppearanceReview`. Next is user visibility, joint and quality review of the applied result. Existing Create/Build Cinder menus regenerate the scene; do not run them on a manually authored art-review scene.
 
 | Review view | What to inspect |
 |---|---|
@@ -89,14 +89,15 @@ Produced **gray sources and an assembly sample for the 5 structural units**. `Ci
 - [x] The user inspected the warehouse size and found it acceptable. Retain the current 14.4×20.4m.
 - [ ] Obtain user feedback on cargo visibility, edge carrying-rotation, wall approach and joint quality.
 - [x] Generated, inspected and saved an entrance appearance proposal and 8-unit multi-view component sheet using actual structure references.
-- [ ] Obtain user review of new colors, textures, light, sign and rack appearances.
-- [ ] Recheck the reference area with shared surfaces and 3 presentation units before extending to other buildings.
+- [x] User approved the concept direction for new colors, textures, light, sign and rack.
+- [x] Applied shared surfaces and the 3 presentation units, repeated empty-handed/carrying views and automated checks.
+- [ ] Obtain user quality review of the applied result before expanding to other buildings.
 
 Networking, enemy AI and delivery judgement are not connected to the current Cinder trial. Passing this structural area cannot complete the whole game, cooperation, enjoyment or release quality.
 
 ## 2026-10-01 — Carrying edge fix and appearance proposals
 
-Produced and inspected the [entrance proposal and 8-unit sheet](../art/cinder-appearance-01.en.md). Connected exact built-in imagegen prompts, provenance and hashes; user appearance approval remains pending. Applying new materials, textures, light, sign and rack in Unity is next. Do not use generated perspective/opening proportions as dimensional validation.
+Produced and inspected the [entrance proposal and 8-unit sheet](../art/cinder-appearance-01.en.md). Connected exact built-in imagegen prompts, provenance and hashes; approval and application had not yet occurred at proposal generation. Follow the later approval/production record below for current status. Do not use generated perspective/opening proportions as dimensional validation.
 
 Expanded carrying checks to 14 positions×8 yaw angles×3 pitch angles. The [pre-fix result](../../art/cinder-kit-01/carry-edge-before.json) found door-edge/wall overlaps in 38 of 336 samples. The original handling started BoxCast from an overlapping eye position and forced a minimum 0.15m displacement. `TrialCargoPose.Position` in the [shared carrying calculation](../../NoReturns/Assets/_NoReturns/Runtime/CinderBlockoutWalk.cs) separates a cargo-height start point for up to 4 passes before moving toward obstacles. Temporarily enable the query shape and exclude it on layer 2; restore its original Collider/layer state in `finally`. The [ship interior trial](../../NoReturns/Assets/_NoReturns/Runtime/ShipInteriorTrial.cs) and [structure checker](../../NoReturns/Assets/_NoReturns/Editor/CinderStructureBuild.cs), which used the same original handling, now share this calculation. Removed the copied old formula from actual carrying-position validation.
 
@@ -104,7 +105,7 @@ Expanded carrying checks to 14 positions×8 yaw angles×3 pitch angles. The [pre
 
 Actual gray views produced by the check: [door-edge carrying](../../art/cinder-kit-01/carry-edge-door.png) · [carrying directly before a wall](../../art/cinder-kit-01/carry-edge-wall.png). Inspected joints and partial cargo visibility. Cargo falls below the frame when directly against a wall, so user evaluation of this close view remains outstanding. Saved warehouse/interior scenes and the 8 existing materials were not changed. Ship-scene Play revalidation, standalone Mac/Windows builds, performance and networking/AI/delivery were not tested in this task.
 
-Rerun: enter Play in `CinderStructureReview`, then run `unity command run_script --project-path NoReturns --file ../tools/unity_checks/CinderCarryEdgeCheck.cs --caller plugin --skill unity-cli` from the repository root. Relative `--file` resolves against the Unity project `NoReturns/`; stop Play afterward. After user appearance review, produce shared surfaces and the 3 presentation units while preserving existing structure.
+Rerun: enter Play in `CinderStructureReview`, then run `unity command run_script --project-path NoReturns --file ../tools/unity_checks/CinderCarryEdgeCheck.cs --caller plugin --skill unity-cli` from the repository root. Relative `--file` resolves against the Unity project `NoReturns/`; stop Play afterward. Shared surfaces and the 3 presentation units were produced after approval; rerun the separate appearance-scene checks below.
 
 ## Location of existing gameplay systems
 
@@ -136,3 +137,22 @@ Review images: [same-source component sheet](../../art/cinder-kit-01/structure-s
 Check bilingual links, values, names, budgets, checkbox states and Git LFS. Full documentation retains **142** evidence links to locally absent `artifacts/` from task start, with no new failures. Do not commit builds, logs, caches or personal settings. [Validation checklist](05-validation.en.md) · [Git operating rules](version-control.en.md).
 
 Raw staged `git diff --check` reports 147 trailing-space locations in empty fields of native Unity-generated YAML/meta. Scoped code/document whitespace checks and the full staged check with only end-of-line whitespace excluded pass. Native generated files were not hand-edited solely to satisfy whitespace checking.
+
+## 2026-10-01 — Applying the approved appearance
+
+The user approved the [appearance concepts](../art/cinder-appearance-01.en.md): “Yes, let's go with this feel” (original: “어 이 느낌으로 가자”). Recorded in [approval provenance](../../art/cinder-kit-01/appearance-provenance.json). This approves the concept direction for color, texture, lights, sign and rack. User quality review of the applied result remains separate.
+
+The [appearance review scene](../../NoReturns/Assets/_NoReturns/Scenes/CinderAppearanceReview.unity) is a separate copy derived from the gray scene. It retains the 14.4×20.4m warehouse, 3.2×3.3m opening, ceiling underside at 4m and 10 original warehouse Colliders. Applied surfaces to all 530 warehouse visual instances and placed the 3 presentation units at the south entrance/first 6m inside. No other buildings, new corridor or gameplay-system expansion. Only in the appearance scene, disabled Renderers on 12 existing blockout TextMeshes that showed through walls.
+
+- Source/reproduction: [Blender producer](../../art/cinder-kit-01/build_appearance.py), [appearance source](../../art/cinder-kit-01/Cinder_Kit_Appearance.blend), [Unity import/assembly/checks](../../NoReturns/Assets/_NoReturns/Editor/CinderAppearanceBuild.cs). Run `blender --background --python art/cinder-kit-01/build_appearance.py`, then Unity's `NO RETURNS/Trials/Create Cinder Appearance Review`. The menu stops if the appearance scene exists. Preserve manual edits in a separate scene before explicitly invoking `CinderAppearanceBuild.Create(true)` to regenerate. No manual YAML edits.
+- `NoReturns/Assets/_NoReturns/Art/CinderAppearance01/`: 11 structural and 3 presentation FBXs, 14 total; directly painted shared 512×512 BaseColor and 256×128 `WAREHOUSE`/arrow texture; 3 URP Lit materials. No concept cropping, external fonts/models or paid generation. Texture import uses sRGB, Point, mipmaps, Clamp and no compression; metallic 0, Smoothness 0.05. Wall stripe Y=1.10..1.75m; base wear at Y≈0.22..0.30m. These trial values come from the [producer](../../art/cinder-kit-01/build_appearance.py) and [Unity check](../../art/cinder-kit-01/production-unity-validation.json).
+- `NoReturns/Assets/_NoReturns/Prefabs/CinderAppearance01/`: 14 prefabs. Light 0.6×0.2×0.18m, sign 1.2×0.6×0.02m, rack 2.4×2.4×0.6m. Unity owns 5 work-light Point Lights: color (1,0.67,0.3), intensity 0.65, range 5m, no shadows. Sign arrow points to the entrance. Rack center (-25.2,0,-5.4)m, yaw 90°, shelf-center heights 0.22/1.32m; 2 levels without cargo.
+- Only the rack owns 1 BoxCollider covering its reserved storage volume. Rack interaction is absent; use individual shelf/post collisions when needed. Lamps, sign and structural visuals have no new Colliders. [Measured](../../art/cinder-kit-01/production-unity-validation.json): 6,408 structural and 216 presentation triangles, 7 prop placements. This does not establish FPS or final performance.
+
+[Blender checks](../../art/cinder-kit-01/production-validation.json): passed units, dimensions, pivots, UVs, closed surfaces, positive volume, FBX roundtrip and material slots for 14 FBXs. The first Unity import projected the lamp in the wrong direction; corrected prop-axis mapping. Verified sign text/arrow direction in actual views. [Unity checks](../../art/cinder-kit-01/production-unity-validation.json): 14 imports, texture settings and placement/collision/light counts passed. [Structural rerun](../../art/cinder-kit-01/production-structure-validation.txt): baseline checks on 11 gray prefabs and 6 passages, 3 jumps and 48 center-lane cargo poses in the new appearance scene passed.
+
+[Mac Editor Play checks](../../art/cinder-kit-01/production-carry-edge-validation.json): 18 entrance/wall/rack approach positions×8 yaw×3 pitch, **0 actual penetrations across 432 poses**; E/W/S/Q and empty-handed jump passed. 6 OverlapBox candidates were exactly touching boundaries with no positive ComputePenetration depth. The [runnable check](../../tools/unity_checks/CinderCarryEdgeCheck.cs) refines candidates with native penetration checks, tolerance 0.00001m. Existing carrying runtime code is unchanged. Automated keys/API poses are not real-time human manual play.
+
+Actual Play camera: [empty-handed entry](../../art/cinder-kit-01/production-entry-empty.png) · [carrying entry](../../art/cinder-kit-01/production-entry-carry.png) · [carrying back toward entrance from 6m inside](../../art/cinder-kit-01/production-inside-rear-carry.png) · [empty rack](../../art/cinder-kit-01/production-rack-empty.png) · [door edge](../../art/cinder-kit-01/production-carry-edge-door.png) · [near wall](../../art/cinder-kit-01/production-carry-edge-wall.png). Waited at least a frame before capture to prevent images using the previous cargo transform. IMGUI instructions are excluded. Reduced Point intensity from 1.8→0.65 after inspecting overbright initial views. Checked bright surfaces, cargo silhouette, sign and empty 2-tier rack; user assessment, front/rear/side/top quality review of every part, distant shimmer and performance remain outstanding.
+
+Rerun: open `CinderAppearanceReview`, invoke `CinderAppearanceBuild.Validate()` and `CinderStructureBuild.Validate()`. Enter Play and run `unity command run_script --project-path NoReturns --file ../tools/unity_checks/CinderCarryEdgeCheck.cs --caller plugin --skill unity-cli`, then stop Play. Appearance receipts use the `production-` prefix without overwriting gray evidence. [Compilation/console/preservation hashes](../../art/cinder-kit-01/production-checks.json): 0 compile errors, 0 errors/warnings in the final Play console. Original blockout/gray scenes and the 8 pre-existing ship-material edits match starting hashes. Standalone Mac/Windows builds, ship Play, networking/AI/delivery and whole-game quality were not checked in this task.

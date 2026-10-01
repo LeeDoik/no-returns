@@ -2,7 +2,7 @@
 
 [English](cinder-appearance-01.en.md)
 
-2026-10-01 · **입구 예상도·8종 부품 시트 제작 및 시각 검토 완료 / 사용자 외형 승인·Unity 적용 미완료.** [현재 제작 기준](../current/cinder-asset-prep.ko.md)의 14.4×20.4m 창고를 위한 외형 제안이다. 사용자가 확인한 크기를 유지하며 새 모델·재질·텍스처를 게임에 적용한 상태는 아니다.
+2026-10-01 · **사용자 외형 시안 승인·Unity 기준 구역 적용 완료 / 실제 적용 결과의 사용자 품질 평가 미완료.** [현재 제작 기준](../current/cinder-asset-prep.ko.md)의 14.4×20.4m 창고를 위한 외형 제안이다. 사용자가 확인한 크기를 유지한다. 아래 PNG는 승인된 참고 시안이며 실제 모델·재질·텍스처 적용 결과는 [최신 제작 기록](../current/cinder-asset-prep.ko.md#2026-10-01--승인된-외형의-실제-적용)에 연결한다.
 
 ![창고 입구 외형 제안](../../art/cinder-kit-01/appearance-entry-01.png)
 
@@ -27,11 +27,20 @@
 
 내장 imagegen으로 실제 회색 입구·부품 시트와 기존 환경 시안을 참고해 생성했다. 첫 부품 시트의 선반이 3단으로 나와 2단으로 수정했고 최종 큰 그림과 보조 뷰를 확인했다. 8개 항목, `WAREHOUSE` 문구, 비어 있는 선반, 앞뒤/측면/상부 참고 뷰를 검토했다. 시트에는 작업등이 문틀에 부착된 예시도 있지만 실제 제작에서는 별도 부품으로 유지한다. 정투영·정확한 치수·UV·반복 연결·조명 강도·성능을 이미지로 검증한 것은 아니다.
 
-[실제 프롬프트 묶음](../../art/cinder-kit-01/appearance-prompts.json) · [생성 출처·파일 해시](../../art/cinder-kit-01/appearance-provenance.json). API/CLI 대체 생성과 Tripo 호출은 하지 않았다. 공용 512×512 BaseColor 1장·표지 256×128 1장 예산은 기존 시험 제안으로 유지하며 실제 텍스처는 아직 없다.
+[실제 프롬프트 묶음](../../art/cinder-kit-01/appearance-prompts.json) · [생성 출처·파일 해시](../../art/cinder-kit-01/appearance-provenance.json). API/CLI 대체 생성과 Tripo 호출은 하지 않았다. 공용 512×512 BaseColor 1장·표지 256×128 1장 예산은 기존 시험 제안으로 유지하며 승인 후 이 크기의 실제 텍스처를 직접 제작했다. 생성 시안 자체를 최종 텍스처로 사용하지 않았다.
 
 - [x] 입구 예상도와 8종 부품 시트를 생성·검토하고 프로젝트에 보관했다.
 - [x] 선반을 2단으로 수정하고 원문 프롬프트·참고 파일·최종 PNG 해시를 연결했다.
-- [ ] 사용자가 색·질감 밀도·작업등·표지·선반 외형을 확인한다.
-- [ ] 확인된 외형을 기존 구조에 적용하고 같은 빈손·운반 시점에서 재검토한다.
+- [x] 사용자가 “어 이 느낌으로 가자”라고 색·질감·작업등·표지·선반의 시안 방향을 승인했다.
+- [x] 승인한 외형을 별도 Unity 씬에 적용하고 빈손·운반 시점과 자동 검사를 반복했다.
+- [ ] 실제 적용 결과의 시야·접합면·품질에 대한 사용자 의견을 확인한다.
 
 이번 운반 검사와 수정 결과는 [제작·검토 안내](../current/cinder-asset-prep.ko.md)에 별도로 기록한다. 자동 통과는 사람의 시야·조작감 평가나 이 외형의 승인을 대신하지 않는다.
+
+## 실제 Unity 적용 화면
+
+![창고 입구 빈손](../../art/cinder-kit-01/production-entry-empty.png)
+
+![빈 2단 선반](../../art/cinder-kit-01/production-rack-empty.png)
+
+[입구 운반 화면](../../art/cinder-kit-01/production-entry-carry.png) · [검토 씬](../../NoReturns/Assets/_NoReturns/Scenes/CinderAppearanceReview.unity). 참고 시안과 별도로 실제 Play 카메라에서 촬영했다.

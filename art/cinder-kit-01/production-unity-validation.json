@@ -1,0 +1,163 @@
+{
+  "scene": "Assets/_NoReturns/Scenes/CinderAppearanceReview.unity",
+  "imported_parts": [
+    {
+      "name": "NR_Cinder_Floor_A",
+      "triangles": 12,
+      "size_m": [
+        1.2,
+        0.200000137,
+        1.19999993
+      ],
+      "passed": true
+    },
+    {
+      "name": "NR_Cinder_Wall_A",
+      "triangles": 12,
+      "size_m": [
+        1.2,
+        3.99999976,
+        0.300000459
+      ],
+      "passed": true
+    },
+    {
+      "name": "NR_Cinder_Wall_Fill035",
+      "triangles": 12,
+      "size_m": [
+        0.35,
+        3.99999976,
+        0.300000459
+      ],
+      "passed": true
+    },
+    {
+      "name": "NR_Cinder_Wall_Fill090",
+      "triangles": 12,
+      "size_m": [
+        0.9,
+        3.99999976,
+        0.300000459
+      ],
+      "passed": true
+    },
+    {
+      "name": "NR_Cinder_DoorFrame_A",
+      "triangles": 36,
+      "size_m": [
+        3.80000019,
+        3.99999976,
+        0.300000459
+      ],
+      "passed": true
+    },
+    {
+      "name": "NR_Cinder_Ceiling_A",
+      "triangles": 12,
+      "size_m": [
+        1.2,
+        0.300000131,
+        1.19999993
+      ],
+      "passed": true
+    },
+    {
+      "name": "NR_Cinder_Ceiling_Edge",
+      "triangles": 12,
+      "size_m": [
+        0.15,
+        0.300000131,
+        1.19999993
+      ],
+      "passed": true
+    },
+    {
+      "name": "NR_Cinder_Ceiling_Corner",
+      "triangles": 12,
+      "size_m": [
+        0.15,
+        0.3,
+        0.150000021
+      ],
+      "passed": true
+    },
+    {
+      "name": "NR_Cinder_Beam_A",
+      "triangles": 12,
+      "size_m": [
+        1.2,
+        0.3,
+        0.3
+      ],
+      "passed": true
+    },
+    {
+      "name": "NR_Cinder_Corner_A",
+      "triangles": 12,
+      "size_m": [
+        0.3,
+        3.99999976,
+        0.300000459
+      ],
+      "passed": true
+    },
+    {
+      "name": "NR_Cinder_End_A",
+      "triangles": 12,
+      "size_m": [
+        0.15,
+        3.99999976,
+        0.300000459
+      ],
+      "passed": true
+    },
+    {
+      "name": "NR_Cinder_Lamp_A",
+      "triangles": 24,
+      "size_m": [
+        0.6,
+        0.2,
+        0.180000022
+      ],
+      "passed": true
+    },
+    {
+      "name": "NR_Cinder_Sign_A",
+      "triangles": 12,
+      "size_m": [
+        1.2,
+        0.599999964,
+        0.0200000685
+      ],
+      "passed": true
+    },
+    {
+      "name": "NR_Cinder_Rack_A",
+      "triangles": 84,
+      "size_m": [
+        2.4,
+        2.39999986,
+        0.600000262
+      ],
+      "passed": true
+    }
+  ],
+  "structural_instances": 530,
+  "original_colliders": 10,
+  "new_rack_colliders": 1,
+  "work_lights": 5,
+  "presentation_instances": 7,
+  "structural_triangles": 6408,
+  "presentation_triangles": 216,
+  "atlas_px": [
+    512,
+    512
+  ],
+  "sign_px": [
+    256,
+    128
+  ],
+  "filtering": "Point + mipmaps, uncompressed sRGB",
+  "user_concept_approved": true,
+  "user_final_appearance_review": false
+}

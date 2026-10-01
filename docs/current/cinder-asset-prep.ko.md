@@ -2,7 +2,7 @@
 
 [English](cinder-asset-prep.en.md)
 
-2026-10-01 · CINDER-ASSET-PREP-01 · **회색 구조·자동 검사·사용자 크기 확인·외형 시안 완료 / 사용자 운반·접합면·외형 확인 및 아트 적용 미완료.** 현재 대상은 [Cinder 블록아웃](cinder-blockout.ko.md)이다. [구조 우선 제작 가이드](art-structure-first.ko.md)를 적용한다. 아래 새 모듈 치수와 예산은 첫 시험 제안이며 출시 규격이 아니다.
+2026-10-01 · CINDER-ASSET-PREP-01 · **사용자 외형 시안 승인·공통 표면·표현 3종 적용 및 자동 검사 완료 / 실제 적용 결과의 사용자 시야·접합면·품질 평가 미완료.** 현재 대상은 [Cinder 블록아웃](cinder-blockout.ko.md)이다. [구조 우선 제작 가이드](art-structure-first.ko.md)를 적용한다. 아래 새 모듈 치수와 예산은 첫 시험 제안이며 출시 규격이 아니다.
 
 ## 먼저 만들 것과 이유
 
@@ -35,7 +35,7 @@
 
 ## 부품별 제작 지시
 
-단위는 m, 아래 크기는 **Unity X×Y×Z** 기준이다. Blender는 Z-up, Unity는 Y-up이므로 내보내기/재가져오기에서 축·회전·단위를 확인한다. [Blender 제작 스크립트](../../art/cinder-kit-01/build.py)로 회색 구조 5종과 변형 11개를 만들었다. 표의 이름과 시험 치수를 사용하며 작업등·표지판·선반은 아직 제작하지 않았다.
+단위는 m, 아래 크기는 **Unity X×Y×Z** 기준이다. Blender는 Z-up, Unity는 Y-up이므로 내보내기/재가져오기에서 축·회전·단위를 확인한다. [Blender 제작 스크립트](../../art/cinder-kit-01/build.py)로 회색 구조 5종과 변형 11개를 만들었다. 표의 이름과 시험 치수를 사용한다. 승인 후 [외형 제작 스크립트](../../art/cinder-kit-01/build_appearance.py)로 공통 표면과 작업등·표지판·빈 2단 선반까지 제작했다.
 
 | 순서 / 대응 ID | 원본 이름 | 시험 크기·피벗 | 형태와 통과 조건 | 삼각형 상한 후보 |
 |---|---|---|---|---|
@@ -60,7 +60,7 @@
 
 ## 산출물과 저장 위치
 
-구조 원본과 별도 검토 씬을 다음 위치에 생성했다. 외형·텍스처·표현 3종은 후속 작업이다.
+다음 회색 원본·검토 씬은 보존한다. 외형·텍스처·표현 3종의 별도 산출물은 아래 최신 적용 기록에 연결한다.
 
 - `art/cinder-kit-01/`: `build.py`, 구조 원본 `Cinder_Kit_Structure.blend`, UV·재가져오기·치수·Play 검사 결과, 같은 모델의 검토 이미지. 부품별 FBX는 아래 Unity 에셋 경로에 직접 출력한다. 기존 우주선·Selected 원본을 덮어쓰지 않는다.
 - `NoReturns/Assets/_NoReturns/Art/CinderKit01/`: 회색 구조 FBX 11개·단색 공용 재질 1개와 Unity가 생성한 `.meta`. 텍스처는 없다.
@@ -72,7 +72,7 @@
 
 ## 다음 작업과 통과 조건
 
-현재 **구조 5종의 회색 원본과 조립 샘플**을 제작했다. 원본 Cinder 씬을 보존한 `CinderStructureReview`에서 창고 외형 전체를 조립했으며, 남측 입구와 안쪽 6m가 사용자 검토 지점이다. 새 복도나 건물 확장은 없다. 다음은 사용자 구조 확인 후 공통 표면과 표현 3종이다. 기존 Create/Build Cinder 메뉴는 씬을 재생성하므로 수동 아트 검토 씬에서 실행하지 않는다.
+현재 **구조 5종의 회색 원본과 조립 샘플**을 제작했다. 원본 Cinder 씬을 보존한 `CinderStructureReview`에서 창고 외형 전체를 조립했으며, 남측 입구와 안쪽 6m가 사용자 검토 지점이다. 새 복도나 건물 확장은 없다. 사용자가 승인한 공통 표면과 표현 3종은 별도 `CinderAppearanceReview`에 적용했다. 다음은 실제 적용 결과의 사용자 시야·접합면·품질 확인이다. 기존 Create/Build Cinder 메뉴는 씬을 재생성하므로 수동 아트 검토 씬에서 실행하지 않는다.
 
 | 검토 시점 | 확인할 것 |
 |---|---|
@@ -89,14 +89,15 @@
 - [x] 사용자가 창고 크기를 확인하고 괜찮다는 의견을 주었다. 현재 14.4×20.4m를 유지한다.
 - [ ] 사용자의 화물 시야·가장자리 운반 회전·벽 접근·접합면 품질 의견을 확인한다.
 - [x] 실제 구조를 참고한 입구 외형 예상도와 8종 다면 부품 시트를 생성·검토하고 보관했다.
-- [ ] 사용자가 새 외형의 색·질감·작업등·표지·선반을 확인한다.
-- [ ] 공통 표면과 표현 3종을 적용한 기준 구역을 재검토한 뒤 다른 건물로 확장한다.
+- [x] 사용자가 새 외형 시안의 색·질감·작업등·표지·선반 방향을 승인했다.
+- [x] 공통 표면과 표현 3종을 적용하고 빈손·운반 화면 및 자동 검사를 반복했다.
+- [ ] 실제 적용 결과의 사용자 품질 확인 후 다른 건물로 확장한다.
 
 온라인·적 AI·배송 판정은 현 Cinder 시험에 미연결이다. 이 구조 구역의 통과로 전체 게임·협동·재미·출시 품질을 완료 처리하지 않는다.
 
 ## 2026-10-01 — 운반 가장자리 수정과 외형 시안
 
-[입구 예상도·8종 부품 시트](../art/cinder-appearance-01.ko.md)를 제작·검토했다. 내장 imagegen의 실제 프롬프트와 출처·해시를 연결했으며 사용자 외형 승인은 아직 없다. 새 재질·텍스처·작업등·표지판·선반의 Unity 적용은 후속이다. 생성 이미지의 원근·개구부 비율을 실제 치수 검증으로 사용하지 않는다.
+[입구 예상도·8종 부품 시트](../art/cinder-appearance-01.ko.md)를 제작·검토했다. 내장 imagegen의 실제 프롬프트와 출처·해시를 연결했으며 시안 생성 당시에는 사용자 승인과 실제 적용 전이었다. 이후 승인·제작 결과는 아래 최신 적용 기록을 따른다. 생성 이미지의 원근·개구부 비율을 실제 치수 검증으로 사용하지 않는다.
 
 운반 검사를 14개 위치×8개 yaw×3개 pitch로 넓혔다. [수정 전 결과](../../art/cinder-kit-01/carry-edge-before.json)는 336개 중 38개에서 문 가장자리·벽 겹침을 보였다. 원인은 겹친 눈 위치에서 BoxCast를 시작하고 최소 0.15m 이동을 강제한 기존 처리였다. [공유 운반 위치 계산](../../NoReturns/Assets/_NoReturns/Runtime/CinderBlockoutWalk.cs)의 `TrialCargoPose.Position`은 화물 높이의 시작점을 최대 4회 분리한 뒤 장애물까지 이동한다. 계산 동안 조회 형상을 활성화하고 레이어 2로 제외하며 원래 Collider·레이어 상태를 `finally`에서 복구한다. 같은 기존 처리를 사용하던 [선내 구조 시험](../../NoReturns/Assets/_NoReturns/Runtime/ShipInteriorTrial.cs)과 [구조 검사](../../NoReturns/Assets/_NoReturns/Editor/CinderStructureBuild.cs)도 이 계산을 사용한다. 실제 운반 위치 검사에서 복사한 옛 수식을 제거했다.
 
@@ -104,7 +105,7 @@
 
 검사에서 출력한 실제 회색 화면: [문 가장자리 운반](../../art/cinder-kit-01/carry-edge-door.png) · [벽 바로 앞 운반](../../art/cinder-kit-01/carry-edge-wall.png). 이음새와 화물 부분 노출을 확인했다. 벽에 바짝 붙으면 화물이 화면 하단 밖으로 내려가므로 이 근접 시야의 사용자 평가는 남아 있다. 저장된 창고·선내 씬과 기존 재질 8개는 바꾸지 않았다. 선내 씬 Play 재검증·독립 Mac/Windows 빌드·성능·온라인/AI/배송은 이번 범위에서 미검증이다.
 
-재검사: `CinderStructureReview`에서 Play를 시작한 뒤 프로젝트 루트에서 `unity command run_script --project-path NoReturns --file ../tools/unity_checks/CinderCarryEdgeCheck.cs --caller plugin --skill unity-cli`를 실행한다. 상대 `--file`은 Unity 프로젝트 `NoReturns/` 기준이며 검사 후 Play를 중지한다. 사용자 외형 확인 다음에 기존 구조를 보존하며 공용 표면·표현 3종을 제작한다.
+재검사: `CinderStructureReview`에서 Play를 시작한 뒤 프로젝트 루트에서 `unity command run_script --project-path NoReturns --file ../tools/unity_checks/CinderCarryEdgeCheck.cs --caller plugin --skill unity-cli`를 실행한다. 상대 `--file`은 Unity 프로젝트 `NoReturns/` 기준이며 검사 후 Play를 중지한다. 승인 후 공용 표면·표현 3종을 제작했으며 별도 외형 씬의 재검사는 아래를 따른다.
 
 ## 기존 플레이 시스템의 위치
 
@@ -136,3 +137,22 @@
 한영 링크·수치·이름·예산·체크 상태와 Git LFS를 검사한다. 전체 문서 검사에는 작업 시작 전부터 로컬에 없는 `artifacts/` 근거 링크 **142개**가 있으며 새 실패는 없다. 빌드·로그·캐시·개인 설정은 커밋하지 않는다. [검증 목록](05-validation.ko.md) · [Git 운영 기준](version-control.ko.md).
 
 원본을 직접 수정하지 않은 Unity 생성 YAML·meta의 빈 필드 후행 공백 때문에 원시 staged `git diff --check`는 147곳을 보고한다. 코드·문서 범위 공백 검사는 통과하며, 후행 공백만 제외한 전체 staged 검사도 통과한다. 생성 파일을 공백 검사만을 위해 수동 편집하지 않았다.
+
+## 2026-10-01 — 승인된 외형의 실제 적용
+
+사용자가 “어 이 느낌으로 가자”라고 [외형 시안](../art/cinder-appearance-01.ko.md)을 승인했다. [승인 출처](../../art/cinder-kit-01/appearance-provenance.json)에 기록했다. 이는 시안의 색·질감·등·표지·선반 방향 승인이다. 실제 적용 화면의 사용자 품질 평가는 별도로 남긴다.
+
+[외형 검토 씬](../../NoReturns/Assets/_NoReturns/Scenes/CinderAppearanceReview.unity)은 회색 씬에서 파생한 별도 사본이다. 창고 크기 14.4×20.4m, 개구부 3.2×3.3m, 천장 하단 4m와 기존 창고 Collider 10개를 유지한다. 창고 전체 530개 시각 인스턴스의 표면을 맞추고 남측 입구와 안쪽 6m에 표현 3종을 배치했다. 다른 건물·새 복도·게임 시스템은 확장하지 않았다. 벽을 뚫고 보이던 기존 블록아웃 TextMesh 12개의 Renderer만 외형 씬에서 숨겼다.
+
+- 원본·재생성: [Blender 제작 코드](../../art/cinder-kit-01/build_appearance.py), [외형 원본](../../art/cinder-kit-01/Cinder_Kit_Appearance.blend), [Unity 가져오기·조립·검사](../../NoReturns/Assets/_NoReturns/Editor/CinderAppearanceBuild.cs). `blender --background --python art/cinder-kit-01/build_appearance.py` 실행 후 Unity의 `NO RETURNS/Trials/Create Cinder Appearance Review`를 사용한다. 기존 외형 씬이 있으면 생성 메뉴는 중단한다. 수동 변경을 별도 씬에 보관한 뒤 명시적으로 `CinderAppearanceBuild.Create(true)`를 호출해야 재생성한다. YAML 직접 편집 없음.
+- `NoReturns/Assets/_NoReturns/Art/CinderAppearance01/`: 구조 11개와 표현 3개, 총 FBX 14개; 직접 그린 공용 512×512 BaseColor와 256×128 `WAREHOUSE`/화살표 텍스처; URP Lit 재질 3개. 생성 시안을 잘라 텍스처로 사용하지 않았으며 외부 폰트·모델·유료 생성은 없다. 텍스처는 sRGB·Point·mipmap·Clamp·무압축, 금속성 0·Smoothness 0.05다. 벽 띠는 Y=1.10~1.75m, 하단 마모는 Y≈0.22~0.30m에 모았다. 수치는 [제작 코드](../../art/cinder-kit-01/build_appearance.py)와 [Unity 검사](../../art/cinder-kit-01/production-unity-validation.json) 기준 시험값이다.
+- `NoReturns/Assets/_NoReturns/Prefabs/CinderAppearance01/`: 프리팹 14개. 작업등 0.6×0.2×0.18m, 표지 1.2×0.6×0.02m, 선반 2.4×2.4×0.6m. Unity가 작업등 Point Light 5개를 소유한다: 색 (1,0.67,0.3), 강도 0.65, 범위 5m, 그림자 없음. 표지 화살표는 입구를 향한다. 선반 중심 (-25.2,0,-5.4)m·yaw 90°, 선반판 중심 높이 0.22/1.32m, 화물 없는 2단이다.
+- 선반만 보관 체적 전체의 BoxCollider 1개를 갖는다. 선반 내부 상호작용은 없으며 필요할 때 개별 판·기둥 충돌로 바꾼다. 램프·표지·구조 외형은 새 Collider가 없다. [실측](../../art/cinder-kit-01/production-unity-validation.json): 구조 6,408개·표현 216개 삼각형, 표현 배치 7개. FPS·최종 성능 검증이 아니다.
+
+[Blender 검사](../../art/cinder-kit-01/production-validation.json): FBX 14개 단위·치수·피벗·UV·닫힌 면·양의 체적·재가져오기·재질 슬롯 통과. 처음 작업등의 Unity 돌출 방향이 반대로 나와 소품 축 매핑을 수정했다. 표지 글자·화살표 방향을 실제 화면으로 확인했다. [Unity 검사](../../art/cinder-kit-01/production-unity-validation.json): 14개 임포트와 텍스처 설정, 배치·충돌·광원 수 통과. [구조 재검사](../../art/cinder-kit-01/production-structure-validation.txt): 기존 회색 프리팹 11개의 기준 검사와 새 외형 씬의 통과 6개·점프 3개·중앙 화물 자세 48개 통과.
+
+[Mac Editor Play 검사](../../art/cinder-kit-01/production-carry-edge-validation.json): 입구·벽·선반 접근 18개 위치×8개 yaw×3개 pitch, **432개 자세의 실제 겹침 0개**, E/W/S/Q·빈손 점프 통과. OverlapBox 후보 6개는 정확히 맞닿은 경계였고 ComputePenetration의 양의 깊이가 없었다. [검사 코드](../../tools/unity_checks/CinderCarryEdgeCheck.cs)는 후보를 정밀 검사하며 허용 오차는 0.00001m다. 기존 운반 런타임 코드를 바꾸지 않았다. 자동 키/API 자세 검사이며 사람 실시간 수동 플레이가 아니다.
+
+실제 Play 카메라: [입구 빈손](../../art/cinder-kit-01/production-entry-empty.png) · [입구 운반](../../art/cinder-kit-01/production-entry-carry.png) · [안쪽 6m에서 뒤돌아본 운반](../../art/cinder-kit-01/production-inside-rear-carry.png) · [빈 선반](../../art/cinder-kit-01/production-rack-empty.png) · [문 가장자리](../../art/cinder-kit-01/production-carry-edge-door.png) · [벽 근접](../../art/cinder-kit-01/production-carry-edge-wall.png). 캡처 전에 한 프레임 이상 기다려 이전 화물 위치가 찍히던 문제를 해결했다. IMGUI 안내는 포함하지 않는다. 조명이 과한 첫 화면에서 Point 강도를 1.8→0.65로 낮췄다. 밝은 면·화물 윤곽·표지·2단 빈 선반을 확인했으나 실제 사용자 평가, 전 부품 정면/후면/측면/상부 품질 검토, 원거리 무늬 깜빡임·성능은 남아 있다.
+
+재검사: `CinderAppearanceReview`를 열어 `CinderAppearanceBuild.Validate()`와 `CinderStructureBuild.Validate()`를 실행한다. Play 후 `unity command run_script --project-path NoReturns --file ../tools/unity_checks/CinderCarryEdgeCheck.cs --caller plugin --skill unity-cli`를 실행하고 Play를 중지한다. 외형 검사 파일에는 `production-` 접두사를 사용해 회색 근거를 덮어쓰지 않는다. [컴파일·콘솔·보존 해시](../../art/cinder-kit-01/production-checks.json): 컴파일 오류 0개, 마지막 Play 콘솔 오류/경고 0개. 원본 블록아웃·회색 씬·기존 우주선 재질 8개는 시작 해시와 같다. 독립 Mac/Windows 빌드·선내 Play·온라인/AI/배송·전체 게임 품질은 이번에 검사하지 않았다.

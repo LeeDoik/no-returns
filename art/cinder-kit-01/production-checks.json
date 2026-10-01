@@ -1,0 +1,208 @@
+{
+  "date": "2026-10-01",
+  "scene": "Assets/_NoReturns/Scenes/CinderAppearanceReview.unity",
+  "compilation": {
+    "status": "completed",
+    "failed": false,
+    "errors": [],
+    "compilationFailed": false
+  },
+  "compiler_warning_messages": [
+    "Assets/_NoReturns/Editor/ShipInteriorTrialBuild.cs(16,20): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'",
+    "Assets/_NoReturns/Editor/ShipInteriorTrialBuild.cs(26,77): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'",
+    "Assets/_NoReturns/Editor/ShipInteriorTrialBuild.cs(26,26): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'"
+  ],
+  "new_code_compiler_warnings": 0,
+  "final_play_console": {
+    "counts": {
+      "error": 0,
+      "warn": 0,
+      "log": 0
+    },
+    "sampled_utc": "2026-10-01T06:11:30.172059Z",
+    "compilation_failed": false
+  },
+  "runnable_play_check": {
+    "scene": "CinderAppearanceReview",
+    "samples": 432,
+    "overlap_count": 0,
+    "touching_contacts": 6,
+    "penetration_tolerance_m": 1e-05,
+    "failures": [],
+    "input_checks": {
+      "pickup": true,
+      "forward": true,
+      "backward": true,
+      "drop": true,
+      "jump": true
+    },
+    "method": "Play mode, API-set poses, reflected actual CinderBlockoutWalk.Update; not human controls"
+  },
+  "visual_review": {
+    "six_actual_play_camera_views_inspected": true,
+    "sign_text_and_arrow_unmirrored": true,
+    "rack_empty_two_levels": true,
+    "capture_wait_ms": 100,
+    "user_concept_approved": true,
+    "user_applied_quality_review": false
+  },
+  "iteration_notes": [
+    "UV endpoint float roundoff clamped in sign export",
+    "Corrected asymmetric prop axis mapping after reversed lamp import",
+    "Reduced point light intensity 1.8 to 0.65 after render review",
+    "OverlapBox returned 6 boundary contacts; native ComputePenetration refined them to 0 penetrations",
+    "Waited at least a rendered frame before camera captures; synchronous captures had stale cargo matrices",
+    "Replaced newly introduced obsolete search overload; 3 existing ship-builder compiler warnings remain"
+  ],
+  "preservation": [
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Glazing.mat",
+      "sha256": "5a5aa52508220f6c03b681b320b6bb103f8430b209787c0c6430cb935dec9a58",
+      "bytes": 4024,
+      "matches_task_start": true
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Burgundy.mat",
+      "sha256": "69786651c5296d152651780892fccf50182f6c709c107c0d66789000b1f44abe",
+      "bytes": 3950,
+      "matches_task_start": true
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Lamp.mat",
+      "sha256": "cf9126990e129f6e54ab804aed468369d5dec32c6f93db9beb2223443b8464bd",
+      "bytes": 3947,
+      "matches_task_start": true
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Ivory.mat",
+      "sha256": "e7783e95afc06de86d769ffa0d5af4c24f31e6685f51aa94d78d9c4b90a5038c",
+      "bytes": 3946,
+      "matches_task_start": true
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Glazing.mat",
+      "sha256": "ed8c0255c2559eeab683b0531330cd6d58c2fb1db676f2e91ccc06e7d4078839",
+      "bytes": 4016,
+      "matches_task_start": true
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Cyan.mat",
+      "sha256": "40dcffb791b4728f5be3381136c32dd69ddff0ac0a0828825a52c21470a99c40",
+      "bytes": 3943,
+      "matches_task_start": true
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Graphite.mat",
+      "sha256": "aadb9f31bb7aa0f43c2e0058924261840558e38627caf405ee87e8d69a13f00e",
+      "bytes": 3951,
+      "matches_task_start": true
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Orange.mat",
+      "sha256": "7ec6b0b3230c19611fe54fab98732c4fabdfc3c8442bdad14549eb4ea08fc303",
+      "bytes": 3935,
+      "matches_task_start": true
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Screen.mat",
+      "sha256": "fe1e8b0b7d2cb30d239e2379c78a21ecc4e66450d6cd8b78cbb8187757f63985",
+      "bytes": 3968,
+      "matches_task_start": true
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/tripo_122c8a19_891e_44c2_8d47_8745b6e46de5.mat",
+      "sha256": "f2a5ac8f857e36d1c98794f45bcb4e33c4e6a107bf0c8c931e64e0f1fa5816e1",
+      "bytes": 3891,
+      "matches_task_start": true
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Scenes/CinderStructureReview.unity",
+      "sha256": "771407c320b81d20491615ba80304dc65dcbf9881a5837092326ece71e44d770",
+      "bytes": 2078287,
+      "matches_task_start": true
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Scenes/CinderDepotBlockout.unity",
+      "sha256": "0ddfe56f0b3b51ef88cff938335a24973aae2057d36ce0e0417d0057ef4a3b6c",
+      "bytes": 663496,
+      "matches_task_start": true
+    }
+  ],
+  "files": [
+    {
+      "path": "art/cinder-kit-01/build_appearance.py",
+      "sha256": "995ad76ec6b1a3f9f171383ad16fc40a73ee0864d3dbcc901993c61745803547",
+      "bytes": 11387
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Editor/CinderAppearanceBuild.cs",
+      "sha256": "f56e7d0b0512570e36613a709fa466da5fb82ba555d633f927c180e659725cee",
+      "bytes": 12299
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Editor/CinderStructureBuild.cs",
+      "sha256": "95dad9da239e26f3b02f208021a1d911756081cbe5cad82477d59eda98038334",
+      "bytes": 10640
+    },
+    {
+      "path": "tools/unity_checks/CinderCarryEdgeCheck.cs",
+      "sha256": "f10095aa9881ea96945dbfa6c4ec83d4a7b12044dea8f05aedb747b72a151357",
+      "bytes": 10124
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Scenes/CinderAppearanceReview.unity",
+      "sha256": "227a111d3d7ca85fba3c85d78cfc2f02ed5ebf69dacb48e1bc345dc09708183a",
+      "bytes": 2097927
+    },
+    {
+      "path": "art/cinder-kit-01/production-carry-edge-door.png",
+      "sha256": "4cf5fb5b9eb684214e929c28b7190271b32ffd60d366905c1f064506fe74ea9e",
+      "bytes": 400691
+    },
+    {
+      "path": "art/cinder-kit-01/production-carry-edge-wall.png",
+      "sha256": "cdf9ed759fd18e52566cd730b041df308cab7e1f3729720e7a61b46cc3dbdf1d",
+      "bytes": 315406
+    },
+    {
+      "path": "art/cinder-kit-01/production-entry-carry.png",
+      "sha256": "490db3779a8af110f592ab981a9f974cb89452ee0ccab43d01762abb71241576",
+      "bytes": 192517
+    },
+    {
+      "path": "art/cinder-kit-01/production-entry-empty.png",
+      "sha256": "71713993eae4b219bed9dab89431c11941e2c9911620ce9b3f5b43101822867e",
+      "bytes": 232742
+    },
+    {
+      "path": "art/cinder-kit-01/production-inside-rear-carry.png",
+      "sha256": "5622643923d0668f5b5bd4bbfc748849d26b3901b919ed5d94f91fef1a35278a",
+      "bytes": 354623
+    },
+    {
+      "path": "art/cinder-kit-01/production-rack-empty.png",
+      "sha256": "b20f68dd4723f15d0f06e8685ed09ac0bc77781fdb76b997efbc930ba8d6ecde",
+      "bytes": 439546
+    }
+  ],
+  "unverified": [
+    "user quality/play feedback",
+    "all-part front/rear/side/top quality review",
+    "distant shimmer and performance",
+    "ship scene Play",
+    "standalone Mac/Windows builds",
+    "Cinder online/AI/delivery integration"
+  ],
+  "documentation_checks": {
+    "full_check_pass": false,
+    "pre_existing_missing_artifact_links": 142,
+    "new_failures": 0,
+    "korean_english_values_and_checkboxes_match": true
+  },
+  "whitespace_checks": {
+    "raw_staged_pass": false,
+    "native_generated_blank_at_eol_locations": 209,
+    "source_docs_receipts_pass": true,
+    "full_staged_excluding_generated_blank_at_eol_pass": true
+  }
+}
