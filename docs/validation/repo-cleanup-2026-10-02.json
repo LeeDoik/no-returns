@@ -1,0 +1,1044 @@
+{
+  "date": "2026-10-02",
+  "head_before": "18b68837975eb8b462c3a4038e0c2def06475f3b",
+  "tracked_removed": [
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review.meta",
+      "bytes": 172,
+      "duplicate": null
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/Corner_NR_Corner_Tripo_2500_basecolor.jpg.png",
+      "bytes": 974747,
+      "duplicate": "art/psx-kit-01/prepared/Corner_NR_Corner_Tripo_2500_basecolor.jpg.png"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/Corner_NR_Corner_Tripo_2500_basecolor.jpg.png.meta",
+      "bytes": 3069,
+      "duplicate": null
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/Corner_NR_Corner_Tripo_2500_normal.jpg.png",
+      "bytes": 65717,
+      "duplicate": "art/psx-kit-01/prepared/Corner_NR_Corner_Tripo_2500_normal.jpg.png"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/Corner_NR_Corner_Tripo_2500_normal.jpg.png.meta",
+      "bytes": 3069,
+      "duplicate": null
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/Corner_NR_Corner_Tripo_2500_rm.png.png",
+      "bytes": 4855150,
+      "duplicate": "art/psx-kit-01/prepared/Corner_NR_Corner_Tripo_2500_rm.png.png"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/Corner_NR_Corner_Tripo_2500_rm.png.png.meta",
+      "bytes": 3069,
+      "duplicate": null
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/Door_NR_Door_Tripo_3000_basecolor.jpg.png",
+      "bytes": 1260685,
+      "duplicate": "art/psx-kit-01/prepared/Door_NR_Door_Tripo_3000_basecolor.jpg.png"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/Door_NR_Door_Tripo_3000_basecolor.jpg.png.meta",
+      "bytes": 3069,
+      "duplicate": null
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/Door_NR_Door_Tripo_3000_normal.jpg.png",
+      "bytes": 170749,
+      "duplicate": "art/psx-kit-01/prepared/Door_NR_Door_Tripo_3000_normal.jpg.png"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/Door_NR_Door_Tripo_3000_normal.jpg.png.meta",
+      "bytes": 3069,
+      "duplicate": null
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/Door_NR_Door_Tripo_3000_rm.png.png",
+      "bytes": 5060832,
+      "duplicate": "art/psx-kit-01/prepared/Door_NR_Door_Tripo_3000_rm.png.png"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/Door_NR_Door_Tripo_3000_rm.png.png.meta",
+      "bytes": 3069,
+      "duplicate": null
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/Floor_NR_Floor_Tripo_1000_basecolor.jpg.png",
+      "bytes": 780904,
+      "duplicate": "art/psx-kit-01/prepared/Floor_NR_Floor_Tripo_1000_basecolor.jpg.png"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/Floor_NR_Floor_Tripo_1000_basecolor.jpg.png.meta",
+      "bytes": 3069,
+      "duplicate": null
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/Floor_NR_Floor_Tripo_1000_normal.jpg.png",
+      "bytes": 104988,
+      "duplicate": "art/psx-kit-01/prepared/Floor_NR_Floor_Tripo_1000_normal.jpg.png"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/Floor_NR_Floor_Tripo_1000_normal.jpg.png.meta",
+      "bytes": 3069,
+      "duplicate": null
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/Floor_NR_Floor_Tripo_1000_rm.png.png",
+      "bytes": 3237242,
+      "duplicate": "art/psx-kit-01/prepared/Floor_NR_Floor_Tripo_1000_rm.png.png"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/Floor_NR_Floor_Tripo_1000_rm.png.png.meta",
+      "bytes": 3069,
+      "duplicate": null
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/Lamp_NR_Lamp_Tripo_800_basecolor.jpg.png",
+      "bytes": 867522,
+      "duplicate": "art/psx-kit-01/prepared/Lamp_NR_Lamp_Tripo_800_basecolor.jpg.png"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/Lamp_NR_Lamp_Tripo_800_basecolor.jpg.png.meta",
+      "bytes": 3069,
+      "duplicate": null
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/Lamp_NR_Lamp_Tripo_800_normal.jpg.png",
+      "bytes": 102988,
+      "duplicate": "art/psx-kit-01/prepared/Lamp_NR_Lamp_Tripo_800_normal.jpg.png"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/Lamp_NR_Lamp_Tripo_800_normal.jpg.png.meta",
+      "bytes": 3069,
+      "duplicate": null
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/Lamp_NR_Lamp_Tripo_800_rm.png.png",
+      "bytes": 3778233,
+      "duplicate": "art/psx-kit-01/prepared/Lamp_NR_Lamp_Tripo_800_rm.png.png"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/Lamp_NR_Lamp_Tripo_800_rm.png.png.meta",
+      "bytes": 3069,
+      "duplicate": null
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/NR_Corner_Review.fbx",
+      "bytes": 1227932,
+      "duplicate": "art/psx-kit-01/prepared/NR_Corner_Review.fbx"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/NR_Corner_Review.fbx.meta",
+      "bytes": 3063,
+      "duplicate": null
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/NR_Door_Review.fbx",
+      "bytes": 1773260,
+      "duplicate": "art/psx-kit-01/prepared/NR_Door_Review.fbx"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/NR_Door_Review.fbx.meta",
+      "bytes": 3063,
+      "duplicate": null
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/NR_Floor_Review.fbx",
+      "bytes": 1069036,
+      "duplicate": "art/psx-kit-01/prepared/NR_Floor_Review.fbx"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/NR_Floor_Review.fbx.meta",
+      "bytes": 3063,
+      "duplicate": null
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/NR_Lamp_Review.fbx",
+      "bytes": 1144428,
+      "duplicate": "art/psx-kit-01/prepared/NR_Lamp_Review.fbx"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/NR_Lamp_Review.fbx.meta",
+      "bytes": 3063,
+      "duplicate": null
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/NR_Rack_Review.fbx",
+      "bytes": 1881052,
+      "duplicate": "art/psx-kit-01/prepared/NR_Rack_Review.fbx"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/NR_Rack_Review.fbx.meta",
+      "bytes": 3063,
+      "duplicate": null
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/NR_Wall_Review.fbx",
+      "bytes": 1317836,
+      "duplicate": "art/psx-kit-01/prepared/NR_Wall_Review.fbx"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/NR_Wall_Review.fbx.meta",
+      "bytes": 3063,
+      "duplicate": null
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/Rack_NR_Rack_Tripo_4000_basecolor.jpg.png",
+      "bytes": 1335849,
+      "duplicate": "art/psx-kit-01/prepared/Rack_NR_Rack_Tripo_4000_basecolor.jpg.png"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/Rack_NR_Rack_Tripo_4000_basecolor.jpg.png.meta",
+      "bytes": 3069,
+      "duplicate": null
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/Rack_NR_Rack_Tripo_4000_normal.jpg.png",
+      "bytes": 162879,
+      "duplicate": "art/psx-kit-01/prepared/Rack_NR_Rack_Tripo_4000_normal.jpg.png"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/Rack_NR_Rack_Tripo_4000_normal.jpg.png.meta",
+      "bytes": 3069,
+      "duplicate": null
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/Rack_NR_Rack_Tripo_4000_rm.png.png",
+      "bytes": 5469549,
+      "duplicate": "art/psx-kit-01/prepared/Rack_NR_Rack_Tripo_4000_rm.png.png"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/Rack_NR_Rack_Tripo_4000_rm.png.png.meta",
+      "bytes": 3069,
+      "duplicate": null
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/Wall_NR_Wall_Tripo_1500_basecolor.jpg.png",
+      "bytes": 985737,
+      "duplicate": "art/psx-kit-01/prepared/Wall_NR_Wall_Tripo_1500_basecolor.jpg.png"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/Wall_NR_Wall_Tripo_1500_basecolor.jpg.png.meta",
+      "bytes": 3069,
+      "duplicate": null
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/Wall_NR_Wall_Tripo_1500_normal.jpg.png",
+      "bytes": 117973,
+      "duplicate": "art/psx-kit-01/prepared/Wall_NR_Wall_Tripo_1500_normal.jpg.png"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/Wall_NR_Wall_Tripo_1500_normal.jpg.png.meta",
+      "bytes": 3069,
+      "duplicate": null
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/Wall_NR_Wall_Tripo_1500_rm.png.png",
+      "bytes": 3598096,
+      "duplicate": "art/psx-kit-01/prepared/Wall_NR_Wall_Tripo_1500_rm.png.png"
+    },
+    {
+      "path": "NoReturns/Assets/_NoReturns/Art/PSXKit01/Review/Wall_NR_Wall_Tripo_1500_rm.png.png.meta",
+      "bytes": 3069,
+      "duplicate": null
+    },
+    {
+      "path": "art/psx-kit-01/smart/Wall_A/NR_Wall_Smart_A.fbx",
+      "bytes": 289472,
+      "duplicate": "art/psx-kit-01/smart/NR_Wall_Smart_A/NR_Wall_Smart_A.fbx"
+    },
+    {
+      "path": "art/psx-kit-01/smart/Wall_A/NR_Wall_Smart_A.fbm/NR_Wall_Smart_A_basecolor.jpg",
+      "bytes": 3193393,
+      "duplicate": "art/psx-kit-01/smart/NR_Wall_Smart_A/NR_Wall_Smart_A.fbm/NR_Wall_Smart_A_basecolor.jpg"
+    }
+  ],
+  "local_removed": [
+    {
+      "path": "artifacts/cinder-four-player/run-20261001-214346-b04d1a",
+      "files": 8,
+      "bytes": 20180
+    },
+    {
+      "path": "artifacts/cinder-four-player/run-20261001-232235-b510df",
+      "files": 8,
+      "bytes": 20180
+    },
+    {
+      "path": "artifacts/cinder-four-player/run-20261001-213116-d7c77c",
+      "files": 21,
+      "bytes": 40379
+    },
+    {
+      "path": "artifacts/cinder-four-player/run-20261001-220002-2fc138",
+      "files": 22,
+      "bytes": 41183
+    },
+    {
+      "path": "artifacts/cinder-four-player/run-20261001-213805-e8ebf6",
+      "files": 30,
+      "bytes": 2006362
+    },
+    {
+      "path": "artifacts/cinder-four-player/run-20261001-225940-38e778",
+      "files": 30,
+      "bytes": 2098962
+    },
+    {
+      "path": "artifacts/cinder-four-player/run-20261001-220358-e05252",
+      "files": 31,
+      "bytes": 4642384
+    },
+    {
+      "path": "artifacts/cinder-four-player/run-20261001-213920-714750",
+      "files": 8,
+      "bytes": 16904
+    },
+    {
+      "path": "artifacts/cinder-four-player/run-20261001-231844-132bed",
+      "files": 30,
+      "bytes": 2026419
+    },
+    {
+      "path": "artifacts/cinder-four-player/run-20261001-230334-9b5a54",
+      "files": 39,
+      "bytes": 6282674
+    },
+    {
+      "path": "artifacts/cinder-four-player/run-20261001-212924-36aae7",
+      "files": 21,
+      "bytes": 40046
+    },
+    {
+      "path": "artifacts/cinder-four-player/run-20261001-230920-5e6085",
+      "files": 30,
+      "bytes": 2005247
+    },
+    {
+      "path": "artifacts/cinder-four-player/run-20261002-002401-be4339",
+      "files": 24,
+      "bytes": 1402528
+    },
+    {
+      "path": "artifacts/cinder-four-player/run-20261002-003535-3c4765",
+      "files": 8,
+      "bytes": 20180
+    },
+    {
+      "path": "artifacts/cinder-four-player/run-20261001-221048-bdaddc",
+      "files": 8,
+      "bytes": 16904
+    },
+    {
+      "path": "artifacts/cinder-four-player/run-20261001-215814-effdb3",
+      "files": 21,
+      "bytes": 40865
+    },
+    {
+      "path": "artifacts/cinder-four-player/run-20261002-002147-53b856",
+      "files": 21,
+      "bytes": 30642
+    },
+    {
+      "path": "artifacts/cinder-four-player/run-20261002-002551-275c57",
+      "files": 26,
+      "bytes": 1832569
+    },
+    {
+      "path": "artifacts/cinder-four-player/run-20261001-225543-8d73ec",
+      "files": 39,
+      "bytes": 6179474
+    },
+    {
+      "path": "artifacts/cinder-four-player/run-20261001-224005-5c89e5",
+      "files": 21,
+      "bytes": 41976
+    },
+    {
+      "path": "artifacts/cinder-four-player/run-20261002-002122-13d87b",
+      "files": 21,
+      "bytes": 29365
+    },
+    {
+      "path": "artifacts/cinder-four-player/run-20261001-213210-f5a77b",
+      "files": 21,
+      "bytes": 40613
+    },
+    {
+      "path": "artifacts/cinder-four-player/run-20261001-231635-2441eb",
+      "files": 39,
+      "bytes": 6295251
+    },
+    {
+      "path": "artifacts/cinder-four-player/run-20261001-224221-591288",
+      "files": 29,
+      "bytes": 4742446
+    },
+    {
+      "path": "artifacts/cinder-four-player/run-20261001-213523-58da6f",
+      "files": 30,
+      "bytes": 1836111
+    },
+    {
+      "path": "artifacts/cinder-four-player/run-20261001-215649-3d28ba",
+      "files": 21,
+      "bytes": 41185
+    },
+    {
+      "path": "artifacts/cinder-four-player/run-20261001-220607-e5ad46",
+      "files": 30,
+      "bytes": 2007237
+    },
+    {
+      "path": "artifacts/cinder-four-player/run-20261001-224739-900714",
+      "files": 37,
+      "bytes": 5772609
+    },
+    {
+      "path": "artifacts/cinder-four-player/run-20261001-212749-9d916e",
+      "files": 20,
+      "bytes": 25392
+    },
+    {
+      "path": "artifacts/cinder-four-player/run-20261001-220238-d131d0",
+      "files": 21,
+      "bytes": 40589
+    },
+    {
+      "path": "artifacts/mac-setup/editor-launch.log",
+      "files": 1,
+      "bytes": 65781676
+    }
+  ],
+  "preserved_changes": {
+    "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Burgundy.mat": "69786651c5296d152651780892fccf50182f6c709c107c0d66789000b1f44abe",
+    "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Cyan.mat": "40dcffb791b4728f5be3381136c32dd69ddff0ac0a0828825a52c21470a99c40",
+    "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Glazing.mat": "5a5aa52508220f6c03b681b320b6bb103f8430b209787c0c6430cb935dec9a58",
+    "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Graphite.mat": "aadb9f31bb7aa0f43c2e0058924261840558e38627caf405ee87e8d69a13f00e",
+    "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Ivory.mat": "e7783e95afc06de86d769ffa0d5af4c24f31e6685f51aa94d78d9c4b90a5038c",
+    "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Lamp.mat": "cf9126990e129f6e54ab804aed468369d5dec32c6f93db9beb2223443b8464bd",
+    "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Orange.mat": "7ec6b0b3230c19611fe54fab98732c4fabdfc3c8442bdad14549eb4ea08fc303",
+    "NoReturns/Assets/_NoReturns/Art/ShipInteriorTrial/Materials/Trial_Screen.mat": "fe1e8b0b7d2cb30d239e2379c78a21ecc4e66450d6cd8b78cbb8187757f63985"
+  },
+  "unity_dependency_check": "PASS: no Review dependencies anywhere in Assets; deleted via AssetDatabase",
+  "git_connectivity": "PASS: no missing reachable objects; dangling local snapshots retained",
+  "lfs_fsck": "PASS HEAD",
+  "lfs_prune": {
+    "deleted_objects": 246,
+    "tool_reported_bytes_approx": 122000000,
+    "remote_verified_objects": 7
+  },
+  "docs_missing_before": 142,
+  "docs_missing_after": 142,
+  "game_version": "0.9.3",
+  "protocol": 12,
+  "build": {
+    "status": "PASS",
+    "unity": "6000.6.0f1",
+    "output": "/Users/leedoik/WorkSpace/Game/No_Returns/builds/CinderFourPlayer/NoReturns.app",
+    "error": "",
+    "errors": 0,
+    "warnings": 4
+  },
+  "four_process_regression": {
+    "status": "PASS",
+    "run": "/Users/leedoik/WorkSpace/Game/No_Returns/artifacts/cinder-four-player/run-20261002-010006-4b9738",
+    "checks": [
+      "Cinder mode and four peers replicated",
+      "slot 3 picks up shared parcel",
+      "non-owner cannot release cargo",
+      "slot 3 movement replicated",
+      "owner releases cargo on all peers",
+      "host reset returns all four to landing",
+      "four simultaneous controllers pass west lane",
+      "fifth peer rejected",
+      "disconnect preserves remaining slot identities",
+      "freed slot 2 rejoins",
+      "two native player captures",
+      "Cinder HUD evidence and Korean font",
+      "no runtime exceptions or invalid bounds in player logs"
+    ],
+    "scope": "Four native local processes, scripted input; human fun, LAN/WAN and performance remain unverified.",
+    "final_states": [
+      {
+        "protocol": 12,
+        "clueMask": 0,
+        "phase": -1,
+        "credits": 0,
+        "receipt": 0,
+        "returnPay": 0,
+        "tick": 1536,
+        "holder": -1,
+        "ack": 917,
+        "players": 4,
+        "recipient": 0,
+        "occupiedMask": 15,
+        "positions": [
+          {
+            "x": -23.999788284301758,
+            "y": 0.03499994054436684,
+            "z": -16.88237953186035
+          },
+          {
+            "x": -23.30644416809082,
+            "y": 0.03499988093972206,
+            "z": -12.085345268249512
+          },
+          {
+            "x": -22.60030174255371,
+            "y": 0.03499988093972206,
+            "z": -13.314332962036133
+          },
+          {
+            "x": -21.89249610900879,
+            "y": 0.03499988093972206,
+            "z": -12.211257934570312
+          }
+        ],
+        "yaws": [
+          -179.8970489501953,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "p0": {
+          "x": -23.999788284301758,
+          "y": 0.03499994054436684,
+          "z": -16.88237953186035
+        },
+        "p1": {
+          "x": -23.30644416809082,
+          "y": 0.03499988093972206,
+          "z": -12.085345268249512
+        },
+        "cargo": {
+          "x": -20.700000762939453,
+          "y": 0.32499998807907104,
+          "z": -18.5
+        },
+        "rotation": {
+          "x": 2.623870898332825e-08,
+          "y": 2.1900420676956855e-07,
+          "z": 3.434832862581061e-09,
+          "w": 1.0
+        },
+        "beaconCarrier": -1,
+        "beaconExists": false,
+        "receiptCollected": false,
+        "receiptReady": false,
+        "receiptProgress": 0.0,
+        "yaw0": -179.8970489501953,
+        "yaw1": 0.0,
+        "shiftElapsed": 0.0,
+        "suppressionStage": 0,
+        "outerDanger": {
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "noiseTarget": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "state": 0,
+          "hits": 0,
+          "rescues": 0,
+          "evacuations": 0,
+          "noises": 0,
+          "pursuedPlayer": -1,
+          "down": [],
+          "rescue": [],
+          "cooldown": [],
+          "down0": false,
+          "down1": false,
+          "rescue0": 0.0,
+          "rescue1": 0.0,
+          "cooldown0": 0.0,
+          "cooldown1": 0.0,
+          "warning": 0.0
+        },
+        "unlocked": false,
+        "hard": false,
+        "deliveries": 0,
+        "charges": 0,
+        "beaconTime": 0.0,
+        "beaconPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "hazard": false,
+        "cinderReview": true,
+        "danger": {
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "noiseTarget": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "state": 0,
+          "hits": 0,
+          "rescues": 0,
+          "evacuations": 0,
+          "noises": 0,
+          "pursuedPlayer": -1,
+          "down": [],
+          "rescue": [],
+          "cooldown": [],
+          "down0": false,
+          "down1": false,
+          "rescue0": 0.0,
+          "rescue1": 0.0,
+          "cooldown0": 0.0,
+          "cooldown1": 0.0,
+          "warning": 0.0
+        },
+        "connected": true,
+        "message": "HOST / partner connected",
+        "rejection": ""
+      },
+      {
+        "protocol": 12,
+        "clueMask": 0,
+        "phase": -1,
+        "credits": 0,
+        "receipt": 0,
+        "returnPay": 0,
+        "tick": 1536,
+        "holder": -1,
+        "ack": 831,
+        "players": 4,
+        "recipient": 1,
+        "occupiedMask": 15,
+        "positions": [
+          {
+            "x": -23.999788284301758,
+            "y": 0.03499994054436684,
+            "z": -16.88237953186035
+          },
+          {
+            "x": -23.30644416809082,
+            "y": 0.03499988093972206,
+            "z": -12.085345268249512
+          },
+          {
+            "x": -22.60030174255371,
+            "y": 0.03499988093972206,
+            "z": -13.314332962036133
+          },
+          {
+            "x": -21.89249610900879,
+            "y": 0.03499988093972206,
+            "z": -12.211257934570312
+          }
+        ],
+        "yaws": [
+          -179.8970489501953,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "p0": {
+          "x": -23.999788284301758,
+          "y": 0.03499994054436684,
+          "z": -16.88237953186035
+        },
+        "p1": {
+          "x": -23.30644416809082,
+          "y": 0.03499988093972206,
+          "z": -12.085345268249512
+        },
+        "cargo": {
+          "x": -20.700000762939453,
+          "y": 0.32499998807907104,
+          "z": -18.5
+        },
+        "rotation": {
+          "x": 2.623870898332825e-08,
+          "y": 2.1900420676956855e-07,
+          "z": 3.434832862581061e-09,
+          "w": 1.0
+        },
+        "beaconCarrier": -1,
+        "beaconExists": false,
+        "receiptCollected": false,
+        "receiptReady": false,
+        "receiptProgress": 0.0,
+        "yaw0": -179.8970489501953,
+        "yaw1": 0.0,
+        "shiftElapsed": 0.0,
+        "suppressionStage": 0,
+        "outerDanger": {
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "noiseTarget": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "state": 0,
+          "hits": 0,
+          "rescues": 0,
+          "evacuations": 0,
+          "noises": 0,
+          "pursuedPlayer": -1,
+          "down": [],
+          "rescue": [],
+          "cooldown": [],
+          "down0": false,
+          "down1": false,
+          "rescue0": 0.0,
+          "rescue1": 0.0,
+          "cooldown0": 0.0,
+          "cooldown1": 0.0,
+          "warning": 0.0
+        },
+        "unlocked": false,
+        "hard": false,
+        "deliveries": 0,
+        "charges": 0,
+        "beaconTime": 0.0,
+        "beaconPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "hazard": false,
+        "cinderReview": true,
+        "danger": {
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "noiseTarget": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "state": 0,
+          "hits": 0,
+          "rescues": 0,
+          "evacuations": 0,
+          "noises": 0,
+          "pursuedPlayer": -1,
+          "down": [],
+          "rescue": [],
+          "cooldown": [],
+          "down0": false,
+          "down1": false,
+          "rescue0": 0.0,
+          "rescue1": 0.0,
+          "cooldown0": 0.0,
+          "cooldown1": 0.0,
+          "warning": 0.0
+        },
+        "connected": true,
+        "message": "HOST / partner connected",
+        "rejection": ""
+      },
+      {
+        "protocol": 12,
+        "clueMask": 0,
+        "phase": -1,
+        "credits": 0,
+        "receipt": 0,
+        "returnPay": 0,
+        "tick": 1536,
+        "holder": -1,
+        "ack": 97,
+        "players": 4,
+        "recipient": 2,
+        "occupiedMask": 15,
+        "positions": [
+          {
+            "x": -23.999788284301758,
+            "y": 0.03499994054436684,
+            "z": -16.88237953186035
+          },
+          {
+            "x": -23.30644416809082,
+            "y": 0.03499988093972206,
+            "z": -12.085345268249512
+          },
+          {
+            "x": -22.60030174255371,
+            "y": 0.03499988093972206,
+            "z": -13.314332962036133
+          },
+          {
+            "x": -21.89249610900879,
+            "y": 0.03499988093972206,
+            "z": -12.211257934570312
+          }
+        ],
+        "yaws": [
+          -179.8970489501953,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "p0": {
+          "x": -23.999788284301758,
+          "y": 0.03499994054436684,
+          "z": -16.88237953186035
+        },
+        "p1": {
+          "x": -23.30644416809082,
+          "y": 0.03499988093972206,
+          "z": -12.085345268249512
+        },
+        "cargo": {
+          "x": -20.700000762939453,
+          "y": 0.32499998807907104,
+          "z": -18.5
+        },
+        "rotation": {
+          "x": 2.623870898332825e-08,
+          "y": 2.1900420676956855e-07,
+          "z": 3.434832862581061e-09,
+          "w": 1.0
+        },
+        "beaconCarrier": -1,
+        "beaconExists": false,
+        "receiptCollected": false,
+        "receiptReady": false,
+        "receiptProgress": 0.0,
+        "yaw0": -179.8970489501953,
+        "yaw1": 0.0,
+        "shiftElapsed": 0.0,
+        "suppressionStage": 0,
+        "outerDanger": {
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "noiseTarget": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "state": 0,
+          "hits": 0,
+          "rescues": 0,
+          "evacuations": 0,
+          "noises": 0,
+          "pursuedPlayer": -1,
+          "down": [],
+          "rescue": [],
+          "cooldown": [],
+          "down0": false,
+          "down1": false,
+          "rescue0": 0.0,
+          "rescue1": 0.0,
+          "cooldown0": 0.0,
+          "cooldown1": 0.0,
+          "warning": 0.0
+        },
+        "unlocked": false,
+        "hard": false,
+        "deliveries": 0,
+        "charges": 0,
+        "beaconTime": 0.0,
+        "beaconPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "hazard": false,
+        "cinderReview": true,
+        "danger": {
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "noiseTarget": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "state": 0,
+          "hits": 0,
+          "rescues": 0,
+          "evacuations": 0,
+          "noises": 0,
+          "pursuedPlayer": -1,
+          "down": [],
+          "rescue": [],
+          "cooldown": [],
+          "down0": false,
+          "down1": false,
+          "rescue0": 0.0,
+          "rescue1": 0.0,
+          "cooldown0": 0.0,
+          "cooldown1": 0.0,
+          "warning": 0.0
+        },
+        "connected": true,
+        "message": "HOST / partner connected",
+        "rejection": ""
+      },
+      {
+        "protocol": 12,
+        "clueMask": 0,
+        "phase": -1,
+        "credits": 0,
+        "receipt": 0,
+        "returnPay": 0,
+        "tick": 1536,
+        "holder": -1,
+        "ack": 664,
+        "players": 4,
+        "recipient": 3,
+        "occupiedMask": 15,
+        "positions": [
+          {
+            "x": -23.999788284301758,
+            "y": 0.03499994054436684,
+            "z": -16.88237953186035
+          },
+          {
+            "x": -23.30644416809082,
+            "y": 0.03499988093972206,
+            "z": -12.085345268249512
+          },
+          {
+            "x": -22.60030174255371,
+            "y": 0.03499988093972206,
+            "z": -13.314332962036133
+          },
+          {
+            "x": -21.89249610900879,
+            "y": 0.03499988093972206,
+            "z": -12.211257934570312
+          }
+        ],
+        "yaws": [
+          -179.8970489501953,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "p0": {
+          "x": -23.999788284301758,
+          "y": 0.03499994054436684,
+          "z": -16.88237953186035
+        },
+        "p1": {
+          "x": -23.30644416809082,
+          "y": 0.03499988093972206,
+          "z": -12.085345268249512
+        },
+        "cargo": {
+          "x": -20.700000762939453,
+          "y": 0.32499998807907104,
+          "z": -18.5
+        },
+        "rotation": {
+          "x": 2.623870898332825e-08,
+          "y": 2.1900420676956855e-07,
+          "z": 3.434832862581061e-09,
+          "w": 1.0
+        },
+        "beaconCarrier": -1,
+        "beaconExists": false,
+        "receiptCollected": false,
+        "receiptReady": false,
+        "receiptProgress": 0.0,
+        "yaw0": -179.8970489501953,
+        "yaw1": 0.0,
+        "shiftElapsed": 0.0,
+        "suppressionStage": 0,
+        "outerDanger": {
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "noiseTarget": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "state": 0,
+          "hits": 0,
+          "rescues": 0,
+          "evacuations": 0,
+          "noises": 0,
+          "pursuedPlayer": -1,
+          "down": [],
+          "rescue": [],
+          "cooldown": [],
+          "down0": false,
+          "down1": false,
+          "rescue0": 0.0,
+          "rescue1": 0.0,
+          "cooldown0": 0.0,
+          "cooldown1": 0.0,
+          "warning": 0.0
+        },
+        "unlocked": false,
+        "hard": false,
+        "deliveries": 0,
+        "charges": 0,
+        "beaconTime": 0.0,
+        "beaconPosition": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "hazard": false,
+        "cinderReview": true,
+        "danger": {
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "noiseTarget": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "state": 0,
+          "hits": 0,
+          "rescues": 0,
+          "evacuations": 0,
+          "noises": 0,
+          "pursuedPlayer": -1,
+          "down": [],
+          "rescue": [],
+          "cooldown": [],
+          "down0": false,
+          "down1": false,
+          "rescue0": 0.0,
+          "rescue1": 0.0,
+          "cooldown0": 0.0,
+          "cooldown1": 0.0,
+          "warning": 0.0
+        },
+        "connected": true,
+        "message": "HOST / partner connected",
+        "rejection": ""
+      }
+    ]
+  },
+  "material_edits_preserved": true,
+  "docs_new_failures": 0
+}

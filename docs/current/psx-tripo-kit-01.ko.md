@@ -83,7 +83,7 @@ Chrome 전용 브라우저 연결로 벽 GLB 다운로드에 성공했다. 파�
 
 나머지 고밀도 원본 5종과 경량 모델 5종을 다운로드했다. 기존 벽 포함 경량 6종은 Wall 1500, Corner 2500, Door 3000, Floor 1000, Lamp 800, Rack 4000면이다. GLB 11개를 프로젝트에 복사하고 헤더·길이·면 수·SHA256을 기록했다. Blender 5.2.1에서 경량 6종 가져오기, 검토용 FBX 6개·텍스처 추출·실제 메시 렌더를 완료했다. 문틀 개구부와 시설 색 일관성을 시각 확인했지만 연결 치수·최종 오염 밀도·충돌 적합성·실시간 성능은 미검증이다. 선반 화물은 분리되지 않은 장식이다. 원본 4k 텍스처는 보존하며 PSX 최종 텍스처 해상도는 미확정이다. 검토 파일을 Unity Assets 아래에 배치했지만 기존 맵·실행본 0.8.2는 변경하지 않았다.
 
-[Download manifest](../../art/psx-kit-01/tripo-source/download-manifest.json) · [FBX and render](../../art/psx-kit-01/prepared) · [Unity review assets](../../NoReturns/Assets/_NoReturns/Art/PSXKit01/Review)
+[Download manifest](../../art/psx-kit-01/tripo-source/download-manifest.json) · [FBX와 검토 원본](../../art/psx-kit-01/prepared). 2026-10-02 저장소 정리에서 참조가 없는 Unity 검토 복사본만 제거했다. 제작 원본과 현재 Selected 프리팹은 유지한다. [정리 범위](repo-hygiene.ko.md).
 
 
 ## 2026-09-13 — Upload permission retry

@@ -83,7 +83,7 @@ The user authorized spending the remaining credits on facility-module quality an
 
 Downloaded the other 5 dense sources and 5 reduced models. Including the existing wall, reduced counts are Wall 1500, Corner 2500, Door 3000, Floor 1000, Lamp 800 and Rack 4000 faces. Copied 11 GLBs into the project and recorded headers, lengths, face counts and SHA256. Blender 5.2.1 imported all 6 reduced meshes, exported 6 review FBXs, extracted textures and rendered the real meshes. Visually confirmed the doorway opening and consistent facility colors; connection dimensions, final grime density, collision fit and real-time performance remain unverified. Rack cargo is inseparable decoration. Original 4k textures are retained; final PSX resolution is undecided. Staged review files under Unity Assets without changing the existing map or executable 0.8.2.
 
-[Download manifest](../../art/psx-kit-01/tripo-source/download-manifest.json) · [FBX and render](../../art/psx-kit-01/prepared) · [Unity review assets](../../NoReturns/Assets/_NoReturns/Art/PSXKit01/Review)
+[Download manifest](../../art/psx-kit-01/tripo-source/download-manifest.json) · [FBX and review sources](../../art/psx-kit-01/prepared). Repository cleanup on 2026-10-02 removed only unreferenced Unity review copies. Production sources and current Selected prefabs remain. [Cleanup scope](repo-hygiene.en.md).
 
 
 ## 2026-09-13 — Upload permission retry
