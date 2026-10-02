@@ -2,13 +2,13 @@
 
 [English](README.en.md)
 
-[현재 맥 Cinder 0.9.2 조작·우주선·구매 UI](docs/current/controls-ui.ko.md). 최신 네 창 실행과 조작 안내는 이 문서를 따른다. 아래 이전 Windows 실험 빌드는 이번 맥 검증 범위에 포함하지 않는다.
+[현재 맥 Cinder 0.9.4 — 억제기·외곽 생물](docs/current/cinder-suppression.ko.md) · [조작·우주선·구매](docs/current/controls-ui.ko.md) · [네 창 실행](07_Play_Cinder_4P.command). 배송·리스너·진압봉·구조·신호기에 억제 약화/외곽 추적을 연결했다. 진행 저장은 Cinder에 아직 없으며 아래 옛 Windows 실험과 검증 범위를 구분한다.
 
 **PSX 스타일의 협동 우주 배송·미스터리 게임.** 항로 선택 후 우주선이 자동 이동·착륙하며, 직원들은 위험한 현장에서 배송을 수행하고 보수로 장비를 개선해 더 어려운 업무에 도전합니다.
 
 [최상위 기획서](docs/current/01-overview.ko.md) · [문서 홈](docs/README.md)
 
-[01_Open_Project.cmd](01_Open_Project.cmd)로 Unity를 엽니다. 유일한 개발 프로젝트는 `NoReturns/`입니다. 현재 2인 1인칭 배송·크리처·구조·신호기 구매·위험 계약 실험을 실행할 수 있습니다. 최종 맵·PSX 아트는 아직 없습니다. 방장 진행은 로컬에 저장됩니다.
+[01_Open_Project.cmd](01_Open_Project.cmd)로 Unity를 엽니다. 유일한 개발 프로젝트는 `NoReturns/`입니다. 현재 맥 Cinder는 네 명의 배송·영수증·귀환·위험/구조 시험을 지원합니다. 아래 옛 실험은 위험 계약·방장 로컬 저장을 유지합니다. 최종 맵·생물 아트와 사람 품질 검토는 진행 중입니다.
 
 [게임 실행](02_Play_Carry_Test.cmd) 후 HOST → [같은 PC 참가](03_Join_Local_Carry_Test.cmd). [조작·검증 안내](docs/current/carry-test.ko.md).
 
@@ -18,7 +18,7 @@
 
 [다음 단계: 리스너·구조 실험 실행](06_Play_Listener_Test.cmd) · [조작·검증 안내](docs/current/space-play-03.ko.md)
 
-[현재 빌드 0.8.2 실행](06_Play_Listener_Test.cmd) · [B 구매 / T 계약 / V 신호기 안내](docs/current/space-play-04.ko.md)
+[이전 실험 빌드 0.8.2 실행](06_Play_Listener_Test.cmd) · [B 구매 / T 계약 / V 신호기 안내](docs/current/space-play-04.ko.md)
 
 [진행 저장·재실행 안내](docs/current/space-play-05.ko.md)
 

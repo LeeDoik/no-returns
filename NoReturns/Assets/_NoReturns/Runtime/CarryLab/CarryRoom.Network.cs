@@ -54,7 +54,7 @@ public sealed partial class CarryRoom {
         }else if(wire!=null){
             foreach(var line in wire.Read())try{
                 var v=JsonUtility.FromJson<CarryState>(line);
-                if(v==null||v.protocol!=12){Disconnect();status="Protocol mismatch / use the same game build";break;}
+                if(v==null||v.protocol!=13){Disconnect();status="Protocol mismatch / use the same game build";break;}
                 if(v.cinderReview!=cinderReview){Disconnect();status="Map mismatch / use the same test build";break;}
                 if(!string.IsNullOrEmpty(v.rejection)){Disconnect();status=v.rejection;break;}
                 if(v.recipient<1||v.recipient>3||v.positions==null||v.positions.Length!=4||v.yaws==null||v.yaws.Length!=4)throw new Exception("Invalid crew snapshot");

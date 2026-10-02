@@ -2,6 +2,16 @@
 
 [한국어](05-validation.ko.md)
 
+## 2026-10-02 — Cinder suppression and outer creature 0.9.4
+
+[Current rules, production and running](cinder-suppression.en.md). Connect existing 90/135/180-second stages, signal audio and relative work-light dimming to 4 current suppressors and the boundary. Connect east entry, obstacle routing and pursuit for the outer creature 8 seconds after shutdown. Preserve sky/fog/sun, source art and collision. Default launch is delivery + Listener + suppression/outer; retain `--delivery-only`/`--map-only` regression. Version 0.9.4, protocol 13, TCP 27842. Pass 60 actual four-process checks for purchased-beacon distraction, hazardous return, shared down/ship safety, emergency recovery and next shift. [Validation record](../validation/cinder-suppression-0.9.4.json). Supersede older unconnected-suppression/outer statements below within this scope. Human quality, final creatures/audio, clues/progression saving and other-environment/performance checks remain pending.
+
+- [x] Verify 9 time boundaries, 5 signals, 40 work lights, 7 outer routes/1,600 collision steps and preserved sky/fog/sun/source art/scenes.
+- [x] Pass 60 actual four-process checks: hazardous delivery/420 CR return, 120 CR purchase/300 CR retention, both creature attractions, stages/grace, baton immunity, shared down/ship safety, all-down recovery/next shift.
+- [x] Mac 0.9.4 build with 0 errors/7 existing warnings, 2 native 800×500 bilingual warning PNGs and document links/language/checkbox checks. Pass 31 existing Listener/rescue, 48 delivery/UI and 13 movement/network regression checks and all 274 document checks. Total actual player checks: 152.
+- [ ] Four-human controls/warning interpretation/fun/appearance/audio/dim-floor readability, clues/progression saving and other-PC/LAN/Windows/performance/extended stability.
+
+
 The historical `artifacts/` paths identify local evidence from the original run. These files are no longer retained here and are not included in the public repository. Historical passes are distinct from current revalidation.
 
 ## 2026-10-02 — Repository and local file cleanup

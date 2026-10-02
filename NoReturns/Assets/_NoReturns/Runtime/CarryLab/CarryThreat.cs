@@ -33,7 +33,7 @@ public sealed class CarryThreat {
     float timer,interest,allDown,stunResistance;
     bool gridBuilt;
     public CarryThreat(CarryThreat parent=null,bool cinder=false){
-        this.cinder=cinder;outer=parent!=null;if(outer){Down=parent.Down;protection=parent.protection;patrol=new[]{new Vector3(13,0,28),new Vector3(10,0,0),new Vector3(2,0,-2),new Vector3(13,0,16)};}
+        this.cinder=cinder;outer=parent!=null;if(outer){Down=parent.Down;protection=parent.protection;patrol=cinder?new[]{new Vector3(29,0,18),new Vector3(21,0,18),new Vector3(-5,0,-10),new Vector3(-23,0,14)}:new[]{new Vector3(13,0,28),new Vector3(10,0,0),new Vector3(2,0,-2),new Vector3(13,0,16)};}
         else if(cinder)patrol=new[]{new Vector3(-23,0,2),new Vector3(-23,0,-10),new Vector3(-5,0,-10),new Vector3(-5,0,14),new Vector3(-23,0,14)};
         position=patrol[0];
         body=new GameObject(outer?"OUTER placeholder":"LISTENER placeholder");skin=CarryWorld.Mat(new Color(.42f,.3f,.22f));
@@ -64,7 +64,9 @@ public sealed class CarryThreat {
     void BuildGrid(){
         Physics.SyncTransforms();
         // ponytail: one-metre static grid for this ground-level map; rebuild for moving geometry or vertical routes.
-        for(int z=cinder?-34:outer?-13:3;z<=(cinder?30:outer?29:13);z++)for(int x=cinder?-27:outer?-15:-8;x<=(cinder?25:outer?15:3);x++){
+        int minX=cinder?(outer?-53:-27):outer?-15:-8,maxX=cinder?(outer?53:25):outer?15:3;
+        int minZ=cinder?(outer?-42:-34):outer?-13:3,maxZ=cinder?(outer?42:30):outer?29:13;
+        for(int z=minZ;z<=maxZ;z++)for(int x=minX;x<=maxX;x++){
             if(cinder&&Mathf.Abs(x+20.7f)<2&&z< -21)continue; // Keep the ship ramp and deck outside patrol paths.
             if(WalkPoint(new Vector3(x,0,z),out var p)&&(!outer||!Aboard(p))){grid[new Vector2Int(x,z)]=nodes.Count;nodes.Add(p);}
         }

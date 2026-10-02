@@ -1,0 +1,1056 @@
+{
+  "version": "0.9.4",
+  "protocol": 13,
+  "status": "PASS",
+  "date": "2026-10-02",
+  "build": {
+    "status": "PASS",
+    "unity": "6000.6.0f1",
+    "output": "/Users/leedoik/WorkSpace/Game/No_Returns/builds/CinderFourPlayer/NoReturns.app",
+    "error": "",
+    "errors": 0,
+    "warnings": 7,
+    "bundle_versions": {
+      "CFBundleShortVersionString": "0.9.4",
+      "CFBundleVersion": "0"
+    }
+  },
+  "native": {
+    "suppression-native": {
+      "diagnostics": [],
+      "compileMs": 663,
+      "executeMs": 562,
+      "assemblyName": "PipelineRunScript_CinderSuppressionCheck_1156e247f1174bbe963dd641870266d1",
+      "success": true,
+      "result": {
+        "status": "PASS",
+        "stageBoundarySamples": 9,
+        "signals": 5,
+        "localLights": 40,
+        "outerRoutes": 7,
+        "collisionSteps": 1600,
+        "outerGridNodes": 8056,
+        "routeBuildSeconds": 0.0341906,
+        "skyFogSunPreserved": true,
+        "sharedDownAndShipSafety": true
+      }
+    },
+    "listener-native": {
+      "diagnostics": [],
+      "compileMs": 75,
+      "executeMs": 43,
+      "assemblyName": "PipelineRunScript_CinderThreatCheck_275531cfc288493abcfc4cbc06da4f2b",
+      "success": true,
+      "result": {
+        "status": "PASS",
+        "reachableRouteEndpoints": 92,
+        "collisionCheckedPatrolSteps": 2400,
+        "shipSafety": true,
+        "rescueConditions": 5,
+        "gridNodes": 2438
+      }
+    },
+    "legacy-native": {
+      "diagnostics": [],
+      "compileMs": 37,
+      "executeMs": 229,
+      "assemblyName": "PipelineRunScript_CinderThreatCheck_ba5f9b822064469ca98b475a73f11ece",
+      "success": true,
+      "result": {
+        "status": "PASS",
+        "legacyPatrolEndpoints": 4,
+        "lowStepMetres": 0.3
+      }
+    },
+    "hud-native": {
+      "diagnostics": [],
+      "compileMs": 66,
+      "executeMs": 60,
+      "assemblyName": "PipelineRunScript_CrewHudCheck_bc91d542b1e045c481de123fb0bb84a0",
+      "success": true,
+      "result": null
+    },
+    "controls-native": {
+      "diagnostics": [],
+      "compileMs": 59,
+      "executeMs": 31,
+      "assemblyName": "PipelineRunScript_ControlsUiCheck_0f0c517c9b334f29a6ecedb52cdbfb60",
+      "success": true,
+      "result": {
+        "status": "PASS",
+        "checks": 17
+      }
+    },
+    "ledger-native": {
+      "diagnostics": [],
+      "compileMs": 24,
+      "executeMs": 0,
+      "assemblyName": "PipelineRunScript_DeliveryRules_94deab0bf90140d194a8ff22ea425aee",
+      "success": true,
+      "result": {
+        "status": "PASS",
+        "checks": 35
+      }
+    },
+    "suppression-restored-scene": {
+      "diagnostics": [],
+      "compileMs": 220,
+      "executeMs": 943,
+      "assemblyName": "PipelineRunScript_CinderSuppressionCheck_4329c72b120d4f44b9dcb5dea60c0cab",
+      "success": true,
+      "result": {
+        "status": "PASS",
+        "stageBoundarySamples": 9,
+        "signals": 5,
+        "localLights": 40,
+        "outerRoutes": 7,
+        "collisionSteps": 1600,
+        "outerGridNodes": 8056,
+        "routeBuildSeconds": 0.0845521,
+        "skyFogSunPreserved": true,
+        "sharedDownAndShipSafety": true
+      }
+    }
+  },
+  "four_player": {
+    "suppression": {
+      "status": "PASS",
+      "run": "/Users/leedoik/WorkSpace/Game/No_Returns/artifacts/cinder-four-player/run-20261002-155001-d54b63",
+      "checks": [
+        "four hazard slots/protocol 13",
+        "preparation clock stopped",
+        "host ship UI",
+        "route selected",
+        "field active on four peers",
+        "ship UI closed",
+        "cargo pickup with hazards active",
+        "BAY 04 accepts parcel under hazards",
+        "receipt printing complete",
+        "receipt collected under hazards",
+        "suppression-delivery-ko",
+        "host ship UI",
+        "hazardous return pays 420 once",
+        "report clock stopped",
+        "purchased shared beacon for 120",
+        "next preparation",
+        "host ship UI",
+        "route selected",
+        "field active on four peers",
+        "ship UI closed",
+        "host carries purchased beacon",
+        "first signal spends one charge",
+        "purchased beacon attracts Listener",
+        "host ship UI",
+        "early return preserves 300 wallet",
+        "prepare final shift",
+        "host ship UI",
+        "route selected",
+        "field active on four peers",
+        "ship UI closed",
+        "client carries shared beacon",
+        "outer staged beyond east boundary",
+        "unstable stage replicated",
+        "failing stage replicated",
+        "outer stays staged before shutdown",
+        "suppression-failing-ko",
+        "English selected",
+        "shutdown stage replicated",
+        "suppression-off-en",
+        "entry grace reached",
+        "outer still waits during grace",
+        "client deploys active shared signal",
+        "outer enters only after grace",
+        "signal overrides outer pursuit",
+        "signal expiration resumes client pursuit",
+        "outer enters baton range",
+        "baton cannot stun outer",
+        "outer downs client on all peers",
+        "three aboard employees stay safe",
+        "outer triggers all-down ship recovery",
+        "recovery retains wallet without new pay",
+        "recovery report freezes clock",
+        "host ship UI",
+        "prepare after recovery",
+        "host ship UI",
+        "route selected",
+        "field active on four peers",
+        "ship UI closed",
+        "new arrival resets suppression and outer",
+        "four logs clean/no Cinder progression save"
+      ],
+      "final_state": {
+        "protocol": 13,
+        "recipient": 0,
+        "occupiedMask": 15,
+        "players": 4,
+        "phase": 2,
+        "credits": 300,
+        "receipt": 0,
+        "returnPay": 0,
+        "holder": -1,
+        "beaconCarrier": -1,
+        "charges": 2,
+        "shiftElapsed": 0.4999997019767761,
+        "suppressionStage": 0,
+        "hazard": true,
+        "cinderReview": true,
+        "receiptCollected": false,
+        "positions": [
+          {
+            "x": -21.449796676635742,
+            "y": 1.035000205039978,
+            "z": -25.651071548461914
+          },
+          {
+            "x": -19.597497940063477,
+            "y": 1.0350003242492676,
+            "z": -25.334901809692383
+          },
+          {
+            "x": -21.72883415222168,
+            "y": 1.0350000858306885,
+            "z": -26.309356689453125
+          },
+          {
+            "x": -19.930578231811523,
+            "y": 1.0350000858306885,
+            "z": -26.161998748779297
+          }
+        ],
+        "danger": {
+          "position": {
+            "x": -23.0,
+            "y": 0.0,
+            "z": 1.3000000715255737
+          },
+          "down": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "hits": 0,
+          "rescues": 0,
+          "evacuations": 1,
+          "noises": 4,
+          "pursuedPlayer": -1
+        },
+        "outerDanger": {
+          "position": {
+            "x": 29.0,
+            "y": 0.0,
+            "z": 18.0
+          },
+          "down": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "hits": 4,
+          "rescues": 0,
+          "evacuations": 0,
+          "noises": 4,
+          "pursuedPlayer": -1
+        }
+      },
+      "scope": "Four actual Mac players, ordinary controls and real suppression time; excludes human quality and other-PC/Windows/performance testing."
+    },
+    "listener_regression": {
+      "status": "PASS",
+      "run": "/Users/leedoik/WorkSpace/Game/No_Returns/artifacts/cinder-four-player/run-20261002-155820-fd50cb",
+      "checks": [
+        "four hazard slots/protocol 13",
+        "Cinder stages start stopped with shared outer down state",
+        "ship UI opens",
+        "route selected",
+        "departure enables patrol",
+        "ship UI closes",
+        "ship calls ignored/no attack",
+        "host carries parcel",
+        "quiet approach has no footstep noise",
+        "call causes investigation",
+        "warning before cargo-carrier attack",
+        "host down replicated to all four",
+        "down releases parcel on all peers",
+        "down blocks movement/pickup/baton",
+        "distant rescue rejected",
+        "slot 3 baits a close warning",
+        "slot 3 baton stuns on four peers",
+        "listener-baton-ko",
+        "slot 3 rescue progress replicated",
+        "release cancels rescue",
+        "baton cooldown prevents reset",
+        "slot 3 rescues host on all peers",
+        "rescuer remains vulnerable after revival",
+        "English client context/native font",
+        "listener-down-en",
+        "all four down triggers emergency report",
+        "four recovered aboard/zero unpaid reward",
+        "recovered host can open ship terminal",
+        "next shift clears down/cooldown and restores parcel",
+        "no Cinder progression file created",
+        "four player logs have no exceptions"
+      ],
+      "final": {
+        "protocol": 13,
+        "recipient": 0,
+        "occupiedMask": 15,
+        "players": 4,
+        "phase": 0,
+        "credits": 0,
+        "receipt": 0,
+        "returnPay": 0,
+        "holder": -1,
+        "beaconCarrier": -1,
+        "charges": 0,
+        "shiftElapsed": 50.76097106933594,
+        "suppressionStage": 0,
+        "hazard": true,
+        "cinderReview": true,
+        "receiptCollected": false,
+        "positions": [
+          {
+            "x": -21.700000762939453,
+            "y": 0.03499988093972206,
+            "z": -20.049999237060547
+          },
+          {
+            "x": -19.700000762939453,
+            "y": 0.03499988093972206,
+            "z": -20.049999237060547
+          },
+          {
+            "x": -21.700000762939453,
+            "y": 0.03499988093972206,
+            "z": -18.649999618530273
+          },
+          {
+            "x": -19.700000762939453,
+            "y": 0.03499988093972206,
+            "z": -18.649999618530273
+          }
+        ],
+        "danger": {
+          "position": {
+            "x": -23.0,
+            "y": 0.0,
+            "z": 2.0
+          },
+          "down": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "hits": 5,
+          "rescues": 1,
+          "evacuations": 1,
+          "noises": 14,
+          "pursuedPlayer": -1
+        },
+        "outerDanger": {
+          "position": {
+            "x": 29.0,
+            "y": 0.0,
+            "z": 18.0
+          },
+          "down": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "hits": 0,
+          "rescues": 0,
+          "evacuations": 0,
+          "noises": 0,
+          "pursuedPlayer": -1
+        }
+      },
+      "scope": "Four native Mac processes and ordinary inputs; human fear, audio readability, fun, LAN/Windows and performance remain unverified"
+    },
+    "delivery_regression": {
+      "status": "PASS",
+      "run": "/Users/leedoik/WorkSpace/Game/No_Returns/artifacts/cinder-four-player/run-20261002-160001-2b4841",
+      "checks": [
+        "four Cinder delivery slots",
+        "settings menu opens",
+        "settings-ko",
+        "settings blocks movement and gameplay actions",
+        "settings closes",
+        "host ship terminal opens",
+        "ship button selects route",
+        "host ship terminal opens",
+        "departure requires all four aboard",
+        "host ship terminal opens",
+        "all aboard activates field",
+        "client cannot command return",
+        "host ship terminal opens",
+        "zero-pay return needs explicit confirmation",
+        "return without receipt pays zero",
+        "host ship terminal opens",
+        "next shift resets all four and receipt",
+        "host ship terminal opens",
+        "second route selected",
+        "host ship terminal opens",
+        "second field arrival",
+        "shared cargo picked up",
+        "rotation and reach replicate",
+        "blocked placement keeps cargo held",
+        "held cargo cannot complete delivery",
+        "precise BAY 04 placement and scan replicate",
+        "receipt prints on all peers without payment",
+        "printing completes on all peers",
+        "terminal-ko",
+        "English HUD toggle",
+        "terminal-en",
+        "receipt collected by one peer is shared",
+        "duplicate collection and outside crew do not pay",
+        "terminal-collected",
+        "host ship terminal opens",
+        "settlement is 300 plus 120 exactly once",
+        "ship-report",
+        "purchase is host-only",
+        "shop purchases once and spawns Cinder beacon",
+        "owned purchase cannot charge twice",
+        "ship-shop-owned",
+        "Korean ship UI toggle",
+        "ship-shop-owned-ko",
+        "client carries purchased physical beacon",
+        "aboard beacon placement preserves charges",
+        "host ship terminal opens",
+        "next shift keeps 300 and resets receipt",
+        "no runtime exceptions or invalid bounds"
+      ],
+      "scope": "4 native Mac processes; one employee physically carries to BAY 04 and returns, all four physically board. Human handling/fun, WAN, AI and progression saving remain unverified.",
+      "final_states": [
+        {
+          "protocol": 13,
+          "recipient": 0,
+          "occupiedMask": 15,
+          "players": 4,
+          "phase": 0,
+          "credits": 300,
+          "receipt": 0,
+          "returnPay": 0,
+          "holder": -1,
+          "beaconCarrier": -1,
+          "charges": 2,
+          "shiftElapsed": 0.0,
+          "suppressionStage": 0,
+          "hazard": false,
+          "cinderReview": true,
+          "receiptCollected": false,
+          "positions": [
+            {
+              "x": -21.700000762939453,
+              "y": 0.03499988093972206,
+              "z": -20.049999237060547
+            },
+            {
+              "x": -19.700000762939453,
+              "y": 0.03499988093972206,
+              "z": -20.049999237060547
+            },
+            {
+              "x": -21.700000762939453,
+              "y": 0.03499988093972206,
+              "z": -18.649999618530273
+            },
+            {
+              "x": -19.700000762939453,
+              "y": 0.03499988093972206,
+              "z": -18.649999618530273
+            }
+          ],
+          "danger": {
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "down": [],
+            "hits": 0,
+            "rescues": 0,
+            "evacuations": 0,
+            "noises": 0,
+            "pursuedPlayer": -1
+          },
+          "outerDanger": {
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "down": [],
+            "hits": 0,
+            "rescues": 0,
+            "evacuations": 0,
+            "noises": 0,
+            "pursuedPlayer": -1
+          }
+        },
+        {
+          "protocol": 13,
+          "recipient": 1,
+          "occupiedMask": 15,
+          "players": 4,
+          "phase": 0,
+          "credits": 300,
+          "receipt": 0,
+          "returnPay": 0,
+          "holder": -1,
+          "beaconCarrier": -1,
+          "charges": 2,
+          "shiftElapsed": 0.0,
+          "suppressionStage": 0,
+          "hazard": false,
+          "cinderReview": true,
+          "receiptCollected": false,
+          "positions": [
+            {
+              "x": -21.700000762939453,
+              "y": 0.03499988093972206,
+              "z": -20.049999237060547
+            },
+            {
+              "x": -19.700000762939453,
+              "y": 0.03499988093972206,
+              "z": -20.049999237060547
+            },
+            {
+              "x": -21.700000762939453,
+              "y": 0.03499988093972206,
+              "z": -18.649999618530273
+            },
+            {
+              "x": -19.700000762939453,
+              "y": 0.03499988093972206,
+              "z": -18.649999618530273
+            }
+          ],
+          "danger": {
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "down": [],
+            "hits": 0,
+            "rescues": 0,
+            "evacuations": 0,
+            "noises": 0,
+            "pursuedPlayer": -1
+          },
+          "outerDanger": {
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "down": [],
+            "hits": 0,
+            "rescues": 0,
+            "evacuations": 0,
+            "noises": 0,
+            "pursuedPlayer": -1
+          }
+        },
+        {
+          "protocol": 13,
+          "recipient": 2,
+          "occupiedMask": 15,
+          "players": 4,
+          "phase": 0,
+          "credits": 300,
+          "receipt": 0,
+          "returnPay": 0,
+          "holder": -1,
+          "beaconCarrier": -1,
+          "charges": 2,
+          "shiftElapsed": 0.0,
+          "suppressionStage": 0,
+          "hazard": false,
+          "cinderReview": true,
+          "receiptCollected": false,
+          "positions": [
+            {
+              "x": -21.700000762939453,
+              "y": 0.03499988093972206,
+              "z": -20.049999237060547
+            },
+            {
+              "x": -19.700000762939453,
+              "y": 0.03499988093972206,
+              "z": -20.049999237060547
+            },
+            {
+              "x": -21.700000762939453,
+              "y": 0.03499988093972206,
+              "z": -18.649999618530273
+            },
+            {
+              "x": -19.700000762939453,
+              "y": 0.03499988093972206,
+              "z": -18.649999618530273
+            }
+          ],
+          "danger": {
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "down": [],
+            "hits": 0,
+            "rescues": 0,
+            "evacuations": 0,
+            "noises": 0,
+            "pursuedPlayer": -1
+          },
+          "outerDanger": {
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "down": [],
+            "hits": 0,
+            "rescues": 0,
+            "evacuations": 0,
+            "noises": 0,
+            "pursuedPlayer": -1
+          }
+        },
+        {
+          "protocol": 13,
+          "recipient": 3,
+          "occupiedMask": 15,
+          "players": 4,
+          "phase": 0,
+          "credits": 300,
+          "receipt": 0,
+          "returnPay": 0,
+          "holder": -1,
+          "beaconCarrier": -1,
+          "charges": 2,
+          "shiftElapsed": 0.0,
+          "suppressionStage": 0,
+          "hazard": false,
+          "cinderReview": true,
+          "receiptCollected": false,
+          "positions": [
+            {
+              "x": -21.700000762939453,
+              "y": 0.03499988093972206,
+              "z": -20.049999237060547
+            },
+            {
+              "x": -19.700000762939453,
+              "y": 0.03499988093972206,
+              "z": -20.049999237060547
+            },
+            {
+              "x": -21.700000762939453,
+              "y": 0.03499988093972206,
+              "z": -18.649999618530273
+            },
+            {
+              "x": -19.700000762939453,
+              "y": 0.03499988093972206,
+              "z": -18.649999618530273
+            }
+          ],
+          "danger": {
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "down": [],
+            "hits": 0,
+            "rescues": 0,
+            "evacuations": 0,
+            "noises": 0,
+            "pursuedPlayer": -1
+          },
+          "outerDanger": {
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "down": [],
+            "hits": 0,
+            "rescues": 0,
+            "evacuations": 0,
+            "noises": 0,
+            "pursuedPlayer": -1
+          }
+        }
+      ]
+    },
+    "movement_network_regression": {
+      "status": "PASS",
+      "run": "/Users/leedoik/WorkSpace/Game/No_Returns/artifacts/cinder-four-player/run-20261002-160227-9cbb06",
+      "checks": [
+        "Cinder mode and four peers replicated",
+        "slot 3 picks up shared parcel",
+        "non-owner cannot release cargo",
+        "slot 3 movement replicated",
+        "owner releases cargo on all peers",
+        "host reset returns all four to landing",
+        "four simultaneous controllers pass west lane",
+        "fifth peer rejected",
+        "disconnect preserves remaining slot identities",
+        "freed slot 2 rejoins",
+        "two native player captures",
+        "Cinder HUD evidence and Korean font",
+        "no runtime exceptions or invalid bounds in player logs"
+      ],
+      "scope": "Four native local processes, scripted input; human fun, LAN/WAN and performance remain unverified.",
+      "final_states": [
+        {
+          "protocol": 13,
+          "recipient": 0,
+          "occupiedMask": 15,
+          "players": 4,
+          "phase": -1,
+          "credits": 0,
+          "receipt": 0,
+          "returnPay": 0,
+          "holder": -1,
+          "beaconCarrier": -1,
+          "charges": 0,
+          "shiftElapsed": 0.0,
+          "suppressionStage": 0,
+          "hazard": false,
+          "cinderReview": true,
+          "receiptCollected": false,
+          "positions": [
+            {
+              "x": -24.000041961669922,
+              "y": 0.03499994054436684,
+              "z": -17.106605529785156
+            },
+            {
+              "x": -23.291410446166992,
+              "y": 0.03499988093972206,
+              "z": -12.107964515686035
+            },
+            {
+              "x": -22.592864990234375,
+              "y": 0.03499988093972206,
+              "z": -13.04185676574707
+            },
+            {
+              "x": -21.891372680664062,
+              "y": 0.03499988093972206,
+              "z": -12.146370887756348
+            }
+          ],
+          "danger": {
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "down": [],
+            "hits": 0,
+            "rescues": 0,
+            "evacuations": 0,
+            "noises": 0,
+            "pursuedPlayer": -1
+          },
+          "outerDanger": {
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "down": [],
+            "hits": 0,
+            "rescues": 0,
+            "evacuations": 0,
+            "noises": 0,
+            "pursuedPlayer": -1
+          }
+        },
+        {
+          "protocol": 13,
+          "recipient": 1,
+          "occupiedMask": 15,
+          "players": 4,
+          "phase": -1,
+          "credits": 0,
+          "receipt": 0,
+          "returnPay": 0,
+          "holder": -1,
+          "beaconCarrier": -1,
+          "charges": 0,
+          "shiftElapsed": 0.0,
+          "suppressionStage": 0,
+          "hazard": false,
+          "cinderReview": true,
+          "receiptCollected": false,
+          "positions": [
+            {
+              "x": -24.000041961669922,
+              "y": 0.03499994054436684,
+              "z": -17.106605529785156
+            },
+            {
+              "x": -23.291410446166992,
+              "y": 0.03499988093972206,
+              "z": -12.107964515686035
+            },
+            {
+              "x": -22.592864990234375,
+              "y": 0.03499988093972206,
+              "z": -13.04185676574707
+            },
+            {
+              "x": -21.891372680664062,
+              "y": 0.03499988093972206,
+              "z": -12.146370887756348
+            }
+          ],
+          "danger": {
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "down": [],
+            "hits": 0,
+            "rescues": 0,
+            "evacuations": 0,
+            "noises": 0,
+            "pursuedPlayer": -1
+          },
+          "outerDanger": {
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "down": [],
+            "hits": 0,
+            "rescues": 0,
+            "evacuations": 0,
+            "noises": 0,
+            "pursuedPlayer": -1
+          }
+        },
+        {
+          "protocol": 13,
+          "recipient": 2,
+          "occupiedMask": 15,
+          "players": 4,
+          "phase": -1,
+          "credits": 0,
+          "receipt": 0,
+          "returnPay": 0,
+          "holder": -1,
+          "beaconCarrier": -1,
+          "charges": 0,
+          "shiftElapsed": 0.0,
+          "suppressionStage": 0,
+          "hazard": false,
+          "cinderReview": true,
+          "receiptCollected": false,
+          "positions": [
+            {
+              "x": -24.000041961669922,
+              "y": 0.03499994054436684,
+              "z": -17.106605529785156
+            },
+            {
+              "x": -23.291410446166992,
+              "y": 0.03499988093972206,
+              "z": -12.107964515686035
+            },
+            {
+              "x": -22.592864990234375,
+              "y": 0.03499988093972206,
+              "z": -13.04185676574707
+            },
+            {
+              "x": -21.891372680664062,
+              "y": 0.03499988093972206,
+              "z": -12.146370887756348
+            }
+          ],
+          "danger": {
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "down": [],
+            "hits": 0,
+            "rescues": 0,
+            "evacuations": 0,
+            "noises": 0,
+            "pursuedPlayer": -1
+          },
+          "outerDanger": {
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "down": [],
+            "hits": 0,
+            "rescues": 0,
+            "evacuations": 0,
+            "noises": 0,
+            "pursuedPlayer": -1
+          }
+        },
+        {
+          "protocol": 13,
+          "recipient": 3,
+          "occupiedMask": 15,
+          "players": 4,
+          "phase": -1,
+          "credits": 0,
+          "receipt": 0,
+          "returnPay": 0,
+          "holder": -1,
+          "beaconCarrier": -1,
+          "charges": 0,
+          "shiftElapsed": 0.0,
+          "suppressionStage": 0,
+          "hazard": false,
+          "cinderReview": true,
+          "receiptCollected": false,
+          "positions": [
+            {
+              "x": -24.000041961669922,
+              "y": 0.03499994054436684,
+              "z": -17.106605529785156
+            },
+            {
+              "x": -23.291410446166992,
+              "y": 0.03499988093972206,
+              "z": -12.107964515686035
+            },
+            {
+              "x": -22.592864990234375,
+              "y": 0.03499988093972206,
+              "z": -13.04185676574707
+            },
+            {
+              "x": -21.891372680664062,
+              "y": 0.03499988093972206,
+              "z": -12.146370887756348
+            }
+          ],
+          "danger": {
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "down": [],
+            "hits": 0,
+            "rescues": 0,
+            "evacuations": 0,
+            "noises": 0,
+            "pursuedPlayer": -1
+          },
+          "outerDanger": {
+            "position": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0
+            },
+            "down": [],
+            "hits": 0,
+            "rescues": 0,
+            "evacuations": 0,
+            "noises": 0,
+            "pursuedPlayer": -1
+          }
+        }
+      ]
+    }
+  },
+  "preservation": {
+    "start_tracked_files": 1447,
+    "art_and_scenes": 264,
+    "changed_art_or_scenes": [],
+    "existing_material_edits": 8,
+    "existing_material_hashes_preserved": true,
+    "derived_scene_restored_after_generated_ids": true
+  },
+  "failed_attempts": [
+    {
+      "run": "artifacts/cinder-four-player/run-20261002-153715-06ba0e",
+      "checks_passed": 7,
+      "reason": "Blocked movement: slot 0 to (21, 18)",
+      "resolution": "Correct ordinary-input route around existing building collision; no game collision or attack rule changed."
+    },
+    {
+      "run": "artifacts/cinder-four-player/run-20261002-154214-08388e",
+      "checks_passed": 48,
+      "reason": "Blocked movement: slot 3 to (-18, -18)",
+      "resolution": "Correct ordinary-input route around existing building collision; no game collision or attack rule changed."
+    }
+  ],
+  "images": [
+    {
+      "path": "art/cinder-kit-01/suppression-failing-ko.png",
+      "size": [
+        800,
+        500
+      ],
+      "source_run": "/Users/leedoik/WorkSpace/Game/No_Returns/artifacts/cinder-four-player/run-20261002-155001-d54b63",
+      "visually_inspected": true
+    },
+    {
+      "path": "art/cinder-kit-01/suppression-off-en.png",
+      "size": [
+        800,
+        500
+      ],
+      "source_run": "/Users/leedoik/WorkSpace/Game/No_Returns/artifacts/cinder-four-player/run-20261002-155001-d54b63",
+      "visually_inspected": true
+    }
+  ],
+  "unverified": [
+    "Human four-player control/fun/fear and warning/audio/dim-floor readability",
+    "Final creature models/animation/audio",
+    "Cinder clues/progression persistence",
+    "Other PC/LAN/Windows/performance/extended stability",
+    "Dynamic terrain or routing around moving crew/cargo; existing background rocks remain decorative"
+  ],
+  "native_counts": {
+    "hud_behavior": 13,
+    "hud_text_height": 100,
+    "controls_ui": 17,
+    "ledger": 35
+  },
+  "automated_player_checks": 152,
+  "documentation": {
+    "status": "PASS",
+    "maintained_and_archived_documents": 274,
+    "paired_languages": true,
+    "checkbox_alignment": true
+  },
+  "whitespace": {
+    "own_scope": "PASS",
+    "whole_worktree": "Existing material edit trailing spaces; excluded from this commit and preserved",
+    "derived_scene": "Restored unchanged, no generated-ID diff committed"
+  },
+  "manual_launch": {
+    "running_processes": 4,
+    "host_established_peers": 3,
+    "test_input_directories": false,
+    "run": "/Users/leedoik/WorkSpace/Game/No_Returns/artifacts/cinder-four-player/run-20261002-160352-2cc037",
+    "human_input_or_quality_verified": false,
+    "initial_attempt": "Rejected by in-use port probe immediately after automatic test shutdown; retry succeeded without terminating unrelated processes."
+  }
+}

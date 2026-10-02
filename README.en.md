@@ -2,13 +2,13 @@
 
 [한국어](README.md)
 
-[Current Mac Cinder 0.9.2 controls, ship and purchase UI](docs/current/controls-ui.en.md). Follow this guide for the latest four-window player and controls. Older Windows experiment builds below are outside this Mac validation scope.
+[Current Mac Cinder 0.9.4 — suppression/outer creature](docs/current/cinder-suppression.en.md) · [Controls, ship and purchase](docs/current/controls-ui.en.md) · [Launch four windows](07_Play_Cinder_4P.command). Connect suppression decay/outer pursuit to delivery, Listener, baton, rescue and beacon. Cinder progression saving remains absent; distinguish the legacy Windows experiments and their validation scope below.
 
 **A PSX-style cooperative space-delivery mystery.** Route selection triggers automatic spacecraft travel and landing. Employees deliver through dangerous sites, reinvesting pay in equipment and harder work.
 
 [Product design](docs/current/01-overview.en.md) · [Documentation](docs/README.en.md)
 
-Open Unity with [01_Open_Project.cmd](01_Open_Project.cmd). The only development project is `NoReturns/`. A two-player first-person delivery, creature, rescue, beacon-purchase and risk-contract experiment is playable. Final maps and PSX art remain absent. Host progression is saved locally.
+Open Unity with [01_Open_Project.cmd](01_Open_Project.cmd). The only development project is `NoReturns/`. Current Mac Cinder supports four-player delivery, receipt, return, hazard and rescue testing. The legacy experiment below retains risk contracts and host local saving. Final maps/creature art and human quality review remain in progress.
 
 [Launch game](02_Play_Carry_Test.cmd), select HOST, then [join on the same PC](03_Join_Local_Carry_Test.cmd). [Controls and validation](docs/current/carry-test.en.md).
 
@@ -18,7 +18,7 @@ The previous Godot/temporary Unity games, art, builds and launchers were deleted
 
 [Next step: launch Listener/rescue experiment](06_Play_Listener_Test.cmd) · [Controls/validation](docs/current/space-play-03.en.md)
 
-[Launch current build 0.8.2](06_Play_Listener_Test.cmd) · [B purchase / T contract / V beacon guide](docs/current/space-play-04.en.md)
+[Launch legacy experiment build 0.8.2](06_Play_Listener_Test.cmd) · [B purchase / T contract / V beacon guide](docs/current/space-play-04.en.md)
 
 [Progress saving/restart guide](docs/current/space-play-05.en.md)
 

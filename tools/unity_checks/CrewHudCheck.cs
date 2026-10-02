@@ -19,7 +19,7 @@ public static class CrewHudCheck {
    s.cinderReview=true;s.positions=Array.ConvertAll(new[]{0,1,2,3},i=>new Vector3(-20.7f,1.035f,-25-i));hud.Apply(s,2,true);
    Check(texts.Any(t=>t.text.Contains("RESCUING 50%")),"Cinder rescue prompt survives ship hint");
    s.danger.rescue[2]=0;s.danger.down[2]=true;hud.Apply(s,2,true);Check(texts.Any(t=>t.text.Contains("DOWN / wait")),"Cinder down prompt survives ship hint");
-   Check(texts.All(t=>!t.text.Contains("SUPPRESSOR")),"Cinder does not disclose legacy suppression cue");
+   s.suppressionStage=2;hud.Apply(s,2,true);Check(texts.Any(t=>t.text.Contains("movement beyond the east boundary")),"Cinder shows its current boundary warning");
    s.danger.down[2]=false;s.cinderReview=false;
    s.holder=-1;s.beaconCarrier=-1;s.danger.rescue[2]=0;
    for(int language=0;language<2;language++){

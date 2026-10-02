@@ -126,6 +126,7 @@ public static class CarryLanguage {
         {"SUPPRESSOR / steady hum","억제장치 / 일정한 작동음"},
         {"SUPPRESSOR / irregular signal - plan your return","억제장치 / 불규칙한 신호 — 귀환을 준비하세요"},
         {"SUPPRESSOR / failing - movement at the east gate","억제장치 / 붕괴 임박 — 동쪽 문에서 무언가 움직입니다"},
+        {"SUPPRESSOR / failing - movement beyond the east boundary","억제장치 / 붕괴 임박 — 동쪽 경계 밖에서 무언가 움직입니다"},
         {"SUPPRESSOR OFF / outer creature entering - return to ship","억제장치 정지 / 외곽 생물 진입 — 우주선으로 대피하세요"},
         {"Partner left / emergency recovery / secured pay retained","동료가 나갔습니다 / 긴급 회수 완료 / 확보한 보수 유지"},
         {"Shift in progress / wait for host to prepare next shift","근무 진행 중 / 방장이 다음 근무를 준비하면 참가할 수 있습니다"},

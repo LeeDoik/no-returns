@@ -52,9 +52,9 @@ public sealed partial class CrewHud : MonoBehaviour {
         prompt.text=T(action);
         if(s.cinderReview&&s.phase<0)prompt.text=T(hands?"[Q] SET DOWN   /   HANDS OCCUPIED":"[E] Carry / [Q] Set down / Space jump / Esc menu");
         if(!down&&s.danger!=null&&s.danger.RescueAt(local)>0)prompt.text=string.Format(T("RESCUING {0}% / keep holding E"),Mathf.Clamp(Mathf.RoundToInt(s.danger.RescueAt(local)/2.5f*100),0,100));
-        cue.text=s.hazard&&!s.cinderReview&&(s.phase==2||s.phase==3)?T(CarrySuppression.Cue(s.suppressionStage)):T("WASD move / Mouse look / Shift quiet walk");
+        cue.text=s.hazard&&(s.phase==2||s.phase==3)?T(CarrySuppression.Cue(s.suppressionStage,s.cinderReview)):T("WASD move / Mouse look / Shift quiet walk");
         if(s.cinderReview){
-            cue.text=T(s.hazard&&(s.phase==2||s.phase==3)?"LISTENER / watch the warning; keep quiet":s.phase<0?"WASD move / Mouse look / R reset (host)":"WASD move / Mouse look / E ship action / Esc menu");
+            if(!s.hazard||s.phase<2||s.phase>3)cue.text=T(s.phase<0?"WASD move / Mouse look / R reset (host)":"WASD move / Mouse look / E ship action / Esc menu");
             if(s.phase>=0&&!down&&!(s.danger!=null&&s.danger.RescueAt(local)>0))prompt.text=T(CarryMission.Aboard(s.positions[local],true)?"[E] SHIP ACTION / all crew aboard to depart or return":hands?"[Q] SET DOWN   /   HANDS OCCUPIED":s.phase==3&&!s.receiptCollected?"Collect receipt at terminal [E] / No pay until return":"[E] Carry / [Q] Set down / Space jump / Esc menu");
         }
         // No creature AI state or remaining suppression seconds on the HUD.
