@@ -2,6 +2,30 @@
 
 [English](03-guides.en.md)
 
+## 2026-10-03 — 직원 토폴로지 시작 설정
+
+사용자의 설정 질문에 대한 **제작 권장안**이다. 토폴로지는 메시의 면과 모서리가 이어지는 구조다. 현재 모델 파일을 검사하거나 생성한 결과가 아니며, 아래 수치는 첫 샘플용 제안이다.
+
+| 항목 | 첫 시험 설정 |
+|---|---|
+| 입력 | [단일 정면 T 자세](../art/space-concepts/employee-02-front.png). 팔을 내린 측면은 형태 참고로만 사용한다. |
+| 방식 | 화면에 제공되는 Smart Mesh/Smart Low Poly 또는 Retopology에서 형태를 보존하며 정리한다. 기능명·범위는 버전에 따라 다르다. |
+| Topology | **Quad**. 편집 원본은 사각형 중심으로 유지한다. |
+| Polygon Count | **사각 면 기준 5,000개**로 시작한다. 모두 사각형이면 삼각형 변환 후 약 10,000개다. UI가 삼각형 수를 표시한다면 단위를 구분하고, 출력의 Faces/Tris를 별도로 실측한다. |
+| 리깅 시점 | 형태·관절 구조를 정리한 다음 기준 리그를 만든다. |
+| 전달 | 편집용 원본 보존, 최종 게임용 메시의 삼각형 분할·변형을 확인한 FBX. |
+
+이 값은 전신 1종에 대한 시작값이며 PSX 실제 하드웨어 제한이나 성능 보장이 아니다. 낮은 해상도 표면·각진 실루엣은 별도로 조절한다. 오염·봉제선·작은 주름을 전부 입체로 만들지 않고 표면으로 표현하며, 큰 외곽 형태와 구부러지는 부위에 면을 배분한다.
+
+권장 작업 순서는 **정면 이미지로 생성 → 원본 보존 → 사각형 토폴로지/면 수 정리 → Blender 검사·필요한 부분 수정 → UV/텍스처 확인·필요시 재투영 → 리깅 → 변형 시험 → Unity 확인**이다. 이미 기준을 통과한 메시에는 리메시를 반복하지 않는다. Quad라는 이름이나 자동 처리 성공만으로 애니메이션 준비 완료로 판단하지 않는다.
+
+- 어깨·겨드랑이: 팔 둘레에서 몸통으로 이어지는 면 흐름을 확보하고 팔을 들 때 겨드랑이가 뭉개지는지 확인한다.
+- 팔꿈치·무릎: 첫 구성은 굽힘 중심과 양옆을 포함한 **둘레 고리 3줄**을 기준으로 검토한다. 이는 절대 규칙이 아니며 90도 굽힘·상자 운반 자세에서 볼륨을 보고 조절한다.
+- 손·장갑: 엄지와 손가락이 서로/몸통에 붙지 않았는지 먼저 확인한다. 가까이 보이는 1인칭 손은 실제 집기 자세로 점검한다. 면 수 증가만으로 잘못 붙은 손을 해결했다고 판단하지 않는다.
+- 헬멧·바이저·단단한 버클: 굽힘용 면을 촘촘히 넣기보다 실루엣과 적절한 뼈 가중치를 유지한다. 분리 부품의 틈/관통을 확인하고 자동 세그먼트 분할은 필수로 하지 않는다.
+
+2026-10-03 공식 자료 확인: [Tripo Studio — Quad/Triangle·Polygon Count](https://www.tripo3d.ai/blog/tripo-studio-tutorial-english), [Tripo Smart Mesh](https://www.tripo3d.ai/features/smart-mesh), [Tripo Retopology API](https://developers.tripo3d.ai/en/docs/mesh-decimate). Studio 기능과 API 알고리즘의 허용 범위는 동일하다고 가정하지 않는다. [Blender 리메시·리토폴로지](https://docs.blender.org/manual/en/5.0/modeling/meshes/retopology.html)는 자동 사각형 리메시와 변형용 최종 면 흐름을 구분하며, [삼각형 변환](https://docs.blender.org/manual/en/5.0/modeling/meshes/editing/face/triangulate_faces.html)은 사각형/다각형 면을 삼각형으로 나눈다. 위 5,000/10,000과 관절 고리 기준은 이 프로젝트의 제안이며 공급업체 보장값이 아니다.
+
 ## 2026-10-03 — 직원 방향별 개별 이미지
 
 사용자의 개별 사진 요청에 따라 시안 02를 참고로 내장 이미지 편집 도구에서 방향별 이미지를 각각 생성했다. 모두 **1254×1254 PNG**이며 한 이미지에 전신 직원 1명만 있고 글자·색 견본은 없다. [정면](../art/space-concepts/employee-02-front.png) · [측면](../art/space-concepts/employee-02-side.png) · [후면](../art/space-concepts/employee-02-back.png) · [정확한 프롬프트 3개·생성 방식](../art/space-concepts/employee-02-views.request.json).

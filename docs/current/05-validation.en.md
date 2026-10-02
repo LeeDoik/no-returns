@@ -2,6 +2,13 @@
 
 [한국어](05-validation.ko.md)
 
+## 2026-10-03 — Employee topology validation preparation
+
+[Settings, production order and official evidence](03-guides.en.md#2026-10-03--initial-employee-topology-settings). This task is research/documentation only; no model/joint checks were executed.
+
+- [ ] Inspect actual Faces/Tris, face flow, separated fingers, normals and UVs/textures on a mesh generated with the proposed Quad/5,000-face settings. Distinguish the approximately 10,000-triangle estimate from measured output.
+- [ ] With a temporary rig, check raised shoulders, 90-degree elbow/knee bends and parcel carrying, then final triangulated mesh/first-person hands in Unity. Finalize the budget using deformation and performance results.
+
 ## 2026-10-03 — Individual view image checks
 
 - [x] Check full-body framing/orientation/original poses and removal of text/swatches in [3 individual images](03-guides.en.md#2026-10-03--separate-employee-view-images), each 1254×1254 PNG, exact generation records and bilingual documentation.

@@ -2,6 +2,8 @@
 
 [한국어](demo-art-list.ko.md)
 
+The proposed [initial topology settings](03-guides.en.md#2026-10-03--initial-employee-topology-settings) for employee ACT01 are Quad/5,000 faces (approximately 10,000 triangles if all faces are quads). Set the final budget after the first deformation/game checks and derive ACT02 arms from the same source. These are not measured or completed model-production values.
+
 ## 2026-10-03 — Deliver individual view images
 
 At the user's request, add [3 separate front/side/back PNGs](03-guides.en.md#2026-10-03--separate-employee-view-images). Prepare the front as a single-character T pose; distinguish completed image generation from appearance approval and Tripo/rig/game validation. ACT01/ACT02 models remain incomplete; retain game 0.9.4 and protocol 13.

@@ -2,6 +2,30 @@
 
 [한국어](03-guides.ko.md)
 
+## 2026-10-03 — Initial employee topology settings
+
+This is a **production recommendation** in response to the user's settings question. Topology is the connectivity of mesh faces and edges. These values are proposed for the first sample, not results from generating or inspecting a current model file.
+
+| Item | First trial setting |
+|---|---|
+| Input | [Single front T pose](../art/space-concepts/employee-02-front.png). Use the lowered-arm side image only as a shape reference. |
+| Method | Use the available Smart Mesh/Smart Low Poly or Retopology controls to preserve and clean the shape. Names/ranges vary by version. |
+| Topology | **Quad**. Retain a quad-dominant editable source. |
+| Polygon Count | Start at **5,000 quad faces**. An all-quad mesh becomes approximately 10,000 triangles after triangulation. Distinguish units if the UI reports triangles, and measure output Faces/Tris separately. |
+| Rigging stage | Establish the canonical rig after shape/joint topology cleanup. |
+| Delivery | Preserve the editable source; deliver FBX after checking triangulation/deformation of the final game mesh. |
+
+This is a starting value for 1 full-body model, not a PSX hardware constraint or a performance guarantee. Tune low-resolution surfaces and angular silhouettes separately. Represent grime, seams and small wrinkles on the surface rather than modeling all of them; allocate faces to silhouette and bending regions.
+
+Recommended sequence: **generate from the front image → preserve the source → refine quad topology/face count → Blender inspection/local repair → UV/texture checks and reprojection if needed → rigging → deformation trial → Unity verification**. Do not repeatedly remesh geometry that already passes. A Quad label or successful automatic operation does not establish animation readiness.
+
+- Shoulders/armpits: provide face flow around the arm into the torso, and check armpit collapse when raising the arms.
+- Elbows/knees: review an initial **3 circumferential loops**, one at the bend and one on each side. This is not an absolute rule; adjust using volume during 90-degree bends and the parcel-carry pose.
+- Hands/gloves: first check that thumbs/fingers are not fused to each other or the torso. Test close-up first-person hands in actual gripping poses. Increased face count alone does not establish repair of fused fingers.
+- Helmet/visor/rigid buckles: retain silhouettes and appropriate bone weights rather than adding dense bending topology. Check gaps/intersections between separate parts; automatic segmentation is not required.
+
+Official sources checked on 2026-10-03: [Tripo Studio — Quad/Triangle and Polygon Count](https://www.tripo3d.ai/blog/tripo-studio-tutorial-english), [Tripo Smart Mesh](https://www.tripo3d.ai/features/smart-mesh), [Tripo Retopology API](https://developers.tripo3d.ai/en/docs/mesh-decimate). Do not assume identical supported ranges across Studio features and API algorithms. [Blender remeshing/retopology](https://docs.blender.org/manual/en/5.0/modeling/meshes/retopology.html) distinguishes automatic quad remeshing from final deformation-oriented face flow; [triangulation](https://docs.blender.org/manual/en/5.0/modeling/meshes/editing/face/triangulate_faces.html) splits quads/polygons into triangles. The 5,000/10,000 and joint-loop criteria above are project recommendations, not provider guarantees.
+
 ## 2026-10-03 — Separate employee view images
 
 At the user's request for separate pictures, generate each view individually with the built-in image editing tool using concept 02 as the reference. All are **1254×1254 PNGs**, each containing 1 full-body employee with no text or color swatches. [Front](../art/space-concepts/employee-02-front.png) · [Side](../art/space-concepts/employee-02-side.png) · [Back](../art/space-concepts/employee-02-back.png) · [3 exact prompts and generation method](../art/space-concepts/employee-02-views.request.json).

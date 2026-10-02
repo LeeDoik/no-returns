@@ -2,6 +2,12 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-03 — Research employee topology settings
+
+Check official Tripo Studio/Smart Mesh/Retopology API and Blender documentation in response to the user's topology-settings/production-order question. Record [Quad/5,000 faces, approximately 10,000 triangles if all faces are quads](../current/03-guides.en.md#2026-10-03--initial-employee-topology-settings), as a first full-body sample proposal. Update bilingual production guidance, asset list, backlog and validation with shoulder/armpit flow, an initial 3 circumferential elbow/knee loops, separated fingers, pre-rig topology cleanup, UV/texture checks, 90-degree/carry deformation trials and face/triangle unit distinctions. Separate provider capabilities from project recommendations.
+
+Current model, output counts, deformation and performance remain unverified. Perform only source/official-document research and link/language/checkbox-state checks across 274 documents plus changed whitespace; no paid generation, model/rig/code/scene changes or Unity execution/build. Retain game 0.9.4 and protocol 13. Preserve/exclude 8 existing ship material edits from the commit.
+
 ## 2026-10-03 — Generate individual employee view images
 
 The user requested separate pictures. Use concept 02 as the built-in image editing reference and generate front, side and back individually. Save [3 PNGs at 1254×1254 and exact prompts](../current/03-guides.en.md#2026-10-03--separate-employee-view-images), preserving the original sheet. Visually inspect 1 full-body employee per image, original front/back T poses and lowered-arm side pose, with text/swatches removed. Generated edits do not retain pixel-identical grime/seams.
