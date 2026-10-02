@@ -2,6 +2,14 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-03 — HyperFrames video production setup
+
+For the requested video environment, prepared a [HyperFrames CLI 0.8.112 / GSAP 3.14.2 project](../current/hyperframes.en.md), nine Codex skills, FFmpeg/FFprobe 9.0.2 and cached Chrome. Added a 2-second entrance smoke source, lockfile, output ignore rules and bilingual instructions.
+
+Validation: zero check errors/warnings, 9 layout samples, contrast 5/5; H.264 MP4 1920×1080, 30fps, 60 frames, 65,335 bytes; visual output-frame inspection and persistent Studio/HTTP 200. Initial static-template sweep_static and missing root check script failures passed after correction/rerun in the correct folder. Optional voice/music models, running Docker and actual trailer remain unverified. No gameplay code/scene/version changes or Unity run/build. Preserve/exclude eight existing material edits and untracked employee art from this commit.
+
+Passed links/language/checkbox checks across 276 documents. Whole-worktree whitespace checking reported trailing spaces in eight pre-existing material edits; those files are outside this task.
+
 ## 2026-10-03 — Generation report and Blender handoff format
 
 The user reported completed Tripo model generation and asked which format to transfer to Blender. Check official DCC/conversion documentation and recommend FBX with the complete texture package, a Blender preset if offered, editable Quad preservation without additional remeshing, post-import inspection and `.blend` preservation. Distinguish the user report from actual file verification in the [current guide](../current/03-guides.en.md#2026-10-03--transfer-the-generated-model-to-blender) and bilingual asset status, backlog and validation lists.

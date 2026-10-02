@@ -1,0 +1,14 @@
+{
+  "name": "hyperframes",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "npx --yes hyperframes@0.8.112 preview --background",
+    "check": "npx --yes hyperframes@0.8.112 check",
+    "render": "npx --yes hyperframes@0.8.112 render",
+    "stop": "npx --yes hyperframes@0.8.112 preview --stop"
+  },
+  "dependencies": {
+    "gsap": "3.14.2"
+  }
+}

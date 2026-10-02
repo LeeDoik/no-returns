@@ -68,3 +68,7 @@ This task produced analysis and script documents only. Images, 3D models, an ani
 - [ ] Actual cooperative capture, final voice-over/music, rights, subtitles and finished-video validation.
 
 Audience review questions: Did viewers understand that they are couriers? Can they explain one cooperative action? Did they understand suppression is temporary? Did a question remain that they want answered? Evaluate communication of NO RETURNS gameplay and atmosphere rather than similarity to the reference.
+
+## 2026-10-03 — Production environment
+
+Configured the [HyperFrames environment](hyperframes.en.md) and verified a 2-second smoke MP4. This does not complete the 75-second trailer or animatic above.
