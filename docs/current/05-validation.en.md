@@ -2,6 +2,15 @@
 
 [한국어](05-validation.ko.md)
 
+## 2026-10-02 — Player rig/animation validation preparation
+
+[Proposal with code/official documentation evidence](demo-art-list.en.md#2026-10-02--proposed-player-model-and-animation-workflow). This task performs only source/official-capability research and documentation checks. No new model/clip import, Unity execution/build or human quality validation was performed.
+
+- [ ] Check FBX units/orientation, valid Humanoid Avatar, shoulder/elbow/knee deformation and textures.
+- [ ] Check in-place locomotion, disabled Root Motion, preserved collision/movement, speed-dependent foot sliding and transitions.
+- [ ] Check arm reach/contact transitions across cargo distance 0.75–1.6m, rotation and floor placement; first-person visibility/wall clipping, remote full body and 4 team colors.
+- [ ] Check carrying/baton mutual exclusion, down/2.5-second rescue/recovery and consistent state in four actual processes. Review visual quality separately with people.
+
 ## 2026-10-02 — Cinder suppression and outer creature 0.9.4
 
 [Current rules, production and running](cinder-suppression.en.md). Connect existing 90/135/180-second stages, signal audio and relative work-light dimming to 4 current suppressors and the boundary. Connect east entry, obstacle routing and pursuit for the outer creature 8 seconds after shutdown. Preserve sky/fog/sun, source art and collision. Default launch is delivery + Listener + suppression/outer; retain `--delivery-only`/`--map-only` regression. Version 0.9.4, protocol 13, TCP 27842. Pass 60 actual four-process checks for purchased-beacon distraction, hazardous return, shared down/ship safety, emergency recovery and next shift. [Validation record](../validation/cinder-suppression-0.9.4.json). Supersede older unconnected-suppression/outer statements below within this scope. Human quality, final creatures/audio, clues/progression saving and other-environment/performance checks remain pending.

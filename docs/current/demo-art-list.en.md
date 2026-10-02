@@ -2,13 +2,40 @@
 
 [한국어](demo-art-list.ko.md)
 
+## 2026-10-02 — Proposed player model and animation workflow
+
+This is **research and a recommendation** for the user's GPT Image concept → Tripo model workflow. The current game is [0.9.4, protocol 13](cinder-suppression.en.md); this task generated or integrated no image, model, rig or clip. Current integration specifications take precedence over historical demo status below. Retain ACT01's 1 full-body model with 4 team colors and ACT02's first-person arms/hands.
+
+Recommended order: **GPT Image production reference → Tripo appearance generation → Blender mesh inspection/necessary cleanup → Mixamo rig/basic motions → Blender custom-motion adjustment → Unity integration**. Rigging attaches bones and deformation weights to a model; animation moves those bones. Automatic rigging does not complete gameplay-state integration.
+
+- Prepare a symmetrical full-body T pose on a simple background, with arms clear of the torso and legs apart. Match proportions/gloves/boots across front, side and back views, separating actual input images to suit the selected Tripo input mode. Do not generate the character holding cargo or a baton. The existing employee sheet is an unapproved reference; obtain approval for the new appearance before 3D production.
+- In Blender, inspect shoulder/elbow/knee deformation topology, fingers/gloves, units, normals and UVs. Do not finalize the generated mesh unchanged; correct the areas with deformation problems.
+- Use Mixamo as the default rigging route. If an existing Tripo rig passes Unity Humanoid and deformation checks, retain it and retarget basic motions. The official Tripo API's `mixamo` option specifies compatible bone names, not a verified Unity result. Keep one canonical skeleton; do not auto-rig the same model twice. Prefer FBX for Unity import.
+
+| Required action | Recommended production method |
+|---|---|
+| Idle, forward/back/side movement, empty-handed jump | Select Mixamo candidates and match actual movement speeds/transitions. Test playback-speed adjustment for quiet movement first. |
+| Parcel/beacon pickup, carrying and placement | Blender upper-body base pose + Unity hand placement (IK). Combine with locomotion and provide object-specific grip targets. |
+| Baton use | Adjust a short arm motion to the current immediate strike/recovery presentation. Do not display it while carrying cargo/a beacon. |
+| Down, rescue and getting up | Start with a fixed down pose, short entry/recovery and a rescue hold motion. Current rescue is holding E for 2.5 seconds, not carrying/dragging teammates. |
+
+Current [CarryRoom](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs) uses a 1.8m collider, 1.57m eye height and placeholder box-based bodies, hiding the local full body. Existing CharacterController/host state owns movement, so propose **in-place motions with `Apply Root Motion` disabled** as the integration baseline. Drive presentation from actual movement and carrying/down/rescue state; the model must not own movement, collision or cargo ownership. Follow existing [baton presentation](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/BatonVisual.cs) and [rescue rules](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryThreat.cs), without introducing new gameplay adjudication through animation events.
+
+Derive ACT02's arms/gloves from the same full-body source and adjust motions for the camera. Initially retain the validated full Humanoid skeleton/Avatar and separate only the visible mesh. Check the full body seen by teammates and local first-person arms separately; all 4 team colors share the model, rig and motions. Validate built-in Humanoid IK first, without installing a new rigging package.
+
+Current cargo distance is 0.75–1.6m and rotation is adjustable. Rigidly following grip targets at long distances/large rotations can stretch or twist arms. **Do not assume both hands can maintain contact across the entire range.** First establish reachable grips, then evaluate reducing contact correction and blending to the base pose outside that range. Do not parent cargo to hand bones or arbitrarily reduce existing controls.
+
+The first validation slice is **1 character, idle, movement and parcel carrying**. Check shoulder/elbow deformation, hand reach, first-person visibility and remote full-body presentation before completing baton, rescue and jump motions. Exact clip count, automatic rigging success and visual quality remain unconfirmed. Follow the [production backlog](04-backlog.en.md) and [validation criteria](05-validation.en.md).
+
+Official capabilities checked on 2026-10-02: [Adobe Mixamo — humanoid rigging/mesh requirements](https://helpx.adobe.com/ph_en/creative-cloud/faq/mixamo-faq.html), [Tripo Auto Rig API — bone names/FBX output](https://developers.tripo3d.ai/en/docs/animations-rig), [Unity Humanoid retargeting](https://docs.unity3d.com/6000.0/Documentation/Manual/Retargeting.html), [Unity IK](https://docs.unity3d.com/6000.0/Documentation/Manual/InverseKinematics.html), [Root Motion setting](https://docs.unity3d.com/6000.0/Documentation/ScriptReference/Animator-applyRootMotion.html). Distinguish official capabilities from the project recommendations above. When importing external clips, verify provenance, usage terms and terms for public redistribution of source assets.
+
 ## 2026-10-01 — Cinder delivery, receipt and return settlement
 
 [CINDER-DELIVERY-01 usage, coordinates and evidence](four-player.en.md#2026-10-01--cinder-delivery-receipt-and-return-settlement). In separate `CinderFourPlayerTest`, connect ship E preparation/arrival → BAY 04 floor delivery → CRT receipt E collection → all crew aboard/E return/420 CR settlement → next shift. Retain version 0.9.1, protocol 10 and TCP 27842. Reuse the existing delivery ledger, parcel, CRT, KO/EN screen and label tooling. Preserve the source environment scene; supersede older unconnected-delivery/receipt statements below only within this test scope. Default launch is delivery; `start --map-only` and `check` retain the movement test. Listener/baton/suppression/beacon/save and four-human/other-PC/performance validation remain incomplete. Actual automated evidence is in the [validation record](../validation/cinder-delivery-01.json).
 
 ## Priority for current Cinder production — 2026-10-01
 
-Current new-asset work follows the [first 8 warehouse-unit brief](cinder-asset-prep.en.md). The 44 units, R 10/N 34 labels and CSV below describe the 0.9.1 demo survey from 2026-09-13, not current Cinder completion or reuse-approval counts. Prepare the first batch again as new production candidates, including a new sign surface unit. Preserve the existing list, CSV and historical integration evidence.
+Current environment-asset work follows the [first 8 warehouse-unit brief](cinder-asset-prep.en.md). The 44 units, R 10/N 34 labels and CSV below describe the 0.9.1 demo survey from 2026-09-13, not current Cinder completion or reuse-approval counts. Prepare the first batch again as new production candidates, including a new sign surface unit. Preserve the existing list, CSV and historical integration evidence.
 
 2026-09-13 · Audit/proposal against 0.9.1. Opened and inspected the source image after removing its leading path slash. The user targets the reference space and a complete demo cycle. This is a production plan, not individual appearance approval, completed production or release-quality certification.
 

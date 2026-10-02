@@ -2,6 +2,12 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-02 — Research player animation production workflow
+
+The user asked how to animate a player created with GPT Image concepts and Tripo modeling. Inspect CarryRoom's placeholder body/local hiding, host movement and cargo rotation/distance, BatonVisual's strike presentation and CarryThreat's rescue rules. Propose Mixamo basic rigging/motions, Blender custom-motion adjustments and Unity Humanoid/hand IK, while reusing an already validated Tripo rig. Update bilingual production guidance, backlog and checklist for 1 full body, 4 team colors, first-person arms from the same source, an initial 1-character idle/movement/carry slice and arm-reach limits. [Production recommendation and official sources](../current/demo-art-list.en.md#2026-10-02--proposed-player-model-and-animation-workflow).
+
+No code, scene, model or dependency changes. No paid generation or new image/model/rig/clip import. Retain game 0.9.4 and protocol 13. Compare official Adobe/Tripo/Unity documentation with current source; automatic rigging success, deformation, hand contact, full-body/first-person quality and executable validation remain pending. Pass links, language counterparts/checkbox states across 274 documents and this change's whitespace checks. Preserve/exclude 8 existing ship material edits from this commit.
+
 ## 2026-10-02 — Connect Cinder suppression/outer creature 0.9.4
 
 The user authorized the next stage. Connect existing suppression stages, outer pursuit and beacon to current Cinder delivery. Use runtime material copies of 4 suppressors/the boundary, original intensities of 40 work lights, existing signal audio/90·135·180-second thresholds and 8-second shutdown grace. Preserve sky/fog/sun, source art and collision. The outer creature appears at east (29,0,18)m and follows a 1m grid of current ground/static obstacles. Reuse shared down state, post-rescue protection, ship safety, all-down recovery and beacon distraction. Extend Cinder outer grid to x=-53…53/z=-42…42m to pursue crew escaping onto exterior ground. Existing rocks remain decorative without new collision. Add no final creatures/audio, clues, progression saving or dynamic terrain. Version 0.9.4, shared protocol 13, TCP 27842. [Current guide](../current/cinder-suppression.en.md) · [Validation record](../validation/cinder-suppression-0.9.4.json).

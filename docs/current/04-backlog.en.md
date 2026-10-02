@@ -2,6 +2,14 @@
 
 [한국어](04-backlog.ko.md)
 
+## 2026-10-02 — Player asset preparation
+
+[Production recommendation](demo-art-list.en.md#2026-10-02--proposed-player-model-and-animation-workflow). Research the player appearance/animation pipeline at the user's request. These are new pending production items; 0.9.4 behavior is unchanged.
+
+- [ ] Approve a new GPT Image employee concept and production T pose, then generate/inspect the Tripo mesh.
+- [ ] Validate 1 canonical rig's Unity Humanoid mapping and shoulder/elbow/knee deformation, then idle/movement/parcel carrying. Decide presentation for cargo controls beyond arm reach.
+- [ ] Integrate full body/first-person arms, 4 team colors, baton/down/rescue/jump with existing gameplay adjudication; verify four actual processes and human visual quality. Finalize exact clip count and completion only after rig validation.
+
 ## 2026-10-02 — Current development status and next order
 
 Prioritize current 0.9.4 [suppression/outer rules](cinder-suppression.en.md). Connect suppression decay/outer creature while preserving delivery, Listener, baton, rescue, current sky and source environment. Record actual execution in the [validation record](../validation/cinder-suppression-0.9.4.json).
