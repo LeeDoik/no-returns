@@ -2,6 +2,16 @@
 
 [한국어](03-guides.ko.md)
 
+## 2026-10-03 — Transfer the generated model to Blender
+
+The user reports completed Tripo model generation. The actual file has not been supplied or inspected, so counts, Quad preservation, textures and rigging state remain unverified. Recommend **FBX (.fbx) with its accompanying textures** for the current mesh-editing handoff.
+
+- Select FBX export and the Blender preset if shown. Include textures if that option exists; preserve external texture files and folder structure. Deliver the complete ZIP if supplied as an archive.
+- Export the prepared mesh as it is. Disable Triangulate if offered for this editable handoff; do not run additional remeshing/face-count changes just to change format. Confirm original Quad preservation after import rather than inferring it from the format alone.
+- Extract the ZIP, then import the model in Blender through `File → Import → FBX (.fbx)`. Check textures in Material Preview, orientation and scale, then save the editable source as `.blend`. Preserve the original FBX/texture package.
+
+Checked on 2026-10-03: [Tripo's official DCC handoff guide](https://www.tripo3d.ai/help/features/how-to-export-and-import-to-dcc-tools) documents Blender FBX import and character quad/skeleton/texture-reference transfer. Do not assume the Blender preset in the [conversion API](https://developers.tripo3d.ai/en/docs/models-convert) exactly matches options shown in Studio. Actual import, material linking, joint deformation and Unity integration have not been performed.
+
 ## 2026-10-03 — Initial employee topology settings
 
 This is a **production recommendation** in response to the user's settings question. Topology is the connectivity of mesh faces and edges. These values are proposed for the first sample, not results from generating or inspecting a current model file.

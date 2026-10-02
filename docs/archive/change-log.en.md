@@ -2,6 +2,12 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-03 — Generation report and Blender handoff format
+
+The user reported completed Tripo model generation and asked which format to transfer to Blender. Check official DCC/conversion documentation and recommend FBX with the complete texture package, a Blender preset if offered, editable Quad preservation without additional remeshing, post-import inspection and `.blend` preservation. Distinguish the user report from actual file verification in the [current guide](../current/03-guides.en.md#2026-10-03--transfer-the-generated-model-to-blender) and bilingual asset status, backlog and validation lists.
+
+The actual model file has not been received or verified; no code/scene/model changes, generation or Blender/Unity execution occurred. Scope is official-document research and link/language/checkbox-state checks across 274 documents plus changed whitespace. Retain game 0.9.4 and protocol 13. Preserve/exclude 8 existing ship material edits from the commit.
+
 ## 2026-10-03 — Research employee topology settings
 
 Check official Tripo Studio/Smart Mesh/Retopology API and Blender documentation in response to the user's topology-settings/production-order question. Record [Quad/5,000 faces, approximately 10,000 triangles if all faces are quads](../current/03-guides.en.md#2026-10-03--initial-employee-topology-settings), as a first full-body sample proposal. Update bilingual production guidance, asset list, backlog and validation with shoulder/armpit flow, an initial 3 circumferential elbow/knee loops, separated fingers, pre-rig topology cleanup, UV/texture checks, 90-degree/carry deformation trials and face/triangle unit distinctions. Separate provider capabilities from project recommendations.

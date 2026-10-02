@@ -2,6 +2,12 @@
 
 [한국어](05-validation.ko.md)
 
+## 2026-10-03 — Generated-file handoff checks pending
+
+The user reports completed generation; this task only researched/documented [FBX/texture handoff](03-guides.en.md#2026-10-03--transfer-the-generated-model-to-blender).
+
+- [ ] Import the actual FBX/texture package; inspect Quads, Faces/Tris, material paths, orientation/scale and skeleton presence, preserving originals and `.blend`. The file has not yet been received or verified.
+
 ## 2026-10-03 — Employee topology validation preparation
 
 [Settings, production order and official evidence](03-guides.en.md#2026-10-03--initial-employee-topology-settings). This task is research/documentation only; no model/joint checks were executed.
