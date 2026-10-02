@@ -2,6 +2,14 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-03 — Inspect the supplied employee FBX and prepare Blender copy
+
+The user supplied the generated-model folder. Preserve FBX/JPG hashes and inspect with Blender 5.2.2 LTS. Add the [actual working copy, renders and inspection evidence](../current/03-guides.en.md#2026-10-03--employee-blender-inspection-and-working-copy). Measure 4,759 vertices, 4,888 faces (4,230 quads + 658 triangles), 9,118 triangulated faces, 1 UV/material each, 1 4K Base Color and no skeleton. Uniformly resize approximately 0.9126m height to 1.8m, using a floor-centered origin, rotation 0 and scale 1. Preserve source connectivity/UVs/materials and pack the texture into `.blend`. Update bilingual guidance, asset status, backlog and validation together.
+
+Pass 8 reproducible checks for source integrity, topology counts, finite coordinates/UVs, area, height, origin, textures and reopening. Inspect 6 actual renders for full-body appearance, hand shapes and original edge flow; verify the working copy displayed in the Blender app. Retain and locate 21 components/437 boundary edges plus 1 overconnected and 1 winding exception on a boot. Do not blanket-weld boundaries or claim rigging/deformation success. Pass links/language/checkbox checks across 276 documents and changed whitespace. The first reopen assertion failed by checking `has_data` before lazy image decoding; correct it to verify packed data and actual pixel access before loaded state. Clear stale result JSON on failure and add the Python error exit code to the reproduction command.
+
+`game-dev` is not on PATH; use installed Blender. Generation settings/job ID/usage-term evidence, user quality, boot repairs/joint deformation and Unity/performance remain unverified. No new paid generation, rigging, game code/scene changes or Unity execution/build; retain game 0.9.4 and protocol 13. Track sources/working copy/review images with Git LFS. Preserve/exclude 8 pre-existing ship material edits and separate `video/` work from the commit.
+
 ## 2026-10-03 — HyperFrames video production setup
 
 For the requested video environment, prepared a [HyperFrames CLI 0.8.112 / GSAP 3.14.2 project](../current/hyperframes.en.md), nine Codex skills, FFmpeg/FFprobe 9.0.2 and cached Chrome. Added a 2-second entrance smoke source, lockfile, output ignore rules and bilingual instructions.

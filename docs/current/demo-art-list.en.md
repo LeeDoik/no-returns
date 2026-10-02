@@ -2,7 +2,7 @@
 
 [한국어](demo-art-list.ko.md)
 
-2026-10-03 user report: Tripo player model generation completed. Actual file receipt and Quad/count/texture/rig validation remain incomplete. Follow the [FBX/texture-package Blender handoff](03-guides.en.md#2026-10-03--transfer-the-generated-model-to-blender). Do not treat the generation report as completed ACT01/ACT02 production or game validation.
+Current on 2026-10-03: receive the user FBX/JPG and complete the [Blender working copy and measured inspection](03-guides.en.md#2026-10-03--employee-blender-inspection-and-working-copy). ACT01 has 4,230 quads + 658 triangles, 9,118 triangulated faces, a 4K texture and a 1.8m working copy without a skeleton. Two boot connectivity exceptions, joint/hand deformation, rigging and game integration remain incomplete. ACT02 arms have not been derived.
 
 The proposed [initial topology settings](03-guides.en.md#2026-10-03--initial-employee-topology-settings) for employee ACT01 are Quad/5,000 faces (approximately 10,000 triangles if all faces are quads). Set the final budget after the first deformation/game checks and derive ACT02 arms from the same source. These are not measured or completed model-production values.
 

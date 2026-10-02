@@ -2,19 +2,41 @@
 
 [한국어](03-guides.ko.md)
 
+## 2026-10-03 — Employee Blender inspection and working copy
+
+Preserve the user-supplied FBX/JPG and import them in Blender 5.2.2 LTS. [Editable working copy](../../art/player-employee-01/prepared/NR_Employee_01.blend) · [Originals, hashes and provenance](../../art/player-employee-01/provenance.json) · [Measured inspection](../../art/player-employee-01/validation.json) · [Reproduction script](../../art/player-employee-01/inspect.py). This supersedes older file-not-received/import-unverified statements below only within the verified scope. ACT01 rigging/game integration and ACT02 arms remain incomplete.
+
+| Actual FBX inspection | Result |
+|---|---|
+| Mesh / material / UV | 1 each, 4,759 vertices |
+| Faces | 4,888: 4,230 quads + 658 triangles |
+| Triangulated count | 9,118. Preserve mixed source topology; do not triangulate the whole mesh. |
+| Texture | 1 Base Color JPG at 4096×4096, linked and packed into the working copy |
+| Skeleton / weights | None |
+| Original / working height | Approximately 0.9126m → 1.8m, uniform factor approximately 1.9724 |
+| Connectivity | 21 connected components, 437 boundary edges, 1 edge shared by 3 faces, 1 inconsistent-winding edge |
+
+Bake import rotation/scale into only the working mesh and place its origin at the floor center, with object rotation 0 and scale 1. The 1.8m working target matches the [current player controller](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs). Preserve UVs, face connectivity, materials and image pixels. Original FBX/JPG hashes match; leave the supplied Downloads folder untouched.
+
+[Front](../../art/player-employee-01/review/front.png) · [Back](../../art/player-employee-01/review/back.png) · [Three-quarter](../../art/player-employee-01/review/three-quarter.png) · [Hand close-up](../../art/player-employee-01/review/hand-top.png) · [Body topology](../../art/player-employee-01/review/wire-front.png) · [Hand topology](../../art/player-employee-01/review/wire-hand.png) are 6 actual Blender renders. Inspect worn ivory/orange workwear, a black visor, a back without a protruding backpack and finger shapes. The hand close-up shows gaps between four fingers and a distinct thumb shape, but does not verify gripping or joint deformation. Topology images show actual source polygon edges; remove the diagnostic mesh copy from the saved working file.
+
+Boundary edges include joins of separate gloves, boots, helmet and other parts; do not weld them all. Both exception edges lie on the positive-X boot; record exact vertices, adjacent faces and coordinates in the inspection JSON. **Next: inspect/repair the boot exceptions → canonical rig → shoulder/elbow/knee and hand-grip trials**. Static Quad/texture checks do not establish rigging readiness or performance.
+
+Reproduce from the repository root: `blender --background --factory-startup --disable-autoexec --python-exit-code 1 --python art/player-employee-01/inspect.py`. Pass 8 checks covering source integrity, unchanged topology counts, finite coordinates/UVs, no zero-area faces, height, floor origin, packed textures and reopening the saved `.blend`. `game-dev` is not on PATH; use installed Blender without claiming that CLI's package admission checks. Actual provider settings/job ID/usage-term evidence, user appearance approval, rigging/Unity/performance remain unverified. No new paid generation or game code/scene changes; retain game 0.9.4 and protocol 13.
+
 ## 2026-10-03 — Transfer the generated model to Blender
 
-The user reports completed Tripo model generation. The actual file has not been supplied or inspected, so counts, Quad preservation, textures and rigging state remain unverified. Recommend **FBX (.fbx) with its accompanying textures** for the current mesh-editing handoff.
+These are the handoff instructions issued after the generation report. The actual FBX/textures have since been received; use the Blender inspection above for current results. Recommend **FBX (.fbx) with its accompanying textures** for mesh editing.
 
 - Select FBX export and the Blender preset if shown. Include textures if that option exists; preserve external texture files and folder structure. Deliver the complete ZIP if supplied as an archive.
 - Export the prepared mesh as it is. Disable Triangulate if offered for this editable handoff; do not run additional remeshing/face-count changes just to change format. Confirm original Quad preservation after import rather than inferring it from the format alone.
 - Extract the ZIP, then import the model in Blender through `File → Import → FBX (.fbx)`. Check textures in Material Preview, orientation and scale, then save the editable source as `.blend`. Preserve the original FBX/texture package.
 
-Checked on 2026-10-03: [Tripo's official DCC handoff guide](https://www.tripo3d.ai/help/features/how-to-export-and-import-to-dcc-tools) documents Blender FBX import and character quad/skeleton/texture-reference transfer. Do not assume the Blender preset in the [conversion API](https://developers.tripo3d.ai/en/docs/models-convert) exactly matches options shown in Studio. Actual import, material linking, joint deformation and Unity integration have not been performed.
+Checked on 2026-10-03: [Tripo's official DCC handoff guide](https://www.tripo3d.ai/help/features/how-to-export-and-import-to-dcc-tools) documents Blender FBX import and character quad/skeleton/texture-reference transfer. Do not assume the Blender preset in the [conversion API](https://developers.tripo3d.ai/en/docs/models-convert) exactly matches options shown in Studio. Actual import/material linking are verified above; joint deformation and Unity integration remain incomplete.
 
 ## 2026-10-03 — Initial employee topology settings
 
-This is a **production recommendation** in response to the user's settings question. Topology is the connectivity of mesh faces and edges. These values are proposed for the first sample, not results from generating or inspecting a current model file.
+This is a **production recommendation** in response to the user's settings question. Topology is the connectivity of mesh faces and edges. These are pre-generation first-sample recommendations; the received model measurements appear in the Blender inspection above.
 
 | Item | First trial setting |
 |---|---|

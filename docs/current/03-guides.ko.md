@@ -2,19 +2,41 @@
 
 [English](03-guides.en.md)
 
+## 2026-10-03 — 직원 모델 Blender 검사와 작업본
+
+사용자가 전달한 FBX와 JPG를 보존하고 Blender 5.2.2 LTS에서 가져왔다. [편집 작업본](../../art/player-employee-01/prepared/NR_Employee_01.blend) · [원본·해시·출처](../../art/player-employee-01/provenance.json) · [실측 검사](../../art/player-employee-01/validation.json) · [재현 스크립트](../../art/player-employee-01/inspect.py). 아래 과거 파일 미수령·가져오기 미검증 표기는 이번 확인 범위에서 대체한다. ACT01의 리깅·게임 적용과 ACT02 팔 제작은 미완료다.
+
+| 실제 FBX 검사 | 결과 |
+|---|---|
+| 메시 / 재질 / UV | 각각 1개, 정점 4,759개 |
+| 면 | 4,888개: 사각형 4,230개 + 삼각형 658개 |
+| 삼각형 환산 | 9,118개. 원본의 혼합 면 구조를 유지했으며 전체를 삼각형으로 변환하지 않았다. |
+| 텍스처 | 4096×4096 Base Color JPG 1개, 연결·작업본 내부 포함 확인 |
+| 뼈대 / 가중치 | 없음 |
+| 원본 / 작업본 높이 | 약 0.9126m → 1.8m, 균일 배율 약 1.9724 |
+| 연결 구조 | 21개 연결 성분, 열린 경계 437개, 면 3개가 붙은 모서리 1개, 면 방향 불일치 모서리 1개 |
+
+작업본만 가져오기 회전·크기를 메시 좌표에 반영하고 원점을 바닥 중앙, 오브젝트 회전 0·배율 1로 정리했다. 1.8m는 [현재 플레이어 충돌체](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs)의 높이에 맞춘 작업 기준이다. UV·면 연결·재질·이미지 픽셀은 수정하지 않았다. FBX/JPG 원본은 해시가 일치하며 다운로드 폴더도 수정하지 않았다.
+
+[정면](../../art/player-employee-01/review/front.png) · [후면](../../art/player-employee-01/review/back.png) · [사선](../../art/player-employee-01/review/three-quarter.png) · [손 확대](../../art/player-employee-01/review/hand-top.png) · [전신 면 흐름](../../art/player-employee-01/review/wire-front.png) · [손 면 흐름](../../art/player-employee-01/review/wire-hand.png)은 실제 Blender 렌더 6장이다. 낡은 아이보리/주황 작업복·검은 바이저, 돌출 배낭 없는 등과 손가락 형태를 확인했다. 손 확대에서 네 손가락 사이 틈과 별도 엄지 형태가 보이지만, 쥐기·관절 변형은 검증하지 않았다. 면 흐름 이미지는 실제 원본 모서리이며 진단용 복사 메시를 작업본에서 제거했다.
+
+열린 경계에는 분리된 장갑·부츠·헬멧 등의 접합부가 포함되므로 일괄 용접하지 않는다. 예외 모서리 2개는 X 양수 쪽 부츠에 있으며 정확한 정점·연결 면·좌표를 검사 JSON에 남겼다. **다음은 부츠 예외 연결 확인·수정 → 기준 리그 → 어깨/팔꿈치/무릎과 손 쥐기 시험**이다. 정적인 Quad/텍스처 확인만으로 리깅 준비 완료나 성능을 확정하지 않는다.
+
+재현: 저장소 루트에서 `blender --background --factory-startup --disable-autoexec --python-exit-code 1 --python art/player-employee-01/inspect.py`. 원본 무결성·면 수 유지·유한 좌표/UV·면적 0 없음·높이·바닥 원점·텍스처 포함·저장한 `.blend` 재열기의 8개 검사를 통과했다. `game-dev`는 PATH에 없어 설치된 Blender로 검사했으며 해당 CLI 패키지 승인 검사는 수행하지 않았다. 공급업체 실제 생성 설정·작업 ID·이용 조건 증빙, 사용자 외형 승인, 리깅/Unity/성능은 미확인이다. 새 유료 생성이나 게임 코드/씬 변경은 없고 게임 0.9.4·프로토콜 13을 유지한다.
+
 ## 2026-10-03 — 생성 모델의 Blender 전달
 
-사용자가 Tripo 모델 생성 완료를 보고했다. 실제 파일은 아직 전달·검사하지 않았으므로 면 수·Quad 유지·텍스처·리깅 상태는 미확인이다. 현재 메시 편집용 전달 형식은 **FBX(.fbx) + 함께 제공되는 텍스처**를 권장한다.
+생성 완료 보고 후 안내한 전달 기준이다. 이후 실제 FBX/텍스처를 수령했으며 현재 결과는 위 Blender 검사 항목을 따른다. 메시 편집용 전달 형식은 **FBX(.fbx) + 함께 제공되는 텍스처**를 권장한다.
 
 - 내보내기 형식은 FBX, Blender용 프리셋이 보이면 Blender를 선택한다. 텍스처 포함 옵션이 있으면 포함하고, 외부 텍스처는 폴더 구조와 함께 보존한다. ZIP으로 받으면 전체를 전달한다.
 - 이미 정리한 메시를 그대로 내보낸다. Triangulate 옵션이 있으면 편집용 전달에서는 끄고, 형식 변경을 위해 추가 리메시/면 수 변경을 실행하지 않는다. 형식만으로 원본 Quad 보존을 확정하지 않고 가져온 뒤 검사한다.
 - Blender에서 ZIP 압축을 해제한 뒤 `File → Import → FBX (.fbx)`로 모델을 가져온다. Material Preview로 텍스처와 방향/크기를 확인하고 편집 원본을 `.blend`로 저장한다. 원본 FBX/텍스처 묶음은 보존한다.
 
-2026-10-03 확인한 [Tripo 공식 DCC 전달 안내](https://www.tripo3d.ai/help/features/how-to-export-and-import-to-dcc-tools)는 Blender의 FBX 가져오기, 캐릭터의 사각형/뼈대/텍스처 참조 전달을 설명한다. [변환 API](https://developers.tripo3d.ai/en/docs/models-convert)의 Blender 프리셋과 Studio에 실제 표시되는 옵션을 동일하다고 단정하지 않는다. 아직 실제 가져오기·재질 연결·관절 변형·Unity 적용은 수행하지 않았다.
+2026-10-03 확인한 [Tripo 공식 DCC 전달 안내](https://www.tripo3d.ai/help/features/how-to-export-and-import-to-dcc-tools)는 Blender의 FBX 가져오기, 캐릭터의 사각형/뼈대/텍스처 참조 전달을 설명한다. [변환 API](https://developers.tripo3d.ai/en/docs/models-convert)의 Blender 프리셋과 Studio에 실제 표시되는 옵션을 동일하다고 단정하지 않는다. 실제 가져오기·재질 연결은 위 검사에서 확인했으며 관절 변형·Unity 적용은 미완료다.
 
 ## 2026-10-03 — 직원 토폴로지 시작 설정
 
-사용자의 설정 질문에 대한 **제작 권장안**이다. 토폴로지는 메시의 면과 모서리가 이어지는 구조다. 현재 모델 파일을 검사하거나 생성한 결과가 아니며, 아래 수치는 첫 샘플용 제안이다.
+사용자의 설정 질문에 대한 **제작 권장안**이다. 토폴로지는 메시의 면과 모서리가 이어지는 구조다. 아래 수치는 생성 전 첫 샘플용 제안이며, 수령 모델의 실측값은 위 Blender 검사에 기록한다.
 
 | 항목 | 첫 시험 설정 |
 |---|---|

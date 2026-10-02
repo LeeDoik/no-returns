@@ -1,0 +1,30 @@
+{
+  "asset": "NR_Employee_01",
+  "date": "2026-10-03",
+  "provenance": "User-supplied Tripo generation, preserved byte-for-byte; Finder metadata excluded",
+  "provider": "Tripo (user reported)",
+  "provider_job_id": null,
+  "generation_parameters": null,
+  "generation_prompt": null,
+  "license_status": "Provider account plan and source redistribution terms not independently verified; no license grant inferred",
+  "reference_concept": "../../docs/art/space-concepts/employee-02-front.png",
+  "files": [
+    {
+      "path": "source/spacesuit+3d+model.fbx",
+      "bytes": 331232,
+      "sha256": "704a17c6c46be1770c74bc96d9bf79578e5b5fd5bbe32240e1d1b1a518def94c"
+    },
+    {
+      "path": "source/spacesuit+3d+model.fbm/spacesuit+3d+model_basecolor.jpg",
+      "bytes": 4373346,
+      "sha256": "4105995ee945ce1c7dfd64d812911826e2c591b0cd9162e4a0357bb4b7a0ffa0"
+    }
+  ],
+  "intended_use": "Blender inspection and preparation for ACT01 full body / ACT02 first-person arms; not admitted to Unity",
+  "target_height_m": 1.8,
+  "topology_budget_status": "5000 quad faces was a recommendation, not a confirmed provider setting",
+  "local_tools": {
+    "blender": "5.2.2 LTS",
+    "game-dev": "not on PATH; native Blender inspection used"
+  }
+}
