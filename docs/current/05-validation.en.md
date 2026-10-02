@@ -2,6 +2,13 @@
 
 [한국어](05-validation.ko.md)
 
+## 2026-10-03 — Employee image concept 02 review
+
+[Concept, review scope and exact generation record](03-guides.en.md#2026-10-03--employee-image-concept-02).
+
+- [x] Generate/view 1 PNG at 1774×887: inspect front/back T poses, lowered-arm side view, empty hands, workwear abrasion, a back without protruding equipment and 4 team-color swatches. Check bilingual document links/checkbox states.
+- [ ] User appearance approval, separate Tripo inputs, cross-view proportions/fingers/seams, model/rig deformation and first-person/remote gameplay validation. Distinguish these from successful image generation.
+
 ## 2026-10-02 — Player rig/animation validation preparation
 
 [Proposal with code/official documentation evidence](demo-art-list.en.md#2026-10-02--proposed-player-model-and-animation-workflow). This task performs only source/official-capability research and documentation checks. No new model/clip import, Unity execution/build or human quality validation was performed.

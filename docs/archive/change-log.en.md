@@ -2,6 +2,12 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-03 — Generate employee appearance concept 02
+
+The user requested an image concept. Generate 1 new board with the built-in image tool, using the previous employee sheet as a reference. Visually inspect worn ivory/orange workwear, a black visor, a simple back, front/back T poses, a lowered-arm side view and 4 team-color swatches. Preserve the 1774×887 PNG, 1,669,938 bytes, and exact prompt/reference-image/method JSON; update bilingual production guidance, asset status, backlog and checklist. [Original and review scope](../current/03-guides.en.md#2026-10-03--employee-image-concept-02).
+
+Validation: view the generated image, inspect PNG dimensions/size, and check links, language counterparts/checkbox states across 274 documents plus this change's whitespace. User appearance approval, cross-view consistency, finger structure and Tripo/rig/game quality remain incomplete. This task is an image concept, with no 3D generation, Unity execution/build or code/scene changes. Retain game 0.9.4 and protocol 13. Track the PNG with existing Git LFS rules. Preserve/exclude 8 existing ship material edits from this commit.
+
 ## 2026-10-02 — Research player animation production workflow
 
 The user asked how to animate a player created with GPT Image concepts and Tripo modeling. Inspect CarryRoom's placeholder body/local hiding, host movement and cargo rotation/distance, BatonVisual's strike presentation and CarryThreat's rescue rules. Propose Mixamo basic rigging/motions, Blender custom-motion adjustments and Unity Humanoid/hand IK, while reusing an already validated Tripo rig. Update bilingual production guidance, backlog and checklist for 1 full body, 4 team colors, first-person arms from the same source, an initial 1-character idle/movement/carry slice and arm-reach limits. [Production recommendation and official sources](../current/demo-art-list.en.md#2026-10-02--proposed-player-model-and-animation-workflow).

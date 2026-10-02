@@ -2,6 +2,16 @@
 
 [한국어](03-guides.ko.md)
 
+## 2026-10-03 — Employee image concept 02
+
+![Employee concept 02 — front, side and back](../art/space-concepts/employee-02.png)
+
+At the user's request, use the built-in image generation tool to create 1 new concept sheet with the previous employee sheet as an appearance reference. Preserve the original 1774×887 PNG, 1,669,938 bytes, together with the [exact generation prompt, reference image and method](../art/space-concepts/employee-02.request.json). Do not overwrite `employee-01.png`.
+
+Show the same employee in front/back T poses and a side view with lowered arms to expose torso thickness. Visually inspect ivory workwear, faded orange identification panels, black visor/gloves/boots, dirty seams, chipped paint, abrasion and a simple back silhouette. The 4 orange/teal/mustard/violet patches below are color swatches, not separate models or finished team variants.
+
+**This is an appearance-review proposal awaiting user approval.** Finger structure, cross-view seam/proportion consistency and rig deformation remain unverified. Do not feed this multi-figure board directly to Tripo; after appearance selection, prepare a single-character front T pose and any required individual views of the same design. This task ran no Tripo job, model/animation generation or Unity integration/execution. Follow the [subsequent production workflow](demo-art-list.en.md#2026-10-02--proposed-player-model-and-animation-workflow).
+
 ## 2026-10-02 — Player animation preparation
 
 [ACT01 full body/ACT02 first-person arms recommendation](demo-art-list.en.md#2026-10-02--proposed-player-model-and-animation-workflow). Propose GPT Image → Tripo → mesh inspection → Mixamo basic motions/rigging → Blender custom-motion adjustment → Unity integration. First check 1 character with idle/movement/parcel carrying, sharing one rig across 4 team colors. Validate hand reach with cargo rotation/distance. This is research and a production proposal; image/model generation, gameplay integration and quality approval remain pending.
