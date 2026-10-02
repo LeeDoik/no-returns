@@ -16,3 +16,6 @@ THIRD_PARTY_NOTICES.txt whitespace=-blank-at-eof
 *.tga filter=lfs diff=lfs merge=lfs -text
 *.mp4 filter=lfs diff=lfs merge=lfs -text
 *.otf filter=lfs diff=lfs merge=lfs -text
+
+video/hyperframes/assets/fonts/*.ttf filter=lfs diff=lfs merge=lfs -text
+video/hyperframes/assets/fonts/*-OFL.txt whitespace=-blank-at-eol

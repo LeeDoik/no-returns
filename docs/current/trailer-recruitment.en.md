@@ -72,3 +72,7 @@ Audience review questions: Did viewers understand that they are couriers? Can th
 ## 2026-10-03 — Production environment
 
 Configured the [HyperFrames environment](hyperframes.en.md) and verified a 2-second smoke MP4. This does not complete the 75-second trailer or animatic above.
+
+## 2026-10-03 — Short introduction produced
+
+Produced and verified a [24-second HyperFrames introduction](hyperframes.en.md) using existing Cinder stills, English headlines, Korean explanations and an original pulse score. This does not complete the 75-second recruitment film, actual cooperative capture or narration above. User quality review pending.

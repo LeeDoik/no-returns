@@ -4,6 +4,19 @@
 
 2026-10-03 · 환경 설정·시험 렌더 검증 완료. 실제 트레일러 제작은 미완료.
 
+## 2026-10-03 — 24초 게임 소개 영상
+
+현재 [영상 소스](../../video/hyperframes/index.html)는 2초 설치 시험을 대신하는 24초 소개 영상이다. 영어 제목·한글 설명·자체 산업풍 리듬을 사용하며 배송 → 소음/유인 → 억제장치 → 귀환 메시지를 5개 장면으로 구성했다. [한영 대본·범위](../../video/hyperframes/BRIEF.ko.md), [디자인](../../video/hyperframes/DESIGN.ko.md), [장면 구성](../../video/hyperframes/STORYBOARD.ko.md), [검증 기록](../validation/hyperframes-intro-01.json).
+
+`npm run render -- --quality looks --fps 30 --workers 1 --output renders/no-returns-intro.mp4`로 출력한다. 로컬 결과는 `video/hyperframes/renders/no-returns-intro.mp4`다. 이전 설치 시험은 커밋 `0f8bb4e`에 보존한다. 아래 2초 수치는 설치 시점 기록이며 현재 소스의 길이가 아니다.
+
+- [x] check 오류·경고 0, layout 9개 표본 문제 0, 대비 34/34 통과. 5개 장면 캡처와 실제 출력 5프레임 모음을 시각 확인.
+- [x] H.264 1920×1080, 30fps, 720프레임, 24초, 6,091,537바이트. AAC 48kHz 2채널, 평균 -24.2dB·최대 -5.7dB. hardware GPU/drawelement, 렌더 14.8초.
+- [x] 원본 게임 스크린샷 3장과 OFL 글꼴·자체 음원/재생성 스크립트·출처를 보존. 대형 바이너리는 LFS, 렌더/진단 결과는 커밋 제외.
+- [ ] 사용자 영상·청취 품질 승인, 실제 연속 플레이 녹화와 기존 75초 트레일러는 미완료. 음원은 수치/포맷 검사 범위이며 사람 전 구간 청취 검증은 아니다.
+
+초기 상대 경로와 제목 줄 간격 검사는 수정 후 통과했다. 애니메이션 맵 보조 의존성을 임시 캐시에 준비해 25/27개 tween을 확인했다. 느린 진행선·초기 제목 읽기 정지와 등장 중 충돌 휴리스틱은 장면 확인 및 최종 check와 대조했다. Noto Sans KR 9.9MB는 인라인 상한 2MB를 넘으므로 편집 프로젝트 이동 시 assets/fonts를 함께 보존한다. 로컬 MP4 출력은 정상이다. 게임 코드·씬 변경/Unity 빌드는 없다.
+
 ## 설치와 소스
 
 - [공식 HyperFrames](https://github.com/heygen-com/hyperframes)의 CLI 0.8.112를 [package.json](../../video/hyperframes/package.json)에 고정했다. 기존 Node.js 26.9.0, npm 11.19.1을 사용한다. 새 환경은 Node.js 22 이상과 FFmpeg가 필요하다.

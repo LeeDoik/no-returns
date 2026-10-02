@@ -2,6 +2,12 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-03 — HyperFrames 24-second game introduction
+
+Created a [five-scene introduction](../current/hyperframes.en.md) for the user's request. Use three existing game stills, an original pulse score and English headlines/Korean explanations, with still-image labeling. Added bilingual brief/design/storyboard, OFL fonts/licenses/provenance and an audio regeneration script. Exclude render/cache output and track source binaries with LFS.
+
+Final check: zero errors/warnings, 9 layout samples, contrast 34/34. Actual MP4: 24s/1080p/30fps/720 frames, AAC 48kHz stereo, 6,091,537 bytes. Visually inspect five scenes/output frames; mean -24.2dB/peak -5.7dB. [Evidence](../validation/hyperframes-intro-01.json). Initial path/leading failures passed after fixes; animation-map helper dependencies were resolved in temporary cache. Retain editable assets for the font inline-size warning; output is valid. User quality, full listening review, actual gameplay recording and the 75-second trailer remain pending. No gameplay code/scene/Unity build changes. Exclude existing material edits from the commit.
+
 ## 2026-10-03 — Inspect the supplied employee FBX and prepare Blender copy
 
 The user supplied the generated-model folder. Preserve FBX/JPG hashes and inspect with Blender 5.2.2 LTS. Add the [actual working copy, renders and inspection evidence](../current/03-guides.en.md#2026-10-03--employee-blender-inspection-and-working-copy). Measure 4,759 vertices, 4,888 faces (4,230 quads + 658 triangles), 9,118 triangulated faces, 1 UV/material each, 1 4K Base Color and no skeleton. Uniformly resize approximately 0.9126m height to 1.8m, using a floor-centered origin, rotation 0 and scale 1. Preserve source connectivity/UVs/materials and pack the texture into `.blend`. Update bilingual guidance, asset status, backlog and validation together.

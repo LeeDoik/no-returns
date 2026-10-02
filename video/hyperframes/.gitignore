@@ -5,3 +5,6 @@ snapshots/
 .hf-*/
 
 .thumbnails/
+
+.waveform-cache/
+.media/

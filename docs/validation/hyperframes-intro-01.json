@@ -1,0 +1,45 @@
+{
+  "date": "2026-10-03",
+  "duration_seconds": 24,
+  "resolution": [
+    1920,
+    1080
+  ],
+  "fps": 30,
+  "frames": 720,
+  "video_codec": "h264",
+  "audio_codec": "aac",
+  "audio_sample_rate": 48000,
+  "audio_channels": 2,
+  "bytes": 6091537,
+  "sha256": "e887853734aa599442fd1d6f6692f6d2145432eb72b1e5e22e392e6303495694",
+  "check": {
+    "lint_errors": 0,
+    "lint_warnings": 0,
+    "runtime_errors": 0,
+    "runtime_warnings": 0,
+    "layout_issues": 0,
+    "layout_samples": 9,
+    "motion_errors": 0,
+    "contrast_passed": 34,
+    "contrast_total": 34
+  },
+  "visual_review": "Inspected five scene frames and five actual MP4 frames in a contact sheet.",
+  "audio": {
+    "mean_db": -24.2,
+    "peak_db": -5.7,
+    "human_listening_review": false
+  },
+  "render": {
+    "capture": "drawelement",
+    "gpu": "hardware",
+    "seconds": 14.8
+  },
+  "limits": [
+    "In-engine still montage, not recorded continuous gameplay.",
+    "User quality approval pending.",
+    "Noto Sans KR exceeds 2 MB inline limit; keep local assets/fonts with the editable project.",
+    "Optional animation map initially needed temporary helper dependencies; rerun succeeded.",
+    "Initial parent-relative media paths and tight text leading failed checks; corrected and final check passed."
+  ]
+}

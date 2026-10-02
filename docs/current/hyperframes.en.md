@@ -4,6 +4,19 @@
 
 2026-10-03 · Setup and smoke render verified. Actual trailer production remains incomplete.
 
+## 2026-10-03 — 24-second game introduction
+
+The current [composition source](../../video/hyperframes/index.html) replaces the 2-second installation smoke sample with a 24-second introduction. Five scenes use English headlines, Korean explanations and an original industrial pulse score: delivery → noise/distraction → suppression → return. [Bilingual script/scope](../../video/hyperframes/BRIEF.md), [design](../../video/hyperframes/DESIGN.md), [storyboard](../../video/hyperframes/STORYBOARD.md), [validation](../validation/hyperframes-intro-01.json).
+
+Render with `npm run render -- --quality looks --fps 30 --workers 1 --output renders/no-returns-intro.mp4`. The local result is `video/hyperframes/renders/no-returns-intro.mp4`. The installation sample remains in commit `0f8bb4e`. The 2-second figures below describe historical setup, not the current source duration.
+
+- [x] Zero check errors/warnings, zero layout issues across 9 samples, contrast 34/34. Visually inspected five scene captures and a contact sheet of five actual encoded frames.
+- [x] H.264 1920×1080, 30fps, 720 frames, 24 seconds, 6,091,537 bytes. AAC 48kHz stereo, mean -24.2dB / peak -5.7dB. Hardware GPU/drawelement, 14.8-second render.
+- [x] Preserve three original game stills, OFL fonts, original audio/regeneration script and provenance. Large binaries use LFS; render/diagnostic output is excluded from commits.
+- [ ] User visual/listening approval, continuous gameplay capture and the earlier 75-second trailer remain incomplete. Audio was checked numerically/by format, not through human full-length listening.
+
+Initial parent-relative asset paths and headline leading failed checks and passed after correction. Temporary cached helpers enabled an animation map of 25/27 tweens. Slow progress lines, the opening reading hold and entrance collision heuristics were compared with scene inspection and the final check. Noto Sans KR at 9.9MB exceeds the 2MB inline ceiling, so keep assets/fonts when moving the editable project. Local MP4 output is valid. No gameplay code/scene changes or Unity build.
+
 ## Installation and sources
 
 - Pin the [official HyperFrames](https://github.com/heygen-com/hyperframes) CLI 0.8.112 in [package.json](../../video/hyperframes/package.json). Use existing Node.js 26.9.0 and npm 11.19.1. A new environment needs Node.js 22 or later and FFmpeg.

@@ -1,0 +1,14 @@
+{
+  "sources": {
+    "assets/corridor.png": "../../art/cinder-kit-01/polish-central-junction.png",
+    "assets/delivery.png": "../../art/cinder-kit-01/delivery-terminal-ko.png",
+    "assets/suppression.png": "../../art/cinder-kit-01/suppression-failing-ko.png"
+  },
+  "image_treatment": "Unmodified in-engine stills, layout crop/scale only; not live gameplay footage.",
+  "fonts": [
+    "https://github.com/google/fonts/tree/main/ofl/bebasneue",
+    "https://github.com/google/fonts/tree/main/ofl/notosanskr"
+  ],
+  "audio": "Original procedural score from make_audio.py; no external recording.",
+  "copy": "New English copy with complete Korean on-screen counterparts and bilingual brief."
+}

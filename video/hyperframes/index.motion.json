@@ -1,0 +1,10 @@
+{
+  "duration": 24,
+  "assertions": [
+    {
+      "kind": "appearsBy",
+      "selector": "#dispatch-title",
+      "bySec": 1.5
+    }
+  ]
+}
