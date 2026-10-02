@@ -7,7 +7,8 @@
 [Production recommendation](demo-art-list.en.md#2026-10-02--proposed-player-model-and-animation-workflow). Research the player appearance/animation pipeline at the user's request. These are new pending production items; 0.9.4 behavior is unchanged.
 
 - [x] On 2026-10-03, generate [employee concept 02](03-guides.en.md#2026-10-03--employee-image-concept-02) with the built-in image tool and visually inspect front/side/back views.
-- [ ] Approve the employee appearance, prepare separate views/a single front T pose for Tripo input, then generate/inspect the mesh.
+- [x] On 2026-10-03, generate [3 separate front/side/back PNGs](03-guides.en.md#2026-10-03--separate-employee-view-images), checking full-body framing and removed text. The front is a single-character T pose.
+- [ ] Approve the employee appearance, check cross-view proportions/fingers/seams, validate Tripo input and generate/inspect the mesh.
 - [ ] Validate 1 canonical rig's Unity Humanoid mapping and shoulder/elbow/knee deformation, then idle/movement/parcel carrying. Decide presentation for cargo controls beyond arm reach.
 - [ ] Integrate full body/first-person arms, 4 team colors, baton/down/rescue/jump with existing gameplay adjudication; verify four actual processes and human visual quality. Finalize exact clip count and completion only after rig validation.
 

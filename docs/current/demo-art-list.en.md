@@ -2,6 +2,10 @@
 
 [한국어](demo-art-list.ko.md)
 
+## 2026-10-03 — Deliver individual view images
+
+At the user's request, add [3 separate front/side/back PNGs](03-guides.en.md#2026-10-03--separate-employee-view-images). Prepare the front as a single-character T pose; distinguish completed image generation from appearance approval and Tripo/rig/game validation. ACT01/ACT02 models remain incomplete; retain game 0.9.4 and protocol 13.
+
 ## 2026-10-03 — Player appearance concept generated
 
 Add [employee concept 02, original and generation record](03-guides.en.md#2026-10-03--employee-image-concept-02), an appearance-review image with front/back T poses, a side view and team-color swatches. Update only the not-yet-generated image status from 2026-10-02 below; ACT01/ACT02 models, rigs, motions and user appearance approval remain incomplete. Retain game 0.9.4 and protocol 13.

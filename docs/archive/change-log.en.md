@@ -2,6 +2,12 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-03 — Generate individual employee view images
+
+The user requested separate pictures. Use concept 02 as the built-in image editing reference and generate front, side and back individually. Save [3 PNGs at 1254×1254 and exact prompts](../current/03-guides.en.md#2026-10-03--separate-employee-view-images), preserving the original sheet. Visually inspect 1 full-body employee per image, original front/back T poses and lowered-arm side pose, with text/swatches removed. Generated edits do not retain pixel-identical grime/seams.
+
+Validation covers image viewing, PNG headers/dimensions, prompt JSON, links/language/checkbox states across 274 documents and changed whitespace. Update bilingual production guidance, asset status, backlog and validation lists. Appearance approval, same-pose multi-view/fingers and Tripo/rig/game quality remain incomplete. Retain game 0.9.4 and protocol 13, with no code/scene/3D change or Unity execution/build. Track 3 PNGs with Git LFS and preserve/exclude 8 existing ship material edits from this commit.
+
 ## 2026-10-03 — Generate employee appearance concept 02
 
 The user requested an image concept. Generate 1 new board with the built-in image tool, using the previous employee sheet as a reference. Visually inspect worn ivory/orange workwear, a black visor, a simple back, front/back T poses, a lowered-arm side view and 4 team-color swatches. Preserve the 1774×887 PNG, 1,669,938 bytes, and exact prompt/reference-image/method JSON; update bilingual production guidance, asset status, backlog and checklist. [Original and review scope](../current/03-guides.en.md#2026-10-03--employee-image-concept-02).

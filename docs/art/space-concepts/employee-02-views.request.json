@@ -1,0 +1,27 @@
+{
+  "tool": "image_gen",
+  "mode": "built-in",
+  "date": "2026-10-03",
+  "reference_images": [
+    "docs/art/space-concepts/employee-02.png"
+  ],
+  "transparent_background": false,
+  "outputs": [
+    {
+      "view": "front",
+      "prompt": "Use case: precise-object-edit. Turn the attached employee concept sheet into ONE standalone image containing only the specified single view of the SAME employee. Treat the supplied sheet as the edit/reference source. Preserve the exact character design, body proportions, boxy angular orange-and-ivory helmet, broad black visor where visible, low-poly PSX rendering, dirty ivory coverall, faded burnt-orange shoulder panels, dark shoulder straps, flat triangular chest/back stencil, belt pouches, knee/elbow reinforcement, worn black gloves and boots, and existing surface wear. This request is separation/reframing, not a character redesign. Match all seams, accessories, colors and thickness to the relevant view in the reference as closely as possible. Use a square image with the single entire character centered, full helmet-to-sole height around 85 percent of the canvas, all hands and fingertips inside the frame with comfortable margins. Maintain a plain warm light-gray studio background and even neutral light, a faint contact shadow only. Remove all other views, captions, text, labels, color swatches, borders and layout graphics. No extra people, no cargo, no weapons, no held objects, no backpack, no extra limbs. Output exactly one single-character image, not a sheet or collage. Isolate the LEFTMOST FRONT view. Straight-on orthographic FRONT view, the opaque black visor and chest triangle facing the camera. Preserve the symmetrical T-pose: both arms stretched horizontally, legs slightly apart, boots facing forward. Both hands and all feet fully visible. No camera yaw or perspective.",
+      "output": "docs/art/space-concepts/employee-02-front.png"
+    },
+    {
+      "view": "side",
+      "prompt": "Use case: precise-object-edit. Turn the attached employee concept sheet into ONE standalone image containing only the specified single view of the SAME employee. Treat the supplied sheet as the edit/reference source. Preserve the exact character design, body proportions, boxy angular orange-and-ivory helmet, broad black visor where visible, low-poly PSX rendering, dirty ivory coverall, faded burnt-orange shoulder panels, dark shoulder straps, flat triangular chest/back stencil, belt pouches, knee/elbow reinforcement, worn black gloves and boots, and existing surface wear. This request is separation/reframing, not a character redesign. Match all seams, accessories, colors and thickness to the relevant view in the reference as closely as possible. Use a square image with the single entire character centered, full helmet-to-sole height around 85 percent of the canvas, all hands and fingertips inside the frame with comfortable margins. Maintain a plain warm light-gray studio background and even neutral light, a faint contact shadow only. Remove all other views, captions, text, labels, color swatches, borders and layout graphics. No extra people, no cargo, no weapons, no held objects, no backpack, no extra limbs. Output exactly one single-character image, not a sheet or collage. Isolate the CENTER SIDE view. Exact left-facing orthographic SIDE PROFILE, the nose/visor pointing to the LEFT edge of the image. Preserve the reference side-view relaxed arms-down pose so torso depth and helmet profile remain visible. Both boots entirely in frame. This must not become a three-quarter/front view or a T-pose.",
+      "output": "docs/art/space-concepts/employee-02-side.png"
+    },
+    {
+      "view": "back",
+      "prompt": "Use case: precise-object-edit. Turn the attached employee concept sheet into ONE standalone image containing only the specified single view of the SAME employee. Treat the supplied sheet as the edit/reference source. Preserve the exact character design, body proportions, boxy angular orange-and-ivory helmet, broad black visor where visible, low-poly PSX rendering, dirty ivory coverall, faded burnt-orange shoulder panels, dark shoulder straps, flat triangular chest/back stencil, belt pouches, knee/elbow reinforcement, worn black gloves and boots, and existing surface wear. This request is separation/reframing, not a character redesign. Match all seams, accessories, colors and thickness to the relevant view in the reference as closely as possible. Use a square image with the single entire character centered, full helmet-to-sole height around 85 percent of the canvas, all hands and fingertips inside the frame with comfortable margins. Maintain a plain warm light-gray studio background and even neutral light, a faint contact shadow only. Remove all other views, captions, text, labels, color swatches, borders and layout graphics. No extra people, no cargo, no weapons, no held objects, no backpack, no extra limbs. Output exactly one single-character image, not a sheet or collage. Isolate the RIGHTMOST BACK view. Straight-on orthographic REAR view, back of the helmet and the orange triangular back stencil facing the camera. Preserve the symmetrical T-pose: arms horizontal and legs slightly apart. Show the flat cloth back, dark straps, rear belt and rear boots; no visor or face visible. Both hands entirely inside the frame. No camera yaw or perspective.",
+      "output": "docs/art/space-concepts/employee-02-back.png"
+    }
+  ],
+  "status": "individual-view-concepts-not-model-validation"
+}

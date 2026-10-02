@@ -2,6 +2,12 @@
 
 [한국어](03-guides.ko.md)
 
+## 2026-10-03 — Separate employee view images
+
+At the user's request for separate pictures, generate each view individually with the built-in image editing tool using concept 02 as the reference. All are **1254×1254 PNGs**, each containing 1 full-body employee with no text or color swatches. [Front](../art/space-concepts/employee-02-front.png) · [Side](../art/space-concepts/employee-02-side.png) · [Back](../art/space-concepts/employee-02-back.png) · [3 exact prompts and generation method](../art/space-concepts/employee-02-views.request.json).
+
+Visually inspect front/back T poses, a left-facing lowered-arm side view, helmet, workwear, identification colors, gloves/boots and full-body framing. Preserve the original sheet; generated edits do not retain pixel-identical grime/seams. The side pose differs, so this is not a validated same-pose multi-view input set. Propose the front image first for a Tripo single-image trial. Appearance approval, cross-view consistency, 3D generation and rig/game validation remain incomplete.
+
 ## 2026-10-03 — Employee image concept 02
 
 ![Employee concept 02 — front, side and back](../art/space-concepts/employee-02.png)

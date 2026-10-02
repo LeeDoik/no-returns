@@ -2,6 +2,11 @@
 
 [한국어](05-validation.ko.md)
 
+## 2026-10-03 — Individual view image checks
+
+- [x] Check full-body framing/orientation/original poses and removal of text/swatches in [3 individual images](03-guides.en.md#2026-10-03--separate-employee-view-images), each 1254×1254 PNG, exact generation records and bilingual documentation.
+- [ ] User appearance approval, same-pose multi-view consistency, finger structure and Tripo model/rig/game validation. The current side view is a lowered-arm reference pose.
+
 ## 2026-10-03 — Employee image concept 02 review
 
 [Concept, review scope and exact generation record](03-guides.en.md#2026-10-03--employee-image-concept-02).
