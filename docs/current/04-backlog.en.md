@@ -2,6 +2,18 @@
 
 [한국어](04-backlog.ko.md)
 
+## 2026-10-02 — Development order after cleanup
+
+Preserve current 0.9.3 delivery, Listener, baton and down/rescue. Proceed through **brief human control review → Cinder suppression decay/outer creature integration → actual purchased-beacon lure/full return verification → progression saving**. These are next-task recommendations; this investigation neither implements features nor verifies human quality.
+
+- [ ] Play one delivery for about 5 minutes, checking parcel controls, departure/return UI, Listener warnings and rescue for friction. Distinguish automated four-process checks from human assessment.
+- [ ] Connect existing [suppression stages](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarrySuppression.cs) to color, signal and lighting on the 4 current suppressors. Preserve current sky/fog and source art scene.
+- [ ] Adapt the existing outer creature's advance cues, entry, pursuit paths and ship safety to Cinder coordinates. Review existing stages/entry grace as a starting point; do not mark new values confirmed or implementation complete.
+- [ ] Verify actual purchased-beacon attraction, receipt collection/normal return under hazards, emergency recovery/next-shift reset and stage agreement across four processes together.
+- [ ] Connect Cinder progression saving after validating this cycle. Keep four-human, other-PC/LAN, Windows and performance checks separate.
+
+[Current implementation and validation scope](cinder-listener.en.md). Confirm from current [CarryRoom](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs) code that Cinder still excludes suppression/outer instantiation. This investigation changes no code/scenes and runs no gameplay checks.
+
 The historical `artifacts/` paths identify local evidence from the original run. These files are no longer retained here and are not included in the public repository. Historical passes are distinct from current revalidation.
 
 ## 2026-10-02 — Repository and local file cleanup

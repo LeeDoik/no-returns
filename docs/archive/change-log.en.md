@@ -2,6 +2,12 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-02 — Confirm next work after repository cleanup
+
+The user asked what to do next. Read current documentation home/backlog/0.9.3 Listener guide and CarryRoom/CarrySuppression code. Delivery, Listener, baton and rescue are implemented; Cinder still excludes suppression/outer instantiation. Update the bilingual [next sequence](../current/04-backlog.en.md): about 5 minutes of human control review → suppression decay/outer creature with current coordinates/sky preserved → actual purchased-beacon lure, return/recovery under hazards and four-player synchronization → progression saving. Recommendations do not represent new implementation, confirmed values or human quality approval.
+
+No code/scene/gameplay changes. Validation covers current document/code inspection, documentation link/language/checkbox checks (272 documents pass) and changed-document whitespace checks. No gameplay/build checks in this investigation. Preserve the 8 pre-existing ship material edits and exclude them from this commit. Actual suppression/outer integration, human assessment, other-PC/LAN, Windows, performance and saving remain incomplete.
+
 ## 2026-10-02 — Historical local-evidence references in public documentation
 
 As further cleanup, convert 142 historical `artifacts/` hyperlinks absent from a public clone (71 Korean / 71 English) into textual provenance retaining original paths/labels. Add a note to affected documents explaining that files are no longer retained and distinguishing original verification from current revalidation. Preserve historical values, test outcomes, completion states and document paths; do not treat missing evidence as newly revalidated. [Complete conversion record](../validation/repo-doc-links-2026-10-02.json) · [Retention guide](../current/repo-hygiene.en.md). All **272 documents pass** link/language/checkbox checks. Resolve the 142 inherited failures present at the earlier cleanup stage. No game code/scene/version changes. The earlier 0-error / 4-warning Mac build and 13 actual four-process checks remain applicable; do not repeat gameplay tests for documentation changes.
