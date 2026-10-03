@@ -2,6 +2,10 @@
 
 [한국어](companion-play.ko.md)
 
+## 2026-10-03 — Requested hands-on straight-thrust play started at 0.9.10
+
+On the user's “직접 테스트 해볼게” request, ran the existing `python3 tools/cinder_four_player.py start --companion` to open one human host and one automatic companion window. Confirmed app version 0.9.10, host listening, client slot 1, protocol 13, occupied mask 3, companion readiness and safe practice mode. Leave session `run-20261003-221113-a8137a` running for inspection of new baton thrust/retraction and hiding during carrying. No code changes, rebuild or new quality approval. Feedback on revised hit-feel/appearance and actual mouse/focus remains pending. Checked document links, language counterparts and whitespace.
+
 ## 2026-10-03 — Straight baton thrust 0.9.10
 
 The current 0.9.10 companion uses the fast straight thrust during its baton phase. Prior manual sessions are stopped; this revision opens no manual windows. Open the current build only on “직접 테스트 해볼게”. Start/stop and validation records for 0.9.9 and earlier below are historical. [Current behavior and validation scope](employee-baton.en.md).

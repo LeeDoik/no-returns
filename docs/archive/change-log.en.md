@@ -2,6 +2,10 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-03 — Requested hands-on straight-thrust play started at 0.9.10
+
+On the user's “직접 테스트 해볼게” request, ran the existing `python3 tools/cinder_four_player.py start --companion` to open one human host and one automatic companion window. Confirmed app version 0.9.10, host listening, client slot 1, protocol 13, occupied mask 3, companion readiness and safe practice mode. Leave session `run-20261003-221113-a8137a` running for inspection of new baton thrust/retraction and hiding during carrying. No code changes, rebuild or new quality approval. Feedback on revised hit-feel/appearance and actual mouse/focus remains pending. Checked document links, language counterparts and whitespace.
+
 ## 2026-10-03 — Replace swinging with a short straight thrust at 0.9.10
 
 After hands-on play, the user requests a precise sharp thrust instead of flailing. Fix tip/wrist orientation forward from readiness and remove sideways travel/chest twisting. Replace the motion with fast 0.30m extension during 0–0.06s → hold during 0.06–0.10s → retract along the same path during 0.10–0.30s. First-person motion advances 0.27m; check tip clearance over 0.92–1.19m and reduce depth only near walls. Retain immediate contact/6s cooldown, range/facing/sight, Listener stun, hand attachment, carry/down/rescue blocking and rescue priority. Game 0.9.10, protocol 13, TCP 27842. Update [current production/validation guide](../current/employee-baton.en.md), affected bilingual specifications/guides/backlog/checklists and entry points. Preserve the 0.9.9 swing and validation as historical records.
