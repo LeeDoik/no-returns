@@ -107,19 +107,20 @@ def main(headless=False):
             danger(i).get("rescue",[0]*4)[3]>.06 and danger(i)["cooldown"][3]==0
             and not lab.state(folders[i],"animation.json")["employees"][3]["batonSwing"]
             and lab.state(folders[i],"animation.json")["employees"][3]["batonWeight"]==0 for i in range(4)))
-        require("valid rescue hides local first-person arms",lambda:not lab.state(folders[3],"animation.json")["hands"]["overlayEnabled"])
+        require("valid rescue shows both supported first-person hands and hides the baton",lambda:lab.state(folders[3],"animation.json")["hands"]["rescuing"] and lab.state(folders[3],"animation.json")["hands"]["leftVisible"] and lab.state(folders[3],"animation.json")["hands"]["rightVisible"] and lab.state(folders[3],"animation.json")["hands"]["wristBend"]<=25.01 and not lab.state(folders[3],"animation.json")["batons"][3]["visible"])
         face(3,shove=True)
         require("slot 3 baton stuns on four peers", lambda: all(danger(i).get("state")==4 for i in range(4)))
         capture("listener-baton-ko",3)
         send(3,rescue=True)
         require("slot 3 rescue progress replicated", lambda: all(danger(i).get("rescue",[0]*4)[3]>.35 for i in range(4)))
         send(3)
-        require("release cancels rescue", lambda: danger()["rescue"][3]==0)
+        require("release cancels rescue and restores right-hand baton", lambda: danger()["rescue"][3]==0 and not lab.state(folders[3],"animation.json")["hands"]["rescuing"] and not lab.state(folders[3],"animation.json")["hands"]["leftVisible"] and lab.state(folders[3],"animation.json")["batons"][3]["visible"])
         old=danger()["cooldown"][3];face(3,shove=True);time.sleep(.2)
         require("baton cooldown prevents reset", lambda: 0<danger()["cooldown"][3]<old)
         send(3,rescue=True)
         require("slot 3 rescues host on all peers", lambda: all(not danger(i).get("down",[True]*4)[0] and danger(i).get("rescues",0)>0 for i in range(4)))
         send(3);send(0)
+        require("revival clears rescue hands on the rescuer",lambda:not lab.state(folders[3],"animation.json")["hands"]["rescuing"] and lab.state(folders[3],"animation.json")["batons"][3]["visible"])
         # Move away from the recovering creature while the revived employee has protection.
         go(0,-22.2,-16.4)
         require("rescuer remains vulnerable after revival",lambda:danger()["down"][3],15)

@@ -1,0 +1,144 @@
+{
+  "date": "2026-10-04",
+  "version": "0.9.16",
+  "status": "PASS",
+  "scope": "Camera-relative first-person rescue hands; existing host rescue mechanics preserved",
+  "review": {
+    "status": "PASS",
+    "error": "",
+    "worstGrip": "fov=65 pitch=45 reach=0.5 frame=5",
+    "samples": 1462,
+    "rescueSamples": 63,
+    "maxRescueWristBend": 23.194618225097656,
+    "maxRescueContactError": 4.851466428590356e-07,
+    "maxGripError": 6.699828531964158e-07,
+    "maxBoneLengthError": 5.960464477539062e-07,
+    "maxWristBend": 24.037256240844727,
+    "baselineStrikeWristBend": 119.47013092041016,
+    "overlayDepth": true,
+    "stackRendered": true,
+    "overlayPixels": 70088
+  },
+  "build": {
+    "status": "PASS",
+    "unity": "6000.6.4f1",
+    "output": "/Users/leedoik/WorkSpace/Game/No_Returns/builds/CinderFourPlayer/NoReturns.app",
+    "error": "",
+    "errors": 0,
+    "warnings": 7
+  },
+  "native_baton": {
+    "status": "PASS",
+    "run": "/Users/leedoik/WorkSpace/Game/No_Returns/artifacts/cinder-four-player/run-20261004-005935-12ee56",
+    "checks": [
+      "idle keeps the existing arm pose and shows the first-person right glove",
+      "slot 0: dynamic arm strike replicated; first-person glove attached; returns to idle",
+      "slot 0: cooldown prevents a second attack",
+      "slot 1: dynamic arm strike replicated; first-person glove attached; returns to idle",
+      "slot 1: cooldown prevents a second attack",
+      "human picks up parcel",
+      "carry hides weapon on both peers",
+      "carry exposes both first-person hands",
+      "human cooldown expires while carrying",
+      "carrying rejects an attack",
+      "release restores weapon and right-hand pose",
+      "Backward at yaw 0 drives both actual employee poses",
+      "StrafeLeft at yaw 0 drives both actual employee poses",
+      "StrafeRight at yaw 0 drives both actual employee poses",
+      "Backward at yaw 90 drives both actual employee poses",
+      "StrafeLeft at yaw 90 drives both actual employee poses",
+      "StrafeRight at yaw 90 drives both actual employee poses",
+      "jump suspends direction correction on both peers",
+      "landing returns to idle directional pose",
+      "native logs free of errors and placeholder fallback"
+    ],
+    "first_person_motion": [
+      {
+        "slot": 0,
+        "weapon_travel_m": 0.21592684420715502,
+        "wrist_bends": [
+          23.87598419189453,
+          17.071321487426758
+        ]
+      },
+      {
+        "slot": 1,
+        "weapon_travel_m": 0.21593063146198926,
+        "wrist_bends": [
+          15.760921478271484,
+          23.417448043823242
+        ]
+      }
+    ],
+    "weapon_rotation_degrees": [
+      [
+        9.470875568366342,
+        24.715691498664707
+      ],
+      [
+        24.73512999977161,
+        9.39035798796767
+      ]
+    ]
+  },
+  "native_threat": {
+    "status": "PASS",
+    "run": "/Users/leedoik/WorkSpace/Game/No_Returns/artifacts/cinder-four-player/run-20261004-010007-f64e59",
+    "checks": [
+      "four hazard slots/protocol 13",
+      "Cinder stages start stopped with shared outer down state",
+      "ship UI opens",
+      "route selected",
+      "departure enables patrol",
+      "ship UI closes",
+      "ship calls ignored/no attack",
+      "host carries parcel",
+      "quiet approach has no footstep noise",
+      "call causes investigation",
+      "warning before cargo-carrier attack",
+      "host down replicated to all four",
+      "down releases parcel on all peers",
+      "down blocks movement/pickup/baton",
+      "down hides the local first-person arms",
+      "distant rescue rejected",
+      "slot 3 baits a close warning",
+      "valid rescue blocks baton contact and posing",
+      "valid rescue shows both supported first-person hands and hides the baton",
+      "slot 3 baton stuns on four peers",
+      "slot 3 rescue progress replicated",
+      "release cancels rescue and restores right-hand baton",
+      "baton cooldown prevents reset",
+      "slot 3 rescues host on all peers",
+      "revival clears rescue hands on the rescuer",
+      "rescuer remains vulnerable after revival",
+      "English client context/native font",
+      "all four down triggers emergency report",
+      "four recovered aboard/zero unpaid reward",
+      "recovered host can open ship terminal",
+      "next shift clears down/cooldown and restores parcel",
+      "no Cinder progression file created",
+      "four player logs have no exceptions"
+    ],
+    "scope": "Four native Mac processes and ordinary inputs; human fear, audio readability, fun, LAN/Windows and performance remain unverified"
+  },
+  "native_checks": 53,
+  "manual_windows_opened": false,
+  "tools": {
+    "unity": "6000.6.4f1",
+    "cli": "1.0.0-beta.12",
+    "pipeline": "0.8.0-exp.1",
+    "pending_updates": []
+  },
+  "failures_resolved": [
+    "Corrected CS0747 caused by a malformed State initializer; confirmed successful recompilation before rerunning review. An earlier eval used the old assembly and its 1397-sample receipt was discarded."
+  ],
+  "unknowns": [
+    "Human quality approval",
+    "Native GPU map/lighting/HUD composition",
+    "Actual contact with a downed teammate body and remote full-body rescue/down animation",
+    "Beacon hands",
+    "All-frame clothing/finger penetration",
+    "Windows/LAN and performance"
+  ],
+  "documentation_count": 286
+}

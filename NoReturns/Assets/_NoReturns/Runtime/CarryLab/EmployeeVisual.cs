@@ -4,7 +4,7 @@ namespace NoReturns.CarryLab {
 public sealed partial class EmployeeVisual : MonoBehaviour {
     Animator animator;Vector3 previous;bool sampled;float speed;
     Transform hand,index,middle,little;
-    readonly Transform[] fingers=new Transform[15];readonly Quaternion[] gripRotations=new Quaternion[15];
+    readonly Transform[] fingers=new Transform[15];readonly Quaternion[] gripRotations=new Quaternion[15],openRotations=new Quaternion[15];
     public bool Ready=>animator&&animator.avatar&&animator.avatar.isValid&&animator.isHuman;
     public float Speed=>speed;
     public Vector3 RightHandPosition=>hand?hand.position:transform.position;
@@ -23,6 +23,7 @@ public sealed partial class EmployeeVisual : MonoBehaviour {
         middle=animator.GetBoneTransform(HumanBodyBones.RightMiddleProximal);little=animator.GetBoneTransform(HumanBodyBones.RightLittleProximal);
         var curlAxis=(little.position-index.position).normalized;
         for(int i=0;i<fingers.Length;i++){var bone=animator.GetBoneTransform((HumanBodyBones)((int)HumanBodyBones.RightThumbProximal+i));fingers[i]=bone;
+            if(bone)openRotations[i]=bone.localRotation;
             if(bone)gripRotations[i]=bone.localRotation*Quaternion.AngleAxis(i<3?30:55,bone.InverseTransformDirection(curlAxis));}
         InitializeCarry();InitializeDirectionalFeet();}
     public bool BatonGrip(out Vector3 position,out Quaternion rotation) {

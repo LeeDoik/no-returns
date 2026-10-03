@@ -38,7 +38,7 @@ public sealed partial class EmployeeVisual {
         rightContactError=Reach(rightArm,parcel.transform.TransformPoint(center+tangent*span),worldNormal,along);
     }
 
-    float Reach(Arm arm,Vector3 contact,Vector3 normal,Vector3 along){
+    float Reach(Arm arm,Vector3 contact,Vector3 normal,Vector3 along,float weight=-1,bool supportWrist=false){
         if(!arm.upper||!arm.lower||!arm.wrist||!arm.middle||!arm.index||!arm.little)return 0;
         Vector3 fingers=(arm.middle.position-arm.wrist.position).normalized;
         Vector3 palm=Vector3.Cross(fingers,(arm.index.position-arm.little.position).normalized)*arm.side;
@@ -46,10 +46,26 @@ public sealed partial class EmployeeVisual {
         Quaternion handRotation=turn*arm.wrist.rotation;
         Vector3 palmOffset=(arm.middle.position-arm.wrist.position)*.85f;
         Vector3 goal=contact-turn*palmOffset;
-        carryClamped|=PoseArm(arm,goal,handRotation,carryWeight);
+        carryClamped|=PoseArm(arm,goal,handRotation,weight<0?carryWeight:weight,supportWrist);
+        if(supportWrist)for(int pass=0;pass<3;pass++){
+            SupportWrist(arm);
+            if(pass<2){var current=Vector3.Lerp(arm.wrist.position,arm.middle.position,.85f);PoseArm(arm,arm.wrist.position+contact-current,arm.wrist.rotation,1,true);}
+        }
         return Vector3.Distance(Vector3.Lerp(arm.wrist.position,arm.middle.position,.85f),contact);
     }
 
+    static float WristBend(Arm arm)=>Vector3.Angle(arm.wrist.position-arm.lower.position,arm.middle.position-arm.wrist.position);
+    static void SupportWrist(Arm arm){
+        var forearm=(arm.wrist.position-arm.lower.position).normalized;
+        var fingers=(arm.middle.position-arm.wrist.position).normalized;
+        var supported=Vector3.RotateTowards(forearm,fingers,25*Mathf.Deg2Rad,0);
+        arm.wrist.rotation=Quaternion.FromToRotation(fingers,supported)*arm.wrist.rotation;
+    }
+    public float RescueWristBend=>Mathf.Max(WristBend(leftArm),WristBend(rightArm));
+    public float RescueHands(Vector3 leftGoal,Vector3 rightGoal,Vector3 up,Vector3 forward){
+        for(int i=0;i<fingers.Length;i++)if(fingers[i])fingers[i].localRotation=openRotations[i];
+        return Mathf.Max(Reach(leftArm,leftGoal,up,forward,1,true),Reach(rightArm,rightGoal,up,forward,1,true));
+    }
     bool PoseArm(Arm arm,Vector3 goal,Quaternion handRotation,float weight,bool outwardElbow=false){
         Quaternion upperBase=arm.upper.localRotation,lowerBase=arm.lower.localRotation,handBase=arm.wrist.localRotation;
         Vector3 origin=arm.upper.position,direction=goal-origin;

@@ -6,7 +6,7 @@ public sealed class FirstPersonArms {
     public const int Layer=31;
     GameObject model;Animator animator;EmployeeVisual visual;
     SkinnedMeshRenderer left,right;Camera overlay;bool stacked;
-    [System.Serializable] public class State {public bool ready,rightVisible,leftVisible,carrying,overlayEnabled,overlayConfigured;public float gripError,clearance,wristBend;public Vector3 grip;}
+    [System.Serializable] public class State {public bool ready,rightVisible,leftVisible,carrying,rescuing,overlayEnabled,overlayConfigured;public float gripError,clearance,wristBend,rescueProgress;public Vector3 grip;}
     State state=new State();
     public State Capture()=>state;
     public FirstPersonArms(Camera eye){
@@ -30,15 +30,24 @@ public sealed class FirstPersonArms {
     }
     public void Dispose(Camera eye){if(overlay){if(stacked)eye.GetUniversalAdditionalCameraData().cameraStack.Remove(overlay);Object.Destroy(overlay.gameObject);}if(model)Object.Destroy(model);}
     public static void SetLayer(GameObject root,int layer){foreach(var t in root.GetComponentsInChildren<Transform>(true))t.gameObject.layer=layer;}
-    public void Display(Camera eye,Transform baton,bool allowed,bool carrying,BoxCollider parcel,float clearance){
+    public void Display(Camera eye,Transform baton,bool allowed,bool carrying,BoxCollider parcel,float clearance,float rescueProgress=0){
         if(!model)return;
-        overlay.fieldOfView=eye.fieldOfView;overlay.enabled=allowed||carrying;
+        bool rescuing=rescueProgress>0;
+        overlay.fieldOfView=eye.fieldOfView;overlay.enabled=allowed||carrying||rescuing;
         // Put shoulders outside the view; only source mesh arm triangles are rendered.
-        model.transform.SetPositionAndRotation(eye.transform.position+eye.transform.rotation*new Vector3(0,-1.65f,Mathf.Lerp(-.15f,.05f,Mathf.InverseLerp(.35f,1,carrying?1:clearance))),eye.transform.rotation);
+        model.transform.SetPositionAndRotation(eye.transform.position+eye.transform.rotation*new Vector3(0,-1.65f,Mathf.Lerp(-.15f,.05f,Mathf.InverseLerp(.35f,1,carrying||rescuing?1:clearance))),eye.transform.rotation);
         animator.SetFloat("Speed",0);animator.speed=1;
-        left.enabled=carrying;right.enabled=allowed||carrying;
-        state=new State{ready=visual.Ready,rightVisible=right.enabled,leftVisible=left.enabled,carrying=carrying,overlayEnabled=overlay.enabled,overlayConfigured=stacked,clearance=clearance};
-        if(carrying){visual.CarryPose(parcel,true,false,1);state.gripError=Mathf.Max(visual.Capture().leftContactError,visual.Capture().rightContactError);}
+        left.enabled=carrying||rescuing;right.enabled=allowed||carrying||rescuing;
+        state=new State{ready=visual.Ready,rightVisible=right.enabled,leftVisible=left.enabled,carrying=carrying,rescuing=rescuing,rescueProgress=rescueProgress,overlayEnabled=overlay.enabled,overlayConfigured=stacked,clearance=clearance};
+        if(rescuing){
+            visual.CarryPose(parcel,false,false,1);
+            float enter=Mathf.SmoothStep(0,1,rescueProgress/.18f),press=.018f*Mathf.Sin(rescueProgress*Mathf.PI*4)*enter;
+            var leftGoal=Vector3.Lerp(new Vector3(-.23f,-.65f,.35f),new Vector3(-.23f,-.34f+press,.56f),enter);
+            var rightGoal=Vector3.Lerp(new Vector3(.23f,-.65f,.35f),new Vector3(.23f,-.34f-press,.60f),enter);
+            state.gripError=visual.RescueHands(eye.transform.TransformPoint(leftGoal),eye.transform.TransformPoint(rightGoal),eye.transform.up,eye.transform.forward);
+            state.wristBend=visual.RescueWristBend;
+        }
+        else if(carrying){visual.CarryPose(parcel,true,false,1);state.gripError=Mathf.Max(visual.Capture().leftContactError,visual.Capture().rightContactError);}
         else if(allowed){
             visual.CarryPose(parcel,false,false,1);
             var desired=baton.position;

@@ -9,7 +9,7 @@ using UnityEngine.Rendering;
 using NoReturns.CarryLab;
 namespace NoReturns.Editor {
 public static class FirstPersonArmsReview {
-    [Serializable] class Receipt {public string status="FAIL",error,worstGrip;public int samples;public float maxGripError,maxBoneLengthError,maxWristBend,baselineStrikeWristBend;public bool overlayDepth,stackRendered;public int overlayPixels;}
+    [Serializable] class Receipt {public string status="FAIL",error,worstGrip;public int samples,rescueSamples;public float maxRescueWristBend,maxRescueContactError;public float maxGripError,maxBoneLengthError,maxWristBend,baselineStrikeWristBend;public bool overlayDepth,stackRendered;public int overlayPixels;}
     public static void Review(){
         var receipt=new Receipt();var folder=Path.GetFullPath("../artifacts/first-person-arms");Directory.CreateDirectory(folder);
         var preview=new PreviewRenderUtility();var eyeObject=new GameObject("Arm review eye");var eye=eyeObject.AddComponent<Camera>();eye.fieldOfView=80;
@@ -47,6 +47,18 @@ public static class FirstPersonArmsReview {
             receipt.overlayDepth=eye.GetUniversalAdditionalCameraData().cameraStack.Single().GetUniversalAdditionalCameraData().clearDepth;
             if(!receipt.overlayDepth||(eye.cullingMask&(1<<FirstPersonArms.Layer))!=0)throw new Exception("Overlay isolation failed");
             if(receipt.maxGripError>.12f)throw new Exception("First-person grip exceeds reach allowance: "+receipt.maxGripError);
+            foreach(float fov in new[]{65f,80f,100f})foreach(float pitch in new[]{-45f,0f,45f})foreach(float progress in new[]{.01f,.05f,.1f,.18f,.5f,1.15f,2.49f}){
+                eye.fieldOfView=fov;eye.transform.rotation=Quaternion.Euler(pitch,0,0);animator.Play("Idle",0,.2f);animator.Update(.001f);weapon.SetActive(false);
+                arms.Display(eye,weapon.transform,false,false,parcel,1,progress);var state=arms.Capture();
+                receipt.maxRescueWristBend=Mathf.Max(receipt.maxRescueWristBend,state.wristBend);receipt.maxRescueContactError=Mathf.Max(receipt.maxRescueContactError,state.gripError);
+                if(!state.rescuing||!state.leftVisible||!state.rightVisible||!state.overlayEnabled||state.wristBend>25.01f||state.gripError>.12f)throw new Exception("Rescue hand visibility/contact/wrist failed");
+                foreach(var renderer in renderers){var mesh=new Mesh();renderer.BakeMesh(mesh);if(mesh.vertices.Any(v=>!float.IsFinite(v.x)||!float.IsFinite(v.y)||!float.IsFinite(v.z)))throw new Exception("Non-finite rescue mesh");UnityEngine.Object.DestroyImmediate(mesh);}
+                if(fov==80&&pitch==0&&(progress==.1f||progress==.5f||progress==1.15f))Render(preview,renderers,box,folder,progress==.1f?"Rescue-Enter":progress==.5f?"Rescue-Assist":"Rescue-Press",eye.transform.rotation,fov);
+                receipt.samples++;receipt.rescueSamples++;
+            }
+            arms.Display(eye,weapon.transform,true,false,parcel,1,0);if(arms.Capture().rescuing||arms.Capture().leftVisible||!arms.Capture().rightVisible)throw new Exception("Rescue cancellation failed");receipt.samples++;
+            arms.Display(eye,weapon.transform,false,false,parcel,1,0);if(arms.Capture().rescuing||arms.Capture().overlayEnabled)throw new Exception("Rescue down hiding failed");receipt.samples++;
+            eye.fieldOfView=80;eye.transform.rotation=Quaternion.identity;
             // Render the actual Base/Overlay stack offscreen without entering Play.
             eye.scene=preview.camera.scene;eye.clearFlags=CameraClearFlags.SolidColor;eye.backgroundColor=Color.black;eye.nearClipPlane=.06f;eye.farClipPlane=3;
             var overlay=eye.GetUniversalAdditionalCameraData().cameraStack.Single();overlay.scene=eye.scene;

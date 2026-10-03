@@ -2,6 +2,10 @@
 
 [한국어](cinder-listener.ko.md)
 
+## 2026-10-04 — First-person rescue hands 0.9.16
+
+Reach with both hands and show a small assisting movement during valid rescue. Hide the baton, restore the right-hand baton on cancellation/completion and hide hands when down. Retain the 25° wrist limit. [Current production, values and remaining scope](first-person-arms.en.md), [validation record](../validation/employee-rescue-0.9.16.json). Game **0.9.16**, protocol **13**, TCP **27842**. Preserve existing rescue adjudication. This supersedes older statements below that rescue hands are missing or hidden, within this scope. Beacon hands, full-body rescue/down, actual body contact and human quality review remain pending. Open manual test windows only on request.
+
 ## 2026-10-03 — Straight baton thrust 0.9.10
 
 Retain immediate baton contact, range/facing/sight, Listener stun, 6s cooldown and rescue priority; change presentation to a straight thrust only. Supersede the arm/chest swing in 0.9.9 below. [Current behavior and validation scope](employee-baton.en.md).

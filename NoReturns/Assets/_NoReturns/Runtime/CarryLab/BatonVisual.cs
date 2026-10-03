@@ -64,7 +64,7 @@ public sealed class BatonVisual {
             }
         }
         bool blocked=danger!=null&&(danger.IsDown(local)||danger.RescueAt(local)>0);
-        view.Display(eye,roots[local].transform,roots[local].activeSelf,active&&!blocked&&cargoHolder==local,parcel,clearance);
+        view.Display(eye,roots[local].transform,roots[local].activeSelf,active&&!blocked&&cargoHolder==local,parcel,clearance,active&&danger!=null&&!danger.IsDown(local)&&cargoHolder!=local&&beaconHolder!=local?danger.RescueAt(local):0);
     }
 }
 }

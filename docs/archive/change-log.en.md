@@ -2,6 +2,14 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-04 — First-person rescue hands 0.9.16
+
+For the requested next task, implement the missing rescue hand presentation. Use host-authorized rescue progress to reach with both hands over 0.18 seconds and add a 2Hz assisting movement of up to 0.018m. Restore base finger poses, limit wrist bend to 25°, immediately restore the baton on cancellation/completion and hide hands when down. Preserve the existing 2m/line-of-sight, 2.5-second rescue, 4-second revival protection and attack-blocking rules. Do not add actual body contact or remote full-body rescue motion. Game 0.9.16, protocol 13, TCP 27842. [Current production guide](../current/first-person-arms.en.md), [validation](../validation/employee-rescue-0.9.16.json).
+
+Compilation and Mac build pass (zero errors, seven existing warnings). Pass 1,462 Editor samples including 63 rescue poses and two cancel/down transitions; maximum rescue wrist bend 23.194618° and target error 0.000000486m. Actual URP stack rendering passes. Inspect three rescue entry/assist images. Pass 20 windowless native baton/movement/carry checks and 33 hazard/down/rescue checks, 53 total, with error-free logs. Validate 286 document links/language counterparts/checkbox states, Python syntax and patch whitespace. Fix an initial CS0747 State initializer syntax error; discard an initial eval using the old assembly and rerun after confirmed compilation success.
+
+Confirm official latest Unity 6000.6.4f1, CLI 1.0.0-beta.12 and Pipeline 0.8.0-exp.1; no pending updates. Retain same-session checks for Python 3.14.8, Git 2.56.0, LFS 3.8.0 and uv 0.12.22. No Blender/MCP or new model/animation generation. Open no manual windows or Editor Play; stop automated sessions. Restore build-resaved test scene/URP settings. Preserve and exclude eight pre-existing material and two Blender modifications from the commit. Human quality, native GPU map/lighting/HUD, full-body rescue/down, actual body contact, beacon hands, all-frame clothing/finger penetration, Windows/LAN and performance remain pending.
+
 ## 2026-10-04 — Correct first-person wrist after user feedback 0.9.15
 
 The user reports a bent wrist in the 0.9.14 attack image. Record this as a user quality issue despite the earlier automated passes. Separate cylindrical weapon-axis rotation from palm orientation with -90° palm/+90° weapon corrections and open the first-person elbow outward. Limit the forearm/hand direction angle to 25° and solve grip contact again. Reduce first-person target rotation to (-12-18a,180,-18+8a)° so the baton stays upright during forward extension. Set model origin to (0,-1.65,0.05)m and move z to -0.15m as wall clearance falls to 0.35. Parcel carrying uses the default origin. Preserve remote attack/default parcel IK options, immediate contact and 6s cooldown. [Current guide](../current/first-person-arms.en.md), [validation](../validation/employee-wrist-0.9.15.json). Game 0.9.15, protocol 13, TCP 27842.
