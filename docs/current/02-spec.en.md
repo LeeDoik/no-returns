@@ -2,6 +2,10 @@
 
 [한국어](02-spec.ko.md)
 
+## 2026-10-03 — Straight baton thrust 0.9.10
+
+Retain immediate contact and 6s cooldown; replace the attack with a straight tip-forward thrust. Extend by 0.06s, hold until 0.10s and return by 0.30s, removing sideways swing/chest twisting. This supersedes the 0.9.9 attack presentation below. [Current behavior and validation scope](employee-baton.en.md).
+
 ## 2026-10-03 — Baton readiness, attack and recovery 0.9.9
 
 Apply readiness → immediate impact/follow-through → 0.55s recovery over existing Idle/Walk. Right arm, chest and weapon move together using the existing 6s cooldown. Valid rescue requests take priority over attacking. [Implementation, production and validation scope](employee-baton.en.md).

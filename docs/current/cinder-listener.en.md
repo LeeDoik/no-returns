@@ -2,6 +2,10 @@
 
 [한국어](cinder-listener.ko.md)
 
+## 2026-10-03 — Straight baton thrust 0.9.10
+
+Retain immediate baton contact, range/facing/sight, Listener stun, 6s cooldown and rescue priority; change presentation to a straight thrust only. Supersede the arm/chest swing in 0.9.9 below. [Current behavior and validation scope](employee-baton.en.md).
+
 ## 2026-10-03 — Baton readiness, attack and recovery 0.9.9
 
 Retain immediate baton contact, existing range/stun and 6s cooldown while connecting arm/chest attack posing. Prioritize simultaneous valid rescue over attack and hide weapon/attack posing. [Implementation, production and validation scope](employee-baton.en.md).

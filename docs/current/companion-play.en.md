@@ -1,6 +1,10 @@
-# Hands-on player + automatic companion — 0.9.9
+# Hands-on player + automatic companion — 0.9.10
 
 [한국어](companion-play.ko.md)
+
+## 2026-10-03 — Straight baton thrust 0.9.10
+
+The current 0.9.10 companion uses the fast straight thrust during its baton phase. Prior manual sessions are stopped; this revision opens no manual windows. Open the current build only on “직접 테스트 해볼게”. Start/stop and validation records for 0.9.9 and earlier below are historical. [Current behavior and validation scope](employee-baton.en.md).
 
 ## 2026-10-03 — Hands-on play stopped and session cleaned at 0.9.9
 

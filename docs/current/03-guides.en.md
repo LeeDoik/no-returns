@@ -2,6 +2,10 @@
 
 [한국어](03-guides.ko.md)
 
+## 2026-10-03 — Straight baton thrust 0.9.10
+
+Use existing hand attachment/Humanoid arm posing in Unity with fixed baton orientation. Implement straight extension/retraction and first-person depth correction without a new FBX or Blender source changes. Distinguish 120 static samples, actual network checks and human quality assessment. [Current behavior and validation scope](employee-baton.en.md).
+
 ## 2026-10-03 — Baton readiness, attack and recovery 0.9.9
 
 Inspect the rig through Blender MCP, then apply arm/chest rotations over the existing Humanoid in Unity. Reproduce without additional FBXs; distinguish 210 attack/120 carry static samples from actual client checks. [Implementation, production and validation scope](employee-baton.en.md).

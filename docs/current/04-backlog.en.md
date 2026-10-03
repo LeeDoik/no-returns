@@ -2,6 +2,10 @@
 
 [한국어](04-backlog.ko.md)
 
+## 2026-10-03 — Straight baton thrust 0.9.10
+
+The user reported flailing during hands-on play of 0.9.9; revise the baton to a short straight thrust. Human approval of revised hit-feel/appearance remains pending. Retain jump/landing and backward/sideways motion → first-person arms as next production work. [Current behavior and validation scope](employee-baton.en.md).
+
 ## 2026-10-03 — Baton readiness, attack and recovery 0.9.9
 
 Implemented baton readiness/attack/recovery and carrying/down/rescue exclusions. Human hit-feel/penetration review remains. Next character work is jump/landing and backward/sideways movement → first-person arms; supersede the first item in the earlier proposal below within this scope. [Implementation, production and validation scope](employee-baton.en.md).

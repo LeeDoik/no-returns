@@ -1,4 +1,4 @@
-"""Actual windowless host/client attack posing, cooldown and carrying exclusion."""
+"""Actual windowless host/client straight thrust, cooldown and carrying exclusion."""
 import json
 import math
 import time
@@ -25,9 +25,14 @@ def main():
     def observe(slot, walking=False):
         baseline_poses = [a["employees"][slot] for a in animations()]
         baseline = [p["rightHand"] for p in baseline_poses]
+        def relative_weapon(peer, a):
+            body = lab.state(folders[peer])["positions"][slot]
+            return [a["batons"][slot]["position"][axis]-body[axis] for axis in ("x", "y", "z")]
+        weapon_start = [relative_weapon(peer, a) for peer, a in enumerate(animations())]
         seen = [False, False]
         displacement = [0, 0]
         arm_angles = [0, 0]
+        extension, lateral, axis_angle = [0, 0], [0, 0], [0, 0]
         send(slot, shove=True, z=.5 if walking else 0)
         start = time.monotonic()
         while time.monotonic() - start < .8:
@@ -38,14 +43,22 @@ def main():
                 dot = abs(sum(a*b for a, b in zip(qa, qb))) / math.sqrt(sum(a*a for a in qa)*sum(b*b for b in qb))
                 arm_angles[peer] = max(arm_angles[peer], math.degrees(2*math.acos(min(1, dot))))
                 displacement[peer] = max(displacement[peer], math.dist(list(baseline[peer].values()), list(pose["rightHand"].values())))
+                weapon = a["batons"][slot]
+                v = relative_weapon(peer, a)
+                extension[peer] = max(extension[peer], v[2]-weapon_start[peer][2])
+                lateral[peer] = max(lateral[peer], math.hypot(v[0]-weapon_start[peer][0], v[1]-weapon_start[peer][1]))
+                axis_angle[peer] = max(axis_angle[peer], math.degrees(math.acos(max(-1, min(1, weapon["axis"]["z"])))))
                 if peer != slot:
-                    weapon = a["batons"][slot]
                     assert weapon["handAttached"] and weapon["handDistance"] < .15
             time.sleep(.025)
-        assert all(seen) and min(displacement) > .25 and min(arm_angles) > 25, (seen, displacement, arm_angles)
-        report["checks"].append(f"slot {slot} arm swing {'while walking' if walking else 'from idle'} replicated; weapon follows hand")
+        assert all(seen) and min(displacement) > .25 and min(arm_angles) > 15, (seen, displacement, arm_angles)
+        assert min(extension) > .22 and max(lateral) < .025 and max(axis_angle) < 1, (extension, lateral, axis_angle)
+        report["checks"].append(f"slot {slot} straight tip-forward thrust {'while walking' if walking else 'from idle'} replicated; weapon follows hand")
         report.setdefault("hand_travel", []).append(displacement)
         report.setdefault("arm_rotation_degrees", []).append(arm_angles)
+        report.setdefault("weapon_forward_extension", []).append(extension)
+        report.setdefault("weapon_lateral_drift", []).append(lateral)
+        report.setdefault("weapon_axis_angle_degrees", []).append(axis_angle)
         send(slot)
         require(f"slot {slot} returns to ready within cooldown", lambda: all(
             not a["employees"][slot]["batonSwing"] and a["employees"][slot]["batonWeight"] == 1 for a in animations()))

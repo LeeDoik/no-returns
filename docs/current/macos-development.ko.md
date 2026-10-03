@@ -2,6 +2,10 @@
 
 [English](macos-development.en.md)
 
+## 2026-10-03 — 진압봉 직선 찌르기 0.9.10
+
+0.9.10 수정에 쓰는 공식 최신 Unity Editor 6000.6.4f1·CLI 1.0.0-beta.12·Pipeline 0.8.0-exp.1 일치를 다시 확인했고 업데이트는 없다. Unity CLI 정적 검토·맥 빌드·화면 없는 실제 프로세스 검사를 사용한다. 이번에는 Blender/MCP를 편집에 사용하지 않았다. [현재 동작·검증 범위](employee-baton.ko.md).
+
 ## 2026-10-03 — 진압봉 준비·공격·복귀 0.9.9
 
 0.9.9 작업에서 공식 최신 Editor 6000.6.4f1·CLI 1.0.0-beta.12·Pipeline 0.8.0-exp.1과 Blender 5.2.2 LTS·MCP 2.1.3을 다시 확인했다. Blender MCP 직접 조회와 Unity 정적 표본/맥 빌드/화면 없는 플레이 검사를 사용한다. [구현·제작·검증 범위](employee-baton.ko.md).

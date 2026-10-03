@@ -2,6 +2,10 @@
 
 [한국어](controls-ui.ko.md)
 
+## 2026-10-03 — Straight baton thrust 0.9.10
+
+Empty-hand left-click contact remains immediate; perform a fast 0.06s thrust and return by 0.30s. Retain 6s cooldown, rescue priority and carry/down blocking. The first-person tip also points forward; wall clearance changes depth only. [Current behavior and validation scope](employee-baton.en.md).
+
 ## 2026-10-03 — Baton readiness, attack and recovery 0.9.9
 
 Empty-hand left click retains immediate contact and displays a 0.55s attack/recovery. Keep the 6s cooldown. A simultaneous valid rescue request takes priority over attacking. [Implementation, production and validation scope](employee-baton.en.md).

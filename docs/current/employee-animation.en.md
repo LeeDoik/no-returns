@@ -1,6 +1,10 @@
-# Employee full body and Idle/Walk — 0.9.9
+# Employee full body and Idle/Walk — 0.9.10
 
 [한국어](employee-animation.ko.md)
+
+## 2026-10-03 — Straight baton thrust 0.9.10
+
+Replace baton attacks with straight extension/retraction and a fixed wrist orientation from readiness. Remove chest twisting while preserving Idle/Walk, two-hand carrying and hand attachment. Supersede the swinging presentation in 0.9.9 below. [Current behavior and validation scope](employee-baton.en.md).
 
 ## 2026-10-03 — Baton readiness, attack and recovery 0.9.9
 

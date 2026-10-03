@@ -2,6 +2,10 @@
 
 [한국어](05-validation.ko.md)
 
+## 2026-10-03 — Straight baton thrust 0.9.10
+
+Passed the Mac build with 0 errors/7 warnings, 120 attack poses, 12 actual two-client thrust/carry-exclusion checks and 30 four-client Listener/contact/down/rescue checks (42 total). Verified forward direction, path/bone lengths and exclusion/return. Fixed near-wall first-person wobble found by the initial check and passed the same assertions. Open no manual play windows; human hit-feel/all penetration, Windows/LAN and performance remain unverified. [Current behavior and validation scope](employee-baton.en.md).
+
 ## 2026-10-03 — Baton readiness, attack and recovery 0.9.9
 
 Passed the Mac build with zero errors/7 warnings, 210 attack/120 carry static samples and actual windowless baton 12/carry 10/Listener-contact-down-rescue 30 checks (52 total). Verified interruption/exclusion/recovery and rescue priority, then stopped test processes and removed session records. Human hit-feel/appearance, all locomotion phases/clothing penetration, Windows/LAN and performance remain separately unverified. [Implementation, production and validation scope](employee-baton.en.md).

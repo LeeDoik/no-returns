@@ -2,6 +2,10 @@
 
 [한국어](macos-development.ko.md)
 
+## 2026-10-03 — Straight baton thrust 0.9.10
+
+Reconfirmed latest official Unity Editor 6000.6.4f1, CLI 1.0.0-beta.12 and Pipeline 0.8.0-exp.1 for the 0.9.10 revision; no updates required. Use Unity CLI static review, Mac builds and actual windowless processes. No Blender/MCP editing this task. [Current behavior and validation scope](employee-baton.en.md).
+
 ## 2026-10-03 — Baton readiness, attack and recovery 0.9.9
 
 Recheck latest official Editor 6000.6.4f1, CLI 1.0.0-beta.12, Pipeline 0.8.0-exp.1, Blender 5.2.2 LTS and MCP 2.1.3 for 0.9.9. Use native Blender MCP queries and Unity static samples/Mac build/windowless play checks. [Implementation, production and validation scope](employee-baton.en.md).
