@@ -2,6 +2,10 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-03 — Blender basic-controls guidance
+
+In response to the beginner tutorial request, add complete Korean/English controls guidance to the [production guide](../current/03-guides.en.md). Use the current employee rig to explain navigation, selection, transforms, modes, diagnostic frames, saving and undo. No code/model/scene changes. Consult official search results and existing rig records; direct manual opens failed with HTTP 402. Bilingual content review, link/checkbox checks across 276 documents, and changed-whitespace checks passed. Actual operation under personal input settings and the user's learning outcome remain unverified; existing game/asset completion statuses are unchanged.
+
 ## 2026-10-03 — Employee boot repair, canonical-rig candidate and deformation trial
 
 The user requested the next stage. Build [local boot repairs and a Blender deformation rig](../current/03-guides.en.md#2026-10-03--employee-boot-repair-and-first-deformation-rig). Split 2 invalid shared edges, adding 6 vertices while preserving surfaces/UVs. Result: 4,765 vertices, 4,888 faces, 9,118 triangles, 21 components and 442 boundaries, with zero overconnected/winding exceptions. Build 53 bones, at most 4 normalized influences, and adjust 272 pad vertices' weights plus 20 rim vertices (at most 8.53mm). Update bilingual production guidance, asset status, backlog and validation together.

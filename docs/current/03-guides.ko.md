@@ -2,6 +2,21 @@
 
 [English](03-guides.en.md)
 
+## 2026-10-03 — Blender 첫 조작 연습
+
+[연습할 캐릭터 작업본](../../art/player-employee-01/rigged/NR_Employee_01_Rigged.blend)을 열고 `File → Save As`로 개인 연습용 복사본을 만든다. 아래는 Blender 기본 키맵 기준이며, 단축키는 마우스가 놓인 화면 영역에 적용된다. 가운데 3D 화면 위에 포인터를 두고 조작한다.
+
+- 가운데 **3D Viewport**는 모델 작업 공간, 오른쪽 위 **Outliner**는 물체 목록, 오른쪽 **Properties**는 설정, 아래 **Timeline**은 시간/동작 재생 영역이다.
+- 왼쪽 클릭으로 선택한다. 휠 버튼을 누른 채 드래그하면 둘러보기, `Shift`와 휠 버튼 드래그는 화면 평행 이동, 휠 스크롤은 확대/축소다. 트랙패드에서는 오른쪽 위 축 표시를 드래그하고 옆의 손/돋보기 아이콘을 사용해도 된다.
+- 선택한 물체가 안 보이면 3D 화면의 `View → Frame Selected`를 사용한다. 숫자 키패드가 없어도 된다. `F3` 검색으로 `Frame Selected`를 찾을 수도 있으며 Mac 기능키 설정에 따라 `fn + F3`가 필요하다.
+- `G`는 이동, `R`은 회전, `S`는 크기다. 이어서 `X`, `Y`, `Z`로 방향을 제한한다. 예: `G → Z → 1 → Enter`는 현재 방향 설정의 Z축으로 1만큼 이동한다. 왼쪽 클릭/`Enter`로 확정, `Esc`/오른쪽 클릭으로 취소한다. 실행 취소는 `Edit → Undo`, 저장은 `File → Save`다.
+- **Object Mode**는 물체 전체, **Edit Mode**는 메시 모양이나 뼈대 기본 구조, **Pose Mode**는 뼈대 자세를 편집한다. 캐릭터 팔다리 자세 연습은 Pose Mode에서 한다. 오른쪽 위 목록에서 `NR_Employee_Rig`를 선택하고 3D 화면 왼쪽 위 모드 메뉴에서 Pose Mode를 선택한 다음 뼈를 클릭하고 `R`로 돌린다. 현재 리그는 관절 회전 방식이므로 손을 끌어 팔 전체를 따라오게 하는 IK 조작은 준비되지 않았다.
+- 아래 타임라인의 ▶로 시험 동작을 재생/정지한다. 현재 프레임 숫자 칸에 **1(T 자세), 49(팔꿈치), 73(무릎), 97(손 쥐기), 121(운반 준비)**을 입력해 비교한다. `Start`/`End`는 재생 범위이므로 프레임 이동용으로 바꾸지 않는다. 저장된 시험 동작 때문에 프레임을 바꾸면 수동으로 돌린 뼈가 기존 자세로 돌아갈 수 있다. 자세 저장용 키프레임 편집은 다음 연습 범위다.
+
+첫 연습은 **캐릭터 선택 → Frame Selected → 둘러보기/확대 → 시험 동작 재생 → 정지 → 뼈 하나 회전 → Undo** 순서면 충분하다. 텍스처를 보려면 3D 화면 오른쪽 위의 **Material Preview** 표시 모드를 사용한다. 모델/리그와 게임 동작은 이번 안내에서 변경하지 않았다.
+
+참고: [Blender 기본 키맵](https://docs.blender.org/manual/en/latest/interface/keymap/blender_default.html), [화면 탐색](https://docs.blender.org/manual/en/3.0/editors/3dview/navigate/navigation.html). 2026-10-03 공식 검색 결과에서 기본 키맵과 화면 평행 이동을 확인했으나 본문 직접 열기는 HTTP 402로 실패했다. 위 파일/프레임은 이 프로젝트의 기존 제작·검증 기록 기준이며, 이번 작업에서 사용자 입력 설정별 조작을 새로 시험하지 않았다.
+
 ## 2026-10-03 — 직원 부츠 보정과 첫 변형 리그
 
 [뼈대 포함 Blender 작업본](../../art/player-employee-01/rigged/NR_Employee_01_Rigged.blend) · [정지 자세 FBX](../../art/player-employee-01/rigged/NR_Employee_01_Rigged.fbx) · [실측·검증·출력 해시](../../art/player-employee-01/rigged/validation.json) · [재현 스크립트](../../art/player-employee-01/rig.py). **Blender에서 만든 기준 리그 후보와 변형 시험 결과**다. 아래 수령 당시의 뼈대 없음·부츠 보정 대기 상태를 이 작업본 범위에서 대체한다. 원본 FBX/JPG와 기존 `prepared` 작업본의 로컬 수정은 보존한다.

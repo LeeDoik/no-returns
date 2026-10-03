@@ -2,6 +2,21 @@
 
 [한국어](03-guides.ko.md)
 
+## 2026-10-03 — First Blender controls practice
+
+Open the [practice character file](../../art/player-employee-01/rigged/NR_Employee_01_Rigged.blend) and make a personal practice copy with `File → Save As`. The instructions use Blender's default keymap. Shortcuts act on the area under the pointer; keep it over the central 3D view while operating.
+
+- The central **3D Viewport** is the model workspace, the upper-right **Outliner** lists objects, **Properties** on the right contains settings, and the bottom **Timeline** controls time/playback.
+- Left-click to select. Drag with the wheel button held to orbit, `Shift` plus wheel-button dragging to pan, and scroll to zoom. With a trackpad, you can drag the upper-right axis gizmo and use the nearby hand/magnifier icons.
+- If the selected object is out of view, use the 3D view's `View → Frame Selected`; no numeric keypad is needed. You can also search for `Frame Selected` with `F3`; Mac function-key settings may require `fn + F3`.
+- `G` moves, `R` rotates, and `S` scales. Follow with `X`, `Y`, or `Z` to constrain an axis. For example, `G → Z → 1 → Enter` moves one unit along Z in the current orientation. Confirm with left-click/`Enter`; cancel with `Esc`/right-click. Undo through `Edit → Undo` and save through `File → Save`.
+- **Object Mode** edits whole objects, **Edit Mode** changes mesh shapes or the skeleton's rest structure, and **Pose Mode** changes skeletal poses. Practice limb poses in Pose Mode: select `NR_Employee_Rig` in the upper-right list, choose Pose Mode in the 3D view's upper-left mode menu, then select a bone and rotate with `R`. The current rig uses joint rotations; dragging a hand to make the whole arm follow through IK has not been prepared.
+- Use the Timeline's ▶ to start/stop the diagnostic motion. Enter **1 (T pose), 49 (elbows), 73 (knees), 97 (grip), or 121 (carry-ready)** in the current-frame number field to compare poses. `Start`/`End` set the playback range; do not change them to seek. Existing diagnostic animation can restore the saved bone pose when changing frames. Saving poses with keyframes is a later exercise.
+
+For the first exercise, **select character → Frame Selected → orbit/zoom → play diagnostic motion → stop → rotate one bone → Undo** is sufficient. Use **Material Preview** in the 3D view's upper-right shading controls to see textures. This guidance does not change the model, rig, or game behavior.
+
+References: [Blender default keymap](https://docs.blender.org/manual/en/latest/interface/keymap/blender_default.html), [view navigation](https://docs.blender.org/manual/en/3.0/editors/3dview/navigate/navigation.html). Official search results confirmed default-keymap and panning guidance on 2026-10-03; direct page opens failed with HTTP 402. File/frame information above comes from this project's existing production/validation records; this task did not newly test controls under the user's input settings.
+
 ## 2026-10-03 — Employee boot repair and first deformation rig
 
 [Rigged Blender working copy](../../art/player-employee-01/rigged/NR_Employee_01_Rigged.blend) · [Rest-pose FBX](../../art/player-employee-01/rigged/NR_Employee_01_Rigged.fbx) · [Measurements, validation and output hashes](../../art/player-employee-01/rigged/validation.json) · [Reproduction script](../../art/player-employee-01/rig.py). This is a **locally authored Blender canonical-rig candidate and deformation trial**. Supersede the receipt-stage missing-skeleton/pending-boot-repair status below for this working copy. Preserve original FBX/JPG files and local edits to the existing `prepared` file.
