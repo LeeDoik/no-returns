@@ -2,6 +2,10 @@
 
 [한국어](02-spec.ko.md)
 
+## 2026-10-03 — Automatic test-window tiling 0.9.11
+
+Two-player practice places the human host on the left and the automatic companion on the right at equal widths in landscape 16:9 viewports. Four-player tests place slots 0/1/2/3 in top-left/top-right/bottom-left/bottom-right quarters, preserving 16:9 inside each tile. Calculate sizes from the display work area with title-bar and menu-bar clearance. Allow manual resizing. Apply placement only at startup, never to windowless automated checks. Open manual windows only on request; this task relaunches the already requested two-window session with the new build. [Launch, production and validation guide](companion-play.en.md).
+
 ## 2026-10-03 — Straight baton thrust 0.9.10
 
 Retain immediate contact and 6s cooldown; replace the attack with a straight tip-forward thrust. Extend by 0.06s, hold until 0.10s and return by 0.30s, removing sideways swing/chest twisting. This supersedes the 0.9.9 attack presentation below. [Current behavior and validation scope](employee-baton.en.md).

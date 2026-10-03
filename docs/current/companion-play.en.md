@@ -1,6 +1,18 @@
-# Hands-on player + automatic companion — 0.9.10
+# Hands-on player + automatic companion — 0.9.11
 
 [한국어](companion-play.ko.md)
+
+## 2026-10-03 — Landscape 16:9 test-window layout 0.9.11
+
+The current two-window session is `run-20261003-222202-345af2`; previous 0.9.10 startup records describe terminated historical sessions. Both actual game viewports are 1702×958px (about 851×479pt); outer windows are 851×511pt. The title bar is outside the 16:9 game area. Pixel rounding tolerance is at most 1px. Visually inspected the human window and measured both AppKit positions/sizes.
+
+Implement equal 16:9 left/right viewports for two players and 16:9 viewports inside a 2×2 grid for four players. Address user feedback about the small companion window and vertically stretched viewports. Mac build passed with zero errors/7 warnings; 18 checks covered two/four-player cells, 16:9, overlap and boundaries, and actual two-window sizes/AppKit positions and host/companion connectivity were checked. Actual four-window placement, Windows/Intel Mac, external monitors/display-scale changes and user handling remain unverified. [validation record](../validation/client-window-layout-0.9.11.json).
+
+## 2026-10-03 — Automatic test-window tiling 0.9.11
+
+Two-player practice places the human host on the left and the automatic companion on the right at equal widths in landscape 16:9 viewports. Four-player tests place slots 0/1/2/3 in top-left/top-right/bottom-left/bottom-right quarters, preserving 16:9 inside each tile. Calculate sizes from the display work area with title-bar and menu-bar clearance. Allow manual resizing. Apply placement only at startup, never to windowless automated checks. Open manual windows only on request; this task relaunches the already requested two-window session with the new build. [Layout code](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CinderWindowLayout.cs), [launcher](../../tools/cinder_four_player.py), [settings](../../NoReturns/ProjectSettings/ProjectSettings.asset).
+
+Use Unity work-area and resolution APIs. On macOS, Unity reports (0,0) for the inactive companion window, so [place the process’s AppKit window directly](https://developer.apple.com/documentation/appkit/nswindow/setframetopleftpoint(_:)). Read the Retina [display scale](https://developer.apple.com/documentation/appkit/nsscreen/backingscalefactor) to convert pixels and points. Windows uses the [Unity window movement API](https://docs.unity3d.com/6000.6/Documentation/ScriptReference/Screen.MoveMainWindowTo.html). Reserve 38pt for the menu bar, 32pt for the title bar and an 8px gap between clients. Retain normal input, protocol 13 and TCP 27842. Apply four-player tiling when a separate four-player test is requested; this task does not open four manual windows.
 
 ## 2026-10-03 — Requested hands-on straight-thrust play started at 0.9.10
 
@@ -36,7 +48,7 @@ Current game 0.9.8 retains the 32-second companion cycle and two-window on-deman
 
 ## Launch and controls
 
-- Open one human host window (1280×800) and one automatic companion client (800×500). Select the human window labelled `YOU + BOT` and use existing keyboard/mouse controls. The bot neither reads keyboard/mouse input nor locks the cursor. Existing control settings and Esc menus remain available.
+- Open one human host window on the left and one automatic companion client on the right at equal widths in landscape 16:9. Select the human window labelled `YOU + BOT` and use existing keyboard/mouse controls. The bot neither reads keyboard/mouse input nor locks the cursor. Existing control settings and Esc menus remain available.
 - Start safe observation mode in the current Cinder map. Delivery progression, departure, purchases, creatures, suppression timing and progression saves are inactive. Parcel handling and baton presentation/6-second cooldown remain testable. Actual delivery/combat validation uses the separate existing four-player mode.
 - Repeat an approximately **32-second** cycle: idle (0–3s), walk/sidestep (3–11s), slow movement (11–16s), jump (16–19s), baton (19–22s), approach/carry a nearby parcel (22–30s), put down (30–32s). Reuse the employee's current idle/walk clips; this does not create dedicated jump/attack animation assets.
 - Prioritize following when more than **6m** from the human. Usually target roughly **2.7m** in front of the human. Only attempt an unheld parcel within **7m** of the human. Never forcibly take a parcel held by the user.

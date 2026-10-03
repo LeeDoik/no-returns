@@ -2,6 +2,10 @@
 
 [한국어](03-guides.ko.md)
 
+## 2026-10-03 — Automatic test-window tiling 0.9.11
+
+Two-player practice places the human host on the left and the automatic companion on the right at equal widths in landscape 16:9 viewports. Four-player tests place slots 0/1/2/3 in top-left/top-right/bottom-left/bottom-right quarters, preserving 16:9 inside each tile. Calculate sizes from the display work area with title-bar and menu-bar clearance. Allow manual resizing. Apply placement only at startup, never to windowless automated checks. Open manual windows only on request; this task relaunches the already requested two-window session with the new build. [Launch, production and validation guide](companion-play.en.md).
+
 ## 2026-10-03 — Straight baton thrust 0.9.10
 
 Use existing hand attachment/Humanoid arm posing in Unity with fixed baton orientation. Implement straight extension/retraction and first-person depth correction without a new FBX or Blender source changes. Distinguish 120 static samples, actual network checks and human quality assessment. [Current behavior and validation scope](employee-baton.en.md).

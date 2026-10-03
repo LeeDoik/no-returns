@@ -2,6 +2,14 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-03 — Landscape 16:9 test-window layout 0.9.11
+
+Pass 282 document checks, Python syntax and scoped whitespace checks. Exclude the eight material files and two Blender files already modified before this task from the commit. A whole-working-tree whitespace check reports existing material whitespace; the scoped patch passes.
+
+Implement equal 16:9 left/right viewports for two players and 16:9 viewports inside a 2×2 grid for four players. Address user feedback about the small companion window and vertically stretched viewports. Mac build passed with zero errors/7 warnings; 18 checks covered two/four-player cells, 16:9, overlap and boundaries, and actual two-window sizes/AppKit positions and host/companion connectivity were checked. Actual four-window placement, Windows/Intel Mac, external monitors/display-scale changes and user handling remain unverified. [Current guide](../current/companion-play.en.md), [validation record](../validation/client-window-layout-0.9.11.json).
+
+Add slot/window-count launcher arguments, enable resizableWindow and increment the version to 0.9.11. Update specifications, production guidance, backlog, checklist and two/four-player guides in both languages. The first build failed from an in/ref mismatch in MoveMainWindowTo; an early rebuild while compilation was still running also failed. After correcting the argument and confirming compilation completion, the final build passed. Replace fixed-size OS tiling and inactive Unity window movement with AppKit placement on macOS. Unity CLI 1.0.0-beta.12, Pipeline 0.8.0-exp.1 and Editor 6000.6.4f1 match official latest releases; no further updates required. Stop previous manual sessions and relaunch only the currently requested two windows. Full delivery/hazard regressions and hit-feel quality approval are outside this scope.
+
 ## 2026-10-03 — Requested hands-on straight-thrust play started at 0.9.10
 
 On the user's “직접 테스트 해볼게” request, ran the existing `python3 tools/cinder_four_player.py start --companion` to open one human host and one automatic companion window. Confirmed app version 0.9.10, host listening, client slot 1, protocol 13, occupied mask 3, companion readiness and safe practice mode. Leave session `run-20261003-221113-a8137a` running for inspection of new baton thrust/retraction and hiding during carrying. No code changes, rebuild or new quality approval. Feedback on revised hit-feel/appearance and actual mouse/focus remains pending. Checked document links, language counterparts and whitespace.

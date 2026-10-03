@@ -1,0 +1,142 @@
+{
+  "status": "PASS",
+  "version": "0.9.11",
+  "date": "2026-10-03",
+  "build": {
+    "status": "PASS",
+    "unity": "6000.6.4f1",
+    "output": "/Users/leedoik/WorkSpace/Game/No_Returns/builds/CinderFourPlayer/NoReturns.app",
+    "error": "",
+    "errors": 0,
+    "warnings": 7
+  },
+  "geometryChecks": 18,
+  "geometryAreas": [
+    [
+      0,
+      76,
+      3420,
+      1906
+    ],
+    [
+      0,
+      24,
+      1921,
+      1055
+    ],
+    [
+      -100,
+      40,
+      1366,
+      728
+    ]
+  ],
+  "geometryCounts": [
+    2,
+    4
+  ],
+  "windows": [
+    {
+      "count": 2,
+      "slot": 0,
+      "displayWidth": 3420,
+      "displayHeight": 2148,
+      "width": 1702,
+      "height": 958,
+      "display": "Built-in Retina Display",
+      "workArea": {
+        "x": 0,
+        "y": 76,
+        "width": 3420,
+        "height": 1902
+      },
+      "cell": {
+        "x": 0,
+        "y": 76,
+        "width": 1710,
+        "height": 1902
+      },
+      "position": {
+        "x": 4,
+        "y": 592
+      },
+      "windowScale": 2.0,
+      "nativeFrame": {
+        "serializedVersion": "2",
+        "x": 2.0,
+        "y": 258.0,
+        "width": 851.0,
+        "height": 511.0
+      }
+    },
+    {
+      "count": 2,
+      "slot": 1,
+      "displayWidth": 3420,
+      "displayHeight": 2148,
+      "width": 1702,
+      "height": 958,
+      "display": "Built-in Retina Display",
+      "workArea": {
+        "x": 0,
+        "y": 76,
+        "width": 3420,
+        "height": 1906
+      },
+      "cell": {
+        "x": 1710,
+        "y": 76,
+        "width": 1710,
+        "height": 1906
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "windowScale": 2.0,
+      "nativeFrame": {
+        "serializedVersion": "2",
+        "x": 857.0,
+        "y": 259.0,
+        "width": 851.0,
+        "height": 511.0
+      }
+    }
+  ],
+  "session": "run-20261003-222202-345af2",
+  "connection": {
+    "recipient": 1,
+    "occupiedMask": 3,
+    "phase": -1,
+    "companionBot": true
+  },
+  "checks": [
+    "18 cell/viewport boundary, overlap, coverage and 16:9 checks in live Editor",
+    "Native two-client equal viewport sizes, AppKit bounds and nonoverlapping left/right positions",
+    "Human window screenshot visually reviewed at 16:9",
+    "Host and companion connected and safe practice ready",
+    "Native launch logs free from window-layout exceptions"
+  ],
+  "unverified": [
+    "Actual four manual windows not opened",
+    "Windows and Intel Mac",
+    "External monitors, live DPI changes, very small screens",
+    "User quality/handling and full delivery/hazard regression"
+  ],
+  "resolvedFailures": [
+    "in/ref compilation mismatch",
+    "Build requested while scripts were compiling",
+    "Unity inactive-window position reported (0,0); replaced Mac placement with process-owned AppKit window"
+  ],
+  "tools": {
+    "unityCLI": "1.0.0-beta.12",
+    "pipeline": "0.8.0-exp.1",
+    "editor": "6000.6.4f1",
+    "officialLatestChecked": true,
+    "pendingUpdates": []
+  },
+  "documentationChecks": 282,
+  "pythonSyntax": "PASS",
+  "scopedWhitespace": "PASS",
+  "existingUnrelatedWhitespace": "Eight preexisting modified material files; excluded from this commit"
+}

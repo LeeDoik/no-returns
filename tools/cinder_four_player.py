@@ -118,8 +118,11 @@ def launch(automated=False, delivery=True, hazard=True, companion=False, headles
             args += ["--map-only"]
         elif not hazard:
             args += ["--delivery-only"]
-        args += ["--cinder-session", token, "-screen-width", "1280" if companion and slot == 0 else "800", "-screen-height", "800" if companion and slot == 0 else "500",
+        args += ["--cinder-session", token, "-screen-width", "800", "-screen-height", "500",
                  "-screen-fullscreen", "0", "-logFile", str(folder / "player.log")]
+        if not headless:
+            args += ["--cinder-window-count", str(count), "--cinder-window-slot", str(slot),
+                     "--cinder-window-dir", str(folder)]
         if automated or (companion and slot == 1):
             if not (companion and slot == 1):
                 command(folder, 1)

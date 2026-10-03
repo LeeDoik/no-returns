@@ -2,6 +2,10 @@
 
 [한국어](05-validation.ko.md)
 
+## 2026-10-03 — Landscape 16:9 test-window layout 0.9.11
+
+Implement equal 16:9 left/right viewports for two players and 16:9 viewports inside a 2×2 grid for four players. Address user feedback about the small companion window and vertically stretched viewports. Mac build passed with zero errors/7 warnings; 18 checks covered two/four-player cells, 16:9, overlap and boundaries, and actual two-window sizes/AppKit positions and host/companion connectivity were checked. Actual four-window placement, Windows/Intel Mac, external monitors/display-scale changes and user handling remain unverified. [Current guide](companion-play.en.md), [validation record](../validation/client-window-layout-0.9.11.json).
+
 ## 2026-10-03 — Straight baton thrust 0.9.10
 
 Passed the Mac build with 0 errors/7 warnings, 120 attack poses, 12 actual two-client thrust/carry-exclusion checks and 30 four-client Listener/contact/down/rescue checks (42 total). Verified forward direction, path/bone lengths and exclusion/return. Fixed near-wall first-person wobble found by the initial check and passed the same assertions. Open no manual play windows; human hit-feel/all penetration, Windows/LAN and performance remain unverified. [Current behavior and validation scope](employee-baton.en.md).
