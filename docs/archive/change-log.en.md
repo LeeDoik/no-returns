@@ -2,6 +2,12 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-03 — Blender MCP connection verified in this conversation
+
+Directly invoke this conversation’s registered `get_addon_status` and `get_scene_info` tools. Both initially fail because Blender is closed; open the saved employee rig file in Blender and both calls succeed. Confirm Blender 5.2.2 LTS, matching add-on 1.8/protocol 13 (`up_to_date: true`), disabled telemetry and 5 objects including the employee mesh and rig. Make no code/model changes or file saves, and open no manual game windows. This verifies actual MCP query connectivity; editing, rendering and game behavior are not revalidated.
+
+Recheck release metadata: MCP 2.1.3 and Blender 5.2.2 match the existing installation record. Pass the 280-document link/language counterpart check and scoped whitespace check. [MCP](../current/macos-development.en.md).
+
 ## 2026-10-03 — On-demand human + automatic companion 0.9.7
 
 The user requests one personal window and one nearby acting client only when they want hands-on testing. Add `--companion` to the existing launcher for exactly one human host and one bot client, plus a [manual shortcut](../../09_Play_Companion.command). Use existing network inputs and host movement/collision/pickup adjudication for a 32-second idle/walk-sidestep/slow movement/jump/baton/parcel carry-drop cycle; follow when more than 6m away. Use nearby collision/ground checks and never forcibly take another employee's held parcel. Test-only safe practice disables delivery/purchases/creatures/suppression/saves while providing harmless baton presentation/cooldowns. Add no character motion assets, full pathfinding or packages.

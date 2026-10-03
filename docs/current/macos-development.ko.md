@@ -2,6 +2,10 @@
 
 [English](macos-development.en.md)
 
+## 2026-10-03 — 현재 대화의 Blender MCP 연결 확인
+
+현재 대화에 등록된 `get_addon_status`와 `get_scene_info`를 직접 호출했다. 처음에는 Blender가 종료되어 연결에 실패했으며 저장된 직원 리깅 파일을 Blender에서 연 뒤 두 호출 모두 성공했다. Blender 5.2.2 LTS, 애드온 1.8·프로토콜 13 일치(`up_to_date: true`), 텔레메트리 꺼짐과 직원 메시/리그를 포함한 객체 5개를 확인했다. 코드·모델 변경이나 파일 저장은 하지 않았다. 수동 게임 창도 열지 않았다. 이번 확인은 실제 MCP 조회 연결 범위이며 편집·렌더링·게임 동작 재검증은 포함하지 않는다.
+
 ## 2026-10-03 — 동료 연습 빌드 0.9.7
 
 [현재 화면 없는 검사·실행 정책](companion-play.ko.md). Pipeline 업데이트 전 파일 경로가 남아 첫 컴파일/빌드가 실패했으나 Editor 재시작 후 해결했다. 현재 맥 빌드 오류 0개·경고 9개이며 앞 작업의 Burst 진입점 경고 5개는 이번 빌드에서 나타나지 않았다. 성능 측정은 하지 않았다.
@@ -20,7 +24,7 @@
 | Codex CLI | **0.160.0**, [공식 설치기](https://chatgpt.com/codex/install.sh)로 갱신·실행 버전 확인. |
 | Codex 데스크톱 | 설치 **26.930.21537 (12776)**, 앱 업데이트 검사에서 **26.930.31730 (12947)** 제공 확인. 이번 작업 중 앱 업데이트 도구는 조회 전용이고 Codex 자체 UI 자동 조작이 차단되어 있어 사용자의 앱 업데이트/재시작이 남는다. 최신 설치 완료로 간주하지 않는다. |
 
-이전 작업은 Blender Python 배치로 진행했다. 이번에는 애드온을 설치하고 현재 열린 Blender에서 활성화한 뒤 실제 MCP stdio 클라이언트로 `get_scene_info`와 읽기 전용 `execute_blender_code`를 호출했다. 현재 직원 씬의 객체 5개·뼈 53개·오른손 정보를 읽었고 열려 있던 미저장 작업은 저장하거나 다시 열지 않았다. 연결 포트는 로컬 127.0.0.1:9876이다. 이번 대화의 기본 도구 목록에는 새 MCP가 자동 추가되지 않았으므로 Codex 앱 업데이트/재시작 후 해당 목록을 확인한다. 소켓 응답만으로 MCP 도구 등록 완료를 주장하지 않는다.
+이전 작업은 Blender Python 배치로 진행했다. 이번에는 애드온을 설치하고 현재 열린 Blender에서 활성화한 뒤 실제 MCP stdio 클라이언트로 `get_scene_info`와 읽기 전용 `execute_blender_code`를 호출했다. 현재 직원 씬의 객체 5개·뼈 53개·오른손 정보를 읽었고 열려 있던 미저장 작업은 저장하거나 다시 열지 않았다. 연결 포트는 로컬 127.0.0.1:9876이다. 설치 당시 대화에는 새 MCP 도구가 보이지 않았지만, 위 후속 확인에서 현재 대화의 직접 호출까지 성공했다. 소켓 응답만으로 MCP 도구 등록 완료를 주장하지 않는다.
 
 다른 환경의 재현 명령은 아래와 같다. `@latest`는 연결 시작 시 최신 패키지를 사용하며, 실제 선택된 버전은 작업 기록에 남긴다. 애드온 업데이트 뒤에는 기존 미저장 작업을 보존하고 Blender를 다시 시작하거나 애드온을 재로딩한 뒤 양쪽 버전을 확인한다. 개인 Codex 설정은 저장소에 넣지 않는다.
 
@@ -31,7 +35,7 @@ codex mcp add blender --env DISABLE_TELEMETRY=true -- uvx mcp-for-blender@latest
 
 Blender `Preferences > Add-ons`에서 Blender MCP를 활성화한다. 현재 맥에서는 `/opt/homebrew/bin/uvx` 절대 경로를 등록했고 텔레메트리는 끈다. 연결된 씬/선택/미저장 상태를 읽은 뒤 작업하며 원본을 덮어쓰지 않는다. 단순 재현·일괄 검사는 기존 Blender Python 스크립트도 계속 사용한다.
 
-새 Unity의 Windows 지원 모듈·Windows 실행, Codex 데스크톱 업데이트 및 재시작 후 기본 MCP 도구 노출은 미확인이다. 이전 Unity 설치와 미저장 Blender 파일은 보존한다. [게임 적용·검증 범위](employee-animation.ko.md)와 [검증 기록](../validation/baton-hand-0.9.6.json)을 따른다.
+새 Unity의 Windows 지원 모듈·Windows 실행 및 Codex 데스크톱 업데이트 완료 여부는 미확인이다. 기본 MCP 도구 노출·직접 연결은 위 후속 확인에서 검증했다. 이전 Unity 설치와 미저장 Blender 파일은 보존한다. [게임 적용·검증 범위](employee-animation.ko.md)와 [검증 기록](../validation/baton-hand-0.9.6.json)을 따른다.
 
 ## 2026-10-01 — Cinder 배송·영수증·귀환 정산
 

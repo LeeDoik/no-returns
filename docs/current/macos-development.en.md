@@ -2,6 +2,10 @@
 
 [한국어](macos-development.ko.md)
 
+## 2026-10-03 — Blender MCP connection verified in this conversation
+
+Directly invoke this conversation’s registered `get_addon_status` and `get_scene_info` tools. Both initially fail because Blender is closed; open the saved employee rig file in Blender and both calls succeed. Confirm Blender 5.2.2 LTS, matching add-on 1.8/protocol 13 (`up_to_date: true`), disabled telemetry and 5 objects including the employee mesh and rig. Make no code/model changes or file saves, and open no manual game windows. This verifies actual MCP query connectivity; editing, rendering and game behavior are not revalidated.
+
 ## 2026-10-03 — Companion practice build 0.9.7
 
 [Current windowless validation and launch policy](companion-play.en.md). Stale pre-upgrade Pipeline file paths caused the first compile/build failure; restarting the Editor resolved it. Current Mac build: zero errors/9 warnings; the preceding task's 5 Burst entry-point warnings did not recur in this build. Performance was not measured.
@@ -20,7 +24,7 @@ Follow the [project rules](../../AGENTS.md) to check official releases and updat
 | Codex CLI | **0.160.0**, update through the [official installer](https://chatgpt.com/codex/install.sh) and verify the executable version. |
 | Codex desktop | Installed **26.930.21537 (12776)**; the app updater offers **26.930.31730 (12947)**. The updater tool is read-only and automation of Codex itself is blocked, so the user must update/restart the app. Do not count the latest app as installed. |
 
-Earlier work used Blender Python batch execution. This task installs/enables the add-on in the currently open Blender, then uses an actual MCP stdio client to call `get_scene_info` and read-only `execute_blender_code`. Read the current employee scene's 5 objects, 53 bones and right-hand information without saving or reopening its unsaved work. The local endpoint is 127.0.0.1:9876. This conversation's default tool list does not automatically include the new MCP, so check it after updating/restarting Codex. A socket response alone is not proof of MCP tool registration.
+Earlier work used Blender Python batch execution. This task installs/enables the add-on in the currently open Blender, then uses an actual MCP stdio client to call `get_scene_info` and read-only `execute_blender_code`. Read the current employee scene's 5 objects, 53 bones and right-hand information without saving or reopening its unsaved work. The local endpoint is 127.0.0.1:9876. The new tools were unavailable in the installation conversation; the follow-up above now verifies direct calls in the current conversation. A socket response alone is not proof of MCP tool registration.
 
 Reproduction commands for another environment follow. `@latest` resolves the latest package when the connection starts; record the resolved version in task evidence. After updating the add-on, preserve unsaved work and restart Blender or reload the add-on, then check both sides' versions. Keep personal Codex configuration out of the repository.
 
@@ -31,7 +35,7 @@ codex mcp add blender --env DISABLE_TELEMETRY=true -- uvx mcp-for-blender@latest
 
 Enable Blender MCP in `Preferences > Add-ons`. This Mac registers the absolute `/opt/homebrew/bin/uvx` path and disables telemetry. Read the connected scene, selection and unsaved state before acting; preserve original files. Continue using existing Blender Python scripts for straightforward reproduction and batch validation.
 
-The new Unity's Windows support module/Windows execution, Codex desktop update and default MCP tool exposure after restart remain unverified. Preserve the earlier Unity installation and unsaved Blender file. See [game integration and validation scope](employee-animation.en.md) and the [validation record](../validation/baton-hand-0.9.6.json).
+The new Unity's Windows support module/Windows execution and completion of the Codex desktop update remain unverified. Default MCP tool exposure and direct connectivity are verified by the follow-up above. Preserve the earlier Unity installation and unsaved Blender file. See [game integration and validation scope](employee-animation.en.md) and the [validation record](../validation/baton-hand-0.9.6.json).
 
 ## 2026-10-01 — Cinder delivery, receipt and return settlement
 
