@@ -2,6 +2,10 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-03 — Requested hands-on test ended at 0.9.13
+
+On the user's “테스트 끝내자” request, run the existing `python3 tools/cinder_four_player.py stop`. Confirm both human/automatic-companion processes for session `run-20261003-225506-3f5400` stopped, the session file removed and no TCP **27842** listener. Current manual play has ended; startup records below describe historical runs. No code changes, rebuild or gameplay recheck. Check links/language counterparts in **284** documents and scoped whitespace only. Do not treat termination as quality approval for baton/backward/sidestep presentation; specific user feedback remains unverified. Preserve eight preexisting material changes and two Blender changes.
+
 ## 2026-10-03 — Requested original-baton/directional-movement manual test started at 0.9.13
 
 On the user's “직접 테스트 할게” request, run the existing `python3 tools/cinder_four_player.py start --companion` to open one human host and one automatic companion. Confirm app **0.9.13**, host listening, client slot **1**, protocol **13**, occupied mask **3**, bot readiness and safe practice. Both game viewports have equal **1702×958px** 16:9 dimensions; AppKit positions confirm human left/companion right placement. Leave session `run-20261003-225506-3f5400` running for hands-on inspection of the original baton and backward/sidestep/jump/landing presentation. Termination/start records below are historical sessions. No code changes, rebuild or new quality approval. Check document links, language counterparts and scoped whitespace; user-perceived handling/naturalness remains unverified.
