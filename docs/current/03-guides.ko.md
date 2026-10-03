@@ -2,6 +2,31 @@
 
 [English](03-guides.en.md)
 
+## 2026-10-03 — 직원 부츠 보정과 첫 변형 리그
+
+[뼈대 포함 Blender 작업본](../../art/player-employee-01/rigged/NR_Employee_01_Rigged.blend) · [정지 자세 FBX](../../art/player-employee-01/rigged/NR_Employee_01_Rigged.fbx) · [실측·검증·출력 해시](../../art/player-employee-01/rigged/validation.json) · [재현 스크립트](../../art/player-employee-01/rig.py). **Blender에서 만든 기준 리그 후보와 변형 시험 결과**다. 아래 수령 당시의 뼈대 없음·부츠 보정 대기 상태를 이 작업본 범위에서 대체한다. 원본 FBX/JPG와 기존 `prepared` 작업본의 로컬 수정은 보존한다.
+
+- 부츠 끈/몸체가 잘못 공유한 모서리 2개만 분리했다. 정점 6개가 늘어 **4,765정점·4,888면·9,118삼각형**, 연결 성분 21개·열린 경계 442개다. 과연결/면 방향 불일치 모서리는 각각 0개이며 부츠 표면·전체 UV를 보존한다. 모든 경계를 닫거나 용접한 결과는 아니다.
+- 뼈대는 **53개(Root 1개 + 변형 뼈 52개)**이며 양손 각각 다섯 손가락의 3마디를 포함한다. Blender 기본 자동 가중치 뒤 헬멧·부츠·허리 소품을 해당 뼈에 고정했다. 정점당 최대 4개 영향, 가중치 합 1을 확인했다. 외부 서비스 리깅·유료 생성은 실행하지 않았다.
+- 무릎/팔꿈치 보호대 272정점의 가중치를 인접 작업복 표면에서 옮기고 열린 가장자리 20정점을 최대 약 **8.53mm** 보정했다. 표면과의 기본 간격은 1mm, 검사한 자세에서 해당 가장자리와 대응 작업복 지점의 최대 간격은 약 **3.24mm**다. 전체 보호대의 모든 관통/틈을 보장하는 검사는 아니다.
+
+Blender 타임라인에서 아래 프레임으로 이동한다. `NR_Deformation_Check_NOT_GAMEPLAY`는 24fps·1–145프레임의 **검사용 자세 전환**이며 대기·걷기 등 완성된 게임 애니메이션이 아니다. FBX에는 이 액션을 넣지 않고 뼈대·가중치·T 자세·텍스처만 내보냈다.
+
+| 프레임 | 확인할 자세 |
+|---|---|
+| 1 / 145 | T 자세 / 복귀 |
+| 25 | T 자세에서 양팔 45도 올리기 |
+| 49 | 팔꿈치 90도 굽히기 |
+| 73 | 무릎 90도 굽히기 |
+| 97 | 양손 쥐기 |
+| 121 | 운반 준비 자세; 실제 상자 접촉은 미검증 |
+
+[부츠](../../art/player-employee-01/rigged/review/boot-repaired.png) · [어깨](../../art/player-employee-01/rigged/review/shoulder-raise.png) · [팔꿈치](../../art/player-employee-01/rigged/review/elbow-90.png) · [무릎](../../art/player-employee-01/rigged/review/knee-90.png) · [무릎 근접](../../art/player-employee-01/rigged/review/knee-side.png) · [왼손](../../art/player-employee-01/rigged/review/grip.png) · [오른손](../../art/player-employee-01/rigged/review/grip-right.png) · [운반 준비](../../art/player-employee-01/rigged/review/carry.png): 실제 렌더 8장을 검토했다. 극단 굽힘에서 보호대/작업복의 각진 압축·일부 작은 모서리 늘어남은 남아 있으므로 출시 품질 승인이 아니다.
+
+검사 8개 통과: 원본 작업본 보존, 부츠 예외 0개, 부츠 표면/전체 UV 보존, 모든 정점 가중치, 7개 표본 프레임의 유한 좌표, `.blend` 재열기 후 같은 자세 재현, FBX 재가져오기 후 뼈대/메시/가중치, 4K 텍스처 및 시험 액션 제외. FBX 재가져오기에서 53개 뼈·4,765정점·9,118삼각형·높이 1.8m를 확인했다. 재현 명령은 `blender --background --factory-startup --disable-autoexec --python-exit-code 1 --python art/player-employee-01/rig.py`이며 새 결과는 `rigged/`에 저장한다. 재실행 후 시각 검토는 다시 해야 한다.
+
+다음은 **Unity Humanoid 매핑 검증 → 대기/걷기 클립 연결 → 실제 화물에 손을 맞추는 동작 보정**이다. 이 후보 뼈대를 우선 재사용하고 두 번째 자동 리깅을 겹치지 않는다. Unity 가져오기/Avatar·게임 연결·1인칭 팔·4인/성능·사용자 품질은 미완료다. `game-dev`는 PATH에 없어 설치된 Blender를 사용했다. 게임 코드/씬 변경 없이 0.9.4·프로토콜 13을 유지한다.
+
 ## 2026-10-03 — 직원 모델 Blender 검사와 작업본
 
 사용자가 전달한 FBX와 JPG를 보존하고 Blender 5.2.2 LTS에서 가져왔다. [편집 작업본](../../art/player-employee-01/prepared/NR_Employee_01.blend) · [원본·해시·출처](../../art/player-employee-01/provenance.json) · [실측 검사](../../art/player-employee-01/validation.json) · [재현 스크립트](../../art/player-employee-01/inspect.py). 아래 과거 파일 미수령·가져오기 미검증 표기는 이번 확인 범위에서 대체한다. ACT01의 리깅·게임 적용과 ACT02 팔 제작은 미완료다.

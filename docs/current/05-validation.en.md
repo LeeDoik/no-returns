@@ -2,13 +2,21 @@
 
 [한국어](05-validation.ko.md)
 
+## 2026-10-03 — Employee rig candidate and deformation trial
+
+[Files, reproduction and frames](03-guides.en.md#2026-10-03--employee-boot-repair-and-first-deformation-rig) · [Inspection JSON](../../art/player-employee-01/rigged/validation.json).
+
+- [x] Zero boot exception edges of each kind, preserved boot surfaces/all UVs, 53 bones and every vertex normalized with at most 4 influences. Adjust 20 pad-rim vertices by at most 8.53mm; verify at most 3.24mm from corresponding cloth points in sampled poses.
+- [x] Review 7 sampled frames and 8 actual renders, reproduce poses after `.blend` reopening and reimport FBX skeleton/mesh/weights/4K texture. Pass 8 file/numerical checks. Verify the diagnostic action is excluded from FBX.
+- [ ] Extreme-bend angular compression/small-edge stretching and user quality approval, Unity Humanoid, idle/walk, actual cargo contact, first-person arms and four-player/performance. Static FBX and sampled poses do not replace game/release validation.
+
 ## 2026-10-03 — Employee Blender handoff checks
 
 Follow the [working copy, sources and reproduction method](03-guides.en.md#2026-10-03--employee-blender-inspection-and-working-copy) and [measured JSON](../../art/player-employee-01/validation.json).
 
 - [x] Preserve FBX/JPG hashes, import in Blender and inspect counts/UVs/textures/skeleton. 4,230 quads + 658 triangles = 4,888 faces, 9,118 after triangulation. Verify the linked 4096×4096 JPG and absence of a skeleton.
 - [x] Save/reopen a 1.8m floor-centered `.blend` at rotation 0/scale 1, with packed texture and unchanged source topology counts/connectivity. Pass 8 reproducible script checks, visually inspect 6 actual renders and verify the working copy displayed in the Blender app.
-- [ ] Repair/verify 1 overconnected and 1 winding exception on a boot; joint/hand-grip deformation, rigging, Unity/performance and user appearance approval. Counts of 437 boundary edges and 21 components alone do not establish defects or completed repairs.
+- [ ] Unity/performance and user appearance approval. Supersede receipt-stage boot/rig pending status within the candidate checks above; do not classify all 437 original boundary edges and 21 components as defects.
 
 ## 2026-10-03 — Employee topology validation preparation
 

@@ -2,6 +2,31 @@
 
 [한국어](03-guides.ko.md)
 
+## 2026-10-03 — Employee boot repair and first deformation rig
+
+[Rigged Blender working copy](../../art/player-employee-01/rigged/NR_Employee_01_Rigged.blend) · [Rest-pose FBX](../../art/player-employee-01/rigged/NR_Employee_01_Rigged.fbx) · [Measurements, validation and output hashes](../../art/player-employee-01/rigged/validation.json) · [Reproduction script](../../art/player-employee-01/rig.py). This is a **locally authored Blender canonical-rig candidate and deformation trial**. Supersede the receipt-stage missing-skeleton/pending-boot-repair status below for this working copy. Preserve original FBX/JPG files and local edits to the existing `prepared` file.
+
+- Split only 2 invalid junction edges shared by the boot strap/body. Add 6 vertices, resulting in **4,765 vertices, 4,888 faces and 9,118 triangles**, 21 connected components and 442 boundary edges. Overconnected/inconsistent-winding edges are each 0; preserve boot surfaces and all UVs. This does not close or weld every boundary.
+- Build **53 bones (1 Root + 52 deform bones)**, including 3 segments for each of five fingers on both hands. Use Blender native automatic weights, then rigidly bind helmet, boots and belt accessories to their respective bones. Verify at most 4 influences per vertex and weight sums of 1. Run no external-provider rigging or paid generation.
+- Transfer neighboring cloth-surface weights to 272 knee/elbow-pad vertices; adjust 20 open-rim vertices by at most approximately **8.53mm**. The rest offset is 1mm; maximum distance from those rims to corresponding cloth points in sampled poses is approximately **3.24mm**. This does not guarantee absence of all pad intersections/gaps.
+
+Move to the following Blender timeline frames. `NR_Deformation_Check_NOT_GAMEPLAY` is a **diagnostic pose transition** at 24fps over frames 1–145, not finished idle/walk gameplay animation. Exclude it from FBX, exporting only skeleton, weights, T pose and texture.
+
+| Frame | Pose to inspect |
+|---|---|
+| 1 / 145 | T pose / return |
+| 25 | Raise both arms 45 degrees from T pose |
+| 49 | Bend elbows 90 degrees |
+| 73 | Bend knees 90 degrees |
+| 97 | Grip both hands |
+| 121 | Carry-ready pose; actual parcel contact unverified |
+
+[Boot](../../art/player-employee-01/rigged/review/boot-repaired.png) · [Shoulders](../../art/player-employee-01/rigged/review/shoulder-raise.png) · [Elbows](../../art/player-employee-01/rigged/review/elbow-90.png) · [Knees](../../art/player-employee-01/rigged/review/knee-90.png) · [Knee close-up](../../art/player-employee-01/rigged/review/knee-side.png) · [Left hand](../../art/player-employee-01/rigged/review/grip.png) · [Right hand](../../art/player-employee-01/rigged/review/grip-right.png) · [Carry-ready](../../art/player-employee-01/rigged/review/carry.png): inspect 8 actual renders. Angular pad/cloth compression and some small-edge stretching remain at extreme bends; this is not release-quality approval.
+
+Pass 8 checks: preserve the input working file, zero boot exceptions, preserve boot surfaces/all UVs, weight every vertex, finite coordinates at 7 sampled frames, reproduce poses after reopening `.blend`, reimport FBX skeleton/mesh/weights, and load the 4K texture with the test action excluded. FBX reimport yields 53 bones, 4,765 vertices, 9,118 triangles and 1.8m height. Reproduce with `blender --background --factory-startup --disable-autoexec --python-exit-code 1 --python art/player-employee-01/rig.py`; outputs go into `rigged/`. Repeat visual review after regeneration.
+
+Next: **validate Unity Humanoid mapping → connect idle/walk clips → adjust hand contact with actual cargo**. Reuse this candidate skeleton first, avoiding a second overlapping auto-rig. Unity import/Avatar, gameplay integration, first-person arms, four-player/performance and user quality remain pending. `game-dev` is not on PATH; use installed Blender. No game code/scene changes; retain 0.9.4 and protocol 13.
+
 ## 2026-10-03 — Employee Blender inspection and working copy
 
 Preserve the user-supplied FBX/JPG and import them in Blender 5.2.2 LTS. [Editable working copy](../../art/player-employee-01/prepared/NR_Employee_01.blend) · [Originals, hashes and provenance](../../art/player-employee-01/provenance.json) · [Measured inspection](../../art/player-employee-01/validation.json) · [Reproduction script](../../art/player-employee-01/inspect.py). This supersedes older file-not-received/import-unverified statements below only within the verified scope. ACT01 rigging/game integration and ACT02 arms remain incomplete.

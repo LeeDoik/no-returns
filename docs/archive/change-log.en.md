@@ -2,6 +2,16 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-03 — Employee boot repair, canonical-rig candidate and deformation trial
+
+The user requested the next stage. Build [local boot repairs and a Blender deformation rig](../current/03-guides.en.md#2026-10-03--employee-boot-repair-and-first-deformation-rig). Split 2 invalid shared edges, adding 6 vertices while preserving surfaces/UVs. Result: 4,765 vertices, 4,888 faces, 9,118 triangles, 21 components and 442 boundaries, with zero overconnected/winding exceptions. Build 53 bones, at most 4 normalized influences, and adjust 272 pad vertices' weights plus 20 rim vertices (at most 8.53mm). Update bilingual production guidance, asset status, backlog and validation together.
+
+Reject the initial overlapping-face deletion because it enlarges boot gaps. Final output splits junction edges without deleting faces. Initial rigid/simple-blend pad weights caused detachment/folding at 90-degree bends; replace them with neighboring cloth-surface weights and rim placement. Sampled corresponding-point distance is at most 3.24mm; retain extreme-bend angular compression/small-edge stretching and human quality review as pending.
+
+Validation: 8 file/numerical checks, matching saved/reopened deformation at 7 sampled frames, 8 actual renders reviewed, and FBX reimport with 53 bones, 4,765 vertices, 9,118 triangles, 1.8m, 4K texture, normalized weights and no diagnostic action. FBX contains a rest-pose rig; the `.blend` 24fps/frame-1–145 trial is not a gameplay clip. Unity Humanoid/game integration, idle/walk, cargo contact, first-person/four-player/performance remain unverified. No external rigging or paid generation; use native Blender with `game-dev` unavailable. Retain game 0.9.4 and protocol 13. Preserve/exclude local edits to `prepared/NR_Employee_01.blend` and 8 ship materials. Track new Blender/FBX/PNG outputs with Git LFS.
+
+Pass link/bilingual-checkbox checks across 276 documents and changed whitespace checks. Verify the new working copy and skeleton displayed in the Blender app.
+
 ## 2026-10-03 — HyperFrames 24-second game introduction
 
 Created a [five-scene introduction](../current/hyperframes.en.md) for the user's request. Use three existing game stills, an original pulse score and English headlines/Korean explanations, with still-image labeling. Added bilingual brief/design/storyboard, OFL fonts/licenses/provenance and an audio regeneration script. Exclude render/cache output and track source binaries with LFS.

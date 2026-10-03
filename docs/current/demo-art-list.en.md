@@ -2,7 +2,7 @@
 
 [한국어](demo-art-list.ko.md)
 
-Current on 2026-10-03: receive the user FBX/JPG and complete the [Blender working copy and measured inspection](03-guides.en.md#2026-10-03--employee-blender-inspection-and-working-copy). ACT01 has 4,230 quads + 658 triangles, 9,118 triangulated faces, a 4K texture and a 1.8m working copy without a skeleton. Two boot connectivity exceptions, joint/hand deformation, rigging and game integration remain incomplete. ACT02 arms have not been derived.
+Current on 2026-10-03: build the [employee boot repair and first deformation rig](03-guides.en.md#2026-10-03--employee-boot-repair-and-first-deformation-rig). The ACT01 candidate has 4,765 vertices, 4,888 faces, 9,118 triangles, a 4K texture, 1.8m height and 53 bones. Split 2 boot junction edges and adjust pad rims/weights. Complete Blender pose trials and FBX reimport; extreme-pose polish, Unity Avatar, idle/walk, actual cargo contact and user quality remain pending. ACT02 arms have not been derived.
 
 The proposed [initial topology settings](03-guides.en.md#2026-10-03--initial-employee-topology-settings) for employee ACT01 are Quad/5,000 faces (approximately 10,000 triangles if all faces are quads). Set the final budget after the first deformation/game checks and derive ACT02 arms from the same source. These are not measured or completed model-production values.
 

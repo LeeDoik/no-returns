@@ -1,0 +1,484 @@
+{
+  "blender": "5.2.2 LTS",
+  "source": "prepared/NR_Employee_01.blend",
+  "source_blend_sha256": "326a2c6ef62802bd5b33245e67e45b25005105bcc01cc884c80c41742ba69b85",
+  "method": "Local Blender FK bones, native heat weights, rigid-part reassignment; no provider rigging",
+  "repair": {
+    "split_original_junction_vertices": [
+      [
+        670,
+        673
+      ],
+      [
+        671,
+        674
+      ]
+    ],
+    "added_vertices": 6,
+    "removed_faces": 0,
+    "unchanged_surface_coordinates_and_uvs": true
+  },
+  "bones": 53,
+  "deform_bones": 52,
+  "rigid_parts": [
+    {
+      "vertices": 512,
+      "bone": "LeftFoot"
+    },
+    {
+      "vertices": 506,
+      "bone": "RightFoot"
+    },
+    {
+      "vertices": 182,
+      "bone": "Head"
+    },
+    {
+      "vertices": 121,
+      "bone": "Hips"
+    },
+    {
+      "vertices": 120,
+      "bone": "Hips"
+    },
+    {
+      "vertices": 113,
+      "bone": "Head"
+    },
+    {
+      "vertices": 113,
+      "bone": "Head"
+    },
+    {
+      "vertices": 90,
+      "bone": "Neck"
+    },
+    {
+      "vertices": 31,
+      "bone": "Head"
+    },
+    {
+      "vertices": 26,
+      "bone": "Hips"
+    },
+    {
+      "vertices": 26,
+      "bone": "Hips"
+    },
+    {
+      "vertices": 26,
+      "bone": "Hips"
+    },
+    {
+      "vertices": 26,
+      "bone": "Hips"
+    },
+    {
+      "vertices": 20,
+      "bone": "Hips"
+    }
+  ],
+  "guard_vertices_with_surface_weights": 272,
+  "guard_rim_adjustment": {
+    "vertices": 20,
+    "max_displacement_m": 0.008529836442209289,
+    "surface_offset_m": 0.001
+  },
+  "poses": [
+    {
+      "pose": "rest",
+      "frame": 1,
+      "max_edge_stretch": 1.0000265797604266,
+      "min_edge_ratio": 0.9999714129126381,
+      "max_guard_rim_gap_m": 0.0010053550688299338
+    },
+    {
+      "pose": "shoulder-raise",
+      "frame": 25,
+      "max_edge_stretch": 1.6768023327651211,
+      "min_edge_ratio": 0.2290130710029387,
+      "max_guard_rim_gap_m": 0.0010829459502319872
+    },
+    {
+      "pose": "elbow-90",
+      "frame": 49,
+      "max_edge_stretch": 4.450791548318324,
+      "min_edge_ratio": 0.5714847313702293,
+      "max_guard_rim_gap_m": 0.0032324353786426663
+    },
+    {
+      "pose": "knee-90",
+      "frame": 73,
+      "max_edge_stretch": 2.074422651318703,
+      "min_edge_ratio": 0.1897890489952008,
+      "max_guard_rim_gap_m": 0.0010053550688299338
+    },
+    {
+      "pose": "grip",
+      "frame": 97,
+      "max_edge_stretch": 2.682984839941532,
+      "min_edge_ratio": 0.3079023492269331,
+      "max_guard_rim_gap_m": 0.0010053550688299338
+    },
+    {
+      "pose": "carry",
+      "frame": 121,
+      "max_edge_stretch": 4.592425777760931,
+      "min_edge_ratio": 0.27565606216527,
+      "max_guard_rim_gap_m": 0.0031524601245440462
+    },
+    {
+      "pose": "rest-return",
+      "frame": 145,
+      "max_edge_stretch": 1.0000265797604266,
+      "min_edge_ratio": 0.9999714129126381,
+      "max_guard_rim_gap_m": 0.0010053550688299338
+    }
+  ],
+  "max_weights_per_vertex": 4,
+  "checks": {
+    "source_preserved": true,
+    "boot_exception_edges_zero": true,
+    "boot_surfaces_and_all_uvs_unchanged": true,
+    "all_vertices_normalized_and_weighted": true,
+    "finite_evaluated_pose_vertices": true,
+    "blend_reopens_with_all_test_poses": true,
+    "fbx_reimports_skeleton_geometry_and_weights": true,
+    "fbx_texture_loads_and_diagnostic_action_excluded": true
+  },
+  "pending": [
+    "Unity Humanoid mapping and runtime validation",
+    "Idle/walk production clips and cargo-contact IK",
+    "Extreme-bend pad/cloth polish and user visual approval",
+    "First-person arms and four-player checks"
+  ],
+  "fbx_roundtrip": {
+    "bones": 53,
+    "vertices": 4765,
+    "triangles": 9118,
+    "height_m": 1.7999999523162842,
+    "actions": 0
+  },
+  "output_sha256": {
+    "NR_Employee_01_Rigged.blend": "bc500fdfa3e65203ea8643d4d56bc1de58463368a278abba94a7c964706d2b13",
+    "NR_Employee_01_Rigged.fbx": "d6a369b72c846540ce760cf8bbd8ccd8f71325ca953ade7a5b5537c887689add"
+  },
+  "mesh_after_boot_repair": {
+    "name": "NR_Employee_01",
+    "vertices": 4765,
+    "edges": 9668,
+    "faces": 4888,
+    "face_sizes": {
+      "3": 658,
+      "4": 4230
+    },
+    "triangles": 9118,
+    "uv_layers": 1,
+    "uv_coordinates_finite": true,
+    "uv_min": [
+      0.001125037670135498,
+      0.0011250971583649516
+    ],
+    "uv_max": [
+      0.9928154945373535,
+      0.9988749623298645
+    ],
+    "boundary_edges": 442,
+    "overconnected_edges": 0,
+    "inconsistent_winding_edges": 0,
+    "exception_edges": [],
+    "wire_edges": 0,
+    "loose_vertices": 0,
+    "zero_area_faces": 0,
+    "components": [
+      {
+        "vertices": 1673,
+        "world_min": [
+          -0.7208667397499084,
+          -0.16035303473472595,
+          0.17142854630947113
+        ],
+        "world_max": [
+          0.7208667397499084,
+          0.2075442522764206,
+          1.560192584991455
+        ]
+      },
+      {
+        "vertices": 512,
+        "world_min": [
+          0.17094701528549194,
+          -0.20754416286945343,
+          0.0
+        ],
+        "world_max": [
+          0.40401285886764526,
+          0.18057781457901,
+          0.1974317729473114
+        ]
+      },
+      {
+        "vertices": 506,
+        "world_min": [
+          -0.4040128290653229,
+          -0.2075442522764206,
+          7.883260254163468e-15
+        ],
+        "world_max": [
+          -0.17094704508781433,
+          0.18057775497436523,
+          0.1974317729473114
+        ]
+      },
+      {
+        "vertices": 454,
+        "world_min": [
+          -0.9857142567634583,
+          -0.07849118113517761,
+          1.249117136001587
+        ],
+        "world_max": [
+          -0.7179775238037109,
+          0.1131620854139328,
+          1.4166933298110962
+        ]
+      },
+      {
+        "vertices": 454,
+        "world_min": [
+          0.7179775238037109,
+          -0.0784909650683403,
+          1.249117136001587
+        ],
+        "world_max": [
+          0.9857142567634583,
+          0.1131623387336731,
+          1.4166933298110962
+        ]
+      },
+      {
+        "vertices": 182,
+        "world_min": [
+          -0.15361155569553375,
+          -0.19695009291172028,
+          1.488924503326416
+        ],
+        "world_max": [
+          0.15361155569553375,
+          0.1536116749048233,
+          1.7999999523162842
+        ]
+      },
+      {
+        "vertices": 121,
+        "world_min": [
+          0.13723917305469513,
+          -0.1391652375459671,
+          0.8937399387359619
+        ],
+        "world_max": [
+          0.2817014455795288,
+          -0.008186093531548977,
+          1.0825040340423584
+        ]
+      },
+      {
+        "vertices": 120,
+        "world_min": [
+          -0.2826645076274872,
+          -0.13916529715061188,
+          0.8937399387359619
+        ],
+        "world_max": [
+          -0.1382022351026535,
+          -0.00914923194795847,
+          1.0825040340423584
+        ]
+      },
+      {
+        "vertices": 113,
+        "world_min": [
+          -0.16516853868961334,
+          -0.05730324983596802,
+          1.6016050577163696
+        ],
+        "world_max": [
+          -0.13723914325237274,
+          0.023595629259943962,
+          1.6825039386749268
+        ]
+      },
+      {
+        "vertices": 113,
+        "world_min": [
+          0.13723915815353394,
+          -0.057303208857774734,
+          1.6016050577163696
+        ],
+        "world_max": [
+          0.1661316156387329,
+          0.023595668375492096,
+          1.6825039386749268
+        ]
+      },
+      {
+        "vertices": 90,
+        "world_min": [
+          -0.11316212266683578,
+          -0.08523261547088623,
+          1.4398072957992554
+        ],
+        "world_max": [
+          0.11316210776567459,
+          0.11219916492700577,
+          1.574638843536377
+        ]
+      },
+      {
+        "vertices": 82,
+        "world_min": [
+          -0.33081862330436707,
+          -0.11316212266683578,
+          0.3756019175052643
+        ],
+        "world_max": [
+          -0.10064204782247543,
+          0.01685388758778572,
+          0.6250401139259338
+        ]
+      },
+      {
+        "vertices": 82,
+        "world_min": [
+          0.10064206272363663,
+          -0.1131620779633522,
+          0.3756019175052643
+        ],
+        "world_max": [
+          0.33081862330436707,
+          0.016853973269462585,
+          0.6250401139259338
+        ]
+      },
+      {
+        "vertices": 54,
+        "world_min": [
+          -0.5282503962516785,
+          0.10064208507537842,
+          1.2780096530914307
+        ],
+        "world_max": [
+          -0.4319422245025635,
+          0.15842701494693756,
+          1.393579363822937
+        ]
+      },
+      {
+        "vertices": 54,
+        "world_min": [
+          0.4319421648979187,
+          0.10064220428466797,
+          1.2780096530914307
+        ],
+        "world_max": [
+          0.5282503962516785,
+          0.1584271341562271,
+          1.3926163911819458
+        ]
+      },
+      {
+        "vertices": 31,
+        "world_min": [
+          -0.05922955274581909,
+          0.13820238411426544,
+          1.6449438333511353
+        ],
+        "world_max": [
+          0.05922951549291611,
+          0.16420556604862213,
+          1.7008025646209717
+        ]
+      },
+      {
+        "vertices": 26,
+        "world_min": [
+          -0.25280898809432983,
+          -0.1102728322148323,
+          0.9833065867424011
+        ],
+        "world_max": [
+          -0.22102726995944977,
+          -0.08041729032993317,
+          1.0276082754135132
+        ]
+      },
+      {
+        "vertices": 26,
+        "world_min": [
+          -0.24317817389965057,
+          0.09967901557683945,
+          0.9910112023353577
+        ],
+        "world_max": [
+          -0.21235956251621246,
+          0.1295345425605774,
+          1.0343499183654785
+        ]
+      },
+      {
+        "vertices": 26,
+        "world_min": [
+          0.2200642079114914,
+          -0.11027277261018753,
+          0.9833065867424011
+        ],
+        "world_max": [
+          0.25280898809432983,
+          -0.08041723072528839,
+          1.0276082754135132
+        ]
+      },
+      {
+        "vertices": 26,
+        "world_min": [
+          0.21235953271389008,
+          0.09967907518148422,
+          0.9910112023353577
+        ],
+        "world_max": [
+          0.24317814409732819,
+          0.12953460216522217,
+          1.0343499183654785
+        ]
+      },
+      {
+        "vertices": 20,
+        "world_min": [
+          -0.04959869757294655,
+          -0.1555376648902893,
+          0.9881219863891602
+        ],
+        "world_max": [
+          0.0505618155002594,
+          -0.1276082843542099,
+          1.0680577754974365
+        ]
+      }
+    ],
+    "materials": [
+      "tripo_2f6cd1fc_d476_4f8c_92f2_ebb9cefd1218"
+    ],
+    "vertex_groups": 0,
+    "modifiers": []
+  },
+  "visual_review": {
+    "date": "2026-10-03",
+    "renders_reviewed": 8,
+    "observations": [
+      "Boot junction repair preserves all source faces and UVs.",
+      "Shoulder raise, elbow/knee bends, both grips and carry-ready pose are visible.",
+      "Pad rim binding reduces detachment; angular compression and bevel stretching remain at extreme bends."
+    ],
+    "scope": "Sampled Blender poses, not gameplay motion or collision validation"
+  }
+}
