@@ -2,6 +2,16 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-04 — First-person two-hand beacon carry 0.9.17
+
+For the requested next step, implement the missing beacon hands. Present the local carried device at eye-relative (0,-0.34,0.58)m with view rotation on Overlay layer 31; contact goals are ±0.22m sideways and 0.09m below its center. Use the base finger pose and a 25° wrist limit. Releasing restores host position, upright rotation, layer 0 and collision, and restores the baton in normal play. Delivery-only mode continues to hide the baton. Preserve host purchase/position/placement/charges and remote device presentation. [Production guide](../current/first-person-arms.en.md), [validation](../validation/employee-beacon-0.9.17.json). Game 0.9.17, protocol 13, TCP 27842.
+
+Compilation and Mac build pass (zero errors, seven existing warnings). Pass 1,508 Editor samples including 45 beacon poses and one release transition. Maximum beacon wrist bend 21.880886° and target error 0.000000422m. Exercise actual equipment presentation to verify network-position preservation and layer/collision restoration. Inspect two static/actual URP stack images; beacon stack has 73,918 visible pixels. Pass 46 windowless native four-client delivery/purchase/beacon checks and 20 two-client baton/movement/carry checks, 66 total, with error-free logs. Validate 286 document links/language counterparts/checkbox states, Python syntax and patch whitespace.
+
+The first delivery run failed before beacon purchase because collision checks rejected tilted cargo placement at BAY 04. Preserve game adjudication; level the parcel through ordinary rotation inputs before placement and pass the same placement/scan assertions. Rendering two poses sequentially in one Editor frame showed what appeared to be prior right-arm skinning; separate per-pose review invocations produce correct two-hand contact. Exclude the initial incorrect image from validation evidence.
+
+Official Unity 6000.6.4f1, CLI 1.0.0-beta.12 and Pipeline 0.8.0-exp.1 match latest releases; no pending updates. No new model or Blender MCP editing. Open no manual windows/Editor Play and stop automated sessions. Restore build-resaved scene/URP changes; preserve and exclude eight pre-existing material and two Blender changes. Remote beacon carry poses, full-body rescue/down, actual teammate contact, human quality, native map/HUD GPU composition, all-frame fingers/clothing penetration, Windows/LAN and performance remain unverified. Full hazard-state beacon regression was not rerun in this task.
+
 ## 2026-10-04 — First-person rescue hands 0.9.16
 
 For the requested next task, implement the missing rescue hand presentation. Use host-authorized rescue progress to reach with both hands over 0.18 seconds and add a 2Hz assisting movement of up to 0.018m. Restore base finger poses, limit wrist bend to 25°, immediately restore the baton on cancellation/completion and hide hands when down. Preserve the existing 2m/line-of-sight, 2.5-second rescue, 4-second revival protection and attack-blocking rules. Do not add actual body contact or remote full-body rescue motion. Game 0.9.16, protocol 13, TCP 27842. [Current production guide](../current/first-person-arms.en.md), [validation](../validation/employee-rescue-0.9.16.json).

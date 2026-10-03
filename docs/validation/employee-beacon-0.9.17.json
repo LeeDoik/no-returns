@@ -1,0 +1,166 @@
+{
+  "date": "2026-10-04",
+  "version": "0.9.17",
+  "status": "PASS",
+  "scope": "Local first-person beacon carry only; host mechanics and remote presentation preserved",
+  "review": {
+    "status": "PASS",
+    "error": "",
+    "worstGrip": "fov=65 pitch=45 reach=0.5 frame=5",
+    "samples": 1508,
+    "rescueSamples": 63,
+    "beaconSamples": 45,
+    "maxBeaconWristBend": 21.88088607788086,
+    "maxBeaconContactError": 4.214684850012418e-07,
+    "maxRescueWristBend": 23.194618225097656,
+    "maxRescueContactError": 4.851466428590356e-07,
+    "maxGripError": 6.699828531964158e-07,
+    "maxBoneLengthError": 5.960464477539062e-07,
+    "maxWristBend": 24.037256240844727,
+    "baselineStrikeWristBend": 119.47013092041016,
+    "overlayDepth": true,
+    "stackRendered": true,
+    "beaconStackRendered": true,
+    "overlayPixels": 73918,
+    "beaconPixels": 73918
+  },
+  "build": {
+    "status": "PASS",
+    "unity": "6000.6.4f1",
+    "output": "/Users/leedoik/WorkSpace/Game/No_Returns/builds/CinderFourPlayer/NoReturns.app",
+    "error": "",
+    "errors": 0,
+    "warnings": 7
+  },
+  "manual_windows_opened": false,
+  "tools": {
+    "unity": "6000.6.4f1",
+    "cli": "1.0.0-beta.12",
+    "pipeline": "0.8.0-exp.1",
+    "pending_updates": []
+  },
+  "review_notes": [
+    "Two stack renders in the same Editor frame reused the earlier right-arm skinning pose. Render each pose in a separate review invocation; beacon-only stack inspected with correct two-hand contact."
+  ],
+  "unknowns": [
+    "Human quality approval",
+    "Native GPU map/lighting/HUD composition",
+    "Remote full-body beacon carry",
+    "Full-body rescue/down and actual teammate contact",
+    "All-frame fingers/clothing penetration",
+    "Windows/LAN and performance"
+  ],
+  "native_delivery": {
+    "status": "PASS",
+    "run": "/Users/leedoik/WorkSpace/Game/No_Returns/artifacts/cinder-four-player/run-20261004-011504-4550e8",
+    "checks": [
+      "four Cinder delivery slots",
+      "settings menu opens",
+      "settings blocks movement and gameplay actions",
+      "settings closes",
+      "host ship terminal opens",
+      "ship button selects route",
+      "host ship terminal opens",
+      "departure requires all four aboard",
+      "host ship terminal opens",
+      "all aboard activates field",
+      "client cannot command return",
+      "host ship terminal opens",
+      "zero-pay return needs explicit confirmation",
+      "return without receipt pays zero",
+      "host ship terminal opens",
+      "next shift resets all four and receipt",
+      "host ship terminal opens",
+      "second route selected",
+      "host ship terminal opens",
+      "second field arrival",
+      "shared cargo picked up",
+      "rotation and reach replicate",
+      "blocked placement keeps cargo held",
+      "held cargo cannot complete delivery",
+      "precise BAY 04 placement and scan replicate",
+      "receipt prints on all peers without payment",
+      "printing completes on all peers",
+      "English HUD toggle",
+      "receipt collected by one peer is shared",
+      "duplicate collection and outside crew do not pay",
+      "host ship terminal opens",
+      "settlement is 300 plus 120 exactly once",
+      "purchase is host-only",
+      "shop purchases once and spawns Cinder beacon",
+      "owned purchase cannot charge twice",
+      "Korean ship UI toggle",
+      "client carries purchased physical beacon",
+      "beacon carrier sees both supported hands",
+      "beacon hands follow look 0/-60",
+      "beacon hands follow look 90/0",
+      "beacon hands follow look 180/60",
+      "aboard beacon placement preserves charges",
+      "beacon release hides equipment hands",
+      "host ship terminal opens",
+      "next shift keeps 300 and resets receipt",
+      "no runtime exceptions or invalid bounds"
+    ],
+    "scope": "4 native Mac processes; one employee physically carries to BAY 04 and returns, all four physically board. Human handling/fun, WAN, AI and progression saving remain unverified."
+  },
+  "delivery_checks": 46,
+  "failures_resolved": [
+    "First headless delivery run stopped before beacon purchase: collision-checked BAY 04 placement rejected a tilted held parcel. Stage the ordinary aim/rotation input to level the parcel before placement; retain all placement/scan assertions and unchanged game placement code. Rerun passes."
+  ],
+  "documentation_count": 286,
+  "native_baton": {
+    "status": "PASS",
+    "run": "/Users/leedoik/WorkSpace/Game/No_Returns/artifacts/cinder-four-player/run-20261004-011702-85037d",
+    "checks": [
+      "idle keeps the existing arm pose and shows the first-person right glove",
+      "slot 0: dynamic arm strike replicated; first-person glove attached; returns to idle",
+      "slot 0: cooldown prevents a second attack",
+      "slot 1: dynamic arm strike replicated; first-person glove attached; returns to idle",
+      "slot 1: cooldown prevents a second attack",
+      "human picks up parcel",
+      "carry hides weapon on both peers",
+      "carry exposes both first-person hands",
+      "human cooldown expires while carrying",
+      "carrying rejects an attack",
+      "release restores weapon and right-hand pose",
+      "Backward at yaw 0 drives both actual employee poses",
+      "StrafeLeft at yaw 0 drives both actual employee poses",
+      "StrafeRight at yaw 0 drives both actual employee poses",
+      "Backward at yaw 90 drives both actual employee poses",
+      "StrafeLeft at yaw 90 drives both actual employee poses",
+      "StrafeRight at yaw 90 drives both actual employee poses",
+      "jump suspends direction correction on both peers",
+      "landing returns to idle directional pose",
+      "native logs free of errors and placeholder fallback"
+    ],
+    "first_person_motion": [
+      {
+        "slot": 0,
+        "weapon_travel_m": 0.2159280256565855,
+        "wrist_bends": [
+          23.454721450805664,
+          17.073102951049805
+        ]
+      },
+      {
+        "slot": 1,
+        "weapon_travel_m": 0.21592797044878204,
+        "wrist_bends": [
+          16.091814041137695,
+          23.700450897216797
+        ]
+      }
+    ],
+    "weapon_rotation_degrees": [
+      [
+        9.516473399366596,
+        24.716497698550874
+      ],
+      [
+        25.374605763116573,
+        9.394854762892887
+      ]
+    ]
+  },
+  "native_checks": 66
+}

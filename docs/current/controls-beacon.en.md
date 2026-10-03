@@ -2,6 +2,10 @@
 
 [한국어](controls-beacon.ko.md)
 
+## 2026-10-04 — Two-hand beacon carry 0.9.17
+
+Implement a first-person pose supporting the existing beacon with both hands and following view rotation. Limit wrist bend to 25°. Releasing restores world presentation/collision and, in normal play, the baton. Preserve host purchasing/position/placement/charge adjudication. [Current production and limits](first-person-arms.en.md), [validation record](../validation/employee-beacon-0.9.17.json). Game **0.9.17**, protocol **13**, TCP **27842**. This supersedes older missing/hidden beacon-hand statements below within this scope. Remote beacon carry, full-body rescue/down, actual teammate body contact and human quality review remain pending. Open manual test windows only on request.
+
 The historical `artifacts/` paths identify local evidence from the original run. These files are no longer retained here and are not included in the public repository. Historical passes are distinct from current revalidation.
 
 ## 2026-10-01 — Controls, ship and purchase UI 0.9.2

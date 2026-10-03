@@ -1,8 +1,16 @@
-# First-person hand/arm production and integration — 0.9.16
+# First-person hand/arm production and integration — 0.9.17
 
 [한국어](first-person-arms.ko.md)
 
-Current game **0.9.16**, protocol **13**, TCP **27842**. This update adds the rescue hands described below. Mac build: zero errors and seven existing warnings; 53 windowless native client checks pass. The 0.9.15 introduction below records the earlier wrist correction.
+## Two-hand beacon carry — 0.9.17
+
+Connect a first-person pose supporting the existing beacon with both hands. [Equipment presentation](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryEquipment.cs) places the local carried device at eye-relative **(0,-0.34,0.58)m**, following view rotation, on Overlay layer 31 with the hands. Preserve the **0.42×0.44×0.34m** device size; hand contact goals are **±0.22m** sideways and **0.09m** below its center, with wrist bend limited to **25°**. [Hand pose code](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/EmployeeVisual.Carry.cs), [preview](../../art/player-employee-01/unity-review/FirstPerson-Beacon-Carry.png).
+
+Preserve host-owned device position, purchasing, charges and placement adjudication. Local presentation never overwrites the network position. Releasing restores world layer 0, host position, upright rotation and the collider, and hides the two-hand pose. Normal hazard play restores the existing right-hand baton; delivery-only mode continues to hide the baton. Down/rescue blocks equipment hands. Other players' beacon position/full-body poses are outside this change.
+
+[0.9.17 validation record](../validation/employee-beacon-0.9.17.json): add 45 beacon samples at FOV 65/80/100° × pitch -60/-30/0/30/60° × yaw 0/90/180° and one release transition, passing **1,508** Editor samples total. Maximum wrist bend **21.880886°**, contact-target error **0.000000422m**. Verify preservation of host position, local layer/collision isolation, and restoration of world position/rotation/layer/collision after placement. Inspect **73,918 pixels** in the actual [URP beacon stack output](../../art/player-employee-01/unity-review/FirstPerson-Beacon-Stack.png). This is an offscreen Editor render, not an actual map screenshot. Mac build: zero errors, seven existing warnings; **46** windowless native four-client delivery/purchase/carry/placement checks pass. Human naturalness, actual map/HUD GPU composition, remote beacon carry poses and all-frame finger/clothing penetration remain pending. The 0.9.16/0.9.15 figures below are prior validation history.
+
+Previously validated game **0.9.16**, protocol **13**, TCP **27842**. This update adds the rescue hands described below. Mac build: zero errors and seven existing warnings; 53 windowless native client checks pass. The 0.9.15 introduction below records the earlier wrist correction.
 
 ## 2026-10-04 — First-person wrist correction 0.9.15
 
@@ -19,7 +27,7 @@ Fix the wrist bend reported by the user in the 0.9.14 attack preview. Correct th
 
 ## Presentation
 
-[Runtime integration](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/FirstPersonArms.cs). Continue hiding the local full body and display only two extracted arm meshes. Show the right glove/sleeve gripping the baton when empty-handed; show both hands when carrying a parcel. Restore the right-hand baton after release. Show the two-hand rescue pose below during valid rescue while hiding the baton. Hide hands during beacon carry, down or inactivity. Dedicated beacon hands remain incomplete.
+[Runtime integration](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/FirstPersonArms.cs). Continue hiding the local full body and display only two extracted arm meshes. Show the right glove/sleeve gripping the baton when empty-handed; show both hands when carrying a parcel. Restore the right-hand baton after release. Show the two-hand rescue pose below during valid rescue while hiding the baton. Show both hands during beacon carry. Hide hands when down or inactive.
 
 Exclude **layer 31** from the URP Base camera and render arms/local baton through an Overlay camera. The Overlay clears depth; arms neither cast nor receive shadows. Follow the local FOV, with near **0.015m** and far **3m**. Place the model origin at **(0,-1.65,0.05)m** relative to the eye. [Official Unity camera stacking guidance](https://docs.unity3d.com/6000.0/Documentation/Manual/urp/camera-stacking.html). Null-graphics automated clients skip GPU renderer/stack initialization while performing the same bone/grip calculations. Verify actual stack configuration through Editor graphics checks.
 
@@ -29,7 +37,7 @@ Separate cylindrical-handle axial rotation from palm orientation: apply -90° to
 
 [Integration](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/BatonVisual.cs) shows both hands only when host-authorized rescue elapsed time exceeds zero. Preserve the existing 2m/line-of-sight, 2.5-second rescue and 4-second revival protection rules. Restore the base finger pose and reach up from below the screen over 0.18 seconds, then alternate a 2Hz assisting movement with up to 0.018m vertical amplitude. The [arm solver](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/EmployeeVisual.Carry.cs) limits wrist bend to 25°. Cancellation/completion immediately restores the existing right-hand baton; down hides hands. There is no separate exit blend.
 
-This is a camera-relative rescue cue, not hand attachment to actual contact points on the downed teammate. Remote full-body rescue/down animations and beacon hands remain pending. [Entry at 0.1s](../../art/player-employee-01/unity-review/FirstPerson-Rescue-Enter.png), [assist at 0.5s](../../art/player-employee-01/unity-review/FirstPerson-Rescue-Assist.png), [assist at 1.15s](../../art/player-employee-01/unity-review/FirstPerson-Rescue-Press.png). Hands are below the screen during early entry. These static review images have not received human quality approval.
+This is a camera-relative rescue cue, not hand attachment to actual contact points on the downed teammate. Remote full-body rescue/down animations remain pending. [Entry at 0.1s](../../art/player-employee-01/unity-review/FirstPerson-Rescue-Enter.png), [assist at 0.5s](../../art/player-employee-01/unity-review/FirstPerson-Rescue-Assist.png), [assist at 1.15s](../../art/player-employee-01/unity-review/FirstPerson-Rescue-Press.png). Hands are below the screen during early entry. These static review images have not received human quality approval.
 
 [0.9.16 validation record](../validation/employee-rescue-0.9.16.json): pass 1,462 Editor samples comprising the existing 1,397, 63 rescue poses and two cancel/down transitions. Maximum rescue wrist bend 23.194618° and hand-target error 0.000000486m. Actual URP stack render passes. The 0.9.15 values below are prior validation history.
 
@@ -39,4 +47,4 @@ This is a camera-relative rescue cue, not hand attachment to actual contact poin
 
 Also pass an offscreen render of the actual URP Base/Overlay stack: **70,087** visible arm/baton pixels against black, and inspect the [stack output](../../art/player-employee-01/unity-review/FirstPerson-Stack-Ready.png). This checks the actual Editor camera stack, not native full-map/HUD composition. Inspect **5** review images total.
 
-See the validation record for actual Mac build and windowless client results. Naturalness/impact, actual game GPU stack/lighting/HUD composition, all-distance/rotation/wall-corner penetration, Windows/LAN, performance and full-body rescue/down and dedicated beacon motions remain incomplete. Open no manual windows and retain the [on-demand play](companion-play.en.md) rule.
+See the validation record for actual Mac build and windowless client results. Naturalness/impact, actual game GPU stack/lighting/HUD composition, all-distance/rotation/wall-corner penetration, Windows/LAN, performance and full-body rescue/down and remote beacon carry poses remain incomplete. Open no manual windows and retain the [on-demand play](companion-play.en.md) rule.

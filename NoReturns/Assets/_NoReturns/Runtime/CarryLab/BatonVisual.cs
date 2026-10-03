@@ -14,7 +14,7 @@ public sealed class BatonVisual {
     [System.Serializable] public class State {public bool visible,handAttached;public float handDistance;public Vector3 position,axis;}
     public State Capture(int slot)=>new State{visible=roots[slot]&&roots[slot].activeSelf,handAttached=attached[slot],handDistance=handDistance[slot],position=roots[slot]?roots[slot].transform.position:Vector3.zero,axis=roots[slot]?roots[slot].transform.up:Vector3.up};
     public void Display(Camera eye, CharacterController[] crew, int local, int occupiedMask, bool active,
-        int cargoHolder, int beaconHolder, ThreatState danger, float[] yaws, EmployeeVisual[] employees,BoxCollider parcel) {
+        int cargoHolder, int beaconHolder, ThreatState danger, float[] yaws, EmployeeVisual[] employees,BoxCollider parcel,Transform beacon=null) {
         if(view==null)view=new FirstPersonArms(eye);
         for(int i=0;i<4;i++) {
             if(!roots[i]) {
@@ -64,7 +64,7 @@ public sealed class BatonVisual {
             }
         }
         bool blocked=danger!=null&&(danger.IsDown(local)||danger.RescueAt(local)>0);
-        view.Display(eye,roots[local].transform,roots[local].activeSelf,active&&!blocked&&cargoHolder==local,parcel,clearance,active&&danger!=null&&!danger.IsDown(local)&&cargoHolder!=local&&beaconHolder!=local?danger.RescueAt(local):0);
+        view.Display(eye,roots[local].transform,roots[local].activeSelf,active&&!blocked&&cargoHolder==local,parcel,clearance,active&&danger!=null&&!danger.IsDown(local)&&cargoHolder!=local&&beaconHolder!=local?danger.RescueAt(local):0,!blocked?beacon:null);
     }
 }
 }

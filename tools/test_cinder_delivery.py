@@ -6,8 +6,8 @@ import json
 import cinder_four_player as lab
 
 
-def main():
-    run, processes, folders, _ = lab.launch(True, hazard=False)
+def main(headless=False):
+    run, processes, folders, _ = lab.launch(True, hazard=False, headless=headless)
     checks, seq = [], 1
     report = dict(status="FAIL", run=str(run), checks=checks)
 
@@ -51,6 +51,7 @@ def main():
              pitch=-math.degrees(math.atan2(dy, math.hypot(dx, dz))), **values)
 
     def capture(name, slot, target):
+        if headless: return
         stamp = (folders[slot] / "capture.png").stat().st_mtime_ns if (folders[slot] / "capture.png").exists() else 0
         aim(slot, target, capture=True)
         require(name, lambda: (folders[slot] / "capture.png").exists() and
@@ -123,7 +124,9 @@ def main():
         time.sleep(.4)
         assert same_phase(2) and all_state(lambda s: s.get("credits") == 0), "Held cargo accepted or paid"
         checks.append("held cargo cannot complete delivery")
-        send(0, pitch=62, place=True)
+        # Level the held parcel before the collision-checked placement sweep.
+        send(0, pitch=62, turnPitch=-62);time.sleep(.4)
+        send(0, pitch=62, turnPitch=-62, place=True)
         require("precise BAY 04 placement and scan replicate", lambda: all_state(lambda s: 0 < s.get("receiptProgress", 0) < 1), 8)
         require("receipt prints on all peers without payment", lambda: same_phase(3) and all_state(lambda s: s.get("credits") == 0), 8)
         go(0, 14.9, 10.9)
@@ -166,8 +169,14 @@ def main():
         device=lab.state(folders[0])["beaconPosition"]
         aim(1,(device["x"],device["y"],device["z"]),interact=True)
         require("client carries purchased physical beacon",lambda:all_state(lambda s:s.get("beaconCarrier")==1))
-        send(1,place=True)
+        def hands(): return lab.state(folders[1],"animation.json").get("hands") or {}
+        require("beacon carrier sees both supported hands",lambda:hands().get("beaconCarrying") and hands().get("leftVisible") and hands().get("rightVisible") and hands().get("wristBend",180)<=25.01 and hands().get("gripError",1)<.02)
+        for yaw,pitch in ((0,-60),(90,0),(180,60)):
+            send(1,yaw=yaw,pitch=pitch);time.sleep(.3)
+            require(f"beacon hands follow look {yaw}/{pitch}",lambda:hands().get("beaconCarrying") and hands().get("wristBend",180)<=25.01 and hands().get("gripError",1)<.02)
+        send(1,yaw=180,pitch=40,place=True)
         require("aboard beacon placement preserves charges",lambda:all_state(lambda s:s.get("beaconCarrier")==-1 and s.get("charges")==2 and s.get("beaconTime")==0))
+        require("beacon release hides equipment hands",lambda:not hands().get("beaconCarrying") and not hands().get("leftVisible"))
         ship_click()
         require("next shift keeps 300 and resets receipt", lambda: same_phase(0) and all_state(lambda s:
                 s.get("credits") == 300 and s.get("receiptProgress") == 0 and not s.get("receiptCollected")))
@@ -191,4 +200,6 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    import argparse
+    parser=argparse.ArgumentParser();parser.add_argument("--headless",action="store_true")
+    main(parser.parse_args().headless)

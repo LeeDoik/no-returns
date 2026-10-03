@@ -66,6 +66,10 @@ public sealed partial class EmployeeVisual {
         for(int i=0;i<fingers.Length;i++)if(fingers[i])fingers[i].localRotation=openRotations[i];
         return Mathf.Max(Reach(leftArm,leftGoal,up,forward,1,true),Reach(rightArm,rightGoal,up,forward,1,true));
     }
+    public float BeaconHands(Vector3 center,Vector3 right,Vector3 up,Vector3 forward){
+        for(int i=0;i<fingers.Length;i++)if(fingers[i])fingers[i].localRotation=openRotations[i];
+        return Mathf.Max(Reach(leftArm,center-right*.22f-up*.09f,-right,forward,1,true),Reach(rightArm,center+right*.22f-up*.09f,right,forward,1,true));
+    }
     bool PoseArm(Arm arm,Vector3 goal,Quaternion handRotation,float weight,bool outwardElbow=false){
         Quaternion upperBase=arm.upper.localRotation,lowerBase=arm.lower.localRotation,handBase=arm.wrist.localRotation;
         Vector3 origin=arm.upper.position,direction=goal-origin;

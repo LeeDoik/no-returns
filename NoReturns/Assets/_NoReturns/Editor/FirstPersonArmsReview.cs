@@ -9,8 +9,8 @@ using UnityEngine.Rendering;
 using NoReturns.CarryLab;
 namespace NoReturns.Editor {
 public static class FirstPersonArmsReview {
-    [Serializable] class Receipt {public string status="FAIL",error,worstGrip;public int samples,rescueSamples;public float maxRescueWristBend,maxRescueContactError;public float maxGripError,maxBoneLengthError,maxWristBend,baselineStrikeWristBend;public bool overlayDepth,stackRendered;public int overlayPixels;}
-    public static void Review(){
+    [Serializable] class Receipt {public string status="FAIL",error,worstGrip;public int samples,rescueSamples,beaconSamples;public float maxBeaconWristBend,maxBeaconContactError;public float maxRescueWristBend,maxRescueContactError;public float maxGripError,maxBoneLengthError,maxWristBend,baselineStrikeWristBend;public bool overlayDepth,stackRendered,beaconStackRendered;public int overlayPixels,beaconPixels;}
+    public static void Review(bool beaconStack=false){
         var receipt=new Receipt();var folder=Path.GetFullPath("../artifacts/first-person-arms");Directory.CreateDirectory(folder);
         var preview=new PreviewRenderUtility();var eyeObject=new GameObject("Arm review eye");var eye=eyeObject.AddComponent<Camera>();eye.fieldOfView=80;
         var arms=new FirstPersonArms(eye);
@@ -59,16 +59,40 @@ public static class FirstPersonArmsReview {
             arms.Display(eye,weapon.transform,true,false,parcel,1,0);if(arms.Capture().rescuing||arms.Capture().leftVisible||!arms.Capture().rightVisible)throw new Exception("Rescue cancellation failed");receipt.samples++;
             arms.Display(eye,weapon.transform,false,false,parcel,1,0);if(arms.Capture().rescuing||arms.Capture().overlayEnabled)throw new Exception("Rescue down hiding failed");receipt.samples++;
             eye.fieldOfView=80;eye.transform.rotation=Quaternion.identity;
+            var equipment=new CarryEquipment();var worldPosition=new Vector3(4,1,3);
+            equipment.Apply(new CarryState{beaconExists=true,beaconCarrier=0,beaconPosition=worldPosition,charges=2});equipment.Display(true,eye,0);
+            var beacon=equipment.LocalHeldVisual.gameObject;preview.AddSingleGO(beacon);
+            foreach(float fov in new[]{65f,80f,100f})foreach(float pitch in new[]{-60f,-30f,0f,30f,60f})foreach(float yaw in new[]{0f,90f,180f}){
+                eye.fieldOfView=fov;eye.transform.rotation=Quaternion.Euler(pitch,yaw,0);animator.Play("Idle",0,.2f);animator.Update(.001f);weapon.SetActive(false);
+                equipment.Display(true,eye,0);
+                if(equipment.Position!=worldPosition||beacon.layer!=FirstPersonArms.Layer||beacon.GetComponent<Collider>().enabled)throw new Exception("Local beacon changed authority/collision/layer");
+                arms.Display(eye,weapon.transform,false,false,parcel,1,0,beacon.transform);var state=arms.Capture();
+                receipt.maxBeaconWristBend=Mathf.Max(receipt.maxBeaconWristBend,state.wristBend);receipt.maxBeaconContactError=Mathf.Max(receipt.maxBeaconContactError,state.gripError);
+                if(!state.beaconCarrying||!state.leftVisible||!state.rightVisible||!state.overlayEnabled||state.wristBend>25.01f||state.gripError>.02f)throw new Exception("Beacon hands contact/wrist failed: "+state.gripError);
+                if(fov==80&&pitch==0&&yaw==0)Render(preview,renderers,box,folder,"Beacon-Carry",eye.transform.rotation,fov);
+                receipt.samples++;receipt.beaconSamples++;
+            }
+            equipment.Apply(new CarryState{beaconExists=true,beaconCarrier=-1,beaconPosition=worldPosition,charges=2});equipment.Display(true,eye,0);
+            if(equipment.LocalHeldVisual||beacon.layer!=0||!beacon.GetComponent<Collider>().enabled||beacon.transform.position!=worldPosition||beacon.transform.rotation!=Quaternion.identity)throw new Exception("Placed beacon failed world/collision restoration");
+            beacon.SetActive(false);arms.Display(eye,weapon.transform,true,false,parcel,1);
+            if(arms.Capture().beaconCarrying||arms.Capture().leftVisible||!arms.Capture().rightVisible)throw new Exception("Beacon release failed");receipt.samples++;
+            eye.fieldOfView=80;eye.transform.rotation=Quaternion.identity;
             // Render the actual Base/Overlay stack offscreen without entering Play.
             eye.scene=preview.camera.scene;eye.clearFlags=CameraClearFlags.SolidColor;eye.backgroundColor=Color.black;eye.nearClipPlane=.06f;eye.farClipPlane=3;
             var overlay=eye.GetUniversalAdditionalCameraData().cameraStack.Single();overlay.scene=eye.scene;
             box.SetActive(false);weapon.SetActive(true);FirstPersonArms.SetLayer(weapon,FirstPersonArms.Layer);
             animator.Play("Idle",0,.2f);animator.Update(.001f);BatonMotion.FirstPerson(0,out var readyGrip,out var readyRotation);
             weapon.transform.SetPositionAndRotation(readyGrip,readyRotation);arms.Display(eye,weapon.transform,true,false,parcel,1);
+            if(beaconStack){
+                equipment.Apply(new CarryState{beaconExists=true,beaconCarrier=0,beaconPosition=worldPosition,charges=2});equipment.Display(true,eye,0);weapon.SetActive(false);
+                animator.Play("Idle",0,.2f);animator.Update(.001f);arms.Display(eye,weapon.transform,false,false,parcel,1,0,equipment.LocalHeldVisual);
+            }
             var target=new RenderTexture(1280,720,24);target.Create();var pixels=new Texture2D(1280,720,TextureFormat.RGB24,false);var prior=RenderTexture.active;
             try{RenderPipeline.SubmitRenderRequest(eye,new RenderPipeline.StandardRequest{destination=target});RenderTexture.active=target;pixels.ReadPixels(new Rect(0,0,1280,720),0,0);pixels.Apply();
                 receipt.overlayPixels=pixels.GetPixels32().Count(c=>c.r>12||c.g>12||c.b>12);receipt.stackRendered=receipt.overlayPixels>3000;
-                File.WriteAllBytes(Path.Combine(folder,"Stack-Ready.png"),pixels.EncodeToPNG());if(!receipt.stackRendered)throw new Exception("Actual overlay stack did not render arms/baton");
+                receipt.beaconStackRendered=beaconStack&&receipt.stackRendered;receipt.beaconPixels=beaconStack?receipt.overlayPixels:0;
+                File.WriteAllBytes(Path.Combine(folder,beaconStack?"Stack-Beacon.png":"Stack-Ready.png"),pixels.EncodeToPNG());if(!receipt.stackRendered)throw new Exception("Actual overlay stack did not render arms/baton");
+
             }finally{RenderTexture.active=prior;target.Release();UnityEngine.Object.DestroyImmediate(target);UnityEngine.Object.DestroyImmediate(pixels);}
             receipt.status="PASS";
         }catch(Exception e){receipt.error=e.ToString();throw;}finally{preview.Cleanup();UnityEngine.Object.DestroyImmediate(eyeObject);File.WriteAllText(Path.Combine(folder,"review.json"),JsonUtility.ToJson(receipt,true));}
