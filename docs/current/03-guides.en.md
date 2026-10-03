@@ -2,6 +2,27 @@
 
 [한국어](03-guides.ko.md)
 
+## 2026-10-03 — Prioritize Mixamo motion reuse
+
+The user chose to reuse suitable Mixamo motions wherever possible. The preceding keyframe tutorial is optional editing practice, not a plan to hand-author every gameplay motion. The current production baseline is **select Mixamo candidates → apply/validate on the existing employee rig → adjust game-specific contacts/timing**. This does not mean collecting the entire library or adding gameplay features.
+
+| Gameplay motion | Candidate search terms and adjustment scope |
+|---|---|
+| Idle, walk, run, backward and sideways movement | `Idle`, `Walking`, `Running`, `Walking Backwards`, `Strafe`. Check existing movement speed and loop continuity. |
+| Jump, landing, hit, down and getting up | `Jump`, `Landing`, `Hit Reaction`, `Death`, `Getting Up`. Check actual game states and entry/recovery timing. |
+| Pickup, carrying and placement | `Picking Up`, `Carrying`, `Box`, `Put Down`. Reuse suitable candidates first, then adjust hands for cargo size/distance/rotation. |
+| Baton and rescue | `Standing Melee Attack`, `Kneeling`, `Revive`. Reuse suitable candidates when available and adjust to strike/rescue rules. |
+
+These are discovery terms, not verified catalog entries, selected clips or quality findings. Finding an animation does not justify adding a gameplay feature.
+
+The first trial is to upload the [current rigged FBX](../../art/player-employee-01/rigged/NR_Employee_01_Rigged.fbx) through Mixamo's **Upload Character** and apply **Idle and Walking**. Adobe documents automatic skeleton mapping for rigged FBX files, but success for this 53-bone model is unverified. If recognized, keep the same character, retain a reference character download **With Skin**, and propose subsequent clips **Without Skin**, FBX, 30fps and no Keyframe Reduction. Enable **In Place** when offered for locomotion. These are project recommendations; this task did not inspect the signed-in download interface.
+
+If mapping fails, before deleting or auto-rigging the existing skeleton again, evaluate retargeting motions from a Mixamo library character onto the employee through Unity **Humanoid**. Source and target each require a valid Avatar; do not copy an Avatar directly between different skeleton structures. Preserve the existing rig/weights and decide whether a final skeleton replacement is needed only after the two-motion trial. Retain code-driven game movement with Root Motion disabled as the integration direction.
+
+After download, record provenance, clip names and chosen settings, then check Unity skeleton recognition, joint deformation, foot sliding, loops and transitions. Carrying contacts and first-person framing require separate adjustment. Check external-source public-redistribution terms under the existing intake policy. This task performed no upload, download, clip selection or model/game changes; retain game 0.9.4, protocol 13 and pending validation statuses.
+
+Checked on 2026-10-03: [Adobe rigged-character upload/mapping](https://helpx.adobe.com/creative-cloud/help/mixamo-rigging-animation.html), [Mixamo FAQ](https://helpx.adobe.com/creative-cloud/faq/mixamo-faq.html), [Unity Humanoid retargeting](https://docs.unity3d.com/6000.0/Documentation/Manual/Retargeting.html). Adobe's FAQ describes free access with an Adobe ID and royalty-free use in commercial games.
+
 ## 2026-10-03 — First keyframe animation exercise
 
 Animation stores poses at specific frames as **keyframes** and interpolates between them. An **Action** groups the keys for a motion. The existing rig contains only a diagnostic Action; this guidance does not create or integrate a new gameplay clip.

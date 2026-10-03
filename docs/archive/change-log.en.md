@@ -2,6 +2,10 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-03 — Mixamo-first production direction
+
+Adopt the user's request for maximum suitable Mixamo reuse as the current production direction. Update bilingual production guidance and asset planning with motion search terms, an Idle/Walking mapping trial on the existing rig, Unity retargeting fallback, proposed download settings and contact-adjustment scope. Consult Adobe upload/FAQ and Unity documentation; actual catalog selection, signed-in UI, upload and download were not performed. No code/model/scene changes. Bilingual content review, link/checkbox checks across 276 documents and changed-whitespace checks passed.
+
 ## 2026-10-03 — Animation-authoring guidance
 
 Answer the user's question with bilingual [production guidance](../current/03-guides.en.md) on keyframes, separate Actions, a frame-1/13/25 elbow exercise and the idle/walk/carry production sequence. Explain diagnostic-motion preservation and I/K differences using official search results and existing production code. No code/model/scene/game-state changes. New clip production, actual UI practice and Unity integration were not performed. Bilingual content review, link/checkbox checks across 276 documents and changed-whitespace checks passed.

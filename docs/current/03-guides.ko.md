@@ -2,6 +2,27 @@
 
 [English](03-guides.en.md)
 
+## 2026-10-03 — Mixamo 동작 우선 재사용
+
+사용자는 사용할 수 있는 동작을 Mixamo에서 최대한 재사용하기로 했다. 앞의 키프레임 안내는 선택적인 편집 학습이며 모든 게임 동작을 수작업으로 만드는 계획이 아니다. **Mixamo 후보 선택 → 기존 직원 리그에 적용·검증 → 게임별 접촉/타이밍만 보정**을 현재 제작 기준으로 삼는다. 라이브러리 전체 수집이나 새 게임 기능 추가를 뜻하지 않는다.
+
+| 게임 동작 | 후보 검색어와 보정 범위 |
+|---|---|
+| 대기·걷기·달리기·후진·옆 이동 | `Idle`, `Walking`, `Running`, `Walking Backwards`, `Strafe`. 기존 이동 속도와 반복 연결 확인. |
+| 점프·착지·피격·다운·일어나기 | `Jump`, `Landing`, `Hit Reaction`, `Death`, `Getting Up`. 실제 게임 상태와 진입/복귀 타이밍 확인. |
+| 집기·운반·놓기 | `Picking Up`, `Carrying`, `Box`, `Put Down`. 맞는 후보를 먼저 쓰고 화물 크기/거리/회전에 손 위치 보정. |
+| 진압봉·구조 | `Standing Melee Attack`, `Kneeling`, `Revive`. 맞는 후보가 있으면 재사용하고 타격/구조 규칙에 맞춰 보정. |
+
+검색어는 탐색용이며 실제 목록에서 특정 이름의 클립 존재·선정·품질을 확인한 결과가 아니다. 동작을 찾았다는 이유로 새 게임 기능을 추가하지 않는다.
+
+첫 시험은 [현재 뼈대 포함 FBX](../../art/player-employee-01/rigged/NR_Employee_01_Rigged.fbx)를 Mixamo의 **Upload Character**에 넣고 **Idle·Walking**을 적용하는 것이다. Adobe는 리깅된 FBX의 뼈 자동 매핑을 안내하지만 이 53개 뼈 모델의 성공은 미확인이다. 인식되면 동일 캐릭터를 유지하고 먼저 기준 캐릭터를 **With Skin**으로 보관한 뒤 후속 클립은 **Without Skin**, FBX·30fps·Keyframe Reduction 없음으로 받는 것을 제안한다. 이동 클립에 **In Place**가 표시되면 켠다. 이 값들은 프로젝트 권장안이며 로그인된 다운로드 화면을 이번에 확인하지 않았다.
+
+매핑에 실패하면 기존 리그를 지우거나 다시 자동 리깅하기 전에 Mixamo 기본 캐릭터의 동작을 Unity **Humanoid 리타기팅**으로 현재 직원에게 옮기는 경로를 확인한다. 원본/대상 각각 유효한 Avatar가 필요하고, 서로 다른 뼈 구조 사이에 Avatar를 그대로 복사하지 않는다. 현재 리그와 가중치는 보존하며 최종 뼈대 교체 여부는 두 동작 시험 뒤 정한다. 이동은 기존 게임 코드가 담당하고 Root Motion은 끄는 방향을 유지한다.
+
+다운로드 후 출처·클립 이름·선택한 설정을 기록하고 Unity 뼈대 인식·관절 변형·발 미끄러짐·반복·전환부터 확인한다. 운반 손 접촉과 1인칭 시야는 별도 보정 대상이다. 외부 원본의 공개 저장소 배포 조건은 기존 반입 기준에 따라 확인한다. 이번에는 업로드·다운로드·클립 선정·모델/게임 변경을 실행하지 않았으며 게임 0.9.4·프로토콜 13과 미완료 검증 상태를 유지한다.
+
+2026-10-03 확인: [Adobe 리깅된 캐릭터 업로드/매핑](https://helpx.adobe.com/creative-cloud/help/mixamo-rigging-animation.html), [Mixamo FAQ](https://helpx.adobe.com/creative-cloud/faq/mixamo-faq.html), [Unity Humanoid 리타기팅](https://docs.unity3d.com/6000.0/Documentation/Manual/Retargeting.html). Adobe FAQ는 Adobe ID로 무료 이용 및 상업 게임에서의 로열티 없는 사용을 안내한다.
+
 ## 2026-10-03 — 첫 키프레임 애니메이션 연습
 
 애니메이션은 특정 프레임의 자세를 **키프레임**으로 저장하고 그 사이를 보간하는 방식으로 만든다. **Action**은 한 동작의 키프레임을 담는 묶음이다. 기존 리그에는 시험 Action만 있으며 이번 안내에서 새 게임용 클립을 제작하거나 적용하지 않았다.
