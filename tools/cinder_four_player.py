@@ -90,8 +90,10 @@ def state(folder, name="state.json"):
         return {}
 
 
-def launch(automated=False, delivery=True, hazard=True, companion=False, headless=False):
-    count = 2 if companion else 4
+def launch(automated=False, delivery=True, hazard=True, companion=False, headless=False, quick=False):
+    count = 2 if companion or quick else 4
+    if quick and (not automated or not headless or companion or not hazard or not delivery):
+        raise ValueError("Quick fixtures require automated, headless hazard clients without a companion bot")
     binary = player()
     if not binary.is_file():
         raise RuntimeError("Build the player first: python3 tools/cinder_four_player.py build")
@@ -112,6 +114,8 @@ def launch(automated=False, delivery=True, hazard=True, companion=False, headles
             args += ["--companion-practice"]
             if slot == 1:
                 args += ["--companion-bot"]
+        if quick:
+            args += ["--quick-test"]
         if headless:
             args += ["-batchmode", "-nographics"]
         if not delivery:
@@ -302,6 +306,8 @@ def main():
         report = json.loads(receipt.read_text())
         if report["status"] != "PASS" or report["errors"]:
             raise RuntimeError(report)
+        from cinder_build_stamp import record
+        record(player())
         print("Built:", player())
     elif args.action == "start":
         launch(delivery=not args.map_only, hazard=not args.delivery_only, companion=args.companion)

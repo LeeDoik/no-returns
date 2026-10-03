@@ -2,6 +2,10 @@
 
 [한국어](companion-play.ko.md)
 
+## 2026-10-04 — Targeted quick tests 0.9.19
+
+Finish visual changes with compilation, relevant Editor poses/render and docs. For carry/rescue/attack changes, run only the affected windowless two-client scenario from a prepared state. Reserve full delivery/four-player checks for large changes, related failures, pre-release or explicit requests. Three scenarios reuse the same two processes: this quick suite passed **18 checks in 8.869 seconds**, including startup/shutdown; a build-inclusive run took **17.735 seconds**. These are measurements on this Mac and do not replace full regression. Reject stale builds before launch. [Usage and selection](quick-testing.en.md), [validation](../validation/quick-testing-0.9.19.json). No manual windows opened.
+
 ## 2026-10-04 — First-person rescue hands 0.9.16
 
 Reach with both hands and show a small assisting movement during valid rescue. Hide the baton, restore the right-hand baton on cancellation/completion and hide hands when down. Retain the 25° wrist limit. [Current production, values and remaining scope](first-person-arms.en.md), [validation record](../validation/employee-rescue-0.9.16.json). Game **0.9.16**, protocol **13**, TCP **27842**. Preserve existing rescue adjudication. This supersedes older statements below that rescue hands are missing or hidden, within this scope. Beacon hands, full-body rescue/down, actual body contact and human quality review remain pending. Open manual test windows only on request.

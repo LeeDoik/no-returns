@@ -104,6 +104,11 @@ public sealed class CarryThreat {
         pursuedPlayer=-1;noiseTarget=source;noises++;state=1;interest=5;distraction=1.2f;Route(source);
     }
     public void Reset(){Array.Clear(Down,0,4);Array.Clear(Rescue,0,4);Array.Clear(Cooldown,0,4);Array.Clear(protection,0,4);gridBuilt=false;grid.Clear();nodes.Clear();position=patrol[0];state=0;patrolIndex=0;timer=0;stunResistance=0;allDown=0;searchClock=0;distraction=0;pursuedPlayer=-1;interest=0;Array.Clear(stepClock,0,4);Array.Clear(previous,0,4);path.Clear();}
+#if CARRY_TEST_AUTOMATION || UNITY_EDITOR
+    public void PrepareQuickFixture(Vector3 target,bool batonTarget,bool downedPartner){
+        Reset();position=target;state=batonTarget?2:3;timer=60;victim=0;Down[1]=downedPartner;
+    }
+#endif
     public bool Tick(Vector3[] players,bool peer,CarryInput[] inputs,int holder,bool field,float dt)=>Tick(players,peer?3:1,inputs,holder,field,dt);
     public bool Tick(Vector3[] players,int mask,CarryInput[] inputs,int holder,bool field,float dt){
         if(!field)return false;

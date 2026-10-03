@@ -27,7 +27,7 @@ public sealed partial class CarryRoom : MonoBehaviour {
     CarrySave save; string saveNotice=""; float retrySaveAt;
     [NonSerialized] string testFolder; int testSeq=-1;
     [NonSerialized] CarryState target;
-    [Serializable] class TestCommand {public int seq;public float x,z,yaw,pitch,distance=.8f,turnYaw,turnPitch;public string ui,click;public bool place,confirmReturn,jump,interact,drop,reset,action; public bool capture,toggleLanguage,quiet,call,shove,rescue,buy,contract,deploy,inspect,journal;}
+    [Serializable] class TestCommand {public int seq;public float x,z,yaw,pitch,distance=.8f,turnYaw,turnPitch;public string ui,click,fixture;public bool place,confirmReturn,jump,interact,drop,reset,action; public bool capture,toggleLanguage,quiet,call,shove,rescue,buy,contract,deploy,inspect,journal;}
     void Awake(){
         Application.runInBackground=true;Application.targetFrameRate=cinderReview?30:60;Time.fixedDeltaTime=.02f;
         if(!cinderReview)CarryWorld.Build();receiptFeedback=FindFirstObjectByType<ReceiptFeedback>();
@@ -67,6 +67,7 @@ public sealed partial class CarryRoom : MonoBehaviour {
 #endif
             if(args[i]=="--join"&&i+1<args.Length){address=args[++i];local=1;}
         }
+        ConfigureQuickTest(args);
         if(testFolder!=null)Directory.CreateDirectory(testFolder);
         CarryLanguage.Initialize(testFolder);controls=new CarryControls(testFolder==null);eye.fieldOfView=controls.Fov;
         if(Array.IndexOf(args,"--host")>=0)StartHost();else if(Array.IndexOf(args,"--join")>=0)StartJoin();
@@ -98,7 +99,7 @@ public sealed partial class CarryRoom : MonoBehaviour {
         ++seq;var cmd=companionBot?ReadCompanion():ReadControls();
         if(testFolder!=null){try{var path=Path.Combine(testFolder,"input.json");if(File.Exists(path)){
             var t=JsonUtility.FromJson<TestCommand>(File.ReadAllText(path));yaw=t.yaw;pitch=t.pitch;cmd.x=t.x;cmd.z=t.z;cmd.yaw=yaw;cmd.pitch=pitch;cmd.distance=t.distance;cmd.turnYaw=t.turnYaw;cmd.turnPitch=t.turnPitch;cmd.quiet=t.quiet;cmd.rescue=t.rescue;
-            if(t.seq!=testSeq){testSeq=t.seq;cmd.inspect=t.inspect;if(t.journal&&clues!=null)journalOpen=!journalOpen;cmd.buy=t.buy;cmd.contract=t.contract;cmd.deploy=t.deploy;cmd.interact=t.interact;cmd.drop=t.drop;cmd.place=t.place;cmd.confirmReturn=t.confirmReturn;cmd.jump=t.jump;cmd.reset=t.reset;cmd.action=t.action;cmd.call=t.call;cmd.shove=t.shove;
+            if(t.seq!=testSeq){testSeq=t.seq;RequestQuickFixture(t.fixture);cmd.inspect=t.inspect;if(t.journal&&clues!=null)journalOpen=!journalOpen;cmd.buy=t.buy;cmd.contract=t.contract;cmd.deploy=t.deploy;cmd.interact=t.interact;cmd.drop=t.drop;cmd.place=t.place;cmd.confirmReturn=t.confirmReturn;cmd.jump=t.jump;cmd.reset=t.reset;cmd.action=t.action;cmd.call=t.call;cmd.shove=t.shove;
                 if(t.ui=="ship")OpenShip();else if(t.ui=="pause"){menu=true;SetCursor(false);}else if(t.ui=="settings"){menu=true;settingsMenu=true;SetCursor(false);}else if(t.ui=="close")ClosePanels();
                 if(t.toggleLanguage)CarryLanguage.Toggle();if(t.click!=null&&playHud!=null)playHud.Click(t.click);if(t.capture)capturePending=true;
             }
@@ -111,6 +112,7 @@ public sealed partial class CarryRoom : MonoBehaviour {
     void FixedUpdate(){
         if(!active){cargo.isKinematic=true;return;}
         if(hosting){
+            ApplyQuickFixture();
             int phaseAtTick=mission==null?-1:mission.Phase;
             tick++;if(inputs[0].reset){if(mission==null)ResetRoom();inputs[0].reset=false;}
             for(int i=0;i<4;i++){
@@ -201,10 +203,10 @@ public sealed partial class CarryRoom : MonoBehaviour {
     }
     void Release(){if(cargo==null)return;if(holder>=0)Physics.IgnoreCollision(cargoCollider,workers[holder],false);holder=-1;cargo.isKinematic=false;cargo.linearVelocity=Vector3.zero;cargo.angularVelocity=Vector3.zero;}
     CarryState Snapshot()=>new CarryState{cinderReview=cinderReview,positions=Positions(),yaws=Yaws(),occupiedMask=occupiedMask,recipient=local,beaconCarrier=equipment.Carrier,beaconExists=equipment.Exists,receiptCollected=receiptCollected,receiptReady=receiptReady,receiptProgress=receiptProgress,shiftElapsed=suppression==null?0:suppression.Elapsed,suppressionStage=suppression==null?0:suppression.Stage,outerDanger=outerDanger,clueMask=clues==null?0:clues.Mask,unlocked=unlocked,hard=hard,deliveries=deliveries,charges=equipment.Charges,beaconTime=equipment.Remaining,beaconPosition=equipment.Position,hazard=hazard,danger=danger,phase=missionPhase,credits=credits,receipt=receipt,returnPay=returnPay,tick=tick,holder=holder,p0=workers[0].transform.position,p1=workers[1].transform.position,yaw0=inputs[0].yaw,yaw1=inputs[1].yaw,cargo=cargo.position,rotation=cargo.rotation,players=CrewCount,connected=peer,ack=inputs[local].seq,message=status};
-    [Serializable] class AnimationEvidence {public EmployeeVisual.State[] employees;public BatonVisual.State[] batons;public FirstPersonArms.State hands;public bool companionPractice,companionBot;public string companionAction;}
+    [Serializable] class AnimationEvidence {public EmployeeVisual.State[] employees;public BatonVisual.State[] batons;public FirstPersonArms.State hands;public bool companionPractice,companionBot;public string companionAction,quickFixture;}
     [Serializable] class UiEvidence {public string menu,context,shipAction,buyButton,language,host,objective,status,firstRecord,secondRecord,suppressionCue;public bool koreanGlyph,journalOpen;}
     static void WriteAtomic(string path,string value){var temp=path+".tmp";File.WriteAllText(temp,value);if(File.Exists(path))File.Replace(temp,path,null);else File.Move(temp,path);}
-    void WriteEvidence(CarryState s){if(testFolder==null)return;try{WriteAtomic(Path.Combine(testFolder,"ui.json"),JsonUtility.ToJson(new UiEvidence{menu=settingsMenu?"settings":shipMenu?"ship":journalOpen?"journal":menu?"pause":"",context=playHud==null?"":playHud.ContextText,shipAction=playHud==null?"":playHud.MenuText("shipAction"),buyButton=playHud==null?"":playHud.MenuText("buy"),suppressionCue=suppression==null?null:T(CarrySuppression.Cue(suppression.Stage,cinderReview)),journalOpen=journalOpen,firstRecord=T(clues!=null&&(clues.Mask&1)!=0?CarryClues.FirstBody:"Not discovered"),secondRecord=T(clues!=null&&(clues.Mask&2)!=0?CarryClues.SecondBody:"Not discovered"),language=CarryLanguage.Korean?"ko":"en",host=T("HOST"),objective=T(cinderReview&&missionPhase<0?"CINDER / FOUR-PLAYER MAP TEST":CarryMission.Objective(missionPhase)),status=T(status),koreanGlyph=CarryLanguage.Font.HasCharacter('한')}));WriteAtomic(Path.Combine(testFolder,"state.json"),JsonUtility.ToJson(s));var animation=new AnimationEvidence{companionPractice=companionPractice,companionBot=companionBot,companionAction=companionAction,hands=baton.Hands,employees=new EmployeeVisual.State[4],batons=new BatonVisual.State[4]};for(int i=0;i<4;i++)if(employeeVisuals[i]&&employeeVisuals[i].Ready)animation.employees[i]=employeeVisuals[i].Capture();for(int i=0;i<4;i++)animation.batons[i]=baton.Capture(i);WriteAtomic(Path.Combine(testFolder,"animation.json"),JsonUtility.ToJson(animation));}catch(IOException){} }
+    void WriteEvidence(CarryState s){if(testFolder==null)return;try{WriteAtomic(Path.Combine(testFolder,"ui.json"),JsonUtility.ToJson(new UiEvidence{menu=settingsMenu?"settings":shipMenu?"ship":journalOpen?"journal":menu?"pause":"",context=playHud==null?"":playHud.ContextText,shipAction=playHud==null?"":playHud.MenuText("shipAction"),buyButton=playHud==null?"":playHud.MenuText("buy"),suppressionCue=suppression==null?null:T(CarrySuppression.Cue(suppression.Stage,cinderReview)),journalOpen=journalOpen,firstRecord=T(clues!=null&&(clues.Mask&1)!=0?CarryClues.FirstBody:"Not discovered"),secondRecord=T(clues!=null&&(clues.Mask&2)!=0?CarryClues.SecondBody:"Not discovered"),language=CarryLanguage.Korean?"ko":"en",host=T("HOST"),objective=T(cinderReview&&missionPhase<0?"CINDER / FOUR-PLAYER MAP TEST":CarryMission.Objective(missionPhase)),status=T(status),koreanGlyph=CarryLanguage.Font.HasCharacter('한')}));WriteAtomic(Path.Combine(testFolder,"state.json"),JsonUtility.ToJson(s));var animation=new AnimationEvidence{companionPractice=companionPractice,companionBot=companionBot,companionAction=companionAction,quickFixture=quickFixture,hands=baton.Hands,employees=new EmployeeVisual.State[4],batons=new BatonVisual.State[4]};for(int i=0;i<4;i++)if(employeeVisuals[i]&&employeeVisuals[i].Ready)animation.employees[i]=employeeVisuals[i].Capture();for(int i=0;i<4;i++)animation.batons[i]=baton.Capture(i);WriteAtomic(Path.Combine(testFolder,"animation.json"),JsonUtility.ToJson(animation));}catch(IOException){} }
     void LateUpdate(){if(eye==null)return;eye.transform.position=workers[local].transform.position+Vector3.up*(hazard&&danger!=null&&danger.IsDown(local)?.55f:1.57f);eye.transform.rotation=Quaternion.Euler(pitch,yaw,0);
         // Apply before every render, including the inactive startup menu.
         for(int i=0;i<4;i++){bool visible=i!=local&&Present(i);foreach(var r in bodies[i])r.enabled=visible;}

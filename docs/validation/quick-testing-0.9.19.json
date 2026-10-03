@@ -1,0 +1,70 @@
+{
+  "date": "2026-10-04",
+  "version": "0.9.19",
+  "status": "PASS",
+  "quick": {
+    "status": "PASS",
+    "scenario": "all",
+    "run": "/Users/leedoik/WorkSpace/Game/No_Returns/artifacts/cinder-four-player/run-20261004-015155-c98204",
+    "checks": [
+      "beacon fixture ready",
+      "beacon starts purchased with two charges",
+      "client cannot reset host fixture",
+      "real pickup replicated",
+      "local and remote hands carry beacon",
+      "real placement consumes one charge",
+      "release restores baton and clears remote pose",
+      "rescue fixture ready",
+      "partner starts down",
+      "real rescue progress and hands",
+      "release cancels rescue",
+      "real hold revives partner on both clients",
+      "revival restores baton",
+      "baton fixture ready",
+      "real baton hit stuns target on both clients",
+      "attack pose returns",
+      "cooldown rejects repeated attack",
+      "no runtime errors or progression save"
+    ],
+    "scenario_seconds": {
+      "beacon": 0.884,
+      "rescue": 3.396,
+      "baton": 0.969
+    },
+    "total_seconds": 8.869
+  },
+  "quick_check_count": 18,
+  "guard_unit_tests": 4,
+  "with_build_total_seconds": 17.735,
+  "build": {
+    "status": "PASS",
+    "unity": "6000.6.4f1",
+    "output": "/Users/leedoik/WorkSpace/Game/No_Returns/builds/CinderFourPlayer/NoReturns.app",
+    "error": "",
+    "errors": 0,
+    "warnings": 7
+  },
+  "compilation": "PASS",
+  "stale_source_rejected_before_launch": true,
+  "manual_windows_opened": false,
+  "full_regression_rerun": false,
+  "tools": {
+    "unity": "6000.6.4f1",
+    "cli": "1.0.0-beta.12",
+    "pipeline": "0.8.0-exp.1",
+    "pending_updates": []
+  },
+  "documentation_count": 288,
+  "limitations": [
+    "Seeded starting states skip purchase, delivery and cause of down",
+    "Enemy starts in 60-second prepared state; natural AI/encounters not tested",
+    "Two clients only; four-player and Windows/LAN not rerun",
+    "No native GPU screenshots or human quality review",
+    "Timings are this Mac run, not a performance guarantee"
+  ],
+  "cache_notes": [
+    "The actual source edit was rejected before a rebuild.",
+    "Ignore only generated test scene and URP runtime-settings list; authored URP settings remain hashed.",
+    "Confirmed prior build current before migrating fingerprint format; cleanup of generated URP list still accepts the validated build."
+  ]
+}

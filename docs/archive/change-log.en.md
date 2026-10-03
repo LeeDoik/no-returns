@@ -2,6 +2,14 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-04 — Proportionate quick test environment 0.9.19
+
+The user flagged excessive repeated client-test time; stop rerunning full delivery for every change. Prepare purchased-beacon, downed-partner and baton-target initial states only in development Cinder hazard mode with a test folder, explicit quick flag and host request. Exercise actions through existing input/host adjudication/networking. Reuse the same two windowless real clients sequentially; preserve on-demand human+companion rules. Exclude fixture operations from release compilation. Validate build reuse with source/asset/settings fingerprints and fail before launching stale binaries. Build only with explicit `--build`. Distinguish Editor code, the generated test scene and URP build-generated list from authored settings/local employee assets. Update AGENTS and the new selection guide. [Guide](../current/quick-testing.en.md), [validation](../validation/quick-testing-0.9.19.json).
+
+Compilation/Mac build: zero errors, seven existing warnings. Final two-client windowless suite passes 18 checks in 8.869 seconds including startup/shutdown (beacon 0.884s, rescue 3.396s, baton 0.969s). A separate build-inclusive run takes 17.735 seconds. Verify stale-build rejection after an actual source change, rejected participant resets, no personal save, error-free logs and automatic cleanup. Pass four runner guard tests, 288 document links/language counterparts/checkbox states, Python syntax and patch whitespace. Normalize only the generated URP list to avoid unnecessary invalidation after cleanup; migrate the stamp format after confirming the old build matched. Authored setting changes still invalidate it.
+
+Official Unity 6000.6.4f1, CLI 1.0.0-beta.12 and Pipeline 0.8.0-exp.1 are current; no pending updates. Game 0.9.19, protocol 13, TCP 27842. Do not rerun full delivery/hazard/four-player, native GPU/human review or Windows/LAN. Fixtures do not validate purchasing/delivery/cause of down/natural AI. No release-channel build was produced in this task. No manual windows/Editor Play. Restore build-resaved scene/URP changes and preserve/exclude eight pre-existing material and two Blender modifications.
+
 ## 2026-10-04 — Remote teammate beacon carry 0.9.18
 
 For the requested next task, implement remote beacon carry presentation. Place the visual at body-relative (0,1.1,0.4)m with body orientation and apply two-hand contact over idle/walk. Reuse the 25° wrist limit. Clear the pose on release, down, rescue, an absent slot or inactivity. Preserve first-person presentation, host position/purchase/placement/charges and the network protocol. [Production guide](../current/first-person-arms.en.md), [validation](../validation/employee-beacon-remote-0.9.18.json). Game 0.9.18, protocol 13, TCP 27842.

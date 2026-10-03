@@ -2,6 +2,10 @@
 
 [한국어](05-validation.ko.md)
 
+## 2026-10-04 — Targeted quick tests 0.9.19
+
+Finish visual changes with compilation, relevant Editor poses/render and docs. For carry/rescue/attack changes, run only the affected windowless two-client scenario from a prepared state. Reserve full delivery/four-player checks for large changes, related failures, pre-release or explicit requests. Three scenarios reuse the same two processes: this quick suite passed **18 checks in 8.869 seconds**, including startup/shutdown; a build-inclusive run took **17.735 seconds**. These are measurements on this Mac and do not replace full regression. Reject stale builds before launch. [Usage and selection](quick-testing.en.md), [validation](../validation/quick-testing-0.9.19.json). No manual windows opened.
+
 ## 2026-10-04 — Teammate two-hand beacon carry 0.9.18
 
 Show teammates supporting the beacon with both hands during idle/walk. Follow body orientation and limit wrist bend to 25°. Clear the pose on release, down or rescue. Preserve first-person presentation and host purchasing/position/placement/charge rules. [Current production and limits](first-person-arms.en.md), [validation](../validation/employee-beacon-remote-0.9.18.json). Game **0.9.18**, protocol **13**, TCP **27842**. This supersedes previous missing-remote-beacon-pose statements within this scope. Full-body rescue/down, actual teammate contact and human quality remain pending. Open manual test windows only on request.

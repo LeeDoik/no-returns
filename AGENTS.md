@@ -64,3 +64,12 @@
 
 - 사용자가 “직접 테스트 해볼게”라고 요청할 때만 수동 플레이 창과 자동 동료 창을 연다. 기본 실행은 `python3 tools/cinder_four_player.py start --companion`이며 1명은 사용자, 1명은 주변 시연 봇이다. 작업마다 수동 시험 창이나 4개 게임 창을 자동으로 열지 않는다. 컴파일·문서·화면 없는 자동 검사는 변경에 맞게 실시한다. 종료는 기존 `python3 tools/cinder_four_player.py stop`을 사용한다.
 - Open the manual player and companion windows only when the user says “직접 테스트 해볼게” (I will test it myself). Default to `python3 tools/cinder_four_player.py start --companion`: one human and one nearby demonstration bot. Do not automatically open manual or four-player windows after each task. Use appropriate compilation, documentation and windowless automated checks. Stop through the existing `python3 tools/cinder_four_player.py stop` helper.
+
+## 효율적인 검사 / Proportionate validation
+
+- 외형·자세 수정의 기본 검증은 컴파일·관련 Editor 자세/화면·문서 검사다. 매번 native 빌드나 배송 전체·4인 검사를 실행하지 않는다. 로컬 Editor 검증이 충분하면 빌드와 클라이언트 검사는 생략했다고 기록한다.
+- 운반·구조·공격·동기화 변경은 필요한 항목만 `python3 tools/cinder_quick_test.py beacon|rescue|baton`으로 검사한다. 기본은 화면 없는 실제 2인이다. 전체 빠른 검사는 `all`이다. 현재 소스와 빌드가 다르면 명시적으로 `--build`를 사용하며 오래된 실행본을 통과 근거로 쓰지 않는다.
+- 전체 배송/위험/4인 회귀는 큰 시스템 변경, 관련 실패 조사, 출시 전 또는 명시 요청 시에만 실행한다. 빠른 준비 상태는 구매/배송/적 조우 전체 검증을 대체하지 않는다. 자세 표본은 변경한 부분 위주로 선택하고 이미 통과한 무관한 검사를 반복하지 않는다. [검사 선택 안내](docs/current/quick-testing.ko.md).
+- For visual/pose changes, default to compilation, relevant Editor pose/render checks and documentation. Do not automatically build native players or rerun full delivery/four-player tests. Record when Editor evidence is sufficient and native checks are skipped.
+- For carry/rescue/attack/synchronization changes, run only the relevant `python3 tools/cinder_quick_test.py beacon|rescue|baton` scenario, using two windowless real clients. Use `all` for the complete quick suite. Explicitly use `--build` when sources differ; never treat an outdated binary as current evidence.
+- Reserve full delivery/hazard/four-player regressions for large system changes, related failure investigations, pre-release checks or explicit requests. Seeded fixtures do not validate the purchase/delivery/encounter journey. Select relevant pose samples and avoid repeating unrelated passing checks. [Validation selection guide](docs/current/quick-testing.en.md).
