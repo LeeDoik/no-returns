@@ -66,6 +66,13 @@ public sealed partial class EmployeeVisual {
         for(int i=0;i<fingers.Length;i++)if(fingers[i])fingers[i].localRotation=openRotations[i];
         return Mathf.Max(Reach(leftArm,leftGoal,up,forward,1,true),Reach(rightArm,rightGoal,up,forward,1,true));
     }
+    bool beaconCarrying;float beaconContactError,beaconWristBend;
+    public void BeaconPose(Transform device){
+        beaconCarrying=device;beaconContactError=beaconWristBend=0;
+        if(!device)return;
+        beaconContactError=BeaconHands(device.position,device.right,device.up,device.forward);
+        beaconWristBend=RescueWristBend;
+    }
     public float BeaconHands(Vector3 center,Vector3 right,Vector3 up,Vector3 forward){
         for(int i=0;i<fingers.Length;i++)if(fingers[i])fingers[i].localRotation=openRotations[i];
         return Mathf.Max(Reach(leftArm,center-right*.22f-up*.09f,-right,forward,1,true),Reach(rightArm,center+right*.22f-up*.09f,right,forward,1,true));

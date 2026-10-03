@@ -219,8 +219,9 @@ public sealed partial class CarryRoom : MonoBehaviour {
         suppression?.Display(active&&(missionPhase==2||missionPhase==3));
         if(outer!=null&&outerDanger!=null)outer.Display(outerDanger,active&&(missionPhase==2||missionPhase==3)&&suppression.Stage>=2);
         clues?.Display(active&&(missionPhase==2||missionPhase==3),missionPhase==3);
-        equipment.Display(active&&missionPhase>=0,eye,local);
+        equipment.Display(active&&missionPhase>=0,eye,local,equipment.Carrier>=0?employeeVisuals[equipment.Carrier]?.transform:null);
         baton.Display(eye,workers,local,occupiedMask,active&&(hazard||companionPractice),holder,equipment.Carrier,danger,Yaws(),employeeVisuals,cargoCollider as BoxCollider,equipment.LocalHeldVisual);
+        for(int i=0;i<4;i++)if(employeeVisuals[i])employeeVisuals[i].BeaconPose(active&&Present(i)&&i!=local&&equipment.Carrier==i&&!(danger!=null&&(danger.IsDown(i)||danger.RescueAt(i)>0))?equipment.HeldVisual:null);
         if(threat!=null&&danger!=null){threat.Display(danger,active&&(missionPhase==2||missionPhase==3));
             for(int i=0;i<4;i++){bool down=danger.IsDown(i);rigs[i].localRotation=Quaternion.Euler(0,0,down?90:0);rigs[i].localPosition=down?new Vector3(.5f,.3f,0):Vector3.zero;}
         }

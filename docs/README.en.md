@@ -2,6 +2,10 @@
 
 [한국어](README.md)
 
+## 2026-10-04 — Teammate two-hand beacon carry 0.9.18
+
+Show teammates supporting the beacon with both hands during idle/walk. Follow body orientation and limit wrist bend to 25°. Clear the pose on release, down or rescue. Preserve first-person presentation and host purchasing/position/placement/charge rules. [Current production and limits](current/first-person-arms.en.md), [validation](validation/employee-beacon-remote-0.9.18.json). Game **0.9.18**, protocol **13**, TCP **27842**. This supersedes previous missing-remote-beacon-pose statements within this scope. Full-body rescue/down, actual teammate contact and human quality remain pending. Open manual test windows only on request.
+
 ## 2026-10-04 — Two-hand beacon carry 0.9.17
 
 Implement a first-person pose supporting the existing beacon with both hands and following view rotation. Limit wrist bend to 25°. Releasing restores world presentation/collision and, in normal play, the baton. Preserve host purchasing/position/placement/charge adjudication. [Current production and limits](current/first-person-arms.en.md), [validation record](validation/employee-beacon-0.9.17.json). Game **0.9.17**, protocol **13**, TCP **27842**. This supersedes older missing/hidden beacon-hand statements below within this scope. Remote beacon carry, full-body rescue/down, actual teammate body contact and human quality review remain pending. Open manual test windows only on request.

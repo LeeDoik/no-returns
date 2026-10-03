@@ -1,6 +1,12 @@
-# First-person hand/arm production and integration — 0.9.17
+# First-person hand/arm production and integration — 0.9.18
 
 [한국어](first-person-arms.ko.md)
+
+## Remote teammate beacon carry — 0.9.18
+
+Other clients now show the carrier supporting the beacon with both hands in front of the body. [Equipment presentation](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryEquipment.cs) uses body-relative **(0,1.1,0.4)m** and body orientation. Looking up/down no longer moves the remote visual outside arm reach; first-person presentation and host position/placement adjudication remain unchanged. The [arm pose](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/EmployeeVisual.Carry.cs) reuses the side contact goals and 25° wrist limit. Apply over idle/walk; clear on release, down, rescue, inactivity or an absent slot. The [runtime order](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs) applies it after base locomotion/attack processing.
+
+[Validation](../validation/employee-beacon-remote-0.9.18.json): Idle/Walk × yaw 0/90/180/270° × 10 times, **80** samples. Maximum target-contact error **0.004148133m**, wrist bend **23.823709°** and arm bone-length change **0.000000447m**. Verify source bone-length/host-position preservation and restoration of world position/rotation/collision on release. [Idle](../../art/player-employee-01/unity-review/Employee-Beacon-Idle.png) and [walk](../../art/player-employee-01/unity-review/Employee-Beacon-Walk.png) are static Editor review images. Human naturalness, all-frame clothing/finger penetration, native map GPU composition, full hazard-state regression, Windows/LAN and performance remain unverified. Game **0.9.18**, protocol **13**, TCP **27842**. Older missing-remote-carry statements below are superseded within this scope.
 
 ## Two-hand beacon carry — 0.9.17
 

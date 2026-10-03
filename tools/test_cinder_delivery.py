@@ -170,12 +170,17 @@ def main(headless=False):
         aim(1,(device["x"],device["y"],device["z"]),interact=True)
         require("client carries purchased physical beacon",lambda:all_state(lambda s:s.get("beaconCarrier")==1))
         def hands(): return lab.state(folders[1],"animation.json").get("hands") or {}
+        def remote_beacon():
+            return [lab.state(folders[i],"animation.json").get("employees",[{}]*4)[1] or {} for i in (0,2,3)]
+        require("three peers show carrier holding beacon",lambda:all(x.get("beaconCarrying") and x.get("beaconContactError",1)<.02 and x.get("beaconWristBend",180)<=25.01 for x in remote_beacon()))
         require("beacon carrier sees both supported hands",lambda:hands().get("beaconCarrying") and hands().get("leftVisible") and hands().get("rightVisible") and hands().get("wristBend",180)<=25.01 and hands().get("gripError",1)<.02)
         for yaw,pitch in ((0,-60),(90,0),(180,60)):
             send(1,yaw=yaw,pitch=pitch);time.sleep(.3)
+            require(f"remote beacon hands follow yaw {yaw}",lambda:all(x.get("beaconCarrying") and x.get("beaconContactError",1)<.02 and x.get("beaconWristBend",180)<=25.01 for x in remote_beacon()))
             require(f"beacon hands follow look {yaw}/{pitch}",lambda:hands().get("beaconCarrying") and hands().get("wristBend",180)<=25.01 and hands().get("gripError",1)<.02)
         send(1,yaw=180,pitch=40,place=True)
         require("aboard beacon placement preserves charges",lambda:all_state(lambda s:s.get("beaconCarrier")==-1 and s.get("charges")==2 and s.get("beaconTime")==0))
+        require("beacon release clears remote carry pose",lambda:all(not x.get("beaconCarrying") for x in remote_beacon()))
         require("beacon release hides equipment hands",lambda:not hands().get("beaconCarrying") and not hands().get("leftVisible"))
         ship_click()
         require("next shift keeps 300 and resets receipt", lambda: same_phase(0) and all_state(lambda s:

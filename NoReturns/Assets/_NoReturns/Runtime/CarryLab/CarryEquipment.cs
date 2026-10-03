@@ -10,6 +10,7 @@ public sealed class CarryEquipment {
     float pulse;
     GameObject visual;
     public Transform LocalHeldVisual {get;private set;}
+    public Transform HeldVisual=>visual&&visual.activeSelf&&Carrier>=0?visual.transform:null;
     AudioSource audio; AudioClip clip; int lastBeat=-1;
     bool cinder;
     public void Begin(bool unlocked,bool cinder=false){Charges=unlocked?2:0;Remaining=0;pulse=0;Exists=unlocked;Carrier=-1;this.cinder=cinder;Position=cinder?new Vector3(-20.7f,1.23f,-29):new Vector3(-2,.22f,-7);}
@@ -42,7 +43,7 @@ public sealed class CarryEquipment {
         Remaining=Mathf.Max(0,Remaining-dt);
     }
     public void Apply(CarryState s){Carrier=s.beaconCarrier;Exists=s.beaconExists;Charges=s.charges;Remaining=s.beaconTime;Position=s.beaconPosition;}
-    public void Display(bool field,Camera eye=null,int local=-1){
+    public void Display(bool field,Camera eye=null,int local=-1,Transform carrier=null){
         if(visual==null){
             visual=GameObject.CreatePrimitive(PrimitiveType.Cylinder);visual.name="Decoy beacon";visual.GetComponent<Renderer>().sharedMaterial=CarryWorld.Mat(new Color(.1f,.9f,.8f));
             visual.transform.localScale=new Vector3(.42f,.22f,.42f);
@@ -58,6 +59,7 @@ public sealed class CarryEquipment {
         LocalHeldVisual=held?visual.transform:null;
         visual.transform.SetPositionAndRotation(held?eye.transform.TransformPoint(new Vector3(0,-.34f,.58f)):Position,held?eye.transform.rotation:Quaternion.identity);
         FirstPersonArms.SetLayer(visual,held?FirstPersonArms.Layer:0);
+        if(!held&&Carrier>=0&&carrier)visual.transform.SetPositionAndRotation(carrier.position+carrier.rotation*new Vector3(0,1.1f,.4f),carrier.rotation);
         visual.transform.localScale=new Vector3(.42f,.22f,.42f);
         int beat=Mathf.CeilToInt(Remaining);
         if(visual.activeSelf&&Remaining>0&&beat!=lastBeat)audio.PlayOneShot(clip);

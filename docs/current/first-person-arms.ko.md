@@ -1,6 +1,12 @@
-# 1인칭 손·팔 제작과 연결 — 0.9.17
+# 1인칭 손·팔 제작과 연결 — 0.9.18
 
 [English](first-person-arms.en.md)
+
+## 동료 신호기 운반 — 0.9.18
+
+동료 화면에서도 신호기를 몸 앞에서 양손으로 받쳐 든다. [장비 표시](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryEquipment.cs)는 동료 몸 기준 **(0,1.1,0.4)m**·몸 방향으로 장비를 표시한다. 시선 상하 각도에 따라 장비가 팔 길이 밖으로 이동하지 않으며, 1인칭 표시와 호스트 위치/배치 판정은 유지한다. [팔 자세](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/EmployeeVisual.Carry.cs)는 기존 좌우 접촉 목표와 25° 손목 제한을 사용한다. 대기/걷기 위에 적용하고 운반 해제·다운·구조·비활성·자리 비움 시 적용을 해제한다. [런타임 순서](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs)에서 기본 이동·공격 처리 뒤에 적용한다.
+
+[검증 기록](../validation/employee-beacon-remote-0.9.18.json): Idle/Walk × 방향 0/90/180/270° × 10시점, **80개** 표본. 목표 접촉 오차 최대 **0.004148133m**, 손목 최대 **23.823709°**, 팔 뼈 길이 변화 최대 **0.000000447m**. 원본 뼈 길이·호스트 위치 보존과 내려놓기 후 월드 위치/회전/충돌 복원 확인. [대기](../../art/player-employee-01/unity-review/Employee-Beacon-Idle.png) · [걷기](../../art/player-employee-01/unity-review/Employee-Beacon-Walk.png)는 정적 Editor 검토 이미지다. 사람 자연스러움·모든 옷/손가락 관통·실제 맵 GPU 화면·위험 상태 전체 회귀·Windows/LAN/성능은 미확인이다. 게임 **0.9.18**·프로토콜 **13**·TCP **27842**. 아래 원격 운반 미구현 설명은 과거 이력이며 이 범위에서 대체한다.
 
 ## 신호기 양손 운반 — 0.9.17
 

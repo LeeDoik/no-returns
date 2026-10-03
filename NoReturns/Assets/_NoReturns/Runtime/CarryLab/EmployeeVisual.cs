@@ -9,10 +9,10 @@ public sealed partial class EmployeeVisual : MonoBehaviour {
     public float Speed=>speed;
     public Vector3 RightHandPosition=>hand?hand.position:transform.position;
     public bool Walking=>animator&&animator.GetCurrentAnimatorStateInfo(0).IsName("Walk");
-    [System.Serializable] public class State {public bool ready,walking,visible,rootMotion,carryClamped,batonSwing,batonClamped;public float speed,carryWeight,leftContactError,rightContactError,batonWeight,batonElapsed,batonGripError,airWeight,landingWeight,verticalSpeed;public string locomotion,direction;public Vector3 localVelocity,leftFootPosition,rightFootPosition;public float directionWeight;public Quaternion leftFoot,rightUpperArm,chest,leftKnee;public Vector3 rightHand;}
+    [System.Serializable] public class State {public bool ready,walking,visible,rootMotion,beaconCarrying,carryClamped,batonSwing,batonClamped;public float beaconContactError,beaconWristBend,speed,carryWeight,leftContactError,rightContactError,batonWeight,batonElapsed,batonGripError,airWeight,landingWeight,verticalSpeed;public string locomotion,direction;public Vector3 localVelocity,leftFootPosition,rightFootPosition;public float directionWeight;public Quaternion leftFoot,rightUpperArm,chest,leftKnee;public Vector3 rightHand;}
     public State Capture()=>new State{ready=Ready,walking=Walking,visible=GetComponentInChildren<SkinnedMeshRenderer>().enabled,
         rootMotion=animator.applyRootMotion,speed=speed,leftFoot=animator.GetBoneTransform(HumanBodyBones.LeftFoot).localRotation,
-        carryWeight=carryWeight,carryClamped=carryClamped,leftContactError=leftContactError,rightContactError=rightContactError,
+        beaconCarrying=beaconCarrying,beaconContactError=beaconContactError,beaconWristBend=beaconWristBend,carryWeight=carryWeight,carryClamped=carryClamped,leftContactError=leftContactError,rightContactError=rightContactError,
         rightHand=hand.position,batonWeight=batonWeight,batonElapsed=batonElapsed,batonSwing=batonSwing,batonClamped=batonClamped,batonGripError=batonGripError,
         airWeight=airWeight,landingWeight=landingWeight,verticalSpeed=verticalSpeed,locomotion=locomotion,direction=direction,localVelocity=localVelocity,directionWeight=directionWeight,
         leftFootPosition=transform.InverseTransformPoint(animator.GetBoneTransform(HumanBodyBones.LeftFoot).position),rightFootPosition=transform.InverseTransformPoint(animator.GetBoneTransform(HumanBodyBones.RightFoot).position),

@@ -2,6 +2,14 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-04 — Remote teammate beacon carry 0.9.18
+
+For the requested next task, implement remote beacon carry presentation. Place the visual at body-relative (0,1.1,0.4)m with body orientation and apply two-hand contact over idle/walk. Reuse the 25° wrist limit. Clear the pose on release, down, rescue, an absent slot or inactivity. Preserve first-person presentation, host position/purchase/placement/charges and the network protocol. [Production guide](../current/first-person-arms.en.md), [validation](../validation/employee-beacon-remote-0.9.18.json). Game 0.9.18, protocol 13, TCP 27842.
+
+Pass 80 Editor samples across idle/walk, four directions and ten times. Maximum contact error 0.004148133m, wrist bend 23.823709° and bone-length change 0.000000447m. Visually inspect two idle/walk images. Pass the existing 1,508 first-person samples and actual beacon URP stack regression. Compilation/Mac build: zero errors, seven existing warnings. Pass 51 windowless native four-client delivery/purchase/beacon checks, confirm error-free logs and stop the automated session. Validate 286 document links/language counterparts/checkbox states, Python syntax and patch whitespace. Human quality, native map/HUD GPU composition, all-frame clothing/finger penetration, full hazard-state regression, Windows/LAN and performance remain unverified.
+
+Official Unity 6000.6.4f1, CLI 1.0.0-beta.12 and Pipeline 0.8.0-exp.1 match latest releases; no pending updates. No Blender MCP/new model generation. Open no manual windows or Editor Play. Restore build-resaved test scene/URP changes; preserve and exclude eight pre-existing material and two Blender modifications.
+
 ## 2026-10-04 — First-person two-hand beacon carry 0.9.17
 
 For the requested next step, implement the missing beacon hands. Present the local carried device at eye-relative (0,-0.34,0.58)m with view rotation on Overlay layer 31; contact goals are ±0.22m sideways and 0.09m below its center. Use the base finger pose and a 25° wrist limit. Releasing restores host position, upright rotation, layer 0 and collision, and restores the baton in normal play. Delivery-only mode continues to hide the baton. Preserve host purchase/position/placement/charges and remote device presentation. [Production guide](../current/first-person-arms.en.md), [validation](../validation/employee-beacon-0.9.17.json). Game 0.9.17, protocol 13, TCP 27842.
