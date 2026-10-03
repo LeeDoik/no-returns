@@ -1,4 +1,4 @@
-"""Windowless native checks of the restored original baton and directional footsteps."""
+"""Windowless native checks of the dynamic baton, first-person hands and directional footsteps."""
 import json
 import math
 import time
@@ -25,21 +25,28 @@ def main():
     def observe(slot):
         axes = [list(a["batons"][slot]["axis"].values()) for a in animations()]
         seen, angle = [False, False], [0, 0]
+        weights=[0,0];travel=[0,0];origins=[a["employees"][slot]["rightHand"] for a in animations()]
         send(slot, shove=True)
         start = time.monotonic()
         while time.monotonic()-start < .7:
             for peer, a in enumerate(animations()):
                 seen[peer] |= lab.state(folders[peer])["danger"]["cooldown"][slot] > 5.5
                 pose, weapon = a["employees"][slot], a["batons"][slot]
-                assert pose["batonWeight"] == 0 and not pose["batonSwing"]
+                weights[peer]=max(weights[peer],pose["batonWeight"])
+                travel[peer]=max(travel[peer],math.dist(list(origins[peer].values()),list(pose["rightHand"].values())))
+                hands=a["hands"]
+                assert hands["ready"] and hands["rightVisible"] and not hands["leftVisible"]
+                assert hands["gripError"]<.12
+                assert math.dist(list(hands["grip"].values()),list(a["batons"][peer]["position"].values()))<.001
                 axis = list(weapon["axis"].values())
                 dot = sum(x*y for x,y in zip(axes[peer],axis))/math.sqrt(sum(x*x for x in axes[peer])*sum(x*x for x in axis))
                 angle[peer] = max(angle[peer], math.degrees(math.acos(max(-1,min(1,dot)))))
                 if peer != slot:
                     assert weapon["handAttached"] and weapon["handDistance"] < .15
             time.sleep(.02)
-        assert all(seen) and min(angle)>15, (seen,angle)
-        report["checks"].append(f"slot {slot}: original weapon swing replicated with hand attachment and no attack arm/chest layer")
+        assert all(seen) and min(angle)>15 and min(weights)>.6 and min(travel)>.12, (seen,angle,weights,travel)
+        assert all(a["employees"][slot]["batonWeight"]==0 and not a["employees"][slot]["batonSwing"] for a in animations())
+        report["checks"].append(f"slot {slot}: dynamic arm strike replicated; first-person glove attached; returns to idle")
         report.setdefault("weapon_rotation_degrees", []).append(angle)
         before=lab.state(folders[0])["danger"]["cooldown"][slot]
         send(slot, shove=True)
@@ -50,8 +57,8 @@ def main():
 
     try:
         send(1)
-        require("both peers retain the original unmodified arm layer", lambda: all(
-            all(p["batonWeight"] == 0 and not p["batonSwing"] for p in a["employees"][:2]) for a in animations()))
+        require("idle keeps the existing arm pose and shows the first-person right glove", lambda: all(
+            a["hands"]["ready"] and a["hands"]["rightVisible"] and all(p["batonWeight"] == 0 and not p["batonSwing"] for p in a["employees"][:2]) for a in animations()))
         observe(0)
         observe(1)
         cargo=lab.state(folders[0])["cargo"];p=lab.state(folders[0])["positions"][0]
@@ -59,12 +66,13 @@ def main():
         send(0,yaw=math.degrees(math.atan2(dx,dz)),pitch=-math.degrees(math.atan2(dy,math.hypot(dx,dz))),interact=True)
         require("human picks up parcel",lambda:all(lab.state(f)["holder"]==0 for f in folders.values()))
         require("carry hides weapon on both peers",lambda:all(a["employees"][0]["carryWeight"]==1 and not a["batons"][0]["visible"] for a in animations()))
+        require("carry exposes both first-person hands",lambda:animations()[0]["hands"]["leftVisible"] and animations()[0]["hands"]["rightVisible"] and animations()[0]["hands"]["carrying"])
         require("human cooldown expires while carrying",lambda:lab.state(folders[0])["danger"]["cooldown"][0]==0)
         send(0,shove=True);time.sleep(.2)
         assert all(lab.state(f)["danger"]["cooldown"][0]==0 for f in folders.values())
         report["checks"].append("carrying rejects an attack")
         send(0,drop=True)
-        require("release restores hand-attached weapon without arm attack layer",lambda:all(a["batons"][0]["visible"] and a["employees"][0]["batonWeight"]==0 for a in animations()))
+        require("release restores weapon and right-hand pose",lambda:all(a["batons"][0]["visible"] and a["employees"][0]["batonWeight"]==0 for a in animations()))
         # Use the existing clear access lane, away from the dropped cargo and spawn props.
         send(0,yaw=270,z=.5);time.sleep(1.5);send(0);time.sleep(.4)
         # Actual controller movement, viewed from both peers at two different body yaws.
@@ -85,7 +93,7 @@ def main():
         require("landing returns to idle directional pose",lambda:all(a["employees"][0]["locomotion"]=="Grounded" and a["employees"][0]["direction"]=="Idle" and a["employees"][0]["directionWeight"]==0 for a in animations()))
         for folder in folders.values():
             log=(folder/"player.log").read_text(errors="replace")
-            assert not any(term in log for term in ("Exception:","Invalid AABB","Assertion failed","Fatal Error","prototype visuals"))
+            assert not any(term in log for term in ("Exception:","Invalid AABB","Assertion failed","Fatal Error","prototype visuals","Prepare FirstPersonArms"))
         report["checks"].append("native logs free of errors and placeholder fallback")
         report["status"]="PASS"
     except BaseException as error:

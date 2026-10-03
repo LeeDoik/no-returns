@@ -2,9 +2,9 @@
 
 [한국어](04-backlog.ko.md)
 
-## 2026-10-03 — Next production proposal: first-person hands/sleeves
+## 2026-10-04 — Dynamic baton and first-person hands/arms 0.9.14
 
-Inspect movement, jump/landing, carrying and the restored original baton at 0.9.13. Recommend **first-person hands/sleeves** next. [Baton code](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/BatonVisual.cs) displays a temporary cube glove locally and has no dedicated arms. Production order: baton-holding right hand/sleeve → both hands during parcel carrying → release/use transitions, view obstruction and wall overlap. Propose retaining the restored baton readiness/use motion and gameplay contact rules. Dedicated down/rescue movement is a later candidate; adjust priority to user quality feedback. This item is **proposed/unimplemented**, not new implementation authorization or quality validation. Specific feedback from the recent manual session remains unverified.
+At the user's request, implement short anticipation, fast extension and 0.42s recovery through baton arm/chest motion, local right glove/sleeve and two-hand parcel carrying. Preserve immediate contact, 6s cooldown, carrying/down/valid-rescue blocking and existing movement. [Current baton](employee-baton.en.md), [arm production/local reproduction](first-person-arms.en.md), [validation evidence](../validation/employee-first-person-0.9.14.json). Game **0.9.14**, protocol **13**, TCP **27842**. Earlier 0.9.13 original-motion restoration and first-person-arms-not-implemented/proposed states below are historical and superseded within this implementation scope. Dedicated beacon/rescue hands, human quality, actual game GPU composition, all-corner penetration, Windows/LAN and performance remain pending. Manual play stays stopped; use the existing two-window helper only on request.
 
 ## 2026-10-03 — Original baton restored; backward/sidestep movement 0.9.13
 
@@ -16,7 +16,7 @@ Implement equal 16:9 left/right viewports for two players and 16:9 viewports ins
 
 
 
-## 2026-10-03 — Historical character proposal (current production order is at 0.9.13 above)
+## 2026-10-03 — Historical character proposal (current status is at 0.9.14 above)
 
 At that time, inspect code and local employee assets and propose baton attack motion → jump/landing plus backward/sideways locomotion → first-person arms. At 0.9.8, attacks changed only the baton object rotation/position and had no dedicated full-body clip. The first task would add a brief preparation/swing/recovery moving the arm, shoulder and weapon together, aligned with existing contact/cooldown and retaining carry/down/rescue blocking. Extra locomotion would complement the reused forward Walk. First-person arms are a separate production task completing local baton/carrying presentation. This order is a proposal, not implementation authorization, new-motion validation or play-quality approval. Specific quality feedback from the recent hands-on session has not yet been received.
 

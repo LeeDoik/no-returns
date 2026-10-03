@@ -2,6 +2,10 @@
 
 [한국어](README.md)
 
+## 2026-10-04 — Dynamic baton and first-person hands/arms 0.9.14
+
+At the user's request, implement short anticipation, fast extension and 0.42s recovery through baton arm/chest motion, local right glove/sleeve and two-hand parcel carrying. Preserve immediate contact, 6s cooldown, carrying/down/valid-rescue blocking and existing movement. [Current baton](current/employee-baton.en.md), [arm production/local reproduction](current/first-person-arms.en.md), [validation evidence](validation/employee-first-person-0.9.14.json). Game **0.9.14**, protocol **13**, TCP **27842**. Earlier 0.9.13 original-motion restoration and first-person-arms-not-implemented/proposed states below are historical and superseded within this implementation scope. Dedicated beacon/rescue hands, human quality, actual game GPU composition, all-corner penetration, Windows/LAN and performance remain pending. Manual play stays stopped; use the existing two-window helper only on request.
+
 [Test-window layout 0.9.11](current/companion-play.en.md): automatic two-player left/right 16:9 and four-player 2×2 tiling. Allow manual resizing.
 
 [Original baton restored at 0.9.13](current/employee-baton.en.md), [backward/sidestep and jump/landing](current/employee-locomotion.en.md). Separate implementation/automated validation from human quality approval. Open manual windows only on request.

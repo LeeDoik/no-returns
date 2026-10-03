@@ -1,20 +1,18 @@
-# Employee baton — original motion restored 0.9.13
+# Employee baton — dynamic motion 0.9.14
 
 [한국어](employee-baton.ko.md)
 
-2026-10-03. The user requested the “very first version”; restore readiness/use from the original right-hand attachment at **0.9.6 / 8cd97aa**. Restore the version without attack arm/chest correction. Current game **0.9.13**, protocol **13**, TCP **27842**. [Version settings](../../NoReturns/ProjectSettings/ProjectSettings.asset). Cancel 0.9.9 readiness/swing, 0.9.10 forward aim/thrust and 0.9.12 upright forward pulse in the current specification. Preserve historical evidence in the [change log](../archive/change-log.en.md).
+2026-10-04. At the user's request, replace the restored 0.9.13 weapon-only rotation with short anticipation, fast forward arm/weapon movement and recovery. Integrate [first-person hands/arms](first-person-arms.en.md). Game **0.9.14**, protocol **13**, TCP **27842**. [Version settings](../../NoReturns/ProjectSettings/ProjectSettings.asset). Preserve the previous motion in the [change log](../archive/change-log.en.md) and 0.9.13 validation record; the current behavior is specified below.
 
-## Current behavior and production
+## Current behavior
 
-- Remote batons attach to the actual right hand/fingers and follow Idle/Walk unchanged. No separate attack arm/chest IK. Retain finger grip and two-hand parcel posing.
-- Weapon rotation peaks immediately on click and returns over **0.5s** with squared decay. Keep the hand attachment position; rotate the weapon **-65°** around hand-relative z. Contact is **immediate**, cooldown **6s**.
-- First-person rest position **(0.27,-0.34,0.46)m**, rotation **(-12,180,-18)°**. Apply **(-0.13,+0.12,+0.18)m** position and **(-65,0,+35)°** rotation deltas multiplied by the decaying strike amount. Restore original **0.95m** wall clearance and minimum **0.35** scale. Complete wall/corner penetration prevention remains unverified.
-- Hide during parcel/beacon carrying, down, valid rescue, inactivity or disconnected slots. Preserve rescue priority, range, visibility and Listener stun rules. No dedicated attack FBX or first-person arms were added.
-
-[Attachment/original motion](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/BatonVisual.cs), [employee](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/EmployeeVisual.cs), [static review](../../NoReturns/Assets/_NoReturns/Editor/EmployeeBatonReview.cs), [native checks](../../tools/test_employee_baton.py), [current movement](employee-locomotion.en.md).
+- The [shared curve](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/BatonMotion.cs) uses 0–0.025s small anticipation, 0.025–0.085s fast extension, 0.085–0.14s peak hold and 0.14–0.42s recovery. Preserve **immediate** contact, **6s** cooldown, existing range, visibility, Listener stun and rescue priority. Do not delay adjudication to match the visual motion.
+- Teammates use right-arm IK and up to **4°** chest rotation, attaching the weapon to the actual grip. Preserve Idle/Walk resting arms; return to existing motion after attacking. Retain finger grip, two-hand parcel pose, backward/sidestep and jump/landing.
+- Move the local right glove/sleeve together with the baton. Rest grip target **(0.26,-0.33,0.46)m**, position delta **(-0.065,+0.10,+0.18)m**, rotation **(-12-56a,180,-18+30a)°**, using curve amount `a`. Anticipation reaches -0.18. If arm reach is insufficient, attach the baton to the actual grip without stretching bones.
+- Hide the baton during parcel/beacon carrying, down, valid rescue, inactivity or disconnection. Blocking an ongoing attack cancels its remaining motion. Switch parcel carrying to local two-hand presentation. Retract depth to a minimum **0.35** factor based on a central wall ray. [Presentation](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/BatonVisual.cs), [arm/chest motion](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/EmployeeVisual.Baton.cs).
 
 ## Validation and unknowns
 
-[Validation record](../validation/employee-direction-0.9.13.json). Idle/Walk × 3 yaws × 5 walk phases × 31 attack/return times: **930** samples. Maximum attachment distance **0.119736m**, added arm/chest rotation **0°**, return by 0.5s. Mac build: **zero errors/7 existing warnings**. See the record for actual two-client weapon rotation/attachment, cooldown, carrying hiding/restoration and four-client Listener/down/rescue results.
+[Validation record](../validation/employee-first-person-0.9.14.json). **930** [static baton samples](../../NoReturns/Assets/_NoReturns/Editor/EmployeeBatonReview.cs) verify attachment distance at most **0.119736m**, attack arm rotation up to **90.273743°**, chest rotation up to **4.000152°**, finite state and recovery. See the record for **560** first-person samples and actual two/four-client motion, carrying, movement and down/rescue checks. Mac build: **zero errors/7 existing warnings**.
 
-Official releases match Unity CLI **1.0.0-beta.12**, Pipeline **0.8.0-exp.1**, Editor **6000.6.4f1**; no pending updates. No Blender/MCP editing. Stop the prior manual session and open no new manual windows. Revised naturalness/impact, all-frame penetration, Windows/LAN/performance and the full delivery/suppression regression remain unverified.
+Official releases match Unity CLI **1.0.0-beta.12**, Pipeline **0.8.0-exp.1**, Editor **6000.6.4f1**; no pending updates. No new FBX or Blender/MCP editing. Open no manual windows or Editor Play. Human naturalness/impact, actual game GPU stack/lighting/HUD composition, all-frame/wall-corner penetration, dedicated FBX/beacon/rescue motion, Windows/LAN, performance and full delivery/suppression regression remain unverified.

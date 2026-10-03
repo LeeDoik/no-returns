@@ -2,7 +2,10 @@ using UnityEngine;
 namespace NoReturns.CarryLab {
 // Pure presentation: the existing host-owned shove cooldown drives both peers.
 public sealed class BatonVisual {
-    public static float Strike(float cooldown)=>cooldown>5.5f?Mathf.Pow(1-Mathf.Clamp01((6-cooldown)/.5f),2):0;
+    public static float Strike(float cooldown)=>BatonMotion.Amount(cooldown);
+    FirstPersonArms view;float clearance=1;
+    public void Dispose(Camera eye)=>view?.Dispose(eye);
+    public FirstPersonArms.State Hands=>view?.Capture();
     readonly GameObject[] roots=new GameObject[4];
     readonly BatonFeedback[] feedback=new BatonFeedback[4];
     readonly GameObject[] gloves=new GameObject[4];
@@ -11,7 +14,8 @@ public sealed class BatonVisual {
     [System.Serializable] public class State {public bool visible,handAttached;public float handDistance;public Vector3 position,axis;}
     public State Capture(int slot)=>new State{visible=roots[slot]&&roots[slot].activeSelf,handAttached=attached[slot],handDistance=handDistance[slot],position=roots[slot]?roots[slot].transform.position:Vector3.zero,axis=roots[slot]?roots[slot].transform.up:Vector3.up};
     public void Display(Camera eye, CharacterController[] crew, int local, int occupiedMask, bool active,
-        int cargoHolder, int beaconHolder, ThreatState danger, float[] yaws, EmployeeVisual[] employees) {
+        int cargoHolder, int beaconHolder, ThreatState danger, float[] yaws, EmployeeVisual[] employees,BoxCollider parcel) {
+        if(view==null)view=new FirstPersonArms(eye);
         for(int i=0;i<4;i++) {
             if(!roots[i]) {
                 var model=Resources.Load<GameObject>("PSXKit01/Baton");if(!model)return;
@@ -32,22 +36,25 @@ public sealed class BatonVisual {
             bool down=danger!=null&&danger.IsDown(i);
             float rescue=danger==null?0:danger.RescueAt(i);
             bool show=active&&((occupiedMask&(1<<i))!=0)&&cargoHolder!=i&&beaconHolder!=i&&!down&&rescue<=0;
-            roots[i].SetActive(show);attached[i]=false;handDistance[i]=0;if(!show)continue;
-            gloves[i].SetActive(i==local||!employees[i]);
             float cooldown=danger==null?0:danger.CooldownAt(i);
+            if(employees[i])employees[i].AttackPose(cooldown,show);
+            roots[i].SetActive(show);attached[i]=false;handDistance[i]=0;if(!show)continue;
+            gloves[i].SetActive(i==local?!view.Capture().ready:!employees[i]);
             feedback[i].Display(cooldown);
-            float strike=Strike(cooldown);
+            float motionCooldown=employees[i]?employees[i].BatonMotionCooldown:cooldown;
+            float strike=Strike(motionCooldown);
             if(i==local) {
                 var rotation=eye.transform.rotation;
-                var offset=new Vector3(.27f-.13f*strike,-.34f+.12f*strike,.46f+.18f*strike);
-                // Pull the visual in at nearby solid surfaces instead of rendering through them.
-                float reach=1;
-                foreach(var hit in Physics.RaycastAll(eye.transform.position,rotation*Vector3.forward,.95f))
-                    if(hit.collider!=crew[i]&&!hit.collider.isTrigger)reach=Mathf.Min(reach,Mathf.Clamp(hit.distance/.95f,.35f,1));
-                roots[i].transform.SetPositionAndRotation(eye.transform.position+rotation*(offset*reach),rotation*Quaternion.Euler(-12-65*strike,180,-18+35*strike));
-                roots[i].transform.localScale=Vector3.one*reach;
+                BatonMotion.FirstPerson(motionCooldown,out var offset,out var heldRotation);
+                float reach=1,tip=offset.z+Mathf.Max(0,(heldRotation*Vector3.up).z)*.56f+.06f;
+                foreach(var hit in Physics.RaycastAll(eye.transform.position,rotation*Vector3.forward,tip,~0,QueryTriggerInteraction.Ignore))
+                    if(hit.collider!=crew[i]&&!hit.collider.attachedRigidbody)reach=Mathf.Min(reach,Mathf.Clamp((hit.distance-.04f)/tip,.35f,1));
+                clearance=reach;
+                roots[i].transform.SetPositionAndRotation(eye.transform.position+rotation*new Vector3(offset.x,offset.y,offset.z*reach),rotation*heldRotation);
+                roots[i].transform.localScale=Vector3.one;
+                FirstPersonArms.SetLayer(roots[i],FirstPersonArms.Layer);
             } else if(employees[i]&&employees[i].BatonGrip(out var grip,out var handRotation)) {
-                roots[i].transform.SetPositionAndRotation(grip,handRotation*Quaternion.Euler(0,0,-65*strike));
+                roots[i].transform.SetPositionAndRotation(grip,handRotation);
                 roots[i].transform.localScale=Vector3.one;attached[i]=true;
                 handDistance[i]=Vector3.Distance(roots[i].transform.position,employees[i].RightHandPosition);
             } else {
@@ -56,6 +63,8 @@ public sealed class BatonVisual {
                 roots[i].transform.localScale=Vector3.one;
             }
         }
+        bool blocked=danger!=null&&(danger.IsDown(local)||danger.RescueAt(local)>0);
+        view.Display(eye,roots[local].transform,roots[local].activeSelf,active&&!blocked&&cargoHolder==local,parcel,clearance);
     }
 }
 }

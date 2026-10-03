@@ -2,6 +2,10 @@
 
 [한국어](02-spec.ko.md)
 
+## 2026-10-04 — Dynamic baton and first-person hands/arms 0.9.14
+
+At the user's request, implement short anticipation, fast extension and 0.42s recovery through baton arm/chest motion, local right glove/sleeve and two-hand parcel carrying. Preserve immediate contact, 6s cooldown, carrying/down/valid-rescue blocking and existing movement. [Current baton](employee-baton.en.md), [arm production/local reproduction](first-person-arms.en.md), [validation evidence](../validation/employee-first-person-0.9.14.json). Game **0.9.14**, protocol **13**, TCP **27842**. Earlier 0.9.13 original-motion restoration and first-person-arms-not-implemented/proposed states below are historical and superseded within this implementation scope. Dedicated beacon/rescue hands, human quality, actual game GPU composition, all-corner penetration, Windows/LAN and performance remain pending. Manual play stays stopped; use the existing two-window helper only on request.
+
 ## 2026-10-03 — Original baton restored; backward/sidestep movement 0.9.13
 
 At the user's request, restore the initial right-hand attachment version (0.9.6) of baton readiness/use. Remove the arm/chest attack correction introduced in 0.9.9; retain hand attachment, the weapon's 0.5s return, immediate contact, 6s cooldown and carrying/down/rescue hiding. Redirect backward, lateral and diagonal foot trajectories from actual body-relative movement. Reuse alternating foot timing/heights from the forward Walk while preserving torso facing, root, physics and network rules. Retain jump/landing. No new Mixamo FBX or Blender editing. [Baton](employee-baton.en.md), [movement](employee-locomotion.en.md). Revised human quality, dedicated clips, first-person arms and Windows/LAN/performance remain unverified.

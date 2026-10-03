@@ -2,6 +2,14 @@
 
 [한국어](05-validation.ko.md)
 
+## 2026-10-04 — Dynamic baton and first-person hands/arms 0.9.14
+
+At the user's request, implement short anticipation, fast extension and 0.42s recovery through baton arm/chest motion, local right glove/sleeve and two-hand parcel carrying. Preserve immediate contact, 6s cooldown, carrying/down/valid-rescue blocking and existing movement. [Current baton](employee-baton.en.md), [arm production/local reproduction](first-person-arms.en.md), [validation evidence](../validation/employee-first-person-0.9.14.json). Game **0.9.14**, protocol **13**, TCP **27842**. Earlier 0.9.13 original-motion restoration and first-person-arms-not-implemented/proposed states below are historical and superseded within this implementation scope. Dedicated beacon/rescue hands, human quality, actual game GPU composition, all-corner penetration, Windows/LAN and performance remain pending. Manual play stays stopped; use the existing two-window helper only on request.
+
+- [x] Mac build: zero errors/7 existing warnings. Baton 930 + first-person 560 = 1,490 static samples; 1 actual URP offscreen stack render; inspect 5 images.
+- [x] Actual windowless two-client baton/hands/movement 20 checks, companion 6 groups and four-client hazard/down/rescue 32 checks: 58 total. Include local hand hiding during down/valid rescue.
+- [ ] Human naturalness/impact, actual game GPU composition, all-distance/corner penetration, dedicated beacon/rescue hands, Windows/LAN/performance.
+
 ## 2026-10-03 — Original baton/backward-sidestep 0.9.13
 
 - [x] Restore original 0.9.6 baton readiness/use, remove attack arm/chest correction and retain hand attachment, 0.5s return, immediate contact and 6s cooldown.

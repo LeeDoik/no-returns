@@ -1,6 +1,10 @@
-# Employee full body and Idle/Walk — 0.9.13
+# Employee full body and Idle/Walk — 0.9.14
 
 [한국어](employee-animation.ko.md)
+
+## 2026-10-04 — Dynamic baton and first-person hands/arms 0.9.14
+
+At the user's request, implement short anticipation, fast extension and 0.42s recovery through baton arm/chest motion, local right glove/sleeve and two-hand parcel carrying. Preserve immediate contact, 6s cooldown, carrying/down/valid-rescue blocking and existing movement. [Current baton](employee-baton.en.md), [arm production/local reproduction](first-person-arms.en.md), [validation evidence](../validation/employee-first-person-0.9.14.json). Game **0.9.14**, protocol **13**, TCP **27842**. Earlier 0.9.13 original-motion restoration and first-person-arms-not-implemented/proposed states below are historical and superseded within this implementation scope. Dedicated beacon/rescue hands, human quality, actual game GPU composition, all-corner penetration, Windows/LAN and performance remain pending. Manual play stays stopped; use the existing two-window helper only on request.
 
 ## 2026-10-03 — Original baton restored; backward/sidestep movement 0.9.13
 

@@ -91,6 +91,7 @@ def main(headless=False):
         require("down releases parcel on all peers", lambda: all(lab.state(folders[i]).get("holder")==-1 for i in range(4)))
         before=host()["positions"][0];send(0,z=1,interact=True,shove=True);time.sleep(.4)
         require("down blocks movement/pickup/baton", lambda: math.dist(list(before.values()),list(host()["positions"][0].values()))<.05 and host().get("holder")==-1 and danger()["cooldown"][0]==0)
+        require("down hides the local first-person arms",lambda:not lab.state(folders[0],"animation.json")["hands"]["rightVisible"] and not lab.state(folders[0],"animation.json")["hands"]["leftVisible"])
         send(3,rescue=True);time.sleep(.4)
         require("distant rescue rejected", lambda: danger()["rescue"][3]==0)
         send(3)
@@ -106,6 +107,7 @@ def main(headless=False):
             danger(i).get("rescue",[0]*4)[3]>.06 and danger(i)["cooldown"][3]==0
             and not lab.state(folders[i],"animation.json")["employees"][3]["batonSwing"]
             and lab.state(folders[i],"animation.json")["employees"][3]["batonWeight"]==0 for i in range(4)))
+        require("valid rescue hides local first-person arms",lambda:not lab.state(folders[3],"animation.json")["hands"]["overlayEnabled"])
         face(3,shove=True)
         require("slot 3 baton stuns on four peers", lambda: all(danger(i).get("state")==4 for i in range(4)))
         capture("listener-baton-ko",3)
