@@ -2,6 +2,10 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-04 — Requested manual session for 0.9.21 started
+
+On the user's hands-on test request, run the existing `python3 tools/cinder_four_player.py start --companion`. Confirm the human host/automatic companion processes, host listening, slot 1, occupancy mask 3 and bot readiness in session `run-20261004-024656-0b28ee`. Use the existing side-by-side 16:9 layout settings. The default companion mode is safe movement/jump/baton/parcel practice; it does not demonstrate down/rescue/get-up. Do not count this as human quality validation of 0.9.21 down/recovery. No code changes or rebuild. Leave running; user feedback remains pending. Pass 288 document checks and changed-file whitespace checks.
+
 ## 2026-10-04 — Fall and get-up motion 0.9.21
 
 Replace the teammate's instant 90° tilt with a **0.65s** knee buckle/side collapse and **0.95s** roll upright/knee extension. Layer the pose over the existing Humanoid; preserve rescue, movement, collision and input rules. [Production and remaining scope](../current/employee-animation.en.md), [validation](../validation/employee-down-0.9.21.json). Game **0.9.21**, protocol **13**, TCP **27842**. This supersedes earlier missing-down/get-up statements within this procedural presentation scope. Dedicated motion-capture clips, ragdolls, actual rescue contact, human naturalness and slope/wall intersection correction remain pending.

@@ -2,6 +2,10 @@
 
 [한국어](companion-play.ko.md)
 
+## 2026-10-04 — Requested manual session for 0.9.21 started
+
+On the user's hands-on test request, run the existing `python3 tools/cinder_four_player.py start --companion`. Confirm the human host/automatic companion processes, host listening, slot 1, occupancy mask 3 and bot readiness in session `run-20261004-024656-0b28ee`. Use the existing side-by-side 16:9 layout settings. The default companion mode is safe movement/jump/baton/parcel practice; it does not demonstrate down/rescue/get-up. Do not count this as human quality validation of 0.9.21 down/recovery. No code changes or rebuild. Leave running; user feedback remains pending. Pass 288 document checks and changed-file whitespace checks.
+
 ## 2026-10-04 — Targeted quick tests 0.9.19
 
 Finish visual changes with compilation, relevant Editor poses/render and docs. For carry/rescue/attack changes, run only the affected windowless two-client scenario from a prepared state. Reserve full delivery/four-player checks for large changes, related failures, pre-release or explicit requests. Three scenarios reuse the same two processes: this quick suite passed **18 checks in 8.869 seconds**, including startup/shutdown; a build-inclusive run took **17.735 seconds**. These are measurements on this Mac and do not replace full regression. Reject stale builds before launch. [Usage and selection](quick-testing.en.md), [validation](../validation/quick-testing-0.9.19.json). No manual windows opened.
