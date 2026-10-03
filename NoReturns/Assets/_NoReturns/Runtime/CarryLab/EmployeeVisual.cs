@@ -9,12 +9,13 @@ public sealed partial class EmployeeVisual : MonoBehaviour {
     public float Speed=>speed;
     public Vector3 RightHandPosition=>hand?hand.position:transform.position;
     public bool Walking=>animator&&animator.GetCurrentAnimatorStateInfo(0).IsName("Walk");
-    [System.Serializable] public class State {public bool ready,walking,visible,rootMotion,carryClamped,batonSwing,batonClamped;public float speed,carryWeight,leftContactError,rightContactError,batonWeight,batonElapsed,batonGripError;public Quaternion leftFoot,rightUpperArm,chest;public Vector3 rightHand;}
+    [System.Serializable] public class State {public bool ready,walking,visible,rootMotion,carryClamped,batonSwing,batonClamped;public float speed,carryWeight,leftContactError,rightContactError,batonWeight,batonElapsed,batonGripError,airWeight,landingWeight,verticalSpeed;public string locomotion;public Quaternion leftFoot,rightUpperArm,chest,leftKnee;public Vector3 rightHand;}
     public State Capture()=>new State{ready=Ready,walking=Walking,visible=GetComponentInChildren<SkinnedMeshRenderer>().enabled,
         rootMotion=animator.applyRootMotion,speed=speed,leftFoot=animator.GetBoneTransform(HumanBodyBones.LeftFoot).localRotation,
         carryWeight=carryWeight,carryClamped=carryClamped,leftContactError=leftContactError,rightContactError=rightContactError,
         batonWeight=batonWeight,batonElapsed=batonElapsed,batonSwing=batonSwing,rightHand=hand.position,
-        batonClamped=batonClamped,batonGripError=batonGripError,
+        batonClamped=batonClamped,batonGripError=batonGripError,airWeight=airWeight,landingWeight=landingWeight,verticalSpeed=verticalSpeed,locomotion=locomotion,
+        leftKnee=animator.GetBoneTransform(HumanBodyBones.LeftLowerLeg).localRotation,
         rightUpperArm=rightArm.upper.localRotation,chest=animator.GetBoneTransform(HumanBodyBones.Chest).localRotation};
     void Awake(){animator=GetComponent<Animator>();animator.applyRootMotion=false;
         hand=animator.GetBoneTransform(HumanBodyBones.RightHand);index=animator.GetBoneTransform(HumanBodyBones.RightIndexProximal);
@@ -32,17 +33,20 @@ public sealed partial class EmployeeVisual : MonoBehaviour {
         position=Vector3.Lerp(hand.position,middle.position,.95f)+palm*.025f;
         rotation=Quaternion.LookRotation(-palm,across);return true;
     }
-    void OnEnable(){sampled=false;speed=0;}
+    void OnEnable(){sampled=false;speed=0;ResetLocomotion();}
     public void Team(Color color) {
         var block=new MaterialPropertyBlock();block.SetColor("_BaseColor",Color.Lerp(Color.white,color,.32f));
         foreach(var renderer in GetComponentsInChildren<SkinnedMeshRenderer>())renderer.SetPropertyBlock(block);
     }
     public void Animate(Vector3 position,bool down,float delta) {
-        Vector3 change=position-previous;change.y=0;
+        Vector3 change=position-previous;
+        verticalSpeed=sampled&&delta>0&&change.magnitude<2?change.y/delta:0;
+        if(change.magnitude>=2)ResetLocomotion();
+        change.y=0;
         float measured=sampled&&delta>0&&change.magnitude<2?change.magnitude/delta:0;
         previous=position;sampled=true;
         speed=down?0:Mathf.Lerp(speed,Mathf.Min(measured,8),1-Mathf.Exp(-12*delta));
-        animator.SetFloat("Speed",speed);
+        animator.SetFloat("Speed",airWeight>.5f?0:speed);
         // ponytail: reuse one forward walk; add side/back clips when those motions are supplied.
         animator.SetFloat("StrideRate",Mathf.Clamp(speed/2.2f,.35f,2.2f));
         animator.speed=down?0:1;

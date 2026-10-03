@@ -8,10 +8,10 @@ public sealed partial class EmployeeVisual {
     float previousBatonCooldown;
     public float BatonMotionCooldown=>swingCancelled?0:Mathf.Max(0,6-batonElapsed);
     public const float BatonMotionSeconds=.30f;
-    public static readonly Vector3 BatonReady=new Vector3(.30f,1.22f,.14f);
-    public static readonly Quaternion BatonReadyRotation=Quaternion.Euler(90,0,0);
+    public static readonly Vector3 BatonReady=new Vector3(.30f,1.21f,.20f);
+    public static readonly Quaternion BatonReadyRotation=Quaternion.Euler(15,-10,-15);
 
-    // Contact stays immediate. Keep the tip forward and drive a short straight thrust, then retract.
+    // Keep the earlier upright grip; send one short forward pulse without a lateral swing.
     public static void BatonMotion(float cooldown,out Vector3 grip,out Quaternion rotation,out float twist){
         float t=6-Mathf.Clamp(cooldown,0,6);
         grip=BatonReady;rotation=BatonReadyRotation;twist=0;
@@ -20,7 +20,7 @@ public sealed partial class EmployeeVisual {
         if(t<.06f)extension=1-Mathf.Pow(1-t/.06f,3);
         else if(t<.10f)extension=1;
         else extension=1-Mathf.SmoothStep(0,1,(t-.10f)/.20f);
-        grip=BatonReady+Vector3.forward*(.30f*extension);
+        grip=BatonReady+Vector3.forward*(.20f*extension);
     }
 
     public void BatonPose(float cooldown,bool allowed,float delta){

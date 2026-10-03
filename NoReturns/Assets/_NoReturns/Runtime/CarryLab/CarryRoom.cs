@@ -212,6 +212,7 @@ public sealed partial class CarryRoom : MonoBehaviour {
         for(int i=0;i<4;i++)if(Present(i)&&employeeVisuals[i]){
             bool down=hazard&&danger!=null&&danger.IsDown(i);
             employeeVisuals[i].Animate(workers[i].transform.position,down,Time.deltaTime);
+            employeeVisuals[i].GroundLocomotion(down,Time.deltaTime);
             employeeVisuals[i].CarryPose(cargoCollider as BoxCollider,active&&holder==i,down,Time.deltaTime);
         }
         receiptFeedback?.Display(active?missionPhase:-1,receiptProgress,receiptCollected,receiptReady);

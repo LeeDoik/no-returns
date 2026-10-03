@@ -1,10 +1,11 @@
-# Employee full body and Idle/Walk — 0.9.10
+# Employee full body and Idle/Walk — 0.9.12
 
 [한국어](employee-animation.ko.md)
 
-## 2026-10-03 — Straight baton thrust 0.9.10
+## 2026-10-03 — Restored grip, single forward pulse and jump/landing 0.9.12
 
-Replace baton attacks with straight extension/retraction and a fixed wrist orientation from readiness. Remove chest twisting while preserving Idle/Walk, two-hand carrying and hand attachment. Supersede the swinging presentation in 0.9.9 below. [Current behavior and validation scope](employee-baton.en.md).
+The user ended the 0.9.11 test and reported awkward baton readiness. Restore the upright 0.9.9 grip and extend the hand and baton once: 0.20m forward, maximum extension at 0.06s, return at 0.30s. Retain immediate contact/6s cooldown. As the next character task, implement position-based rising/apex/falling, 0.22s landing, 0.065m hip compression and planted-foot correction. Apply over the existing Humanoid without new FBXs or Blender editing. Revised human quality remains pending; dedicated backward/sidestep movement → first-person arms are next. [Baton](employee-baton.en.md), [jump/landing](employee-locomotion.en.md). Supersede previous readiness/unimplemented-jump statements below within this scope.
+
 
 ## 2026-10-03 — Baton readiness, attack and recovery 0.9.9
 

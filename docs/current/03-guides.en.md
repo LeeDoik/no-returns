@@ -2,13 +2,14 @@
 
 [한국어](03-guides.ko.md)
 
+## 2026-10-03 — Restored grip, single forward pulse and jump/landing 0.9.12
+
+The user ended the 0.9.11 test and reported awkward baton readiness. Restore the upright 0.9.9 grip and extend the hand and baton once: 0.20m forward, maximum extension at 0.06s, return at 0.30s. Retain immediate contact/6s cooldown. As the next character task, implement position-based rising/apex/falling, 0.22s landing, 0.065m hip compression and planted-foot correction. Apply over the existing Humanoid without new FBXs or Blender editing. Revised human quality remains pending; dedicated backward/sidestep movement → first-person arms are next. [Baton](employee-baton.en.md), [jump/landing](employee-locomotion.en.md). Supersede previous readiness/unimplemented-jump statements below within this scope.
+
 ## 2026-10-03 — Automatic test-window tiling 0.9.11
 
 Two-player practice places the human host on the left and the automatic companion on the right at equal widths in landscape 16:9 viewports. Four-player tests place slots 0/1/2/3 in top-left/top-right/bottom-left/bottom-right quarters, preserving 16:9 inside each tile. Calculate sizes from the display work area with title-bar and menu-bar clearance. Allow manual resizing. Apply placement only at startup, never to windowless automated checks. Open manual windows only on request; this task relaunches the already requested two-window session with the new build. [Launch, production and validation guide](companion-play.en.md).
 
-## 2026-10-03 — Straight baton thrust 0.9.10
-
-Use existing hand attachment/Humanoid arm posing in Unity with fixed baton orientation. Implement straight extension/retraction and first-person depth correction without a new FBX or Blender source changes. Distinguish 120 static samples, actual network checks and human quality assessment. [Current behavior and validation scope](employee-baton.en.md).
 
 ## 2026-10-03 — Baton readiness, attack and recovery 0.9.9
 

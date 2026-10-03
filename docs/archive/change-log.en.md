@@ -2,6 +2,16 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-03 — Restored baton grip, forward pulse and jump/landing 0.9.12
+
+Pass 284 bilingual document/link checks, Python syntax and scoped whitespace checks. Confirm no remaining test session file or TCP 27842 listener.
+
+The user requested ending manual play, fixing awkward baton holding and proceeding to the next task. Stop manual session `run-20261003-222202-345af2` with the existing helper. Restore upright 0.9.9 readiness and first-person offset/orientation, extending the hand and baton once by 0.20m and returning within 0.30s. Cancel always-forward readiness from 0.9.10. Retain immediate contact, 6s cooldown, hand attachment and carry/down/rescue exclusion; add no magic projectile. As the next task, apply actual position/floor-based rise/apex/fall, 0.22s landing and up to 0.065m hip compression/planted-foot correction over the existing Humanoid. Preserve root, bone lengths, physics/jump/network rules and two-player 16:9/four-player 2×2 tiling. Game 0.9.12, protocol 13, TCP 27842. [Baton](../current/employee-baton.en.md), [jump/landing](../current/employee-locomotion.en.md), [validation record](../validation/employee-pulse-locomotion-0.9.12.json).
+
+Mac build passes with zero errors/7 existing warnings, 120 static baton and 270 jump/landing samples, 12 actual windowless two-client baton checks, 6 companion groups and 30 four-client Listener/hit/down/rescue checks: 48 native checks total. Both peers observe rise/apex/fall/landing/grounded, with about 0.644800m jump-height range. Review 8 static images and track them with LFS. Initial 0.24m extension failed with 0.037240m path deviation at the arm reach limit; reduce it to 0.20m. The initial companion collector missed landing weights after the Jump label ended; inspect observed Landing states, span the label boundary and pass. Unity CLI 1.0.0-beta.12, Pipeline 0.8.0-exp.1 and Editor 6000.6.4f1 match official latest releases; no further updates. Add no FBXs or Blender source/MCP edits.
+
+Update affected Korean/English specifications, production guidance, backlog, checklist and employee/launch guides; remove cancelled 0.9.10 readiness instructions from current specifications. Preserve historical checks/records. Open no new manual windows or Editor Play and terminate automated processes/session. Revised human quality, dedicated backward/sidestep movement, first-person arms, all-frame penetration, full delivery/suppression regression, Windows/LAN/performance remain unverified. Preserve eight preexisting material and two Blender modifications and exclude them from the commit.
+
 ## 2026-10-03 — Landscape 16:9 test-window layout 0.9.11
 
 Pass 282 document checks, Python syntax and scoped whitespace checks. Exclude the eight material files and two Blender files already modified before this task from the commit. A whole-working-tree whitespace check reports existing material whitespace; the scoped patch passes.

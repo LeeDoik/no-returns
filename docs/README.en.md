@@ -4,7 +4,7 @@
 
 [Test-window layout 0.9.11](current/companion-play.en.md): automatic two-player left/right 16:9 and four-player 2×2 tiling. Allow manual resizing.
 
-[Straight baton thrust 0.9.10](current/employee-baton.en.md): fixed forward direction, fast 0.06s extension, 0.30s return and stable first-person depth correction. Retain immediate contact/6s cooldown. Open manual windows only on request.
+[Upright baton grip/forward pulse 0.9.12](current/employee-baton.en.md): restore the earlier upright grip and extend/retract once. Add [jump/landing](current/employee-locomotion.en.md). Revised human quality remains unverified. Open manual windows only on request.
 
 [Two-handed parcel carrying 0.9.8](current/employee-animation.en.md): apply 0.8m default reach and hand-contact posing. Pass Mac build, 120 static pose samples and windowless carry/companion checks. Distant contact and human quality remain incomplete. Open manual windows only on request.
 

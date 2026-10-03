@@ -9,12 +9,12 @@ namespace NoReturns.Editor {
 public static class EmployeeBatonReview {
     [Serializable] class Receipt {public string status="FAIL",error;public int samples;public float maxGripError,maxBoneLengthChange,handTravel,chestTravel,maxLateralDrift,maxAxisAngle,forwardTravel;public bool blocked,returns,cancelled;}
     public static void Review(){
-        var receipt=new Receipt();string folder=Path.GetFullPath("../artifacts/employee-baton-thrust");Directory.CreateDirectory(folder);
+        var receipt=new Receipt();string folder=Path.GetFullPath("../artifacts/employee-baton-pulse");Directory.CreateDirectory(folder);
         var preview=new PreviewRenderUtility();var baked=new Mesh();
         try {
             EmployeeAnimationBuild.ValidateAssets();
             var instance=UnityEngine.Object.Instantiate(AssetDatabase.LoadAssetAtPath<GameObject>(EmployeeAnimationBuild.PrefabPath));
-            preview.AddSingleGO(instance);instance.SendMessage("Awake");
+            preview.AddSingleGO(instance);typeof(EmployeeVisual).GetMethod("Awake",System.Reflection.BindingFlags.Instance|System.Reflection.BindingFlags.NonPublic).Invoke(instance.GetComponent<EmployeeVisual>(),null);
             var animator=instance.GetComponent<Animator>();var visual=instance.GetComponent<EmployeeVisual>();
             var renderer=instance.GetComponentInChildren<SkinnedMeshRenderer>();
             var art=UnityEngine.Object.Instantiate(Resources.Load<GameObject>("PSXKit01/Baton"));preview.AddSingleGO(art);
@@ -30,7 +30,7 @@ public static class EmployeeBatonReview {
                 visual.BatonPose(cooldown,true,1);var evidence=visual.Capture();
                 visual.BatonGrip(out var grip,out var rotation);
                 var localGrip=instance.transform.InverseTransformPoint(grip);
-                receipt.maxAxisAngle=Mathf.Max(receipt.maxAxisAngle,Vector3.Angle(rotation*Vector3.up,instance.transform.forward));
+                receipt.maxAxisAngle=Mathf.Max(receipt.maxAxisAngle,Vector3.Angle(rotation*Vector3.up,instance.transform.rotation*EmployeeVisual.BatonReadyRotation*Vector3.up));
                 if(frame==-1){ready=hand.position;readyGrip=localGrip;readyChest=evidence.chest;}
                 else {receipt.handTravel=Mathf.Max(receipt.handTravel,Vector3.Distance(ready,hand.position));receipt.chestTravel=Mathf.Max(receipt.chestTravel,Quaternion.Angle(readyChest,evidence.chest));
                     var travel=localGrip-readyGrip;receipt.maxLateralDrift=Mathf.Max(receipt.maxLateralDrift,new Vector2(travel.x,travel.y).magnitude);receipt.forwardTravel=Mathf.Max(receipt.forwardTravel,travel.z);}
@@ -41,13 +41,13 @@ public static class EmployeeBatonReview {
                 receipt.samples++;
                 if(yaw==0&&state=="Idle"&&(frame==-1||frame==3||frame==6||frame==12||frame==18)){
                     art.transform.localScale=Vector3.one*scale;art.transform.SetPositionAndRotation(grip+rotation*artOffset,rotation);
-                    Render(preview,renderer,baked,folder,frame==-1?"Thrust-Ready":"Thrust-"+frame);
+                    Render(preview,renderer,baked,folder,frame==-1?"Pulse-Ready":"Pulse-"+frame);
                 }
             }
             visual.BatonPose(6,false,1);receipt.blocked=visual.Capture().batonWeight==0&&!visual.Capture().batonSwing;
             animator.Play("Idle",0,.2f);animator.Update(.001f);visual.BatonPose(5.9f,true,1);receipt.cancelled=!visual.Capture().batonSwing&&visual.BatonMotionCooldown==0;
             animator.Play("Idle",0,.2f);animator.Update(.001f);visual.BatonPose(5.7f,true,1);receipt.returns=!visual.Capture().batonSwing;
-            if(!receipt.blocked||!receipt.returns||!receipt.cancelled||receipt.forwardTravel<.25f||receipt.maxLateralDrift>.02f||receipt.maxAxisAngle>1||receipt.chestTravel>.1f)throw new Exception("Thrust must stay straight, tip-forward and return without torso swing");
+            if(!receipt.blocked||!receipt.returns||!receipt.cancelled||receipt.forwardTravel<.16f||receipt.maxLateralDrift>.025f||receipt.maxAxisAngle>1||receipt.chestTravel>.1f)throw new Exception("Pulse must preserve the upright grip and return without a lateral swing");
             receipt.status="PASS";
         }catch(Exception e){receipt.error=e.ToString();throw;}
         finally {preview.Cleanup();UnityEngine.Object.DestroyImmediate(baked);File.WriteAllText(Path.Combine(folder,"review.json"),JsonUtility.ToJson(receipt,true));}

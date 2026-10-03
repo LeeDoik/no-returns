@@ -2,13 +2,14 @@
 
 [한국어](04-backlog.ko.md)
 
+## 2026-10-03 — Restored grip, single forward pulse and jump/landing 0.9.12
+
+The user ended the 0.9.11 test and reported awkward baton readiness. Restore the upright 0.9.9 grip and extend the hand and baton once: 0.20m forward, maximum extension at 0.06s, return at 0.30s. Retain immediate contact/6s cooldown. As the next character task, implement position-based rising/apex/falling, 0.22s landing, 0.065m hip compression and planted-foot correction. Apply over the existing Humanoid without new FBXs or Blender editing. Revised human quality remains pending; dedicated backward/sidestep movement → first-person arms are next. [Baton](employee-baton.en.md), [jump/landing](employee-locomotion.en.md). Supersede previous readiness/unimplemented-jump statements below within this scope.
+
 ## 2026-10-03 — Landscape 16:9 test-window layout 0.9.11
 
 Implement equal 16:9 left/right viewports for two players and 16:9 viewports inside a 2×2 grid for four players. Address user feedback about the small companion window and vertically stretched viewports. Mac build passed with zero errors/7 warnings; 18 checks covered two/four-player cells, 16:9, overlap and boundaries, and actual two-window sizes/AppKit positions and host/companion connectivity were checked. Actual four-window placement, Windows/Intel Mac, external monitors/display-scale changes and user handling remain unverified. [Current guide](companion-play.en.md), [validation record](../validation/client-window-layout-0.9.11.json).
 
-## 2026-10-03 — Straight baton thrust 0.9.10
-
-The user reported flailing during hands-on play of 0.9.9; revise the baton to a short straight thrust. Human approval of revised hit-feel/appearance remains pending. Retain jump/landing and backward/sideways motion → first-person arms as next production work. [Current behavior and validation scope](employee-baton.en.md).
 
 ## 2026-10-03 — Baton readiness, attack and recovery 0.9.9
 

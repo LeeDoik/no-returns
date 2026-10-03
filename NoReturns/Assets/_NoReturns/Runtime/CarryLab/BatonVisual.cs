@@ -39,13 +39,14 @@ public sealed class BatonVisual {
             EmployeeVisual.BatonMotion(employees[i]?employees[i].BatonMotionCooldown:cooldown,out var motion,out var motionRotation,out _);
             if(i==local) {
                 var rotation=eye.transform.rotation;
-                var offset=new Vector3(.24f,-.28f,.36f)+(motion-EmployeeVisual.BatonReady)*.9f;
+                var offset=new Vector3(.27f,-.34f,.46f)+(motion-EmployeeVisual.BatonReady)*.9f;
                 // Pull the visual in at nearby solid surfaces instead of rendering through them.
-                float reach=1,tipReach=offset.z+.56f;
+                var heldRotation=Quaternion.Euler(-12,180,-18);
+                float reach=1,tipReach=offset.z+Mathf.Max(0,(heldRotation*Vector3.up).z)*.56f+.04f;
                 foreach(var hit in Physics.RaycastAll(eye.transform.position,rotation*Vector3.forward,tipReach))
                     if(hit.collider!=crew[i]&&!hit.collider.isTrigger)reach=Mathf.Min(reach,Mathf.Clamp(hit.distance/tipReach,.35f,1));
                 // Clearance changes depth only; lateral grip must not wobble during a straight thrust.
-                roots[i].transform.SetPositionAndRotation(eye.transform.position+rotation*new Vector3(offset.x,offset.y,offset.z*reach),rotation*motionRotation);
+                roots[i].transform.SetPositionAndRotation(eye.transform.position+rotation*new Vector3(offset.x,offset.y,offset.z*reach),rotation*heldRotation);
                 roots[i].transform.localScale=Vector3.one*reach;
             } else if(employees[i]&&employees[i].BatonGrip(out var grip,out var handRotation)) {
                 roots[i].transform.SetPositionAndRotation(grip,handRotation);

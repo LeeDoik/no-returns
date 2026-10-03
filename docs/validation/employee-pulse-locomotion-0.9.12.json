@@ -1,0 +1,391 @@
+{
+  "status": "PASS",
+  "date": "2026-10-03",
+  "version": "0.9.12",
+  "protocol": 13,
+  "port": 27842,
+  "build": {
+    "status": "PASS",
+    "unity": "6000.6.4f1",
+    "output": "/Users/leedoik/WorkSpace/Game/No_Returns/builds/CinderFourPlayer/NoReturns.app",
+    "error": "",
+    "errors": 0,
+    "warnings": 7
+  },
+  "baton_pose_review": {
+    "status": "PASS",
+    "error": "",
+    "samples": 120,
+    "maxGripError": 0.04178840294480324,
+    "maxBoneLengthChange": 3.5762786865234375e-07,
+    "handTravel": 0.20000016689300537,
+    "chestTravel": 0.0,
+    "maxLateralDrift": 0.021757522597908974,
+    "maxAxisAngle": 0.0,
+    "forwardTravel": 0.20000004768371582,
+    "blocked": true,
+    "returns": true,
+    "cancelled": true
+  },
+  "locomotion_pose_review": {
+    "status": "PASS",
+    "error": "",
+    "samples": 270,
+    "maxBoneLengthChange": 5.066394805908203e-07,
+    "maxLandingFootError": 1.5657568610549788e-06,
+    "maxCompression": 0.06500023603439331,
+    "downCleared": true,
+    "returned": true
+  },
+  "manualSessionStopped": "run-20261003-222202-345af2",
+  "manualWindowsOpened": false,
+  "editorPlayOpened": false,
+  "tools": {
+    "unity": "6000.6.4f1",
+    "cli": "1.0.0-beta.12",
+    "pipeline": "0.8.0-exp.1",
+    "officialLatestChecked": true,
+    "pendingUpdates": []
+  },
+  "resolvedFailures": [
+    "Initial 0.24m pulse caused 0.037240m lateral drift at the arm reach limit; reduced to 0.20m and passed",
+    "Companion collector missed landing after the Jump label ended; expanded collection through landing"
+  ],
+  "unverified": [
+    "User naturalness/hit-feel approval",
+    "Backward/sidestep and dedicated jump/rescue/down FBX clips",
+    "First-person arms",
+    "All-frame penetration/abrupt turns",
+    "Full delivery/suppression regression",
+    "Windows/LAN/performance"
+  ],
+  "native_baton": {
+    "status": "PASS",
+    "run": "run-20261003-223135-ff8f48",
+    "checks": [
+      "both peers use ready arm pose",
+      "slot 0 upright forward pulse from idle replicated; weapon follows hand",
+      "slot 0 returns to ready within cooldown",
+      "cooldown prevents another attack",
+      "slot 1 upright forward pulse while walking replicated; weapon follows hand",
+      "slot 1 returns to ready within cooldown",
+      "human picks up parcel",
+      "carry excludes baton arm and weapon on both peers",
+      "human cooldown expires while carrying",
+      "carrying rejects an attack after cooldown expires",
+      "release restores ready without replaying attack",
+      "native logs free of errors and placeholder fallback"
+    ],
+    "hand_travel": [
+      [
+        0.19999504090279197,
+        0.20000267031437566
+      ],
+      [
+        1.3200035095234006,
+        1.1884021759063816
+      ]
+    ],
+    "arm_rotation_degrees": [
+      [
+        55.03415356314225,
+        57.127423722858516
+      ],
+      [
+        59.358447460206534,
+        59.88359187256886
+      ]
+    ],
+    "weapon_forward_extension": [
+      [
+        0.18000030517578125,
+        0.20000267028808594
+      ],
+      [
+        0.1600055694580078,
+        0.1534862518310547
+      ]
+    ],
+    "weapon_lateral_drift": [
+      [
+        0,
+        4.5876220237955705e-06
+      ],
+      [
+        0.005646388916978091,
+        5.960464477539063e-08
+      ]
+    ],
+    "weapon_axis_angle_degrees": [
+      [
+        0,
+        0.0016447474539194526
+      ],
+      [
+        0.0015978503235636445,
+        0
+      ]
+    ]
+  },
+  "native_companion": {
+    "status": "PASS",
+    "run": "run-20261003-223245-90b83a",
+    "checks": [
+      "two peers only; human controls remain separate; safe practice and seven actions",
+      "actual replicated walking and jump height",
+      "actual companion jump animates rise/fall/landing and returns grounded on both peers",
+      "slower movement, real baton cooldown, parcel pickup/drop and baton visibility on both peers",
+      "follows relocated human through replicated movement",
+      "both headless native logs free of runtime errors and art fallback"
+    ],
+    "actions": [
+      "Baton",
+      "Carry parcel",
+      "Idle",
+      "Jump",
+      "Put down",
+      "Slow walk",
+      "Walking / sidestep"
+    ],
+    "jump_height_range": 0.6448000930249691,
+    "locomotion_phases": [
+      [
+        "Apex",
+        "Falling",
+        "Grounded",
+        "Landing",
+        "Rising"
+      ],
+      [
+        "Apex",
+        "Falling",
+        "Grounded",
+        "Landing",
+        "Rising"
+      ]
+    ],
+    "max_air_weight": [
+      1.0,
+      1.0
+    ],
+    "max_landing_weight": [
+      0.9968684315681458,
+      0.9981617331504822
+    ]
+  },
+  "native_threat": {
+    "status": "PASS",
+    "run": "run-20261003-223329-7bd0cf",
+    "checks": [
+      "four hazard slots/protocol 13",
+      "Cinder stages start stopped with shared outer down state",
+      "ship UI opens",
+      "route selected",
+      "departure enables patrol",
+      "ship UI closes",
+      "ship calls ignored/no attack",
+      "host carries parcel",
+      "quiet approach has no footstep noise",
+      "call causes investigation",
+      "warning before cargo-carrier attack",
+      "host down replicated to all four",
+      "down releases parcel on all peers",
+      "down blocks movement/pickup/baton",
+      "distant rescue rejected",
+      "slot 3 baits a close warning",
+      "valid rescue blocks baton contact and posing",
+      "slot 3 baton stuns on four peers",
+      "slot 3 rescue progress replicated",
+      "release cancels rescue",
+      "baton cooldown prevents reset",
+      "slot 3 rescues host on all peers",
+      "rescuer remains vulnerable after revival",
+      "English client context/native font",
+      "all four down triggers emergency report",
+      "four recovered aboard/zero unpaid reward",
+      "recovered host can open ship terminal",
+      "next shift clears down/cooldown and restores parcel",
+      "no Cinder progression file created",
+      "four player logs have no exceptions"
+    ],
+    "final": {
+      "protocol": 13,
+      "clueMask": 0,
+      "phase": 0,
+      "credits": 0,
+      "receipt": 0,
+      "returnPay": 0,
+      "tick": 3771,
+      "holder": -1,
+      "ack": 2198,
+      "players": 4,
+      "recipient": 0,
+      "occupiedMask": 15,
+      "positions": [
+        {
+          "x": -21.700000762939453,
+          "y": 0.03499988093972206,
+          "z": -20.049999237060547
+        },
+        {
+          "x": -19.700000762939453,
+          "y": 0.03499988093972206,
+          "z": -20.049999237060547
+        },
+        {
+          "x": -21.700000762939453,
+          "y": 0.03499988093972206,
+          "z": -18.649999618530273
+        },
+        {
+          "x": -19.700000762939453,
+          "y": 0.03499988093972206,
+          "z": -18.649999618530273
+        }
+      ],
+      "yaws": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "p0": {
+        "x": -21.700000762939453,
+        "y": 0.03499988093972206,
+        "z": -20.049999237060547
+      },
+      "p1": {
+        "x": -19.700000762939453,
+        "y": 0.03499988093972206,
+        "z": -20.049999237060547
+      },
+      "cargo": {
+        "x": -20.700000762939453,
+        "y": 0.5461388230323792,
+        "z": -18.5
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      },
+      "beaconCarrier": -1,
+      "beaconExists": false,
+      "receiptCollected": false,
+      "receiptReady": false,
+      "receiptProgress": 0.0,
+      "yaw0": 0.0,
+      "yaw1": 0.0,
+      "shiftElapsed": 63.34125900268555,
+      "suppressionStage": 0,
+      "outerDanger": {
+        "position": {
+          "x": 29.0,
+          "y": 0.0,
+          "z": 18.0
+        },
+        "noiseTarget": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "state": 0,
+        "hits": 0,
+        "rescues": 0,
+        "evacuations": 0,
+        "noises": 0,
+        "pursuedPlayer": -1,
+        "down": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "rescue": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "cooldown": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "down0": false,
+        "down1": false,
+        "rescue0": 0.0,
+        "rescue1": 0.0,
+        "cooldown0": 0.0,
+        "cooldown1": 0.0,
+        "warning": 0.0
+      },
+      "unlocked": false,
+      "hard": false,
+      "deliveries": 0,
+      "charges": 0,
+      "beaconTime": 0.0,
+      "beaconPosition": {
+        "x": -20.700000762939453,
+        "y": 1.2300000190734863,
+        "z": -29.0
+      },
+      "hazard": true,
+      "cinderReview": true,
+      "danger": {
+        "position": {
+          "x": -23.0,
+          "y": 0.0,
+          "z": 2.0
+        },
+        "noiseTarget": {
+          "x": -23.71352767944336,
+          "y": 0.034999847412109375,
+          "z": -18.317041397094727
+        },
+        "state": 0,
+        "hits": 5,
+        "rescues": 1,
+        "evacuations": 1,
+        "noises": 41,
+        "pursuedPlayer": -1,
+        "down": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "rescue": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "cooldown": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "down0": false,
+        "down1": false,
+        "rescue0": 0.0,
+        "rescue1": 0.0,
+        "cooldown0": 0.0,
+        "cooldown1": 0.0,
+        "warning": 0.0
+      },
+      "connected": true,
+      "message": "Emergency recovery / secured pay retained",
+      "rejection": ""
+    },
+    "scope": "Four native Mac processes and ordinary inputs; human fear, audio readability, fun, LAN/Windows and performance remain unverified"
+  },
+  "nativeCheckCount": 48,
+  "documentationChecks": 284,
+  "pythonSyntax": "PASS",
+  "scopedWhitespace": "PASS",
+  "testProcessesStopped": true
+}

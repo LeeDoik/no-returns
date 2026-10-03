@@ -1,4 +1,4 @@
-"""Actual windowless host/client straight thrust, cooldown and carrying exclusion."""
+"""Actual windowless host/client upright forward pulse, cooldown and carrying exclusion."""
 import json
 import math
 import time
@@ -29,6 +29,7 @@ def main():
             body = lab.state(folders[peer])["positions"][slot]
             return [a["batons"][slot]["position"][axis]-body[axis] for axis in ("x", "y", "z")]
         weapon_start = [relative_weapon(peer, a) for peer, a in enumerate(animations())]
+        axis_start = [list(a["batons"][slot]["axis"].values()) for a in animations()]
         seen = [False, False]
         displacement = [0, 0]
         arm_angles = [0, 0]
@@ -47,13 +48,15 @@ def main():
                 v = relative_weapon(peer, a)
                 extension[peer] = max(extension[peer], v[2]-weapon_start[peer][2])
                 lateral[peer] = max(lateral[peer], math.hypot(v[0]-weapon_start[peer][0], v[1]-weapon_start[peer][1]))
-                axis_angle[peer] = max(axis_angle[peer], math.degrees(math.acos(max(-1, min(1, weapon["axis"]["z"])))))
+                axis = list(weapon["axis"].values())
+                dot = sum(a*b for a,b in zip(axis_start[peer],axis))/math.sqrt(sum(a*a for a in axis_start[peer])*sum(a*a for a in axis))
+                axis_angle[peer] = max(axis_angle[peer], math.degrees(math.acos(max(-1, min(1, dot)))))
                 if peer != slot:
                     assert weapon["handAttached"] and weapon["handDistance"] < .15
             time.sleep(.025)
-        assert all(seen) and min(displacement) > .25 and min(arm_angles) > 15, (seen, displacement, arm_angles)
-        assert min(extension) > .22 and max(lateral) < .025 and max(axis_angle) < 1, (extension, lateral, axis_angle)
-        report["checks"].append(f"slot {slot} straight tip-forward thrust {'while walking' if walking else 'from idle'} replicated; weapon follows hand")
+        assert all(seen) and min(displacement) > .16 and min(arm_angles) > 10, (seen, displacement, arm_angles)
+        assert min(extension) > .14 and max(lateral) < .025 and max(axis_angle) < 1, (extension, lateral, axis_angle)
+        report["checks"].append(f"slot {slot} upright forward pulse {'while walking' if walking else 'from idle'} replicated; weapon follows hand")
         report.setdefault("hand_travel", []).append(displacement)
         report.setdefault("arm_rotation_degrees", []).append(arm_angles)
         report.setdefault("weapon_forward_extension", []).append(extension)

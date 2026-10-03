@@ -2,7 +2,7 @@
 
 [English](README.en.md)
 
-[진압봉 직선 찌르기 0.9.10](docs/current/employee-baton.ko.md): 전방 고정·0.06초 빠른 전진·0.30초 회수와 흔들림 없는 1인칭 깊이 보정. 즉시 판정/6초 재사용 유지. 수동 창은 요청 시에만 연다.
+[진압봉 기본 잡기·전방 동작 0.9.12](docs/current/employee-baton.ko.md): 이전 세워 쥔 자세 복원·한 번 짧게 전진/회수. [점프·착지](docs/current/employee-locomotion.ko.md)도 적용. 수정본 사람 품질은 미확인. 수동 창은 요청 시에만 연다.
 
 [양손 상자 운반 0.9.8](docs/current/employee-animation.ko.md): 기본 거리 0.8m와 손 접촉 보정 적용. 맥 빌드·정적 자세 120개·화면 없는 운반/동료 검사 통과. 먼 거리 접촉·사람 품질은 미완료. 수동 창은 요청 시에만 연다.
 

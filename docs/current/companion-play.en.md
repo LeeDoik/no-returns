@@ -1,6 +1,10 @@
-# Hands-on player + automatic companion — 0.9.11
+# Hands-on player + automatic companion — 0.9.12
 
 [한국어](companion-play.ko.md)
+
+## 2026-10-03 — Manual test ended; baton/jump improvements 0.9.12
+
+On the user’s “테스트 끝” request, use the existing stop helper to clean up both manual windows and session record for `run-20261003-222202-345af2`. Running-session statements below are historical. Build 0.9.12 with upright readiness, a short forward pulse and jump/landing, using windowless checks only. Retain two-player left/right 16:9 and four-player 2×2 placement. Open no new manual windows or Editor Play. The current 6-group companion check observes rising/apex/falling/landing/grounded on both peers, with about 0.644800m jump-height range. Revised human-perceived naturalness remains unverified. [Baton](employee-baton.en.md), [jump/landing](employee-locomotion.en.md), [validation record](../validation/employee-pulse-locomotion-0.9.12.json).
 
 ## 2026-10-03 — Landscape 16:9 test-window layout 0.9.11
 
