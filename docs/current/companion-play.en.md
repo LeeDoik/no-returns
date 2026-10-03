@@ -2,6 +2,10 @@
 
 [한국어](companion-play.ko.md)
 
+## 2026-10-03 — Hands-on play stopped and session cleaned at 0.9.9
+
+On the user's “플레이 테스트 끝” request, ran the existing `python3 tools/cinder_four_player.py stop`. Confirmed both game processes in session `run-20261003-215537-82e2bd` stopped, its session file was removed and no process listened on TCP 27842. The start record below is historical; this test is now stopped. No code changes, new build or game behavior revalidation. Completion of play is not visual quality/hit-feel approval; specific user quality feedback remains pending. Checked document links, language counterparts and whitespace for this change.
+
 ## 2026-10-03 — Requested hands-on play started at 0.9.9
 
 On the user's “직접 테스트 해볼게” request, ran the existing `python3 tools/cinder_four_player.py start --companion` to open one human host and one automatic companion window. Confirmed app version 0.9.9, host listening, client slot 1, protocol 13, occupied mask 3 and companion readiness. Leave session `run-20261003-215537-82e2bd` running in safe practice for hands-on inspection of new baton readiness/arm-chest swing/recovery and two-hand carrying. No code changes or rebuild. User quality feedback on actual mouse/focus, hit-feel and appearance remains pending. Check document links, language counterparts and whitespace only; previous game checks do not constitute quality approval of this session.
