@@ -2,6 +2,14 @@
 
 [한국어](05-validation.ko.md)
 
+## 2026-10-03 — Right-hand baton 0.9.6
+
+See the [current employee/baton guide](employee-animation.en.md) and [tools/Blender MCP setup](macos-development.en.md). Attach the baton to the actual right hand and apply a finger grip. Hide it on every peer while carrying a parcel/beacon, restore it after dropping/placing, and retain down/rescue hiding. Version 0.9.6, protocol 13, TCP 27842, Unity 6000.6.4f1. [Actual validation scope](../validation/baton-hand-0.9.6.json). Carrying contact, dedicated full-body attacks, first-person arms, user quality/all-frame penetration, other PCs/Windows/performance remain incomplete.
+
+- [x] Unity 6000.6.4f1 Mac build: zero errors, 14 warnings. Four actual processes pass 69 baton/suppression/delivery + 10 visual/transition + 31 Listener/hit/down/rescue checks = **110**. Review 4 idle/walk hand/body samples and a game capture from the new build.
+- [x] Actual MCP stdio tool calls read Blender's 5 objects, 53 bones and right-hand information. Preserve unsaved scene/existing user edits. Apply current official Unity/CLI/Pipeline/uv/Codex CLI releases and confirm Blender 5.2.2 LTS matches the latest release.
+- [ ] Codex desktop update/restart and default MCP tool exposure, the new Unity's Windows support/execution, human quality/all-frame penetration and performance. Observe a Burst error resolving a Pipeline DLL during upgrade and 5 Burst entry-point warnings in the final build. Build/110 game checks pass, but warning cause/performance impact remains unverified. Remaining warnings concern mesh collision pre-baking, absent Pipeline runtime config, obsolete search APIs and stripped debug shaders.
+
 ## 2026-10-03 — Employee full body and Idle/Walk 0.9.5
 
 [Production/launch guide](employee-animation.en.md) · [Validation JSON](../validation/employee-unity-0.9.5.json).

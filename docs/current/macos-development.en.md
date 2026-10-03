@@ -2,6 +2,33 @@
 
 [한국어](macos-development.ko.md)
 
+## 2026-10-03 — Current tools and Blender MCP
+
+Follow the [project rules](../../AGENTS.md) to check official releases and update tools used for work. Game 0.9.6 uses the committed [Unity version](../../NoReturns/ProjectSettings/ProjectVersion.txt) and [package manifest](../../NoReturns/Packages/manifest.json). This table supersedes the historical environment records below.
+
+| Tool | Installed and checked this task |
+|---|---|
+| Unity Editor | 6000.6.0f1 → **6000.6.4f1**, latest stable reported by official `unity releases`. Upgrade the project and check Mac build/play. |
+| Unity CLI / Pipeline | **1.0.0-beta.12 / 0.8.0-exp.1**, using `unity self-update` and `unity pipeline upgrade`. Confirm the live Editor server at 127.0.0.1:7800. |
+| Blender | **5.2.2 LTS**, installed version matches the [official distribution reference](https://formulae.brew.sh/api/cask/blender.json). |
+| Blender MCP | Install [mcp-for-blender](https://github.com/ahujasid/mcp-for-blender) **2.1.3** and check [PyPI release metadata](https://pypi.org/pypi/mcp-for-blender/json). The add-on identifies itself as 1.8/protocol 13, distinct from the package version. |
+| uv | **0.12.22**, update and verify against [Homebrew release metadata](https://formulae.brew.sh/api/formula/uv.json). |
+| Codex CLI | **0.160.0**, update through the [official installer](https://chatgpt.com/codex/install.sh) and verify the executable version. |
+| Codex desktop | Installed **26.930.21537 (12776)**; the app updater offers **26.930.31730 (12947)**. The updater tool is read-only and automation of Codex itself is blocked, so the user must update/restart the app. Do not count the latest app as installed. |
+
+Earlier work used Blender Python batch execution. This task installs/enables the add-on in the currently open Blender, then uses an actual MCP stdio client to call `get_scene_info` and read-only `execute_blender_code`. Read the current employee scene's 5 objects, 53 bones and right-hand information without saving or reopening its unsaved work. The local endpoint is 127.0.0.1:9876. This conversation's default tool list does not automatically include the new MCP, so check it after updating/restarting Codex. A socket response alone is not proof of MCP tool registration.
+
+Reproduction commands for another environment follow. `@latest` resolves the latest package when the connection starts; record the resolved version in task evidence. After updating the add-on, preserve unsaved work and restart Blender or reload the add-on, then check both sides' versions. Keep personal Codex configuration out of the repository.
+
+```sh
+uvx mcp-for-blender@latest install-addon
+codex mcp add blender --env DISABLE_TELEMETRY=true -- uvx mcp-for-blender@latest
+```
+
+Enable Blender MCP in `Preferences > Add-ons`. This Mac registers the absolute `/opt/homebrew/bin/uvx` path and disables telemetry. Read the connected scene, selection and unsaved state before acting; preserve original files. Continue using existing Blender Python scripts for straightforward reproduction and batch validation.
+
+The new Unity's Windows support module/Windows execution, Codex desktop update and default MCP tool exposure after restart remain unverified. Preserve the earlier Unity installation and unsaved Blender file. See [game integration and validation scope](employee-animation.en.md) and the [validation record](../validation/baton-hand-0.9.6.json).
+
 ## 2026-10-01 — Cinder delivery, receipt and return settlement
 
 [CINDER-DELIVERY-01 usage, coordinates and evidence](four-player.en.md#2026-10-01--cinder-delivery-receipt-and-return-settlement). In separate `CinderFourPlayerTest`, connect ship E preparation/arrival → BAY 04 floor delivery → CRT receipt E collection → all crew aboard/E return/420 CR settlement → next shift. Retain version 0.9.1, protocol 10 and TCP 27842. Reuse the existing delivery ledger, parcel, CRT, KO/EN screen and label tooling. Preserve the source environment scene; supersede older unconnected-delivery/receipt statements below only within this test scope. Default launch is delivery; `start --map-only` and `check` retain the movement test. Listener/baton/suppression/beacon/save and four-human/other-PC/performance validation remain incomplete. Actual automated evidence is in the [validation record](../validation/cinder-delivery-01.json).

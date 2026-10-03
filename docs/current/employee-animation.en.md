@@ -1,8 +1,20 @@
-# Employee full body and Idle/Walk — 0.9.5
+# Employee full body and Idle/Walk — 0.9.6
 
 [한국어](employee-animation.ko.md)
 
-2026-10-03. Integrate the supplied employee model, corrected Idle and Walking into the current Cinder player. Replace primitive visuals while retaining existing movement, collision, carrying and network adjudication. Game **0.9.5**, protocol **13**, TCP **27842**. Version source: [PlayerSettings](../../NoReturns/ProjectSettings/ProjectSettings.asset); implementation: [employee visuals](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/EmployeeVisual.cs) and [CarryRoom](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs).
+2026-10-03. Integrate the supplied employee model, corrected Idle and Walking into the current Cinder player. Replace primitive visuals while retaining existing movement, collision, carrying and network adjudication. Initial integration was 0.9.5; current game **0.9.6**, protocol **13**, TCP **27842**. Version source: [PlayerSettings](../../NoReturns/ProjectSettings/ProjectSettings.asset); implementation: [employee visuals](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/EmployeeVisual.cs) and [CarryRoom](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs).
+
+## 2026-10-03 — Right-hand baton attachment 0.9.6
+
+The current version is **0.9.6**, protocol **13**, TCP **27842**. Move teammates' batons from a fixed torso offset to their actual right-hand/finger bones. Follow idle/walk motion and curl fingers around the handle. Retain the local first-person position, wall pull-in and existing hit adjudication. Carrying a parcel or beacon hides that employee's baton on every peer; dropping or placing the object restores it. Down/rescue hiding also remains.
+
+Sources: [baton presentation](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/BatonVisual.cs) and the employee visual code above. Avoid inheriting the imported bones' 100x scale: use world metres, 95% from wrist to middle proximal joint plus 0.025m toward the palm. Apply a fixed grip of 55° for fingers and 30° for the thumb around the index-to-little-finger axis only while showing the baton. Add no dedicated full-body strike motion or carrying-contact IK.
+
+[Development tools and Blender MCP setup](macos-development.en.md#2026-10-03--current-tools-and-blender-mcp) · [This validation record](../validation/baton-hand-0.9.6.json). The 0.9.5 results below are historical; use the linked record for this task's scope. Carrying contact, dedicated attack motion, all-frame penetration/user quality and first-person arms remain incomplete.
+
+- [x] Unity 6000.6.4f1 Mac build: zero errors, 14 warnings. Four actual processes pass 69 baton/suppression/delivery + 10 visual/transition + 31 Listener/hit/down/rescue checks = **110**. Review 4 idle/walk hand/body samples and a game capture from the new build.
+- [x] Actual MCP stdio tool calls read Blender's 5 objects, 53 bones and right-hand information. Preserve unsaved scene/existing user edits. Apply current official Unity/CLI/Pipeline/uv/Codex CLI releases and confirm Blender 5.2.2 LTS matches the latest release.
+- [ ] Codex desktop update/restart and default MCP tool exposure, the new Unity's Windows support/execution, human quality/all-frame penetration and performance. Observe a Burst error resolving a Pipeline DLL during upgrade and 5 Burst entry-point warnings in the final build. Build/110 game checks pass, but warning cause/performance impact remains unverified. Remaining warnings concern mesh collision pre-baking, absent Pipeline runtime config, obsolete search APIs and stripped debug shaders.
 
 ## Integration and production
 
@@ -10,7 +22,7 @@
 - Apply the original dirty color texture and URP/Lit with Smoothness 0.18. The source has 4,765 vertices, 9,118 triangles and a 1.8m height; Unity splits UVs/normals into 10,612 vertices. Blend team colors into the full material at 32%.
 - Actual horizontal movement drives Idle→Walk above 0.12m/s and Walk→Idle below 0.08m/s, with 0.15-second transitions. Stride playback rate is speed/2.2 clamped to 0.35–2.2. Disable Root Motion; the existing CharacterController owns position. Remote players derive the same transitions from received/interpolated positions.
 - Each window hides its own body and shows the other three employees. Down state freezes animation and retains the existing whole-body rotation. Add no gameplay colliders.
-- Reuse the single forward Walk for sideways/backward movement for now. Dedicated backward/strafe, carrying hand contact, baton, down/get-up, rescue, jump motions and first-person arms remain subsequent production work.
+- Reuse the single forward Walk for sideways/backward movement for now. Dedicated backward/strafe, carrying hand contact, full-body baton attacks, down/get-up, rescue, jump motions and first-person arms remain subsequent production work.
 
 ## Local reproduction and launch
 
@@ -29,3 +41,7 @@ Public source-redistribution terms for original/corrected Mixamo motions remain 
 User posture/color approval, human assessment of sliding/loop seams, full-frame cloth penetration/cargo contact, four human players, other PCs, Windows and measured performance remain pending. This document supersedes earlier employee Unity-not-integrated statements within its implemented/verified scope.
 
 [Unity idle pose](../../art/player-employee-01/unity-review/Idle-1.png) · [Walking pose](../../art/player-employee-01/unity-review/Walk-3.png) · [Actual game capture](../../art/player-employee-01/unity-review/employee-in-game.png).
+
+Static baton poses: [idle body](../../art/player-employee-01/unity-review/Baton-Idle-body.png) · [idle hand](../../art/player-employee-01/unity-review/Baton-Idle-hand.png) · [walk body](../../art/player-employee-01/unity-review/Baton-Walk-body.png) · [walk hand](../../art/player-employee-01/unity-review/Baton-Walk-hand.png). These are Animator-evaluated samples from Unity 6000.6.0f1, not all-frame penetration checks or human approval.
+
+[Actual game capture in the new Unity build](../../art/player-employee-01/unity-review/Baton-in-game.png).

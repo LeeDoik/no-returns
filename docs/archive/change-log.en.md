@@ -2,6 +2,16 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-03 — Right-hand baton, carrying visibility and current tools 0.9.6
+
+Respond to the reported baton embedded in the right chest, carrying visibility, Blender MCP setup and current-tool request. Replace the remote baton's fixed torso offset with actual right-hand/finger-bone positioning and apply a finger grip. Retain existing parcel/beacon carrier, down and rescue hiding while extending regression checks across four actual peers. Preserve local first-person presentation, hit adjudication and movement/collision; game 0.9.6, protocol 13. Update the [current employee guide](../current/employee-animation.en.md), affected specification/production/backlog/checklist and entry points in both languages.
+
+[Validation](../validation/baton-hand-0.9.6.json): new Unity 6000.6.4f1 Mac build with zero errors/14 warnings; 69 baton/suppression/delivery, 10 employee visual/transition and 31 Listener/hit/down/rescue checks, 110 total passed. Render 4 idle/walk hand/body samples in the previous Editor and inspect actual hand attachment in the new build. Record upgrade-time Pipeline DLL Burst resolution errors and 5 additional Burst warnings in the final build; cause/performance impact remains unverified. The first regression launch refused an old session marker with no live players; clear it using the existing stop helper and pass the rerun.
+
+Unlike earlier Blender Python batch work, install/enable mcp-for-blender 2.1.3/add-on 1.8 and use MCP stdio tools to read the current scene's 5 objects, 53 bones and right hand. Preserve the unsaved Blender scene. Correct an initial SDK field-name error and complete both actual tool calls. Update Unity CLI to 1.0.0-beta.12, Pipeline to 0.8.0-exp.1, uv to 0.12.22 and Codex CLI to 0.160.0; verify Blender 5.2.2 LTS matches the latest release. Add [reproduction/version/restart guidance](../current/macos-development.en.md) and bilingual official-current-tool checks/updates to AGENTS.md. Codex desktop offers 26.930.31730, but its read-only updater tool and blocked self-UI automation leave the update/restart to the user. Default MCP tool-list exposure also requires checking after restart.
+
+Preserve the original art scene, existing edits to 8 materials/Blender file and local Mixamo assets. Restore only unnecessary regenerated scene IDs/URP runtime lists. Publish code, tool versions, docs, validation JSON and 5 static PNGs via LFS. Pass links/language counterparts/checkbox checks across 278 documents, bilingual content/value review, Python syntax and scoped whitespace checks. Human quality/all-frame contacts, dedicated attack/carry motions, first-person arms, other PCs/LAN/Windows and performance remain unverified.
+
 ## 2026-10-03 — Employee full body and Idle/Walk Unity integration 0.9.5
 
 At the user's request to start integration, import corrected Idle and Walking through separate Humanoid Avatars and generate a local employee Prefab/Animator. Replace primitive full-body visuals, connect actual horizontal-speed-driven idle/walk, four tints, hidden local body and existing down rotation. Retain movement, collision, carrying and network adjudication; version becomes 0.9.5 and protocol stays 13. Update the [current production/reproduction guide](../current/employee-animation.en.md), affected specifications, backlog, checklist and entry points in both languages.

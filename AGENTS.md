@@ -54,3 +54,8 @@
 - Preserve history. Do not force-push, rewrite history or revert others' work without a separate request. Record failing checks and unverified scope in documentation and the final response.
 
 - 대용량 바이너리 에셋은 Git LFS로 추적하며 푸시 시 LFS 업로드도 확인한다. / Track large binary assets with Git LFS and verify their upload when pushing.
+
+## 도구 버전 / Tool versions
+
+- 사용자 요청에 따라 작업에 사용하는 도구는 공식 배포처에서 최신 버전을 확인하고 갱신한다. 안정 버전이 있는 도구는 최신 정식판을 기준으로 하며, 베타/실험판만 제공되는 연결 도구는 그 채널의 최신판을 확인한다. 프로젝트 호환성·빌드·플레이를 검사하고 설치 버전과 남은 업데이트를 문서에 기록한다. 재시작 전 미저장 작업을 보존한다.
+- As requested, check official releases and update tools used for the task. Prefer the latest stable release where available; check the latest release in the beta/experimental channel for connectors only distributed there. Validate project compatibility, builds and play, and document installed versions and pending updates. Preserve unsaved work before restarting.

@@ -2,6 +2,33 @@
 
 [English](macos-development.en.md)
 
+## 2026-10-03 — 최신 도구와 Blender MCP
+
+작업에 사용하는 도구는 [프로젝트 규칙](../../AGENTS.md)에 따라 공식 배포처의 최신 버전을 확인하고 갱신한다. 게임 0.9.6의 실제 버전 근거는 [Unity 버전](../../NoReturns/ProjectSettings/ProjectVersion.txt)과 [패키지 목록](../../NoReturns/Packages/manifest.json)이다. 이 표가 아래 과거 환경 기록보다 우선한다.
+
+| 도구 | 이번 설치·확인 |
+|---|---|
+| Unity Editor | 6000.6.0f1 → **6000.6.4f1**, 공식 `unity releases`의 최신 정식판. 프로젝트 업그레이드·Mac 빌드/플레이 검사. |
+| Unity CLI / Pipeline | **1.0.0-beta.12 / 0.8.0-exp.1**. `unity self-update`, `unity pipeline upgrade` 사용. 살아 있는 Editor 서버 127.0.0.1:7800 응답 확인. |
+| Blender | **5.2.2 LTS**, 설치본과 [공식 배포 연결 정보](https://formulae.brew.sh/api/cask/blender.json)가 일치. |
+| Blender MCP | [mcp-for-blender](https://github.com/ahujasid/mcp-for-blender) **2.1.3** 설치. [PyPI 배포 정보](https://pypi.org/pypi/mcp-for-blender/json) 확인. 애드온 자체 표시는 1.8·프로토콜 13이며 패키지 버전과 다르다. |
+| uv | **0.12.22**, [Homebrew 배포 정보](https://formulae.brew.sh/api/formula/uv.json) 확인·업데이트. |
+| Codex CLI | **0.160.0**, [공식 설치기](https://chatgpt.com/codex/install.sh)로 갱신·실행 버전 확인. |
+| Codex 데스크톱 | 설치 **26.930.21537 (12776)**, 앱 업데이트 검사에서 **26.930.31730 (12947)** 제공 확인. 이번 작업 중 앱 업데이트 도구는 조회 전용이고 Codex 자체 UI 자동 조작이 차단되어 있어 사용자의 앱 업데이트/재시작이 남는다. 최신 설치 완료로 간주하지 않는다. |
+
+이전 작업은 Blender Python 배치로 진행했다. 이번에는 애드온을 설치하고 현재 열린 Blender에서 활성화한 뒤 실제 MCP stdio 클라이언트로 `get_scene_info`와 읽기 전용 `execute_blender_code`를 호출했다. 현재 직원 씬의 객체 5개·뼈 53개·오른손 정보를 읽었고 열려 있던 미저장 작업은 저장하거나 다시 열지 않았다. 연결 포트는 로컬 127.0.0.1:9876이다. 이번 대화의 기본 도구 목록에는 새 MCP가 자동 추가되지 않았으므로 Codex 앱 업데이트/재시작 후 해당 목록을 확인한다. 소켓 응답만으로 MCP 도구 등록 완료를 주장하지 않는다.
+
+다른 환경의 재현 명령은 아래와 같다. `@latest`는 연결 시작 시 최신 패키지를 사용하며, 실제 선택된 버전은 작업 기록에 남긴다. 애드온 업데이트 뒤에는 기존 미저장 작업을 보존하고 Blender를 다시 시작하거나 애드온을 재로딩한 뒤 양쪽 버전을 확인한다. 개인 Codex 설정은 저장소에 넣지 않는다.
+
+```sh
+uvx mcp-for-blender@latest install-addon
+codex mcp add blender --env DISABLE_TELEMETRY=true -- uvx mcp-for-blender@latest
+```
+
+Blender `Preferences > Add-ons`에서 Blender MCP를 활성화한다. 현재 맥에서는 `/opt/homebrew/bin/uvx` 절대 경로를 등록했고 텔레메트리는 끈다. 연결된 씬/선택/미저장 상태를 읽은 뒤 작업하며 원본을 덮어쓰지 않는다. 단순 재현·일괄 검사는 기존 Blender Python 스크립트도 계속 사용한다.
+
+새 Unity의 Windows 지원 모듈·Windows 실행, Codex 데스크톱 업데이트 및 재시작 후 기본 MCP 도구 노출은 미확인이다. 이전 Unity 설치와 미저장 Blender 파일은 보존한다. [게임 적용·검증 범위](employee-animation.ko.md)와 [검증 기록](../validation/baton-hand-0.9.6.json)을 따른다.
+
 ## 2026-10-01 — Cinder 배송·영수증·귀환 정산
 
 [CINDER-DELIVERY-01 실행·좌표·검증](four-player.ko.md#2026-10-01--cinder-배송영수증귀환-정산). 별도 `CinderFourPlayerTest`에서 우주선 E 준비/도착 → BAY 04 바닥 배송 → CRT 영수증 E 회수 → 전원 탑승·E 귀환·420 CR 정산 → 다음 근무를 연결했다. 버전 0.9.1·프로토콜 10·TCP 27842 유지. 기존 배송 장부·화물·CRT·KO/EN 화면과 표지 도구를 재사용한다. 원본 환경 씬은 그대로이며 아래 이전 단계의 배송/수령 미연결 표기는 이 시험 범위에서 대체된다. 기본 실행은 배송, `start --map-only`와 `check`는 이전 이동 시험이다. 리스너/진압봉/억제/신호기/저장, 사람 네 명·다른 PC·성능은 미완료다. 실제 자동 검사 근거는 [검증 기록](../validation/cinder-delivery-01.json)을 따른다.

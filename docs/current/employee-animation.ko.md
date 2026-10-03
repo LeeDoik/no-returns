@@ -1,8 +1,20 @@
-# 직원 전신·Idle/Walk — 0.9.5
+# 직원 전신·Idle/Walk — 0.9.6
 
 [English](employee-animation.en.md)
 
-2026-10-03. 사용자가 제공한 직원 모델과 보정 Idle, Walking을 현재 Cinder 플레이어에 연결했다. 임시 도형 외형을 전신 모델로 교체하며 이동·충돌·운반·네트워크 판정은 기존 코드를 사용한다. 게임 **0.9.5**, 프로토콜 **13**, TCP **27842**. 버전 근거는 [PlayerSettings](../../NoReturns/ProjectSettings/ProjectSettings.asset), 구현은 [직원 외형](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/EmployeeVisual.cs)과 [CarryRoom](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs)이다.
+2026-10-03. 사용자가 제공한 직원 모델과 보정 Idle, Walking을 현재 Cinder 플레이어에 연결했다. 임시 도형 외형을 전신 모델로 교체하며 이동·충돌·운반·네트워크 판정은 기존 코드를 사용한다. 최초 연결은 0.9.5이며 현재 게임 **0.9.6**, 프로토콜 **13**, TCP **27842**. 버전 근거는 [PlayerSettings](../../NoReturns/ProjectSettings/ProjectSettings.asset), 구현은 [직원 외형](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/EmployeeVisual.cs)과 [CarryRoom](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs)이다.
+
+## 2026-10-03 — 진압봉 오른손 부착 0.9.6
+
+현재 버전은 **0.9.6**·프로토콜 **13**·TCP **27842**다. 동료의 진압봉을 몸통 고정 좌표에서 실제 오른손/손가락 뼈 기준 위치로 옮겼다. 대기·걷기에서 손을 따라가고, 손잡이를 쥐도록 손가락을 조정한다. 본인의 1인칭 진압봉 위치·벽 앞 당김·기존 타격 판정은 유지한다. 상자 또는 신호기를 들면 모든 창에서 해당 직원의 진압봉을 숨기고 놓거나 배치하면 다시 표시한다. 다운·구조 중 숨김도 유지한다.
+
+[진압봉 표시 구현](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/BatonVisual.cs)과 위 직원 외형 코드가 근거다. 반입 뼈의 배율 100을 무기에 곱하지 않고 월드 미터로 손목→중지 밑마디 95% 지점에서 손바닥 방향 0.025m를 더한다. 검지→소지 축 기준 손가락 55°·엄지 30°의 고정 쥐기 자세를 진압봉 표시 때만 적용한다. 별도 타격 전신 동작이나 화물 접촉 IK는 추가하지 않았다.
+
+[개발 도구·Blender MCP 설정](macos-development.ko.md#2026-10-03--최신-도구와-blender-mcp) · [이번 검사 기록](../validation/baton-hand-0.9.6.json). 아래 0.9.5 검증은 이전 기록이며 이번 검증 범위는 위 기록을 따른다. 운반 손 접촉·전용 공격 동작·전 프레임 관통/사용자 품질·1인칭 팔은 미완료다.
+
+- [x] Unity 6000.6.4f1 맥 빌드 오류 0개·경고 14개. 실제 네 실행본 진압봉/억제/배송 69개 + 외형/전환 10개 + 리스너/타격/다운/구조 31개 = **110개** 통과. 대기·걷기 손/전신 표본 4장과 새 빌드 게임 화면을 검토했다.
+- [x] 실제 MCP stdio 도구 호출로 Blender 객체 5개·뼈 53개·오른손 정보 확인. 미저장 씬·기존 사용자 수정 보존. 공식 최신 Unity/CLI/Pipeline/uv/Codex CLI 적용, Blender 5.2.2 LTS 최신 일치 확인.
+- [ ] Codex 데스크톱 업데이트·재시작 후 기본 MCP 도구 노출, 새 Unity의 Windows 지원/실행, 사람 품질/전 프레임 관통·성능. 업그레이드 중 Pipeline DLL을 찾지 못하는 Burst 오류와 최종 빌드의 Burst 진입점 경고 5개가 관찰됐다. 빌드·110개 게임 검사는 통과했지만 해당 경고의 원인/성능 영향은 미확인이다. 나머지는 맵 충돌 사전 굽기·Pipeline 런타임 설정 부재·구식 검색 API·디버그 셰이더 제거 경고다.
 
 ## 연결과 제작
 
@@ -10,7 +22,7 @@
 - 오염된 원본 색상 텍스처와 URP/Lit, 거칠기 표현을 위한 Smoothness 0.18을 적용한다. 원본은 4,765정점·9,118삼각형·높이 1.8m이며 Unity의 UV/노멀 분리 후 정점 수는 10,612다. 팀 색은 전체 재질에 32% 혼합한다.
 - 실제 수평 이동 속도에 따라 Idle→Walk 0.12m/s 초과, Walk→Idle 0.08m/s 미만, 전환 0.15초다. 보폭 재생률은 속도/2.2를 0.35–2.2배로 제한한다. Root Motion은 끄고 기존 CharacterController가 위치를 결정한다. 원격 플레이어는 수신·보간된 실제 위치로 같은 전환을 계산한다.
 - 각 창에서는 자기 몸을 숨기고 나머지 세 명을 표시한다. 다운 시 동작을 멈추고 기존 전신 회전 표현을 사용한다. 별도 콜라이더를 추가하지 않는다.
-- 현재 한 개의 전진 Walk를 옆/뒤 이동에도 재사용한다. 전용 후진·횡이동·운반 손 접촉·진압봉·다운/일어나기·구조·점프 동작과 1인칭 팔은 다음 제작 범위다.
+- 현재 한 개의 전진 Walk를 옆/뒤 이동에도 재사용한다. 전용 후진·횡이동·운반 손 접촉·진압봉 공격 전신 동작·다운/일어나기·구조·점프 동작과 1인칭 팔은 다음 제작 범위다.
 
 ## 로컬 재현과 실행
 
@@ -29,3 +41,7 @@ Mixamo 원본/보정 동작의 공개 소스 재배포 조건은 아직 확정�
 사용자 자세/색감 승인, 발 미끄러짐과 반복 이음새의 사람 평가, 전 프레임 옷 관통/화물 접촉, 실제 사람 네 명·다른 PC·Windows·성능 측정은 미완료다. 과거의 직원 Unity 미적용 설명은 이 문서의 구현·검증 범위에서 대체한다.
 
 [Unity 대기 자세](../../art/player-employee-01/unity-review/Idle-1.png) · [걷기 자세](../../art/player-employee-01/unity-review/Walk-3.png) · [실제 게임 화면](../../art/player-employee-01/unity-review/employee-in-game.png).
+
+진압봉 정적 자세: [대기 전신](../../art/player-employee-01/unity-review/Baton-Idle-body.png) · [대기 손](../../art/player-employee-01/unity-review/Baton-Idle-hand.png) · [걷기 전신](../../art/player-employee-01/unity-review/Baton-Walk-body.png) · [걷기 손](../../art/player-employee-01/unity-review/Baton-Walk-hand.png). Unity 6000.6.0f1에서 Animator로 평가한 표본 화면이며 모든 프레임의 관통 검사나 사람 승인을 대체하지 않는다.
+
+[새 Unity 실제 게임 화면](../../art/player-employee-01/unity-review/Baton-in-game.png).

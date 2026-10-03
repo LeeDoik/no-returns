@@ -26,6 +26,12 @@ def main():
     def all_state(predicate):
         return all(predicate(lab.state(folders[i])) for i in range(4))
 
+    def batons(peer):
+        return lab.state(folders[peer], "animation.json").get("batons") or []
+
+    def baton_visible(slot, visible):
+        return all(len(batons(peer))==4 and batons(peer)[slot]["visible"]==visible for peer in range(4))
+
     def go(slot, x, z):
         send(slot, ui="close")
         lab.wait("gameplay controls resumed", lambda: lab.state(folders[slot], "ui.json").get("menu")=="", 5)
@@ -71,14 +77,22 @@ def main():
     try:
         require("four hazard slots/protocol 13", lambda: all_state(lambda s:s.get("occupiedMask")==15 and s.get("protocol")==13 and s.get("hazard")))
         require("preparation clock stopped",lambda:host().get("shiftElapsed")==0)
+        require("remote batons follow right hands, local view remains visible",lambda:all(
+            len(batons(peer))==4 and all(b["visible"] and (slot==peer or b["handAttached"] and .05<b["handDistance"]<.19)
+                for slot,b in enumerate(batons(peer))) for peer in range(4)))
+        p=host()["positions"][3]
+        aim(3,(host()["positions"][0]["x"],1,host()["positions"][0]["z"]))
+        capture("baton-in-right-hand",0,(p["x"],p["y"]+.8,p["z"]))
         depart()
         go(0,-20.7,-25);go(0,-20.7,-20.05)
         p=host()["cargo"];aim(0,(p["x"],p["y"],p["z"]),interact=True)
         require("cargo pickup with hazards active",lambda:host().get("holder")==0)
+        require("parcel hides holder baton on all four peers",lambda:baton_visible(0,False))
         # Use the existing exterior ground/north/east opening to avoid the Listener; no collision changes or teleport.
         for x,z in [(-22.95,-19.65),(-30,-19.65),(-30,5),(-30,32),(0,32),(26,32),(26,18),(21.5,18),(21.5,25.95),(12.75,25.95),(12.75,14.2),(17,14.2),(17,11.6)]:go(0,x,z)
         send(0,pitch=62,place=True)
         require("BAY 04 accepts parcel under hazards",lambda:all_state(lambda s:s.get("phase")==3))
+        require("parcel placement restores holder baton on all peers",lambda:baton_visible(0,True))
         go(0,14.9,10.9)
         require("receipt printing complete",lambda:all_state(lambda s:s.get("receiptReady")))
         aim(0,(14.9,1.25,12.175),interact=True)
@@ -97,9 +111,11 @@ def main():
         go(0,-20.7,-27.8)
         p=host()["beaconPosition"];aim(0,(p["x"],p["y"],p["z"]),interact=True)
         require("host carries purchased beacon",lambda:all_state(lambda s:s.get("beaconCarrier")==0))
+        require("beacon hides host baton on all peers",lambda:baton_visible(0,False))
         for x,z in [(-20.7,-25),(-20.7,-20.05),(-23,-20.05),(-23,-17.5)]:go(0,x,z)
         send(0,yaw=0,drop=True)
         require("first signal spends one charge",lambda:all_state(lambda s:s.get("charges")==1 and s.get("beaconTime",0)>0))
+        require("beacon release restores host baton on all peers",lambda:baton_visible(0,True))
         beacon=host()["beaconPosition"]
         require("purchased beacon attracts Listener",lambda:host()["danger"]["noises"]>0 and math.dist(list(host()["danger"]["noiseTarget"].values()),list(beacon.values()))<.1)
         go(0,-20.7,-20.05);aboard(0);ship_click(True)
@@ -110,6 +126,7 @@ def main():
         go(1,-20.7,-27.8)
         p=host()["beaconPosition"];aim(1,(p["x"],p["y"],p["z"]),interact=True)
         require("client carries shared beacon",lambda:all_state(lambda s:s.get("beaconCarrier")==1))
+        require("beacon hides client baton on all peers",lambda:baton_visible(1,False))
         for x,z in [(-20.7,-26.9),(-20.7,-20.05),(-23,-20.05),(-30,-20.05),(-30,-36),(0,-36),(29,-36),(29,-12),(29,13)]:go(1,x,z)
         start=host()["outerDanger"]["position"]
         require("outer staged beyond east boundary",lambda:start["x"]==29 and start["z"]==18 and host()["outerDanger"]["hits"]==0)
@@ -125,6 +142,7 @@ def main():
         require("outer still waits during grace",lambda:host()["outerDanger"]["position"]==start)
         send(1,yaw=0,drop=True)
         require("client deploys active shared signal",lambda:all_state(lambda s:s.get("charges")==1 and s.get("beaconTime",0)>0))
+        require("beacon release restores client baton on all peers",lambda:baton_visible(1,True))
         go(1,29,6)
         require("outer enters only after grace",lambda:host().get("shiftElapsed",0)>=188 and host()["outerDanger"]["position"]!=start,12)
         beacon=host()["beaconPosition"]
@@ -135,6 +153,7 @@ def main():
         time.sleep(.3)
         require("baton cannot stun outer",lambda:host()["outerDanger"]["state"]!=4)
         require("outer downs client on all peers",lambda:all_state(lambda s:s.get("danger",{}).get("down",[False]*4)[1]) and host()["outerDanger"]["hits"]>0,30)
+        require("down hides client baton on all peers",lambda:baton_visible(1,False))
         require("three aboard employees stay safe",lambda:not any(host()["danger"]["down"][i] for i in (0,2,3)))
         send(0,ui="close")
         # Expose the remaining crew at the landing; global pursuit must reach them through actual geometry.
