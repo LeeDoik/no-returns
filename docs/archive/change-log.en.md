@@ -2,6 +2,10 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-03 — Confirm Unity integration sequence
+
+For the next-step question, inspect current employee-visual construction code and official Unity Avatar import guidance. Add bilingual sequencing: import → separate Avatars → Idle/Walk previews → actual movement integration → employee-visual replacement/four-player checks. No code/model/scene changes. No Unity import/execution; Blender checks do not establish completed game integration. Bilingual content review, link/checkbox checks across 276 documents and changed-whitespace checks passed.
+
 ## 2026-10-03 — Correct the supplied Idle hunch
 
 Respond to the user's hunched-back report with an [upper-body correction candidate](../current/03-guides.en.md#2026-10-03--correct-the-supplied-idle-upper-body-posture). Apply constant offsets only to neck/upper-chest rotations in the 53-bone, 4,765-vertex, 30fps, 251-frame Idle. Create a local Blender file with original/corrected Actions and a single corrected FBX, plus a static comparison render, reproduction code and bilingual guidance/asset status/backlog/validation updates. Find Walking in the same Downloads directory and inspect structure only, recording rest-joint differences up to approximately 139.6mm. No game/scene changes.

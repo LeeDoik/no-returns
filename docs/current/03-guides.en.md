@@ -2,6 +2,12 @@
 
 [한국어](03-guides.ko.md)
 
+## 2026-10-03 — Sequence before Unity integration
+
+Next is Unity import and motion testing. Import the corrected Idle FBX and Walking FBX, create separate Avatars with **Humanoid / Create From This Model**, and check required bones/T poses. Their rest-joint positions differ, so do not blindly copy the same Avatar. Preview Idle/Walk loops and foot/shoulder deformation, then drive Idle↔Walk from actual movement speed with Root Motion disabled. Current [CarryRoom employee visuals](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs) are placeholder Suit/Helmet/Visor objects under `Employee visuals`; attach the validated model at this visual integration point. Existing movement, collision and networking continue to own movement. Follow with remote-body display, carrying, down state, first-person framing and four-player checks.
+
+This entry confirms the integration sequence in response to the user's question. This task did not import files into Unity or change models/game behavior; completed validation remains limited to the Blender/FBX checks above. Sources: current code and [official Unity Humanoid import guidance](https://docs.unity3d.com/kr/current/Manual/ConfiguringtheAvatar.html).
+
 ## 2026-10-03 — Correct the supplied Idle upper-body posture
 
 The user made Mixamo Idle/Walking motions and reported excessive back hunching in Idle. Inspect the supplied `Idle.fbx` and `Walking.fbx` in the same Downloads folder. Idle contains **a mesh, 53 bones, 4,765 vertices, 30fps and frames 1–251**; Walking contains **no mesh, 53 bones, 30fps and frames 1–32**. Supersede the prior not-received status within this scope. Actual Mixamo clip IDs/download options were not supplied.

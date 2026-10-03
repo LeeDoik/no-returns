@@ -2,6 +2,12 @@
 
 [English](03-guides.en.md)
 
+## 2026-10-03 — Unity 적용 직전 순서
+
+다음 단계는 Unity 반입·동작 시험이다. 보정 Idle FBX와 Walking FBX를 가져와 각각 **Humanoid / Create From This Model**로 Avatar를 만들고 필수 뼈·T 자세를 확인한다. 두 파일의 기본 관절 위치가 다르므로 동일 Avatar를 무조건 복사하지 않는다. Idle/Walk 반복과 발/어깨 변형을 미리보기에서 확인한 뒤, Idle↔Walk를 실제 이동 속도로 전환하고 Root Motion을 끈다. 현재 [CarryRoom의 직원 외형](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs)은 `Employee visuals` 아래 임시 Suit/Helmet/Visor이며 이 외형 연결 지점에 검증한 모델을 붙이는 순서다. 기존 이동·충돌·네트워크가 이동을 계속 담당한다. 이후 원격 직원 표시·운반·다운·1인칭 시야와 4인 검사를 진행한다.
+
+이 항목은 사용자 질문에 대한 적용 순서 확인이다. 이번에는 Unity에 파일을 반입하거나 모델/게임을 바꾸지 않았으며, 현재 검증 완료 범위는 위 Blender/FBX 검사까지다. 근거: 현재 코드와 [Unity 공식 Humanoid 가져오기](https://docs.unity3d.com/kr/current/Manual/ConfiguringtheAvatar.html).
+
 ## 2026-10-03 — 수령 Idle의 상체 자세 보정
 
 사용자는 Mixamo Idle·Walking을 만들었고 Idle의 등이 너무 굽어 보인다고 보고했다. 제공한 `Idle.fbx`와 같은 Downloads 폴더의 `Walking.fbx`를 검사했다. Idle은 **메시 포함·53개 뼈·4,765정점·30fps·1–251프레임**, Walking은 **메시 없음·53개 뼈·30fps·1–32프레임**이다. 이전의 미수령 상태를 이 범위에서 대체한다. 실제 Mixamo 클립 ID·다운로드 옵션은 제공되지 않았다.
