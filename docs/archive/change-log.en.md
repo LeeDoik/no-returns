@@ -2,6 +2,10 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-03 — Animation-authoring guidance
+
+Answer the user's question with bilingual [production guidance](../current/03-guides.en.md) on keyframes, separate Actions, a frame-1/13/25 elbow exercise and the idle/walk/carry production sequence. Explain diagnostic-motion preservation and I/K differences using official search results and existing production code. No code/model/scene/game-state changes. New clip production, actual UI practice and Unity integration were not performed. Bilingual content review, link/checkbox checks across 276 documents and changed-whitespace checks passed.
+
 ## 2026-10-03 — Blender basic-controls guidance
 
 In response to the beginner tutorial request, add complete Korean/English controls guidance to the [production guide](../current/03-guides.en.md). Use the current employee rig to explain navigation, selection, transforms, modes, diagnostic frames, saving and undo. No code/model/scene changes. Consult official search results and existing rig records; direct manual opens failed with HTTP 402. Bilingual content review, link/checkbox checks across 276 documents, and changed-whitespace checks passed. Actual operation under personal input settings and the user's learning outcome remain unverified; existing game/asset completion statuses are unchanged.

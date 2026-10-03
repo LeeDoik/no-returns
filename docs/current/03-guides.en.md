@@ -2,6 +2,21 @@
 
 [한국어](03-guides.ko.md)
 
+## 2026-10-03 — First keyframe animation exercise
+
+Animation stores poses at specific frames as **keyframes** and interpolates between them. An **Action** groups the keys for a motion. The existing rig contains only a diagnostic Action; this guidance does not create or integrate a new gameplay clip.
+
+1. Open the [rig file](../../art/player-employee-01/rigged/NR_Employee_01_Rigged.blend), make a practice copy with `File → Save As`, go to frame 1 and select `NR_Employee_Rig`.
+2. Change the bottom Timeline area's editor type to **Dope Sheet**, then its header mode to **Action Editor**. Use **X (Unlink Action)** beside `NR_Deformation_Check_NOT_GAMEPLAY`, then **New** to create an empty Action named `Practice_Elbow`. The original diagnostic Action already has its retention setting enabled. Enable the new Action's shield-shaped **Fake User** so it also survives later unassignment. Merely renaming the existing Action does not separate it.
+3. Switch the central 3D view to **Pose Mode**. At frame 1's T pose, select all bones with `A` and store the pose with `K → Location, Rotation & Scale`. Default-keymap `I` also inserts keys, but the stored channels depend on preferences/the active Keying Set, so this exercise explicitly selects channels through `K`.
+4. Set the current frame to **13**. Select just one forearm bone in the 3D view, bend the elbow slightly with `R`, and confirm. Store it again with `K → Location, Rotation & Scale`. Changing frames or posing alone does not save a key.
+5. In the Action Editor, deselect the keys and box-select all keys at frame 1. Keeping the pointer over that editor, duplicate with `Shift + D → 24 → Enter` to put the same pose at frame **25**. Do not duplicate frame 13's keys.
+6. Set the playback range to **Start 1 / End 25** and play. At this file's 24fps, frames 1 and 25 are one second apart. If the duplicated endpoint creates a beat of hesitation when looping, reduce preview End to 24 while retaining the return key at 25. Save the `.blend`.
+
+Proposed gameplay order: **Idle → Walk (in place) → CarryIdle → CarryWalk**. Add set-down, baton and down/rescue motions as needed afterward. Check walking for foot sliding against game movement speed, and carrying for hand contact against actual cargo size/distance/rotation. Separate Action names alone do not implement game transitions; Unity skeleton recognition, clip import and movement/carry-state connections are required. This sequence and the 1/13/25 exercise are proposals, not completed or quality-validated clips.
+
+Sources: [Blender keyframe editing](https://docs.blender.org/manual/en/latest/animation/keyframes/editing.html), [Blender 5.2 Action Editor](https://docs.blender.org/manual/id/5.2/editors/dope_sheet/modes/action.html), [existing rig production code](../../art/player-employee-01/rig.py). Official search results confirmed I/K behavior and Action management on 2026-10-03. This task performs documentation checks only, not execution of the exercise in the user's UI, new animation renders or Unity validation.
+
 ## 2026-10-03 — First Blender controls practice
 
 Open the [practice character file](../../art/player-employee-01/rigged/NR_Employee_01_Rigged.blend) and make a personal practice copy with `File → Save As`. The instructions use Blender's default keymap. Shortcuts act on the area under the pointer; keep it over the central 3D view while operating.

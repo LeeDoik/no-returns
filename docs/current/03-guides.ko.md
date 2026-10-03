@@ -2,6 +2,21 @@
 
 [English](03-guides.en.md)
 
+## 2026-10-03 — 첫 키프레임 애니메이션 연습
+
+애니메이션은 특정 프레임의 자세를 **키프레임**으로 저장하고 그 사이를 보간하는 방식으로 만든다. **Action**은 한 동작의 키프레임을 담는 묶음이다. 기존 리그에는 시험 Action만 있으며 이번 안내에서 새 게임용 클립을 제작하거나 적용하지 않았다.
+
+1. [리그 작업본](../../art/player-employee-01/rigged/NR_Employee_01_Rigged.blend)을 열어 `File → Save As`로 연습용 복사본을 만든다. 프레임 1로 이동하고 `NR_Employee_Rig`를 선택한다.
+2. 아래 Timeline 영역 왼쪽의 에디터 종류를 **Dope Sheet**로 바꾸고 그 헤더의 모드를 **Action Editor**로 바꾼다. 기존 `NR_Deformation_Check_NOT_GAMEPLAY` 옆 **X(Unlink Action)**로 연결을 해제한 뒤 **New**로 빈 Action을 만들고 `Practice_Elbow`로 이름 짓는다. 원본 시험 Action에는 보존 설정이 이미 켜져 있다. 새 Action에도 방패 모양 **Fake User**를 켜 두면 나중에 연결을 바꿔도 보존된다. 기존 Action의 이름만 바꾸는 것은 분리가 아니다.
+3. 가운데 3D 화면에서 **Pose Mode**로 전환한다. 프레임 1의 T 자세에서 `A`로 모든 뼈를 선택하고 `K → Location, Rotation & Scale`로 자세를 저장한다. 기본 키맵의 `I`도 키를 넣지만 저장 항목은 사용자 설정/활성 Keying Set에 따라 달라지므로 여기서는 `K` 메뉴로 항목을 명시한다.
+4. 현재 프레임을 **13**으로 옮긴다. 3D 화면에서 아래팔 뼈 하나만 선택하고 `R`로 팔꿈치를 조금 굽힌 뒤 확정한다. 다시 `K → Location, Rotation & Scale`로 저장한다. 프레임만 바꾸거나 자세만 바꾸는 것으로는 키가 저장되지 않는다.
+5. Action Editor에서 선택을 해제한 뒤 프레임 1의 키 전체를 상자 선택한다. 포인터를 Action Editor 위에 둔 채 `Shift + D → 24 → Enter`로 복제하면 같은 자세가 **25**프레임에 생긴다. 프레임 13의 키는 복제하지 않는다.
+6. 재생 범위를 **Start 1 / End 25**로 설정하고 재생한다. 이 작업본의 24fps에서 프레임 1과 25 사이 시간은 1초다. 반복 시 첫/끝 중복 자세로 한 박자 멈춤이 보이면 미리보기 End를 24로 줄이고 25의 복귀 키는 유지한다. `.blend`를 저장한다.
+
+게임용 제작 제안은 **Idle(대기) → Walk(제자리 걷기) → CarryIdle(운반 대기) → CarryWalk(운반 걷기)**다. 이후 필요에 따라 내려놓기·진압봉·다운/구조를 추가한다. 걷기는 발 미끄러짐과 게임 이동 속도, 운반은 실제 화물 크기/거리/회전에 맞는 손 접촉을 확인한다. 별도 Action 이름만 만들어도 게임에서 전환되는 것은 아니며 Unity 뼈대 인식·클립 가져오기·이동/운반 상태 연결이 필요하다. 이 순서와 1/13/25 연습은 제안이며 완성/품질 검증된 클립이 아니다.
+
+근거: [Blender 키프레임 편집](https://docs.blender.org/manual/en/latest/animation/keyframes/editing.html), [Blender 5.2 Action Editor](https://docs.blender.org/manual/id/5.2/editors/dope_sheet/modes/action.html), [기존 리그 제작 코드](../../art/player-employee-01/rig.py). 2026-10-03 공식 검색 결과에서 I/K 동작과 Action 관리 안내를 확인했다. 이번에는 문서 검사만 수행하며 사용자 화면에서 연습 절차 실행·새 애니메이션 렌더·Unity 검증은 하지 않았다.
+
 ## 2026-10-03 — Blender 첫 조작 연습
 
 [연습할 캐릭터 작업본](../../art/player-employee-01/rigged/NR_Employee_01_Rigged.blend)을 열고 `File → Save As`로 개인 연습용 복사본을 만든다. 아래는 Blender 기본 키맵 기준이며, 단축키는 마우스가 놓인 화면 영역에 적용된다. 가운데 3D 화면 위에 포인터를 두고 조작한다.
