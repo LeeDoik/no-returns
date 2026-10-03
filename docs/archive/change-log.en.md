@@ -2,6 +2,10 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-03 — Requested original-baton/directional-movement manual test started at 0.9.13
+
+On the user's “직접 테스트 할게” request, run the existing `python3 tools/cinder_four_player.py start --companion` to open one human host and one automatic companion. Confirm app **0.9.13**, host listening, client slot **1**, protocol **13**, occupied mask **3**, bot readiness and safe practice. Both game viewports have equal **1702×958px** 16:9 dimensions; AppKit positions confirm human left/companion right placement. Leave session `run-20261003-225506-3f5400` running for hands-on inspection of the original baton and backward/sidestep/jump/landing presentation. Termination/start records below are historical sessions. No code changes, rebuild or new quality approval. Check document links, language counterparts and scoped whitespace; user-perceived handling/naturalness remains unverified.
+
 ## 2026-10-03 — Original baton restored; backward/sidestep 0.9.13
 
 The user requested the very first baton version and backward/sidestep motion. Restore the original right-hand attachment at 0.9.6 (8cd97aa), removing attack arm/chest correction introduced in 0.9.9. Retain Idle/Walk hand attachment, weapon-only 0.5s return, original first-person position/rotation and 0.95m clearance/minimum 0.35 scale, immediate contact/6s cooldown and carrying/down/rescue hiding. Redirect backward, lateral/diagonal feet from actual body-relative velocity through leg IK over the existing Walk. Maintain separate foot trajectories, torso/root/bone length, release in air/down/stop, existing jump/landing, two-hand carrying, physics and protocol 13/TCP 27842. No new FBX/Blender source/MCP editing. Game 0.9.13. [Baton](../current/employee-baton.en.md), [movement](../current/employee-locomotion.en.md), [validation record](../validation/employee-direction-0.9.13.json).

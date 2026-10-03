@@ -2,6 +2,10 @@
 
 [한국어](companion-play.ko.md)
 
+## 2026-10-03 — Requested original-baton/directional-movement manual test started at 0.9.13
+
+On the user's “직접 테스트 할게” request, run the existing `python3 tools/cinder_four_player.py start --companion` to open one human host and one automatic companion. Confirm app **0.9.13**, host listening, client slot **1**, protocol **13**, occupied mask **3**, bot readiness and safe practice. Both game viewports have equal **1702×958px** 16:9 dimensions; AppKit positions confirm human left/companion right placement. Leave session `run-20261003-225506-3f5400` running for hands-on inspection of the original baton and backward/sidestep/jump/landing presentation. Termination/start records below are historical sessions. No code changes, rebuild or new quality approval. Check document links, language counterparts and scoped whitespace; user-perceived handling/naturalness remains unverified.
+
 ## 2026-10-03 — Current 0.9.13; prior manual test stopped
 
 Stop requested session `run-20261003-223811-25d870` with the existing helper to restore the original baton and implement backward/sidestep movement. Current build is **0.9.13**; open no new manual windows. Running-session/forward-pulse statements below describe terminated historical runs. [Current baton](employee-baton.en.md), [current movement](employee-locomotion.en.md). On the next “직접 테스트 해볼게” request, use `python3 tools/cinder_four_player.py start --companion` to open human/companion in equal left/right 16:9 windows. Backward/sidestep correction follows actual direction; the companion retains its existing walk/sidestep demonstration. Human quality review remains pending.
