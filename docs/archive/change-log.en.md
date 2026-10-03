@@ -2,6 +2,10 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-03 — Start requested hands-on play 0.9.8
+
+On the user’s “직접 테스트 해볼게” request, run the existing `python3 tools/cinder_four_player.py start --companion` to open one human host and one automatic companion window. Confirm player version 0.9.8, host listening, client slot 1 assignment and companion readiness. Leave session `run-20261003-202722-0ef980` running for hands-on play. No code changes. User feedback on actual mouse/focus, appearance and handling is still pending; do not record quality approval.
+
 ## 2026-10-03 — Two-handed parcel carrying pose 0.9.8
 
 Bring default carrying reach from **1.1m to 0.8m** and align both hands with the upper part of the parcel face nearest the employee. Retain the **0.75–1.6m** wheel range and rotation, placement, ownership and collision rules. Apply arm posing over Idle/Walk, blend in/out over about **0.167 seconds**, and clear immediately when down. Change wrist/arm rotations only, preserving bone lengths/scales and employee root. Distant or heavily tilted parcels can remain beyond hand reach. This does not establish perfect contact at every distance or eliminate finger penetration. Preserve baton hiding while carrying/restoration after release and local-body hiding. Dedicated beacon grip, attack/jump/rescue motions and first-person arms remain outside this change.

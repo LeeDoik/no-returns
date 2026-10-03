@@ -2,6 +2,10 @@
 
 [한국어](companion-play.ko.md)
 
+## 2026-10-03 — Start requested hands-on play 0.9.8
+
+On the user’s “직접 테스트 해볼게” request, run the existing `python3 tools/cinder_four_player.py start --companion` to open one human host and one automatic companion window. Confirm player version 0.9.8, host listening, client slot 1 assignment and companion readiness. Leave session `run-20261003-202722-0ef980` running for hands-on play. No code changes. User feedback on actual mouse/focus, appearance and handling is still pending; do not record quality approval.
+
 ## 2026-10-03 — Two-handed parcel carrying 0.9.8
 
 Current game 0.9.8 retains the 32-second companion cycle and two-window on-demand policy. The bot also uses 0.8m reach and the two-hand carrying pose. Pass 5 grouped two-process windowless regressions this task. The 0.9.7 build results below are historical. [Implementation, evidence and limits](employee-animation.en.md).
