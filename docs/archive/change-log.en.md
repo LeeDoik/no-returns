@@ -2,6 +2,12 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-04 — Fall and get-up motion 0.9.21
+
+Replace the teammate's instant 90° tilt with a **0.65s** knee buckle/side collapse and **0.95s** roll upright/knee extension. Layer the pose over the existing Humanoid; preserve rescue, movement, collision and input rules. [Production and remaining scope](../current/employee-animation.en.md), [validation](../validation/employee-down-0.9.21.json). Game **0.9.21**, protocol **13**, TCP **27842**. This supersedes earlier missing-down/get-up statements within this procedural presentation scope. Dedicated motion-capture clips, ragdolls, actual rescue contact, human naturalness and slope/wall intersection correction remain pending.
+
+At the user's request, implement down/recovery presentation. Pass 520 pose samples and 12 actual two-client rescue checks; Mac build 0 errors/7 existing warnings. Rescue 5.239s, build-inclusive total 19.699s. Fix duplicate-scale measurement and optional toe exceptions, expand boot clearance and pass rechecks. Sample minimum -0.025357m is not zero penetration. Inspect 4 transition previews and store with LFS. Pass 288 document checks, Python syntax and changed-file whitespace checks. Official Unity/CLI/Pipeline latest confirmed, no pending updates. Full regression, human quality, terrain/walls/actual rescue contact, Windows/LAN/performance remain unverified. No manual windows/Editor Play. Restore generated scene/URP changes; preserve and exclude 8 preexisting material and 2 Blender modifications.
+
 ## 2026-10-04 — Remote full-body rescue pose 0.9.20
 
 Show rescuing teammates bending their knees, leaning forward and extending both hands. Blend out in about 0.167s after cancellation/completion; clear on carrying, down or inactivity. Preserve existing 2m/line-of-sight, 2.5s rescue and 4s protection rules. [Production and limits](../current/first-person-arms.en.md), [validation](../validation/employee-rescue-remote-0.9.20.json). Game **0.9.20**, protocol **13**, TCP **27842**. This supersedes earlier missing-full-body-rescue statements within this presentation scope. Dedicated down/get-up animation, target auto-facing/actual body contact and human quality remain pending.

@@ -58,6 +58,7 @@ def main(scenario='all', build=False):
                 require('release restores baton and clears remote pose',lambda:anim()['batons'][0]['visible'] and not anim()['hands']['beaconCarrying'] and not anim(1)['employees'][0]['beaconCarrying'])
             elif name=='rescue':
                 require('partner starts down',lambda:both(lambda s:s['danger']['down'][1]))
+                require('down pose settles on both clients',lambda:all(anim(i)['employees'][1]['downPhase']=='Down' and anim(i)['employees'][1]['downRoll']>84 for i in (0,1)))
                 send(0,rescue=True,yaw=90)
                 require('real rescue progress and hands',lambda:both(lambda s:s['danger']['rescue'][0]>.25) and anim()['hands']['rescuing'])
                 require('remote rescuer crouches with supported hands',lambda:anim(1)['employees'][0]['rescueWeight']>.9 and anim(1)['employees'][0]['rescueWristBend']<=25.01 and anim(1)['employees'][0]['rescueFootError']<.015)
@@ -67,6 +68,8 @@ def main(scenario='all', build=False):
                 send(0,rescue=True,yaw=90)
                 require('real hold revives partner on both clients',lambda:both(lambda s:not s['danger']['down'][1] and s['danger']['rescues']>0))
                 send(0)
+                require('revived partner visibly gets up',lambda:anim()['employees'][1]['downPhase']=='GettingUp')
+                require('get-up returns to standing on both clients',lambda:all(anim(i)['employees'][1]['downPhase']=='Standing' and anim(i)['employees'][1]['downAmount']==0 for i in (0,1)))
                 require('revival restores baton',lambda:anim()['batons'][0]['visible'] and not anim()['hands']['rescuing'] and anim(1)['employees'][0]['rescueWeight']==0)
             else:
                 send(0,shove=True)

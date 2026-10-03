@@ -1,0 +1,78 @@
+{
+  "date": "2026-10-04",
+  "version": "0.9.21",
+  "protocol": 13,
+  "port": 27842,
+  "status": "PASS",
+  "editor": {
+    "status": "PASS",
+    "error": "",
+    "samples": 520,
+    "maxWristBend": 24.985811233520508,
+    "maxBoneLengthChange": 4.6193599700927734e-07,
+    "minMeshHeight": -0.025356952100992203,
+    "maxHandStep": 0.16772739589214325,
+    "down": true,
+    "recovered": true,
+    "interrupted": true,
+    "reset": true
+  },
+  "native": {
+    "status": "PASS",
+    "scenario": "rescue",
+    "run": "/Users/leedoik/WorkSpace/Game/No_Returns/artifacts/cinder-four-player/run-20261004-023743-161abc",
+    "checks": [
+      "rescue fixture ready",
+      "partner starts down",
+      "down pose settles on both clients",
+      "real rescue progress and hands",
+      "remote rescuer crouches with supported hands",
+      "release cancels rescue",
+      "remote rescue pose clears on cancel",
+      "real hold revives partner on both clients",
+      "revived partner visibly gets up",
+      "get-up returns to standing on both clients",
+      "revival restores baton",
+      "no runtime errors or progression save"
+    ],
+    "scenario_seconds": {
+      "rescue": 5.239
+    },
+    "total_seconds": 19.699
+  },
+  "build": {
+    "status": "PASS",
+    "unity": "6000.6.4f1",
+    "output": "/Users/leedoik/WorkSpace/Game/No_Returns/builds/CinderFourPlayer/NoReturns.app",
+    "error": "",
+    "errors": 0,
+    "warnings": 7
+  },
+  "tools": {
+    "unity": "6000.6.4f1",
+    "cli": "1.0.0-beta.12",
+    "pipeline": "0.8.0-exp.1",
+    "official_latest_checked": true,
+    "pending_updates": []
+  },
+  "corrected_failures": [
+    "Removed duplicate imported mesh scale from ground measurement",
+    "Optional unmapped toe bones now skipped",
+    "Expanded foot clearance from a point radius to oriented boot corners after observed penetration",
+    "Widened preview camera framing to include standing helmet"
+  ],
+  "scope": "Procedural visual fall/recovery using existing humanoid and replicated down state. No gameplay root, collider, rescue timing or input lock changes. Only rescue quick scenario executed. No manual windows or Editor Play.",
+  "unverified": [
+    "Human motion quality",
+    "Slopes, walls, all intersections and all walking phases",
+    "Actual target contact while rescuing",
+    "Native map GPU composition",
+    "Full delivery/four-player regression",
+    "Windows/LAN/performance"
+  ],
+  "ground_check": {
+    "flat_plane_minimum_tolerance_m": -0.045,
+    "observed_minimum_m": -0.0253569521,
+    "note": "Small remaining skin penetration; not perfect surface contact."
+  }
+}

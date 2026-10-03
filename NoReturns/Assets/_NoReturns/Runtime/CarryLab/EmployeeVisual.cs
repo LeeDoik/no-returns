@@ -9,9 +9,9 @@ public sealed partial class EmployeeVisual : MonoBehaviour {
     public float Speed=>speed;
     public Vector3 RightHandPosition=>hand?hand.position:transform.position;
     public bool Walking=>animator&&animator.GetCurrentAnimatorStateInfo(0).IsName("Walk");
-    [System.Serializable] public class State {public bool ready,walking,visible,rootMotion,beaconCarrying,carryClamped,batonSwing,batonClamped;public float rescueWeight,rescueWristBend,rescueFootError,beaconContactError,beaconWristBend,speed,carryWeight,leftContactError,rightContactError,batonWeight,batonElapsed,batonGripError,airWeight,landingWeight,verticalSpeed;public string locomotion,direction;public Vector3 localVelocity,leftFootPosition,rightFootPosition;public float directionWeight;public Quaternion leftFoot,rightUpperArm,chest,leftKnee;public Vector3 rightHand;}
+    [System.Serializable] public class State {public bool ready,walking,visible,rootMotion,beaconCarrying,carryClamped,batonSwing,batonClamped;public float downAmount,downRoll,downWristBend;public string downPhase;public float rescueWeight,rescueWristBend,rescueFootError,beaconContactError,beaconWristBend,speed,carryWeight,leftContactError,rightContactError,batonWeight,batonElapsed,batonGripError,airWeight,landingWeight,verticalSpeed;public string locomotion,direction;public Vector3 localVelocity,leftFootPosition,rightFootPosition;public float directionWeight;public Quaternion leftFoot,rightUpperArm,chest,leftKnee;public Vector3 rightHand;}
     public State Capture()=>new State{ready=Ready,walking=Walking,visible=GetComponentInChildren<SkinnedMeshRenderer>().enabled,
-        rootMotion=animator.applyRootMotion,speed=speed,leftFoot=animator.GetBoneTransform(HumanBodyBones.LeftFoot).localRotation,
+        downAmount=downAmount,downRoll=downRoll,downWristBend=downWristBend,downPhase=downPhase,rootMotion=animator.applyRootMotion,speed=speed,leftFoot=animator.GetBoneTransform(HumanBodyBones.LeftFoot).localRotation,
         rescueWeight=rescueWeight,rescueWristBend=rescueWristBend,rescueFootError=rescueFootError,beaconCarrying=beaconCarrying,beaconContactError=beaconContactError,beaconWristBend=beaconWristBend,carryWeight=carryWeight,carryClamped=carryClamped,leftContactError=leftContactError,rightContactError=rightContactError,
         rightHand=hand.position,batonWeight=batonWeight,batonElapsed=batonElapsed,batonSwing=batonSwing,batonClamped=batonClamped,batonGripError=batonGripError,
         airWeight=airWeight,landingWeight=landingWeight,verticalSpeed=verticalSpeed,locomotion=locomotion,direction=direction,localVelocity=localVelocity,directionWeight=directionWeight,
@@ -35,7 +35,7 @@ public sealed partial class EmployeeVisual : MonoBehaviour {
         position=Vector3.Lerp(hand.position,middle.position,.95f)+palm*.025f;
         rotation=Quaternion.LookRotation(-palm,across);return true;
     }
-    void OnEnable(){sampled=false;speed=0;ResetLocomotion();}
+    void OnEnable(){downAmount=0;downPhase="Standing";sampled=false;speed=0;ResetLocomotion();}
     public void Team(Color color) {
         var block=new MaterialPropertyBlock();block.SetColor("_BaseColor",Color.Lerp(Color.white,color,.32f));
         foreach(var renderer in GetComponentsInChildren<SkinnedMeshRenderer>())renderer.SetPropertyBlock(block);
@@ -51,7 +51,8 @@ public sealed partial class EmployeeVisual : MonoBehaviour {
         animator.SetFloat("Speed",airWeight>.5f?0:speed);
         UpdateDirection(measured>0?change/delta:Vector3.zero,down,delta);
         animator.SetFloat("StrideRate",Mathf.Clamp(speed/2.2f,.35f,2.2f));
-        animator.speed=down?0:1;
+        // Evaluate a fresh base pose even while down; procedural bone rotations must not accumulate.
+        animator.speed=1;
     }
 }
 }

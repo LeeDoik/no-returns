@@ -215,6 +215,7 @@ public sealed partial class CarryRoom : MonoBehaviour {
             bool down=hazard&&danger!=null&&danger.IsDown(i);
             employeeVisuals[i].Animate(workers[i].transform.position,down,Time.deltaTime);
             employeeVisuals[i].GroundLocomotion(down,Time.deltaTime);
+            employeeVisuals[i].DownPose(down,true,Time.deltaTime);
             employeeVisuals[i].CarryPose(cargoCollider as BoxCollider,active&&holder==i,down,Time.deltaTime);
         }
         receiptFeedback?.Display(active?missionPhase:-1,receiptProgress,receiptCollected,receiptReady);
@@ -226,7 +227,7 @@ public sealed partial class CarryRoom : MonoBehaviour {
         baton.Display(eye,workers,local,occupiedMask,active&&(hazard||companionPractice),holder,equipment.Carrier,danger,Yaws(),employeeVisuals,cargoCollider as BoxCollider,equipment.LocalHeldVisual);
         for(int i=0;i<4;i++)if(employeeVisuals[i])employeeVisuals[i].BeaconPose(active&&Present(i)&&i!=local&&equipment.Carrier==i&&!(danger!=null&&(danger.IsDown(i)||danger.RescueAt(i)>0))?equipment.HeldVisual:null);
         if(threat!=null&&danger!=null){threat.Display(danger,active&&(missionPhase==2||missionPhase==3));
-            for(int i=0;i<4;i++){bool down=danger.IsDown(i);rigs[i].localRotation=Quaternion.Euler(0,0,down?90:0);rigs[i].localPosition=down?new Vector3(.5f,.3f,0):Vector3.zero;}
+            for(int i=0;i<4;i++){bool down=danger.IsDown(i)&&!employeeVisuals[i];rigs[i].localRotation=Quaternion.Euler(0,0,down?90:0);rigs[i].localPosition=down?new Vector3(.5f,.3f,0):Vector3.zero;}
         }
         if(playHud==null)playHud=gameObject.AddComponent<CrewHud>();
         playHud.Apply(hosting?Snapshot():target??Snapshot(),local,active&&!UiOpen);

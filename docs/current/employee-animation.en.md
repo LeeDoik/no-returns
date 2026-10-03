@@ -1,6 +1,18 @@
-# Employee full body and Idle/Walk — 0.9.15
+# Employee full body and Idle/Walk — 0.9.21
 
 [한국어](employee-animation.ko.md)
+
+## 2026-10-04 — Fall and get-up motion 0.9.21
+
+Replace the teammate's instant 90° tilt with a **0.65s** knee buckle/side collapse and **0.95s** roll upright/knee extension. Layer the pose over the existing Humanoid; preserve rescue, movement, collision and input rules. [Production and remaining scope](employee-animation.en.md), [validation](../validation/employee-down-0.9.21.json). Game **0.9.21**, protocol **13**, TCP **27842**. This supersedes earlier missing-down/get-up statements within this procedural presentation scope. Dedicated motion-capture clips, ragdolls, actual rescue contact, human naturalness and slope/wall intersection correction remain pending.
+
+[Down pose code](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/EmployeeVisual.Down.cs) first bends the knees, then rolls **85°** sideways and lowers the hips in stages. Recovery reverses this path, bringing the torso upright before extending the legs. Preserve limb lengths/scales and the employee root. Limit wrists to **25°** and use simple body/boot support volumes for flat-ground clearance. This is not a physics ragdoll or terrain-contact solution. Re-down during recovery reverses from current progress; reactivation resets the pose. The [Animator](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/EmployeeVisual.cs) continues evaluating its base pose while down to prevent accumulated rotations. [Application order](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs) is locomotion → down/recovery → carry/rescue/baton/beacon. Only the fallback primitive employee retains the old 90° tilt.
+
+Controls resume immediately when down clears; the 0.95s recovery does not lock input. Preserve the first-person camera's existing down height and instant return. Human review remains necessary for movement/tool use during recovery and all clothing/finger/wall/slope intersections. No new FBX or Blender/MCP edits. [Version settings](../../NoReturns/ProjectSettings/ProjectSettings.asset).
+
+[Falling](../../art/player-employee-01/unity-review/Employee-Falling.png), [down](../../art/player-employee-01/unity-review/Employee-Down.png), [getting up](../../art/player-employee-01/unity-review/Employee-GettingUp.png) and [standing](../../art/player-employee-01/unity-review/Employee-Standing.png) are inspected static Editor images. [Editor review](../../NoReturns/Assets/_NoReturns/Editor/EmployeeDownReview.cs): 4 directions × 130 transition times = **520** samples; maximum wrist bend **24.985811°**, arm/leg length change **0.000000462m**. Pass root preservation, finite mesh, re-down/release/reset. Minimum mesh height **-0.025357m** against a flat plane meets the **-0.045m** check tolerance; this is not evidence of perfect ground contact or zero penetration. Correct initial duplicate-scale measurement, optional unmapped toe exceptions and boot penetration, plus clipped preview helmet framing.
+
+Compilation and Mac build: 0 errors/7 existing warnings. `python3 tools/cinder_quick_test.py rescue --build` passes **12** checks using two actual windowless clients: down settlement, rescue cancellation/revival, observed get-up, standing on both peers and baton return. Scenario **5.239s**, including build/start/stop **19.699s**. Do not run full delivery/four-player tests, manual windows or Editor Play. Actual map GPU composition, human quality, Windows/LAN and performance remain unverified. Unity 6000.6.4f1, CLI 1.0.0-beta.12 and Pipeline 0.8.0-exp.1 match official latest releases; no pending updates.
 
 ## 2026-10-04 — Remote full-body rescue pose 0.9.20
 

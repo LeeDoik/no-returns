@@ -1,6 +1,18 @@
-# 직원 전신·Idle/Walk — 0.9.15
+# 직원 전신·Idle/Walk — 0.9.21
 
 [English](employee-animation.en.md)
+
+## 2026-10-04 — 다운·일어나기 동작 0.9.21
+
+동료가 즉시 90° 눕던 표시를 **0.65초** 무릎 꺾임/옆으로 쓰러짐과 **0.95초** 몸 세우기/무릎 펴기로 교체했다. 기존 Humanoid에 자세를 덧입히며 구조·이동·충돌·입력 판정은 유지한다. [제작·남은 범위](employee-animation.ko.md) · [검증](../validation/employee-down-0.9.21.json). 게임 **0.9.21**·프로토콜 **13**·TCP **27842**. 이전 다운/일어나기 미구현 설명은 이 절차적 표시 범위에서 대체한다. 전용 모션 캡처 클립·래그돌·실제 구조 접촉·사람 자연스러움·경사/벽 관통 보정은 남는다.
+
+[다운 자세 코드](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/EmployeeVisual.Down.cs)는 처음 무릎을 굽힌 뒤 옆으로 **85°** 기울이고 골반을 단계적으로 낮춘다. 복귀는 같은 경로를 거꾸로 따라 몸을 먼저 세우고 다리를 편다. 팔다리 길이/배율과 직원 루트는 바꾸지 않는다. 손목을 **25°** 이내로 제한하고 몸/부츠의 간단한 지지 범위로 평평한 바닥 높이를 보정한다. 물리 래그돌이나 지형 접촉 해결은 아니다. 복귀 도중 다시 다운되면 현재 진행량에서 쓰러짐으로 전환하며 비활성 후 재등장 시 초기화한다. [Animator](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/EmployeeVisual.cs)는 다운 중에도 기본 자세를 갱신해 회전 누적을 막는다. [적용 순서](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs)는 이동 → 다운/복귀 → 운반/구조/봉/신호기다. 기존 기본 도형 직원만 종전 90° 표시를 유지한다.
+
+다운 해제 시 조작은 즉시 가능하고 0.95초 복귀 동작이 조작을 잠그지 않는다. 1인칭 카메라의 기존 다운 높이/즉시 복귀도 유지한다. 복귀 중 이동·도구 사용과 모든 옷/손가락/벽/경사의 자연스러움은 사람 검토가 필요하다. 신규 FBX·Blender/MCP 편집은 없다. [버전 설정](../../NoReturns/ProjectSettings/ProjectSettings.asset).
+
+[넘어짐](../../art/player-employee-01/unity-review/Employee-Falling.png) · [다운](../../art/player-employee-01/unity-review/Employee-Down.png) · [일어나기](../../art/player-employee-01/unity-review/Employee-GettingUp.png) · [복귀](../../art/player-employee-01/unity-review/Employee-Standing.png)는 검토한 정적 Editor 이미지다. [Editor 검사](../../NoReturns/Assets/_NoReturns/Editor/EmployeeDownReview.cs): 4방향 × 전환 130시점 = **520개**, 손목 최대 **24.985811°**, 팔/다리 뼈 길이 변화 최대 **0.000000462m**. 루트·유한 메시·재다운/해제/초기화 통과. 평면 대비 메시 최저점 **-0.025357m**로 검사 허용값 **-0.045m** 이내이며, 완전한 바닥 접촉/무관통 증거는 아니다. 초기 배율 중복 측정·선택 발가락 뼈 누락 예외·부츠 관통을 수정했고 미리보기 머리 잘림도 고쳤다.
+
+컴파일·맥 빌드 오류 0개/기존 경고 7개. `python3 tools/cinder_quick_test.py rescue --build`로 실제 화면 없는 2인 **12개** 검사 통과: 다운 자세 정착, 구조 취소/부활, 일어나기 관측, 양쪽 기본 자세 및 진압봉 복귀. 시나리오 **5.239초**, 빌드/시작/종료 포함 **19.699초**. 전체 배송/4인·수동 창/Editor Play는 실행하지 않았다. 실제 맵 GPU·사람 품질·Windows/LAN·성능은 미확인이다. Unity 6000.6.4f1·CLI 1.0.0-beta.12·Pipeline 0.8.0-exp.1 공식 최신 일치, 추가 갱신 없음.
 
 ## 2026-10-04 — 동료 전신 구조 자세 0.9.20
 
