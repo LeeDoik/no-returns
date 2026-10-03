@@ -2,6 +2,16 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-03 — On-demand human + automatic companion 0.9.7
+
+The user requests one personal window and one nearby acting client only when they want hands-on testing. Add `--companion` to the existing launcher for exactly one human host and one bot client, plus a [manual shortcut](../../09_Play_Companion.command). Use existing network inputs and host movement/collision/pickup adjudication for a 32-second idle/walk-sidestep/slow movement/jump/baton/parcel carry-drop cycle; follow when more than 6m away. Use nearby collision/ground checks and never forcibly take another employee's held parcel. Test-only safe practice disables delivery/purchases/creatures/suppression/saves while providing harmless baton presentation/cooldowns. Add no character motion assets, full pathfinding or packages.
+
+Update the [current guide](../current/companion-play.en.md), affected bilingual specification/production/backlog/validation and launch entry points. Record in bilingual AGENTS.md that “직접 테스트 해볼게” opens the two manual windows on demand and that tasks do not automatically open them. Preserve the existing four-window launch/stop flow; reject/clean up outdated players or duplicate sessions. Game 0.9.7, protocol 13, TCP 27842.
+
+[Validation](../validation/companion-play-0.9.7.json): confirm latest official Editor 6000.6.4f1, CLI 1.0.0-beta.12 and Pipeline 0.8.0-exp.1. Mac build with zero errors/9 warnings; two actual windowless processes pass 5 grouped checks (roles/7 actions, movement/~0.645m jump, slower movement/baton cooldown/parcel and weapon visibility, following the human, logs without runtime errors/placeholder fallback). Stop processes and remove session afterwards. The first build fails on cached old Pipeline attribute paths; reimport/cache refresh alone does not resolve it. Verify no unsaved scene, restart the Editor, then pass compilation/rebuild. The previous task's 5 Burst entry-point warnings do not recur in this build. Remove a duplicate translation key during source review before execution.
+
+Open no manual game windows or Editor Play this task. Window size/focus/actual mouse and visual quality await the user's request. Complex mazes/multilevel routes, other PCs/LAN/Windows and performance are unverified; do not rerun the previous complete 110-check regression. Preserve original art, existing user edits to 8 materials/Blender file and local motion assets; restore only build-generated scene IDs/URP runtime lists. Pass Python/shortcut syntax, links/language counterparts/checkbox states and bilingual content/values across 280 documents, plus scoped whitespace checks.
+
 ## 2026-10-03 — Right-hand baton, carrying visibility and current tools 0.9.6
 
 Respond to the reported baton embedded in the right chest, carrying visibility, Blender MCP setup and current-tool request. Replace the remote baton's fixed torso offset with actual right-hand/finger-bone positioning and apply a finger grip. Retain existing parcel/beacon carrier, down and rescue hiding while extending regression checks across four actual peers. Preserve local first-person presentation, hit adjudication and movement/collision; game 0.9.6, protocol 13. Update the [current employee guide](../current/employee-animation.en.md), affected specification/production/backlog/checklist and entry points in both languages.

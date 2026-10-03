@@ -2,6 +2,10 @@
 
 [English](macos-development.en.md)
 
+## 2026-10-03 — 동료 연습 빌드 0.9.7
+
+[현재 화면 없는 검사·실행 정책](companion-play.ko.md). Pipeline 업데이트 전 파일 경로가 남아 첫 컴파일/빌드가 실패했으나 Editor 재시작 후 해결했다. 현재 맥 빌드 오류 0개·경고 9개이며 앞 작업의 Burst 진입점 경고 5개는 이번 빌드에서 나타나지 않았다. 성능 측정은 하지 않았다.
+
 ## 2026-10-03 — 최신 도구와 Blender MCP
 
 작업에 사용하는 도구는 [프로젝트 규칙](../../AGENTS.md)에 따라 공식 배포처의 최신 버전을 확인하고 갱신한다. 게임 0.9.6의 실제 버전 근거는 [Unity 버전](../../NoReturns/ProjectSettings/ProjectVersion.txt)과 [패키지 목록](../../NoReturns/Packages/manifest.json)이다. 이 표가 아래 과거 환경 기록보다 우선한다.

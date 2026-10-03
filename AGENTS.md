@@ -59,3 +59,8 @@
 
 - 사용자 요청에 따라 작업에 사용하는 도구는 공식 배포처에서 최신 버전을 확인하고 갱신한다. 안정 버전이 있는 도구는 최신 정식판을 기준으로 하며, 베타/실험판만 제공되는 연결 도구는 그 채널의 최신판을 확인한다. 프로젝트 호환성·빌드·플레이를 검사하고 설치 버전과 남은 업데이트를 문서에 기록한다. 재시작 전 미저장 작업을 보존한다.
 - As requested, check official releases and update tools used for the task. Prefer the latest stable release where available; check the latest release in the beta/experimental channel for connectors only distributed there. Validate project compatibility, builds and play, and document installed versions and pending updates. Preserve unsaved work before restarting.
+
+## 직접 플레이 시험 / On-demand hands-on play
+
+- 사용자가 “직접 테스트 해볼게”라고 요청할 때만 수동 플레이 창과 자동 동료 창을 연다. 기본 실행은 `python3 tools/cinder_four_player.py start --companion`이며 1명은 사용자, 1명은 주변 시연 봇이다. 작업마다 수동 시험 창이나 4개 게임 창을 자동으로 열지 않는다. 컴파일·문서·화면 없는 자동 검사는 변경에 맞게 실시한다. 종료는 기존 `python3 tools/cinder_four_player.py stop`을 사용한다.
+- Open the manual player and companion windows only when the user says “직접 테스트 해볼게” (I will test it myself). Default to `python3 tools/cinder_four_player.py start --companion`: one human and one nearby demonstration bot. Do not automatically open manual or four-player windows after each task. Use appropriate compilation, documentation and windowless automated checks. Stop through the existing `python3 tools/cinder_four_player.py stop` helper.

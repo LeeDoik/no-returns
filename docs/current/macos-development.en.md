@@ -2,6 +2,10 @@
 
 [한국어](macos-development.ko.md)
 
+## 2026-10-03 — Companion practice build 0.9.7
+
+[Current windowless validation and launch policy](companion-play.en.md). Stale pre-upgrade Pipeline file paths caused the first compile/build failure; restarting the Editor resolved it. Current Mac build: zero errors/9 warnings; the preceding task's 5 Burst entry-point warnings did not recur in this build. Performance was not measured.
+
 ## 2026-10-03 — Current tools and Blender MCP
 
 Follow the [project rules](../../AGENTS.md) to check official releases and update tools used for work. Game 0.9.6 uses the committed [Unity version](../../NoReturns/ProjectSettings/ProjectVersion.txt) and [package manifest](../../NoReturns/Packages/manifest.json). This table supersedes the historical environment records below.

@@ -23,6 +23,10 @@ public static class CarryLanguage {
         return english;
     }
     public static readonly Dictionary<string,string> Ko=new Dictionary<string,string>{
+        {"BOT / ","자동 동료 / "},{"YOU + BOT / safe practice · ","나 + 자동 동료 / 안전한 연습 · "},
+        {"Move freely; the bot follows and demonstrates nearby","자유롭게 이동하세요. 동료가 근처에서 행동을 반복합니다"},
+        {"Idle","대기"},{"Following","따라오기"},{"Walking / sidestep","걷기 / 옆걸음"},
+        {"Slow walk","느린 이동"},{"Baton","진압봉"},{"Carry parcel","상자 운반"},{"Put down","내려놓기"},
         {" move · "," 이동 · "},{" jump · Esc settings"," 점프 · Esc 설정"},
         {"FLATBED / SHIP TERMINAL","FLATBED / 우주선 단말"},
         {"CONTROLS & SETTINGS","조작과 설정"},

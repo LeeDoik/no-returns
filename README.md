@@ -2,7 +2,9 @@
 
 [English](README.en.md)
 
-[현재 맥 Cinder 0.9.6 — 직원 전신·오른손 진압봉](docs/current/employee-animation.ko.md) · [억제기·외곽 생물](docs/current/cinder-suppression.ko.md) · [조작·우주선·구매](docs/current/controls-ui.ko.md) · [네 창 실행](07_Play_Cinder_4P.command). 배송·리스너·진압봉·구조·신호기에 억제 약화/외곽 추적을 연결했다. 진행 저장은 Cinder에 아직 없으며 아래 옛 Windows 실험과 검증 범위를 구분한다.
+[직접 플레이 + 자동 동료 0.9.7](docs/current/companion-play.ko.md): “직접 테스트 해볼게”라고 요청할 때만 사용자 창 1개와 주변 행동 봇 창 1개를 연다. [수동 실행](09_Play_Companion.command) · [종료](08_Stop_Cinder_4P.command).
+
+[직원 전신·오른손 진압봉 연결 0.9.6](docs/current/employee-animation.ko.md) · [억제기·외곽 생물](docs/current/cinder-suppression.ko.md) · [조작·우주선·구매](docs/current/controls-ui.ko.md) · [네 창 실행](07_Play_Cinder_4P.command). 배송·리스너·진압봉·구조·신호기에 억제 약화/외곽 추적을 연결했다. 진행 저장은 Cinder에 아직 없으며 아래 옛 Windows 실험과 검증 범위를 구분한다.
 
 **PSX 스타일의 협동 우주 배송·미스터리 게임.** 항로 선택 후 우주선이 자동 이동·착륙하며, 직원들은 위험한 현장에서 배송을 수행하고 보수로 장비를 개선해 더 어려운 업무에 도전합니다.
 

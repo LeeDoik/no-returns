@@ -90,7 +90,8 @@ def state(folder, name="state.json"):
         return {}
 
 
-def launch(automated=False, delivery=True, hazard=True):
+def launch(automated=False, delivery=True, hazard=True, companion=False, headless=False):
+    count = 2 if companion else 4
     binary = player()
     if not binary.is_file():
         raise RuntimeError("Build the player first: python3 tools/cinder_four_player.py build")
@@ -107,14 +108,21 @@ def launch(automated=False, delivery=True, hazard=True):
         folder.mkdir(exist_ok=True)
         folders[slot] = folder
         args = [str(binary), "--host"] if slot == 0 else [str(binary), "--join", "127.0.0.1"]
+        if companion:
+            args += ["--companion-practice"]
+            if slot == 1:
+                args += ["--companion-bot"]
+        if headless:
+            args += ["-batchmode", "-nographics"]
         if not delivery:
             args += ["--map-only"]
         elif not hazard:
             args += ["--delivery-only"]
-        args += ["--cinder-session", token, "-screen-width", "800", "-screen-height", "500",
+        args += ["--cinder-session", token, "-screen-width", "1280" if companion and slot == 0 else "800", "-screen-height", "800" if companion and slot == 0 else "500",
                  "-screen-fullscreen", "0", "-logFile", str(folder / "player.log")]
-        if automated:
-            command(folder, 1)
+        if automated or (companion and slot == 1):
+            if not (companion and slot == 1):
+                command(folder, 1)
             args += ["--test-dir", str(folder)]
         with (folder / "stdout.log").open("ab") as log:
             processes[slot] = subprocess.Popen(args, cwd=binary.parent, stdout=log, stderr=log,
@@ -126,13 +134,18 @@ def launch(automated=False, delivery=True, hazard=True):
     try:
         start(0)
         wait("host listening", lambda: port_busy() and processes[0].poll() is None)
-        for slot in range(1, 4):
+        for slot in range(1, count):
             start(slot)
-            if automated:
+            if automated or companion:
                 wait(f"assigned slot {slot}", lambda: state(folders[slot]).get("recipient") == slot)
+        if companion:
+            wait("companion bot ready (rebuild if this times out)", lambda:
+                 state(folders[1], "animation.json").get("companionBot") and
+                 state(folders[1]).get("occupiedMask") == 3 and
+                 state(folders[1]).get("phase") == -1 and not state(folders[1]).get("hazard"))
         if automated:
-            wait("four assigned slots", lambda: all(state(folders[i]).get("recipient") == i and
-                state(folders[i]).get("occupiedMask") == 15 for i in range(4)))
+            wait(f"{count} assigned slots", lambda: all(state(folders[i]).get("recipient") == i and
+                state(folders[i]).get("occupiedMask") == (1 << count)-1 for i in range(count)))
         print("Session:", run, flush=True)
         return run, processes, folders, start
     except BaseException as error:
@@ -268,6 +281,7 @@ def main():
     parser.add_argument("action", choices=("build", "start", "stop", "check"))
     parser.add_argument("--map-only", action="store_true", help="Start movement/carrying without the delivery loop")
     parser.add_argument("--delivery-only", action="store_true", help="Start delivery without the Listener")
+    parser.add_argument("--companion", action="store_true", help="Manual host plus one nearby demonstration bot, safe practice only")
     args = parser.parse_args()
     if args.action == "build":
         binary = shutil.which("unity") or str(Path.home() / ".unity/bin/unity")
@@ -287,7 +301,7 @@ def main():
             raise RuntimeError(report)
         print("Built:", player())
     elif args.action == "start":
-        launch(delivery=not args.map_only, hazard=not args.delivery_only)
+        launch(delivery=not args.map_only, hazard=not args.delivery_only, companion=args.companion)
     elif args.action == "stop":
         stop()
     else:
