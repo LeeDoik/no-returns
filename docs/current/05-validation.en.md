@@ -2,6 +2,10 @@
 
 [한국어](05-validation.ko.md)
 
+## 2026-10-03 — Baton readiness, attack and recovery 0.9.9
+
+Passed the Mac build with zero errors/7 warnings, 210 attack/120 carry static samples and actual windowless baton 12/carry 10/Listener-contact-down-rescue 30 checks (52 total). Verified interruption/exclusion/recovery and rescue priority, then stopped test processes and removed session records. Human hit-feel/appearance, all locomotion phases/clothing penetration, Windows/LAN and performance remain separately unverified. [Implementation, production and validation scope](employee-baton.en.md).
+
 ## 2026-10-03 — Two-handed parcel carrying 0.9.8
 
 Pass Mac build with zero errors/7 warnings, 120 pose samples, 10 windowless four-client checks and 5 grouped human+companion regressions. Open no manual windows; human quality, full delivery/hazard regression, other OS/PCs and performance remain unverified. [Implementation, evidence and limits](employee-animation.en.md).

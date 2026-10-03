@@ -115,7 +115,7 @@ public sealed class CarryThreat {
             if(!Down[i]){
                 if(inputs[i].call)Hear(players[i],12);
                 if(!inputs[i].quiet&&stepClock[i]<=0&&(players[i]-previous[i]).sqrMagnitude>.00001f){Hear(players[i],Hard?8:6);stepClock[i]=.45f;}
-                if(!outer&&inputs[i].shove&&holder!=i&&Cooldown[i]<=0){
+                if(!outer&&inputs[i].shove&&holder!=i&&Cooldown[i]<=0&&!(inputs[i].rescue&&RescueTarget(i,players,mask)>=0)){
                     Cooldown[i]=6;var delta=position-players[i];var facing=Quaternion.Euler(0,inputs[i].yaw,0)*Vector3.forward;
                     if(state!=4&&stunResistance<=0&&delta.magnitude<=2.5f&&Vector3.Angle(delta,facing)<=65&&Sight(players[i],position)){state=4;timer=3;path.Clear();}
                 }

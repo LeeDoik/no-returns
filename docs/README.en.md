@@ -2,6 +2,8 @@
 
 [한국어](README.md)
 
+[Baton attack motion 0.9.9](current/employee-baton.en.md): readiness, arm/chest swing and 0.55s recovery, hand attachment and carrying/down/rescue exclusion. Open manual windows only on request.
+
 [Two-handed parcel carrying 0.9.8](current/employee-animation.en.md): apply 0.8m default reach and hand-contact posing. Pass Mac build, 120 static pose samples and windowless carry/companion checks. Distant contact and human quality remain incomplete. Open manual windows only on request.
 
 ## 2026-10-03 — On-demand human + automatic companion 0.9.7

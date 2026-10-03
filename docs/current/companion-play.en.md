@@ -1,6 +1,10 @@
-# Hands-on player + automatic companion — 0.9.8
+# Hands-on player + automatic companion — 0.9.9
 
 [한국어](companion-play.ko.md)
+
+## 2026-10-03 — Baton readiness, attack and recovery 0.9.9
+
+The current 0.9.9 companion uses new arm/chest attack posing during the baton part of its existing 32s cycle. Open the two manual windows only on request. The 0.9.7/0.9.8 results below are historical. [Implementation, production and validation scope](employee-baton.en.md).
 
 You may close both game windows manually. Saying “테스트 끝” is an optional way to ask Codex to stop them for you. Clean remaining session metadata with the existing stop helper.
 

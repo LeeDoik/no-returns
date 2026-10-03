@@ -2,6 +2,8 @@
 
 [한국어](README.md)
 
+[Baton attack motion 0.9.9](docs/current/employee-baton.en.md): readiness, arm/chest swing and 0.55s recovery, hand attachment and carrying/down/rescue exclusion. Open manual windows only on request.
+
 [Two-handed parcel carrying 0.9.8](docs/current/employee-animation.en.md): apply 0.8m default reach and hand-contact posing. Pass Mac build, 120 static pose samples and windowless carry/companion checks. Distant contact and human quality remain incomplete. Open manual windows only on request.
 
 [Hands-on player + automatic companion 0.9.7](docs/current/companion-play.en.md): open one human window and one nearby behavior-bot window only on “직접 테스트 해볼게” (I will test it myself). [Launch manually](09_Play_Companion.command) · [Stop](08_Stop_Cinder_4P.command).

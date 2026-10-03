@@ -1,6 +1,10 @@
-# Employee full body and Idle/Walk — 0.9.8
+# Employee full body and Idle/Walk — 0.9.9
 
 [한국어](employee-animation.ko.md)
+
+## 2026-10-03 — Baton readiness, attack and recovery 0.9.9
+
+Implemented current attacks with right-arm/chest rotations and hand attachment for readiness/immediate impact/0.55s recovery. Retain Idle/Walk and two-hand carrying. Reproduce without an attack FBX; supersede the 0.9.8 and older unimplemented-attack records below within this scope. [Implementation, production and validation scope](employee-baton.en.md).
 
 ## 2026-10-03 — Two-handed parcel carrying pose 0.9.8
 

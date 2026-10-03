@@ -2,6 +2,10 @@
 
 [한국어](controls-ui.ko.md)
 
+## 2026-10-03 — Baton readiness, attack and recovery 0.9.9
+
+Empty-hand left click retains immediate contact and displays a 0.55s attack/recovery. Keep the 6s cooldown. A simultaneous valid rescue request takes priority over attacking. [Implementation, production and validation scope](employee-baton.en.md).
+
 ## 2026-10-03 — Two-handed parcel carrying 0.9.8
 
 Default parcel reach is 0.8m; retain wheel 0.75–1.6m, right-click rotation, left-click placement and Q release. Hands align with the near face when brought close and clamp at arm length when pushed away. [Implementation, evidence and limits](employee-animation.en.md).

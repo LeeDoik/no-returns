@@ -2,6 +2,8 @@
 
 [English](README.en.md)
 
+[진압봉 공격 동작 0.9.9](docs/current/employee-baton.ko.md): 준비 자세·팔/가슴 휘두르기·0.55초 복귀, 실제 손 부착과 운반/다운/구조 차단. 수동 게임 창은 요청 시에만 연다.
+
 [양손 상자 운반 0.9.8](docs/current/employee-animation.ko.md): 기본 거리 0.8m와 손 접촉 보정 적용. 맥 빌드·정적 자세 120개·화면 없는 운반/동료 검사 통과. 먼 거리 접촉·사람 품질은 미완료. 수동 창은 요청 시에만 연다.
 
 [직접 플레이 + 자동 동료 0.9.7](docs/current/companion-play.ko.md): “직접 테스트 해볼게”라고 요청할 때만 사용자 창 1개와 주변 행동 봇 창 1개를 연다. [수동 실행](09_Play_Companion.command) · [종료](08_Stop_Cinder_4P.command).

@@ -40,17 +40,22 @@ public sealed partial class EmployeeVisual {
 
     float Reach(Arm arm,Vector3 contact,Vector3 normal,Vector3 along){
         if(!arm.upper||!arm.lower||!arm.wrist||!arm.middle||!arm.index||!arm.little)return 0;
-        Quaternion upperBase=arm.upper.localRotation,lowerBase=arm.lower.localRotation,handBase=arm.wrist.localRotation;
         Vector3 fingers=(arm.middle.position-arm.wrist.position).normalized;
         Vector3 palm=Vector3.Cross(fingers,(arm.index.position-arm.little.position).normalized)*arm.side;
         Quaternion turn=Quaternion.LookRotation(along,-normal)*Quaternion.Inverse(Quaternion.LookRotation(fingers,palm));
         Quaternion handRotation=turn*arm.wrist.rotation;
         Vector3 palmOffset=(arm.middle.position-arm.wrist.position)*.85f;
         Vector3 goal=contact-turn*palmOffset;
+        carryClamped|=PoseArm(arm,goal,handRotation,carryWeight);
+        return Vector3.Distance(Vector3.Lerp(arm.wrist.position,arm.middle.position,.85f),contact);
+    }
+
+    bool PoseArm(Arm arm,Vector3 goal,Quaternion handRotation,float weight){
+        Quaternion upperBase=arm.upper.localRotation,lowerBase=arm.lower.localRotation,handBase=arm.wrist.localRotation;
         Vector3 origin=arm.upper.position,direction=goal-origin;
         float upperLength=Vector3.Distance(origin,arm.lower.position),lowerLength=Vector3.Distance(arm.lower.position,arm.wrist.position);
         float reach=Mathf.Clamp(direction.magnitude,Mathf.Abs(upperLength-lowerLength)+.001f,upperLength+lowerLength-.005f);
-        carryClamped|=direction.magnitude>upperLength+lowerLength-.005f;
+        bool clamped=direction.magnitude>upperLength+lowerLength-.005f;
         direction=direction.sqrMagnitude>.000001f?direction.normalized:transform.forward;
         // Bend elbows down and slightly away from the torso; never stretch bone positions/scales.
         Vector3 bend=Vector3.ProjectOnPlane(-transform.up+transform.right*(arm.side*.35f),direction).normalized;
@@ -60,10 +65,10 @@ public sealed partial class EmployeeVisual {
         arm.upper.rotation=Quaternion.FromToRotation(arm.lower.position-origin,elbow-origin)*arm.upper.rotation;
         arm.lower.rotation=Quaternion.FromToRotation(arm.wrist.position-arm.lower.position,origin+direction*reach-arm.lower.position)*arm.lower.rotation;
         arm.wrist.rotation=handRotation;
-        arm.upper.localRotation=Quaternion.Slerp(upperBase,arm.upper.localRotation,carryWeight);
-        arm.lower.localRotation=Quaternion.Slerp(lowerBase,arm.lower.localRotation,carryWeight);
-        arm.wrist.localRotation=Quaternion.Slerp(handBase,arm.wrist.localRotation,carryWeight);
-        return Vector3.Distance(Vector3.Lerp(arm.wrist.position,arm.middle.position,.85f),contact);
+        arm.upper.localRotation=Quaternion.Slerp(upperBase,arm.upper.localRotation,weight);
+        arm.lower.localRotation=Quaternion.Slerp(lowerBase,arm.lower.localRotation,weight);
+        arm.wrist.localRotation=Quaternion.Slerp(handBase,arm.wrist.localRotation,weight);
+        return clamped;
     }
 }
 }

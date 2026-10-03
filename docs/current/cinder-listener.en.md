@@ -2,6 +2,10 @@
 
 [한국어](cinder-listener.ko.md)
 
+## 2026-10-03 — Baton readiness, attack and recovery 0.9.9
+
+Retain immediate baton contact, existing range/stun and 6s cooldown while connecting arm/chest attack posing. Prioritize simultaneous valid rescue over attack and hide weapon/attack posing. [Implementation, production and validation scope](employee-baton.en.md).
+
 2026-10-02 · Implemented. Connect existing hazard rules to default Cinder delivery. This document supersedes older unconnected-Cinder-Listener/baton/rescue statements below. It is not human control, fun or fear quality approval.
 
 ## Running and controls

@@ -2,6 +2,10 @@
 
 [English](macos-development.en.md)
 
+## 2026-10-03 — 진압봉 준비·공격·복귀 0.9.9
+
+0.9.9 작업에서 공식 최신 Editor 6000.6.4f1·CLI 1.0.0-beta.12·Pipeline 0.8.0-exp.1과 Blender 5.2.2 LTS·MCP 2.1.3을 다시 확인했다. Blender MCP 직접 조회와 Unity 정적 표본/맥 빌드/화면 없는 플레이 검사를 사용한다. [구현·제작·검증 범위](employee-baton.ko.md).
+
 ## 2026-10-03 — 현재 대화의 Blender MCP 연결 확인
 
 현재 대화에 등록된 `get_addon_status`와 `get_scene_info`를 직접 호출했다. 처음에는 Blender가 종료되어 연결에 실패했으며 저장된 직원 리깅 파일을 Blender에서 연 뒤 두 호출 모두 성공했다. Blender 5.2.2 LTS, 애드온 1.8·프로토콜 13 일치(`up_to_date: true`), 텔레메트리 꺼짐과 직원 메시/리그를 포함한 객체 5개를 확인했다. 코드·모델 변경이나 파일 저장은 하지 않았다. 수동 게임 창도 열지 않았다. 이번 확인은 실제 MCP 조회 연결 범위이며 편집·렌더링·게임 동작 재검증은 포함하지 않는다.

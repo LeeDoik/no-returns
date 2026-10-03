@@ -1,0 +1,186 @@
+{
+  "status": "PASS",
+  "date": "2026-10-03",
+  "version": "0.9.9",
+  "protocol": 13,
+  "port": 27842,
+  "build": {
+    "status": "PASS",
+    "unity": "6000.6.4f1",
+    "output": "/Users/leedoik/WorkSpace/Game/No_Returns/builds/CinderFourPlayer/NoReturns.app",
+    "error": "",
+    "errors": 0,
+    "warnings": 7,
+    "warning_messages": [
+      "Pre-baked collision is disabled on 18 mesh(es) referenced by Mesh Collider components in this build. In future versions of Unity, the build process will no longer automatically pre-bake collision for these meshes; enable pre-baked collision in the Mesh import settings. Use Project Auditor (Window > Analysis > Project Auditor > Game Objects) to find and fix similar issues across the project. Affected meshes:\n - 'Raised plant room' (triangle collision is disabled)\n - 'Entry hood' (triangle collision is disabled)\n - 'Sawtooth roof' (triangle collision is disabled)\n - 'Trial_WindowGlass_1' (triangle collision is disabled)\n - 'Vault roof' (triangle collision is disabled)\n - 'Industrial stack' (triangle collision is disabled)\n - 'Trial_WindowMullion_-0.75' (triangle collision is disabled)\n - 'Trial_WindowMullion_0.75' (triangle collision is disabled)\n - 'Octagonal control tower' (triangle collision is disabled)\n - 'Trial_WindowHeader' (triangle collision is disabled)\n - 'L upper annex' (triangle collision is disabled)\n - 'Trial_WindowGlass_2' (triangle collision is disabled)\n - 'Trial_WindowCheekL' (triangle collision is disabled)\n - 'Trial_WindowCheekR' (triangle collision is disabled)\n - 'Stepped annex' (triangle collision is disabled)\n - 'Trial_WindowSill' (triangle collision is disabled)\n - 'Trial_WindowGlass_0' (triangle collision is disabled)\n - 'Chamfer utility' (triangle collision is disabled)",
+      "Pipeline: No RuntimePipelineConfig asset found (Project Settings > Pipeline > Runtime). Pipeline will be disabled in Player builds.",
+      "Assets/_NoReturns/Runtime/CarryLab/FacilityArt.cs(17,51): warning CS0618: 'FindObjectsSortMode' is obsolete: 'FindObjectsSortMode has been deprecated. Use the FindObjectsByType overloads that do not take a FindObjectsSortMode parameter.'",
+      "Assets/_NoReturns/Runtime/CarryLab/FacilityArt.cs(17,13): warning CS0618: 'Object.FindObjectsByType<T>(FindObjectsSortMode)' is obsolete: 'FindObjectsByType with FindObjectsSortMode parameter has been deprecated. Use FindObjectsByType<T>() or FindObjectsByType<T>(FindObjectsInactive) instead. InstanceID will be replaced in the future with EntityId and previous sort order cannot be maintained.'",
+      "Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs(33,61): warning CS0618: 'Object.FindFirstObjectByType<T>()' is obsolete: 'FindFirstObjectByType has been deprecated because it relies on instance ID ordering. Use FindAnyObjectByType instead, which does not depend on ordering.'",
+      "Shader 'Hidden/Core/DebugOccluder': All SubShaders were stripped because their RenderPipeline tags do not match any active render pipeline asset configured for this build target. This shader will not render. Configure the matching RenderPipelineAsset in QualitySettings/GraphicsSettings, or remove this shader from the build.",
+      "Shader 'Hidden/Core/DebugOcclusionTest': All SubShaders were stripped because their RenderPipeline tags do not match any active render pipeline asset configured for this build target. This shader will not render. Configure the matching RenderPipelineAsset in QualitySettings/GraphicsSettings, or remove this shader from the build."
+    ]
+  },
+  "attack_pose_review": {
+    "status": "PASS",
+    "error": "",
+    "samples": 210,
+    "maxGripError": 0.06773770600557327,
+    "maxBoneLengthChange": 3.5762786865234375e-07,
+    "handTravel": 0.4370468556880951,
+    "chestTravel": 14.993173599243164,
+    "blocked": true,
+    "returns": true,
+    "cancelled": true
+  },
+  "carry_pose_review": {
+    "status": "PASS",
+    "error": "",
+    "samples": 120,
+    "maxNearError": 0.03960226848721504,
+    "maxBoneLengthChange": 3.8743019104003906e-07,
+    "release": true,
+    "down": true
+  },
+  "native_attack": {
+    "status": "PASS",
+    "run": "artifacts/cinder-four-player/run-20261003-214045-c6bf81",
+    "checks": [
+      "both peers use ready arm pose",
+      "slot 0 arm swing from idle replicated; weapon follows hand",
+      "slot 0 returns to ready within cooldown",
+      "cooldown prevents another attack",
+      "slot 1 arm swing while walking replicated; weapon follows hand",
+      "slot 1 returns to ready within cooldown",
+      "human picks up parcel",
+      "carry excludes baton arm and weapon on both peers",
+      "human cooldown expires while carrying",
+      "carrying rejects an attack after cooldown expires",
+      "release restores ready without replaying attack",
+      "native logs free of errors and placeholder fallback"
+    ],
+    "hand_travel": [
+      [
+        0.42983728892109585,
+        0.41297659647800106
+      ],
+      [
+        1.4399986267105633,
+        1.4146041870141497
+      ]
+    ],
+    "arm_rotation_degrees": [
+      [
+        55.00184316683653,
+        53.260069802018435
+      ],
+      [
+        59.24713949910987,
+        57.585312220696686
+      ]
+    ],
+    "check_count": 12
+  },
+  "native_carry": {
+    "status": "PASS",
+    "run": "artifacts/cinder-four-player/run-20261003-213941-bec995",
+    "checks": [
+      "four peers agree on parcel owner",
+      "default reach holds both hands near parcel on four peers",
+      "another employee cannot drop the parcel",
+      "rotated parcel 90 degrees retains finite bounded hands",
+      "rotated parcel -90 degrees retains finite bounded hands",
+      "rotated parcel 180 degrees retains finite bounded hands",
+      "maximum reach clamps arms on four peers",
+      "bringing parcel back restores hand contact",
+      "drop clears pose on every peer",
+      "four native logs have no runtime errors or art fallback"
+    ],
+    "default_contact_errors": [
+      [
+        1.9983117454103194e-06,
+        1.1920928955078125e-07
+      ],
+      [
+        2.762467829597881e-06,
+        4.76837158203125e-07
+      ],
+      [
+        2.384185791015625e-07,
+        3.5762786865234375e-07
+      ],
+      [
+        1.9405865714361425e-06,
+        1.911070285132155e-06
+      ]
+    ],
+    "check_count": 10
+  },
+  "native_listener": {
+    "status": "PASS",
+    "run": "artifacts/cinder-four-player/run-20261003-214732-2e40e4",
+    "checks": [
+      "four hazard slots/protocol 13",
+      "Cinder stages start stopped with shared outer down state",
+      "ship UI opens",
+      "route selected",
+      "departure enables patrol",
+      "ship UI closes",
+      "ship calls ignored/no attack",
+      "host carries parcel",
+      "quiet approach has no footstep noise",
+      "call causes investigation",
+      "warning before cargo-carrier attack",
+      "host down replicated to all four",
+      "down releases parcel on all peers",
+      "down blocks movement/pickup/baton",
+      "distant rescue rejected",
+      "slot 3 baits a close warning",
+      "valid rescue blocks baton contact and posing",
+      "slot 3 baton stuns on four peers",
+      "slot 3 rescue progress replicated",
+      "release cancels rescue",
+      "baton cooldown prevents reset",
+      "slot 3 rescues host on all peers",
+      "rescuer remains vulnerable after revival",
+      "English client context/native font",
+      "all four down triggers emergency report",
+      "four recovered aboard/zero unpaid reward",
+      "recovered host can open ship terminal",
+      "next shift clears down/cooldown and restores parcel",
+      "no Cinder progression file created",
+      "four player logs have no exceptions"
+    ],
+    "scope": "Four native Mac processes and ordinary inputs; human fear, audio readability, fun, LAN/Windows and performance remain unverified",
+    "check_count": 30
+  },
+  "toolchain": {
+    "unity": "6000.6.4f1",
+    "unity_cli": "1.0.0-beta.12",
+    "pipeline": "0.8.0-exp.1",
+    "blender": "5.2.2 LTS",
+    "blender_addon": "1.8",
+    "blender_protocol": 13,
+    "blender_mcp": "2.1.3",
+    "latest_official_verified": true,
+    "updates_required": false
+  },
+  "tool_sources": [
+    "https://unity.com/releases/editor/whats-new/6000.6.4f1",
+    "https://pypi.org/pypi/mcp-for-blender/json",
+    "https://formulae.brew.sh/api/cask/blender.json"
+  ],
+  "manual_windows_opened": false,
+  "editor_play_entered": false,
+  "blender_source_modified": false,
+  "retry": "The immediately chained Listener run was refused before launch because TCP 27842 was briefly unavailable after the attack run. No listener process remained; retry after port release passed 30 checks.",
+  "unverified": [
+    "human hit-feel and visual quality approval",
+    "all locomotion phases and clothing/first-person occlusion",
+    "full delivery and suppression regressions",
+    "Windows, other PCs/LAN and performance",
+    "dedicated first-person arms, jump/landing, back/side, rescue/down clips"
+  ],
+  "documentation_check": "282 documents passed",
+  "python_syntax_check": "PASS"
+}

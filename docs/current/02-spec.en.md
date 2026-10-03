@@ -2,6 +2,10 @@
 
 [한국어](02-spec.ko.md)
 
+## 2026-10-03 — Baton readiness, attack and recovery 0.9.9
+
+Apply readiness → immediate impact/follow-through → 0.55s recovery over existing Idle/Walk. Right arm, chest and weapon move together using the existing 6s cooldown. Valid rescue requests take priority over attacking. [Implementation, production and validation scope](employee-baton.en.md).
+
 ## 2026-10-03 — Two-handed parcel carrying 0.9.8
 
 Apply two-hand parcel posing and 0.8m default reach. Retain the 0.75–1.6m wheel range and ownership/collision/network rules; adjust remote appearance over existing Idle/Walk. [Implementation, evidence and limits](employee-animation.en.md).

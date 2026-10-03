@@ -6,8 +6,8 @@ import time
 import cinder_four_player as lab
 
 
-def main():
-    run, processes, folders, _ = lab.launch(True)
+def main(headless=False):
+    run, processes, folders, _ = lab.launch(True, headless=headless)
     checks, seq = [], 1
     report = dict(status="FAIL", run=str(run), checks=checks)
 
@@ -53,6 +53,8 @@ def main():
         aim(slot, (p["x"], p["y"]+1.2, p["z"]), **values)
 
     def capture(name, slot):
+        if headless:
+            return
         path = folders[slot] / "screen.png"
         stamp = path.stat().st_mtime_ns if path.exists() else 0
         face(slot, capture=True)
@@ -99,6 +101,11 @@ def main():
                 send(3,call=True);next_bait[0]=time.monotonic()+.5
             return danger().get("state")==2 and not danger()["down"][3]
         require("slot 3 baits a close warning",close_warning)
+        send(3,rescue=True,shove=True)
+        require("valid rescue blocks baton contact and posing", lambda: all(
+            danger(i).get("rescue",[0]*4)[3]>.06 and danger(i)["cooldown"][3]==0
+            and not lab.state(folders[i],"animation.json")["employees"][3]["batonSwing"]
+            and lab.state(folders[i],"animation.json")["employees"][3]["batonWeight"]==0 for i in range(4)))
         face(3,shove=True)
         require("slot 3 baton stuns on four peers", lambda: all(danger(i).get("state")==4 for i in range(4)))
         capture("listener-baton-ko",3)
@@ -149,4 +156,8 @@ def main():
     print(json.dumps(dict(status=report["status"],checks=len(checks),run=str(run)),indent=2))
 
 
-if __name__=="__main__": main()
+if __name__=="__main__":
+    import argparse
+    parser=argparse.ArgumentParser()
+    parser.add_argument("--headless",action="store_true")
+    main(parser.parse_args().headless)

@@ -9,10 +9,13 @@ public sealed partial class EmployeeVisual : MonoBehaviour {
     public float Speed=>speed;
     public Vector3 RightHandPosition=>hand?hand.position:transform.position;
     public bool Walking=>animator&&animator.GetCurrentAnimatorStateInfo(0).IsName("Walk");
-    [System.Serializable] public class State {public bool ready,walking,visible,rootMotion,carryClamped;public float speed,carryWeight,leftContactError,rightContactError;public Quaternion leftFoot;}
+    [System.Serializable] public class State {public bool ready,walking,visible,rootMotion,carryClamped,batonSwing,batonClamped;public float speed,carryWeight,leftContactError,rightContactError,batonWeight,batonElapsed,batonGripError;public Quaternion leftFoot,rightUpperArm,chest;public Vector3 rightHand;}
     public State Capture()=>new State{ready=Ready,walking=Walking,visible=GetComponentInChildren<SkinnedMeshRenderer>().enabled,
         rootMotion=animator.applyRootMotion,speed=speed,leftFoot=animator.GetBoneTransform(HumanBodyBones.LeftFoot).localRotation,
-        carryWeight=carryWeight,carryClamped=carryClamped,leftContactError=leftContactError,rightContactError=rightContactError};
+        carryWeight=carryWeight,carryClamped=carryClamped,leftContactError=leftContactError,rightContactError=rightContactError,
+        batonWeight=batonWeight,batonElapsed=batonElapsed,batonSwing=batonSwing,rightHand=hand.position,
+        batonClamped=batonClamped,batonGripError=batonGripError,
+        rightUpperArm=rightArm.upper.localRotation,chest=animator.GetBoneTransform(HumanBodyBones.Chest).localRotation};
     void Awake(){animator=GetComponent<Animator>();animator.applyRootMotion=false;
         hand=animator.GetBoneTransform(HumanBodyBones.RightHand);index=animator.GetBoneTransform(HumanBodyBones.RightIndexProximal);
         middle=animator.GetBoneTransform(HumanBodyBones.RightMiddleProximal);little=animator.GetBoneTransform(HumanBodyBones.RightLittleProximal);
