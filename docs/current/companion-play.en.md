@@ -2,6 +2,10 @@
 
 [한국어](companion-play.ko.md)
 
+## 2026-10-03 — Requested hands-on play started at 0.9.9
+
+On the user's “직접 테스트 해볼게” request, ran the existing `python3 tools/cinder_four_player.py start --companion` to open one human host and one automatic companion window. Confirmed app version 0.9.9, host listening, client slot 1, protocol 13, occupied mask 3 and companion readiness. Leave session `run-20261003-215537-82e2bd` running in safe practice for hands-on inspection of new baton readiness/arm-chest swing/recovery and two-hand carrying. No code changes or rebuild. User quality feedback on actual mouse/focus, hit-feel and appearance remains pending. Check document links, language counterparts and whitespace only; previous game checks do not constitute quality approval of this session.
+
 ## 2026-10-03 — Baton readiness, attack and recovery 0.9.9
 
 The current 0.9.9 companion uses new arm/chest attack posing during the baton part of its existing 32s cycle. Open the two manual windows only on request. The 0.9.7/0.9.8 results below are historical. [Implementation, production and validation scope](employee-baton.en.md).

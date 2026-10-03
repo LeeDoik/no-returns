@@ -2,6 +2,10 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-03 — Requested hands-on play started at 0.9.9
+
+On the user's “직접 테스트 해볼게” request, ran the existing `python3 tools/cinder_four_player.py start --companion` to open one human host and one automatic companion window. Confirmed app version 0.9.9, host listening, client slot 1, protocol 13, occupied mask 3 and companion readiness. Leave session `run-20261003-215537-82e2bd` running in safe practice for hands-on inspection of new baton readiness/arm-chest swing/recovery and two-hand carrying. No code changes or rebuild. User quality feedback on actual mouse/focus, hit-feel and appearance remains pending. Check document links, language counterparts and whitespace only; previous game checks do not constitute quality approval of this session.
+
 ## 2026-10-03 — Baton readiness, swing and recovery 0.9.9
 
 The user authorizes the next character task. Add empty-hand readiness and right-arm/wrist/chest swing/recovery. Match existing immediate contact with ready → impact → 0.12-second follow-through → 0.25-second recovery → 0.55-second return, retaining the 6-second cooldown. Attach the baton to actual hand position/orientation and remove independent weapon attack rotation. Local first-person weapon motion uses the same curve and retains wall pull-in. Block weapon/attack posing during carrying/down/rescue/inactive states and do not replay interrupted attacks. Fix the existing case allowing an attack with a simultaneous valid rescue request; prioritize rescue. Retain range/facing/sight, Listener stun and movement/cargo collision rules. Game 0.9.9, protocol 13, TCP 27842. Update [current implementation/production guide](../current/employee-baton.en.md) and affected specifications/guides/backlog/checklists in both languages.
