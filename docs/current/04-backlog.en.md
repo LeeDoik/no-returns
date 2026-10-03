@@ -2,6 +2,10 @@
 
 [한국어](04-backlog.ko.md)
 
+## 2026-10-03 — Next production proposal: first-person hands/sleeves
+
+Inspect movement, jump/landing, carrying and the restored original baton at 0.9.13. Recommend **first-person hands/sleeves** next. [Baton code](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/BatonVisual.cs) displays a temporary cube glove locally and has no dedicated arms. Production order: baton-holding right hand/sleeve → both hands during parcel carrying → release/use transitions, view obstruction and wall overlap. Propose retaining the restored baton readiness/use motion and gameplay contact rules. Dedicated down/rescue movement is a later candidate; adjust priority to user quality feedback. This item is **proposed/unimplemented**, not new implementation authorization or quality validation. Specific feedback from the recent manual session remains unverified.
+
 ## 2026-10-03 — Original baton restored; backward/sidestep movement 0.9.13
 
 At the user's request, restore the initial right-hand attachment version (0.9.6) of baton readiness/use. Remove the arm/chest attack correction introduced in 0.9.9; retain hand attachment, the weapon's 0.5s return, immediate contact, 6s cooldown and carrying/down/rescue hiding. Redirect backward, lateral and diagonal foot trajectories from actual body-relative movement. Reuse alternating foot timing/heights from the forward Walk while preserving torso facing, root, physics and network rules. Retain jump/landing. No new Mixamo FBX or Blender editing. [Baton](employee-baton.en.md), [movement](employee-locomotion.en.md). Revised human quality, dedicated clips, first-person arms and Windows/LAN/performance remain unverified.
