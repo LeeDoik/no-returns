@@ -1,7 +1,7 @@
 using UnityEngine;
 
 namespace NoReturns.CarryLab {
-public sealed class EmployeeVisual : MonoBehaviour {
+public sealed partial class EmployeeVisual : MonoBehaviour {
     Animator animator;Vector3 previous;bool sampled;float speed;
     Transform hand,index,middle,little;
     readonly Transform[] fingers=new Transform[15];readonly Quaternion[] gripRotations=new Quaternion[15];
@@ -9,15 +9,17 @@ public sealed class EmployeeVisual : MonoBehaviour {
     public float Speed=>speed;
     public Vector3 RightHandPosition=>hand?hand.position:transform.position;
     public bool Walking=>animator&&animator.GetCurrentAnimatorStateInfo(0).IsName("Walk");
-    [System.Serializable] public class State {public bool ready,walking,visible,rootMotion;public float speed;public Quaternion leftFoot;}
+    [System.Serializable] public class State {public bool ready,walking,visible,rootMotion,carryClamped;public float speed,carryWeight,leftContactError,rightContactError;public Quaternion leftFoot;}
     public State Capture()=>new State{ready=Ready,walking=Walking,visible=GetComponentInChildren<SkinnedMeshRenderer>().enabled,
-        rootMotion=animator.applyRootMotion,speed=speed,leftFoot=animator.GetBoneTransform(HumanBodyBones.LeftFoot).localRotation};
+        rootMotion=animator.applyRootMotion,speed=speed,leftFoot=animator.GetBoneTransform(HumanBodyBones.LeftFoot).localRotation,
+        carryWeight=carryWeight,carryClamped=carryClamped,leftContactError=leftContactError,rightContactError=rightContactError};
     void Awake(){animator=GetComponent<Animator>();animator.applyRootMotion=false;
         hand=animator.GetBoneTransform(HumanBodyBones.RightHand);index=animator.GetBoneTransform(HumanBodyBones.RightIndexProximal);
         middle=animator.GetBoneTransform(HumanBodyBones.RightMiddleProximal);little=animator.GetBoneTransform(HumanBodyBones.RightLittleProximal);
         var curlAxis=(little.position-index.position).normalized;
         for(int i=0;i<fingers.Length;i++){var bone=animator.GetBoneTransform((HumanBodyBones)((int)HumanBodyBones.RightThumbProximal+i));fingers[i]=bone;
-            if(bone)gripRotations[i]=bone.localRotation*Quaternion.AngleAxis(i<3?30:55,bone.InverseTransformDirection(curlAxis));}}
+            if(bone)gripRotations[i]=bone.localRotation*Quaternion.AngleAxis(i<3?30:55,bone.InverseTransformDirection(curlAxis));}
+        InitializeCarry();}
     public bool BatonGrip(out Vector3 position,out Quaternion rotation) {
         position=Vector3.zero;rotation=Quaternion.identity;if(!hand||!index||!middle||!little)return false;
         var across=(index.position-little.position).normalized;

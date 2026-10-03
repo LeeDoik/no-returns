@@ -2,6 +2,8 @@
 
 [English](README.en.md)
 
+[양손 상자 운반 0.9.8](docs/current/employee-animation.ko.md): 기본 거리 0.8m와 손 접촉 보정 적용. 맥 빌드·정적 자세 120개·화면 없는 운반/동료 검사 통과. 먼 거리 접촉·사람 품질은 미완료. 수동 창은 요청 시에만 연다.
+
 [직접 플레이 + 자동 동료 0.9.7](docs/current/companion-play.ko.md): “직접 테스트 해볼게”라고 요청할 때만 사용자 창 1개와 주변 행동 봇 창 1개를 연다. [수동 실행](09_Play_Companion.command) · [종료](08_Stop_Cinder_4P.command).
 
 [직원 전신·오른손 진압봉 연결 0.9.6](docs/current/employee-animation.ko.md) · [억제기·외곽 생물](docs/current/cinder-suppression.ko.md) · [조작·우주선·구매](docs/current/controls-ui.ko.md) · [네 창 실행](07_Play_Cinder_4P.command). 배송·리스너·진압봉·구조·신호기에 억제 약화/외곽 추적을 연결했다. 진행 저장은 Cinder에 아직 없으며 아래 옛 Windows 실험과 검증 범위를 구분한다.

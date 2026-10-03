@@ -5,7 +5,7 @@ public sealed partial class CarryRoom {
     CarryControls controls;
     bool shipMenu,settingsMenu,confirmReturn;
     CarryInput uiCommands=new CarryInput();
-    float carryYaw,carryPitch,carryDistance=1.1f;
+    float carryYaw,carryPitch,carryDistance=.8f;
     LineRenderer placementPreview;
     bool UiOpen=>!active||menu||shipMenu||journalOpen;
     bool AboardLocal=>CarryMission.Aboard(workers[local].transform.position,cinderReview);
@@ -25,7 +25,7 @@ public sealed partial class CarryRoom {
     }
     bool CanOpenShip()=>AboardLocal&&missionPhase>=0&&!RescueNearby()&&(cargo==null||!ParcelTarget(local,Quaternion.Euler(pitch,yaw,0)))&&!equipment.Target(workers[local].transform.position+Vector3.up*1.57f,Quaternion.Euler(pitch,yaw,0));
     CarryInput ReadControls(){
-        if(holder!=local){carryYaw=0;carryPitch=0;carryDistance=1.1f;}
+        if(holder!=local){carryYaw=0;carryPitch=0;carryDistance=.8f;}
         var cmd=new CarryInput{seq=seq,yaw=yaw,pitch=pitch,distance=carryDistance,turnYaw=carryYaw,turnPitch=carryPitch};
         if(UiOpen)return cmd;
         var m=Mouse.current;

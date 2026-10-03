@@ -2,6 +2,10 @@
 
 [한국어](controls-ui.ko.md)
 
+## 2026-10-03 — Two-handed parcel carrying 0.9.8
+
+Default parcel reach is 0.8m; retain wheel 0.75–1.6m, right-click rotation, left-click placement and Q release. Hands align with the near face when brought close and clamp at arm length when pushed away. [Implementation, evidence and limits](employee-animation.en.md).
+
 ## 2026-10-02 — Cinder suppression and outer creature 0.9.4
 
 [Current rules, production and running](cinder-suppression.en.md). Connect existing 90/135/180-second stages, signal audio and relative work-light dimming to 4 current suppressors and the boundary. Connect east entry, obstacle routing and pursuit for the outer creature 8 seconds after shutdown. Preserve sky/fog/sun, source art and collision. Default launch is delivery + Listener + suppression/outer; retain `--delivery-only`/`--map-only` regression. Version 0.9.4, protocol 13, TCP 27842. Pass 60 actual four-process checks for purchased-beacon distraction, hazardous return, shared down/ship safety, emergency recovery and next shift. [Validation record](../validation/cinder-suppression-0.9.4.json). Supersede older unconnected-suppression/outer statements below within this scope. Human quality, final creatures/audio, clues/progression saving and other-environment/performance checks remain pending.

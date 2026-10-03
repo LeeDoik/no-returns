@@ -2,6 +2,8 @@
 
 [한국어](README.md)
 
+[Two-handed parcel carrying 0.9.8](current/employee-animation.en.md): apply 0.8m default reach and hand-contact posing. Pass Mac build, 120 static pose samples and windowless carry/companion checks. Distant contact and human quality remain incomplete. Open manual windows only on request.
+
 ## 2026-10-03 — On-demand human + automatic companion 0.9.7
 
 [Current launch, behavior and validation guide](current/companion-play.en.md). Open one human host and one automatic companion client only when the user says **“직접 테스트 해볼게”** (I will test it myself). Default to safe practice in the current map: repeat idle, walk/sidestep, slow movement, jump, baton and nearby parcel carry/drop on a 32-second cycle; follow the human when distant. Game 0.9.7, protocol 13, TCP 27842. Mac build with zero errors/9 warnings and 5 grouped checks in two actual windowless processes passed. Do not open manual windows this task; inspect focus/mouse and human visual quality after the request. Complex maze/multilevel routes, Windows/performance and rerunning the full 110-check regression are outside this validation scope.

@@ -1,6 +1,10 @@
-# 직접 플레이 + 자동 동료 — 0.9.7
+# 직접 플레이 + 자동 동료 — 0.9.8
 
 [English](companion-play.en.md)
+
+## 2026-10-03 — 양손 상자 운반 0.9.8
+
+현재 게임 0.9.8에서도 기존 32초 동료 행동·요청 시 두 창 실행을 유지한다. 봇의 상자 거리도 0.8m이며 양손 운반 자세를 사용한다. 이번 화면 없는 두 프로세스 회귀 5묶음 통과. 아래 0.9.7 빌드 결과는 이전 기록이다. [구현·근거·제한](employee-animation.ko.md).
 
 2026-10-03. 사용자가 **“직접 테스트 해볼게”**라고 할 때만 [09_Play_Companion.command](../../09_Play_Companion.command)를 실행한다. 작업할 때마다 수동 게임 창을 열지 않는다. 이번에는 화면 없는 두 프로세스로 검사했고 수동 창은 열지 않았다.
 
@@ -23,7 +27,7 @@ python3 tools/test_cinder_companion.py
 
 [실행기](../../tools/cinder_four_player.py)는 정확히 두 실행본만 시작한다. 방장은 실제 입력을 받고 참가자는 [동료 입력 코드](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.Companion.cs)를 사용한다. 이동/점프/집기/놓기 요청은 기존 네트워크와 방장 판정을 거친다. 연습 진압봉은 피해 없는 표시 검사다. 봇 준비 응답이 없으면 두 프로세스를 정리하고 실패를 알린다. 오래된 빌드라면 먼저 재빌드한다.
 
-테스트 전용 옵션은 `CARRY_TEST_AUTOMATION` 또는 Unity Editor에서만 활성화한다. 일반 실행은 기존 동작을 유지한다. 게임 **0.9.7**, 프로토콜 **13**, TCP **27842**이며 [버전 설정](../../NoReturns/ProjectSettings/ProjectSettings.asset)이 근거다. 직원 에셋의 [로컬 준비 조건](employee-animation.ko.md)은 그대로 적용한다.
+테스트 전용 옵션은 `CARRY_TEST_AUTOMATION` 또는 Unity Editor에서만 활성화한다. 일반 실행은 기존 동작을 유지한다. 최초 구현 기록은 게임 **0.9.7**, 프로토콜 **13**, TCP **27842**이며 [버전 설정](../../NoReturns/ProjectSettings/ProjectSettings.asset)이 근거다. 직원 에셋의 [로컬 준비 조건](employee-animation.ko.md)은 그대로 적용한다.
 
 ## 실제 검증 범위
 

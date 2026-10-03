@@ -15,7 +15,7 @@ public sealed partial class CarryRoom {
     }
 
     CarryInput ReadCompanion(){
-        var cmd=new CarryInput{seq=seq,distance=1.1f};
+        var cmd=new CarryInput{seq=seq,distance=.8f};
         if(local==0||target==null)return cmd;
         companionClock+=Time.deltaTime;companionPulse-=Time.deltaTime;
         float t=companionClock%32;

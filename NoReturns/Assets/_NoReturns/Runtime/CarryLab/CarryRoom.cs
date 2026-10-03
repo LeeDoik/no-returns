@@ -27,7 +27,7 @@ public sealed partial class CarryRoom : MonoBehaviour {
     CarrySave save; string saveNotice=""; float retrySaveAt;
     [NonSerialized] string testFolder; int testSeq=-1;
     [NonSerialized] CarryState target;
-    [Serializable] class TestCommand {public int seq;public float x,z,yaw,pitch,distance=1.1f,turnYaw,turnPitch;public string ui,click;public bool place,confirmReturn,jump,interact,drop,reset,action; public bool capture,toggleLanguage,quiet,call,shove,rescue,buy,contract,deploy,inspect,journal;}
+    [Serializable] class TestCommand {public int seq;public float x,z,yaw,pitch,distance=.8f,turnYaw,turnPitch;public string ui,click;public bool place,confirmReturn,jump,interact,drop,reset,action; public bool capture,toggleLanguage,quiet,call,shove,rescue,buy,contract,deploy,inspect,journal;}
     void Awake(){
         Application.runInBackground=true;Application.targetFrameRate=cinderReview?30:60;Time.fixedDeltaTime=.02f;
         if(!cinderReview)CarryWorld.Build();receiptFeedback=FindFirstObjectByType<ReceiptFeedback>();
@@ -209,7 +209,11 @@ public sealed partial class CarryRoom : MonoBehaviour {
         // Apply before every render, including the inactive startup menu.
         for(int i=0;i<4;i++){bool visible=i!=local&&Present(i);foreach(var r in bodies[i])r.enabled=visible;}
         for(int i=0;i<4;i++)workers[i].gameObject.SetActive(Present(i));
-        for(int i=0;i<4;i++)if(Present(i)&&employeeVisuals[i])employeeVisuals[i].Animate(workers[i].transform.position,hazard&&danger!=null&&danger.IsDown(i),Time.deltaTime);
+        for(int i=0;i<4;i++)if(Present(i)&&employeeVisuals[i]){
+            bool down=hazard&&danger!=null&&danger.IsDown(i);
+            employeeVisuals[i].Animate(workers[i].transform.position,down,Time.deltaTime);
+            employeeVisuals[i].CarryPose(cargoCollider as BoxCollider,active&&holder==i,down,Time.deltaTime);
+        }
         receiptFeedback?.Display(active?missionPhase:-1,receiptProgress,receiptCollected,receiptReady);
         suppression?.Display(active&&(missionPhase==2||missionPhase==3));
         if(outer!=null&&outerDanger!=null)outer.Display(outerDanger,active&&(missionPhase==2||missionPhase==3)&&suppression.Stage>=2);

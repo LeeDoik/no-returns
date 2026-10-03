@@ -2,6 +2,8 @@
 
 [한국어](README.md)
 
+[Two-handed parcel carrying 0.9.8](docs/current/employee-animation.en.md): apply 0.8m default reach and hand-contact posing. Pass Mac build, 120 static pose samples and windowless carry/companion checks. Distant contact and human quality remain incomplete. Open manual windows only on request.
+
 [Hands-on player + automatic companion 0.9.7](docs/current/companion-play.en.md): open one human window and one nearby behavior-bot window only on “직접 테스트 해볼게” (I will test it myself). [Launch manually](09_Play_Companion.command) · [Stop](08_Stop_Cinder_4P.command).
 
 [Employee full body/right-hand baton integration 0.9.6](docs/current/employee-animation.en.md) · [Suppression/outer creature](docs/current/cinder-suppression.en.md) · [Controls, ship and purchase](docs/current/controls-ui.en.md) · [Launch four windows](07_Play_Cinder_4P.command). Connect suppression decay/outer pursuit to delivery, Listener, baton, rescue and beacon. Cinder progression saving remains absent; distinguish the legacy Windows experiments and their validation scope below.

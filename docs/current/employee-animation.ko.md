@@ -1,12 +1,24 @@
-# 직원 전신·Idle/Walk — 0.9.6
+# 직원 전신·Idle/Walk — 0.9.8
 
 [English](employee-animation.en.md)
 
-2026-10-03. 사용자가 제공한 직원 모델과 보정 Idle, Walking을 현재 Cinder 플레이어에 연결했다. 임시 도형 외형을 전신 모델로 교체하며 이동·충돌·운반·네트워크 판정은 기존 코드를 사용한다. 최초 연결은 0.9.5이며 현재 게임 **0.9.6**, 프로토콜 **13**, TCP **27842**. 버전 근거는 [PlayerSettings](../../NoReturns/ProjectSettings/ProjectSettings.asset), 구현은 [직원 외형](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/EmployeeVisual.cs)과 [CarryRoom](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs)이다.
+## 2026-10-03 — 양손 상자 운반 자세 0.9.8
+
+기본 운반 거리를 **1.1m → 0.8m**로 당기고 현재 상자의 가까운 면 위쪽에 두 손을 맞춘다. 휠 범위 **0.75–1.6m**와 회전·바닥 배치·소유자·충돌 판정은 유지한다. 대기·걷기 위에 팔 자세를 적용하며 약 **0.167초**에 걸쳐 진입/복귀하고 다운 시 즉시 해제한다. 손목·팔 회전만 바꾸며 뼈 길이·배율·직원 루트는 바꾸지 않는다. 멀거나 크게 기울어진 상자는 도달 한계에서 손과 떨어질 수 있다. 모든 거리의 완전한 접촉이나 손가락 관통 해결로 간주하지 않는다. 진압봉 운반 숨김/놓기 후 복귀와 자기 전신 숨김은 유지한다. 신호기 전용 잡기·공격/점프/구조 전용 동작·1인칭 팔은 이번 범위 밖이다.
+
+구현: [양손 자세](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/EmployeeVisual.Carry.cs), [게임 연결](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs), [기본 조작 거리](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.Controls.cs). Blender MCP로 저장된 직원 리그의 양팔 길이(각 상완 약 0.228m·전완 약 0.249m)를 조회했으며 Blender 원본은 수정/저장하지 않았다. 실제 게임은 기존 Mixamo Humanoid를 Unity에서 평가하고 손 접촉을 보정한다. 새 애니메이션 FBX나 패키지는 추가하지 않는다. 게임 **0.9.8**, 프로토콜 **13**, TCP **27842**. [버전 근거](../../NoReturns/ProjectSettings/ProjectSettings.asset).
+
+[검증 기록](../validation/employee-carry-0.9.8.json): Unity **6000.6.4f1** 맥 빌드 오류 **0개·경고 7개**. 대기/걷기 × 3거리 × 4회전 × 5시점 **120개** 표본에서 유한 메시·고정 뼈 길이/루트 확인, 놓기/다운 자세 해제 확인. 가까운 정면 0.75/0.8m 표본의 손 기준점 오차 최대 **0.039603m**, 뼈 길이 변화 최대 **0.000000388m**. [표본 검사 코드](../../NoReturns/Assets/_NoReturns/Editor/EmployeeCarryReview.cs). 렌더 4장은 Unity 정적 자세 검토이며 실제 게임 캡처와 구분한다: [대기](../../art/player-employee-01/unity-review/Carry-Idle.png), [걷기](../../art/player-employee-01/unity-review/Carry-Walk.png), [손 근접](../../art/player-employee-01/unity-review/Carry-Hands.png), [최대 도달 제한](../../art/player-employee-01/unity-review/Carry-ReachLimit.png).
+
+화면 없는 실제 네 클라이언트의 [운반 검사](../../tools/test_employee_carry.py) **10개** 통과: 소유권/기본 접촉, 타인 놓기 거부, ±90°/180° 회전, 최대 도달 제한/가까이 복귀, 놓기 자세 해제, 로그 오류 없음. 첫 시도는 착륙장 소품에 상자 회전이 막혀 실패했으며, 기존 통로로 이동해 회전 공간을 확보한 뒤 통과했다. 충돌 판정은 완화하지 않았다. 화면 없는 사용자+자동 동료 회귀 **5묶음**도 통과했다. 수동 게임 창·Editor Play는 열지 않았다. “직접 테스트 해볼게” 요청 시 [사용자+동료](companion-play.ko.md)를 연다. 전 프레임/극단 시선·회전 이음새·1인칭 가림/사람 품질, 배송·위험 전체 회귀, Windows/LAN·성능은 이번에 검증하지 않았다.
+
+## 이전 전신 연결·진압봉 0.9.5–0.9.6 기록
+
+2026-10-03. 사용자가 제공한 직원 모델과 보정 Idle, Walking을 현재 Cinder 플레이어에 연결했다. 임시 도형 외형을 전신 모델로 교체하며 이동·충돌·운반·네트워크 판정은 기존 코드를 사용한다. 최초 연결은 0.9.5이며 이 기록 당시 게임 **0.9.6**, 프로토콜 **13**, TCP **27842**. 버전 근거는 [PlayerSettings](../../NoReturns/ProjectSettings/ProjectSettings.asset), 구현은 [직원 외형](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/EmployeeVisual.cs)과 [CarryRoom](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs)이다.
 
 ## 2026-10-03 — 진압봉 오른손 부착 0.9.6
 
-현재 버전은 **0.9.6**·프로토콜 **13**·TCP **27842**다. 동료의 진압봉을 몸통 고정 좌표에서 실제 오른손/손가락 뼈 기준 위치로 옮겼다. 대기·걷기에서 손을 따라가고, 손잡이를 쥐도록 손가락을 조정한다. 본인의 1인칭 진압봉 위치·벽 앞 당김·기존 타격 판정은 유지한다. 상자 또는 신호기를 들면 모든 창에서 해당 직원의 진압봉을 숨기고 놓거나 배치하면 다시 표시한다. 다운·구조 중 숨김도 유지한다.
+당시 버전은 **0.9.6**·프로토콜 **13**·TCP **27842**다. 동료의 진압봉을 몸통 고정 좌표에서 실제 오른손/손가락 뼈 기준 위치로 옮겼다. 대기·걷기에서 손을 따라가고, 손잡이를 쥐도록 손가락을 조정한다. 본인의 1인칭 진압봉 위치·벽 앞 당김·기존 타격 판정은 유지한다. 상자 또는 신호기를 들면 모든 창에서 해당 직원의 진압봉을 숨기고 놓거나 배치하면 다시 표시한다. 다운·구조 중 숨김도 유지한다.
 
 [진압봉 표시 구현](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/BatonVisual.cs)과 위 직원 외형 코드가 근거다. 반입 뼈의 배율 100을 무기에 곱하지 않고 월드 미터로 손목→중지 밑마디 95% 지점에서 손바닥 방향 0.025m를 더한다. 검지→소지 축 기준 손가락 55°·엄지 30°의 고정 쥐기 자세를 진압봉 표시 때만 적용한다. 별도 타격 전신 동작이나 화물 접촉 IK는 추가하지 않았다.
 

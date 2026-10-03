@@ -1,6 +1,10 @@
-# Hands-on player + automatic companion — 0.9.7
+# Hands-on player + automatic companion — 0.9.8
 
 [한국어](companion-play.ko.md)
+
+## 2026-10-03 — Two-handed parcel carrying 0.9.8
+
+Current game 0.9.8 retains the 32-second companion cycle and two-window on-demand policy. The bot also uses 0.8m reach and the two-hand carrying pose. Pass 5 grouped two-process windowless regressions this task. The 0.9.7 build results below are historical. [Implementation, evidence and limits](employee-animation.en.md).
 
 2026-10-03. Run [09_Play_Companion.command](../../09_Play_Companion.command) only when the user says **“직접 테스트 해볼게”** (I will test it myself). Do not open manual game windows after every task. This task validates two windowless processes and does not open manual windows.
 
@@ -23,7 +27,7 @@ python3 tools/test_cinder_companion.py
 
 The [launcher](../../tools/cinder_four_player.py) starts exactly two players. The host takes real input; the client uses [companion input code](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.Companion.cs). Movement/jump/pickup/drop requests pass through existing networking and host adjudication. Practice baton actions test presentation without damage. If bot readiness is not confirmed, clean up both processes and report failure. Rebuild first when the player is outdated.
 
-Enable practice options only under `CARRY_TEST_AUTOMATION` or Unity Editor. Ordinary launches retain existing behavior. Game **0.9.7**, protocol **13**, TCP **27842**, sourced from [version settings](../../NoReturns/ProjectSettings/ProjectSettings.asset). Existing [local employee asset prerequisites](employee-animation.en.md) still apply.
+Enable practice options only under `CARRY_TEST_AUTOMATION` or Unity Editor. Ordinary launches retain existing behavior. The initial implementation record uses game **0.9.7**, protocol **13**, TCP **27842**, sourced from [version settings](../../NoReturns/ProjectSettings/ProjectSettings.asset). Existing [local employee asset prerequisites](employee-animation.en.md) still apply.
 
 ## Actual validation scope
 

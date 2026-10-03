@@ -2,6 +2,12 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-03 — Two-handed parcel carrying pose 0.9.8
+
+Bring default carrying reach from **1.1m to 0.8m** and align both hands with the upper part of the parcel face nearest the employee. Retain the **0.75–1.6m** wheel range and rotation, placement, ownership and collision rules. Apply arm posing over Idle/Walk, blend in/out over about **0.167 seconds**, and clear immediately when down. Change wrist/arm rotations only, preserving bone lengths/scales and employee root. Distant or heavily tilted parcels can remain beyond hand reach. This does not establish perfect contact at every distance or eliminate finger penetration. Preserve baton hiding while carrying/restoration after release and local-body hiding. Dedicated beacon grip, attack/jump/rescue motions and first-person arms remain outside this change.
+
+Use Blender MCP read-only queries, Unity implementation/sample validation and actual windowless client checks. Confirm latest official Editor 6000.6.4f1, CLI 1.0.0-beta.12 and Pipeline 0.8.0-exp.1. The initial rotation check fails on landing props; rerun in clear space and pass. Preserve source/user material and Blender edits; restore only build-generated IDs in the derived test scene and the URP runtime settings list. Pass Python syntax, 280-document links/language counterparts and scoped whitespace checks. [Details](../current/employee-animation.en.md) · [Validation](../validation/employee-carry-0.9.8.json).
+
 ## 2026-10-03 — Blender MCP connection verified in this conversation
 
 Directly invoke this conversation’s registered `get_addon_status` and `get_scene_info` tools. Both initially fail because Blender is closed; open the saved employee rig file in Blender and both calls succeed. Confirm Blender 5.2.2 LTS, matching add-on 1.8/protocol 13 (`up_to_date: true`), disabled telemetry and 5 objects including the employee mesh and rig. Make no code/model changes or file saves, and open no manual game windows. This verifies actual MCP query connectivity; editing, rendering and game behavior are not revalidated.
