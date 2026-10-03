@@ -2,6 +2,14 @@
 
 [한국어](05-validation.ko.md)
 
+## 2026-10-04 — First-person wrist correction 0.9.15
+
+Fix the wrist bend reported by the user in the 0.9.14 attack preview. Correct the relationship between the palm and cylindrical grip axes; move the elbow outward so the forearm and hand align. Limit the hand/forearm direction angle to 25° and solve grip contact again. Keep the baton upright during forward movement and retract the shoulder origin near walls. [Current pose/production](first-person-arms.en.md), [validation record](../validation/employee-wrist-0.9.15.json). Game **0.9.15**, protocol **13**, TCP **27842**. The previous pose has a user-confirmed quality issue; the revised pose has not received user approval. Manual play stays stopped.
+
+- [x] 1,397 first-person poses, actual URP stack render and 5 reviewed images. Maximum wrist-direction angle 24.037256°, grip error 0.000000670m.
+- [x] Mac build: zero errors/7 existing warnings; 20 checks across two actual windowless clients. Weapon travel about 0.216m and maximum wrist bend 24.248112°.
+- [ ] Revised human quality, native full-screen composition, all penetration, Windows/LAN/performance. Do not repeat the full four-client hazard/rescue suite this task.
+
 ## 2026-10-04 — Dynamic baton and first-person hands/arms 0.9.14
 
 At the user's request, implement short anticipation, fast extension and 0.42s recovery through baton arm/chest motion, local right glove/sleeve and two-hand parcel carrying. Preserve immediate contact, 6s cooldown, carrying/down/valid-rescue blocking and existing movement. [Current baton](employee-baton.en.md), [arm production/local reproduction](first-person-arms.en.md), [validation evidence](../validation/employee-first-person-0.9.14.json). Game **0.9.14**, protocol **13**, TCP **27842**. Earlier 0.9.13 original-motion restoration and first-person-arms-not-implemented/proposed states below are historical and superseded within this implementation scope. Dedicated beacon/rescue hands, human quality, actual game GPU composition, all-corner penetration, Windows/LAN and performance remain pending. Manual play stays stopped; use the existing two-window helper only on request.

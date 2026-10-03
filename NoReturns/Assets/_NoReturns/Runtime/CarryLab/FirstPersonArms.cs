@@ -6,7 +6,7 @@ public sealed class FirstPersonArms {
     public const int Layer=31;
     GameObject model;Animator animator;EmployeeVisual visual;
     SkinnedMeshRenderer left,right;Camera overlay;bool stacked;
-    [System.Serializable] public class State {public bool ready,rightVisible,leftVisible,carrying,overlayEnabled,overlayConfigured;public float gripError,clearance;public Vector3 grip;}
+    [System.Serializable] public class State {public bool ready,rightVisible,leftVisible,carrying,overlayEnabled,overlayConfigured;public float gripError,clearance,wristBend;public Vector3 grip;}
     State state=new State();
     public State Capture()=>state;
     public FirstPersonArms(Camera eye){
@@ -34,7 +34,7 @@ public sealed class FirstPersonArms {
         if(!model)return;
         overlay.fieldOfView=eye.fieldOfView;overlay.enabled=allowed||carrying;
         // Put shoulders outside the view; only source mesh arm triangles are rendered.
-        model.transform.SetPositionAndRotation(eye.transform.position+eye.transform.rotation*new Vector3(0,-1.75f,.20f),eye.transform.rotation);
+        model.transform.SetPositionAndRotation(eye.transform.position+eye.transform.rotation*new Vector3(0,-1.65f,Mathf.Lerp(-.15f,.05f,Mathf.InverseLerp(.35f,1,carrying?1:clearance))),eye.transform.rotation);
         animator.SetFloat("Speed",0);animator.speed=1;
         left.enabled=carrying;right.enabled=allowed||carrying;
         state=new State{ready=visual.Ready,rightVisible=right.enabled,leftVisible=left.enabled,carrying=carrying,overlayEnabled=overlay.enabled,overlayConfigured=stacked,clearance=clearance};
@@ -42,9 +42,10 @@ public sealed class FirstPersonArms {
         else if(allowed){
             visual.CarryPose(parcel,false,false,1);
             var desired=baton.position;
-            visual.PoseGrip(desired,baton.rotation,1);
+            // Rotate the cylindrical handle around its own axis independently of the palm.
+            visual.PoseGrip(desired,baton.rotation*Quaternion.Euler(0,-90,0),1,true);state.wristBend=visual.RightWristBend;
             if(visual.BatonGrip(out var actual,out var rotation)){
-                baton.SetPositionAndRotation(actual,rotation);state.grip=actual;state.gripError=Vector3.Distance(desired,actual);
+                baton.SetPositionAndRotation(actual,rotation*Quaternion.Euler(0,90,0));state.grip=actual;state.gripError=Vector3.Distance(desired,actual);
             }
         }
     }

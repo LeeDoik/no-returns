@@ -9,7 +9,7 @@ using UnityEngine.Rendering;
 using NoReturns.CarryLab;
 namespace NoReturns.Editor {
 public static class FirstPersonArmsReview {
-    [Serializable] class Receipt {public string status="FAIL",error;public int samples;public float maxGripError,maxBoneLengthError;public bool overlayDepth,stackRendered;public int overlayPixels;}
+    [Serializable] class Receipt {public string status="FAIL",error,worstGrip;public int samples;public float maxGripError,maxBoneLengthError,maxWristBend,baselineStrikeWristBend;public bool overlayDepth,stackRendered;public int overlayPixels;}
     public static void Review(){
         var receipt=new Receipt();var folder=Path.GetFullPath("../artifacts/first-person-arms");Directory.CreateDirectory(folder);
         var preview=new PreviewRenderUtility();var eyeObject=new GameObject("Arm review eye");var eye=eyeObject.AddComponent<Camera>();eye.fieldOfView=80;
@@ -22,7 +22,9 @@ public static class FirstPersonArmsReview {
         var box=GameObject.CreatePrimitive(PrimitiveType.Cube);box.transform.position=new Vector3(0,-.33f,.9f);box.transform.localScale=new Vector3(.6f,.55f,.55f);var parcel=box.GetComponent<BoxCollider>();
         preview.AddSingleGO(model);preview.AddSingleGO(weapon);preview.AddSingleGO(box);
         try {
-            foreach(float fov in new[]{65f,80f,100f})foreach(float pitch in new[]{-45f,0f,45f})foreach(float reach in new[]{.35f,1f})for(int frame=0;frame<=30;frame++){
+            model.transform.SetPositionAndRotation(new Vector3(0,-1.75f,.20f),Quaternion.identity);animator.Play("Idle",0,.2f);animator.Update(.001f);
+            visual.PoseGrip(new Vector3(.195f,-.23f,.64f),Quaternion.Euler(-68,180,12),1);receipt.baselineStrikeWristBend=visual.RightWristBend;
+            foreach(float fov in new[]{65f,80f,100f})foreach(float pitch in new[]{-45f,0f,45f})foreach(float reach in new[]{.35f,.5f,.65f,.8f,1f})for(int frame=0;frame<=30;frame++){
                 eye.fieldOfView=fov;eye.transform.rotation=Quaternion.Euler(pitch,30,0);
                 animator.Play("Idle",0,.2f);animator.Update(.001f);
                 float cooldown=6-frame/60f;BatonMotion.FirstPerson(cooldown,out var grip,out var rotation);
@@ -30,7 +32,8 @@ public static class FirstPersonArmsReview {
                 float a=Vector3.Distance(upper.position,lower.position),b=Vector3.Distance(lower.position,hand.position);
                 weapon.transform.SetPositionAndRotation(eye.transform.rotation*new Vector3(grip.x,grip.y,grip.z*reach),eye.transform.rotation*rotation);
                 arms.Display(eye,weapon.transform,true,false,parcel,reach);
-                var state=arms.Capture();receipt.maxGripError=Mathf.Max(receipt.maxGripError,state.gripError);
+                var state=arms.Capture();if(state.gripError>receipt.maxGripError)receipt.worstGrip=$"fov={fov} pitch={pitch} reach={reach} frame={frame}";receipt.maxGripError=Mathf.Max(receipt.maxGripError,state.gripError);receipt.maxWristBend=Mathf.Max(receipt.maxWristBend,state.wristBend);
+                if(state.wristBend>25.01f)throw new Exception("Wrist flexion exceeds 25 degrees");
                 receipt.maxBoneLengthError=Mathf.Max(receipt.maxBoneLengthError,Mathf.Abs(a-Vector3.Distance(upper.position,lower.position)),Mathf.Abs(b-Vector3.Distance(lower.position,hand.position)));
                 if(!state.ready||!state.rightVisible||state.leftVisible||Vector3.Distance(state.grip,weapon.transform.position)>.001f||receipt.maxBoneLengthError>.001f)throw new Exception("Detached baton or stretched arm");
                 foreach(var r in renderers){var mesh=new Mesh();r.BakeMesh(mesh);if(mesh.vertices.Any(v=>!float.IsFinite(v.x)||!float.IsFinite(v.y)||!float.IsFinite(v.z)))throw new Exception("Invalid arm mesh");UnityEngine.Object.DestroyImmediate(mesh);}

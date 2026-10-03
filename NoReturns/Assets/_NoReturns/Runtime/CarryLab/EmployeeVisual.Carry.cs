@@ -50,7 +50,7 @@ public sealed partial class EmployeeVisual {
         return Vector3.Distance(Vector3.Lerp(arm.wrist.position,arm.middle.position,.85f),contact);
     }
 
-    bool PoseArm(Arm arm,Vector3 goal,Quaternion handRotation,float weight){
+    bool PoseArm(Arm arm,Vector3 goal,Quaternion handRotation,float weight,bool outwardElbow=false){
         Quaternion upperBase=arm.upper.localRotation,lowerBase=arm.lower.localRotation,handBase=arm.wrist.localRotation;
         Vector3 origin=arm.upper.position,direction=goal-origin;
         float upperLength=Vector3.Distance(origin,arm.lower.position),lowerLength=Vector3.Distance(arm.lower.position,arm.wrist.position);
@@ -58,7 +58,7 @@ public sealed partial class EmployeeVisual {
         bool clamped=direction.magnitude>upperLength+lowerLength-.005f;
         direction=direction.sqrMagnitude>.000001f?direction.normalized:transform.forward;
         // Bend elbows down and slightly away from the torso; never stretch bone positions/scales.
-        Vector3 bend=Vector3.ProjectOnPlane(-transform.up+transform.right*(arm.side*.35f),direction).normalized;
+        Vector3 bend=Vector3.ProjectOnPlane(outwardElbow?transform.right*arm.side:-transform.up+transform.right*(arm.side*.35f),direction).normalized;
         if(bend.sqrMagnitude<.001f)bend=Vector3.ProjectOnPlane(transform.forward,direction).normalized;
         float alongArm=(upperLength*upperLength-lowerLength*lowerLength+reach*reach)/(2*reach);
         Vector3 elbow=origin+direction*alongArm+bend*Mathf.Sqrt(Mathf.Max(0,upperLength*upperLength-alongArm*alongArm));

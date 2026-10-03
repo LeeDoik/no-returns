@@ -14,7 +14,7 @@ public static class BatonMotion {
     public static void FirstPerson(float cooldown,out Vector3 grip,out Quaternion rotation){
         float amount=Amount(cooldown);
         grip=new Vector3(.26f,-.33f,.46f)+new Vector3(-.065f,.10f,.18f)*amount;
-        rotation=Quaternion.Euler(-12-56*amount,180,-18+30*amount);
+        rotation=Quaternion.Euler(-12-18*amount,180,-18+8*amount);
     }
 }
 }

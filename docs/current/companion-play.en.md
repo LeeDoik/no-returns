@@ -1,6 +1,10 @@
-# Hands-on player + automatic companion — 0.9.14
+# Hands-on player + automatic companion — 0.9.15
 
 [한국어](companion-play.ko.md)
+
+## 2026-10-04 — First-person wrist correction 0.9.15
+
+Fix the wrist bend reported by the user in the 0.9.14 attack preview. Correct the relationship between the palm and cylindrical grip axes; move the elbow outward so the forearm and hand align. Limit the hand/forearm direction angle to 25° and solve grip contact again. Keep the baton upright during forward movement and retract the shoulder origin near walls. [Current pose/production](first-person-arms.en.md), [validation record](../validation/employee-wrist-0.9.15.json). Game **0.9.15**, protocol **13**, TCP **27842**. The previous pose has a user-confirmed quality issue; the revised pose has not received user approval. Manual play stays stopped.
 
 ## 2026-10-04 — Dynamic baton and first-person hands/arms 0.9.14
 

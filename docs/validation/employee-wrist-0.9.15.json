@@ -1,0 +1,108 @@
+{
+  "date": "2026-10-04",
+  "version": "0.9.15",
+  "status": "PASS",
+  "user_report": "Wrist appears bent in the attack preview",
+  "review": {
+    "status": "PASS",
+    "error": "",
+    "worstGrip": "fov=65 pitch=45 reach=0.5 frame=5",
+    "samples": 1397,
+    "maxGripError": 6.699828531964158e-07,
+    "maxBoneLengthError": 5.960464477539062e-07,
+    "maxWristBend": 24.037256240844727,
+    "baselineStrikeWristBend": 119.47013092041016,
+    "overlayDepth": true,
+    "stackRendered": true,
+    "overlayPixels": 70087
+  },
+  "build": {
+    "status": "PASS",
+    "unity": "6000.6.4f1",
+    "output": "/Users/leedoik/WorkSpace/Game/No_Returns/builds/CinderFourPlayer/NoReturns.app",
+    "error": "",
+    "errors": 0,
+    "warnings": 7
+  },
+  "manual_windows_opened": false,
+  "scope": "First-person baton grip/forearm alignment; remote default and parcel solver default preserved",
+  "tools": {
+    "unity": "6000.6.4f1",
+    "cli": "1.0.0-beta.12",
+    "pipeline": "0.8.0-exp.1",
+    "pending_updates": []
+  },
+  "failures_resolved": [
+    "Wrist-only clamping made the baton lie sideways; correct cylindrical handle/palm axial mapping and elbow direction together.",
+    "A fixed shoulder origin exceeded the existing 0.12m grip tolerance near walls (0.141436m / 0.215539m); retract the shoulder with wall clearance and retain the same tolerance.",
+    "First native run retained the old >15-degree local weapon rotation assertion. The corrected upright strike rotates about 9.5 degrees; validate >0.15m local weapon travel and <=25.01-degree wrist bend instead, while retaining >15-degree remote rotation and replicated arm-travel/cooldown checks."
+  ],
+  "unknowns": [
+    "User quality approval",
+    "Actual native GPU map/lighting/HUD composition",
+    "All-frame finger/clothing penetration and wall corners",
+    "Windows/LAN and performance"
+  ],
+  "sources": [
+    "NoReturns/Assets/_NoReturns/Runtime/CarryLab/EmployeeVisual.Baton.cs",
+    "NoReturns/Assets/_NoReturns/Runtime/CarryLab/EmployeeVisual.Carry.cs",
+    "NoReturns/Assets/_NoReturns/Runtime/CarryLab/FirstPersonArms.cs",
+    "NoReturns/Assets/_NoReturns/Runtime/CarryLab/BatonMotion.cs"
+  ],
+  "native": {
+    "status": "PASS",
+    "run": "/Users/leedoik/WorkSpace/Game/No_Returns/artifacts/cinder-four-player/run-20261004-004455-bb4b2d",
+    "checks": [
+      "idle keeps the existing arm pose and shows the first-person right glove",
+      "slot 0: dynamic arm strike replicated; first-person glove attached; returns to idle",
+      "slot 0: cooldown prevents a second attack",
+      "slot 1: dynamic arm strike replicated; first-person glove attached; returns to idle",
+      "slot 1: cooldown prevents a second attack",
+      "human picks up parcel",
+      "carry hides weapon on both peers",
+      "carry exposes both first-person hands",
+      "human cooldown expires while carrying",
+      "carrying rejects an attack",
+      "release restores weapon and right-hand pose",
+      "Backward at yaw 0 drives both actual employee poses",
+      "StrafeLeft at yaw 0 drives both actual employee poses",
+      "StrafeRight at yaw 0 drives both actual employee poses",
+      "Backward at yaw 90 drives both actual employee poses",
+      "StrafeLeft at yaw 90 drives both actual employee poses",
+      "StrafeRight at yaw 90 drives both actual employee poses",
+      "jump suspends direction correction on both peers",
+      "landing returns to idle directional pose",
+      "native logs free of errors and placeholder fallback"
+    ],
+    "first_person_motion": [
+      {
+        "slot": 0,
+        "weapon_travel_m": 0.21592786003333017,
+        "wrist_bends": [
+          24.248111724853516,
+          17.0709285736084
+        ]
+      },
+      {
+        "slot": 1,
+        "weapon_travel_m": 0.21592320050160427,
+        "wrist_bends": [
+          16.093599319458008,
+          23.66122817993164
+        ]
+      }
+    ],
+    "weapon_rotation_degrees": [
+      [
+        9.521746486263197,
+        24.68662166280755
+      ],
+      [
+        25.395447263025513,
+        9.40057031564655
+      ]
+    ]
+  },
+  "native_checks": 20,
+  "documentation_count": 286
+}

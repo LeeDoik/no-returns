@@ -16,11 +16,23 @@ public sealed partial class EmployeeVisual {
         if(chestBone)chestBone.rotation=Quaternion.AngleAxis(-4*batonWeight,transform.up)*chestBone.rotation;
         PoseGrip(transform.TransformPoint(new Vector3(.24f,1.16f,.34f)),transform.rotation*Quaternion.Euler(65,-10,5),batonWeight);
     }
-    public bool PoseGrip(Vector3 goal,Quaternion rotation,float weight){
+    public float RightWristBend=>Vector3.Angle(rightArm.wrist.position-rightArm.lower.position,rightArm.middle.position-rightArm.wrist.position);
+    public bool PoseGrip(Vector3 goal,Quaternion rotation,float weight,bool naturalWrist=false){
         if(!BatonGrip(out var grip,out var heldRotation))return false;
         var turn=rotation*Quaternion.Inverse(heldRotation);
         var wristGoal=goal-turn*(grip-rightArm.wrist.position);
-        batonClamped=PoseArm(rightArm,wristGoal,turn*rightArm.wrist.rotation,weight);
+        batonClamped=PoseArm(rightArm,wristGoal,turn*rightArm.wrist.rotation,weight,naturalWrist);
+        if(naturalWrist){
+            // Limit hand/forearm flexion, then solve the palm contact again.
+            // Weapon orientation follows the supported hand instead of folding its wrist.
+            for(int pass=0;pass<3;pass++){
+                var forearm=(rightArm.wrist.position-rightArm.lower.position).normalized;
+                var fingers=(rightArm.middle.position-rightArm.wrist.position).normalized;
+                var supported=Vector3.RotateTowards(forearm,fingers,25*Mathf.Deg2Rad,0);
+                rightArm.wrist.rotation=Quaternion.FromToRotation(fingers,supported)*rightArm.wrist.rotation;
+                if(pass<2){BatonGrip(out var contact,out _);batonClamped|=PoseArm(rightArm,rightArm.wrist.position+goal-contact,rightArm.wrist.rotation,1,true);}
+            }
+        }
         BatonGrip(out var actual,out _);batonGripError=Vector3.Distance(actual,goal);
         return true;
     }

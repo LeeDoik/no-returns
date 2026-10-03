@@ -25,6 +25,8 @@ def main():
     def observe(slot):
         axes = [list(a["batons"][slot]["axis"].values()) for a in animations()]
         seen, angle = [False, False], [0, 0]
+        weapon_origins=[a["batons"][slot]["position"] for a in animations()]
+        weapon_travel=[0,0];wrist_bends=[0,0]
         weights=[0,0];travel=[0,0];origins=[a["employees"][slot]["rightHand"] for a in animations()]
         send(slot, shove=True)
         start = time.monotonic()
@@ -34,9 +36,10 @@ def main():
                 pose, weapon = a["employees"][slot], a["batons"][slot]
                 weights[peer]=max(weights[peer],pose["batonWeight"])
                 travel[peer]=max(travel[peer],math.dist(list(origins[peer].values()),list(pose["rightHand"].values())))
-                hands=a["hands"]
+                weapon_travel[peer]=max(weapon_travel[peer],math.dist(list(weapon_origins[peer].values()),list(weapon["position"].values())))
+                hands=a["hands"];wrist_bends[peer]=max(wrist_bends[peer],hands["wristBend"])
                 assert hands["ready"] and hands["rightVisible"] and not hands["leftVisible"]
-                assert hands["gripError"]<.12
+                assert hands["gripError"]<.12 and hands["wristBend"]<=25.01
                 assert math.dist(list(hands["grip"].values()),list(a["batons"][peer]["position"].values()))<.001
                 axis = list(weapon["axis"].values())
                 dot = sum(x*y for x,y in zip(axes[peer],axis))/math.sqrt(sum(x*x for x in axes[peer])*sum(x*x for x in axis))
@@ -44,7 +47,8 @@ def main():
                 if peer != slot:
                     assert weapon["handAttached"] and weapon["handDistance"] < .15
             time.sleep(.02)
-        assert all(seen) and min(angle)>15 and min(weights)>.6 and min(travel)>.12, (seen,angle,weights,travel)
+        assert all(seen) and angle[1-slot]>15 and weapon_travel[slot]>.15 and min(weights)>.6 and min(travel)>.12, (seen,angle,weights,travel,weapon_travel)
+        report.setdefault("first_person_motion",[]).append(dict(slot=slot,weapon_travel_m=weapon_travel[slot],wrist_bends=wrist_bends))
         assert all(a["employees"][slot]["batonWeight"]==0 and not a["employees"][slot]["batonSwing"] for a in animations())
         report["checks"].append(f"slot {slot}: dynamic arm strike replicated; first-person glove attached; returns to idle")
         report.setdefault("weapon_rotation_degrees", []).append(angle)
