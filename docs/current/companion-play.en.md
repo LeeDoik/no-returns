@@ -1,6 +1,10 @@
-# Hands-on player + automatic companion — 0.9.12
+# Hands-on player + automatic companion — 0.9.13
 
 [한국어](companion-play.ko.md)
+
+## 2026-10-03 — Current 0.9.13; prior manual test stopped
+
+Stop requested session `run-20261003-223811-25d870` with the existing helper to restore the original baton and implement backward/sidestep movement. Current build is **0.9.13**; open no new manual windows. Running-session/forward-pulse statements below describe terminated historical runs. [Current baton](employee-baton.en.md), [current movement](employee-locomotion.en.md). On the next “직접 테스트 해볼게” request, use `python3 tools/cinder_four_player.py start --companion` to open human/companion in equal left/right 16:9 windows. Backward/sidestep correction follows actual direction; the companion retains its existing walk/sidestep demonstration. Human quality review remains pending.
 
 ## 2026-10-03 — Requested upright-grip/jump manual test started at 0.9.12
 

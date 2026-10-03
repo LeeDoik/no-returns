@@ -2,6 +2,16 @@
 
 [한국어](05-validation.ko.md)
 
+## 2026-10-03 — Original baton/backward-sidestep 0.9.13
+
+- [x] Restore original 0.9.6 baton readiness/use, remove attack arm/chest correction and retain hand attachment, 0.5s return, immediate contact and 6s cooldown.
+- [x] Redirect backward/left/right/diagonal feet; maintain separate lanes, torso/root/bone length and release in air/down/stop.
+- [x] Mac build zero errors/7 existing warnings; 930 baton, 270 jump/landing and 225 direction static samples passed.
+- [x] Actual two-client baton/direction 19 checks, companion 6 groups and four-client Listener/down/rescue 30 checks passed: 55 total. [Validation record](../validation/employee-direction-0.9.13.json).
+- [ ] Revised human quality, dedicated movement clips, first-person arms, all-frame penetration, Windows/LAN/performance and full delivery/suppression regression.
+
+The first native direction test was blocked by the dropped parcel. Without changing collision/game rules, move to the existing access lane away from cargo and match outbound/return times; the same check then passed. Initial regressions could not start while prior TCP connections were closing; rerun successfully after port release. [Current baton](employee-baton.en.md), [current movement](employee-locomotion.en.md). The 0.9.12/0.9.10/0.9.9 sections below are historical checks of cancelled attack presentation, not current behavior.
+
 ## 2026-10-03 — Restored baton grip, forward pulse and jump/landing 0.9.12
 
 The user requested ending manual play, fixing awkward baton holding and proceeding to the next task. Stop manual session `run-20261003-222202-345af2` with the existing helper. Restore upright 0.9.9 readiness and first-person offset/orientation, extending the hand and baton once by 0.20m and returning within 0.30s. Cancel always-forward readiness from 0.9.10. Retain immediate contact, 6s cooldown, hand attachment and carry/down/rescue exclusion; add no magic projectile. As the next task, apply actual position/floor-based rise/apex/fall, 0.22s landing and up to 0.065m hip compression/planted-foot correction over the existing Humanoid. Preserve root, bone lengths, physics/jump/network rules and two-player 16:9/four-player 2×2 tiling. Game 0.9.12, protocol 13, TCP 27842. [Baton](employee-baton.en.md), [jump/landing](employee-locomotion.en.md), [validation record](../validation/employee-pulse-locomotion-0.9.12.json).

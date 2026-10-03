@@ -9,12 +9,14 @@ public sealed partial class EmployeeVisual : MonoBehaviour {
     public float Speed=>speed;
     public Vector3 RightHandPosition=>hand?hand.position:transform.position;
     public bool Walking=>animator&&animator.GetCurrentAnimatorStateInfo(0).IsName("Walk");
-    [System.Serializable] public class State {public bool ready,walking,visible,rootMotion,carryClamped,batonSwing,batonClamped;public float speed,carryWeight,leftContactError,rightContactError,batonWeight,batonElapsed,batonGripError,airWeight,landingWeight,verticalSpeed;public string locomotion;public Quaternion leftFoot,rightUpperArm,chest,leftKnee;public Vector3 rightHand;}
+    // Legacy baton-layer snapshot fields stay zero after the original weapon-only motion is restored.
+    [System.Serializable] public class State {public bool ready,walking,visible,rootMotion,carryClamped,batonSwing,batonClamped;public float speed,carryWeight,leftContactError,rightContactError,batonWeight,batonElapsed,batonGripError,airWeight,landingWeight,verticalSpeed;public string locomotion,direction;public Vector3 localVelocity,leftFootPosition,rightFootPosition;public float directionWeight;public Quaternion leftFoot,rightUpperArm,chest,leftKnee;public Vector3 rightHand;}
     public State Capture()=>new State{ready=Ready,walking=Walking,visible=GetComponentInChildren<SkinnedMeshRenderer>().enabled,
         rootMotion=animator.applyRootMotion,speed=speed,leftFoot=animator.GetBoneTransform(HumanBodyBones.LeftFoot).localRotation,
         carryWeight=carryWeight,carryClamped=carryClamped,leftContactError=leftContactError,rightContactError=rightContactError,
-        batonWeight=batonWeight,batonElapsed=batonElapsed,batonSwing=batonSwing,rightHand=hand.position,
-        batonClamped=batonClamped,batonGripError=batonGripError,airWeight=airWeight,landingWeight=landingWeight,verticalSpeed=verticalSpeed,locomotion=locomotion,
+        rightHand=hand.position,
+        airWeight=airWeight,landingWeight=landingWeight,verticalSpeed=verticalSpeed,locomotion=locomotion,direction=direction,localVelocity=localVelocity,directionWeight=directionWeight,
+        leftFootPosition=transform.InverseTransformPoint(animator.GetBoneTransform(HumanBodyBones.LeftFoot).position),rightFootPosition=transform.InverseTransformPoint(animator.GetBoneTransform(HumanBodyBones.RightFoot).position),
         leftKnee=animator.GetBoneTransform(HumanBodyBones.LeftLowerLeg).localRotation,
         rightUpperArm=rightArm.upper.localRotation,chest=animator.GetBoneTransform(HumanBodyBones.Chest).localRotation};
     void Awake(){animator=GetComponent<Animator>();animator.applyRootMotion=false;
@@ -23,7 +25,7 @@ public sealed partial class EmployeeVisual : MonoBehaviour {
         var curlAxis=(little.position-index.position).normalized;
         for(int i=0;i<fingers.Length;i++){var bone=animator.GetBoneTransform((HumanBodyBones)((int)HumanBodyBones.RightThumbProximal+i));fingers[i]=bone;
             if(bone)gripRotations[i]=bone.localRotation*Quaternion.AngleAxis(i<3?30:55,bone.InverseTransformDirection(curlAxis));}
-        InitializeCarry();}
+        InitializeCarry();InitializeDirectionalFeet();}
     public bool BatonGrip(out Vector3 position,out Quaternion rotation) {
         position=Vector3.zero;rotation=Quaternion.identity;if(!hand||!index||!middle||!little)return false;
         var across=(index.position-little.position).normalized;
@@ -47,7 +49,7 @@ public sealed partial class EmployeeVisual : MonoBehaviour {
         previous=position;sampled=true;
         speed=down?0:Mathf.Lerp(speed,Mathf.Min(measured,8),1-Mathf.Exp(-12*delta));
         animator.SetFloat("Speed",airWeight>.5f?0:speed);
-        // ponytail: reuse one forward walk; add side/back clips when those motions are supplied.
+        UpdateDirection(measured>0?change/delta:Vector3.zero,down,delta);
         animator.SetFloat("StrideRate",Mathf.Clamp(speed/2.2f,.35f,2.2f));
         animator.speed=down?0:1;
     }

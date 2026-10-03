@@ -4,7 +4,7 @@
 
 [시험 창 배치 0.9.11](current/companion-play.ko.md): 2인 좌우 16:9·4인 2×2 자동 배치. 창 크기 직접 조절 가능.
 
-[진압봉 기본 잡기·전방 동작 0.9.12](current/employee-baton.ko.md): 이전 세워 쥔 자세 복원·한 번 짧게 전진/회수. [점프·착지](current/employee-locomotion.ko.md)도 적용. 수정본 사람 품질은 미확인. 수동 창은 요청 시에만 연다.
+[진압봉 최초 버전 복원 0.9.13](current/employee-baton.ko.md) · [후진·옆걸음·점프/착지](current/employee-locomotion.ko.md). 구현/자동 검증과 사람 품질 승인을 구분한다. 수동 창은 요청 시에만 연다.
 
 [양손 상자 운반 0.9.8](current/employee-animation.ko.md): 기본 거리 0.8m와 손 접촉 보정 적용. 맥 빌드·정적 자세 120개·화면 없는 운반/동료 검사 통과. 먼 거리 접촉·사람 품질은 미완료. 수동 창은 요청 시에만 연다.
 

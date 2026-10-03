@@ -2,6 +2,10 @@
 
 [English](macos-development.en.md)
 
+## 2026-10-03 — 0.9.13 시험·버전 관리 도구 갱신
+
+[공식 Python 배포](https://www.python.org/downloads/)의 최신 정식판 **3.14.8**을 uv로 설치하고 사용자 영역의 `python3` 기본으로 연결했다. macOS 기본 **3.9.6**은 제거하지 않았다. [공식 Git](https://git-scm.com/) 최신 **2.56.0**을 Homebrew로 설치했다. [Git LFS 3.8.0](https://github.com/git-lfs/git-lfs/releases/tag/v3.8.0)·[uv 0.12.22](https://github.com/astral-sh/uv/releases/tag/0.12.22)는 설치본과 공식 최신이 같다. Unity CLI **1.0.0-beta.12**·Pipeline **0.8.0-exp.1**·Editor **6000.6.4f1**도 최신 배포와 일치한다. 이번 사용 도구에 남은 업데이트 없음. 실행 중인 Unity/Blender를 재시작하거나 미저장 작업을 덮어쓰지 않았다. 개인 설치 경로/환경 파일은 커밋하지 않는다. Python 갱신 뒤 문서 284개·구문·실제 두 클라이언트 검사 19개를 다시 통과했다. [게임 검증](../validation/employee-direction-0.9.13.json).
+
 ## 2026-10-03 — 진압봉 직선 찌르기 0.9.10
 
 0.9.10 수정에 쓰는 공식 최신 Unity Editor 6000.6.4f1·CLI 1.0.0-beta.12·Pipeline 0.8.0-exp.1 일치를 다시 확인했고 업데이트는 없다. Unity CLI 정적 검토·맥 빌드·화면 없는 실제 프로세스 검사를 사용한다. 이번에는 Blender/MCP를 편집에 사용하지 않았다. [현재 동작·검증 범위](employee-baton.ko.md).

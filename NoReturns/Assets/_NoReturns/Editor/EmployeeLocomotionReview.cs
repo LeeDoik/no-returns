@@ -7,7 +7,7 @@ using NoReturns.CarryLab;
 
 namespace NoReturns.Editor {
 public static class EmployeeLocomotionReview {
-    [Serializable] class Receipt {public string status="FAIL",error;public int samples;public float maxBoneLengthChange,maxLandingFootError,maxCompression;public bool downCleared,returned;}
+    [Serializable] class Receipt {public string status="FAIL",error;public int samples;public float maxBoneLengthChange,maxLandingFootError,maxCompression,maxDirectionBoneLengthChange,maxDirectionExcursion;public float minDirectionalStride=100;public int directionSamples;public bool directionCleared;public bool downCleared,returned;}
     public static void Review() {
         var receipt=new Receipt();var folder=Path.GetFullPath("../artifacts/employee-locomotion");Directory.CreateDirectory(folder);
         var preview=new PreviewRenderUtility();var mesh=new Mesh();
@@ -45,6 +45,31 @@ public static class EmployeeLocomotionReview {
             visual.LocomotionPose(false,4,false,1);visual.LocomotionPose(false,4,true,.016f);
             receipt.downCleared=visual.Capture().airWeight==0&&visual.Capture().landingWeight==0;
             if(!receipt.returned||!receipt.downCleared||receipt.maxCompression<.06f)throw new Exception("Locomotion did not compress, return or clear on down");
+            Vector3 swingPeak=Vector3.zero;
+            foreach(float yaw in new[]{0f,90f,135f})foreach(var travel in new[]{Vector3.back,Vector3.left,Vector3.right,new Vector3(-1,0,-1),new Vector3(1,0,-1)})foreach(float velocity in new[]{1f,2.2f,4f})foreach(float phase in new[]{0f,.2f,.4f,.6f,.8f}) {
+                model.transform.rotation=Quaternion.Euler(0,yaw,0);model.transform.position=Vector3.zero;
+                visual.Animate(Vector3.zero,true,1);visual.Animate(model.transform.rotation*travel.normalized*(velocity*.1f),false,.1f);
+                animator.Play("Walk",0,phase);animator.SetFloat("StrideRate",1);animator.Update(.001f);
+                var beforeLeft=model.transform.InverseTransformPoint(bones[2].position);var beforeRight=model.transform.InverseTransformPoint(bones[5].position);
+                var root=model.transform.position;var hips=animator.GetBoneTransform(HumanBodyBones.Hips).rotation;
+                visual.DirectionPose(true);var pose=visual.Capture();
+                if(phase==.2f)swingPeak=pose.leftFootPosition;
+                if(phase==.8f){
+                    float advance=Vector3.Dot(swingPeak-pose.leftFootPosition,travel.normalized);
+                    receipt.minDirectionalStride=Mathf.Min(receipt.minDirectionalStride,advance);
+                    if(advance<.15f)throw new Exception("Foot swing does not advance in actual movement direction");
+                }
+                receipt.maxDirectionExcursion=Mathf.Max(receipt.maxDirectionExcursion,Vector3.Distance(beforeLeft,pose.leftFootPosition),Vector3.Distance(beforeRight,pose.rightFootPosition));
+                var current=new[]{Vector3.Distance(bones[0].position,bones[1].position),Vector3.Distance(bones[1].position,bones[2].position),Vector3.Distance(bones[3].position,bones[4].position),Vector3.Distance(bones[4].position,bones[5].position)};
+                for(int i=0;i<4;i++)receipt.maxDirectionBoneLengthChange=Mathf.Max(receipt.maxDirectionBoneLengthChange,Mathf.Abs(current[i]-lengths[i]));
+                if(pose.directionWeight<.9f||pose.leftFootPosition.x>=-.03f||pose.rightFootPosition.x<=.03f||Vector3.Distance(root,model.transform.position)>.00001f||Quaternion.Angle(hips,animator.GetBoneTransform(HumanBodyBones.Hips).rotation)>.01f||receipt.maxDirectionBoneLengthChange>.0001f)throw new Exception("Direction pose lanes/root/torso/length failed");
+                renderer.BakeMesh(mesh);if(mesh.vertices.Any(v=>!float.IsFinite(v.x)||!float.IsFinite(v.y)||!float.IsFinite(v.z)))throw new Exception("Non-finite direction mesh");
+                receipt.directionSamples++;
+                if(yaw==0&&velocity==2.2f&&phase==.2f&&travel.sqrMagnitude==1)Render(preview,renderer,mesh,folder,travel.z<0?"Backward":travel.x<0?"Strafe-Left":"Strafe-Right");
+            }
+            visual.DirectionPose(false);receipt.directionCleared=visual.Capture().directionWeight==0;
+            visual.Animate(Vector3.zero,true,1);visual.DirectionPose(true);receipt.directionCleared&=visual.Capture().directionWeight==0;
+            if(!receipt.directionCleared||receipt.maxDirectionExcursion<.3f)throw new Exception("Directional stride did not redirect/clear");
             receipt.status="PASS";
         }catch(Exception e){receipt.error=e.ToString();throw;}
         finally {preview.Cleanup();UnityEngine.Object.DestroyImmediate(mesh);File.WriteAllText(Path.Combine(folder,"review.json"),JsonUtility.ToJson(receipt,true));}

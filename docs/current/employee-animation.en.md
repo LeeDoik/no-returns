@@ -1,15 +1,11 @@
-# Employee full body and Idle/Walk — 0.9.12
+# Employee full body and Idle/Walk — 0.9.13
 
 [한국어](employee-animation.ko.md)
 
-## 2026-10-03 — Restored grip, single forward pulse and jump/landing 0.9.12
+## 2026-10-03 — Original baton restored; backward/sidestep movement 0.9.13
 
-The user ended the 0.9.11 test and reported awkward baton readiness. Restore the upright 0.9.9 grip and extend the hand and baton once: 0.20m forward, maximum extension at 0.06s, return at 0.30s. Retain immediate contact/6s cooldown. As the next character task, implement position-based rising/apex/falling, 0.22s landing, 0.065m hip compression and planted-foot correction. Apply over the existing Humanoid without new FBXs or Blender editing. Revised human quality remains pending; dedicated backward/sidestep movement → first-person arms are next. [Baton](employee-baton.en.md), [jump/landing](employee-locomotion.en.md). Supersede previous readiness/unimplemented-jump statements below within this scope.
+At the user's request, restore the initial right-hand attachment version (0.9.6) of baton readiness/use. Remove the arm/chest attack correction introduced in 0.9.9; retain hand attachment, the weapon's 0.5s return, immediate contact, 6s cooldown and carrying/down/rescue hiding. Redirect backward, lateral and diagonal foot trajectories from actual body-relative movement. Reuse alternating foot timing/heights from the forward Walk while preserving torso facing, root, physics and network rules. Retain jump/landing. No new Mixamo FBX or Blender editing. [Baton](employee-baton.en.md), [movement](employee-locomotion.en.md). Revised human quality, dedicated clips, first-person arms and Windows/LAN/performance remain unverified.
 
-
-## 2026-10-03 — Baton readiness, attack and recovery 0.9.9
-
-Implemented current attacks with right-arm/chest rotations and hand attachment for readiness/immediate impact/0.55s recovery. Retain Idle/Walk and two-hand carrying. Reproduce without an attack FBX; supersede the 0.9.8 and older unimplemented-attack records below within this scope. [Implementation, production and validation scope](employee-baton.en.md).
 
 ## 2026-10-03 — Two-handed parcel carrying pose 0.9.8
 

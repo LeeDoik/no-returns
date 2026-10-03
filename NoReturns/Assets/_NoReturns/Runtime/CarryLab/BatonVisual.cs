@@ -2,6 +2,7 @@ using UnityEngine;
 namespace NoReturns.CarryLab {
 // Pure presentation: the existing host-owned shove cooldown drives both peers.
 public sealed class BatonVisual {
+    public static float Strike(float cooldown)=>cooldown>5.5f?Mathf.Pow(1-Mathf.Clamp01((6-cooldown)/.5f),2):0;
     readonly GameObject[] roots=new GameObject[4];
     readonly BatonFeedback[] feedback=new BatonFeedback[4];
     readonly GameObject[] gloves=new GameObject[4];
@@ -31,30 +32,27 @@ public sealed class BatonVisual {
             bool down=danger!=null&&danger.IsDown(i);
             float rescue=danger==null?0:danger.RescueAt(i);
             bool show=active&&((occupiedMask&(1<<i))!=0)&&cargoHolder!=i&&beaconHolder!=i&&!down&&rescue<=0;
-            float cooldown=danger==null?0:danger.CooldownAt(i);
-            if(employees[i])employees[i].BatonPose(cooldown,show,Time.deltaTime);
             roots[i].SetActive(show);attached[i]=false;handDistance[i]=0;if(!show)continue;
             gloves[i].SetActive(i==local||!employees[i]);
+            float cooldown=danger==null?0:danger.CooldownAt(i);
             feedback[i].Display(cooldown);
-            EmployeeVisual.BatonMotion(employees[i]?employees[i].BatonMotionCooldown:cooldown,out var motion,out var motionRotation,out _);
+            float strike=Strike(cooldown);
             if(i==local) {
                 var rotation=eye.transform.rotation;
-                var offset=new Vector3(.27f,-.34f,.46f)+(motion-EmployeeVisual.BatonReady)*.9f;
+                var offset=new Vector3(.27f-.13f*strike,-.34f+.12f*strike,.46f+.18f*strike);
                 // Pull the visual in at nearby solid surfaces instead of rendering through them.
-                var heldRotation=Quaternion.Euler(-12,180,-18);
-                float reach=1,tipReach=offset.z+Mathf.Max(0,(heldRotation*Vector3.up).z)*.56f+.04f;
-                foreach(var hit in Physics.RaycastAll(eye.transform.position,rotation*Vector3.forward,tipReach))
-                    if(hit.collider!=crew[i]&&!hit.collider.isTrigger)reach=Mathf.Min(reach,Mathf.Clamp(hit.distance/tipReach,.35f,1));
-                // Clearance changes depth only; lateral grip must not wobble during a straight thrust.
-                roots[i].transform.SetPositionAndRotation(eye.transform.position+rotation*new Vector3(offset.x,offset.y,offset.z*reach),rotation*heldRotation);
+                float reach=1;
+                foreach(var hit in Physics.RaycastAll(eye.transform.position,rotation*Vector3.forward,.95f))
+                    if(hit.collider!=crew[i]&&!hit.collider.isTrigger)reach=Mathf.Min(reach,Mathf.Clamp(hit.distance/.95f,.35f,1));
+                roots[i].transform.SetPositionAndRotation(eye.transform.position+rotation*(offset*reach),rotation*Quaternion.Euler(-12-65*strike,180,-18+35*strike));
                 roots[i].transform.localScale=Vector3.one*reach;
             } else if(employees[i]&&employees[i].BatonGrip(out var grip,out var handRotation)) {
-                roots[i].transform.SetPositionAndRotation(grip,handRotation);
+                roots[i].transform.SetPositionAndRotation(grip,handRotation*Quaternion.Euler(0,0,-65*strike));
                 roots[i].transform.localScale=Vector3.one;attached[i]=true;
                 handDistance[i]=Vector3.Distance(roots[i].transform.position,employees[i].RightHandPosition);
             } else {
                 var rotation=Quaternion.Euler(0,yaws[i],0);
-                roots[i].transform.SetPositionAndRotation(crew[i].transform.position+rotation*motion,rotation*motionRotation);
+                roots[i].transform.SetPositionAndRotation(crew[i].transform.position+rotation*new Vector3(.32f,1.12f,.28f+.25f*strike),rotation*Quaternion.Euler(45+40*strike,180,-12));
                 roots[i].transform.localScale=Vector3.one;
             }
         }

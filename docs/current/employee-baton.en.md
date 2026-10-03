@@ -1,32 +1,20 @@
-# Employee upright baton grip and short forward pulse — 0.9.12
+# Employee baton — original motion restored 0.9.13
 
 [한국어](employee-baton.ko.md)
 
-2026-10-03. The user ended the 0.9.11 hands-on test and reported an awkward holding pose. Restore the upright 0.9.9 ready grip and extend the hand and baton once, like casting a spell. Current game **0.9.12**, protocol **13**, TCP **27842**. [Version settings](../../NoReturns/ProjectSettings/ProjectSettings.asset). Cancel the always-forward aiming stance from 0.9.10. Naturalness and hit-feel approval of this revision remain pending.
+2026-10-03. The user requested the “very first version”; restore readiness/use from the original right-hand attachment at **0.9.6 / 8cd97aa**. Restore the version without attack arm/chest correction. Current game **0.9.13**, protocol **13**, TCP **27842**. [Version settings](../../NoReturns/ProjectSettings/ProjectSettings.asset). Cancel 0.9.9 readiness/swing, 0.9.10 forward aim/thrust and 0.9.12 upright forward pulse in the current specification. Preserve historical evidence in the [change log](../archive/change-log.en.md).
 
-## Current behavior
+## Current behavior and production
 
-- Empty-hand grip position is **(0.30, 1.21, 0.20)m** relative to the employee, with baton rotation **(15, -10, -15)°**, matching 0.9.9 readiness. Enter readiness over approximately **0.1s**. Do not hold the baton horizontally aimed at rest.
-- Extend the hand and upright baton **0.20m** forward: fast extension during **0–0.06s**, hold during **0.06–0.10s**, retract during **0.10–0.30s**. Add no lateral swing, baton reorientation or chest twist. Contact remains **immediate** at click, with a **6s** cooldown. This adds no magic/projectile mechanic.
-- Retain actual hand attachment, finger grip and arm reach limits. Walking poses can leave a target-to-hand gap at the reach limit; do not stretch bones.
-- First person restores the 0.9.9 grip offset **(0.27, -0.34, 0.46)m** and rotation **(-12, 180, -18)°**, extending only **0.18m**. Check the baton axis’s forward projection with **0.04m** clearance and pull depth only near walls. Keep the **0.35** minimum scale. Full-body first-person arms and all-corner penetration fixes remain absent.
-- Block baton and attack posing during carrying, down, valid rescue, and inactive/unoccupied states. Cancel interrupted attacks without replay; return to readiness. Valid rescue takes priority over simultaneous attack. Retain range, facing, visibility, Listener stun and physics adjudication.
+- Remote batons attach to the actual right hand/fingers and follow Idle/Walk unchanged. No separate attack arm/chest IK. Retain finger grip and two-hand parcel posing.
+- Weapon rotation peaks immediately on click and returns over **0.5s** with squared decay. Keep the hand attachment position; rotate the weapon **-65°** around hand-relative z. Contact is **immediate**, cooldown **6s**.
+- First-person rest position **(0.27,-0.34,0.46)m**, rotation **(-12,180,-18)°**. Apply **(-0.13,+0.12,+0.18)m** position and **(-65,0,+35)°** rotation deltas multiplied by the decaying strike amount. Restore original **0.95m** wall clearance and minimum **0.35** scale. Complete wall/corner penetration prevention remains unverified.
+- Hide during parcel/beacon carrying, down, valid rescue, inactivity or disconnected slots. Preserve rescue priority, range, visibility and Listener stun rules. No dedicated attack FBX or first-person arms were added.
 
-## Production and validation
+[Attachment/original motion](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/BatonVisual.cs), [employee](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/EmployeeVisual.cs), [static review](../../NoReturns/Assets/_NoReturns/Editor/EmployeeBatonReview.cs), [native checks](../../tools/test_employee_baton.py), [current movement](employee-locomotion.en.md).
 
-[Arm motion](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/EmployeeVisual.Baton.cs), [attachment/first person](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/BatonVisual.cs), [sample review](../../NoReturns/Assets/_NoReturns/Editor/EmployeeBatonReview.cs), [current validation record](../validation/employee-pulse-locomotion-0.9.12.json). Apply over the existing Unity Humanoid without a new FBX/clip, Blender source changes or MCP editing. See the [separate current jump/landing guide](employee-locomotion.en.md).
+## Validation and unknowns
 
-Pass **120** samples: Idle/Walk × headings 0°/90°/135° × readiness and 20 times spanning 0–0.30s at 60fps. Maximum hand/baton extension **0.200000m**, lateral/vertical path deviation **0.021758m**, baton-axis change **0°**, chest twist **0°**, target error **0.041788m**, bone-length change **0.000000358m**. Target error measures reach limits, not weapon separation from the hand. The initial 0.24m extension failed with 0.037240m path deviation from the reach limit. Reducing extension to 0.20m passed the same review.
+[Validation record](../validation/employee-direction-0.9.13.json). Idle/Walk × 3 yaws × 5 walk phases × 31 attack/return times: **930** samples. Maximum attachment distance **0.119736m**, added arm/chest rotation **0°**, return by 0.5s. Mac build: **zero errors/7 existing warnings**. See the record for actual two-client weapon rotation/attachment, cooldown, carrying hiding/restoration and four-client Listener/down/rescue results.
 
-Static review: [readiness](../../art/player-employee-01/unity-review/Pulse-Ready.png), [extension](../../art/player-employee-01/unity-review/Pulse-3.png), [hold](../../art/player-employee-01/unity-review/Pulse-6.png), [retraction](../../art/player-employee-01/unity-review/Pulse-12.png), [return](../../art/player-employee-01/unity-review/Pulse-18.png). These are neither gameplay captures nor user quality approval.
-
-Mac build passes with **zero errors/7 existing warnings**; two actual windowless clients pass **12** pulse/carry-exclusion checks. Actual body-relative baton extension is **0.153486–0.200003m**, maximum path deviation **0.005647m**, axis change **0.001645°**. World hand travel during walking includes employee movement and is not attack reach. See the validation record for additional companion/Listener scope. Confirm CLI **1.0.0-beta.12**, Pipeline **0.8.0-exp.1** and Editor **6000.6.4f1** match official latest releases.
-
-```sh
-python3 tools/cinder_four_player.py build
-python3 tools/test_employee_baton.py
-python3 tools/test_cinder_companion.py
-python3 tools/test_cinder_threat.py --headless
-```
-
-After ending manual play, open no new manual windows or Editor Play. Only launch two windows on “직접 테스트 해볼게” under the [current launch rules](companion-play.en.md). Revised user quality, abrupt look/corners, full delivery/suppression regression, Windows/LAN/performance remain unverified. Backward/sidestep, dedicated rescue/down clips and first-person arms remain outstanding. Preserve [0.9.10 validation](../validation/employee-baton-thrust-0.9.10.json) and [0.9.9 validation](../validation/employee-baton-0.9.9.json) as historical records.
+Official releases match Unity CLI **1.0.0-beta.12**, Pipeline **0.8.0-exp.1**, Editor **6000.6.4f1**; no pending updates. No Blender/MCP editing. Stop the prior manual session and open no new manual windows. Revised naturalness/impact, all-frame penetration, Windows/LAN/performance and the full delivery/suppression regression remain unverified.

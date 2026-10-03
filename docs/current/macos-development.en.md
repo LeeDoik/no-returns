@@ -2,6 +2,10 @@
 
 [한국어](macos-development.ko.md)
 
+## 2026-10-03 — 0.9.13 test/version-control tools updated
+
+Install the latest stable **Python 3.14.8** from the [official release listing](https://www.python.org/downloads/) through uv and link user-local `python3` as default. Retain macOS **3.9.6**. Install the latest **Git 2.56.0** from the [official listing](https://git-scm.com/) with Homebrew. Installed [Git LFS 3.8.0](https://github.com/git-lfs/git-lfs/releases/tag/v3.8.0) and [uv 0.12.22](https://github.com/astral-sh/uv/releases/tag/0.12.22) match official latest releases. Unity CLI **1.0.0-beta.12**, Pipeline **0.8.0-exp.1** and Editor **6000.6.4f1** also match latest releases. No pending updates for tools used this task. Do not restart running Unity/Blender or overwrite unsaved work. Do not commit private installation paths/environment files. After updating Python, recheck 284 documents, syntax and the 19 actual two-client checks successfully. [Game validation](../validation/employee-direction-0.9.13.json).
+
 ## 2026-10-03 — Straight baton thrust 0.9.10
 
 Reconfirmed latest official Unity Editor 6000.6.4f1, CLI 1.0.0-beta.12 and Pipeline 0.8.0-exp.1 for the 0.9.10 revision; no updates required. Use Unity CLI static review, Mac builds and actual windowless processes. No Blender/MCP editing this task. [Current behavior and validation scope](employee-baton.en.md).

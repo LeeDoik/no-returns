@@ -6,7 +6,7 @@ public sealed partial class EmployeeVisual {
     bool wasAirborne;
     string locomotion="Grounded";
     public const float LandingSeconds=.22f;
-    void ResetLocomotion(){airWeight=landingWeight=airSeconds=0;landingElapsed=1;wasAirborne=false;locomotion="Grounded";}
+    void ResetLocomotion(){airWeight=landingWeight=airSeconds=0;landingElapsed=1;wasAirborne=false;locomotion="Grounded";localVelocity=Vector3.zero;directionWeight=0;direction="Idle";}
 
     public void LocomotionPose(bool grounded,float vertical,bool down,float delta) {
         if(down){ResetLocomotion();return;}
@@ -63,6 +63,7 @@ public sealed partial class EmployeeVisual {
             if(hit.collider.GetComponent<CharacterController>()||hit.collider.attachedRigidbody)continue;
             if(hit.normal.y>.5f){grounded=true;break;}
         }
+        DirectionPose(grounded&&verticalSpeed<=1&&!down);
         LocomotionPose(grounded,verticalSpeed,down,delta);
     }
 }

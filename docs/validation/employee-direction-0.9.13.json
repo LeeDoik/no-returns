@@ -1,0 +1,418 @@
+{
+  "status": "PASS",
+  "date": "2026-10-03",
+  "game": "0.9.13",
+  "protocol": 13,
+  "tcp_port": 27842,
+  "baton_baseline": "8cd97aa / 0.9.6",
+  "build": {
+    "status": "PASS",
+    "unity": "6000.6.4f1",
+    "output": "/Users/leedoik/WorkSpace/Game/No_Returns/builds/CinderFourPlayer/NoReturns.app",
+    "error": "",
+    "errors": 0,
+    "warnings": 7
+  },
+  "baton_static": {
+    "status": "PASS",
+    "error": "",
+    "samples": 930,
+    "maxHandDistance": 0.11973613500595093,
+    "maxArmChange": 0.0,
+    "maxChestChange": 0.0
+  },
+  "locomotion_static": {
+    "status": "PASS",
+    "error": "",
+    "samples": 270,
+    "maxBoneLengthChange": 5.066394805908203e-07,
+    "maxLandingFootError": 1.5657568610549788e-06,
+    "maxCompression": 0.06500023603439331,
+    "maxDirectionBoneLengthChange": 5.066394805908203e-07,
+    "maxDirectionExcursion": 0.7441092729568481,
+    "minDirectionalStride": 0.33202028274536133,
+    "directionSamples": 225,
+    "directionCleared": true,
+    "downCleared": true,
+    "returned": true
+  },
+  "baton_direction_native": {
+    "status": "PASS",
+    "run": "/Users/leedoik/WorkSpace/Game/No_Returns/artifacts/cinder-four-player/run-20261003-224632-cd47ae",
+    "checks": [
+      "both peers retain the original unmodified arm layer",
+      "slot 0: original weapon swing replicated with hand attachment and no attack arm/chest layer",
+      "slot 0: cooldown prevents a second attack",
+      "slot 1: original weapon swing replicated with hand attachment and no attack arm/chest layer",
+      "slot 1: cooldown prevents a second attack",
+      "human picks up parcel",
+      "carry hides weapon on both peers",
+      "human cooldown expires while carrying",
+      "carrying rejects an attack",
+      "release restores hand-attached weapon without arm attack layer",
+      "Backward at yaw 0 drives both actual employee poses",
+      "StrafeLeft at yaw 0 drives both actual employee poses",
+      "StrafeRight at yaw 0 drives both actual employee poses",
+      "Backward at yaw 90 drives both actual employee poses",
+      "StrafeLeft at yaw 90 drives both actual employee poses",
+      "StrafeRight at yaw 90 drives both actual employee poses",
+      "jump suspends direction correction on both peers",
+      "landing returns to idle directional pose",
+      "native logs free of errors and placeholder fallback"
+    ],
+    "weapon_rotation_degrees": [
+      [
+        56.598516309792906,
+        59.79723805756462
+      ],
+      [
+        60.04373386078184,
+        61.8462406732789
+      ]
+    ]
+  },
+  "companion_native": {
+    "status": "PASS",
+    "run": "/Users/leedoik/WorkSpace/Game/No_Returns/artifacts/cinder-four-player/run-20261003-224727-91f2f7",
+    "checks": [
+      "two peers only; human controls remain separate; safe practice and seven actions",
+      "actual replicated walking and jump height",
+      "actual companion jump animates rise/fall/landing and returns grounded on both peers",
+      "slower movement, real baton cooldown, parcel pickup/drop and baton visibility on both peers",
+      "follows relocated human through replicated movement",
+      "both headless native logs free of runtime errors and art fallback"
+    ],
+    "actions": [
+      "Baton",
+      "Carry parcel",
+      "Idle",
+      "Jump",
+      "Put down",
+      "Slow walk",
+      "Walking / sidestep"
+    ],
+    "jump_height_range": 0.644800215959549,
+    "locomotion_phases": [
+      [
+        "Apex",
+        "Falling",
+        "Grounded",
+        "Landing",
+        "Rising"
+      ],
+      [
+        "Apex",
+        "Falling",
+        "Grounded",
+        "Landing",
+        "Rising"
+      ]
+    ],
+    "max_air_weight": [
+      1.0,
+      1.0
+    ],
+    "max_landing_weight": [
+      0.9919238090515137,
+      0.9940164089202881
+    ]
+  },
+  "threat_native": {
+    "status": "PASS",
+    "run": "/Users/leedoik/WorkSpace/Game/No_Returns/artifacts/cinder-four-player/run-20261003-224839-15a4f5",
+    "checks": [
+      "four hazard slots/protocol 13",
+      "Cinder stages start stopped with shared outer down state",
+      "ship UI opens",
+      "route selected",
+      "departure enables patrol",
+      "ship UI closes",
+      "ship calls ignored/no attack",
+      "host carries parcel",
+      "quiet approach has no footstep noise",
+      "call causes investigation",
+      "warning before cargo-carrier attack",
+      "host down replicated to all four",
+      "down releases parcel on all peers",
+      "down blocks movement/pickup/baton",
+      "distant rescue rejected",
+      "slot 3 baits a close warning",
+      "valid rescue blocks baton contact and posing",
+      "slot 3 baton stuns on four peers",
+      "slot 3 rescue progress replicated",
+      "release cancels rescue",
+      "baton cooldown prevents reset",
+      "slot 3 rescues host on all peers",
+      "rescuer remains vulnerable after revival",
+      "English client context/native font",
+      "all four down triggers emergency report",
+      "four recovered aboard/zero unpaid reward",
+      "recovered host can open ship terminal",
+      "next shift clears down/cooldown and restores parcel",
+      "no Cinder progression file created",
+      "four player logs have no exceptions"
+    ],
+    "final": {
+      "protocol": 13,
+      "clueMask": 0,
+      "phase": 0,
+      "credits": 0,
+      "receipt": 0,
+      "returnPay": 0,
+      "tick": 3228,
+      "holder": -1,
+      "ack": 1885,
+      "players": 4,
+      "recipient": 0,
+      "occupiedMask": 15,
+      "positions": [
+        {
+          "x": -21.700000762939453,
+          "y": 0.03499988093972206,
+          "z": -20.049999237060547
+        },
+        {
+          "x": -19.700000762939453,
+          "y": 0.03499988093972206,
+          "z": -20.049999237060547
+        },
+        {
+          "x": -21.700000762939453,
+          "y": 0.03499988093972206,
+          "z": -18.649999618530273
+        },
+        {
+          "x": -19.700000762939453,
+          "y": 0.03499988093972206,
+          "z": -18.649999618530273
+        }
+      ],
+      "yaws": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "p0": {
+        "x": -21.700000762939453,
+        "y": 0.03499988093972206,
+        "z": -20.049999237060547
+      },
+      "p1": {
+        "x": -19.700000762939453,
+        "y": 0.03499988093972206,
+        "z": -20.049999237060547
+      },
+      "cargo": {
+        "x": -20.700000762939453,
+        "y": 0.5384781956672668,
+        "z": -18.5
+      },
+      "rotation": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0,
+        "w": 1.0
+      },
+      "beaconCarrier": -1,
+      "beaconExists": false,
+      "receiptCollected": false,
+      "receiptReady": false,
+      "receiptProgress": 0.0,
+      "yaw0": 0.0,
+      "yaw1": 0.0,
+      "shiftElapsed": 52.241004943847656,
+      "suppressionStage": 0,
+      "outerDanger": {
+        "position": {
+          "x": 29.0,
+          "y": 0.0,
+          "z": 18.0
+        },
+        "noiseTarget": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0
+        },
+        "state": 0,
+        "hits": 0,
+        "rescues": 0,
+        "evacuations": 0,
+        "noises": 0,
+        "pursuedPlayer": -1,
+        "down": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "rescue": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "cooldown": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "down0": false,
+        "down1": false,
+        "rescue0": 0.0,
+        "rescue1": 0.0,
+        "cooldown0": 0.0,
+        "cooldown1": 0.0,
+        "warning": 0.0
+      },
+      "unlocked": false,
+      "hard": false,
+      "deliveries": 0,
+      "charges": 0,
+      "beaconTime": 0.0,
+      "beaconPosition": {
+        "x": -20.700000762939453,
+        "y": 1.2300000190734863,
+        "z": -29.0
+      },
+      "hazard": true,
+      "cinderReview": true,
+      "danger": {
+        "position": {
+          "x": -23.0,
+          "y": 0.0,
+          "z": 2.0
+        },
+        "noiseTarget": {
+          "x": -23.711135864257812,
+          "y": 0.03499990701675415,
+          "z": -18.258752822875977
+        },
+        "state": 0,
+        "hits": 5,
+        "rescues": 1,
+        "evacuations": 1,
+        "noises": 17,
+        "pursuedPlayer": -1,
+        "down": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "rescue": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "cooldown": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "down0": false,
+        "down1": false,
+        "rescue0": 0.0,
+        "rescue1": 0.0,
+        "cooldown0": 0.0,
+        "cooldown1": 0.0,
+        "warning": 0.0
+      },
+      "connected": true,
+      "message": "Emergency recovery / secured pay retained",
+      "rejection": ""
+    },
+    "scope": "Four native Mac processes and ordinary inputs; human fear, audio readability, fun, LAN/Windows and performance remain unverified"
+  },
+  "static_samples": 1425,
+  "native_checks": 55,
+  "tools": {
+    "unity_cli": "1.0.0-beta.12",
+    "pipeline": "0.8.0-exp.1",
+    "unity_editor": "6000.6.4f1",
+    "python_initial": "3.9.6",
+    "python_updated": "3.14.8",
+    "git_initial": "2.54.0 Apple Git-157",
+    "git_lfs": "3.8.0",
+    "git_updated": "2.56.0",
+    "uv": "0.12.22",
+    "pending_updates": [],
+    "official_sources": [
+      "https://www.python.org/downloads/",
+      "https://git-scm.com/",
+      "https://github.com/git-lfs/git-lfs/releases/tag/v3.8.0",
+      "https://github.com/astral-sh/uv/releases/tag/0.12.22"
+    ]
+  },
+  "resolved_failures": [
+    {
+      "check": "initial native direction check",
+      "error": "StrafeLeft at yaw 90 did not move; dropped cargo blocked spawn access",
+      "resolution": "Use the existing clear access lane and match outbound/return timing; do not modify collision rules",
+      "run": "run-20261003-224459-c28403"
+    },
+    {
+      "check": "first companion/threat launch",
+      "error": "Port 27842 still held by closing prior connections",
+      "resolution": "Wait for port release, then run sequentially"
+    },
+    {
+      "check": "initial documentation check",
+      "error": "New validation JSON not yet written",
+      "resolution": "Write this receipt and rerun links/language checks"
+    }
+  ],
+  "not_verified": [
+    "human quality of restored baton and backward/sidestep presentation",
+    "dedicated backward/sidestep animation clips",
+    "first-person arms",
+    "all-frame clothing or wall penetration",
+    "Windows/LAN/performance",
+    "full delivery/suppression regression"
+  ],
+  "manual_session": "prior run-20261003-223811-25d870 stopped; no new manual windows",
+  "baton_direction_native_python_3148": {
+    "status": "PASS",
+    "run": "/Users/leedoik/WorkSpace/Game/No_Returns/artifacts/cinder-four-player/run-20261003-225057-c04491",
+    "checks": [
+      "both peers retain the original unmodified arm layer",
+      "slot 0: original weapon swing replicated with hand attachment and no attack arm/chest layer",
+      "slot 0: cooldown prevents a second attack",
+      "slot 1: original weapon swing replicated with hand attachment and no attack arm/chest layer",
+      "slot 1: cooldown prevents a second attack",
+      "human picks up parcel",
+      "carry hides weapon on both peers",
+      "human cooldown expires while carrying",
+      "carrying rejects an attack",
+      "release restores hand-attached weapon without arm attack layer",
+      "Backward at yaw 0 drives both actual employee poses",
+      "StrafeLeft at yaw 0 drives both actual employee poses",
+      "StrafeRight at yaw 0 drives both actual employee poses",
+      "Backward at yaw 90 drives both actual employee poses",
+      "StrafeLeft at yaw 90 drives both actual employee poses",
+      "StrafeRight at yaw 90 drives both actual employee poses",
+      "jump suspends direction correction on both peers",
+      "landing returns to idle directional pose",
+      "native logs free of errors and placeholder fallback"
+    ],
+    "weapon_rotation_degrees": [
+      [
+        61.8462406732789,
+        64.92018071439408
+      ],
+      [
+        60.04642654552805,
+        61.8462406732789
+      ]
+    ]
+  },
+  "native_repeat_checks": 19,
+  "documentation": {
+    "status": "PASS",
+    "documents": 284,
+    "python": "3.14.8"
+  }
+}
