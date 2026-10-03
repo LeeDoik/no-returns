@@ -2,6 +2,12 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-03 — Proposed next character work priorities
+
+Inspect current code and local employee assets. Propose baton attack motion → jump/landing plus backward/sideways locomotion → first-person arms. Current attacks change only the baton object rotation/position and have no dedicated full-body clip. The first task would add a brief preparation/swing/recovery moving the arm, shoulder and weapon together, aligned with existing contact/cooldown and retaining carry/down/rescue blocking. Extra locomotion would complement the reused forward Walk. First-person arms are a separate production task completing local baton/carrying presentation. This order is a proposal, not implementation authorization, new-motion validation or play-quality approval. Specific quality feedback from the recent hands-on session has not yet been received.
+
+Investigation only: no code changes; game version remains 0.9.8. Evidence is current baton presentation in `BatonVisual.cs` and local Idle/Walking assets. Check documentation links/language counterparts only; do not rerun build/play.
+
 ## 2026-10-03 — Clean up manually closed play session
 
 The user reports closing both game windows manually. Run the existing `python3 tools/cinder_four_player.py stop` to remove remaining session metadata. Confirm no running game processes or TCP 27842 listener. An immediate temporary socket bind fails, so do not record immediate port reuse as verified. Closing the windows manually is an accepted exit method; a separate spoken stop request is optional. No code changes or user quality approval.

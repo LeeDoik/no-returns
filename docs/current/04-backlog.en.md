@@ -2,6 +2,10 @@
 
 [한국어](04-backlog.ko.md)
 
+## 2026-10-03 — Proposed next character work priorities
+
+Inspect current code and local employee assets. Propose baton attack motion → jump/landing plus backward/sideways locomotion → first-person arms. Current attacks change only the baton object rotation/position and have no dedicated full-body clip. The first task would add a brief preparation/swing/recovery moving the arm, shoulder and weapon together, aligned with existing contact/cooldown and retaining carry/down/rescue blocking. Extra locomotion would complement the reused forward Walk. First-person arms are a separate production task completing local baton/carrying presentation. This order is a proposal, not implementation authorization, new-motion validation or play-quality approval. Specific quality feedback from the recent hands-on session has not yet been received.
+
 ## 2026-10-03 — Two-handed parcel carrying 0.9.8
 
 Implement and validate near-parcel two-hand posing and release/down clearing. Distant/extreme-view/rotating contact gaps, finger penetration, first-person occlusion and human quality remain. Dedicated beacon/attack/jump/rescue motions and first-person arms remain incomplete. [Implementation, evidence and limits](employee-animation.en.md).
