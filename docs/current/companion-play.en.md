@@ -1,6 +1,27 @@
-# Hands-on player + automatic companion — 0.9.15
+# Hands-on player + automatic companion — 0.9.22
 
 [한국어](companion-play.ko.md)
+
+## 2026-10-04 — Companion rescue demonstration and replay 0.9.22
+
+The manual-test companion first approaches and falls nearby; hold use (default **E**) for **2.5s** to revive it. It then runs the existing **32s** movement/jump/baton/parcel sequence before returning to rescue practice. In practice mode only, the host's reset-lab binding (default **R**) prepares another rescue demonstration without resetting the room/player position. [Usage and limits](companion-play.en.md), [validation](../validation/companion-rescue-0.9.22.json). Game **0.9.22**, protocol **13**, TCP **27842**. Supersedes previous default-companion down/rescue-not-included statements. Stop the previous manual session; open new manual windows only upon a hands-on test request.
+
+### Usage and implementation
+
+1. On a hands-on test request, use the existing `python3 tools/cinder_four_player.py start --companion` to open the human/companion 16:9 windows.
+2. The companion falls when grounded, within **less than 1.8m**, with line of sight. It drops its parcel first. It waits for rescue rather than reviving automatically.
+3. With empty hands, hold E within **2m**. Releasing or moving away cancels progress. Share the existing 2.5s rescue rule. Down/rescue/get-up poses and baton hiding/restoration appear on both peers.
+4. After **1.1s** showing recovery, resume the existing demonstration. R prepares rescue again without a build or app restart. If rebound, use the current key shown in the HUD. The existing settings entry remains `Reset lab / 운반 실험 초기화`.
+
+[Companion code](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.Companion.cs) keeps practice stages host-owned and walks the bot through existing inputs/networking. It does not teleport into range. Extract only the existing rescue loop as `TickRescues` from [rescue adjudication](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryThreat.cs); practice runs no enemy AI, hits or delivery. [Integration/down blocking](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs), [E prompt](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.Controls.cs), [bilingual UI strings](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryLanguage.cs), [game version](../../NoReturns/ProjectSettings/ProjectSettings.asset). Retain existing development-argument activation guards. In practice, `danger.state` carries demonstration stages through the existing message field; enemy-state semantics in normal hazard mode remain unchanged. Replay does not erase cumulative rescue counts.
+
+Local avoidance cannot guarantee approach through complex mazes, different floors or blocked routes. Wait in open space or move closer when necessary. All-terrain approach, human quality and actual GPU HUD review remain unverified.
+
+### Actual validation
+
+Compilation and Mac build: 0 errors/7 existing warnings. [Focused test](../../tools/test_companion_rescue.py): **13 checks/14.470s**, using two actual clients for approach/down immobility, baton hiding, rescue progress/cancellation, revival/get-up/standing, R replay, preserved human position, repeat rescue and error-free logs. Normal-hazard [quick rescue](../../tools/cinder_quick_test.py) also passes **12 checks/8.323s** (rescue segment 5.111s) for the shared rule. Both times exclude building and include startup/shutdown. The initial replay test incorrectly expected the cumulative rescue count to reset; correct only the test to compare cleared progress and a second successful rescue, then pass.
+
+Update the existing [long companion test](../../tools/test_cinder_companion.py) to complete the opening rescue automatically and wait for the new flow; do not run it this task. Do not repeat the full 32s sequence, delivery/four-player or unrelated pose checks. No manual windows/Editor Play. Confirm official latest Unity 6000.6.4f1, CLI 1.0.0-beta.12 and Pipeline 0.8.0-exp.1; no pending updates. Windows/LAN/performance remain unverified.
 
 ## 2026-10-04 — Requested manual session for 0.9.21 started
 

@@ -13,7 +13,7 @@ public sealed partial class CarryRoom {
     void OpenShip(){if(!active||missionPhase<0||!AboardLocal)return;ClosePanels();shipMenu=true;SetCursor(false);}
     void TogglePause(){if(controls.Rebinding||controls.EscapeConsumedFrame==Time.frameCount)return;if(UiOpen&&active)ClosePanels();else{menu=true;SetCursor(false);}}
     bool RescueNearby(){
-        if(!hazard||danger==null||holder==local||equipment.Carrier==local)return false;
+        if((!hazard&&!companionPractice)||danger==null||holder==local||equipment.Carrier==local)return false;
         for(int i=0;i<4;i++)if(i!=local&&Present(i)&&danger.IsDown(i)&&Vector3.Distance(workers[local].transform.position,workers[i].transform.position)<=2&&CarryThreat.Sight(workers[local].transform.position,workers[i].transform.position))return true;
         return false;
     }

@@ -143,16 +143,19 @@ public sealed class CarryThreat {
             }
         }
         if(outer)return false;
-        for(int i=0;i<count;i++){
+        TickRescues(players,mask,inputs,holder,dt);
+        bool everyone=mask!=0;for(int i=0;i<count;i++)if((mask&(1<<i))!=0&&!Down[i])everyone=false;
+        if(everyone)allDown+=dt;else allDown=0;
+        if(allDown>=3){evacuations++;return true;}return false;
+    }
+    public void TickRescues(Vector3[] players,int mask,CarryInput[] inputs,int holder,float dt){
+        for(int i=0;i<players.Length;i++){
             int other=RescueTarget(i,players,mask);
             bool can=(mask&(1<<i))!=0&&!Down[i]&&other>=0&&holder!=i&&inputs[i].rescue;
             if(rescueTargets[i]!=other)Rescue[i]=0;rescueTargets[i]=other;
             Rescue[i]=can?Rescue[i]+dt:0;
             if(Rescue[i]>=2.5f){Down[other]=false;protection[other]=4;Rescue[i]=0;rescues++;}
         }
-        bool everyone=mask!=0;for(int i=0;i<count;i++)if((mask&(1<<i))!=0&&!Down[i])everyone=false;
-        if(everyone)allDown+=dt;else allDown=0;
-        if(allDown>=3){evacuations++;return true;}return false;
     }
     readonly int[] rescueTargets={-1,-1,-1,-1};
     public int RescueTarget(int who,Vector3[] players,int mask){

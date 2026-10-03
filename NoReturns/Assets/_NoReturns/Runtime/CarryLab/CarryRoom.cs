@@ -58,7 +58,7 @@ public sealed partial class CarryRoom : MonoBehaviour {
         companionBot=companionPractice&&Array.IndexOf(args,"--companion-bot")>=0&&Array.IndexOf(args,"--join")>=0;
 #endif
         hazard=cinderReview?Array.IndexOf(args,"--map-only")<0&&Array.IndexOf(args,"--delivery-only")<0:Array.IndexOf(args,"--hazard")>=0;
-        if(companionPractice){hazard=false;danger=new ThreatState{cooldown=new float[4]};}
+        if(companionPractice){hazard=false;threat=new CarryThreat(cinder:true);danger=threat.Snapshot();danger.state=1;}
         if(hazard){threat=new CarryThreat(cinder:cinderReview);danger=threat.Snapshot();outer=new CarryThreat(threat,cinderReview);suppression=new CarrySuppression(cinderReview);outerDanger=outer.Snapshot();if(!cinderReview)clues=new CarryClues();}
         if(!companionPractice&&(hazard||Array.IndexOf(args,"--delivery")>=0||(cinderReview&&Array.IndexOf(args,"--map-only")<0))){mission=new CarryMission(cinder:cinderReview);missionPhase=0;}
         for(int i=0;i<args.Length;i++) {
@@ -114,10 +114,10 @@ public sealed partial class CarryRoom : MonoBehaviour {
         if(hosting){
             ApplyQuickFixture();
             int phaseAtTick=mission==null?-1:mission.Phase;
-            tick++;if(inputs[0].reset){if(mission==null)ResetRoom();inputs[0].reset=false;}
+            tick++;if(inputs[0].reset){if(companionPractice)RestartCompanionRescue();else if(mission==null)ResetRoom();inputs[0].reset=false;}
             for(int i=0;i<4;i++){
                 if(!Present(i))continue;var input=inputs[i];if(i>0&&Time.realtimeSinceStartup-lastInputs[i]>.3f){input.x=0;input.z=0;input.rescue=false;input.call=false;input.shove=false;}
-                if(hazard&&threat.Down[i]){input.place=false;input.confirmReturn=false;input.drop=false;input.x=0;input.z=0;input.jump=false;input.interact=false;input.action=false;input.call=false;input.shove=false;input.rescue=false;input.buy=false;input.contract=false;input.deploy=false;input.inspect=false;}
+                if((hazard||companionPractice)&&threat.Down[i]){input.place=false;input.confirmReturn=false;input.drop=false;input.x=0;input.z=0;input.jump=false;input.interact=false;input.action=false;input.call=false;input.shove=false;input.rescue=false;input.buy=false;input.contract=false;input.deploy=false;input.inspect=false;}
                 workers[i].transform.rotation=Quaternion.Euler(0,input.yaw,0);
                 Vector3 move=Quaternion.Euler(0,input.yaw,0)*Vector3.ClampMagnitude(new Vector3(input.x,0,input.z),1)*(hazard&&input.quiet?(holder==i?1f:1.5f):(holder==i?2.5f:4f))*Time.fixedDeltaTime;
                 if(holder==i&&move.sqrMagnitude>0){foreach(var hit in Physics.BoxCastAll(cargo.position,new Vector3(.4f,.325f,.325f)*.98f,move.normalized,cargo.rotation,move.magnitude+.025f,~0,QueryTriggerInteraction.Ignore)){if(hit.collider!=workers[i]&&hit.collider!=cargoCollider){move=Vector3.zero;break;}}}
@@ -187,7 +187,7 @@ public sealed partial class CarryRoom : MonoBehaviour {
         input.interact=false;
         if(holder==who||equipment.Carrier==who)return;
         var pos=workers[who].transform.position;var origin=pos+Vector3.up*1.57f;var look=Quaternion.Euler(input.pitch,input.yaw,0);
-        if(hazard&&threat.RescueTarget(who,Positions(),occupiedMask)>=0)return;
+        if((hazard||companionPractice)&&threat.RescueTarget(who,Positions(),occupiedMask)>=0)return;
         if(mission!=null&&mission.Phase==3&&!mission.ReceiptCollected&&ReceiptFeedback.CanReach(origin,look)){input.interact=true;return;}
         if(clues!=null&&clues.Target(origin,look)>=0){input.inspect=true;return;}
         if(equipment.PickUp(who,pos,look,holder!=who))return;
@@ -195,7 +195,7 @@ public sealed partial class CarryRoom : MonoBehaviour {
         
     }
     void Interact(int who){
-        if(hazard&&threat.Down[who])return;
+        if((hazard||companionPractice)&&threat.Down[who])return;
         if(mission!=null&&mission.Phase==3){if(ReceiptFeedback.CanReach(workers[who].transform.position+Vector3.up*1.57f,Quaternion.Euler(inputs[who].pitch,inputs[who].yaw,0))&&mission.CollectReceipt())status="Receipt collected / return aboard to get paid";return;}
         if(mission!=null&&mission.Phase!=2)return;
         if(!ParcelTarget(who,Quaternion.Euler(inputs[who].pitch,inputs[who].yaw,0)))return;
@@ -207,12 +207,12 @@ public sealed partial class CarryRoom : MonoBehaviour {
     [Serializable] class UiEvidence {public string menu,context,shipAction,buyButton,language,host,objective,status,firstRecord,secondRecord,suppressionCue;public bool koreanGlyph,journalOpen;}
     static void WriteAtomic(string path,string value){var temp=path+".tmp";File.WriteAllText(temp,value);if(File.Exists(path))File.Replace(temp,path,null);else File.Move(temp,path);}
     void WriteEvidence(CarryState s){if(testFolder==null)return;try{WriteAtomic(Path.Combine(testFolder,"ui.json"),JsonUtility.ToJson(new UiEvidence{menu=settingsMenu?"settings":shipMenu?"ship":journalOpen?"journal":menu?"pause":"",context=playHud==null?"":playHud.ContextText,shipAction=playHud==null?"":playHud.MenuText("shipAction"),buyButton=playHud==null?"":playHud.MenuText("buy"),suppressionCue=suppression==null?null:T(CarrySuppression.Cue(suppression.Stage,cinderReview)),journalOpen=journalOpen,firstRecord=T(clues!=null&&(clues.Mask&1)!=0?CarryClues.FirstBody:"Not discovered"),secondRecord=T(clues!=null&&(clues.Mask&2)!=0?CarryClues.SecondBody:"Not discovered"),language=CarryLanguage.Korean?"ko":"en",host=T("HOST"),objective=T(cinderReview&&missionPhase<0?"CINDER / FOUR-PLAYER MAP TEST":CarryMission.Objective(missionPhase)),status=T(status),koreanGlyph=CarryLanguage.Font.HasCharacter('한')}));WriteAtomic(Path.Combine(testFolder,"state.json"),JsonUtility.ToJson(s));var animation=new AnimationEvidence{companionPractice=companionPractice,companionBot=companionBot,companionAction=companionAction,quickFixture=quickFixture,hands=baton.Hands,employees=new EmployeeVisual.State[4],batons=new BatonVisual.State[4]};for(int i=0;i<4;i++)if(employeeVisuals[i]&&employeeVisuals[i].Ready)animation.employees[i]=employeeVisuals[i].Capture();for(int i=0;i<4;i++)animation.batons[i]=baton.Capture(i);WriteAtomic(Path.Combine(testFolder,"animation.json"),JsonUtility.ToJson(animation));}catch(IOException){} }
-    void LateUpdate(){if(eye==null)return;eye.transform.position=workers[local].transform.position+Vector3.up*(hazard&&danger!=null&&danger.IsDown(local)?.55f:1.57f);eye.transform.rotation=Quaternion.Euler(pitch,yaw,0);
+    void LateUpdate(){if(eye==null)return;eye.transform.position=workers[local].transform.position+Vector3.up*((hazard||companionPractice)&&danger!=null&&danger.IsDown(local)?.55f:1.57f);eye.transform.rotation=Quaternion.Euler(pitch,yaw,0);
         // Apply before every render, including the inactive startup menu.
         for(int i=0;i<4;i++){bool visible=i!=local&&Present(i);foreach(var r in bodies[i])r.enabled=visible;}
         for(int i=0;i<4;i++)workers[i].gameObject.SetActive(Present(i));
         for(int i=0;i<4;i++)if(Present(i)&&employeeVisuals[i]){
-            bool down=hazard&&danger!=null&&danger.IsDown(i);
+            bool down=(hazard||companionPractice)&&danger!=null&&danger.IsDown(i);
             employeeVisuals[i].Animate(workers[i].transform.position,down,Time.deltaTime);
             employeeVisuals[i].GroundLocomotion(down,Time.deltaTime);
             employeeVisuals[i].DownPose(down,true,Time.deltaTime);
@@ -233,7 +233,7 @@ public sealed partial class CarryRoom : MonoBehaviour {
         playHud.Apply(hosting?Snapshot():target??Snapshot(),local,active&&!UiOpen);
         if(active&&!UiOpen)playHud.SetContext(ContextPrompt());
         if(active&&!UiOpen&&!(hazard&&(missionPhase==2||missionPhase==3)))playHud.SetMovement(controls.Key(0)+" / "+controls.Key(1)+" / "+controls.Key(2)+" / "+controls.Key(3)+T(" move · ")+controls.Key(8)+T(" jump · Esc settings"));
-        if(companionPractice&&active&&!UiOpen)playHud.SetMovement(T(companionBot?"BOT / ":"YOU + BOT / safe practice · ")+T(companionBot?companionAction:"Move freely; the bot follows and demonstrates nearby"));
+        if(companionPractice&&active&&!UiOpen)playHud.SetMovement(T(companionBot?"BOT / ":"YOU + BOT / safe practice · ")+T(companionBot?companionAction:danger!=null&&danger.state==2?"Hold use near the downed bot to rescue":danger!=null&&danger.state==1?"Bot approaching for rescue practice":"Move freely; the bot follows and demonstrates nearby")+" / "+controls.Key(12)+T(" restart rescue demo"));
         RenderMenus(hosting?Snapshot():target??Snapshot());PreviewPlacement();
         if(capturePending && testFolder!=null){capturePending=false;var rt=new RenderTexture(960,600,24);rt.Create();
             var req=new UnityEngine.Rendering.Universal.UniversalRenderPipeline.SingleCameraRequest{destination=rt};

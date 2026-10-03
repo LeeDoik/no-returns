@@ -13,6 +13,12 @@ def main():
     phases = [set(), set()]
     air_weights, landing_weights = [0, 0], [0, 0]
     try:
+        # The practice now opens with a real rescue; leave E held to rescue the
+        # next down demonstration too, then measure the existing movement loop.
+        lab.wait("initial rescue demonstration",lambda:lab.state(folders[0])["danger"]["down"][1],15)
+        lab.command(folders[0],1,rescue=True)
+        lab.wait("initial rescue complete",lambda:not lab.state(folders[0])["danger"]["down"][1],8)
+        lab.wait("normal demonstration loop",lambda:lab.state(folders[0])["danger"]["state"]==0,4)
         start = time.monotonic()
         while time.monotonic() - start < 37:
             state = lab.state(folders[0])
@@ -55,6 +61,7 @@ def main():
         assert struck and held and released and hidden and restored, (struck, held, released, hidden, restored)
         report["checks"].append("slower movement, real baton cooldown, parcel pickup/drop and baton visibility on both peers")
         # Move the human with the existing ordinary input channel; the bot must follow, without teleporting.
+        lab.wait("finish rescue before following",lambda:lab.state(folders[0])["danger"]["state"]==0,10)
         lab.command(folders[0], 2, yaw=270, z=1)
         time.sleep(3)
         lab.command(folders[0], 3)

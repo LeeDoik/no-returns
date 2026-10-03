@@ -2,6 +2,10 @@
 
 [한국어](README.md)
 
+## 2026-10-04 — Companion rescue demonstration and replay 0.9.22
+
+The manual-test companion first approaches and falls nearby; hold use (default **E**) for **2.5s** to revive it. It then runs the existing **32s** movement/jump/baton/parcel sequence before returning to rescue practice. In practice mode only, the host's reset-lab binding (default **R**) prepares another rescue demonstration without resetting the room/player position. [Usage and limits](current/companion-play.en.md), [validation](validation/companion-rescue-0.9.22.json). Game **0.9.22**, protocol **13**, TCP **27842**. Supersedes previous default-companion down/rescue-not-included statements. Stop the previous manual session; open new manual windows only upon a hands-on test request.
+
 ## 2026-10-04 — Fall and get-up motion 0.9.21
 
 Replace the teammate's instant 90° tilt with a **0.65s** knee buckle/side collapse and **0.95s** roll upright/knee extension. Layer the pose over the existing Humanoid; preserve rescue, movement, collision and input rules. [Production and remaining scope](current/employee-animation.en.md), [validation](validation/employee-down-0.9.21.json). Game **0.9.21**, protocol **13**, TCP **27842**. This supersedes earlier missing-down/get-up statements within this procedural presentation scope. Dedicated motion-capture clips, ragdolls, actual rescue contact, human naturalness and slope/wall intersection correction remain pending.

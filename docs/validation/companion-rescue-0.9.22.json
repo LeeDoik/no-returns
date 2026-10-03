@@ -1,0 +1,72 @@
+{
+  "date": "2026-10-04",
+  "version": "0.9.22",
+  "protocol": 13,
+  "port": 27842,
+  "status": "PASS",
+  "companion": {
+    "status": "PASS",
+    "checks": [
+      "safe bot approaches and falls nearby",
+      "down pose and baton hiding on both peers",
+      "down bot stays still",
+      "real hold progresses with first-person hands",
+      "release cancels and preserves down",
+      "real hold revives on both peers",
+      "get-up visible",
+      "normal loop resumes standing with baton",
+      "R repeats rescue without room reset",
+      "human position unchanged by replay",
+      "repeat rescue succeeds",
+      "repeat returns to normal",
+      "no runtime errors"
+    ],
+    "seconds": 14.47
+  },
+  "normal_rescue": {
+    "status": "PASS",
+    "scenario": "rescue",
+    "run": "/Users/leedoik/WorkSpace/Game/No_Returns/artifacts/cinder-four-player/run-20261004-031116-09b65d",
+    "checks": [
+      "rescue fixture ready",
+      "partner starts down",
+      "down pose settles on both clients",
+      "real rescue progress and hands",
+      "remote rescuer crouches with supported hands",
+      "release cancels rescue",
+      "remote rescue pose clears on cancel",
+      "real hold revives partner on both clients",
+      "revived partner visibly gets up",
+      "get-up returns to standing on both clients",
+      "revival restores baton",
+      "no runtime errors or progression save"
+    ],
+    "scenario_seconds": {
+      "rescue": 5.111
+    },
+    "total_seconds": 8.323
+  },
+  "build": {
+    "status": "PASS",
+    "unity": "6000.6.4f1",
+    "output": "/Users/leedoik/WorkSpace/Game/No_Returns/builds/CinderFourPlayer/NoReturns.app",
+    "error": "",
+    "errors": 0,
+    "warnings": 7
+  },
+  "tools": {
+    "unity": "6000.6.4f1",
+    "cli": "1.0.0-beta.12",
+    "pipeline": "0.8.0-exp.1",
+    "official_latest_checked": true,
+    "pending_updates": []
+  },
+  "corrected_test_failure": "Replay originally asserted cumulative rescues reset to zero. The existing counter is cumulative; verify reset progress and second successful rescue instead. No runtime change was needed for this failure.",
+  "unverified": [
+    "Human quality and native GPU HUD appearance",
+    "Full 32-second movement/carry cycle was not rerun this task",
+    "All maze/slope approach cases",
+    "Four-player, full delivery, Windows/LAN and performance"
+  ],
+  "manual": "Prior session stopped; no manual windows reopened and no Editor Play."
+}

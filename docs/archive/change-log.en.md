@@ -2,6 +2,12 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-04 — Companion rescue demonstration and replay 0.9.22
+
+The manual-test companion first approaches and falls nearby; hold use (default **E**) for **2.5s** to revive it. It then runs the existing **32s** movement/jump/baton/parcel sequence before returning to rescue practice. In practice mode only, the host's reset-lab binding (default **R**) prepares another rescue demonstration without resetting the room/player position. [Usage and limits](../current/companion-play.en.md), [validation](../validation/companion-rescue-0.9.22.json). Game **0.9.22**, protocol **13**, TCP **27842**. Supersedes previous default-companion down/rescue-not-included statements. Stop the previous manual session; open new manual windows only upon a hands-on test request.
+
+Implement the user-approved companion rescue/replay demonstration. Stop the previous manual session and open no new windows. Preserve and connect shared rescue adjudication. Build 0 errors/7 existing warnings; actual two-client focused 13 checks (14.470s) and normal rescue 12 checks (8.323s) pass. Correct the test's mistaken cumulative-counter reset expectation and pass. Full 32s sequence, delivery/four-player, human/GPU UI quality, all terrain, Windows/LAN/performance remain unverified. Pass 288 document checks, Python syntax and changed-file whitespace checks. Tools match latest releases. Restore generated scene/URP changes; preserve/exclude 8 preexisting material and 2 Blender modifications.
+
 ## 2026-10-04 — Requested manual session for 0.9.21 started
 
 On the user's hands-on test request, run the existing `python3 tools/cinder_four_player.py start --companion`. Confirm the human host/automatic companion processes, host listening, slot 1, occupancy mask 3 and bot readiness in session `run-20261004-024656-0b28ee`. Use the existing side-by-side 16:9 layout settings. The default companion mode is safe movement/jump/baton/parcel practice; it does not demonstrate down/rescue/get-up. Do not count this as human quality validation of 0.9.21 down/recovery. No code changes or rebuild. Leave running; user feedback remains pending. Pass 288 document checks and changed-file whitespace checks.
