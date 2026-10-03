@@ -2,6 +2,10 @@
 
 [한국어](demo-art-list.ko.md)
 
+## 2026-10-03 — Employee full body and idle/walk 0.9.5
+
+[Current integration, local reproduction and validation scope](employee-animation.en.md). Import corrected Idle and Walking through separate Humanoid Avatars, connect the full employee body and switch motions from actual movement speed. Each window hides its own body and shows three teammates with team tints. Game 0.9.5, protocol 13, TCP 27842. Keep source motions/generated Unity assets local; publish reproduction code, validation records and static images. Supersede earlier Unity/idle-walk-not-integrated statements within this scope. Carrying hand contact, dedicated additional motions, first-person arms and user quality/other-environment review remain pending.
+
 Idle received/corrected, 2026-10-03: [upper-body correction and checks](03-guides.en.md#2026-10-03--correct-the-supplied-idle-upper-body-posture). Correct Mixamo Idle frames 1–251 and retain it with the original in a local working file. Walking frames 1–32 were received/structurally inspected only. Supersede the earlier not-downloaded status within this scope; Unity integration, walking rest-pose conversion and user quality approval remain pending.
 
 Production direction, 2026-10-03: at the user's request, adopt [Mixamo-first motion reuse](03-guides.en.md#2026-10-03--prioritize-mixamo-motion-reuse). Preserve the current Blender rig and test Idle/Walking compatibility first. Seek suitable carrying/baton/rescue candidates before adjusting necessary contacts/timing. The historical Mixamo-auto-rig-first proposal below is superseded by preserving the existing rig and testing mapping/retargeting. Upload, download and clip integration have not yet been performed.

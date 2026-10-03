@@ -2,6 +2,10 @@
 
 [한국어](03-guides.ko.md)
 
+## 2026-10-03 — Employee full body and idle/walk 0.9.5
+
+[Current integration, local reproduction and validation scope](employee-animation.en.md). Import corrected Idle and Walking through separate Humanoid Avatars, connect the full employee body and switch motions from actual movement speed. Each window hides its own body and shows three teammates with team tints. Game 0.9.5, protocol 13, TCP 27842. Keep source motions/generated Unity assets local; publish reproduction code, validation records and static images. Supersede earlier Unity/idle-walk-not-integrated statements within this scope. Carrying hand contact, dedicated additional motions, first-person arms and user quality/other-environment review remain pending.
+
 ## 2026-10-03 — Sequence before Unity integration
 
 Next is Unity import and motion testing. Import the corrected Idle FBX and Walking FBX, create separate Avatars with **Humanoid / Create From This Model**, and check required bones/T poses. Their rest-joint positions differ, so do not blindly copy the same Avatar. Preview Idle/Walk loops and foot/shoulder deformation, then drive Idle↔Walk from actual movement speed with Root Motion disabled. Current [CarryRoom employee visuals](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs) are placeholder Suit/Helmet/Visor objects under `Employee visuals`; attach the validated model at this visual integration point. Existing movement, collision and networking continue to own movement. Follow with remote-body display, carrying, down state, first-person framing and four-player checks.

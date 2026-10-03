@@ -32,3 +32,7 @@ steam_appid.txt
 
 # macOS Finder metadata
 .DS_Store
+
+# Locally acquired Mixamo motion data; recreate with EmployeeAnimationBuild.Prepare.
+/NoReturns/Assets/_NoReturns/Resources/EmployeeLocal/
+/NoReturns/Assets/_NoReturns/Resources/EmployeeLocal.meta

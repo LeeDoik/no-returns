@@ -2,6 +2,16 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-03 — Employee full body and Idle/Walk Unity integration 0.9.5
+
+At the user's request to start integration, import corrected Idle and Walking through separate Humanoid Avatars and generate a local employee Prefab/Animator. Replace primitive full-body visuals, connect actual horizontal-speed-driven idle/walk, four tints, hidden local body and existing down rotation. Retain movement, collision, carrying and network adjudication; version becomes 0.9.5 and protocol stays 13. Update the [current production/reproduction guide](../current/employee-animation.en.md), affected specifications, backlog, checklist and entry points in both languages.
+
+[Validation](../validation/employee-unity-0.9.5.json): two Avatars, 10 sampled poses/static image review, Mac build with zero errors/7 existing warnings, four actual processes passing 10+13+31=54 checks. Inspect game captures showing employees, tint, baton and lying body. Fix an intermediate C# declaration error and preview coordinate-axis/skinning-refresh issues before passing. Clear a stale previous test-session record with no live processes using the existing stop tool. Full suppression/payout UI, user quality, contact/sliding, additional motions/first-person arms, other environments and performance remain unverified.
+
+Keep original/corrected Mixamo motions and generated Unity assets local/excluded from Git while public source-redistribution terms remain unresolved. Publish reproduction code, validation/hashes and static PNGs, with PNGs in Git LFS. Preserve the original art scene and existing user edits to 8 materials/Blender file. Revert only unnecessary regenerated scene IDs and the build-populated URP runtime list.
+
+Pass link/language-file/checkbox checks for 278 documents, bilingual content/value review and Python syntax validation. Whole-worktree whitespace checking reports pre-existing whitespace in the user's 8 material edits; leave them untouched. The scope staged for this commit passes whitespace checks separately.
+
 ## 2026-10-03 — Confirm Unity integration sequence
 
 For the next-step question, inspect current employee-visual construction code and official Unity Avatar import guidance. Add bilingual sequencing: import → separate Avatars → Idle/Walk previews → actual movement integration → employee-visual replacement/four-player checks. No code/model/scene changes. No Unity import/execution; Blender checks do not establish completed game integration. Bilingual content review, link/checkbox checks across 276 documents and changed-whitespace checks passed.

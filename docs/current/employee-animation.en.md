@@ -1,0 +1,31 @@
+# Employee full body and Idle/Walk — 0.9.5
+
+[한국어](employee-animation.ko.md)
+
+2026-10-03. Integrate the supplied employee model, corrected Idle and Walking into the current Cinder player. Replace primitive visuals while retaining existing movement, collision, carrying and network adjudication. Game **0.9.5**, protocol **13**, TCP **27842**. Version source: [PlayerSettings](../../NoReturns/ProjectSettings/ProjectSettings.asset); implementation: [employee visuals](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/EmployeeVisual.cs) and [CarryRoom](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs).
+
+## Integration and production
+
+- The [import script](../../NoReturns/Assets/_NoReturns/Editor/EmployeeAnimationBuild.cs) imports each FBX as `Humanoid / Create From This Model`. Both use 53 bone names but different rest joint positions, so retarget through separate Avatars. Both are valid Humanoids; Idle lasts 8.333334 seconds and Walk 1.033333 seconds.
+- Apply the original dirty color texture and URP/Lit with Smoothness 0.18. The source has 4,765 vertices, 9,118 triangles and a 1.8m height; Unity splits UVs/normals into 10,612 vertices. Blend team colors into the full material at 32%.
+- Actual horizontal movement drives Idle→Walk above 0.12m/s and Walk→Idle below 0.08m/s, with 0.15-second transitions. Stride playback rate is speed/2.2 clamped to 0.35–2.2. Disable Root Motion; the existing CharacterController owns position. Remote players derive the same transitions from received/interpolated positions.
+- Each window hides its own body and shows the other three employees. Down state freezes animation and retains the existing whole-body rotation. Add no gameplay colliders.
+- Reuse the single forward Walk for sideways/backward movement for now. Dedicated backward/strafe, carrying hand contact, baton, down/get-up, rescue, jump motions and first-person arms remain subsequent production work.
+
+## Local reproduction and launch
+
+Public source-redistribution terms for original/corrected Mixamo motions remain unresolved. Keep those FBXs and generated Prefab/Controller locally under `NoReturns/Assets/_NoReturns/Resources/EmployeeLocal/`, excluded from Git. Publish only import/check code, hashes and static images. Game builds include these local assets, so this validation build also remains local.
+
+1. Use the [preceding correction step](03-guides.en.md#2026-10-03--correct-the-supplied-idle-upper-body-posture) to prepare `artifacts/employee-idle/corrected/NR_Employee_Idle_Upright.fbx`. Also provide `~/Downloads/Walking.fbx` and the repository's original employee texture. Input hashes are recorded in the [validation record](../validation/employee-unity-0.9.5.json).
+2. Run Unity menu `NO RETURNS > Art > Prepare Local Employee Animations`. Alternative input paths can be supplied through `NoReturns.Editor.EmployeeAnimationBuild.Prepare(idlePath, walkPath)` in the Editor. Existing generated local assets are updated; separate source files remain intact.
+3. Run `NO RETURNS > Art > Review Local Employee Animations` to check 10 poses and create 4 static images. Local evidence lives in `artifacts/employee-unity/`. Static images draw Animator-evaluated baked meshes and are distinct from actual game captures. Correct the rotation axis for height measurement according to the [Unity BakeMesh definition](https://docs.unity.com/en-us/engine/6000.3/script-reference/unityengine/skinnedmeshrenderer/bakemesh).
+4. Build with `python3 tools/cinder_four_player.py build`, then launch [07_Play_Cinder_4P.command](../../07_Play_Cinder_4P.command). Observe teammates while moving in another window. A fresh checkout without prepared local assets stops the Cinder build with a preparation error. Direct Editor Play retains the primitive visual fallback.
+5. Recheck with `python3 tools/test_employee_animation.py`, `python3 tools/cinder_four_player.py check` and `python3 tools/test_cinder_threat.py`. Run sequentially because they share the same port.
+
+## Validation and remaining quality review
+
+[Validation record](../validation/employee-unity-0.9.5.json). Verify two Humanoids, finite meshes across 10 sampled poses, heights of 1.768–1.838m, zero root displacement and foot movement. Fix incorrect preview-axis measurement/static skinning refresh in the review tool without arbitrarily rescaling the model. Native Mac build: zero errors and 7 existing warnings. Pass 10 visual/transition, 13 carrying/reconnection and 31 Listener/baton/down/rescue checks across four actual processes: 54 total. The complete 60-check suppression and delivery/payout UI suites were not rerun. Warnings concern existing map collision prebaking, missing Pipeline runtime configuration, obsolete search APIs and stripped unused debug shaders.
+
+User posture/color approval, human assessment of sliding/loop seams, full-frame cloth penetration/cargo contact, four human players, other PCs, Windows and measured performance remain pending. This document supersedes earlier employee Unity-not-integrated statements within its implemented/verified scope.
+
+[Unity idle pose](../../art/player-employee-01/unity-review/Idle-1.png) · [Walking pose](../../art/player-employee-01/unity-review/Walk-3.png) · [Actual game capture](../../art/player-employee-01/unity-review/employee-in-game.png).

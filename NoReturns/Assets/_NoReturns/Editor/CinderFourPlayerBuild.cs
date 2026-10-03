@@ -23,6 +23,7 @@ public static class CinderFourPlayerBuild {
         try {
             if(EditorApplication.isPlaying||scene.isDirty||string.IsNullOrEmpty(prior))throw new Exception("Stop Play and save the current scene first.");
             if(!BuildPipeline.IsBuildTargetSupported(BuildTargetGroup.Standalone,target))throw new Exception("Install build support for "+target);
+            EmployeeAnimationBuild.ValidateAssets();
             scene=EditorSceneManager.OpenScene(CinderCompactSiteBuild.ScenePath);
             opened=true;
             EditorSceneManager.SaveScene(scene,ScenePath);

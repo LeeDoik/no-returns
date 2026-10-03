@@ -2,6 +2,16 @@
 
 [한국어](05-validation.ko.md)
 
+## 2026-10-03 — Employee full body and Idle/Walk 0.9.5
+
+[Production/launch guide](employee-animation.en.md) · [Validation JSON](../validation/employee-unity-0.9.5.json).
+
+- [x] Two separate Humanoid Avatars, 53 bones/10,612 Unity vertices, looping clips, Root Motion disabled, 10 finite-deformation/size/root pose samples and static pose image review.
+- [x] Unity 6000.6.0f1 Mac build: zero errors and 7 existing warnings. Four actual processes pass 10 visual/transition, 13 carrying/reconnection and 31 Listener/baton/down/rescue checks, 54 total. Actual game captures confirm employee appearance, team tint, existing baton and lying employee display.
+- [ ] User posture/color approval, foot sliding/loop seams, full-frame penetration/cargo contact, dedicated additional motions/first-person arms, four humans, other PCs, Windows and performance. Motion source redistribution remains unresolved; keep files local. The complete 60-check suppression and delivery/payout UI suites were not rerun.
+
+Supersede earlier Unity/Walking/four-player-unverified statements below within the scope above.
+
 ## 2026-10-03 — Mixamo Idle upper-body correction
 
 [Production/local-file guidance](03-guides.en.md#2026-10-03--correct-the-supplied-idle-upper-body-posture) · [Validation JSON](../validation/employee-idle-posture-2026-10-03.json).

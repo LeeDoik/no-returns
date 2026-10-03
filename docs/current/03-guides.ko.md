@@ -2,6 +2,10 @@
 
 [English](03-guides.en.md)
 
+## 2026-10-03 — 직원 전신·대기/걷기 0.9.5
+
+[현재 연결·로컬 재현·검증 범위](employee-animation.ko.md). 보정 Idle와 Walking을 별도 Humanoid Avatar로 가져와 실제 직원 전신과 이동 속도 기반 전환에 연결했다. 각 창은 자기 몸을 숨기고 팀 색을 입힌 동료 세 명을 표시한다. 게임 0.9.5·프로토콜 13·TCP 27842. 동작 원본과 생성된 Unity 에셋은 로컬 보관하며 공개 Git에는 재현 코드·검사 기록·정적 화면을 둔다. 아래 과거 Unity/대기·걷기 미적용 설명을 이 범위에서 대체한다. 운반 손 접촉·전용 추가 동작·1인칭 팔·사용자 품질/다른 환경 검토는 남아 있다.
+
 ## 2026-10-03 — Unity 적용 직전 순서
 
 다음 단계는 Unity 반입·동작 시험이다. 보정 Idle FBX와 Walking FBX를 가져와 각각 **Humanoid / Create From This Model**로 Avatar를 만들고 필수 뼈·T 자세를 확인한다. 두 파일의 기본 관절 위치가 다르므로 동일 Avatar를 무조건 복사하지 않는다. Idle/Walk 반복과 발/어깨 변형을 미리보기에서 확인한 뒤, Idle↔Walk를 실제 이동 속도로 전환하고 Root Motion을 끈다. 현재 [CarryRoom의 직원 외형](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs)은 `Employee visuals` 아래 임시 Suit/Helmet/Visor이며 이 외형 연결 지점에 검증한 모델을 붙이는 순서다. 기존 이동·충돌·네트워크가 이동을 계속 담당한다. 이후 원격 직원 표시·운반·다운·1인칭 시야와 4인 검사를 진행한다.

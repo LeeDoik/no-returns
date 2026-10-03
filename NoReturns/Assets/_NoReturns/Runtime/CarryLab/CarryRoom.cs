@@ -12,6 +12,7 @@ public sealed partial class CarryRoom : MonoBehaviour {
     Vector3 CargoSpawn=>cinderReview?new Vector3(-20.7f,.55f,-18.5f):new Vector3(0,.55f,-3);
     CharacterController[] workers=new CharacterController[4];
     Renderer[][] bodies=new Renderer[4][]; Transform[] rigs=new Transform[4];
+    EmployeeVisual[] employeeVisuals=new EmployeeVisual[4];
     CarryInput[] inputs={new CarryInput(),new CarryInput(),new CarryInput(),new CarryInput()};
     float[] fall=new float[4];
     Rigidbody cargo; Collider cargoCollider; Camera eye;
@@ -30,13 +31,18 @@ public sealed partial class CarryRoom : MonoBehaviour {
     void Awake(){
         Application.runInBackground=true;Application.targetFrameRate=cinderReview?30:60;Time.fixedDeltaTime=.02f;
         if(!cinderReview)CarryWorld.Build();receiptFeedback=FindFirstObjectByType<ReceiptFeedback>();
+        var employee=Resources.Load<GameObject>("EmployeeLocal/Employee");
+        if(!employee)Debug.LogWarning("Local employee art is not prepared; using prototype visuals.");
         for(int i=0;i<4;i++) {
             var g=new GameObject("Employee "+i);workers[i]=g.AddComponent<CharacterController>();workers[i].height=1.8f;workers[i].radius=.34f;workers[i].center=new Vector3(0,.9f,0);workers[i].stepOffset=.32f;workers[i].skinWidth=.035f;
             rigs[i]=new GameObject("Employee visuals").transform;rigs[i].SetParent(g.transform,false);
             var cream=CarryWorld.Mat(new Color(.72f,.68f,.56f));var team=CarryWorld.Mat(new[]{new Color(.85f,.3f,.06f),new Color(.05f,.65f,.65f),new Color(.7f,.25f,.75f),new Color(.85f,.8f,.15f)}[i]);
-            Visual("Suit",rigs[i],new Vector3(0,.85f,0),new Vector3(.52f,1.0f,.35f),cream);
-            Visual("Helmet",rigs[i],new Vector3(0,1.55f,0),new Vector3(.5f,.45f,.45f),team);
-            Visual("Visor",rigs[i],new Vector3(0,1.56f,.24f),new Vector3(.39f,.26f,.02f),CarryWorld.Mat(Color.black));
+            if(employee){var model=Instantiate(employee,rigs[i],false);employeeVisuals[i]=model.GetComponent<EmployeeVisual>();employeeVisuals[i].Team(team.color);}
+            else {
+                Visual("Suit",rigs[i],new Vector3(0,.85f,0),new Vector3(.52f,1.0f,.35f),cream);
+                Visual("Helmet",rigs[i],new Vector3(0,1.55f,0),new Vector3(.5f,.45f,.45f),team);
+                Visual("Visor",rigs[i],new Vector3(0,1.56f,.24f),new Vector3(.39f,.26f,.02f),CarryWorld.Mat(Color.black));
+            }
             bodies[i]=g.GetComponentsInChildren<Renderer>();
         }
         var c=CarryWorld.Box("Sealed parcel",CargoSpawn,new Vector3(.8f,.65f,.65f),CarryWorld.Mat(new Color(.78f,.69f,.52f)));
@@ -189,13 +195,15 @@ public sealed partial class CarryRoom : MonoBehaviour {
     }
     void Release(){if(cargo==null)return;if(holder>=0)Physics.IgnoreCollision(cargoCollider,workers[holder],false);holder=-1;cargo.isKinematic=false;cargo.linearVelocity=Vector3.zero;cargo.angularVelocity=Vector3.zero;}
     CarryState Snapshot()=>new CarryState{cinderReview=cinderReview,positions=Positions(),yaws=Yaws(),occupiedMask=occupiedMask,recipient=local,beaconCarrier=equipment.Carrier,beaconExists=equipment.Exists,receiptCollected=receiptCollected,receiptReady=receiptReady,receiptProgress=receiptProgress,shiftElapsed=suppression==null?0:suppression.Elapsed,suppressionStage=suppression==null?0:suppression.Stage,outerDanger=outerDanger,clueMask=clues==null?0:clues.Mask,unlocked=unlocked,hard=hard,deliveries=deliveries,charges=equipment.Charges,beaconTime=equipment.Remaining,beaconPosition=equipment.Position,hazard=hazard,danger=danger,phase=missionPhase,credits=credits,receipt=receipt,returnPay=returnPay,tick=tick,holder=holder,p0=workers[0].transform.position,p1=workers[1].transform.position,yaw0=inputs[0].yaw,yaw1=inputs[1].yaw,cargo=cargo.position,rotation=cargo.rotation,players=CrewCount,connected=peer,ack=inputs[local].seq,message=status};
+    [Serializable] class AnimationEvidence {public EmployeeVisual.State[] employees;}
     [Serializable] class UiEvidence {public string menu,context,shipAction,buyButton,language,host,objective,status,firstRecord,secondRecord,suppressionCue;public bool koreanGlyph,journalOpen;}
     static void WriteAtomic(string path,string value){var temp=path+".tmp";File.WriteAllText(temp,value);if(File.Exists(path))File.Replace(temp,path,null);else File.Move(temp,path);}
-    void WriteEvidence(CarryState s){if(testFolder==null)return;try{WriteAtomic(Path.Combine(testFolder,"ui.json"),JsonUtility.ToJson(new UiEvidence{menu=settingsMenu?"settings":shipMenu?"ship":journalOpen?"journal":menu?"pause":"",context=playHud==null?"":playHud.ContextText,shipAction=playHud==null?"":playHud.MenuText("shipAction"),buyButton=playHud==null?"":playHud.MenuText("buy"),suppressionCue=suppression==null?null:T(CarrySuppression.Cue(suppression.Stage,cinderReview)),journalOpen=journalOpen,firstRecord=T(clues!=null&&(clues.Mask&1)!=0?CarryClues.FirstBody:"Not discovered"),secondRecord=T(clues!=null&&(clues.Mask&2)!=0?CarryClues.SecondBody:"Not discovered"),language=CarryLanguage.Korean?"ko":"en",host=T("HOST"),objective=T(cinderReview&&missionPhase<0?"CINDER / FOUR-PLAYER MAP TEST":CarryMission.Objective(missionPhase)),status=T(status),koreanGlyph=CarryLanguage.Font.HasCharacter('한')}));WriteAtomic(Path.Combine(testFolder,"state.json"),JsonUtility.ToJson(s));}catch(IOException){} }
+    void WriteEvidence(CarryState s){if(testFolder==null)return;try{WriteAtomic(Path.Combine(testFolder,"ui.json"),JsonUtility.ToJson(new UiEvidence{menu=settingsMenu?"settings":shipMenu?"ship":journalOpen?"journal":menu?"pause":"",context=playHud==null?"":playHud.ContextText,shipAction=playHud==null?"":playHud.MenuText("shipAction"),buyButton=playHud==null?"":playHud.MenuText("buy"),suppressionCue=suppression==null?null:T(CarrySuppression.Cue(suppression.Stage,cinderReview)),journalOpen=journalOpen,firstRecord=T(clues!=null&&(clues.Mask&1)!=0?CarryClues.FirstBody:"Not discovered"),secondRecord=T(clues!=null&&(clues.Mask&2)!=0?CarryClues.SecondBody:"Not discovered"),language=CarryLanguage.Korean?"ko":"en",host=T("HOST"),objective=T(cinderReview&&missionPhase<0?"CINDER / FOUR-PLAYER MAP TEST":CarryMission.Objective(missionPhase)),status=T(status),koreanGlyph=CarryLanguage.Font.HasCharacter('한')}));WriteAtomic(Path.Combine(testFolder,"state.json"),JsonUtility.ToJson(s));var animation=new AnimationEvidence{employees=new EmployeeVisual.State[4]};for(int i=0;i<4;i++)if(employeeVisuals[i]&&employeeVisuals[i].Ready)animation.employees[i]=employeeVisuals[i].Capture();WriteAtomic(Path.Combine(testFolder,"animation.json"),JsonUtility.ToJson(animation));}catch(IOException){} }
     void LateUpdate(){if(eye==null)return;eye.transform.position=workers[local].transform.position+Vector3.up*(hazard&&danger!=null&&danger.IsDown(local)?.55f:1.57f);eye.transform.rotation=Quaternion.Euler(pitch,yaw,0);
         // Apply before every render, including the inactive startup menu.
         for(int i=0;i<4;i++){bool visible=i!=local&&Present(i);foreach(var r in bodies[i])r.enabled=visible;}
         for(int i=0;i<4;i++)workers[i].gameObject.SetActive(Present(i));
+        for(int i=0;i<4;i++)if(Present(i)&&employeeVisuals[i])employeeVisuals[i].Animate(workers[i].transform.position,hazard&&danger!=null&&danger.IsDown(i),Time.deltaTime);
         receiptFeedback?.Display(active?missionPhase:-1,receiptProgress,receiptCollected,receiptReady);
         suppression?.Display(active&&(missionPhase==2||missionPhase==3));
         if(outer!=null&&outerDanger!=null)outer.Display(outerDanger,active&&(missionPhase==2||missionPhase==3)&&suppression.Stage>=2);

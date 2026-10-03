@@ -1,0 +1,145 @@
+{
+  "date": "2026-10-03",
+  "version": "0.9.5",
+  "protocol": 13,
+  "tcp": 27842,
+  "unity": "6000.6.0f1",
+  "status": "PASS",
+  "inputs": {
+    "correctedIdle": {
+      "filename": "NR_Employee_Idle_Upright.fbx",
+      "sha256": "c8ec3d21c37951b2b1708461fc8a3c3b1bf1cfa49fe071bfdec22642d5c9cdc7"
+    },
+    "walking": {
+      "filename": "Walking.fbx",
+      "sha256": "8a835001fabe8e502329e112d446943765eeaa9db1fa06dad039f35b38735433"
+    }
+  },
+  "import": {
+    "status": "PASS",
+    "error": "",
+    "unity": "6000.6.0f1",
+    "idleAvatar": true,
+    "walkAvatar": true,
+    "idleSeconds": 8.333333969116211,
+    "walkSeconds": 1.033333420753479,
+    "vertices": 10612,
+    "bones": 53
+  },
+  "poseReview": {
+    "status": "PASS",
+    "error": "",
+    "walkFootTravel": 0.48548024892807007,
+    "idleFootTravel": 0.0009799455292522907,
+    "minHeight": 1.7681254148483276,
+    "maxHeight": 1.8380792140960693,
+    "rootTravel": 0.0,
+    "samples": 10
+  },
+  "build": {
+    "status": "PASS",
+    "unity": "6000.6.0f1",
+    "output": "builds/CinderFourPlayer/NoReturns.app",
+    "error": "",
+    "errors": 0,
+    "warnings": 7,
+    "warningScope": [
+      "18 existing map mesh colliders need future collision prebaking",
+      "Pipeline runtime config absent; Editor automation remains usable",
+      "3 existing obsolete object-search API warnings",
+      "2 unused debug occlusion shaders stripped"
+    ]
+  },
+  "animation": {
+    "status": "PASS",
+    "checks": [
+      "all sixteen Humanoid instances ready",
+      "local body hidden, three teammates visible, root motion disabled",
+      "four stationary employees idle on every peer",
+      "remote actual movement enters Walk on every peer",
+      "walking animates the foot on every peer",
+      "stopping returns to Idle on every peer",
+      "host actual movement enters Walk on every peer",
+      "host stops without animation root displacement",
+      "native teammate capture",
+      "four logs have no animation errors or placeholder fallback"
+    ],
+    "run": "artifacts/cinder-four-player/run-20261003-175451-177999"
+  },
+  "publicAssets": "Static previews only; locally acquired Mixamo FBXs and generated EmployeeLocal contents excluded from public Git.",
+  "unverified": [
+    "Human posture/color approval",
+    "All-frame clothing/cargo contact",
+    "Foot sliding and loop seam quality",
+    "Dedicated backward/strafe/carry/baton/down/rescue/jump clips",
+    "First-person arms",
+    "Four humans / other PCs / Windows / measured performance"
+  ],
+  "carrying": {
+    "status": "PASS",
+    "checks": [
+      "Cinder mode and four peers replicated",
+      "slot 3 picks up shared parcel",
+      "non-owner cannot release cargo",
+      "slot 3 movement replicated",
+      "owner releases cargo on all peers",
+      "host reset returns all four to landing",
+      "four simultaneous controllers pass west lane",
+      "fifth peer rejected",
+      "disconnect preserves remaining slot identities",
+      "freed slot 2 rejoins",
+      "two native player captures",
+      "Cinder HUD evidence and Korean font",
+      "no runtime exceptions or invalid bounds in player logs"
+    ],
+    "run": "artifacts/cinder-four-player/run-20261003-175519-1e75e6"
+  },
+  "threat": {
+    "status": "PASS",
+    "checks": [
+      "four hazard slots/protocol 13",
+      "Cinder stages start stopped with shared outer down state",
+      "ship UI opens",
+      "route selected",
+      "departure enables patrol",
+      "ship UI closes",
+      "ship calls ignored/no attack",
+      "host carries parcel",
+      "quiet approach has no footstep noise",
+      "call causes investigation",
+      "warning before cargo-carrier attack",
+      "host down replicated to all four",
+      "down releases parcel on all peers",
+      "down blocks movement/pickup/baton",
+      "distant rescue rejected",
+      "slot 3 baits a close warning",
+      "slot 3 baton stuns on four peers",
+      "listener-baton-ko",
+      "slot 3 rescue progress replicated",
+      "release cancels rescue",
+      "baton cooldown prevents reset",
+      "slot 3 rescues host on all peers",
+      "rescuer remains vulnerable after revival",
+      "English client context/native font",
+      "listener-down-en",
+      "all four down triggers emergency report",
+      "four recovered aboard/zero unpaid reward",
+      "recovered host can open ship terminal",
+      "next shift clears down/cooldown and restores parcel",
+      "no Cinder progression file created",
+      "four player logs have no exceptions"
+    ],
+    "run": "artifacts/cinder-four-player/run-20261003-175644-f07963"
+  },
+  "nativeChecks": 54,
+  "resolvedDuringWork": [
+    "C# multi-declarator var compile error fixed before successful import/build",
+    "Preview height initially measured on local mesh Y rather than rotated world Y; corrected",
+    "Static preview GPU skinning did not refresh between poses; draw evaluated baked meshes for pose review",
+    "Initial test launch rejected stale prior-day session with no running PIDs; safely cleared using existing stop command"
+  ],
+  "notRerun": [
+    "Full suppression 60-check suite",
+    "Full delivery/payout UI suite"
+  ]
+}

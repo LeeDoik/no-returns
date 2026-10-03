@@ -2,7 +2,7 @@
 
 [한국어](README.md)
 
-[Current Mac Cinder 0.9.4 — suppression/outer creature](docs/current/cinder-suppression.en.md) · [Controls, ship and purchase](docs/current/controls-ui.en.md) · [Launch four windows](07_Play_Cinder_4P.command). Connect suppression decay/outer pursuit to delivery, Listener, baton, rescue and beacon. Cinder progression saving remains absent; distinguish the legacy Windows experiments and their validation scope below.
+[Current Mac Cinder 0.9.5 — employee full body/idle/walk](docs/current/employee-animation.en.md) · [Suppression/outer creature](docs/current/cinder-suppression.en.md) · [Controls, ship and purchase](docs/current/controls-ui.en.md) · [Launch four windows](07_Play_Cinder_4P.command). Connect suppression decay/outer pursuit to delivery, Listener, baton, rescue and beacon. Cinder progression saving remains absent; distinguish the legacy Windows experiments and their validation scope below.
 
 **A PSX-style cooperative space-delivery mystery.** Route selection triggers automatic spacecraft travel and landing. Employees deliver through dangerous sites, reinvesting pay in equipment and harder work.
 
