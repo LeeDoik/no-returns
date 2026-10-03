@@ -2,6 +2,12 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-04 — Remote full-body rescue pose 0.9.20
+
+Show rescuing teammates bending their knees, leaning forward and extending both hands. Blend out in about 0.167s after cancellation/completion; clear on carrying, down or inactivity. Preserve existing 2m/line-of-sight, 2.5s rescue and 4s protection rules. [Production and limits](../current/first-person-arms.en.md), [validation](../validation/employee-rescue-remote-0.9.20.json). Game **0.9.20**, protocol **13**, TCP **27842**. This supersedes earlier missing-full-body-rescue statements within this presentation scope. Dedicated down/get-up animation, target auto-facing/actual body contact and human quality remain pending.
+
+Add remote rescue presentation as the next character task and run only relevant rescue checks. Pass 80 Editor samples and 9 actual two-client checks; Mac build 0 errors/7 existing warnings. Rescue 3.837s; total including build 17.091s. Inspect static idle/walk images and track with LFS. Official tools checked latest, no updates pending. No manual windows/Editor Play. Full regression, human quality, target contact and down/get-up remain unverified/unimplemented. Restore generated scene/URP build changes; preserve and exclude 8 preexisting material and 2 Blender modifications. Pass 288 document checks, Python syntax and changed-file whitespace checks.
+
 ## 2026-10-04 — Proportionate quick test environment 0.9.19
 
 The user flagged excessive repeated client-test time; stop rerunning full delivery for every change. Prepare purchased-beacon, downed-partner and baton-target initial states only in development Cinder hazard mode with a test folder, explicit quick flag and host request. Exercise actions through existing input/host adjudication/networking. Reuse the same two windowless real clients sequentially; preserve on-demand human+companion rules. Exclude fixture operations from release compilation. Validate build reuse with source/asset/settings fingerprints and fail before launching stale binaries. Build only with explicit `--build`. Distinguish Editor code, the generated test scene and URP build-generated list from authored settings/local employee assets. Update AGENTS and the new selection guide. [Guide](../current/quick-testing.en.md), [validation](../validation/quick-testing-0.9.19.json).

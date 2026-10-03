@@ -1,6 +1,14 @@
-# 1인칭 손·팔 제작과 연결 — 0.9.18
+# 1인칭 손·팔 제작과 연결 — 0.9.20
 
 [English](first-person-arms.en.md)
+
+## 2026-10-04 — 동료 전신 구조 자세 0.9.20
+
+구조 중 동료가 무릎을 굽히고 상체를 숙여 양손을 내미는 표시를 연결했다. 취소/완료 후 약 0.167초에 걸쳐 복귀하며 운반·다운·비활성 상태에서는 해제한다. 기존 2m/시야·2.5초 구조·4초 보호 판정은 유지한다. [제작·제한](first-person-arms.ko.md) · [검증](../validation/employee-rescue-remote-0.9.20.json). 게임 **0.9.20**·프로토콜 **13**·TCP **27842**. 이전 전신 구조 미구현 설명은 이 표시 범위에서 대체한다. 다운/일어나기 전용 동작·대상 자동 바라보기/실제 몸 접촉·사람 품질은 남는다.
+
+[자세 코드](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/EmployeeVisual.Rescue.cs)는 골반을 최대 **0.28m** 낮추고 가슴을 **24°** 숙인다. 원래 애니메이션의 발 위치/회전을 유지하므로 걷기 표본은 한쪽 발이 들릴 수 있다. 양손 목표는 몸 기준 **(±0.20,0.72,0.43)m**, 높이 보조 움직임은 **±0.018m·2Hz**다. 손목 제한 **25°**, 진입/복귀 속도 **6/초**이며 직원 루트/이동 판정은 바꾸지 않는다. [표시 순서](../../NoReturns/Assets/_NoReturns/Runtime/CarryLab/CarryRoom.cs)는 이동/운반 → 구조 → 진압봉 부착/공격 → 신호기다. 복귀 중 진압봉은 최종 손 위치를 따른다. 실제 쓰러진 동료의 몸 위치와 접촉하도록 맞추지는 않는다.
+
+[Editor 검사](../../NoReturns/Assets/_NoReturns/Editor/EmployeeRescueReview.cs): Idle/Walk × 4방향 × 10시점 **80개** 표본, 발 위치 오차 최대 **0.000001863m**, 손목 최대 **22.364418°**, 팔 뼈 길이 변화 최대 **0.000000298m**. 루트 보존·유한 메시·해제/차단 확인. [대기](../../art/player-employee-01/unity-review/Employee-Rescue-Idle.png) · [걷기](../../art/player-employee-01/unity-review/Employee-Rescue-Walk.png) 정적 이미지를 검토했다. 맥 빌드 오류 0개·기존 경고 7개. `python3 tools/cinder_quick_test.py rescue --build`로 화면 없는 실제 2인 **9개** 검사 통과, 구조 시나리오 **3.837초**, 빌드/시작/종료 포함 **17.091초**. 취소·동료 자세·실제 부활·진압봉 복귀를 확인했다. 전체 배송/4인 회귀·수동 창·Editor Play는 실행하지 않았다. 사람 자연스러움·실제 맵 GPU 화면·모든 옷/손가락 관통·Windows/LAN/성능은 미확인이다. 최신 확인된 Unity 6000.6.4f1·CLI 1.0.0-beta.12·Pipeline 0.8.0-exp.1 사용, 추가 갱신 없음. 새 FBX/Blender 편집은 없다.
 
 ## 동료 신호기 운반 — 0.9.18
 

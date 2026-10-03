@@ -2,6 +2,10 @@
 
 [한국어](README.md)
 
+## 2026-10-04 — Remote full-body rescue pose 0.9.20
+
+Show rescuing teammates bending their knees, leaning forward and extending both hands. Blend out in about 0.167s after cancellation/completion; clear on carrying, down or inactivity. Preserve existing 2m/line-of-sight, 2.5s rescue and 4s protection rules. [Production and limits](current/first-person-arms.en.md), [validation](validation/employee-rescue-remote-0.9.20.json). Game **0.9.20**, protocol **13**, TCP **27842**. This supersedes earlier missing-full-body-rescue statements within this presentation scope. Dedicated down/get-up animation, target auto-facing/actual body contact and human quality remain pending.
+
 ## 2026-10-04 — Targeted quick tests 0.9.19
 
 Finish visual changes with compilation, relevant Editor poses/render and docs. For carry/rescue/attack changes, run only the affected windowless two-client scenario from a prepared state. Reserve full delivery/four-player checks for large changes, related failures, pre-release or explicit requests. Three scenarios reuse the same two processes: this quick suite passed **18 checks in 8.869 seconds**, including startup/shutdown; a build-inclusive run took **17.735 seconds**. These are measurements on this Mac and do not replace full regression. Reject stale builds before launch. [Usage and selection](current/quick-testing.en.md), [validation](validation/quick-testing-0.9.19.json). No manual windows opened.
