@@ -2,6 +2,10 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-03 — Requested upright-grip/jump manual test started at 0.9.12
+
+On the user’s “직접 테스트 해볼래” request, run the existing `python3 tools/cinder_four_player.py start --companion` to open one human host and one automatic companion. Confirm player 0.9.12, host listening, client slot 1, protocol 13, occupied mask 3, bot readiness and safe practice. Both game viewports have equal 16:9 dimensions of 1702×958px; AppKit positions confirm human left/companion right placement. Leave session `run-20261003-223811-25d870` running for hands-on inspection of upright baton readiness/single forward pulse and jump/landing. Termination records below are historical. No code changes, rebuild or new quality approval. Check document links, language counterparts and scoped whitespace only; revised human quality/handling remains unverified.
+
 ## 2026-10-03 — Restored baton grip, forward pulse and jump/landing 0.9.12
 
 Pass 284 bilingual document/link checks, Python syntax and scoped whitespace checks. Confirm no remaining test session file or TCP 27842 listener.
