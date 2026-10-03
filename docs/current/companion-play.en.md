@@ -2,6 +2,8 @@
 
 [한국어](companion-play.ko.md)
 
+You may close both game windows manually. Saying “테스트 끝” is an optional way to ask Codex to stop them for you. Clean remaining session metadata with the existing stop helper.
+
 ## 2026-10-03 — Start requested hands-on play 0.9.8
 
 On the user’s “직접 테스트 해볼게” request, run the existing `python3 tools/cinder_four_player.py start --companion` to open one human host and one automatic companion window. Confirm player version 0.9.8, host listening, client slot 1 assignment and companion readiness. Leave session `run-20261003-202722-0ef980` running for hands-on play. No code changes. User feedback on actual mouse/focus, appearance and handling is still pending; do not record quality approval.

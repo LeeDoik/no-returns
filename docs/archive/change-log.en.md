@@ -2,6 +2,10 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-03 — Clean up manually closed play session
+
+The user reports closing both game windows manually. Run the existing `python3 tools/cinder_four_player.py stop` to remove remaining session metadata. Confirm no running game processes or TCP 27842 listener. An immediate temporary socket bind fails, so do not record immediate port reuse as verified. Closing the windows manually is an accepted exit method; a separate spoken stop request is optional. No code changes or user quality approval.
+
 ## 2026-10-03 — Start requested hands-on play 0.9.8
 
 On the user’s “직접 테스트 해볼게” request, run the existing `python3 tools/cinder_four_player.py start --companion` to open one human host and one automatic companion window. Confirm player version 0.9.8, host listening, client slot 1 assignment and companion readiness. Leave session `run-20261003-202722-0ef980` running for hands-on play. No code changes. User feedback on actual mouse/focus, appearance and handling is still pending; do not record quality approval.
