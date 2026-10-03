@@ -2,6 +2,14 @@
 
 [English](05-validation.en.md)
 
+## 2026-10-03 — Mixamo Idle 상체 보정
+
+[제작/로컬 파일 안내](03-guides.ko.md#2026-10-03--수령-idle의-상체-자세-보정) · [검사 JSON](../validation/employee-idle-posture-2026-10-03.json).
+
+- [x] 원본 FBX/기준 Blender·메시/UV/가중치/기본 뼈대·원본 Action 보존, 251프레임 유한 변형과 하체 위치 보존, 반복 끝점 위치 일치.
+- [x] 두 Action 포함 Blender 재열기, 단일 보정 클립 FBX 53뼈·4K 텍스처·표본 5프레임 최대 위치 차이 약 0.0023mm. 총 9개 자동 검사와 측면 5프레임/정면/사선/비교 렌더 검토.
+- [ ] 사용자 자세 승인·속도 연속성/전체 표면 관통·Walking 기본 자세 변환·Unity Humanoid/전환·운반 접촉·1인칭/4인/성능. Walking은 53개 뼈·메시 없음·30fps·1–32프레임 구조 검사만 완료했다.
+
 ## 2026-10-03 — 직원 리그 후보와 변형 시험
 
 [파일·재현·프레임 안내](03-guides.ko.md#2026-10-03--직원-부츠-보정과-첫-변형-리그) · [검사 JSON](../../art/player-employee-01/rigged/validation.json).

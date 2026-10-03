@@ -2,6 +2,23 @@
 
 [한국어](03-guides.ko.md)
 
+## 2026-10-03 — Correct the supplied Idle upper-body posture
+
+The user made Mixamo Idle/Walking motions and reported excessive back hunching in Idle. Inspect the supplied `Idle.fbx` and `Walking.fbx` in the same Downloads folder. Idle contains **a mesh, 53 bones, 4,765 vertices, 30fps and frames 1–251**; Walking contains **no mesh, 53 bones, 30fps and frames 1–32**. Supersede the prior not-received status within this scope. Actual Mixamo clip IDs/download options were not supplied.
+
+[Before/after render](../../art/player-employee-01/idle-review/idle-comparison.png) · [Measurements, hashes and validation](../validation/employee-idle-posture-2026-10-03.json) · [Reproduction script](../../art/player-employee-01/correct_idle.py).
+
+- Idle's recorded head forward lean spans **5.44–9.27 degrees** over all frames; upper chest spans **0.35–2.88 degrees**. Neck/head pitch and shoulder/suit silhouette contribute to the hunched appearance in rendered views. Do not conclusively attribute it to the original Mixamo motion style versus mapping effects.
+- Compose constant local-X rotations of **Chest -1.5 degrees, UpperChest -1.5 degrees and Neck -4 degrees** with the existing rotations. Corrected head lean is **-1.56–2.26 degrees** and upper chest **-2.64–-0.11 degrees**. These measure bone forward direction, not anatomical spinal curvature. Preserve the base mesh, UVs, weights and rest skeleton.
+- Retain the original Action and corrected `NR_Idle_Upright`. Channels other than the three corrected bone rotations are identical; pelvis/leg joint-position difference is 0m across all 251 frames. Start/end joint positions match and subtle breathing/weight shifts are retained. These checks do not guarantee hand contact, all surface intersections or velocity continuity.
+- Pass 9 automated checks: finite deformation over 251 frames, original Action/other-channel preservation, mesh/UV/weights/rest-skeleton preservation, lower-body positions, loop endpoint positions, reopening `.blend` with both Actions, single FBX clip/53 bones/texture, matching reimported positions at 5 samples (maximum approximately **0.0023mm**), and source FBX/canonical Blender hash preservation. Inspect 5 side-view frames plus front, three-quarter and before/after renders. User posture approval remains pending.
+
+Local outputs are `artifacts/employee-idle/corrected/NR_Employee_Idle_Upright.blend` and `.fbx`. Select `NR_Idle_Mixamo_Original` or `NR_Idle_Upright` in Blender's Action Editor to compare; the corrected Action is active by default. Export only the corrected motion to FBX, with a zero-based time origin so default reimport retains frames 1–251. Keep motion-bearing source/output files local because public source-redistribution terms have not been established; track correction code, hashes/checks and the static comparison render in Git. This is not a public backup of the motion data.
+
+Reproduce with `blender --background --factory-startup --disable-autoexec --python-exit-code 1 --python art/player-employee-01/correct_idle.py -- --source /path/to/Idle.fbx --output artifacts/employee-idle/corrected --walk /path/to/Walking.fbx`. Separately acquired inputs are required. Use installed Blender 5.2.2 LTS because `game-dev` is absent from PATH; its CLI package checks were not performed.
+
+Walking has the same bone names but some rest joint positions differ from Idle by up to **approximately 139.6mm**. Check rest-pose conversion/separate Unity Avatars before assigning motion directly to another skeleton. Walking was inspected only, without correction or game integration. Unity Humanoid, transitions, actual carrying, first-person/four-player/performance remain pending; retain game 0.9.4 and protocol 13.
+
 ## 2026-10-03 — Prioritize Mixamo motion reuse
 
 The user chose to reuse suitable Mixamo motions wherever possible. The preceding keyframe tutorial is optional editing practice, not a plan to hand-author every gameplay motion. The current production baseline is **select Mixamo candidates → apply/validate on the existing employee rig → adjust game-specific contacts/timing**. This does not mean collecting the entire library or adding gameplay features.

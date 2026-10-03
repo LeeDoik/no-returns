@@ -1,0 +1,137 @@
+{
+  "blender": "5.2.2 LTS",
+  "source": {
+    "filename": "Idle.fbx",
+    "sha256": "9ef7f629519544437ce6333a4f60c5b55d711c9d01eacb68440e2d30841f0d02"
+  },
+  "provider": "Mixamo, user supplied",
+  "source_clip_id_and_download_settings": "not supplied",
+  "publication": "motion-bearing source and outputs kept local; source redistribution terms not established",
+  "frames": [
+    1,
+    251
+  ],
+  "fps": 30,
+  "bones": 53,
+  "vertices": 4765,
+  "offset_degrees_local_x": {
+    "Chest": -1.5,
+    "UpperChest": -1.5,
+    "Neck": -4.0
+  },
+  "forward_lean_degrees": {
+    "head_before": [
+      5.44114547504706,
+      9.269498491497439
+    ],
+    "head_after": [
+      -1.562996091390793,
+      2.260487298494373
+    ],
+    "upper_chest_before": [
+      0.3536428785677707,
+      2.88470239761683
+    ],
+    "upper_chest_after": [
+      -2.643418560454158,
+      -0.11430541121739499
+    ]
+  },
+  "max_lower_body_head_displacement_m": 0.0,
+  "loop_endpoint_head_error_m": 0.0,
+  "fbx_roundtrip_sample_head_error_m": 2.2851308439610107e-06,
+  "checks": {
+    "all_251_frames_finite": true,
+    "original_action_and_other_channels_preserved": true,
+    "mesh_uv_weights_and_rest_skeleton_unchanged": true,
+    "lower_body_unchanged": true,
+    "loop_endpoint_positions_match": true,
+    "blend_reopens_with_both_actions": true,
+    "fbx_reimports_one_clip_53_bones_and_texture": true,
+    "sampled_fbx_pose_positions_match": true,
+    "source_fbx_and_canonical_blend_preserved": true
+  },
+  "pending": [
+    "User posture approval",
+    "Walking rest-pose conversion and game integration",
+    "Unity Humanoid/playback/transitions",
+    "Public redistribution terms for motion source files"
+  ],
+  "output_sha256": {
+    "NR_Employee_Idle_Upright.blend": "dcd172abf0d35d452454c32869fb845f4e61c1c69220f49be03830bf171d9af1",
+    "NR_Employee_Idle_Upright.fbx": "c8ec3d21c37951b2b1708461fc8a3c3b1bf1cfa49fe071bfdec22642d5c9cdc7"
+  },
+  "walking_inspection_only": {
+    "filename": "Walking.fbx",
+    "sha256": "8a835001fabe8e502329e112d446943765eeaa9db1fa06dad039f35b38735433",
+    "bones": 53,
+    "meshes": 0,
+    "frame_range": [
+      1.0,
+      32.0
+    ],
+    "fps": 30,
+    "max_rest_joint_difference_from_idle_m": 0.1395737660507087,
+    "joints_differing_more_than_1mm": [
+      "LeftLowerArm",
+      "LeftHand",
+      "LeftIndex1",
+      "LeftIndex2",
+      "LeftIndex3",
+      "LeftMiddle1",
+      "LeftMiddle2",
+      "LeftMiddle3",
+      "LeftRing1",
+      "LeftRing2",
+      "LeftRing3",
+      "LeftLittle1",
+      "LeftLittle2",
+      "LeftLittle3",
+      "LeftThumb1",
+      "LeftThumb2",
+      "LeftThumb3",
+      "RightLowerArm",
+      "RightHand",
+      "RightIndex1",
+      "RightIndex2",
+      "RightIndex3",
+      "RightMiddle1",
+      "RightMiddle2",
+      "RightMiddle3",
+      "RightRing1",
+      "RightRing2",
+      "RightRing3",
+      "RightLittle1",
+      "RightLittle2",
+      "RightLittle3",
+      "RightThumb1",
+      "RightThumb2",
+      "RightThumb3",
+      "LeftLowerLeg",
+      "LeftFoot",
+      "LeftToes",
+      "RightLowerLeg",
+      "RightFoot",
+      "RightToes"
+    ]
+  },
+  "visual_review": {
+    "method": "native Blender rendered still inspection",
+    "side_frames": [
+      1,
+      63,
+      126,
+      188,
+      251
+    ],
+    "additional_views": [
+      "front",
+      "three-quarter",
+      "before-after at frame 188"
+    ],
+    "result": "Reduced head pitch; original angular suit/pad silhouette remains; user approval pending",
+    "preview": "../../art/player-employee-01/idle-review/idle-comparison.png"
+  },
+  "local_outputs": "artifacts/employee-idle/corrected/; ignored local motion files, reproducible from separately acquired inputs",
+  "reproduction": "blender --background --factory-startup --disable-autoexec --python-exit-code 1 --python art/player-employee-01/correct_idle.py -- --source /path/to/Idle.fbx --output artifacts/employee-idle/corrected --walk /path/to/Walking.fbx"
+}

@@ -10,6 +10,8 @@
 - [x] On 2026-10-03, generate [3 separate front/side/back PNGs](03-guides.en.md#2026-10-03--separate-employee-view-images), checking full-body framing and removed text. The front is a single-character T pose.
 - [x] On 2026-10-03, preserve FBX/JPG originals, complete [Blender inspection and a 1.8m working copy](03-guides.en.md#2026-10-03--employee-blender-inspection-and-working-copy), inspect 6 renders and verify reopening. Measure 4,888 faces/9,118 triangles, a 4K texture and no skeleton.
 - [x] [Repair 2 boot exceptions and build a 53-bone candidate](03-guides.en.md#2026-10-03--employee-boot-repair-and-first-deformation-rig), adjust pad rims/weights, test both grips, shoulders, 90-degree elbows/knees, carry-ready pose and FBX reimport.
+- [x] [Correct supplied Mixamo Idle posture](03-guides.en.md#2026-10-03--correct-the-supplied-idle-upper-body-posture): source preservation, 251-frame checks, Blender/FBX reopening and static render review. Walking received/skeleton-inspected only.
+- [ ] User approval of corrected Idle, conversion of Walking rest-pose differences and Unity motion integration. Establish public source-redistribution terms for motions.
 - [ ] User appearance approval, cross-view consistency and extreme-bend pad/cloth polish. Do not blanket-weld 442 boundary edges/21 components.
 - [ ] Validate this candidate's Unity Humanoid mapping, idle/walk and actual parcel contact. Decide presentation for cargo controls beyond arm reach.
 - [ ] Integrate full body/first-person arms, 4 team colors, baton/down/rescue/jump with existing gameplay adjudication; verify four actual processes and human visual quality. Finalize exact clip count and completion only after rig validation.

@@ -2,6 +2,14 @@
 
 [한국어](05-validation.ko.md)
 
+## 2026-10-03 — Mixamo Idle upper-body correction
+
+[Production/local-file guidance](03-guides.en.md#2026-10-03--correct-the-supplied-idle-upper-body-posture) · [Validation JSON](../validation/employee-idle-posture-2026-10-03.json).
+
+- [x] Preserve source FBX/canonical Blender, mesh/UV/weights/rest skeleton and original Action; finite deformation and unchanged lower-body positions across 251 frames; matching loop endpoint positions.
+- [x] Reopen Blender with both Actions; reimport a single corrected FBX clip with 53 bones, 4K texture and approximately 0.0023mm maximum position difference at 5 samples. Nine automated checks plus 5 side frames/front/three-quarter/comparison render review.
+- [ ] User posture approval, velocity continuity/all surface intersections, Walking rest-pose conversion, Unity Humanoid/transitions, carrying contacts, first-person/four-player/performance. Walking only passes structural inspection: 53 bones, no mesh, 30fps and frames 1–32.
+
 ## 2026-10-03 — Employee rig candidate and deformation trial
 
 [Files, reproduction and frames](03-guides.en.md#2026-10-03--employee-boot-repair-and-first-deformation-rig) · [Inspection JSON](../../art/player-employee-01/rigged/validation.json).

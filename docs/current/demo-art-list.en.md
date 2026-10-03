@@ -2,6 +2,8 @@
 
 [한국어](demo-art-list.ko.md)
 
+Idle received/corrected, 2026-10-03: [upper-body correction and checks](03-guides.en.md#2026-10-03--correct-the-supplied-idle-upper-body-posture). Correct Mixamo Idle frames 1–251 and retain it with the original in a local working file. Walking frames 1–32 were received/structurally inspected only. Supersede the earlier not-downloaded status within this scope; Unity integration, walking rest-pose conversion and user quality approval remain pending.
+
 Production direction, 2026-10-03: at the user's request, adopt [Mixamo-first motion reuse](03-guides.en.md#2026-10-03--prioritize-mixamo-motion-reuse). Preserve the current Blender rig and test Idle/Walking compatibility first. Seek suitable carrying/baton/rescue candidates before adjusting necessary contacts/timing. The historical Mixamo-auto-rig-first proposal below is superseded by preserving the existing rig and testing mapping/retargeting. Upload, download and clip integration have not yet been performed.
 
 Current on 2026-10-03: build the [employee boot repair and first deformation rig](03-guides.en.md#2026-10-03--employee-boot-repair-and-first-deformation-rig). The ACT01 candidate has 4,765 vertices, 4,888 faces, 9,118 triangles, a 4K texture, 1.8m height and 53 bones. Split 2 boot junction edges and adjust pad rims/weights. Complete Blender pose trials and FBX reimport; extreme-pose polish, Unity Avatar, idle/walk, actual cargo contact and user quality remain pending. ACT02 arms have not been derived.

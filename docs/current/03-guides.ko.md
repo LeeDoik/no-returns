@@ -2,6 +2,23 @@
 
 [English](03-guides.en.md)
 
+## 2026-10-03 — 수령 Idle의 상체 자세 보정
+
+사용자는 Mixamo Idle·Walking을 만들었고 Idle의 등이 너무 굽어 보인다고 보고했다. 제공한 `Idle.fbx`와 같은 Downloads 폴더의 `Walking.fbx`를 검사했다. Idle은 **메시 포함·53개 뼈·4,765정점·30fps·1–251프레임**, Walking은 **메시 없음·53개 뼈·30fps·1–32프레임**이다. 이전의 미수령 상태를 이 범위에서 대체한다. 실제 Mixamo 클립 ID·다운로드 옵션은 제공되지 않았다.
+
+[보정 전후 렌더](../../art/player-employee-01/idle-review/idle-comparison.png) · [수치·해시·검증](../validation/employee-idle-posture-2026-10-03.json) · [재현 스크립트](../../art/player-employee-01/correct_idle.py).
+
+- Idle에 기록된 머리 전방 기울기는 전체 프레임에서 **5.44–9.27도**, 윗가슴은 **0.35–2.88도**였다. 렌더상 목·고개 숙임과 어깨/작업복 실루엣이 구부정한 인상에 기여한다. 원본 Mixamo 동작 자체의 스타일인지 매핑 과정의 영향인지까지 단정하지 않는다.
+- **Chest -1.5도·UpperChest -1.5도·Neck -4도**의 일정한 로컬 X 회전을 기존 회전에 합성했다. 자세 보정 후 머리는 **-1.56–2.26도**, 윗가슴은 **-2.64–-0.11도**다. 이 값은 뼈 방향의 전방 각도이며 해부학적 척추 곡률 측정이 아니다. 기본 메시·UV·가중치·뼈 기본 자세는 바꾸지 않았다.
+- 원본 Action과 보정 Action `NR_Idle_Upright`를 함께 보관한다. 해당 세 뼈의 회전 외 채널은 동일하며 골반·다리 관절 위치 차이는 전체 251프레임에서 0m다. 처음/끝 관절 위치가 같고 미세한 호흡/체중 이동을 보존한다. 손 접촉·모든 표면 관통·속도 연속성을 보장하는 검사는 아니다.
+- 9개 자동 검사 통과: 251프레임 유한 변형, 원본 Action/나머지 채널 보존, 메시/UV/가중치/기본 뼈대 보존, 하체 위치 보존, 반복 끝점 위치, 두 Action 포함 `.blend` 재열기, FBX 단일 클립/53뼈/텍스처, 표본 5프레임 재가져오기 위치 일치(최대 약 **0.0023mm**), 원본 FBX/기준 Blender 해시 보존. 측면 5프레임과 정면·사선·전후 렌더를 검토했다. 사용자 자세 승인은 미확인이다.
+
+로컬 결과는 `artifacts/employee-idle/corrected/NR_Employee_Idle_Upright.blend`와 `.fbx`다. Blender의 Action Editor에서 `NR_Idle_Mixamo_Original`과 `NR_Idle_Upright`를 선택해 비교할 수 있다. 기본 선택은 보정본이다. FBX에는 보정 동작 하나만 넣고 시간을 0부터 내보내 기본 재가져오기에서 1–251프레임을 유지한다. Mixamo 동작이 들어간 원본/결과 파일은 원본 공개 재배포 조건을 확정하지 않아 로컬에 보관하고, Git에는 보정 코드·해시/검사·정적 비교 렌더를 관리한다. 이는 동작 데이터까지 공개 백업한 상태가 아니다.
+
+재현: `blender --background --factory-startup --disable-autoexec --python-exit-code 1 --python art/player-employee-01/correct_idle.py -- --source /path/to/Idle.fbx --output artifacts/employee-idle/corrected --walk /path/to/Walking.fbx`. 원본 수령 파일이 별도로 필요하다. `game-dev`가 PATH에 없어 설치된 Blender 5.2.2 LTS로 실행했고 해당 CLI 패키지 검사는 하지 않았다.
+
+Walking은 뼈 이름은 같지만 Idle과 일부 기본 관절 위치가 최대 **약 139.6mm** 다르다. 동작을 그대로 다른 뼈대의 Action으로 붙이지 않고 기본 자세 변환/각각의 Unity Avatar를 확인해야 한다. Walking은 검사만 했으며 이번에는 보정·게임 연결하지 않았다. Unity Humanoid·동작 전환·실제 운반·1인칭/4인/성능은 미완료이고 게임 0.9.4·프로토콜 13을 유지한다.
+
 ## 2026-10-03 — Mixamo 동작 우선 재사용
 
 사용자는 사용할 수 있는 동작을 Mixamo에서 최대한 재사용하기로 했다. 앞의 키프레임 안내는 선택적인 편집 학습이며 모든 게임 동작을 수작업으로 만드는 계획이 아니다. **Mixamo 후보 선택 → 기존 직원 리그에 적용·검증 → 게임별 접촉/타이밍만 보정**을 현재 제작 기준으로 삼는다. 라이브러리 전체 수집이나 새 게임 기능 추가를 뜻하지 않는다.

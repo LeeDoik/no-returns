@@ -2,6 +2,14 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-03 — Correct the supplied Idle hunch
+
+Respond to the user's hunched-back report with an [upper-body correction candidate](../current/03-guides.en.md#2026-10-03--correct-the-supplied-idle-upper-body-posture). Apply constant offsets only to neck/upper-chest rotations in the 53-bone, 4,765-vertex, 30fps, 251-frame Idle. Create a local Blender file with original/corrected Actions and a single corrected FBX, plus a static comparison render, reproduction code and bilingual guidance/asset status/backlog/validation updates. Find Walking in the same Downloads directory and inspect structure only, recording rest-joint differences up to approximately 139.6mm. No game/scene changes.
+
+Validation: 9 automated checks passed; unchanged lower-body positions across 251 frames; approximately 0.0023mm maximum sampled FBX joint-position error; inspect 5 side frames and front/three-quarter/before-after still renders. Initial checks failed on a stale object reference after reopening and a one-frame FBX reimport shift; resolve with a retained object name and FBX time-origin adjustment, then rerun. Fix initial comparison-object offsets overwritten by animation through separate parent offsets. Preserve base mesh/UV/weights, source inputs and existing user local changes.
+
+Reduce head forward lean from 5.44–9.27 degrees to -1.56–2.26 degrees. This preserves subtle motion and provides a posture candidate, not user quality approval. Unity, Walking transitions, contacts/all surfaces, first-person/four-player/performance remain unverified. Use native Blender with `game-dev` unavailable. Motion source/output public-redistribution terms remain unestablished, so keep those files local and include only correction code, checks/hashes and static renders in public Git. Link/checkbox checks across 276 documents, bilingual content review, Python syntax and changed-whitespace checks passed.
+
 ## 2026-10-03 — Mixamo-first production direction
 
 Adopt the user's request for maximum suitable Mixamo reuse as the current production direction. Update bilingual production guidance and asset planning with motion search terms, an Idle/Walking mapping trial on the existing rig, Unity retargeting fallback, proposed download settings and contact-adjustment scope. Consult Adobe upload/FAQ and Unity documentation; actual catalog selection, signed-in UI, upload and download were not performed. No code/model/scene changes. Bilingual content review, link/checkbox checks across 276 documents and changed-whitespace checks passed.
