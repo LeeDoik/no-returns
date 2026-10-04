@@ -2,6 +2,12 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-05 — consolidated design NR-COOP-01
+
+The user ended repeated Q&A and delegated remaining rules. Consolidated delivery, failure, economy, equipment, creatures, voice, saves and production order in the [design](../current/coop-design-v1.en.md). Separate direct selections, completions, initial tuning and unverified scope; link overview, implementation specification, backlog, validation and document home. Incorporate corrections: separate portable/plasma cutters, no barricade, Listener ignores scanner signals, no free healing. No code/scene/asset changes. Perform document checks and scope review; record results below. Preserve and exclude eight preexisting material and two Blender changes. Runtime/build/balance/human quality remain unverified; no development tool installation/update.
+
+Validation: `python3 tools/check_docs.py` passed 290 documents. Verified 13 corresponding sections, 10 pending acceptance criteria and matching tuning numbers; documentation-scoped `git diff --check` passed. Initial whole-worktree whitespace check failed on preexisting Unity material trailing spaces; those materials were not changed. Numeric comparison initially failed on English number spelling/order, then passed after aligning notation. No game tests run.
+
 ## 2026-10-04 — Companion rescue demonstration and replay 0.9.22
 
 The manual-test companion first approaches and falls nearby; hold use (default **E**) for **2.5s** to revive it. It then runs the existing **32s** movement/jump/baton/parcel sequence before returning to rescue practice. In practice mode only, the host's reset-lab binding (default **R**) prepares another rescue demonstration without resetting the room/player position. [Usage and limits](../current/companion-play.en.md), [validation](../validation/companion-rescue-0.9.22.json). Game **0.9.22**, protocol **13**, TCP **27842**. Supersedes previous default-companion down/rescue-not-included statements. Stop the previous manual session; open new manual windows only upon a hands-on test request.

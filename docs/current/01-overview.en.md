@@ -2,6 +2,10 @@
 
 [한국어](01-overview.ko.md)
 
+## 2026-10-05 — consolidated design NR-COOP-01
+
+[Cooperative design v1](coop-design-v1.en.md) governs target behavior for new work. It separates user selections from delegated completions and initial tuning. It overrides conflicting historical design below without promoting code or validation to implemented status. Documentation only; game version unchanged.
+
 0.8.4: two approved parcel/receipt models produced and visually integrated. Dynamic terminal state remains follow-up work. [Record](psx-props-01.en.md).
 
 

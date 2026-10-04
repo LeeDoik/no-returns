@@ -2,6 +2,10 @@
 
 [한국어](02-spec.ko.md)
 
+## 2026-10-05 — consolidated design NR-COOP-01
+
+[Cooperative design v1](coop-design-v1.en.md) governs target behavior for new work. It separates user selections from delegated completions and initial tuning. It overrides conflicting historical design below without promoting code or validation to implemented status. Documentation only; game version unchanged.
+
 ## 2026-10-04 — Companion rescue demonstration and replay 0.9.22
 
 The manual-test companion first approaches and falls nearby; hold use (default **E**) for **2.5s** to revive it. It then runs the existing **32s** movement/jump/baton/parcel sequence before returning to rescue practice. In practice mode only, the host's reset-lab binding (default **R**) prepares another rescue demonstration without resetting the room/player position. [Usage and limits](companion-play.en.md), [validation](../validation/companion-rescue-0.9.22.json). Game **0.9.22**, protocol **13**, TCP **27842**. Supersedes previous default-companion down/rescue-not-included statements. Stop the previous manual session; open new manual windows only upon a hands-on test request.
