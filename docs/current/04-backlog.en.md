@@ -2,12 +2,16 @@
 
 [한국어](04-backlog.ko.md)
 
+## Current implementation — multiple deliveries 0.9.24
+
+Implemented 3–6 physical parcels by crew count, independent carrying, verification pause/resume, receipts and district bundles. Game 0.9.24 / protocol 15 / TCP 27842. This supersedes the single 420 CR delivery for normal Cinder sessions. [Current rules, production evidence and remaining work](multiple-deliveries.en.md).
+
 ## 2026-10-05 — visit ledger, revival and departure 0.9.23
 
 Cinder receipts record 420 CR as unbanked earnings, paid only on departure. A living occupant spends 100 unbanked CR to revive one eliminated teammate after 10 seconds. Anyone can start/cancel a 12-second departure; deduct 100 CR per abandoned teammate with a zero floor. Integrate health, repeat downs/elimination and all-eliminated/liftoff during revival. [Implementation, values and limits](visit-settlement.en.md), [validation](../validation/visit-settlement-0.9.23.json). Game 0.9.23, protocol 14, TCP 27842. Supersedes historical Cinder all-aboard return, immediate settlement and one-hit down rules in this scope. New tools, multiple deliveries, Cinder saves/reconnects, final danger timing/audio and human review remain.
 
 - [x] Single-delivery unbanked ledger, paid revival, departure integration and automated checks.
-- [ ] Multiple contracts, verification pickup/resume and district bonuses.
+- [x] Multiple contracts, verification pickup/resume and district bonuses (0.9.24; validation scope in the current guide).
 - [ ] Personal inventory, medicine, saves/reconnects and planned danger timing/audio.
 
 ## 2026-10-05 — consolidated design NR-COOP-01

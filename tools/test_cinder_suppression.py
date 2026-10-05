@@ -7,6 +7,7 @@ import cinder_four_player as lab
 
 
 def main():
+    raise RuntimeError("Legacy single-parcel/full-recovery scenario needs migration to visit and multiple-delivery rules. Use cinder_quick_test.py and test_cinder_delivery.py --headless; these do not replace full hazard regression.")
     run, processes, folders, _ = lab.launch(True)
     checks, seq = [], 1
     report = dict(status="FAIL", run=str(run), checks=checks)

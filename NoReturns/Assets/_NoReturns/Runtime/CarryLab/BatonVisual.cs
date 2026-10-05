@@ -14,7 +14,7 @@ public sealed class BatonVisual {
     [System.Serializable] public class State {public bool visible,handAttached;public float handDistance;public Vector3 position,axis;}
     public State Capture(int slot)=>new State{visible=roots[slot]&&roots[slot].activeSelf,handAttached=attached[slot],handDistance=handDistance[slot],position=roots[slot]?roots[slot].transform.position:Vector3.zero,axis=roots[slot]?roots[slot].transform.up:Vector3.up};
     public void Display(Camera eye, CharacterController[] crew, int local, int occupiedMask, bool active,
-        int cargoHolder, int beaconHolder, ThreatState danger, float[] yaws, EmployeeVisual[] employees,BoxCollider parcel,Transform beacon=null) {
+        int cargoHolder, int beaconHolder, ThreatState danger, float[] yaws, EmployeeVisual[] employees,BoxCollider parcel,Transform beacon=null,int parcelMask=0) {
         if(view==null)view=new FirstPersonArms(eye);
         for(int i=0;i<4;i++) {
             if(!roots[i]) {
@@ -35,7 +35,7 @@ public sealed class BatonVisual {
             }
             bool down=danger!=null&&danger.IsDown(i);
             float rescue=danger==null?0:danger.RescueAt(i);
-            bool show=active&&((occupiedMask&(1<<i))!=0)&&cargoHolder!=i&&beaconHolder!=i&&!down&&rescue<=0;
+            bool show=active&&((occupiedMask&(1<<i))!=0)&&cargoHolder!=i&&(parcelMask&(1<<i))==0&&beaconHolder!=i&&!down&&rescue<=0;
             float cooldown=danger==null?0:danger.CooldownAt(i);
             if(employees[i])employees[i].AttackPose(cooldown,show);
             roots[i].SetActive(show);attached[i]=false;handDistance[i]=0;if(!show)continue;

@@ -3,12 +3,15 @@ namespace NoReturns.CarryLab {
 // Host-owned ledger; restore progression only, never an unfinished shift.
 public sealed class CarryMission {
     public static readonly Vector3 CinderReceiptOffset=new Vector3(23,0,3.4f);
-    readonly bool cinder;
+    readonly bool cinder,multiple;
+    public CarryDeliveries Deliveries {get;private set;}
+    public void SetCrew(int crew){if(multiple&&(Deliveries==null||Phase<2&&Deliveries.Entries.Length!=Mathf.Clamp(crew+2,3,6))&&Phase!=4)Deliveries=new CarryDeliveries(crew);}
+    public bool CollectDelivery(int receiver){if(Deliveries==null||Visit==null||!Visit.Active)return false;int pay=Deliveries.Collect(receiver);Visit.AddDeliveryReward(pay);if(pay>0)ReceiptCollected=true;return pay>0;}
     public CarryVisit Visit {get;private set;}
     public void BeginVisit(int mask){if(cinder){Visit??=new CarryVisit();Visit.Begin(mask);}}
-    public void CompleteVisit(){if(Visit==null||Visit.Active||Phase==4)return;Receipt=Visit.Gross;ReturnPay=0;Credits+=Visit.Paid;if(!Visit.Failed&&ReceiptCollected)SuccessfulDeliveries++;Phase=4;}
-    public CarryMission(CarryProgress progress=null,bool cinder=false){
-        this.cinder=cinder;
+    public void CompleteVisit(){if(Visit==null||Visit.Active||Phase==4)return;Receipt=Visit.Gross;ReturnPay=0;Credits+=Visit.Paid;if(!Visit.Failed&&ReceiptCollected)SuccessfulDeliveries+=Deliveries==null?1:Deliveries.Completed;Phase=4;}
+    public CarryMission(CarryProgress progress=null,bool cinder=false,bool multiple=false){
+        this.cinder=cinder;this.multiple=multiple;if(multiple)Deliveries=new CarryDeliveries(1);
         if(progress==null)return;
         Credits=progress.credits;SuccessfulDeliveries=progress.deliveries;BeaconUnlocked=progress.beacon;
     }
@@ -40,9 +43,10 @@ public sealed class CarryMission {
         if(Phase==0){Phase=1;return false;}
         if(Phase==1){if(allAboard)Phase=2;return false;}
         if(Phase==2||Phase==3){if(cinder)return false;if(allAboard){bool paid=Phase==3&&ReceiptCollected;Receipt=paid?(HardContract?450:300):0;ReturnPay=paid?(HardContract?180:120):0;Credits+=Receipt+ReturnPay;if(paid)SuccessfulDeliveries++;Phase=4;}return false;}
-        Phase=0;HardContract=false;Receipt=0;ReturnPay=0;stable=0;printTime=0;ReceiptCollected=false;return true;
+        Phase=0;HardContract=false;Receipt=0;ReturnPay=0;stable=0;printTime=0;ReceiptCollected=false;if(multiple)Deliveries=new CarryDeliveries(1);return true;
     }
     public void Tick(Vector3 p,Vector3 velocity,int holder,float dt){
+        if(Deliveries!=null)return;
         if(Phase==3){printTime+=dt;return;}
         if(Phase!=2)return;
         if(cinder)p-=CinderReceiptOffset;

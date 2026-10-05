@@ -23,6 +23,13 @@ public static class CarryLanguage {
         return english;
     }
     public static readonly Dictionary<string,string> Ko=new Dictionary<string,string>{
+        {"DELIVERY MANIFEST","배송 목록"},
+        {"SHIP TERMINAL","우주선 단말기"},
+        {"DELIVERED","배송 완료"},
+        {"AVAILABLE","배송 가능"},
+        {"{0}: {1} left / bundle +{2} CR","{0}: 남은 배송 {1}건 / 묶음 +{2} CR"},
+        {"Choose parcels aboard / find the address in its district.","우주선에서 화물을 고르고 해당 구역의 주소를 찾으세요."},
+
         {"REVIVAL / 100 UNBANKED CR","부활 / 미정산 보상 100 CR"},
         {"CANCEL DEPARTURE","출발 취소"},
         {"AUTOMATIC DEPARTURE / CANNOT CANCEL","자동 출발 / 취소 불가"},

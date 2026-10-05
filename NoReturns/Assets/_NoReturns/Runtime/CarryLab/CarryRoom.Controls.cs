@@ -3,13 +3,13 @@ using UnityEngine.InputSystem;
 namespace NoReturns.CarryLab {
 public sealed partial class CarryRoom {
     CarryControls controls;
-    bool shipMenu,settingsMenu,confirmReturn;
+    bool shipMenu,settingsMenu,confirmReturn,deliveryMenu;
     CarryInput uiCommands=new CarryInput();
     float carryYaw,carryPitch,carryDistance=.8f;
     LineRenderer placementPreview;
     bool UiOpen=>!active||menu||shipMenu||journalOpen;
     bool AboardLocal=>CarryMission.Aboard(workers[local].transform.position,cinderReview);
-    void ClosePanels(){controls.Cancel();menu=false;shipMenu=false;settingsMenu=false;confirmReturn=false;journalOpen=false;SetCursor(active);}
+    void ClosePanels(){controls.Cancel();menu=false;shipMenu=false;deliveryMenu=false;settingsMenu=false;confirmReturn=false;journalOpen=false;SetCursor(active);}
     void OpenShip(){if(!active||missionPhase<0||!AboardLocal)return;ClosePanels();shipMenu=true;SetCursor(false);}
     void TogglePause(){if(controls.Rebinding||controls.EscapeConsumedFrame==Time.frameCount)return;if(UiOpen&&active)ClosePanels();else{menu=true;SetCursor(false);}}
     bool RescueNearby(){
@@ -19,6 +19,7 @@ public sealed partial class CarryRoom {
     }
     bool ParcelTarget(int who,Quaternion look){
         int phase=hosting&&mission!=null?mission.Phase:missionPhase;
+        if(Multi&&(Manifest[parcelIndex].collected||Manifest[parcelIndex].verified))return false;
         if(holder>=0||equipment.Carrier==who||(phase>=0&&phase!=2))return false;
         var origin=workers[who].transform.position+Vector3.up*1.45f;var delta=cargo.position-origin;
         return delta.magnitude<=2.4f&&Vector3.Angle(look*Vector3.forward,delta)<=65&&Physics.Raycast(origin,delta.normalized,out var hit,delta.magnitude+.1f,~0,QueryTriggerInteraction.Ignore)&&hit.collider==cargoCollider;
@@ -46,8 +47,8 @@ public sealed partial class CarryRoom {
     void RenderMenus(CarryState s){
         if(shipMenu&&(!AboardLocal||(s.danger!=null&&s.danger.IsDown(local))))ClosePanels();
         if(!UiOpen){playHud.HideMenu();return;}
-        string kind=settingsMenu?"settings":!active?"home":shipMenu?"ship":journalOpen?"journal":"pause";
-        bool fresh=playHud.BeginMenu(kind+(s.visit!=null&&s.visit.active?"visit":"idle")+(CarryLanguage.Korean?"ko":"en"),kind=="ship"?"FLATBED / SHIP TERMINAL":kind=="settings"?"CONTROLS & SETTINGS":kind=="journal"?"CINDER DEPOT / SHARED FIELD LOG":"NO RETURNS",kind=="ship"?"CINDER DEPOT / BAY 04 · shared crew wallet":kind=="settings"?"Click a binding, then press a key. Esc cancels. Esc always closes menus.":kind=="journal"?"The world keeps moving. Read aboard. Records reset on next arrival; not saved after exit.":"Direct LAN / choose host or join. Menus do not pause the world.");
+        string kind=settingsMenu?"settings":!active?"home":shipMenu?(deliveryMenu?"deliveries":"ship"):journalOpen?"journal":"pause";
+        bool fresh=playHud.BeginMenu(kind+(s.visit!=null&&s.visit.active?"visit":"idle")+(CarryLanguage.Korean?"ko":"en"),kind=="deliveries"?"DELIVERY MANIFEST":kind=="ship"?"FLATBED / SHIP TERMINAL":kind=="settings"?"CONTROLS & SETTINGS":kind=="journal"?"CINDER DEPOT / SHARED FIELD LOG":"NO RETURNS",kind=="deliveries"?"Choose parcels aboard / find the address in its district.":kind=="ship"?"CINDER DEPOT / BAY 04 · shared crew wallet":kind=="settings"?"Click a binding, then press a key. Esc cancels. Esc always closes menus.":kind=="journal"?"The world keeps moving. Read aboard. Records reset on next arrival; not saved after exit.":"Direct LAN / choose host or join. Menus do not pause the world.");
         if(fresh){
             if(kind=="home"){
                 playHud.MenuLabel("Address label","HOST LAN ADDRESS",28,194,650,30);playHud.MenuAddress(address,v=>address=v);
@@ -63,6 +64,9 @@ public sealed partial class CarryRoom {
                 playHud.MenuLabel("Sensitivity","",28,480,490,30);playHud.MenuSlider("Sensitivity slider",28,515,controls.Sensitivity,.04f,.3f,v=>{controls.Sensitivity=v;controls.Save();});
                 playHud.MenuLabel("Fov","",570,480,490,30);playHud.MenuSlider("Fov slider",570,515,controls.Fov,65,100,v=>{controls.Fov=v;eye.fieldOfView=v;controls.Save();});
                 playHud.MenuButton("defaults","RESTORE DEFAULTS",28,558,510,()=>{controls.Defaults();eye.fieldOfView=controls.Fov;});playHud.MenuButton("back","BACK",570,558,490,()=>{controls.Cancel();settingsMenu=false;});
+            }else if(kind=="deliveries"){
+                playHud.MenuLabel("Manifest","",28,145,1044,385,22);
+                playHud.MenuButton("backShip","SHIP TERMINAL",710,490,360,()=>deliveryMenu=false);
             }else if(kind=="ship"){
                 playHud.MenuLabel("Route","",28,150,630,90,24);playHud.MenuLabel("Crew","",28,250,630,35);playHud.MenuLabel("Reason","",28,296,630,90);
                 playHud.MenuButton("shipAction","",28,402,630,()=>{if((missionPhase==2||missionPhase==3)&&!receiptCollected&&!(hosting?mission?.Visit?.Departing==true:target?.visit?.departing==true)&&!confirmReturn){confirmReturn=true;return;}uiCommands.action=true;uiCommands.confirmReturn=confirmReturn;confirmReturn=false;});
@@ -75,6 +79,7 @@ public sealed partial class CarryRoom {
                     playHud.MenuButton("buy","Buy beacon license",710,402,360,()=>uiCommands.buy=true);
                     playHud.MenuLabel("Stock","",710,458,360,80);
                 }
+                if(cinderReview&&s.deliveriesState!=null&&s.deliveriesState.Length>0)playHud.MenuButton("deliveries","DELIVERY MANIFEST",28,470,630,()=>deliveryMenu=true);
                 if(!cinderReview)playHud.MenuButton("contract","Change selected contract",28,470,630,()=>uiCommands.contract=true);
             }else{
                 for(int i=0;i<2;i++){bool found=clues!=null&&(clues.Mask&(1<<i))!=0;playHud.MenuLabel("Record"+i,found?(i==0?CarryClues.FirstTitle:CarryClues.SecondTitle):"UNRECORDED / inspect the site",28,145+i*170,1044,32,22);playHud.MenuLabel("Body"+i,found?(i==0?CarryClues.FirstBody:CarryClues.SecondBody):"No entry yet. A teammate can share it by inspecting a terminal.",28,187+i*170,1044,120);}
@@ -105,15 +110,17 @@ public sealed partial class CarryRoom {
                 playHud.SetMenuText("Crew",string.Format(T("ABOARD {0}/{1} / WALLET {2} CR"),aboard,s.players,s.credits));
                 playHud.SetMenuText("Reason",s.phase<2||v==null?"Select the route or prepare the next shift":s.phase==4?string.Format(T("GROSS {0} / REVIVAL -{1} / RETURN -{2} / PAID {3} CR"),v.gross,v.revivalFees,v.returnFees,v.paid):string.Format(T("UNBANKED {0} CR / REVIVAL 100 CR\nOutside crew cost 100 CR each at departure."),v.available));
                 if(s.phase==4)playHud.SetMenuText("Route",v!=null&&v.failed?"VISIT FAILED / NO PAY":"VISIT SETTLED");
+                if(s.deliveriesState!=null&&s.deliveriesState.Length>0&&s.phase<4)playHud.SetMenuText("Route","Choose parcels aboard / find the address in its district.");
                 if(field){
-                    playHud.SetMenuText("Route",v.departing?v.automatic?"AUTOMATIC DEPARTURE / RETURN NOW":"DEPARTURE STARTED / RETURN NOW":CarryMission.Objective(s.phase));
+                    playHud.SetMenuText("Route",v.departing?v.automatic?"AUTOMATIC DEPARTURE / RETURN NOW":"DEPARTURE STARTED / RETURN NOW":s.deliveriesState!=null&&s.deliveriesState.Length>0?"Choose parcels aboard / find the address in its district.":CarryMission.Objective(s.phase));
                     for(int i=0;i<4;i++)playHud.SetMenuButton("revive"+i,string.Format(T("REVIVE EMPLOYEE {0} / 100 CR"),i+1),v.eliminated[i]&&(s.occupiedMask&(1<<i))!=0&&v.reviving<0&&v.available>=CarryVisit.RevivalCost);
                     playHud.SetMenuText("Revival",v.reviving>=0?string.Format(T("REVIVING {0} / {1}s"),v.reviving+1,Mathf.CeilToInt(v.revivalLeft)):v.available<CarryVisit.RevivalCost?"Not enough unbanked earnings. Deliver more or depart.":"Select one eliminated employee. One revival at a time.");
                 }
                 playHud.SetMenuButton("buy",s.unlocked?"OWNED":s.credits<120?"INSUFFICIENT FUNDS / 120 CR":"Buy beacon license",host&&!s.unlocked&&s.credits>=120&&(s.phase==0||s.phase==4));
             }
 
-        }else if(kind=="home"||kind=="pause")playHud.SetMenuText("Status",status+(hazard&&!cinderReview&&active?"\n"+(hosting?T(saveNotice):T("Using host progress / personal save unchanged")):""));
+        }else if(kind=="deliveries")playHud.SetMenuText("Manifest",DeliveryList(s));
+        else if(kind=="home"||kind=="pause")playHud.SetMenuText("Status",status+(hazard&&!cinderReview&&active?"\n"+(hosting?T(saveNotice):T("Using host progress / personal save unchanged")):""));
     }
     bool Placement(int who,out Vector3 position,out Quaternion rotation){
         position=cargo.position;rotation=Quaternion.Euler(0,inputs[who].yaw+inputs[who].turnYaw,0);
@@ -140,13 +147,15 @@ public sealed partial class CarryRoom {
         if(visit!=null&&visit.active&&visit.eliminated[local])return T("ELIMINATED / wait for ship revival or departure");
         if(visit!=null&&visit.active&&visit.down[local])return (CrewCount==1?controls.Key(4)+T(" hold to self-revive / two chances per landing"):T("DOWN / teammate rescue needed"))+" / "+Mathf.CeilToInt(visit.bleedout[local])+"s";
         if(danger!=null&&danger.IsDown(local))return T("DOWN / wait for teammate rescue. All down: emergency recovery.");
+        if(holder==local&&Multi)return "NR-"+(parcelIndex+1).ToString("00")+" / "+CarryDeliveries.Addresses[Manifest[parcelIndex].receiver]+" / "+controls.Key(6)+T(" place · ")+controls.Key(5)+T(" release");
         if(holder==local)return controls.Key(6)+T(" place · ")+controls.Key(7)+T(" hold to rotate · Wheel reach · ")+controls.Key(5)+T(" release");
         if(equipment.Carrier==local)return controls.Key(6)+T(" place beacon · ")+controls.Key(5)+T(" release");
 
         if(hazard&&danger!=null&&danger.RescueAt(local)>0)return string.Format(T("RESCUING {0}% / keep holding "),Mathf.RoundToInt(danger.RescueAt(local)/2.5f*100))+controls.Key(4);
         if(RescueNearby())return controls.Key(4)+T(" hold to rescue");
         var origin=eye.transform.position;var look=eye.transform.rotation;
-        if(missionPhase==3&&!receiptCollected&&ReceiptFeedback.CanReach(origin,look))return controls.Key(4)+T(" COLLECT RECEIPT");
+        if(Multi&&ReceiptFeedback.ReachableReceiver(origin,look)>=0){int r=ReceiptFeedback.ReachableReceiver(origin,look);foreach(var e in Manifest)if(e.receiver==r&&e.verified&&!e.collected)return controls.Key(4)+T(" COLLECT RECEIPT");}
+        if(!Multi&&missionPhase==3&&!receiptCollected&&ReceiptFeedback.CanReach(origin,look))return controls.Key(4)+T(" COLLECT RECEIPT");
         if(clues!=null&&clues.Target(origin,look)>=0)return controls.Key(4)+T(" INSPECT TERMINAL");
         if(equipment.Target(origin,look))return controls.Key(4)+T(" PICK UP BEACON");
         if(ParcelTarget(local,look))return controls.Key(4)+T(" PICK UP PARCEL");

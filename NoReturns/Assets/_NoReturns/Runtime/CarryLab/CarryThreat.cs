@@ -17,7 +17,7 @@ namespace NoReturns.CarryLab {
 public sealed class CarryThreat {
     public bool Hard; readonly bool outer,cinder; float searchClock,distraction; int pursuedPlayer=-1;
     public bool[] Down=new bool[4];
-    CarryVisit visit;
+    CarryVisit visit;public int ParcelMask;
     public void AttachVisit(CarryVisit value){visit=value;if(value!=null)Down=value.Down;}
     public readonly float[] Rescue=new float[4],Cooldown=new float[4];
     readonly float[] protection=new float[4],stepClock=new float[4];
@@ -122,7 +122,7 @@ public sealed class CarryThreat {
             if(!Down[i]){
                 if(inputs[i].call)Hear(players[i],12);
                 if(!inputs[i].quiet&&stepClock[i]<=0&&(players[i]-previous[i]).sqrMagnitude>.00001f){Hear(players[i],Hard?8:6);stepClock[i]=.45f;}
-                if(!outer&&inputs[i].shove&&holder!=i&&Cooldown[i]<=0&&!(inputs[i].rescue&&RescueTarget(i,players,mask)>=0)){
+                if(!outer&&inputs[i].shove&&holder!=i&&(ParcelMask&(1<<i))==0&&Cooldown[i]<=0&&!(inputs[i].rescue&&RescueTarget(i,players,mask)>=0)){
                     Cooldown[i]=6;var delta=position-players[i];var facing=Quaternion.Euler(0,inputs[i].yaw,0)*Vector3.forward;
                     if(state!=4&&stunResistance<=0&&delta.magnitude<=2.5f&&Vector3.Angle(delta,facing)<=65&&Sight(players[i],position)){state=4;timer=3;path.Clear();}
                 }
@@ -154,7 +154,7 @@ public sealed class CarryThreat {
     public void TickRescues(Vector3[] players,int mask,CarryInput[] inputs,int holder,float dt){
         for(int i=0;i<players.Length;i++){
             int other=RescueTarget(i,players,mask);
-            bool can=(mask&(1<<i))!=0&&!Down[i]&&other>=0&&holder!=i&&inputs[i].rescue;
+            bool can=(mask&(1<<i))!=0&&!Down[i]&&other>=0&&holder!=i&&(ParcelMask&(1<<i))==0&&inputs[i].rescue;
             if(rescueTargets[i]!=other)Rescue[i]=0;rescueTargets[i]=other;
             Rescue[i]=can?Rescue[i]+dt:0;
             if(Rescue[i]>=2.5f){if(visit!=null)visit.Rescue(other);else Down[other]=false;protection[other]=4;Rescue[i]=0;rescues++;}

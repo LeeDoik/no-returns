@@ -17,7 +17,7 @@ public sealed partial class CarryRoom {
 #if CARRY_TEST_AUTOMATION || UNITY_EDITOR
         if(!quickTest||pendingQuickFixture==null||(occupiedMask&3)!=3)return;
         var name=pendingQuickFixture;pendingQuickFixture=null;ClosePanels();ResetRoom();
-        mission=new CarryMission(new CarryProgress{beacon=true,credits=250},cinder:true);mission.Act(true,true);mission.Act(true,true);missionPhase=mission.Phase;
+        mission=new CarryMission(new CarryProgress{beacon=true,credits=250},cinder:true);mission.Act(true,true);mission.Act(true,true);missionPhase=mission.Phase;EnsureParcels(1,true);
         suppression.Begin();outer.Reset();
         for(int i=0;i<4;i++){
             workers[i].enabled=false;workers[i].transform.position=new Vector3(-22.5f+i*1.5f,.035f,-19);workers[i].enabled=true;fall[i]=0;

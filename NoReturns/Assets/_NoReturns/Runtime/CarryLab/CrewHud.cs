@@ -44,7 +44,8 @@ public sealed partial class CrewHud : MonoBehaviour {
         wallet.text=string.Format(T("WALLET {0} CR / CREW {1}/4"),s.credits,s.players);
         if(s.cinderReview&&s.phase<0){objective.text=T("CINDER / FOUR-PLAYER MAP TEST");wallet.text=string.Format(T("CREW {0}/4"),s.players);}
         for(int i=0;i<4;i++){
-            bool present=(s.occupiedMask&(1<<i))!=0;string state=!present?"EMPTY":s.danger!=null&&s.danger.IsDown(i)?"DOWN":s.holder==i?"CARGO":s.beaconCarrier==i?"BEACON":s.positions!=null&&CarryMission.Aboard(s.positions[i],s.cinderReview)?"ABOARD":"IN FIELD";
+            int carrying=-1;if(s.parcels!=null)for(int p=0;p<s.parcels.Length;p++)if(s.parcels[p].holder==i)carrying=p;
+            bool present=(s.occupiedMask&(1<<i))!=0;string state=!present?"EMPTY":s.danger!=null&&s.danger.IsDown(i)?"DOWN":(s.holder==i||carrying>=0)?"CARGO":s.beaconCarrier==i?"BEACON":s.positions!=null&&CarryMission.Aboard(s.positions[i],s.cinderReview)?"ABOARD":"IN FIELD";
             rows[i].text=(i+1).ToString("00")+" / "+T(state)+(i==local?" / "+T("YOU"):"");rows[i].color=present?Colors[i]:new Color(.42f,.45f,.43f);
         }
         bool down=s.danger!=null&&s.danger.IsDown(local),hands=s.holder==local||s.beaconCarrier==local;
@@ -61,6 +62,7 @@ public sealed partial class CrewHud : MonoBehaviour {
             wallet.text=string.Format(T("WALLET {0} / UNBANKED {1} CR / HP {2}"),s.credits,s.visit.active?s.visit.available:0,s.visit.health[local]);
             for(int i=0;i<4;i++)if((s.occupiedMask&(1<<i))!=0&&s.visit.eliminated[i])rows[i].text=(i+1).ToString("00")+" / "+T("ELIMINATED");
         }
+        if(s.deliveriesState!=null&&s.deliveriesState.Length>0)objective.text=T("Choose parcels aboard / find the address in its district.");
         // No creature AI state or remaining suppression seconds on the HUD.
         notice.text=s.phase==4?string.Format(T("RECEIPT {0} + RETURN {1} CR"),s.receipt,s.returnPay):s.phase==3&&s.receiptCollected?T("Receipt collected / return aboard to get paid"):T(s.message??"");
         if(s.visit!=null&&s.visit.Ready&&s.phase==4)notice.text=string.Format(T("GROSS {0} / REVIVAL -{1} / RETURN -{2} / PAID {3} CR"),s.visit.gross,s.visit.revivalFees,s.visit.returnFees,s.visit.paid);

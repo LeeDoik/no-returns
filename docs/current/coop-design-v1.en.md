@@ -2,6 +2,10 @@
 
 [한국어](coop-design-v1.ko.md)
 
+## Current implementation — multiple deliveries 0.9.24
+
+Implemented 3–6 physical parcels by crew count, independent carrying, verification pause/resume, receipts and district bundles. Game 0.9.24 / protocol 15 / TCP 27842. This supersedes the single 420 CR delivery for normal Cinder sessions. [Current rules, production evidence and remaining work](multiple-deliveries.en.md).
+
 2026-10-05 · Design baseline NR-COOP-01 · Not an implementation completion claim
 
 ## Status and precedence

@@ -2,6 +2,7 @@ using UnityEngine;
 namespace NoReturns.CarryLab {
 // Presentation only: the host-owned ledger provides phase and stable progress.
 public sealed class ReceiptFeedback : MonoBehaviour {
+ public GameObject TerminalArt; public Vector3 TerminalOffset;
  Material signal; Transform scan,paper; Material screenMaterial; string screenKey; AudioSource sound; AudioClip scanning,confirmed; int previous=-1; float printed;
  static GameObject Visual(string name,Vector3 p,Vector3 size,Material mat){var g=CarryWorld.Box(name,p,size,mat);Object.Destroy(g.GetComponent<Collider>());return g;}
  void Awake(){
@@ -22,18 +23,20 @@ public sealed class ReceiptFeedback : MonoBehaviour {
   var clip=AudioClip.Create(name,samples.Length,1,rate,false);clip.SetData(samples,0);return clip;
  }
  public static readonly Vector3 Slot=new Vector3(-7.96f,.84f,8.691f);
- public static bool CanReach(Vector3 origin,Quaternion look){return Physics.Raycast(origin,look*Vector3.forward,out var hit,2.4f,~0,QueryTriggerInteraction.Ignore)&&hit.collider.name=="Receipt terminal collision";}
+ public static int ReachableReceiver(Vector3 origin,Quaternion look){if(!Physics.Raycast(origin,look*Vector3.forward,out var hit,2.4f,~0,QueryTriggerInteraction.Ignore))return -1;string n=hit.collider.name;if(n=="Receipt terminal collision")return 0;return n.StartsWith("Receipt terminal collision ")&&int.TryParse(n.Substring(27),out int id)&&id>=0&&id<3?id:-1;}
+ public static bool CanReach(Vector3 origin,Quaternion look)=>ReachableReceiver(origin,look)==0;
  public void Display(int phase,float progress,bool collected,bool ready){
+  sound.transform.localPosition=new Vector3(-8.1f,1,9)+TerminalOffset;
   int state=phase==3?2:phase==2?(progress>0?1:0):-1;
   Color color=state==2?new Color(.12f,.85f,.38f):state==1?new Color(.35f,.8f,.9f):state==0?new Color(.9f,.55f,.08f):new Color(.3f,.32f,.3f);
   signal.color=color;signal.SetColor("_EmissionColor",color*.6f);
-  if(!screenMaterial){var terminal=GameObject.Find("PSX Receipt");var template=Resources.Load<Material>("ReceiptUI/Screen");if(terminal&&template){screenMaterial=new Material(template);foreach(var renderer in terminal.GetComponentsInChildren<Renderer>()){screenMaterial.SetTexture("_BaseMap",renderer.sharedMaterial.GetTexture("_BaseMap"));renderer.sharedMaterial=screenMaterial;}}}
+  if(!screenMaterial){var terminal=TerminalArt?TerminalArt:GameObject.Find("PSX Receipt");var template=Resources.Load<Material>("ReceiptUI/Screen");if(terminal&&template){screenMaterial=new Material(template);foreach(var renderer in terminal.GetComponentsInChildren<Renderer>()){screenMaterial.SetTexture("_BaseMap",renderer.sharedMaterial.GetTexture("_BaseMap"));renderer.sharedMaterial=screenMaterial;}}}
   string key=(state==2?(collected?"collected":ready?"take":"print"):state==1?"scan":state==0?"place":"standby")+(CarryLanguage.Korean?"-ko":"-en");
   if(screenMaterial&&key!=screenKey){screenMaterial.SetTexture("_ScreenMap",Resources.Load<Texture2D>("ReceiptUI/"+key));screenKey=key;}
-  if(screenMaterial){screenMaterial.SetFloat("_Progress",state==1?Mathf.Clamp01(progress):-1);screenMaterial.SetVector("_ScreenOffset",transform.position);}
+  if(screenMaterial){screenMaterial.SetFloat("_Progress",state==1?Mathf.Clamp01(progress):-1);screenMaterial.SetVector("_ScreenOffset",transform.position+TerminalOffset);}
   scan.gameObject.SetActive(state==1);scan.localPosition=new Vector3(-6,.024f,Mathf.Lerp(8.08f,9.92f,progress));
-  if(state!=previous){sound.Stop();if(state==1)sound.PlayOneShot(scanning);if(state==2&&previous>=0){sound.PlayOneShot(confirmed);printed=0;}previous=state;}
-  paper.gameObject.SetActive(state==2&&!collected);if(state==2){printed=Mathf.Min(1,printed+Time.deltaTime*1.5f);paper.localScale=new Vector3(.16f,.01f,.01f+.28f*printed);paper.localPosition=Slot+Vector3.back*(.005f+.14f*printed);}else printed=0;
+  if(state!=previous){sound.Stop();if(state==1){sound.clip=scanning;sound.loop=true;sound.Play();}else sound.loop=false;if(state==2&&previous>=0){sound.PlayOneShot(confirmed);printed=0;}previous=state;}
+  paper.gameObject.SetActive(state==2&&!collected);if(state==2){printed=Mathf.Min(1,printed+Time.deltaTime*1.5f);paper.localScale=new Vector3(.16f,.01f,.01f+.28f*printed);paper.localPosition=Slot+TerminalOffset+Vector3.back*(.005f+.14f*printed);}else printed=0;
  }
  void OnDestroy(){if(screenMaterial)Destroy(screenMaterial);if(scanning)Destroy(scanning);if(confirmed)Destroy(confirmed);}
 }

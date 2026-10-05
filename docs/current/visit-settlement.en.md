@@ -2,6 +2,10 @@
 
 [한국어](visit-settlement.ko.md)
 
+## Current implementation — multiple deliveries 0.9.24
+
+Implemented 3–6 physical parcels by crew count, independent carrying, verification pause/resume, receipts and district bundles. Game 0.9.24 / protocol 15 / TCP 27842. This supersedes the single 420 CR delivery for normal Cinder sessions. [Current rules, production evidence and remaining work](multiple-deliveries.en.md).
+
 2026-10-05 · Implementation baseline: game 0.9.23 / protocol 14 / TCP 27842
 
 ## Implemented scope
@@ -31,6 +35,6 @@ Open the terminal with use (default E) aboard ship. While landed, the right side
 
 Results are stored in the [receipt](../validation/visit-settlement-0.9.23.json). The first rescue run exposed a HUD exception reading an empty visit snapshot immediately after joining. Add array validity checks and rerun. Consecutive client launches also required waiting for TCP port release; no unrelated active session was forcibly terminated.
 
-This integrates rules for the existing single delivery. Multiple contracts/district bonuses/five tools/medicine/cart/dragging/spectating/voice/ship intrusion remain design work. Consumable retention will be implemented with personal inventory. Existing shared beacon ownership, purchasing authority and charges remain unchanged. Cinder progression is still session memory; save/resume/reconnect/migration are unimplemented. Preserve existing visit failure on participant disconnection. Human handling/readability/fun, real-time 18-minute departure, Windows/LAN/performance remain unverified.
+Version 0.9.23 integrated the single delivery. Multiple contracts and district bonuses are superseded by the current 0.9.24 guide. Five tools/medicine/cart/dragging/spectating/voice/ship intrusion remain design work. Consumable retention will be implemented with personal inventory. Existing shared beacon ownership, purchasing authority and charges remain unchanged. Cinder progression is still session memory; save/resume/reconnect/migration are unimplemented. Preserve existing visit failure on participant disconnection. Human handling/readability/fun, real-time 18-minute departure, Windows/LAN/performance remain unverified.
 
 Official CLI queries confirmed stable Unity 6000.6.4f1, CLI 1.0.0-beta.12 and Pipeline 0.8.0-exp.1 as current. Reconnect after the initial Editor instance exited, then run checks. No model/material/Blender changes. No manual play windows opened.

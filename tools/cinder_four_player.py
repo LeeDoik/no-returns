@@ -207,7 +207,7 @@ def check():
     report = dict(status="FAIL", run=str(run), checks=checks)
     try:
         require("Cinder mode and four peers replicated", lambda: all_state(lambda s:
-            s.get("cinderReview") and s.get("protocol") == 14 and s.get("players") == 4
+            s.get("cinderReview") and s.get("protocol") == 15 and s.get("players") == 4
             and s.get("phase") == -1 and not s.get("hazard")))
         send(3, yaw=-81.5, pitch=45, interact=True)
         require("slot 3 picks up shared parcel", lambda: all_state(lambda s: s.get("holder") == 3))

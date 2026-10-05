@@ -38,6 +38,7 @@ public sealed class CarryVisit {
     }
     public bool Present(int i)=>i>=0&&i<4&&(Mask&(1<<i))!=0;
     public bool CanAct(int i)=>Present(i)&&!Down[i]&&!Eliminated[i];
+    public void AddDeliveryReward(int amount){if(Active&&amount>0)Gross+=amount;}
     public void CreditReceipt(int amount){if(Active&&Gross==0)Gross=Math.Max(0,amount);}
     public void Damage(int i,int amount){
         if(!Active||!CanAct(i)||Protection[i]>0||amount<=0)return;

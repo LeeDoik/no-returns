@@ -2,6 +2,10 @@
 
 [한국어](receipt-terminal.ko.md)
 
+## Current implementation — multiple deliveries 0.9.24
+
+Implemented 3–6 physical parcels by crew count, independent carrying, verification pause/resume, receipts and district bundles. Game 0.9.24 / protocol 15 / TCP 27842. This supersedes the single 420 CR delivery for normal Cinder sessions. [Current rules, production evidence and remaining work](multiple-deliveries.en.md).
+
 The historical `artifacts/` paths identify local evidence from the original run. These files are no longer retained here and are not included in the public repository. Historical passes are distinct from current revalidation.
 
 0.8.14: [Display implementation policy and current audit](display-systems.en.md).

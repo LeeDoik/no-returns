@@ -2,6 +2,12 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-05 — multiple deliveries and district bundles 0.9.24
+
+Implement the next approved design slice: 3/4/5/6 physical parcels for 1/2/3/4 crew, ship manifest/address labels, independent carrying and 3 receivers, 25-second verification with pickup pause/resume, shared receipts, 25% district bundles and the unbanked ledger. Game 0.9.24 / protocol 15 / TCP 27842. [Current rules and production evidence](../current/multiple-deliveries.en.md), [validation](../validation/multiple-deliveries-0.9.24.json). No penalty for unfinished parcels.
+
+Passed 27 Editor rules, 23 actual two-player quick checks and 24 actual four-player carrying/partial settlement/next-visit checks. The 17 existing actual 2-player paid-revival/departure checks also passed. Mac build: 0 errors, 7 existing warnings. Fixed WEST terminal/wall overlap and a screen-transition wait in test automation, then reran. Passed 294 bilingual document checks, changed-file whitespace and Python syntax checks. Historical full hazard scripts use single-cargo/full-recovery assumptions, now stop before launch and await migration. Human visuals/audio/fun, combined AI/delivery, all routes, 1–4-player balance and saving/reconnection remain unverified/unimplemented. No manual windows. Retain current official version confirmation: Unity 6000.6.4f1 / CLI 1.0.0-beta.12 / Pipeline 0.8.0-exp.1. Restore generated scene/URP changes; preserve and exclude 8 preexisting material and 2 Blender edits.
+
 ## 2026-10-05 — visit ledger, revival and departure 0.9.23
 
 Cinder receipts record 420 CR as unbanked earnings, paid only on departure. A living occupant spends 100 unbanked CR to revive one eliminated teammate after 10 seconds. Anyone can start/cancel a 12-second departure; deduct 100 CR per abandoned teammate with a zero floor. Integrate health, repeat downs/elimination and all-eliminated/liftoff during revival. [Implementation, values and limits](../current/visit-settlement.en.md), [validation](../validation/visit-settlement-0.9.23.json). Game 0.9.23, protocol 14, TCP 27842. Supersedes historical Cinder all-aboard return, immediate settlement and one-hit down rules in this scope. New tools, multiple deliveries, Cinder saves/reconnects, final danger timing/audio and human review remain.

@@ -1,0 +1,155 @@
+{
+  "status": "PASS",
+  "game": "0.9.24",
+  "protocol": 15,
+  "date": "2026-10-05",
+  "rules": {
+    "status": "PASS",
+    "checks": [
+      "crew parcel count 1",
+      "crew parcel count 2",
+      "crew parcel count 3",
+      "crew parcel count 4",
+      "wrong address rejected",
+      "held parcel rejected",
+      "moving parcel rejected",
+      "outside visit rejected",
+      "verification starts",
+      "one scanner per receiver",
+      "pickup pauses without losing progress",
+      "paused parcel does not reserve scanner",
+      "resume completes once",
+      "wrong terminal cannot collect",
+      "first receipt base reward",
+      "duplicate receipt rejected",
+      "last district receipt includes 55 bonus",
+      "bonus cannot repeat",
+      "independent districts verify concurrently",
+      "single-contract districts receive no bundle",
+      "snapshots cannot mutate ledger",
+      "manifest locked after landing",
+      "mission receipt 0",
+      "mission receipt 1",
+      "rewards remain unbanked",
+      "partial departure no abandoned parcel penalty or duplicate payout",
+      "next visit resets manifest"
+    ]
+  },
+  "limits": [
+    "Human visual/readability/fun review not performed",
+    "Hazard AI disabled in physical delivery journey",
+    "All receiver routes, balance, persistence, Windows and WAN unverified",
+    "Historical full threat/suppression scripts fail before client launch until migrated; focused checks do not replace full hazard regression."
+  ],
+  "build": {
+    "status": "PASS",
+    "unity": "6000.6.4f1",
+    "output": "/Users/leedoik/WorkSpace/Game/No_Returns/builds/CinderFourPlayer/NoReturns.app",
+    "error": "",
+    "errors": 0,
+    "warnings": 7
+  },
+  "quick": {
+    "status": "PASS",
+    "checks": [
+      "beacon fixture ready",
+      "beacon starts purchased with two charges",
+      "client cannot reset host fixture",
+      "real pickup replicated",
+      "local and remote hands carry beacon",
+      "real placement consumes one charge",
+      "release restores baton and clears remote pose",
+      "rescue fixture ready",
+      "partner starts down",
+      "down pose settles on both clients",
+      "real rescue progress and hands",
+      "remote rescuer crouches with supported hands",
+      "release cancels rescue",
+      "remote rescue pose clears on cancel",
+      "real hold revives partner on both clients",
+      "revived partner visibly gets up",
+      "get-up returns to standing on both clients",
+      "revival restores baton",
+      "baton fixture ready",
+      "real baton hit stuns target on both clients",
+      "attack pose returns",
+      "cooldown rejects repeated attack",
+      "no runtime errors or progression save"
+    ],
+    "run": "/Users/leedoik/WorkSpace/Game/No_Returns/artifacts/cinder-four-player/run-20261005-230500-7f237f",
+    "count": 23
+  },
+  "delivery": {
+    "status": "PASS",
+    "checks": [
+      "six parcels replicated for four crew",
+      "ship terminal opens",
+      "route selected",
+      "ship terminal opens",
+      "landing starts visit",
+      "parcel 0 picked by 0",
+      "parcel 1 picked by 1",
+      "two distinct simultaneous carriers on all peers",
+      "first verification starts",
+      "parcel 0 picked by 0",
+      "pickup pauses and retains progress",
+      "replacement resumes",
+      "verification finishes while player away",
+      "shared first receipt only unbanked",
+      "receipt cannot duplicate",
+      "ship manifest reveals remaining WEST bundle",
+      "second parcel verifies independently",
+      "second receipt includes single district bonus",
+      "bundle is idempotent",
+      "ship terminal opens",
+      "departure settles selected two and abandons four without penalty",
+      "ship terminal opens",
+      "next visit resets all six while keeping wallet",
+      "clean runtime logs"
+    ],
+    "run": "/Users/leedoik/WorkSpace/Game/No_Returns/artifacts/cinder-four-player/run-20261005-230517-ef922b",
+    "count": 24
+  },
+  "docs": {
+    "status": "PASS",
+    "documents": 294
+  },
+  "resolved_failures": [
+    "Initial WEST terminal overlapped the site wall; moved inside clear corridor and reran the actual route successfully.",
+    "Initial departure test clicked before leaving manifest screen; wait for the actionable terminal button before clicking."
+  ],
+  "tools": {
+    "unity": "6000.6.4f1",
+    "cli": "1.0.0-beta.12",
+    "pipeline": "0.8.0-exp.1",
+    "official_latest_checked": "2026-10-05"
+  },
+  "preserved_unrelated_changes": {
+    "materials": 8,
+    "blender_files": 2
+  },
+  "visit_regression": {
+    "status": "PASS",
+    "checks": [
+      "visit-empty initialized",
+      "wallet cannot fund revival",
+      "visit-peer initialized",
+      "receipt unbanked on both clients",
+      "eliminated actor rejected",
+      "peer terminal opened",
+      "peer UI starts revival and reserves fee",
+      "duplicate revival not charged",
+      "revival completes on both clients",
+      "revived employee placed aboard",
+      "peer starts departure",
+      "other player cancels departure",
+      "visit initialized",
+      "countdown leaves wallet unbanked",
+      "left behind fee and single payout replicated",
+      "next preparation does not duplicate pay",
+      "clean runtime logs"
+    ],
+    "run": "/Users/leedoik/WorkSpace/Game/No_Returns/artifacts/cinder-four-player/run-20261005-230726-91f446",
+    "count": 17
+  }
+}

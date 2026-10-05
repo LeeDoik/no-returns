@@ -18,7 +18,7 @@ public sealed partial class CarryRoom {
     void RemovePeer(int slot){
         connections[slot]?.Dispose();connections[slot]=null;occupiedMask&=~(1<<slot);peer=CrewCount>1;
         if(equipment.Carrier==slot)equipment.RecoverCarrier(workers[slot].transform.position);
-        if(holder==slot)Release();inputs[slot]=new CarryInput();mission?.Abort();
+        SelectParcelFor(slot);if(holder==slot)Release();inputs[slot]=new CarryInput();mission?.Abort();
         // Preserve the prototype's disconnect-aborts-shift rule, recovering down crew as well.
         if(hazard){bool recover=false;for(int i=0;i<4;i++)if(Present(i)&&threat.Down[i])recover=true;if(recover)ResetRoom();}status="HOST / partner left";Broadcast();
     }
@@ -56,12 +56,13 @@ public sealed partial class CarryRoom {
         }else if(wire!=null){
             foreach(var line in wire.Read())try{
                 var v=JsonUtility.FromJson<CarryState>(line);
-                if(v==null||v.protocol!=14){Disconnect();status="Protocol mismatch / use the same game build";break;}
+                if(v==null||v.protocol!=15){Disconnect();status="Protocol mismatch / use the same game build";break;}
                 if(v.visit!=null&&v.visit.active&&!v.visit.Ready)throw new Exception("Invalid visit snapshot");
                 if(v.cinderReview!=cinderReview){Disconnect();status="Map mismatch / use the same test build";break;}
                 if(!string.IsNullOrEmpty(v.rejection)){Disconnect();status=v.rejection;break;}
                 if(v.recipient<1||v.recipient>3||v.positions==null||v.positions.Length!=4||v.yaws==null||v.yaws.Length!=4)throw new Exception("Invalid crew snapshot");
                 target=v;local=v.recipient;occupiedMask=v.occupiedMask;peer=CrewCount>1;lastPacket=Time.realtimeSinceStartup;
+                if(v.parcels!=null&&v.parcels.Length>0&&(v.parcels.Length>6||v.deliveriesState==null||v.deliveriesState.Length!=v.parcels.Length))throw new Exception("Invalid manifest snapshot");
                 if(!active){StartSession();status="CLIENT / connected";}
             }catch{wire?.Dispose();}
             if(wire!=null&&(wire.Closed||Time.realtimeSinceStartup-lastPacket>5)){Disconnect();status="Host connection lost.";}
