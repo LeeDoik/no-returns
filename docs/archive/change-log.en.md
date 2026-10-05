@@ -2,6 +2,10 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-06 — next-work prioritization investigation
+
+For the next-work question, checked documentation home, consolidated design, backlog and current health/equipment code. Recommend personal slots, purchasing/equipping/swapping and medicine next. Record rationale and unimplemented status in the [backlog](../current/04-backlog.en.md). No code/scene/asset changes; retain game 0.9.24 / protocol 15. Passed 294 document checks and changed-document whitespace checks. No runtime checks, manual windows or tool installation/update. Preserve/exclude 8 existing material and 2 Blender changes.
+
 ## 2026-10-05 — multiple deliveries and district bundles 0.9.24
 
 Implement the next approved design slice: 3/4/5/6 physical parcels for 1/2/3/4 crew, ship manifest/address labels, independent carrying and 3 receivers, 25-second verification with pickup pause/resume, shared receipts, 25% district bundles and the unbanked ledger. Game 0.9.24 / protocol 15 / TCP 27842. [Current rules and production evidence](../current/multiple-deliveries.en.md), [validation](../validation/multiple-deliveries-0.9.24.json). No penalty for unfinished parcels.

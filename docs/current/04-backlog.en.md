@@ -2,6 +2,10 @@
 
 [한국어](04-backlog.ko.md)
 
+## 2026-10-06 — next implementation: personal equipment slots and medicine
+
+Proposed order: personal special slots (1 in co-op, 2 solo), then pre-departure purchasing/equipping and field swapping, then single-use medicine and teammate healing. Cargo, basic baton and radio are separate. Medicine fully heals injured living targets without resetting down counts; concurrent healing consumes only one valid dose. Add no free ship healing. This next slice manages injuries after delivery/settlement and establishes carrying rules for other tools. Not implemented yet; persistence/reconnection and full hazard regression migration remain pending.
+
 ## Current implementation — multiple deliveries 0.9.24
 
 Implemented 3–6 physical parcels by crew count, independent carrying, verification pause/resume, receipts and district bundles. Game 0.9.24 / protocol 15 / TCP 27842. This supersedes the single 420 CR delivery for normal Cinder sessions. [Current rules, production evidence and remaining work](multiple-deliveries.en.md).
