@@ -10,6 +10,8 @@ public sealed partial class CarryRoom {
     Vector3 Spawn(int slot)=>cinderReview?new Vector3(-20.7f+(slot%2==0?-1:1),.035f,-20.05f+(slot<2?0:1.4f)):new Vector3(slot%2==0?-1:1,0,slot<2?-5:-7);
     Vector3[] Positions(){var p=new Vector3[4];for(int i=0;i<4;i++)p[i]=workers[i].transform.position;return p;}
     float[] Yaws(){var v=new float[4];for(int i=0;i<4;i++)v[i]=hosting?inputs[i].yaw:target?.yaws!=null?target.yaws[i]:0;return v;}
+    int AboardMask(){int mask=0;for(int i=0;i<4;i++)if(Present(i)&&CarryMission.Aboard(workers[i].transform.position,cinderReview))mask|=1<<i;return mask;}
+    void MoveAboard(int i){workers[i].enabled=false;workers[i].transform.position=cinderReview?new Vector3(-20.7f+(i%2==0?-.75f:.75f),1.035f,-25.5f-(i/2)*1.4f):new Vector3(i%2==0?-1:1,0,-6-(i/2));workers[i].enabled=true;fall[i]=0;}
     bool AllAboard(){for(int i=0;i<4;i++)if(Present(i)&&(!CarryMission.Aboard(workers[i].transform.position,cinderReview)||(hazard&&threat.Down[i])))return false;return true;}
     bool AnyOtherDown(int slot){for(int i=0;i<4;i++)if(i!=slot&&Present(i)&&danger!=null&&danger.IsDown(i))return true;return false;}
     void Broadcast(){for(int i=1;i<4;i++)if(connections[i]!=null){var snapshot=Snapshot();snapshot.recipient=i;snapshot.ack=inputs[i].seq;connections[i].Send(JsonUtility.ToJson(snapshot));}}
@@ -45,7 +47,7 @@ public sealed partial class CarryRoom {
                     var v=JsonUtility.FromJson<CarryInput>(line);var previous=inputs[i];
                     if(v==null||v.seq<=previous.seq||!Finite(v.x)||!Finite(v.z)||!Finite(v.yaw)||!Finite(v.pitch)||!Finite(v.distance)||!Finite(v.turnYaw)||!Finite(v.turnPitch))continue;
                     v.x=Mathf.Clamp(v.x,-1,1);v.z=Mathf.Clamp(v.z,-1,1);v.pitch=Mathf.Clamp(v.pitch,-70,70);v.reset=false;v.distance=Mathf.Clamp(v.distance,.75f,1.6f);v.turnYaw=Mathf.Clamp(v.turnYaw,-180,180);v.turnPitch=Mathf.Clamp(v.turnPitch,-80,80);
-                    v.place|=previous.place;v.confirmReturn|=previous.confirmReturn;v.drop|=previous.drop;v.inspect|=previous.inspect;v.buy|=previous.buy;v.contract|=previous.contract;v.deploy|=previous.deploy;
+                    if(previous.revive>=0)v.revive=previous.revive;v.place|=previous.place;v.confirmReturn|=previous.confirmReturn;v.drop|=previous.drop;v.inspect|=previous.inspect;v.buy|=previous.buy;v.contract|=previous.contract;v.deploy|=previous.deploy;
                     v.call|=previous.call;v.shove|=previous.shove;v.action|=previous.action;v.interact|=previous.interact;v.jump|=previous.jump;
                     inputs[i]=v;lastInputs[i]=Time.realtimeSinceStartup;
                 }catch{connection.Dispose();}
@@ -54,7 +56,8 @@ public sealed partial class CarryRoom {
         }else if(wire!=null){
             foreach(var line in wire.Read())try{
                 var v=JsonUtility.FromJson<CarryState>(line);
-                if(v==null||v.protocol!=13){Disconnect();status="Protocol mismatch / use the same game build";break;}
+                if(v==null||v.protocol!=14){Disconnect();status="Protocol mismatch / use the same game build";break;}
+                if(v.visit!=null&&v.visit.active&&!v.visit.Ready)throw new Exception("Invalid visit snapshot");
                 if(v.cinderReview!=cinderReview){Disconnect();status="Map mismatch / use the same test build";break;}
                 if(!string.IsNullOrEmpty(v.rejection)){Disconnect();status=v.rejection;break;}
                 if(v.recipient<1||v.recipient>3||v.positions==null||v.positions.Length!=4||v.yaws==null||v.yaws.Length!=4)throw new Exception("Invalid crew snapshot");

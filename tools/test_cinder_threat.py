@@ -62,7 +62,7 @@ def main(headless=False):
         shutil.copy2(path, run / (name+".png"))
 
     try:
-        require("four hazard slots/protocol 13", lambda: all(lab.state(folders[i]).get("occupiedMask")==15 and lab.state(folders[i]).get("hazard") and lab.state(folders[i]).get("protocol")==13 for i in range(4)))
+        require("four hazard slots/protocol 14", lambda: all(lab.state(folders[i]).get("occupiedMask")==15 and lab.state(folders[i]).get("hazard") and lab.state(folders[i]).get("protocol")==14 for i in range(4)))
         require("Cinder stages start stopped with shared outer down state", lambda: len((host().get("outerDanger") or {}).get("down",[]))==4 and host().get("shiftElapsed")==0)
         for i in range(4):
             go(i, -20.7, -20.05, quiet=False)

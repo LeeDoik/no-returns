@@ -4,6 +4,9 @@ namespace NoReturns.CarryLab {
 public sealed class CarryMission {
     public static readonly Vector3 CinderReceiptOffset=new Vector3(23,0,3.4f);
     readonly bool cinder;
+    public CarryVisit Visit {get;private set;}
+    public void BeginVisit(int mask){if(cinder){Visit??=new CarryVisit();Visit.Begin(mask);}}
+    public void CompleteVisit(){if(Visit==null||Visit.Active||Phase==4)return;Receipt=Visit.Gross;ReturnPay=0;Credits+=Visit.Paid;if(!Visit.Failed&&ReceiptCollected)SuccessfulDeliveries++;Phase=4;}
     public CarryMission(CarryProgress progress=null,bool cinder=false){
         this.cinder=cinder;
         if(progress==null)return;
@@ -27,7 +30,7 @@ public sealed class CarryMission {
     float stable,printTime;
     public bool ReceiptCollected {get;private set;}
     public bool ReceiptReady=>Phase==3&&printTime>=.75f;
-    public bool CollectReceipt(){if(!ReceiptReady||ReceiptCollected)return false;ReceiptCollected=true;return true;}
+    public bool CollectReceipt(){if(!ReceiptReady||ReceiptCollected)return false;ReceiptCollected=true;Visit?.CreditReceipt(HardContract?630:420);return true;}
     public float ReceiptProgress=>Phase==3?1:Phase==2?Mathf.Clamp01(stable/.75f):0;
     public static bool Aboard(Vector3 p,bool cinder=false)=>cinder
         ? Mathf.Abs(p.x+20.7f)<1.5f && p.z< -24.8f && p.z> -30.9f && p.y>.8f && p.y<3
@@ -36,7 +39,7 @@ public sealed class CarryMission {
         if(!aboard)return false;
         if(Phase==0){Phase=1;return false;}
         if(Phase==1){if(allAboard)Phase=2;return false;}
-        if(Phase==2||Phase==3){if(allAboard){bool paid=Phase==3&&ReceiptCollected;Receipt=paid?(HardContract?450:300):0;ReturnPay=paid?(HardContract?180:120):0;Credits+=Receipt+ReturnPay;if(paid)SuccessfulDeliveries++;Phase=4;}return false;}
+        if(Phase==2||Phase==3){if(cinder)return false;if(allAboard){bool paid=Phase==3&&ReceiptCollected;Receipt=paid?(HardContract?450:300):0;ReturnPay=paid?(HardContract?180:120):0;Credits+=Receipt+ReturnPay;if(paid)SuccessfulDeliveries++;Phase=4;}return false;}
         Phase=0;HardContract=false;Receipt=0;ReturnPay=0;stable=0;printTime=0;ReceiptCollected=false;return true;
     }
     public void Tick(Vector3 p,Vector3 velocity,int holder,float dt){
@@ -47,7 +50,7 @@ public sealed class CarryMission {
         stable=onBench?stable+dt:0;
         if(stable>=.75f){Phase=3;printTime=0;}
     }
-    public void Abort(){if(Phase>0&&Phase<4){Phase=4;ReturnPay=0;stable=0;}}
+    public void Abort(){if(Phase>0&&Phase<4){Visit?.Fail();Phase=4;Receipt=0;ReturnPay=0;stable=0;}}
     public static string Objective(int phase)=>phase switch {
         0=>"SHIP / Open terminal to select CINDER DEPOT",
         1=>"CINDER DEPOT / Board together, then depart at terminal",

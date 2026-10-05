@@ -2,6 +2,12 @@
 
 [한국어](quick-testing.ko.md)
 
+## 2026-10-05 — visit ledger, revival and departure 0.9.23
+
+Cinder receipts record 420 CR as unbanked earnings, paid only on departure. A living occupant spends 100 unbanked CR to revive one eliminated teammate after 10 seconds. Anyone can start/cancel a 12-second departure; deduct 100 CR per abandoned teammate with a zero floor. Integrate health, repeat downs/elimination and all-eliminated/liftoff during revival. [Implementation, values and limits](visit-settlement.en.md), [validation](../validation/visit-settlement-0.9.23.json). Game 0.9.23, protocol 14, TCP 27842. Supersedes historical Cinder all-aboard return, immediate settlement and one-hit down rules in this scope. New tools, multiple deliveries, Cinder saves/reconnects, final danger timing/audio and human review remain.
+
+Validated 32 Editor rules, 17 real windowless two-player visit checks, 12 rescue checks and 52 real windowless four-player delivery checks. Fixed the initial rescue HUD exception and reran. Rebuilt/reran the two-player visit after the final UI hint fix. No human visual review. New check: `python3 tools/test_cinder_visit.py`, requiring a current build.
+
 ## Defaults
 
 Do not repeat native builds and full delivery on every task. Separate implementation evidence from human quality judgment. Follow the [repository rules](../../AGENTS.md) and [current checklist](05-validation.en.md).

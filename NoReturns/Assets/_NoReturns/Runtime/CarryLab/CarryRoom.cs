@@ -27,7 +27,7 @@ public sealed partial class CarryRoom : MonoBehaviour {
     CarrySave save; string saveNotice=""; float retrySaveAt;
     [NonSerialized] string testFolder; int testSeq=-1;
     [NonSerialized] CarryState target;
-    [Serializable] class TestCommand {public int seq;public float x,z,yaw,pitch,distance=.8f,turnYaw,turnPitch;public string ui,click,fixture;public bool place,confirmReturn,jump,interact,drop,reset,action; public bool capture,toggleLanguage,quiet,call,shove,rescue,buy,contract,deploy,inspect,journal;}
+    [Serializable] class TestCommand {public int revive=-1;public int seq;public float x,z,yaw,pitch,distance=.8f,turnYaw,turnPitch;public string ui,click,fixture;public bool place,confirmReturn,jump,interact,drop,reset,action; public bool capture,toggleLanguage,quiet,call,shove,rescue,buy,contract,deploy,inspect,journal;}
     void Awake(){
         Application.runInBackground=true;Application.targetFrameRate=cinderReview?30:60;Time.fixedDeltaTime=.02f;
         if(!cinderReview)CarryWorld.Build();receiptFeedback=FindFirstObjectByType<ReceiptFeedback>();
@@ -99,14 +99,14 @@ public sealed partial class CarryRoom : MonoBehaviour {
         ++seq;var cmd=companionBot?ReadCompanion():ReadControls();
         if(testFolder!=null){try{var path=Path.Combine(testFolder,"input.json");if(File.Exists(path)){
             var t=JsonUtility.FromJson<TestCommand>(File.ReadAllText(path));yaw=t.yaw;pitch=t.pitch;cmd.x=t.x;cmd.z=t.z;cmd.yaw=yaw;cmd.pitch=pitch;cmd.distance=t.distance;cmd.turnYaw=t.turnYaw;cmd.turnPitch=t.turnPitch;cmd.quiet=t.quiet;cmd.rescue=t.rescue;
-            if(t.seq!=testSeq){testSeq=t.seq;RequestQuickFixture(t.fixture);cmd.inspect=t.inspect;if(t.journal&&clues!=null)journalOpen=!journalOpen;cmd.buy=t.buy;cmd.contract=t.contract;cmd.deploy=t.deploy;cmd.interact=t.interact;cmd.drop=t.drop;cmd.place=t.place;cmd.confirmReturn=t.confirmReturn;cmd.jump=t.jump;cmd.reset=t.reset;cmd.action=t.action;cmd.call=t.call;cmd.shove=t.shove;
+            if(t.seq!=testSeq){testSeq=t.seq;RequestQuickFixture(t.fixture);cmd.revive=t.revive;cmd.inspect=t.inspect;if(t.journal&&clues!=null)journalOpen=!journalOpen;cmd.buy=t.buy;cmd.contract=t.contract;cmd.deploy=t.deploy;cmd.interact=t.interact;cmd.drop=t.drop;cmd.place=t.place;cmd.confirmReturn=t.confirmReturn;cmd.jump=t.jump;cmd.reset=t.reset;cmd.action=t.action;cmd.call=t.call;cmd.shove=t.shove;
                 if(t.ui=="ship")OpenShip();else if(t.ui=="pause"){menu=true;SetCursor(false);}else if(t.ui=="settings"){menu=true;settingsMenu=true;SetCursor(false);}else if(t.ui=="close")ClosePanels();
                 if(t.toggleLanguage)CarryLanguage.Toggle();if(t.click!=null&&playHud!=null)playHud.Click(t.click);if(t.capture)capturePending=true;
             }
         }}catch(IOException){} }
         // Preserve one-shot inputs until a simulation tick / outgoing packet consumes them.
-        cmd.place|=inputs[local].place;cmd.confirmReturn|=inputs[local].confirmReturn;cmd.drop|=inputs[local].drop;cmd.inspect|=inputs[local].inspect;cmd.buy|=inputs[local].buy;cmd.contract|=inputs[local].contract;cmd.deploy|=inputs[local].deploy;cmd.call|=inputs[local].call;cmd.shove|=inputs[local].shove;cmd.action|=inputs[local].action;cmd.interact|=inputs[local].interact;cmd.jump|=inputs[local].jump;cmd.reset|=inputs[local].reset;if(UiOpen){cmd.place=false;cmd.confirmReturn=false;cmd.drop=false;cmd.x=0;cmd.z=0;cmd.quiet=true;cmd.jump=false;cmd.interact=false;cmd.action=false;cmd.call=false;cmd.shove=false;cmd.rescue=false;cmd.buy=false;cmd.contract=false;cmd.deploy=false;cmd.inspect=false;cmd.reset=false;}cmd.buy|=uiCommands.buy;cmd.contract|=uiCommands.contract;cmd.action|=uiCommands.action;cmd.confirmReturn|=uiCommands.confirmReturn;inputs[local]=cmd;
-        if(!hosting&&wire!=null&&Time.realtimeSinceStartup>=sendAt){wire.Send(JsonUtility.ToJson(cmd));uiCommands=new CarryInput();inputs[local].place=false;inputs[local].confirmReturn=false;inputs[local].drop=false;inputs[local].inspect=false;inputs[local].buy=false;inputs[local].contract=false;inputs[local].deploy=false;inputs[local].call=false;inputs[local].shove=false;inputs[local].action=false;inputs[local].interact=false;inputs[local].jump=false;inputs[local].reset=false;sendAt=Time.realtimeSinceStartup+.033f;}
+        if(inputs[local].revive>=0)cmd.revive=inputs[local].revive;cmd.place|=inputs[local].place;cmd.confirmReturn|=inputs[local].confirmReturn;cmd.drop|=inputs[local].drop;cmd.inspect|=inputs[local].inspect;cmd.buy|=inputs[local].buy;cmd.contract|=inputs[local].contract;cmd.deploy|=inputs[local].deploy;cmd.call|=inputs[local].call;cmd.shove|=inputs[local].shove;cmd.action|=inputs[local].action;cmd.interact|=inputs[local].interact;cmd.jump|=inputs[local].jump;cmd.reset|=inputs[local].reset;if(UiOpen){cmd.revive=-1;cmd.place=false;cmd.confirmReturn=false;cmd.drop=false;cmd.x=0;cmd.z=0;cmd.quiet=true;cmd.jump=false;cmd.interact=false;cmd.action=false;cmd.call=false;cmd.shove=false;cmd.rescue=false;cmd.buy=false;cmd.contract=false;cmd.deploy=false;cmd.inspect=false;cmd.reset=false;}if(uiCommands.revive>=0)cmd.revive=uiCommands.revive;cmd.buy|=uiCommands.buy;cmd.contract|=uiCommands.contract;cmd.action|=uiCommands.action;cmd.confirmReturn|=uiCommands.confirmReturn;inputs[local]=cmd;
+        if(!hosting&&wire!=null&&Time.realtimeSinceStartup>=sendAt){wire.Send(JsonUtility.ToJson(cmd));uiCommands=new CarryInput();inputs[local].revive=-1;inputs[local].place=false;inputs[local].confirmReturn=false;inputs[local].drop=false;inputs[local].inspect=false;inputs[local].buy=false;inputs[local].contract=false;inputs[local].deploy=false;inputs[local].call=false;inputs[local].shove=false;inputs[local].action=false;inputs[local].interact=false;inputs[local].jump=false;inputs[local].reset=false;sendAt=Time.realtimeSinceStartup+.033f;}
     }
     static bool Finite(float n)=>!float.IsNaN(n)&&!float.IsInfinity(n);
     void FixedUpdate(){
@@ -114,10 +114,11 @@ public sealed partial class CarryRoom : MonoBehaviour {
         if(hosting){
             ApplyQuickFixture();
             int phaseAtTick=mission==null?-1:mission.Phase;
+            bool soloRescue=inputs[0].rescue;bool departureHandled=false;
             tick++;if(inputs[0].reset){if(companionPractice)RestartCompanionRescue();else if(mission==null)ResetRoom();inputs[0].reset=false;}
             for(int i=0;i<4;i++){
                 if(!Present(i))continue;var input=inputs[i];if(i>0&&Time.realtimeSinceStartup-lastInputs[i]>.3f){input.x=0;input.z=0;input.rescue=false;input.call=false;input.shove=false;}
-                if((hazard||companionPractice)&&threat.Down[i]){input.place=false;input.confirmReturn=false;input.drop=false;input.x=0;input.z=0;input.jump=false;input.interact=false;input.action=false;input.call=false;input.shove=false;input.rescue=false;input.buy=false;input.contract=false;input.deploy=false;input.inspect=false;}
+                if((hazard||companionPractice)&&threat.Down[i]){input.revive=-1;input.place=false;input.confirmReturn=false;input.drop=false;input.x=0;input.z=0;input.jump=false;input.interact=false;input.action=false;input.call=false;input.shove=false;input.rescue=false;input.buy=false;input.contract=false;input.deploy=false;input.inspect=false;}
                 workers[i].transform.rotation=Quaternion.Euler(0,input.yaw,0);
                 Vector3 move=Quaternion.Euler(0,input.yaw,0)*Vector3.ClampMagnitude(new Vector3(input.x,0,input.z),1)*(hazard&&input.quiet?(holder==i?1f:1.5f):(holder==i?2.5f:4f))*Time.fixedDeltaTime;
                 if(holder==i&&move.sqrMagnitude>0){foreach(var hit in Physics.BoxCastAll(cargo.position,new Vector3(.4f,.325f,.325f)*.98f,move.normalized,cargo.rotation,move.magnitude+.025f,~0,QueryTriggerInteraction.Ignore)){if(hit.collider!=workers[i]&&hit.collider!=cargoCollider){move=Vector3.zero;break;}}}
@@ -138,11 +139,24 @@ public sealed partial class CarryRoom : MonoBehaviour {
                 if(mission!=null&&input.buy){bool bought=mission.BuyBeacon(i==0,CarryMission.Aboard(workers[i].transform.position,cinderReview));if(bought)equipment.Begin(true,cinderReview);status=bought?"Beacon license purchased":"Purchase unavailable: host, ship/report, 120 CR required";}
                 if(hazard&&!cinderReview&&input.contract)status=mission.ToggleContract(i==0,CarryMission.Aboard(workers[i].transform.position,cinderReview))?"Contract changed":"Select route aboard after first delivery; host only";
                 input.buy=false;input.contract=false;input.deploy=false;input.inspect=false;
-                if(input.action&&i==0&&mission!=null&&mission.Phase==phaseAtTick&&((mission.Phase!=2&&mission.Phase!=3)||mission.ReceiptCollected||input.confirmReturn)){
+                if(cinderReview&&mission?.Visit!=null&&input.revive>=0){
+                    status=mission.Visit.StartRevival(i,input.revive,AboardMask())?"Revival started / fee deducted":"Revival unavailable / eliminated crew, free chamber and 100 unbanked CR required";
+                }
+                input.revive=-1;
+                if(input.action&&mission!=null&&mission.Phase==phaseAtTick&&(cinderReview||i==0)){
                     int before=mission.Phase;
-                    bool all=AllAboard();
-                    if(mission.Act(CarryMission.Aboard(workers[i].transform.position,cinderReview),all)){equipment.Begin(mission.BeaconUnlocked,cinderReview);ResetRoom();}
-                    if(hazard&&before==1&&mission.Phase==2){threat.Reset();clues?.Clear();suppression?.Begin();outer?.Reset();}
+                    if(cinderReview&&(before==2||before==3)){
+                        if(!departureHandled&&mission.Visit!=null&&(mission.Visit.Departing||mission.ReceiptCollected||input.confirmReturn)){
+                            departureHandled=mission.Visit.ToggleDeparture(i,AboardMask());
+                            if(departureHandled)status=mission.Visit.Departing?"Departure started / crew outside may be left behind":"Departure canceled";
+                        }
+                    }else{
+                        if(mission.Act(CarryMission.Aboard(workers[i].transform.position,cinderReview),AllAboard())){equipment.Begin(mission.BeaconUnlocked,cinderReview);ResetRoom();}
+                        if(before==1&&mission.Phase==2){
+                            if(hazard){threat.Reset();clues?.Clear();suppression?.Begin();outer?.Reset();}
+                            mission.BeginVisit(occupiedMask);threat?.AttachVisit(mission.Visit);outer?.AttachVisit(mission.Visit);
+                        }
+                    }
                 }
                 input.action=false;input.confirmReturn=false;
                 if(input.interact)Interact(i);input.interact=false;input.jump=false;if(i==local)uiCommands=new CarryInput();
@@ -155,8 +169,14 @@ public sealed partial class CarryRoom : MonoBehaviour {
                 bool evacuate=threat.Tick(Positions(),occupiedMask,inputs,holder,mission.Phase==2||mission.Phase==3,Time.fixedDeltaTime);
                 outer?.Tick(Positions(),occupiedMask,inputs,holder,field&&suppression.Intrusion,Time.fixedDeltaTime);
                 if(holder>=0&&threat.Down[holder]){Release();status="Employee down / parcel released";}
-                if(evacuate){mission.Abort();ResetRoom(true);status="Emergency recovery / secured pay retained";}
+                if(evacuate&&mission.Visit==null){mission.Abort();ResetRoom(true);status="Emergency recovery / secured pay retained";}
                 danger=threat.Snapshot();outerDanger=outer?.Snapshot();for(int i=0;i<4;i++){inputs[i].call=false;inputs[i].shove=false;}
+            }
+            if(cinderReview&&mission?.Visit!=null&&mission.Visit.Active){
+                int revived=mission.Visit.Tick(Time.fixedDeltaTime,AboardMask(),soloRescue);
+                if(revived>=0)MoveAboard(revived);
+                if(!mission.Visit.Active){mission.CompleteVisit();Release();for(int i=0;i<4;i++)if(Present(i))MoveAboard(i);status=mission.Visit.Failed?"Visit failed / unbanked earnings lost":"Departure complete / payout secured";}
+                if(threat!=null)danger=threat.Snapshot();
             }
             equipment.Tick(mission!=null&&(mission.Phase==2||mission.Phase==3),Time.fixedDeltaTime,threat,suppression!=null&&suppression.Intrusion?outer:null);
             if(equipment.Carrier>=0){int carrier=equipment.Carrier;if(hazard&&threat.Down[carrier])equipment.RecoverCarrier(workers[carrier].transform.position);else equipment.Follow(workers[carrier].transform.position,Quaternion.Euler(inputs[carrier].pitch,inputs[carrier].yaw,0));}
@@ -202,11 +222,11 @@ public sealed partial class CarryRoom : MonoBehaviour {
         holder=who;cargo.linearVelocity=Vector3.zero;cargo.angularVelocity=Vector3.zero;cargo.isKinematic=true;Physics.IgnoreCollision(cargoCollider,workers[who],true);status="Parcel held";
     }
     void Release(){if(cargo==null)return;if(holder>=0)Physics.IgnoreCollision(cargoCollider,workers[holder],false);holder=-1;cargo.isKinematic=false;cargo.linearVelocity=Vector3.zero;cargo.angularVelocity=Vector3.zero;}
-    CarryState Snapshot()=>new CarryState{cinderReview=cinderReview,positions=Positions(),yaws=Yaws(),occupiedMask=occupiedMask,recipient=local,beaconCarrier=equipment.Carrier,beaconExists=equipment.Exists,receiptCollected=receiptCollected,receiptReady=receiptReady,receiptProgress=receiptProgress,shiftElapsed=suppression==null?0:suppression.Elapsed,suppressionStage=suppression==null?0:suppression.Stage,outerDanger=outerDanger,clueMask=clues==null?0:clues.Mask,unlocked=unlocked,hard=hard,deliveries=deliveries,charges=equipment.Charges,beaconTime=equipment.Remaining,beaconPosition=equipment.Position,hazard=hazard,danger=danger,phase=missionPhase,credits=credits,receipt=receipt,returnPay=returnPay,tick=tick,holder=holder,p0=workers[0].transform.position,p1=workers[1].transform.position,yaw0=inputs[0].yaw,yaw1=inputs[1].yaw,cargo=cargo.position,rotation=cargo.rotation,players=CrewCount,connected=peer,ack=inputs[local].seq,message=status};
+    CarryState Snapshot()=>new CarryState{visit=mission?.Visit?.Snapshot(),cinderReview=cinderReview,positions=Positions(),yaws=Yaws(),occupiedMask=occupiedMask,recipient=local,beaconCarrier=equipment.Carrier,beaconExists=equipment.Exists,receiptCollected=receiptCollected,receiptReady=receiptReady,receiptProgress=receiptProgress,shiftElapsed=suppression==null?0:suppression.Elapsed,suppressionStage=suppression==null?0:suppression.Stage,outerDanger=outerDanger,clueMask=clues==null?0:clues.Mask,unlocked=unlocked,hard=hard,deliveries=deliveries,charges=equipment.Charges,beaconTime=equipment.Remaining,beaconPosition=equipment.Position,hazard=hazard,danger=danger,phase=missionPhase,credits=credits,receipt=receipt,returnPay=returnPay,tick=tick,holder=holder,p0=workers[0].transform.position,p1=workers[1].transform.position,yaw0=inputs[0].yaw,yaw1=inputs[1].yaw,cargo=cargo.position,rotation=cargo.rotation,players=CrewCount,connected=peer,ack=inputs[local].seq,message=status};
     [Serializable] class AnimationEvidence {public EmployeeVisual.State[] employees;public BatonVisual.State[] batons;public FirstPersonArms.State hands;public bool companionPractice,companionBot;public string companionAction,quickFixture;}
-    [Serializable] class UiEvidence {public string menu,context,shipAction,buyButton,language,host,objective,status,firstRecord,secondRecord,suppressionCue;public bool koreanGlyph,journalOpen;}
+    [Serializable] class UiEvidence {public string menu,context,shipAction,buyButton,ledger,revival,language,host,objective,status,firstRecord,secondRecord,suppressionCue;public bool koreanGlyph,journalOpen;}
     static void WriteAtomic(string path,string value){var temp=path+".tmp";File.WriteAllText(temp,value);if(File.Exists(path))File.Replace(temp,path,null);else File.Move(temp,path);}
-    void WriteEvidence(CarryState s){if(testFolder==null)return;try{WriteAtomic(Path.Combine(testFolder,"ui.json"),JsonUtility.ToJson(new UiEvidence{menu=settingsMenu?"settings":shipMenu?"ship":journalOpen?"journal":menu?"pause":"",context=playHud==null?"":playHud.ContextText,shipAction=playHud==null?"":playHud.MenuText("shipAction"),buyButton=playHud==null?"":playHud.MenuText("buy"),suppressionCue=suppression==null?null:T(CarrySuppression.Cue(suppression.Stage,cinderReview)),journalOpen=journalOpen,firstRecord=T(clues!=null&&(clues.Mask&1)!=0?CarryClues.FirstBody:"Not discovered"),secondRecord=T(clues!=null&&(clues.Mask&2)!=0?CarryClues.SecondBody:"Not discovered"),language=CarryLanguage.Korean?"ko":"en",host=T("HOST"),objective=T(cinderReview&&missionPhase<0?"CINDER / FOUR-PLAYER MAP TEST":CarryMission.Objective(missionPhase)),status=T(status),koreanGlyph=CarryLanguage.Font.HasCharacter('한')}));WriteAtomic(Path.Combine(testFolder,"state.json"),JsonUtility.ToJson(s));var animation=new AnimationEvidence{companionPractice=companionPractice,companionBot=companionBot,companionAction=companionAction,quickFixture=quickFixture,hands=baton.Hands,employees=new EmployeeVisual.State[4],batons=new BatonVisual.State[4]};for(int i=0;i<4;i++)if(employeeVisuals[i]&&employeeVisuals[i].Ready)animation.employees[i]=employeeVisuals[i].Capture();for(int i=0;i<4;i++)animation.batons[i]=baton.Capture(i);WriteAtomic(Path.Combine(testFolder,"animation.json"),JsonUtility.ToJson(animation));}catch(IOException){} }
+    void WriteEvidence(CarryState s){if(testFolder==null)return;try{WriteAtomic(Path.Combine(testFolder,"ui.json"),JsonUtility.ToJson(new UiEvidence{ledger=playHud==null?"":playHud.MenuText("Crew"),revival=playHud==null?"":playHud.MenuText("Revival"),menu=settingsMenu?"settings":shipMenu?"ship":journalOpen?"journal":menu?"pause":"",context=playHud==null?"":playHud.ContextText,shipAction=playHud==null?"":playHud.MenuText("shipAction"),buyButton=playHud==null?"":playHud.MenuText("buy"),suppressionCue=suppression==null?null:T(CarrySuppression.Cue(suppression.Stage,cinderReview)),journalOpen=journalOpen,firstRecord=T(clues!=null&&(clues.Mask&1)!=0?CarryClues.FirstBody:"Not discovered"),secondRecord=T(clues!=null&&(clues.Mask&2)!=0?CarryClues.SecondBody:"Not discovered"),language=CarryLanguage.Korean?"ko":"en",host=T("HOST"),objective=T(cinderReview&&missionPhase<0?"CINDER / FOUR-PLAYER MAP TEST":CarryMission.Objective(missionPhase)),status=T(status),koreanGlyph=CarryLanguage.Font.HasCharacter('한')}));WriteAtomic(Path.Combine(testFolder,"state.json"),JsonUtility.ToJson(s));var animation=new AnimationEvidence{companionPractice=companionPractice,companionBot=companionBot,companionAction=companionAction,quickFixture=quickFixture,hands=baton.Hands,employees=new EmployeeVisual.State[4],batons=new BatonVisual.State[4]};for(int i=0;i<4;i++)if(employeeVisuals[i]&&employeeVisuals[i].Ready)animation.employees[i]=employeeVisuals[i].Capture();for(int i=0;i<4;i++)animation.batons[i]=baton.Capture(i);WriteAtomic(Path.Combine(testFolder,"animation.json"),JsonUtility.ToJson(animation));}catch(IOException){} }
     void LateUpdate(){if(eye==null)return;eye.transform.position=workers[local].transform.position+Vector3.up*((hazard||companionPractice)&&danger!=null&&danger.IsDown(local)?.55f:1.57f);eye.transform.rotation=Quaternion.Euler(pitch,yaw,0);
         // Apply before every render, including the inactive startup menu.
         for(int i=0;i<4;i++){bool visible=i!=local&&Present(i);foreach(var r in bodies[i])r.enabled=visible;}

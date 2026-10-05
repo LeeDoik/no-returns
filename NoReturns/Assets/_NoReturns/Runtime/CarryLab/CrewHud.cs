@@ -57,8 +57,14 @@ public sealed partial class CrewHud : MonoBehaviour {
             if(!s.hazard||s.phase<2||s.phase>3)cue.text=T(s.phase<0?"WASD move / Mouse look / R reset (host)":"WASD move / Mouse look / E ship action / Esc menu");
             if(s.phase>=0&&!down&&!(s.danger!=null&&s.danger.RescueAt(local)>0))prompt.text=T(CarryMission.Aboard(s.positions[local],true)?"[E] SHIP ACTION / all crew aboard to depart or return":hands?"[Q] SET DOWN   /   HANDS OCCUPIED":s.phase==3&&!s.receiptCollected?"Collect receipt at terminal [E] / No pay until return":"[E] Carry / [Q] Set down / Space jump / Esc menu");
         }
+        if(s.visit!=null&&s.visit.Ready){
+            wallet.text=string.Format(T("WALLET {0} / UNBANKED {1} CR / HP {2}"),s.credits,s.visit.active?s.visit.available:0,s.visit.health[local]);
+            for(int i=0;i<4;i++)if((s.occupiedMask&(1<<i))!=0&&s.visit.eliminated[i])rows[i].text=(i+1).ToString("00")+" / "+T("ELIMINATED");
+        }
         // No creature AI state or remaining suppression seconds on the HUD.
         notice.text=s.phase==4?string.Format(T("RECEIPT {0} + RETURN {1} CR"),s.receipt,s.returnPay):s.phase==3&&s.receiptCollected?T("Receipt collected / return aboard to get paid"):T(s.message??"");
+        if(s.visit!=null&&s.visit.Ready&&s.phase==4)notice.text=string.Format(T("GROSS {0} / REVIVAL -{1} / RETURN -{2} / PAID {3} CR"),s.visit.gross,s.visit.revivalFees,s.visit.returnFees,s.visit.paid);
+        if(s.visit!=null&&s.visit.Ready&&s.visit.active&&s.visit.departing)notice.text=T(s.visit.automatic?"AUTOMATIC DEPARTURE / RETURN NOW":"DEPARTURE STARTED / RETURN NOW");
     }
 }
 }

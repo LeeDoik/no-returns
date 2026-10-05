@@ -2,6 +2,10 @@
 
 [한국어](controls-ui.ko.md)
 
+## 2026-10-05 — visit ledger, revival and departure 0.9.23
+
+Cinder receipts record 420 CR as unbanked earnings, paid only on departure. A living occupant spends 100 unbanked CR to revive one eliminated teammate after 10 seconds. Anyone can start/cancel a 12-second departure; deduct 100 CR per abandoned teammate with a zero floor. Integrate health, repeat downs/elimination and all-eliminated/liftoff during revival. [Implementation, values and limits](visit-settlement.en.md), [validation](../validation/visit-settlement-0.9.23.json). Game 0.9.23, protocol 14, TCP 27842. Supersedes historical Cinder all-aboard return, immediate settlement and one-hit down rules in this scope. New tools, multiple deliveries, Cinder saves/reconnects, final danger timing/audio and human review remain.
+
 ## 2026-10-03 — Straight baton thrust 0.9.10
 
 Empty-hand left-click contact remains immediate; perform a fast 0.06s thrust and return by 0.30s. Retain 6s cooldown, rescue priority and carry/down blocking. The first-person tip also points forward; wall clearance changes depth only. [Current behavior and validation scope](employee-baton.en.md).

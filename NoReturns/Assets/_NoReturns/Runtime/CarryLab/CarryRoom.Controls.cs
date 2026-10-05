@@ -47,7 +47,7 @@ public sealed partial class CarryRoom {
         if(shipMenu&&(!AboardLocal||(s.danger!=null&&s.danger.IsDown(local))))ClosePanels();
         if(!UiOpen){playHud.HideMenu();return;}
         string kind=settingsMenu?"settings":!active?"home":shipMenu?"ship":journalOpen?"journal":"pause";
-        bool fresh=playHud.BeginMenu(kind+(CarryLanguage.Korean?"ko":"en"),kind=="ship"?"FLATBED / SHIP TERMINAL":kind=="settings"?"CONTROLS & SETTINGS":kind=="journal"?"CINDER DEPOT / SHARED FIELD LOG":"NO RETURNS",kind=="ship"?"CINDER DEPOT / BAY 04 · shared crew wallet":kind=="settings"?"Click a binding, then press a key. Esc cancels. Esc always closes menus.":kind=="journal"?"The world keeps moving. Read aboard. Records reset on next arrival; not saved after exit.":"Direct LAN / choose host or join. Menus do not pause the world.");
+        bool fresh=playHud.BeginMenu(kind+(s.visit!=null&&s.visit.active?"visit":"idle")+(CarryLanguage.Korean?"ko":"en"),kind=="ship"?"FLATBED / SHIP TERMINAL":kind=="settings"?"CONTROLS & SETTINGS":kind=="journal"?"CINDER DEPOT / SHARED FIELD LOG":"NO RETURNS",kind=="ship"?"CINDER DEPOT / BAY 04 · shared crew wallet":kind=="settings"?"Click a binding, then press a key. Esc cancels. Esc always closes menus.":kind=="journal"?"The world keeps moving. Read aboard. Records reset on next arrival; not saved after exit.":"Direct LAN / choose host or join. Menus do not pause the world.");
         if(fresh){
             if(kind=="home"){
                 playHud.MenuLabel("Address label","HOST LAN ADDRESS",28,194,650,30);playHud.MenuAddress(address,v=>address=v);
@@ -65,11 +65,17 @@ public sealed partial class CarryRoom {
                 playHud.MenuButton("defaults","RESTORE DEFAULTS",28,558,510,()=>{controls.Defaults();eye.fieldOfView=controls.Fov;});playHud.MenuButton("back","BACK",570,558,490,()=>{controls.Cancel();settingsMenu=false;});
             }else if(kind=="ship"){
                 playHud.MenuLabel("Route","",28,150,630,90,24);playHud.MenuLabel("Crew","",28,250,630,35);playHud.MenuLabel("Reason","",28,296,630,90);
-                playHud.MenuButton("shipAction","",28,402,630,()=>{if((missionPhase==2||missionPhase==3)&&!receiptCollected&&!confirmReturn){confirmReturn=true;return;}uiCommands.action=true;uiCommands.confirmReturn=confirmReturn;confirmReturn=false;});
-                playHud.MenuLabel("Equipment","DECOY BEACON / 120 CR",710,150,360,60,22);playHud.MenuLabel("Equipment details","One shared device. Two 8-second signals per shift. Carry from the ship; place on field ground.",710,230,360,130);
-                playHud.MenuButton("buy","Buy beacon license",710,402,360,()=>uiCommands.buy=true);
-                playHud.MenuLabel("Stock","",710,458,360,80);
-                playHud.MenuButton("contract","Change selected contract",28,470,630,()=>uiCommands.contract=true);
+                playHud.MenuButton("shipAction","",28,402,630,()=>{if((missionPhase==2||missionPhase==3)&&!receiptCollected&&!(hosting?mission?.Visit?.Departing==true:target?.visit?.departing==true)&&!confirmReturn){confirmReturn=true;return;}uiCommands.action=true;uiCommands.confirmReturn=confirmReturn;confirmReturn=false;});
+                if(cinderReview&&s.visit!=null&&s.visit.active){
+                    playHud.MenuLabel("Equipment","REVIVAL / 100 UNBANKED CR",710,150,360,60,22);
+                    for(int i=0;i<4;i++){int targetSlot=i;playHud.MenuButton("revive"+i,"",710,220+i*50,360,()=>uiCommands.revive=targetSlot);}
+                    playHud.MenuLabel("Revival","",710,430,360,100,18);
+                }else{
+                    playHud.MenuLabel("Equipment","DECOY BEACON / 120 CR",710,150,360,60,22);playHud.MenuLabel("Equipment details","One shared device. Two 8-second signals per shift. Carry from the ship; place on field ground.",710,230,360,130);
+                    playHud.MenuButton("buy","Buy beacon license",710,402,360,()=>uiCommands.buy=true);
+                    playHud.MenuLabel("Stock","",710,458,360,80);
+                }
+                if(!cinderReview)playHud.MenuButton("contract","Change selected contract",28,470,630,()=>uiCommands.contract=true);
             }else{
                 for(int i=0;i<2;i++){bool found=clues!=null&&(clues.Mask&(1<<i))!=0;playHud.MenuLabel("Record"+i,found?(i==0?CarryClues.FirstTitle:CarryClues.SecondTitle):"UNRECORDED / inspect the site",28,145+i*170,1044,32,22);playHud.MenuLabel("Body"+i,found?(i==0?CarryClues.FirstBody:CarryClues.SecondBody):"No entry yet. A teammate can share it by inspecting a terminal.",28,187+i*170,1044,120);}
             }
@@ -92,6 +98,21 @@ public sealed partial class CarryRoom {
             playHud.SetMenuButton("buy",s.unlocked?"OWNED":s.credits<120?"INSUFFICIENT FUNDS / 120 CR":"Buy beacon license",host&&!s.unlocked&&s.credits>=120&&(s.phase==0||s.phase==4));
             playHud.SetMenuText("Stock",s.unlocked?string.Format(T("USES {0}/2 / SHARED DEVICE"),s.charges):"Buy during preparation or shift report");
             playHud.SetMenuButton("contract",s.hard?"RISK / receipt 450 + return 180":"STANDARD / receipt 300 + return 120",host&&s.phase==1&&s.deliveries>0&&s.hazard&&!cinderReview);
+            if(cinderReview){
+                var v=s.visit;bool field=v!=null&&v.active;
+                playHud.SetMenuButton("shipAction",field&&v.departing?(v.automatic?"AUTOMATIC DEPARTURE / CANNOT CANCEL":"CANCEL DEPARTURE"):action,s.phase!=1||all);
+                if(field&&v.automatic)playHud.SetMenuButton("shipAction","AUTOMATIC DEPARTURE / CANNOT CANCEL",false);
+                playHud.SetMenuText("Crew",string.Format(T("ABOARD {0}/{1} / WALLET {2} CR"),aboard,s.players,s.credits));
+                playHud.SetMenuText("Reason",s.phase<2||v==null?"Select the route or prepare the next shift":s.phase==4?string.Format(T("GROSS {0} / REVIVAL -{1} / RETURN -{2} / PAID {3} CR"),v.gross,v.revivalFees,v.returnFees,v.paid):string.Format(T("UNBANKED {0} CR / REVIVAL 100 CR\nOutside crew cost 100 CR each at departure."),v.available));
+                if(s.phase==4)playHud.SetMenuText("Route",v!=null&&v.failed?"VISIT FAILED / NO PAY":"VISIT SETTLED");
+                if(field){
+                    playHud.SetMenuText("Route",v.departing?v.automatic?"AUTOMATIC DEPARTURE / RETURN NOW":"DEPARTURE STARTED / RETURN NOW":CarryMission.Objective(s.phase));
+                    for(int i=0;i<4;i++)playHud.SetMenuButton("revive"+i,string.Format(T("REVIVE EMPLOYEE {0} / 100 CR"),i+1),v.eliminated[i]&&(s.occupiedMask&(1<<i))!=0&&v.reviving<0&&v.available>=CarryVisit.RevivalCost);
+                    playHud.SetMenuText("Revival",v.reviving>=0?string.Format(T("REVIVING {0} / {1}s"),v.reviving+1,Mathf.CeilToInt(v.revivalLeft)):v.available<CarryVisit.RevivalCost?"Not enough unbanked earnings. Deliver more or depart.":"Select one eliminated employee. One revival at a time.");
+                }
+                playHud.SetMenuButton("buy",s.unlocked?"OWNED":s.credits<120?"INSUFFICIENT FUNDS / 120 CR":"Buy beacon license",host&&!s.unlocked&&s.credits>=120&&(s.phase==0||s.phase==4));
+            }
+
         }else if(kind=="home"||kind=="pause")playHud.SetMenuText("Status",status+(hazard&&!cinderReview&&active?"\n"+(hosting?T(saveNotice):T("Using host progress / personal save unchanged")):""));
     }
     bool Placement(int who,out Vector3 position,out Quaternion rotation){
@@ -115,6 +136,9 @@ public sealed partial class CarryRoom {
         int[] path={0,1,3,2,0,4,5,1,3,7,6,2,0,4,6,7,5};for(int i=0;i<path.Length;i++)placementPreview.SetPosition(i,corners[path[i]]);
     }
     string ContextPrompt(){
+        var visit=hosting?mission?.Visit?.Snapshot():target?.visit;
+        if(visit!=null&&visit.active&&visit.eliminated[local])return T("ELIMINATED / wait for ship revival or departure");
+        if(visit!=null&&visit.active&&visit.down[local])return (CrewCount==1?controls.Key(4)+T(" hold to self-revive / two chances per landing"):T("DOWN / teammate rescue needed"))+" / "+Mathf.CeilToInt(visit.bleedout[local])+"s";
         if(danger!=null&&danger.IsDown(local))return T("DOWN / wait for teammate rescue. All down: emergency recovery.");
         if(holder==local)return controls.Key(6)+T(" place · ")+controls.Key(7)+T(" hold to rotate · Wheel reach · ")+controls.Key(5)+T(" release");
         if(equipment.Carrier==local)return controls.Key(6)+T(" place beacon · ")+controls.Key(5)+T(" release");

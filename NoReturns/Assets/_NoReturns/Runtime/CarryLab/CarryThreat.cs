@@ -16,7 +16,9 @@ namespace NoReturns.CarryLab {
 // Host-owned experiment. Clients only display the replicated state.
 public sealed class CarryThreat {
     public bool Hard; readonly bool outer,cinder; float searchClock,distraction; int pursuedPlayer=-1;
-    public readonly bool[] Down=new bool[4];
+    public bool[] Down=new bool[4];
+    CarryVisit visit;
+    public void AttachVisit(CarryVisit value){visit=value;if(value!=null)Down=value.Down;}
     public readonly float[] Rescue=new float[4],Cooldown=new float[4];
     readonly float[] protection=new float[4],stepClock=new float[4];
     readonly Vector3[] previous=new Vector3[4];
@@ -131,7 +133,7 @@ public sealed class CarryThreat {
             distraction=Mathf.Max(0,distraction-dt);searchClock-=dt;
             if(state<2&&distraction<=0&&searchClock<=0){searchClock=.8f;SearchCrew(players,mask);}
         }
-        if(state==2){timer-=dt;if(timer<=0){if((mask&(1<<victim))!=0&&!Down[victim]&&!Aboard(players[victim])&&protection[victim]<=0&&Vector3.Distance(players[victim],position)<1.5f&&Sight(position,players[victim])){Down[victim]=true;hits++;}state=3;timer=4;}}
+        if(state==2){timer-=dt;if(timer<=0){if((mask&(1<<victim))!=0&&!Down[victim]&&!Aboard(players[victim])&&protection[victim]<=0&&Vector3.Distance(players[victim],position)<1.5f&&Sight(position,players[victim])){if(visit!=null)visit.Damage(victim,60);else Down[victim]=true;hits++;}state=3;timer=4;}}
         else if(state==3||state==4){timer-=dt;if(timer<=0){if(state==4)stunResistance=2;state=0;path.Clear();}}
         else {
             int close=-1;for(int i=0;i<count;i++)if((mask&(1<<i))!=0&&!Down[i]&&!Aboard(players[i])&&protection[i]<=0&&Vector3.Distance(position,players[i])<1.3f&&Sight(position,players[i])){close=i;break;}
@@ -146,6 +148,7 @@ public sealed class CarryThreat {
         TickRescues(players,mask,inputs,holder,dt);
         bool everyone=mask!=0;for(int i=0;i<count;i++)if((mask&(1<<i))!=0&&!Down[i])everyone=false;
         if(everyone)allDown+=dt;else allDown=0;
+        if(visit!=null)return false;
         if(allDown>=3){evacuations++;return true;}return false;
     }
     public void TickRescues(Vector3[] players,int mask,CarryInput[] inputs,int holder,float dt){
@@ -154,13 +157,13 @@ public sealed class CarryThreat {
             bool can=(mask&(1<<i))!=0&&!Down[i]&&other>=0&&holder!=i&&inputs[i].rescue;
             if(rescueTargets[i]!=other)Rescue[i]=0;rescueTargets[i]=other;
             Rescue[i]=can?Rescue[i]+dt:0;
-            if(Rescue[i]>=2.5f){Down[other]=false;protection[other]=4;Rescue[i]=0;rescues++;}
+            if(Rescue[i]>=2.5f){if(visit!=null)visit.Rescue(other);else Down[other]=false;protection[other]=4;Rescue[i]=0;rescues++;}
         }
     }
     readonly int[] rescueTargets={-1,-1,-1,-1};
     public int RescueTarget(int who,Vector3[] players,int mask){
         int chosen=-1;float nearest=2.0001f;
-        for(int i=0;i<players.Length;i++)if(i!=who&&(mask&(1<<i))!=0&&Down[i]){
+        for(int i=0;i<players.Length;i++)if(i!=who&&(mask&(1<<i))!=0&&Down[i]&&(visit==null||!visit.Eliminated[i])){
             float d=Vector3.Distance(players[who],players[i]);if(d<nearest&&Sight(players[who],players[i])){chosen=i;nearest=d;}
         }
         return chosen;

@@ -2,6 +2,12 @@
 
 [한국어](change-log.ko.md)
 
+## 2026-10-05 — visit ledger, revival and departure 0.9.23
+
+Cinder receipts record 420 CR as unbanked earnings, paid only on departure. A living occupant spends 100 unbanked CR to revive one eliminated teammate after 10 seconds. Anyone can start/cancel a 12-second departure; deduct 100 CR per abandoned teammate with a zero floor. Integrate health, repeat downs/elimination and all-eliminated/liftoff during revival. [Implementation, values and limits](../current/visit-settlement.en.md), [validation](../validation/visit-settlement-0.9.23.json). Game 0.9.23, protocol 14, TCP 27842. Supersedes historical Cinder all-aboard return, immediate settlement and one-hit down rules in this scope. New tools, multiple deliveries, Cinder saves/reconnects, final danger timing/audio and human review remain.
+
+First implementation requested after planning. Update code, bilingual UI/specification/backlog/test guidance together. Passed 32 Editor rules, 17 real two-player visit/12 rescue checks, and 52 real four-player delivery checks. Final build: zero errors, seven existing warnings. Initial native rescue failed on an empty-visit HUD exception; fixed and rerun. Initial Editor disconnection and TCP release delay were resolved by reconnecting/waiting. Preserve documented unimplemented/unverified scope. Exclude eight preexisting material and two Blender changes. No manual windows. Official queries confirm latest Unity 6000.6.4f1, CLI 1.0.0-beta.12 and Pipeline 0.8.0-exp.1; no updates needed.
+
 ## 2026-10-05 — consolidated design NR-COOP-01
 
 The user ended repeated Q&A and delegated remaining rules. Consolidated delivery, failure, economy, equipment, creatures, voice, saves and production order in the [design](../current/coop-design-v1.en.md). Separate direct selections, completions, initial tuning and unverified scope; link overview, implementation specification, backlog, validation and document home. Incorporate corrections: separate portable/plasma cutters, no barricade, Listener ignores scanner signals, no free healing. No code/scene/asset changes. Perform document checks and scope review; record results below. Preserve and exclude eight preexisting material and two Blender changes. Runtime/build/balance/human quality remain unverified; no development tool installation/update.

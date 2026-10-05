@@ -2,6 +2,14 @@
 
 [한국어](04-backlog.ko.md)
 
+## 2026-10-05 — visit ledger, revival and departure 0.9.23
+
+Cinder receipts record 420 CR as unbanked earnings, paid only on departure. A living occupant spends 100 unbanked CR to revive one eliminated teammate after 10 seconds. Anyone can start/cancel a 12-second departure; deduct 100 CR per abandoned teammate with a zero floor. Integrate health, repeat downs/elimination and all-eliminated/liftoff during revival. [Implementation, values and limits](visit-settlement.en.md), [validation](../validation/visit-settlement-0.9.23.json). Game 0.9.23, protocol 14, TCP 27842. Supersedes historical Cinder all-aboard return, immediate settlement and one-hit down rules in this scope. New tools, multiple deliveries, Cinder saves/reconnects, final danger timing/audio and human review remain.
+
+- [x] Single-delivery unbanked ledger, paid revival, departure integration and automated checks.
+- [ ] Multiple contracts, verification pickup/resume and district bonuses.
+- [ ] Personal inventory, medicine, saves/reconnects and planned danger timing/audio.
+
 ## 2026-10-05 — consolidated design NR-COOP-01
 
 [Cooperative design v1](coop-design-v1.en.md) governs target behavior for new work. It separates user selections from delegated completions and initial tuning. It overrides conflicting historical design below without promoting code or validation to implemented status. Documentation only; game version unchanged.

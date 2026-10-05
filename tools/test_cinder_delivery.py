@@ -86,8 +86,9 @@ def main(headless=False):
         require("all aboard activates field", lambda: same_phase(2))
         send(1, action=True, confirmReturn=True)
         time.sleep(.4)
-        assert same_phase(2), "Client changed ship phase"
-        checks.append("client cannot command return")
+        require("client can start return countdown",lambda:all_state(lambda s:s.get("visit",{}).get("departing")))
+        send(1,action=True,confirmReturn=True)
+        require("client can cancel return countdown",lambda:all_state(lambda s:not s.get("visit",{}).get("departing")))
         ship_click()
         time.sleep(.4)
         assert same_phase(2), "Unconfirmed zero-pay return"
@@ -146,8 +147,8 @@ def main(headless=False):
         for x, z in [(12.75, 10.9), (12.75, 25.95), (-22.95, 25.95), (-22.95, -20.05), (-20.7, -20.05), (-20.7, -25), (-21.65, -25)]:
             go(0, x, z)
         ship_click()
-        require("settlement is 300 plus 120 exactly once", lambda: same_phase(4) and all_state(lambda s:
-                s.get("credits") == 420 and s.get("receipt") == 300 and s.get("returnPay") == 120 and s.get("deliveries") == 1))
+        require("settlement banks 420 exactly once", lambda: same_phase(4) and all_state(lambda s:
+                s.get("credits") == 420 and s.get("receipt") == 420 and s.get("returnPay") == 0 and s.get("visit",{}).get("paid")==420 and s.get("deliveries") == 1))
         time.sleep(.5)
         assert all_state(lambda s: s.get("credits") == 420), "Settlement paid twice"
         capture("ship-report", 0, (-20.7, 2.8, -31.2))

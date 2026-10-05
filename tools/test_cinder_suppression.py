@@ -75,7 +75,7 @@ def main():
         shutil.copy2(image,run/(name+".png"))
 
     try:
-        require("four hazard slots/protocol 13", lambda: all_state(lambda s:s.get("occupiedMask")==15 and s.get("protocol")==13 and s.get("hazard")))
+        require("four hazard slots/protocol 14", lambda: all_state(lambda s:s.get("occupiedMask")==15 and s.get("protocol")==14 and s.get("hazard")))
         require("preparation clock stopped",lambda:host().get("shiftElapsed")==0)
         require("remote batons follow right hands, local view remains visible",lambda:all(
             len(batons(peer))==4 and all(b["visible"] and (slot==peer or b["handAttached"] and .05<b["handDistance"]<.19)

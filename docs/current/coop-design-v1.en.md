@@ -10,6 +10,8 @@ Consolidates the user's 2026-10-04–05 answers and delegation to finish plannin
 
 This document governs target behavior for new work. It overrides conflicting overview, economy drafts and creature experiments, but historical results in the [implementation specification](02-spec.en.md) do not validate these new rules. This change is documentation only and does not increment the game version. Repeated questionnaires end here; subsequent revisions should come from implementation findings and actual play.
 
+Implementation transition: [0.9.23 visit ledger, revival and departure](visit-settlement.en.md). Some rules now connect to one delivery; the full design below is not implemented. Total reward 420 CR, rescue hold 2.5 seconds and existing danger stages still retain earlier values.
+
 ## 1. Product promise
 
 [Selected] A first-person space-delivery cooperative game for 1–4 players. Fear and tension lead; humor emerges from teammates' mistakes and responses. Cargo controls stay simple; danger comes from the environment, creatures and crew actions. Employees and creatures are treated seriously. Avoidance, distraction and some combat coexist, but shooting does not clear all powerful creatures.
