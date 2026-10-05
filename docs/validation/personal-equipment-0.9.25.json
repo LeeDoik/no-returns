@@ -1,0 +1,2076 @@
+{
+  "status": "PASS",
+  "date": "2026-10-06",
+  "game": "0.9.25",
+  "protocol": 16,
+  "rules": {
+    "status": "PASS",
+    "checks": [
+      "co-op one slot and solo two",
+      "outside purchase rejected",
+      "buy and equip consumes 40 wallet funds",
+      "occupied slot cannot buy twice",
+      "solo duplicate medicine permitted",
+      "field cannot restock",
+      "healthy target consumes nothing",
+      "downed target cannot be healed",
+      "blocked target consumes nothing",
+      "healing restores health without clearing down count",
+      "second simultaneous heal consumes nothing",
+      "empty slot cannot duplicate ground medicine",
+      "drop moves one dose to world",
+      "one pickup wins and cannot duplicate",
+      "co-op hides but retains prior solo second slot",
+      "self healing",
+      "elimination retains unused dose but blocks use",
+      "visit failure preserves carried medicine",
+      "invalid actor and slot rejected",
+      "snapshot copy and validation",
+      "insufficient funds untouched"
+    ]
+  },
+  "native_inventory": {
+    "status": "PASS",
+    "run": "/Users/leedoik/WorkSpace/Game/No_Returns/artifacts/cinder-four-player/run-20261006-014206-d5a636",
+    "checks": [
+      "inventory prepared",
+      "ship opened 1",
+      "personal equipment opened 1",
+      "peer buys own dose from shared wallet",
+      "ship opened 0",
+      "personal equipment opened 0",
+      "host buys separate dose",
+      "occupied slot cannot charge again",
+      "pre-departure spare stockpiling rejected",
+      "inventory-field prepared",
+      "field restock and co-op second slot rejected",
+      "aimed teammate heals without changing down count",
+      "healthy self does not consume second dose",
+      "peer heals host and consumes its own dose",
+      "inventory prepared",
+      "ship opened 0",
+      "personal equipment opened 0",
+      "exchange dose purchased",
+      "inventory-field prepared",
+      "drop creates one physical shared medicine",
+      "teammate raycast pickup fills its slot",
+      "pickup cannot duplicate dose",
+      "clean runtime logs"
+    ],
+    "states": [
+      {
+        "inventory": {
+          "slots": 1,
+          "medicine": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "selected": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "ground": []
+        },
+        "parcels": [],
+        "deliveriesState": [],
+        "visit": {
+          "active": true,
+          "departing": false,
+          "automatic": false,
+          "failed": false,
+          "gross": 0,
+          "available": 0,
+          "revivalFees": 0,
+          "returnFees": 0,
+          "paid": 0,
+          "reviving": -1,
+          "mask": 3,
+          "elapsed": 1.0199992656707764,
+          "departureLeft": 0.0,
+          "revivalLeft": 0.0,
+          "health": [
+            40,
+            40,
+            100,
+            100
+          ],
+          "downs": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "down": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "eliminated": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "bleedout": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "protection": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "protocol": 16,
+        "clueMask": 0,
+        "phase": 2,
+        "credits": 360,
+        "receipt": 0,
+        "returnPay": 0,
+        "tick": 255,
+        "holder": 1,
+        "ack": 151,
+        "players": 2,
+        "recipient": 0,
+        "occupiedMask": 3,
+        "positions": [
+          {
+            "x": -22.5,
+            "y": 0.03499988093972206,
+            "z": -19.0
+          },
+          {
+            "x": -21.0,
+            "y": 0.03499988093972206,
+            "z": -19.0
+          },
+          {
+            "x": -19.5,
+            "y": 0.03500000014901161,
+            "z": -19.0
+          },
+          {
+            "x": -18.0,
+            "y": 0.03500000014901161,
+            "z": -19.0
+          }
+        ],
+        "yaws": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "p0": {
+          "x": -22.5,
+          "y": 0.03499988093972206,
+          "z": -19.0
+        },
+        "p1": {
+          "x": -21.0,
+          "y": 0.03499988093972206,
+          "z": -19.0
+        },
+        "cargo": {
+          "x": -20.624862670898438,
+          "y": 0.5500252842903137,
+          "z": -18.46908187866211
+        },
+        "rotation": {
+          "x": -0.0007728170021437109,
+          "y": -0.025979040190577507,
+          "z": -0.0009348715539090335,
+          "w": 0.9996618032455444
+        },
+        "beaconCarrier": -1,
+        "beaconExists": false,
+        "receiptCollected": false,
+        "receiptReady": false,
+        "receiptProgress": 0.0,
+        "yaw0": 0.0,
+        "yaw1": 0.0,
+        "shiftElapsed": 1.0199992656707764,
+        "suppressionStage": 0,
+        "outerDanger": {
+          "position": {
+            "x": 29.0,
+            "y": 0.0,
+            "z": 18.0
+          },
+          "noiseTarget": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "state": 0,
+          "hits": 0,
+          "rescues": 0,
+          "evacuations": 0,
+          "noises": 0,
+          "pursuedPlayer": -1,
+          "down": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "rescue": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "cooldown": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "down0": false,
+          "down1": false,
+          "rescue0": 0.0,
+          "rescue1": 0.0,
+          "cooldown0": 0.0,
+          "cooldown1": 0.0,
+          "warning": 0.0
+        },
+        "unlocked": true,
+        "hard": false,
+        "deliveries": 0,
+        "charges": 2,
+        "beaconTime": 0.0,
+        "beaconPosition": {
+          "x": -22.5,
+          "y": 0.23000000417232513,
+          "z": -18.0
+        },
+        "hazard": true,
+        "cinderReview": true,
+        "danger": {
+          "position": {
+            "x": -22.5,
+            "y": 0.03500000014901161,
+            "z": -8.0
+          },
+          "noiseTarget": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "state": 3,
+          "hits": 0,
+          "rescues": 0,
+          "evacuations": 0,
+          "noises": 0,
+          "pursuedPlayer": -1,
+          "down": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "rescue": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "cooldown": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "down0": false,
+          "down1": false,
+          "rescue0": 0.0,
+          "rescue1": 0.0,
+          "cooldown0": 0.0,
+          "cooldown1": 0.0,
+          "warning": 0.0
+        },
+        "connected": true,
+        "message": "Parcel held",
+        "rejection": ""
+      },
+      {
+        "inventory": {
+          "slots": 1,
+          "medicine": [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "selected": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "ground": []
+        },
+        "parcels": [],
+        "deliveriesState": [],
+        "visit": {
+          "active": true,
+          "departing": false,
+          "automatic": false,
+          "failed": false,
+          "gross": 0,
+          "available": 0,
+          "revivalFees": 0,
+          "returnFees": 0,
+          "paid": 0,
+          "reviving": -1,
+          "mask": 3,
+          "elapsed": 0.8999993205070496,
+          "departureLeft": 0.0,
+          "revivalLeft": 0.0,
+          "health": [
+            40,
+            40,
+            100,
+            100
+          ],
+          "downs": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "down": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "eliminated": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "bleedout": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "protection": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "protocol": 16,
+        "clueMask": 0,
+        "phase": 2,
+        "credits": 360,
+        "receipt": 0,
+        "returnPay": 0,
+        "tick": 249,
+        "holder": 1,
+        "ack": 133,
+        "players": 2,
+        "recipient": 1,
+        "occupiedMask": 3,
+        "positions": [
+          {
+            "x": -22.5,
+            "y": 0.03499988093972206,
+            "z": -19.0
+          },
+          {
+            "x": -21.0,
+            "y": 0.03499988093972206,
+            "z": -19.0
+          },
+          {
+            "x": -19.5,
+            "y": 0.03500000014901161,
+            "z": -19.0
+          },
+          {
+            "x": -18.0,
+            "y": 0.03500000014901161,
+            "z": -19.0
+          }
+        ],
+        "yaws": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "p0": {
+          "x": -22.5,
+          "y": 0.03499988093972206,
+          "z": -19.0
+        },
+        "p1": {
+          "x": -21.0,
+          "y": 0.03499988093972206,
+          "z": -19.0
+        },
+        "cargo": {
+          "x": -20.624862670898438,
+          "y": 0.5500252842903137,
+          "z": -18.46908187866211
+        },
+        "rotation": {
+          "x": -0.0007728170021437109,
+          "y": -0.025979040190577507,
+          "z": -0.0009348715539090335,
+          "w": 0.9996618032455444
+        },
+        "beaconCarrier": -1,
+        "beaconExists": false,
+        "receiptCollected": false,
+        "receiptReady": false,
+        "receiptProgress": 0.0,
+        "yaw0": 0.0,
+        "yaw1": 0.0,
+        "shiftElapsed": 0.8999993205070496,
+        "suppressionStage": 0,
+        "outerDanger": {
+          "position": {
+            "x": 29.0,
+            "y": 0.0,
+            "z": 18.0
+          },
+          "noiseTarget": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "state": 0,
+          "hits": 0,
+          "rescues": 0,
+          "evacuations": 0,
+          "noises": 0,
+          "pursuedPlayer": -1,
+          "down": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "rescue": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "cooldown": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "down0": false,
+          "down1": false,
+          "rescue0": 0.0,
+          "rescue1": 0.0,
+          "cooldown0": 0.0,
+          "cooldown1": 0.0,
+          "warning": 0.0
+        },
+        "unlocked": true,
+        "hard": false,
+        "deliveries": 0,
+        "charges": 2,
+        "beaconTime": 0.0,
+        "beaconPosition": {
+          "x": -22.5,
+          "y": 0.23000000417232513,
+          "z": -18.0
+        },
+        "hazard": true,
+        "cinderReview": true,
+        "danger": {
+          "position": {
+            "x": -22.5,
+            "y": 0.03500000014901161,
+            "z": -8.0
+          },
+          "noiseTarget": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "state": 3,
+          "hits": 0,
+          "rescues": 0,
+          "evacuations": 0,
+          "noises": 0,
+          "pursuedPlayer": -1,
+          "down": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "rescue": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "cooldown": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "down0": false,
+          "down1": false,
+          "rescue0": 0.0,
+          "rescue1": 0.0,
+          "cooldown0": 0.0,
+          "cooldown1": 0.0,
+          "warning": 0.0
+        },
+        "connected": true,
+        "message": "Parcel held",
+        "rejection": ""
+      }
+    ]
+  },
+  "build": {
+    "status": "PASS",
+    "unity": "6000.6.4f1",
+    "output": "/Users/leedoik/WorkSpace/Game/No_Returns/builds/CinderFourPlayer/NoReturns.app",
+    "error": "",
+    "errors": 0,
+    "warnings": 7
+  },
+  "tools": {
+    "unity": "6000.6.4f1",
+    "cli": "1.0.0-beta.12",
+    "pipeline": "0.8.0-exp.1",
+    "latest_official_checked": "2026-10-06"
+  },
+  "limits": [
+    "Session-owned medicine only; other tools and company storage not implemented",
+    "No save/reconnect/account ownership",
+    "Medicine cube and label are temporary; medical motion and human quality not reviewed",
+    "GUI Editor startup exited; validated with persistent windowless Editor",
+    "Manual player and companion windows not opened"
+  ],
+  "resolved_failures": [
+    "Duplicate EMPTY translation key removed after first native launch failure",
+    "Initial native build rejected unnamed batch Editor scene; opened authored scene and rebuilt",
+    "Delivery regression found crew collisions pushing unclaimed ship cargo; fixed stowage until first pickup."
+  ],
+  "preserved_unrelated_changes": {
+    "materials": 8,
+    "blender_files": 2,
+    "recovery_scene": "NoReturns/Assets/_Recovery/0 (1).unity"
+  },
+  "rescue_regression": {
+    "status": "PASS",
+    "scenario": "rescue",
+    "run": "/Users/leedoik/WorkSpace/Game/No_Returns/artifacts/cinder-four-player/run-20261006-013555-28b70f",
+    "checks": [
+      "rescue fixture ready",
+      "partner starts down",
+      "down pose settles on both clients",
+      "real rescue progress and hands",
+      "remote rescuer crouches with supported hands",
+      "release cancels rescue",
+      "remote rescue pose clears on cancel",
+      "real hold revives partner on both clients",
+      "revived partner visibly gets up",
+      "get-up returns to standing on both clients",
+      "revival restores baton",
+      "no runtime errors or progression save"
+    ],
+    "scenario_seconds": {
+      "rescue": 5.205
+    },
+    "total_seconds": 8.737
+  },
+  "delivery_regression": {
+    "status": "PASS",
+    "run": "/Users/leedoik/WorkSpace/Game/No_Returns/artifacts/cinder-four-player/run-20261006-013951-6be995",
+    "checks": [
+      "six parcels replicated for four crew",
+      "ship terminal opens",
+      "route selected",
+      "ship terminal opens",
+      "landing starts visit",
+      "parcel 0 picked by 0",
+      "unselected ship parcel remains stowed",
+      "parcel 1 picked by 1",
+      "two distinct simultaneous carriers on all peers",
+      "first verification starts",
+      "parcel 0 picked by 0",
+      "pickup pauses and retains progress",
+      "replacement resumes",
+      "verification finishes while player away",
+      "shared first receipt only unbanked",
+      "receipt cannot duplicate",
+      "ship manifest reveals remaining WEST bundle",
+      "second parcel verifies independently",
+      "second receipt includes single district bonus",
+      "bundle is idempotent",
+      "ship terminal opens",
+      "departure settles selected two and abandons four without penalty",
+      "ship terminal opens",
+      "next visit resets all six while keeping wallet",
+      "clean runtime logs"
+    ],
+    "states": [
+      {
+        "inventory": {
+          "slots": 1,
+          "medicine": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "selected": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "ground": []
+        },
+        "parcels": [
+          {
+            "position": {
+              "x": -21.720001220703125,
+              "y": 1.3250000476837158,
+              "z": -28.0
+            },
+            "rotation": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "w": 1.0
+            },
+            "holder": -1
+          },
+          {
+            "position": {
+              "x": -19.68000030517578,
+              "y": 1.3250000476837158,
+              "z": -28.0
+            },
+            "rotation": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "w": 1.0
+            },
+            "holder": -1
+          },
+          {
+            "position": {
+              "x": -21.720001220703125,
+              "y": 1.3250000476837158,
+              "z": -29.0
+            },
+            "rotation": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "w": 1.0
+            },
+            "holder": -1
+          },
+          {
+            "position": {
+              "x": -19.68000030517578,
+              "y": 1.3250000476837158,
+              "z": -29.0
+            },
+            "rotation": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "w": 1.0
+            },
+            "holder": -1
+          },
+          {
+            "position": {
+              "x": -21.720001220703125,
+              "y": 1.3250000476837158,
+              "z": -30.0
+            },
+            "rotation": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "w": 1.0
+            },
+            "holder": -1
+          },
+          {
+            "position": {
+              "x": -19.68000030517578,
+              "y": 1.3250000476837158,
+              "z": -30.0
+            },
+            "rotation": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "w": 1.0
+            },
+            "holder": -1
+          }
+        ],
+        "deliveriesState": [
+          {
+            "id": 0,
+            "receiver": 1,
+            "reward": 100,
+            "progress": 0.0,
+            "scanning": false,
+            "verified": false,
+            "collected": false
+          },
+          {
+            "id": 1,
+            "receiver": 1,
+            "reward": 120,
+            "progress": 0.0,
+            "scanning": false,
+            "verified": false,
+            "collected": false
+          },
+          {
+            "id": 2,
+            "receiver": 0,
+            "reward": 180,
+            "progress": 0.0,
+            "scanning": false,
+            "verified": false,
+            "collected": false
+          },
+          {
+            "id": 3,
+            "receiver": 2,
+            "reward": 160,
+            "progress": 0.0,
+            "scanning": false,
+            "verified": false,
+            "collected": false
+          },
+          {
+            "id": 4,
+            "receiver": 0,
+            "reward": 200,
+            "progress": 0.0,
+            "scanning": false,
+            "verified": false,
+            "collected": false
+          },
+          {
+            "id": 5,
+            "receiver": 2,
+            "reward": 180,
+            "progress": 0.0,
+            "scanning": false,
+            "verified": false,
+            "collected": false
+          }
+        ],
+        "visit": {
+          "active": false,
+          "departing": false,
+          "automatic": false,
+          "failed": false,
+          "gross": 275,
+          "available": 275,
+          "revivalFees": 0,
+          "returnFees": 0,
+          "paid": 275,
+          "reviving": -1,
+          "mask": 15,
+          "elapsed": 90.89675903320312,
+          "departureLeft": 0.0,
+          "revivalLeft": 0.0,
+          "health": [
+            100,
+            100,
+            100,
+            100
+          ],
+          "downs": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "down": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "eliminated": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "bleedout": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "protection": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "protocol": 16,
+        "clueMask": 0,
+        "phase": 0,
+        "credits": 675,
+        "receipt": 0,
+        "returnPay": 0,
+        "tick": 5172,
+        "holder": -1,
+        "ack": 3025,
+        "players": 4,
+        "recipient": 0,
+        "occupiedMask": 15,
+        "positions": [
+          {
+            "x": -21.700000762939453,
+            "y": 0.03499988093972206,
+            "z": -20.049999237060547
+          },
+          {
+            "x": -19.700000762939453,
+            "y": 0.03499988093972206,
+            "z": -20.049999237060547
+          },
+          {
+            "x": -21.700000762939453,
+            "y": 0.03499988093972206,
+            "z": -18.649999618530273
+          },
+          {
+            "x": -19.700000762939453,
+            "y": 0.03499988093972206,
+            "z": -18.649999618530273
+          }
+        ],
+        "yaws": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "p0": {
+          "x": -21.700000762939453,
+          "y": 0.03499988093972206,
+          "z": -20.049999237060547
+        },
+        "p1": {
+          "x": -19.700000762939453,
+          "y": 0.03499988093972206,
+          "z": -20.049999237060547
+        },
+        "cargo": {
+          "x": -21.720001220703125,
+          "y": 1.3250000476837158,
+          "z": -28.0
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "beaconCarrier": -1,
+        "beaconExists": false,
+        "receiptCollected": false,
+        "receiptReady": false,
+        "receiptProgress": 0.0,
+        "yaw0": 0.0,
+        "yaw1": 0.0,
+        "shiftElapsed": 0.0,
+        "suppressionStage": 0,
+        "outerDanger": {
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "noiseTarget": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "state": 0,
+          "hits": 0,
+          "rescues": 0,
+          "evacuations": 0,
+          "noises": 0,
+          "pursuedPlayer": -1,
+          "down": [],
+          "rescue": [],
+          "cooldown": [],
+          "down0": false,
+          "down1": false,
+          "rescue0": 0.0,
+          "rescue1": 0.0,
+          "cooldown0": 0.0,
+          "cooldown1": 0.0,
+          "warning": 0.0
+        },
+        "unlocked": false,
+        "hard": false,
+        "deliveries": 2,
+        "charges": 0,
+        "beaconTime": 0.0,
+        "beaconPosition": {
+          "x": -20.700000762939453,
+          "y": 1.2300000190734863,
+          "z": -29.0
+        },
+        "hazard": false,
+        "cinderReview": true,
+        "danger": {
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "noiseTarget": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "state": 0,
+          "hits": 0,
+          "rescues": 0,
+          "evacuations": 0,
+          "noises": 0,
+          "pursuedPlayer": -1,
+          "down": [],
+          "rescue": [],
+          "cooldown": [],
+          "down0": false,
+          "down1": false,
+          "rescue0": 0.0,
+          "rescue1": 0.0,
+          "cooldown0": 0.0,
+          "cooldown1": 0.0,
+          "warning": 0.0
+        },
+        "connected": true,
+        "message": "Departure complete / payout secured",
+        "rejection": ""
+      },
+      {
+        "inventory": {
+          "slots": 1,
+          "medicine": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "selected": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "ground": []
+        },
+        "parcels": [
+          {
+            "position": {
+              "x": -21.720001220703125,
+              "y": 1.3250000476837158,
+              "z": -28.0
+            },
+            "rotation": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "w": 1.0
+            },
+            "holder": -1
+          },
+          {
+            "position": {
+              "x": -19.68000030517578,
+              "y": 1.3250000476837158,
+              "z": -28.0
+            },
+            "rotation": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "w": 1.0
+            },
+            "holder": -1
+          },
+          {
+            "position": {
+              "x": -21.720001220703125,
+              "y": 1.3250000476837158,
+              "z": -29.0
+            },
+            "rotation": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "w": 1.0
+            },
+            "holder": -1
+          },
+          {
+            "position": {
+              "x": -19.68000030517578,
+              "y": 1.3250000476837158,
+              "z": -29.0
+            },
+            "rotation": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "w": 1.0
+            },
+            "holder": -1
+          },
+          {
+            "position": {
+              "x": -21.720001220703125,
+              "y": 1.3250000476837158,
+              "z": -30.0
+            },
+            "rotation": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "w": 1.0
+            },
+            "holder": -1
+          },
+          {
+            "position": {
+              "x": -19.68000030517578,
+              "y": 1.3250000476837158,
+              "z": -30.0
+            },
+            "rotation": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "w": 1.0
+            },
+            "holder": -1
+          }
+        ],
+        "deliveriesState": [
+          {
+            "id": 0,
+            "receiver": 1,
+            "reward": 100,
+            "progress": 0.0,
+            "scanning": false,
+            "verified": false,
+            "collected": false
+          },
+          {
+            "id": 1,
+            "receiver": 1,
+            "reward": 120,
+            "progress": 0.0,
+            "scanning": false,
+            "verified": false,
+            "collected": false
+          },
+          {
+            "id": 2,
+            "receiver": 0,
+            "reward": 180,
+            "progress": 0.0,
+            "scanning": false,
+            "verified": false,
+            "collected": false
+          },
+          {
+            "id": 3,
+            "receiver": 2,
+            "reward": 160,
+            "progress": 0.0,
+            "scanning": false,
+            "verified": false,
+            "collected": false
+          },
+          {
+            "id": 4,
+            "receiver": 0,
+            "reward": 200,
+            "progress": 0.0,
+            "scanning": false,
+            "verified": false,
+            "collected": false
+          },
+          {
+            "id": 5,
+            "receiver": 2,
+            "reward": 180,
+            "progress": 0.0,
+            "scanning": false,
+            "verified": false,
+            "collected": false
+          }
+        ],
+        "visit": {
+          "active": false,
+          "departing": false,
+          "automatic": false,
+          "failed": false,
+          "gross": 275,
+          "available": 275,
+          "revivalFees": 0,
+          "returnFees": 0,
+          "paid": 275,
+          "reviving": -1,
+          "mask": 15,
+          "elapsed": 90.89675903320312,
+          "departureLeft": 0.0,
+          "revivalLeft": 0.0,
+          "health": [
+            100,
+            100,
+            100,
+            100
+          ],
+          "downs": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "down": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "eliminated": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "bleedout": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "protection": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "protocol": 16,
+        "clueMask": 0,
+        "phase": 0,
+        "credits": 675,
+        "receipt": 0,
+        "returnPay": 0,
+        "tick": 5169,
+        "holder": -1,
+        "ack": 3006,
+        "players": 4,
+        "recipient": 1,
+        "occupiedMask": 15,
+        "positions": [
+          {
+            "x": -21.700000762939453,
+            "y": 0.03499988093972206,
+            "z": -20.049999237060547
+          },
+          {
+            "x": -19.700000762939453,
+            "y": 0.03499988093972206,
+            "z": -20.049999237060547
+          },
+          {
+            "x": -21.700000762939453,
+            "y": 0.03499988093972206,
+            "z": -18.649999618530273
+          },
+          {
+            "x": -19.700000762939453,
+            "y": 0.03499988093972206,
+            "z": -18.649999618530273
+          }
+        ],
+        "yaws": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "p0": {
+          "x": -21.700000762939453,
+          "y": 0.03499988093972206,
+          "z": -20.049999237060547
+        },
+        "p1": {
+          "x": -19.700000762939453,
+          "y": 0.03499988093972206,
+          "z": -20.049999237060547
+        },
+        "cargo": {
+          "x": -21.720001220703125,
+          "y": 1.3250000476837158,
+          "z": -28.0
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "beaconCarrier": -1,
+        "beaconExists": false,
+        "receiptCollected": false,
+        "receiptReady": false,
+        "receiptProgress": 0.0,
+        "yaw0": 0.0,
+        "yaw1": 0.0,
+        "shiftElapsed": 0.0,
+        "suppressionStage": 0,
+        "outerDanger": {
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "noiseTarget": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "state": 0,
+          "hits": 0,
+          "rescues": 0,
+          "evacuations": 0,
+          "noises": 0,
+          "pursuedPlayer": -1,
+          "down": [],
+          "rescue": [],
+          "cooldown": [],
+          "down0": false,
+          "down1": false,
+          "rescue0": 0.0,
+          "rescue1": 0.0,
+          "cooldown0": 0.0,
+          "cooldown1": 0.0,
+          "warning": 0.0
+        },
+        "unlocked": false,
+        "hard": false,
+        "deliveries": 2,
+        "charges": 0,
+        "beaconTime": 0.0,
+        "beaconPosition": {
+          "x": -20.700000762939453,
+          "y": 1.2300000190734863,
+          "z": -29.0
+        },
+        "hazard": false,
+        "cinderReview": true,
+        "danger": {
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "noiseTarget": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "state": 0,
+          "hits": 0,
+          "rescues": 0,
+          "evacuations": 0,
+          "noises": 0,
+          "pursuedPlayer": -1,
+          "down": [],
+          "rescue": [],
+          "cooldown": [],
+          "down0": false,
+          "down1": false,
+          "rescue0": 0.0,
+          "rescue1": 0.0,
+          "cooldown0": 0.0,
+          "cooldown1": 0.0,
+          "warning": 0.0
+        },
+        "connected": true,
+        "message": "Departure complete / payout secured",
+        "rejection": ""
+      },
+      {
+        "inventory": {
+          "slots": 1,
+          "medicine": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "selected": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "ground": []
+        },
+        "parcels": [
+          {
+            "position": {
+              "x": -21.720001220703125,
+              "y": 1.3250000476837158,
+              "z": -28.0
+            },
+            "rotation": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "w": 1.0
+            },
+            "holder": -1
+          },
+          {
+            "position": {
+              "x": -19.68000030517578,
+              "y": 1.3250000476837158,
+              "z": -28.0
+            },
+            "rotation": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "w": 1.0
+            },
+            "holder": -1
+          },
+          {
+            "position": {
+              "x": -21.720001220703125,
+              "y": 1.3250000476837158,
+              "z": -29.0
+            },
+            "rotation": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "w": 1.0
+            },
+            "holder": -1
+          },
+          {
+            "position": {
+              "x": -19.68000030517578,
+              "y": 1.3250000476837158,
+              "z": -29.0
+            },
+            "rotation": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "w": 1.0
+            },
+            "holder": -1
+          },
+          {
+            "position": {
+              "x": -21.720001220703125,
+              "y": 1.3250000476837158,
+              "z": -30.0
+            },
+            "rotation": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "w": 1.0
+            },
+            "holder": -1
+          },
+          {
+            "position": {
+              "x": -19.68000030517578,
+              "y": 1.3250000476837158,
+              "z": -30.0
+            },
+            "rotation": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "w": 1.0
+            },
+            "holder": -1
+          }
+        ],
+        "deliveriesState": [
+          {
+            "id": 0,
+            "receiver": 1,
+            "reward": 100,
+            "progress": 0.0,
+            "scanning": false,
+            "verified": false,
+            "collected": false
+          },
+          {
+            "id": 1,
+            "receiver": 1,
+            "reward": 120,
+            "progress": 0.0,
+            "scanning": false,
+            "verified": false,
+            "collected": false
+          },
+          {
+            "id": 2,
+            "receiver": 0,
+            "reward": 180,
+            "progress": 0.0,
+            "scanning": false,
+            "verified": false,
+            "collected": false
+          },
+          {
+            "id": 3,
+            "receiver": 2,
+            "reward": 160,
+            "progress": 0.0,
+            "scanning": false,
+            "verified": false,
+            "collected": false
+          },
+          {
+            "id": 4,
+            "receiver": 0,
+            "reward": 200,
+            "progress": 0.0,
+            "scanning": false,
+            "verified": false,
+            "collected": false
+          },
+          {
+            "id": 5,
+            "receiver": 2,
+            "reward": 180,
+            "progress": 0.0,
+            "scanning": false,
+            "verified": false,
+            "collected": false
+          }
+        ],
+        "visit": {
+          "active": false,
+          "departing": false,
+          "automatic": false,
+          "failed": false,
+          "gross": 275,
+          "available": 275,
+          "revivalFees": 0,
+          "returnFees": 0,
+          "paid": 275,
+          "reviving": -1,
+          "mask": 15,
+          "elapsed": 90.89675903320312,
+          "departureLeft": 0.0,
+          "revivalLeft": 0.0,
+          "health": [
+            100,
+            100,
+            100,
+            100
+          ],
+          "downs": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "down": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "eliminated": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "bleedout": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "protection": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "protocol": 16,
+        "clueMask": 0,
+        "phase": 0,
+        "credits": 675,
+        "receipt": 0,
+        "returnPay": 0,
+        "tick": 5169,
+        "holder": -1,
+        "ack": 3059,
+        "players": 4,
+        "recipient": 2,
+        "occupiedMask": 15,
+        "positions": [
+          {
+            "x": -21.700000762939453,
+            "y": 0.03499988093972206,
+            "z": -20.049999237060547
+          },
+          {
+            "x": -19.700000762939453,
+            "y": 0.03499988093972206,
+            "z": -20.049999237060547
+          },
+          {
+            "x": -21.700000762939453,
+            "y": 0.03499988093972206,
+            "z": -18.649999618530273
+          },
+          {
+            "x": -19.700000762939453,
+            "y": 0.03499988093972206,
+            "z": -18.649999618530273
+          }
+        ],
+        "yaws": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "p0": {
+          "x": -21.700000762939453,
+          "y": 0.03499988093972206,
+          "z": -20.049999237060547
+        },
+        "p1": {
+          "x": -19.700000762939453,
+          "y": 0.03499988093972206,
+          "z": -20.049999237060547
+        },
+        "cargo": {
+          "x": -21.720001220703125,
+          "y": 1.3250000476837158,
+          "z": -28.0
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "beaconCarrier": -1,
+        "beaconExists": false,
+        "receiptCollected": false,
+        "receiptReady": false,
+        "receiptProgress": 0.0,
+        "yaw0": 0.0,
+        "yaw1": 0.0,
+        "shiftElapsed": 0.0,
+        "suppressionStage": 0,
+        "outerDanger": {
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "noiseTarget": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "state": 0,
+          "hits": 0,
+          "rescues": 0,
+          "evacuations": 0,
+          "noises": 0,
+          "pursuedPlayer": -1,
+          "down": [],
+          "rescue": [],
+          "cooldown": [],
+          "down0": false,
+          "down1": false,
+          "rescue0": 0.0,
+          "rescue1": 0.0,
+          "cooldown0": 0.0,
+          "cooldown1": 0.0,
+          "warning": 0.0
+        },
+        "unlocked": false,
+        "hard": false,
+        "deliveries": 2,
+        "charges": 0,
+        "beaconTime": 0.0,
+        "beaconPosition": {
+          "x": -20.700000762939453,
+          "y": 1.2300000190734863,
+          "z": -29.0
+        },
+        "hazard": false,
+        "cinderReview": true,
+        "danger": {
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "noiseTarget": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "state": 0,
+          "hits": 0,
+          "rescues": 0,
+          "evacuations": 0,
+          "noises": 0,
+          "pursuedPlayer": -1,
+          "down": [],
+          "rescue": [],
+          "cooldown": [],
+          "down0": false,
+          "down1": false,
+          "rescue0": 0.0,
+          "rescue1": 0.0,
+          "cooldown0": 0.0,
+          "cooldown1": 0.0,
+          "warning": 0.0
+        },
+        "connected": true,
+        "message": "Departure complete / payout secured",
+        "rejection": ""
+      },
+      {
+        "inventory": {
+          "slots": 1,
+          "medicine": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "selected": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "ground": []
+        },
+        "parcels": [
+          {
+            "position": {
+              "x": -21.720001220703125,
+              "y": 1.3250000476837158,
+              "z": -28.0
+            },
+            "rotation": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "w": 1.0
+            },
+            "holder": -1
+          },
+          {
+            "position": {
+              "x": -19.68000030517578,
+              "y": 1.3250000476837158,
+              "z": -28.0
+            },
+            "rotation": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "w": 1.0
+            },
+            "holder": -1
+          },
+          {
+            "position": {
+              "x": -21.720001220703125,
+              "y": 1.3250000476837158,
+              "z": -29.0
+            },
+            "rotation": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "w": 1.0
+            },
+            "holder": -1
+          },
+          {
+            "position": {
+              "x": -19.68000030517578,
+              "y": 1.3250000476837158,
+              "z": -29.0
+            },
+            "rotation": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "w": 1.0
+            },
+            "holder": -1
+          },
+          {
+            "position": {
+              "x": -21.720001220703125,
+              "y": 1.3250000476837158,
+              "z": -30.0
+            },
+            "rotation": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "w": 1.0
+            },
+            "holder": -1
+          },
+          {
+            "position": {
+              "x": -19.68000030517578,
+              "y": 1.3250000476837158,
+              "z": -30.0
+            },
+            "rotation": {
+              "x": 0.0,
+              "y": 0.0,
+              "z": 0.0,
+              "w": 1.0
+            },
+            "holder": -1
+          }
+        ],
+        "deliveriesState": [
+          {
+            "id": 0,
+            "receiver": 1,
+            "reward": 100,
+            "progress": 0.0,
+            "scanning": false,
+            "verified": false,
+            "collected": false
+          },
+          {
+            "id": 1,
+            "receiver": 1,
+            "reward": 120,
+            "progress": 0.0,
+            "scanning": false,
+            "verified": false,
+            "collected": false
+          },
+          {
+            "id": 2,
+            "receiver": 0,
+            "reward": 180,
+            "progress": 0.0,
+            "scanning": false,
+            "verified": false,
+            "collected": false
+          },
+          {
+            "id": 3,
+            "receiver": 2,
+            "reward": 160,
+            "progress": 0.0,
+            "scanning": false,
+            "verified": false,
+            "collected": false
+          },
+          {
+            "id": 4,
+            "receiver": 0,
+            "reward": 200,
+            "progress": 0.0,
+            "scanning": false,
+            "verified": false,
+            "collected": false
+          },
+          {
+            "id": 5,
+            "receiver": 2,
+            "reward": 180,
+            "progress": 0.0,
+            "scanning": false,
+            "verified": false,
+            "collected": false
+          }
+        ],
+        "visit": {
+          "active": false,
+          "departing": false,
+          "automatic": false,
+          "failed": false,
+          "gross": 275,
+          "available": 275,
+          "revivalFees": 0,
+          "returnFees": 0,
+          "paid": 275,
+          "reviving": -1,
+          "mask": 15,
+          "elapsed": 90.89675903320312,
+          "departureLeft": 0.0,
+          "revivalLeft": 0.0,
+          "health": [
+            100,
+            100,
+            100,
+            100
+          ],
+          "downs": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "down": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "eliminated": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "bleedout": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          "protection": [
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        "protocol": 16,
+        "clueMask": 0,
+        "phase": 0,
+        "credits": 675,
+        "receipt": 0,
+        "returnPay": 0,
+        "tick": 5169,
+        "holder": -1,
+        "ack": 3044,
+        "players": 4,
+        "recipient": 3,
+        "occupiedMask": 15,
+        "positions": [
+          {
+            "x": -21.700000762939453,
+            "y": 0.03499988093972206,
+            "z": -20.049999237060547
+          },
+          {
+            "x": -19.700000762939453,
+            "y": 0.03499988093972206,
+            "z": -20.049999237060547
+          },
+          {
+            "x": -21.700000762939453,
+            "y": 0.03499988093972206,
+            "z": -18.649999618530273
+          },
+          {
+            "x": -19.700000762939453,
+            "y": 0.03499988093972206,
+            "z": -18.649999618530273
+          }
+        ],
+        "yaws": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "p0": {
+          "x": -21.700000762939453,
+          "y": 0.03499988093972206,
+          "z": -20.049999237060547
+        },
+        "p1": {
+          "x": -19.700000762939453,
+          "y": 0.03499988093972206,
+          "z": -20.049999237060547
+        },
+        "cargo": {
+          "x": -21.720001220703125,
+          "y": 1.3250000476837158,
+          "z": -28.0
+        },
+        "rotation": {
+          "x": 0.0,
+          "y": 0.0,
+          "z": 0.0,
+          "w": 1.0
+        },
+        "beaconCarrier": -1,
+        "beaconExists": false,
+        "receiptCollected": false,
+        "receiptReady": false,
+        "receiptProgress": 0.0,
+        "yaw0": 0.0,
+        "yaw1": 0.0,
+        "shiftElapsed": 0.0,
+        "suppressionStage": 0,
+        "outerDanger": {
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "noiseTarget": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "state": 0,
+          "hits": 0,
+          "rescues": 0,
+          "evacuations": 0,
+          "noises": 0,
+          "pursuedPlayer": -1,
+          "down": [],
+          "rescue": [],
+          "cooldown": [],
+          "down0": false,
+          "down1": false,
+          "rescue0": 0.0,
+          "rescue1": 0.0,
+          "cooldown0": 0.0,
+          "cooldown1": 0.0,
+          "warning": 0.0
+        },
+        "unlocked": false,
+        "hard": false,
+        "deliveries": 2,
+        "charges": 0,
+        "beaconTime": 0.0,
+        "beaconPosition": {
+          "x": -20.700000762939453,
+          "y": 1.2300000190734863,
+          "z": -29.0
+        },
+        "hazard": false,
+        "cinderReview": true,
+        "danger": {
+          "position": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "noiseTarget": {
+            "x": 0.0,
+            "y": 0.0,
+            "z": 0.0
+          },
+          "state": 0,
+          "hits": 0,
+          "rescues": 0,
+          "evacuations": 0,
+          "noises": 0,
+          "pursuedPlayer": -1,
+          "down": [],
+          "rescue": [],
+          "cooldown": [],
+          "down0": false,
+          "down1": false,
+          "rescue0": 0.0,
+          "rescue1": 0.0,
+          "cooldown0": 0.0,
+          "cooldown1": 0.0,
+          "warning": 0.0
+        },
+        "connected": true,
+        "message": "Departure complete / payout secured",
+        "rejection": ""
+      }
+    ]
+  },
+  "docs": {
+    "status": "PASS",
+    "documents": 296
+  }
+}

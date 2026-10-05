@@ -9,7 +9,7 @@ public sealed partial class CarryRoom {
     LineRenderer placementPreview;
     bool UiOpen=>!active||menu||shipMenu||journalOpen;
     bool AboardLocal=>CarryMission.Aboard(workers[local].transform.position,cinderReview);
-    void ClosePanels(){controls.Cancel();menu=false;shipMenu=false;deliveryMenu=false;settingsMenu=false;confirmReturn=false;journalOpen=false;SetCursor(active);}
+    void ClosePanels(){controls.Cancel();menu=false;shipMenu=false;deliveryMenu=false;inventoryMenu=false;settingsMenu=false;confirmReturn=false;journalOpen=false;SetCursor(active);}
     void OpenShip(){if(!active||missionPhase<0||!AboardLocal)return;ClosePanels();shipMenu=true;SetCursor(false);}
     void TogglePause(){if(controls.Rebinding||controls.EscapeConsumedFrame==Time.frameCount)return;if(UiOpen&&active)ClosePanels();else{menu=true;SetCursor(false);}}
     bool RescueNearby(){
@@ -24,7 +24,7 @@ public sealed partial class CarryRoom {
         var origin=workers[who].transform.position+Vector3.up*1.45f;var delta=cargo.position-origin;
         return delta.magnitude<=2.4f&&Vector3.Angle(look*Vector3.forward,delta)<=65&&Physics.Raycast(origin,delta.normalized,out var hit,delta.magnitude+.1f,~0,QueryTriggerInteraction.Ignore)&&hit.collider==cargoCollider;
     }
-    bool CanOpenShip()=>AboardLocal&&missionPhase>=0&&!RescueNearby()&&(cargo==null||!ParcelTarget(local,Quaternion.Euler(pitch,yaw,0)))&&!equipment.Target(workers[local].transform.position+Vector3.up*1.57f,Quaternion.Euler(pitch,yaw,0));
+    bool CanOpenShip()=>AboardLocal&&missionPhase>=0&&!RescueNearby()&&(cargo==null||!ParcelTarget(local,Quaternion.Euler(pitch,yaw,0)))&&GroundMedicineTarget(local,Quaternion.Euler(pitch,yaw,0))<0&&!equipment.Target(workers[local].transform.position+Vector3.up*1.57f,Quaternion.Euler(pitch,yaw,0));
     CarryInput ReadControls(){
         if(holder!=local){carryYaw=0;carryPitch=0;carryDistance=.8f;}
         var cmd=new CarryInput{seq=seq,yaw=yaw,pitch=pitch,distance=carryDistance,turnYaw=carryYaw,turnPitch=carryPitch};
@@ -35,6 +35,7 @@ public sealed partial class CarryRoom {
             else{yaw+=delta.x;pitch=Mathf.Clamp(pitch-delta.y,-70,70);}
             if(holder==local)carryDistance=Mathf.Clamp(carryDistance+m.scroll.ReadValue().y*.002f,.75f,1.6f);
         }
+        if(cinderReview){cmd.useMedicine=controls.Pressed(13);cmd.dropSpecial=controls.Pressed(15);if(controls.Pressed(14)){var personal=Personal;cmd.specialSlot=personal!=null&&personal.slots==2?1-personal.selected[local]:0;}}
         cmd.yaw=yaw;cmd.pitch=pitch;cmd.distance=carryDistance;cmd.turnYaw=carryYaw;cmd.turnPitch=carryPitch;
         cmd.x=(controls.Held(3)?1:0)-(controls.Held(2)?1:0);cmd.z=(controls.Held(0)?1:0)-(controls.Held(1)?1:0);
         cmd.interact=controls.Pressed(4);cmd.rescue=controls.Held(4);cmd.drop=controls.Pressed(5);cmd.jump=controls.Pressed(8);cmd.quiet=controls.Held(9);cmd.call=controls.Pressed(10);cmd.reset=controls.Pressed(12)&&hosting;
@@ -47,8 +48,8 @@ public sealed partial class CarryRoom {
     void RenderMenus(CarryState s){
         if(shipMenu&&(!AboardLocal||(s.danger!=null&&s.danger.IsDown(local))))ClosePanels();
         if(!UiOpen){playHud.HideMenu();return;}
-        string kind=settingsMenu?"settings":!active?"home":shipMenu?(deliveryMenu?"deliveries":"ship"):journalOpen?"journal":"pause";
-        bool fresh=playHud.BeginMenu(kind+(s.visit!=null&&s.visit.active?"visit":"idle")+(CarryLanguage.Korean?"ko":"en"),kind=="deliveries"?"DELIVERY MANIFEST":kind=="ship"?"FLATBED / SHIP TERMINAL":kind=="settings"?"CONTROLS & SETTINGS":kind=="journal"?"CINDER DEPOT / SHARED FIELD LOG":"NO RETURNS",kind=="deliveries"?"Choose parcels aboard / find the address in its district.":kind=="ship"?"CINDER DEPOT / BAY 04 · shared crew wallet":kind=="settings"?"Click a binding, then press a key. Esc cancels. Esc always closes menus.":kind=="journal"?"The world keeps moving. Read aboard. Records reset on next arrival; not saved after exit.":"Direct LAN / choose host or join. Menus do not pause the world.");
+        string kind=settingsMenu?"settings":!active?"home":shipMenu?(inventoryMenu?"inventory":deliveryMenu?"deliveries":"ship"):journalOpen?"journal":"pause";
+        bool fresh=playHud.BeginMenu(kind+(s.visit!=null&&s.visit.active?"visit":"idle")+(CarryLanguage.Korean?"ko":"en"),kind=="inventory"?"PERSONAL EQUIPMENT":kind=="deliveries"?"DELIVERY MANIFEST":kind=="ship"?"FLATBED / SHIP TERMINAL":kind=="settings"?"CONTROLS & SETTINGS":kind=="journal"?"CINDER DEPOT / SHARED FIELD LOG":"NO RETURNS",kind=="inventory"?"Equip before departure. Heal yourself or aim at a teammate.":kind=="deliveries"?"Choose parcels aboard / find the address in its district.":kind=="ship"?"CINDER DEPOT / BAY 04 · shared crew wallet":kind=="settings"?"Click a binding, then press a key. Esc cancels. Esc always closes menus.":kind=="journal"?"The world keeps moving. Read aboard. Records reset on next arrival; not saved after exit.":"Direct LAN / choose host or join. Menus do not pause the world.");
         if(fresh){
             if(kind=="home"){
                 playHud.MenuLabel("Address label","HOST LAN ADDRESS",28,194,650,30);playHud.MenuAddress(address,v=>address=v);
@@ -60,10 +61,15 @@ public sealed partial class CarryRoom {
                 playHud.MenuButton("leave","LEAVE SESSION",28,215,510,Disconnect);playHud.MenuButton("quit","QUIT",560,215,510,()=>Application.Quit());
                 playHud.MenuLabel("Help","Use opens the ship terminal aboard. Buy supplies there.\nPlace with left click, rotate with right click, adjust reach with wheel.",28,320,1000,90);
             }else if(kind=="settings"){
-                for(int i=0;i<controls.Names.Length;i++){int binding=i;playHud.MenuButton("bind"+i,"",28+(i/7)*542,145+(i%7)*46,510,()=>controls.Rebind(binding));}
+                for(int i=0;i<controls.Names.Length;i++){int binding=i;playHud.MenuButton("bind"+i,"",28+(i/8)*542,145+(i%8)*40,510,()=>controls.Rebind(binding));}
                 playHud.MenuLabel("Sensitivity","",28,480,490,30);playHud.MenuSlider("Sensitivity slider",28,515,controls.Sensitivity,.04f,.3f,v=>{controls.Sensitivity=v;controls.Save();});
                 playHud.MenuLabel("Fov","",570,480,490,30);playHud.MenuSlider("Fov slider",570,515,controls.Fov,65,100,v=>{controls.Fov=v;eye.fieldOfView=v;controls.Save();});
                 playHud.MenuButton("defaults","RESTORE DEFAULTS",28,558,510,()=>{controls.Defaults();eye.fieldOfView=controls.Fov;});playHud.MenuButton("back","BACK",570,558,490,()=>{controls.Cancel();settingsMenu=false;});
+            }else if(kind=="inventory"){
+                playHud.MenuLabel("Personal","",28,150,1044,160,24);
+                for(int i=0;i<2;i++){int selectedSlot=i;playHud.MenuButton("special"+i,"",28+i*542,320,510,()=>uiCommands.specialSlot=selectedSlot);}
+                playHud.MenuButton("buyMedicine","BUY & EQUIP MEDICINE / 40 CR",28,390,630,()=>uiCommands.buyMedicine=true);
+                playHud.MenuButton("backShip","SHIP TERMINAL",710,490,360,()=>inventoryMenu=false);
             }else if(kind=="deliveries"){
                 playHud.MenuLabel("Manifest","",28,145,1044,385,22);
                 playHud.MenuButton("backShip","SHIP TERMINAL",710,490,360,()=>deliveryMenu=false);
@@ -80,6 +86,7 @@ public sealed partial class CarryRoom {
                     playHud.MenuLabel("Stock","",710,458,360,80);
                 }
                 if(cinderReview&&s.deliveriesState!=null&&s.deliveriesState.Length>0)playHud.MenuButton("deliveries","DELIVERY MANIFEST",28,470,630,()=>deliveryMenu=true);
+                if(cinderReview)playHud.MenuButton("personal","PERSONAL EQUIPMENT",28,514,630,()=>inventoryMenu=true);
                 if(!cinderReview)playHud.MenuButton("contract","Change selected contract",28,470,630,()=>uiCommands.contract=true);
             }else{
                 for(int i=0;i<2;i++){bool found=clues!=null&&(clues.Mask&(1<<i))!=0;playHud.MenuLabel("Record"+i,found?(i==0?CarryClues.FirstTitle:CarryClues.SecondTitle):"UNRECORDED / inspect the site",28,145+i*170,1044,32,22);playHud.MenuLabel("Body"+i,found?(i==0?CarryClues.FirstBody:CarryClues.SecondBody):"No entry yet. A teammate can share it by inspecting a terminal.",28,187+i*170,1044,120);}
@@ -119,6 +126,10 @@ public sealed partial class CarryRoom {
                 playHud.SetMenuButton("buy",s.unlocked?"OWNED":s.credits<120?"INSUFFICIENT FUNDS / 120 CR":"Buy beacon license",host&&!s.unlocked&&s.credits>=120&&(s.phase==0||s.phase==4));
             }
 
+        }else if(kind=="inventory"){
+            var inv=s.inventory;if(inv!=null&&inv.Ready){int selectedSlot=Mathf.Min(inv.selected[local],inv.slots-1);playHud.SetMenuText("Personal",InventoryPrompt()+"\n"+string.Format(T("WALLET {0} CR / MEDICINE 40 CR"),s.credits)+"\n"+T("One dose fully heals a living injured target. Down count stays. No free ship healing."));
+                for(int i=0;i<2;i++)playHud.SetMenuButton("special"+i,(i==selectedSlot?"> ":"")+string.Format(T("SPECIAL {0}/{1}: {2}"),i+1,inv.slots,T(inv.medicine[local*2+i]>0?"MEDICINE":"EMPTY")),i<inv.slots);
+                playHud.SetMenuButton("buyMedicine","BUY & EQUIP MEDICINE / 40 CR",inv.medicine[local*2+selectedSlot]==0&&s.credits>=40&&(s.phase==0||s.phase==1||s.phase==4));}
         }else if(kind=="deliveries")playHud.SetMenuText("Manifest",DeliveryList(s));
         else if(kind=="home"||kind=="pause")playHud.SetMenuText("Status",status+(hazard&&!cinderReview&&active?"\n"+(hosting?T(saveNotice):T("Using host progress / personal save unchanged")):""));
     }
@@ -159,7 +170,9 @@ public sealed partial class CarryRoom {
         if(clues!=null&&clues.Target(origin,look)>=0)return controls.Key(4)+T(" INSPECT TERMINAL");
         if(equipment.Target(origin,look))return controls.Key(4)+T(" PICK UP BEACON");
         if(ParcelTarget(local,look))return controls.Key(4)+T(" PICK UP PARCEL");
+        if(cinderReview&&GroundMedicineTarget(local,look)>=0)return controls.Key(4)+T(" PICK UP MEDICINE");
         if(AboardLocal&&missionPhase>=0)return controls.Key(4)+T(" OPEN SHIP TERMINAL");
+        if(cinderReview&&Personal!=null)return InventoryPrompt();
         if(hazard&&(missionPhase==2||missionPhase==3)){float cooldown=danger==null?0:danger.CooldownAt(local);return controls.Key(9)+T(" quiet · ")+controls.Key(10)+T(" call · ")+controls.Key(6)+(cooldown>0?string.Format(T(" baton ready in {0}s"),Mathf.CeilToInt(cooldown)):T(" baton"));}
         return T("Aim at a nearby object to use it / Esc settings");
     }

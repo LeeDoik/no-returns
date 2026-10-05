@@ -2,6 +2,10 @@
 
 [한국어](economy.ko.md)
 
+## Current implementation — personal slots and medicine 0.9.25
+
+Implemented 1 co-op/2 solo slots, pre-departure 40 CR medicine purchase/equipping, field swapping and self/teammate full healing. New Cinder sessions start with 400 CR. Retain unused equipped doses within the session; treatment does not reset downs. Game 0.9.25 / protocol 16 / TCP 27842. [Current specification, production and validation scope](personal-equipment.en.md).
+
 As of 0.6.0, host progression saves restore wallet, beacon license and successful-delivery count; shifts restart at ship preparation. Earlier session-only/no-save notes describe the state through 0.5.0. [Save rules and validation](space-play-05.en.md).
 
 0.8.6 current rule: delivery confirmation does not pay. Collect the receipt and return normally to earn standard 420 / risk 630. Draft provisions below for 300 after post-delivery wipe and immediate secured pay are retired. [Current specification](receipt-terminal.en.md).

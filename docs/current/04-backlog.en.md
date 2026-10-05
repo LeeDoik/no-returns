@@ -2,6 +2,12 @@
 
 [한국어](04-backlog.ko.md)
 
+## Current implementation — personal slots and medicine 0.9.25
+
+Implemented 1 co-op/2 solo slots, pre-departure 40 CR medicine purchase/equipping, field swapping and self/teammate full healing. New Cinder sessions start with 400 CR. Retain unused equipped doses within the session; treatment does not reset downs. Game 0.9.25 / protocol 16 / TCP 27842. [Current specification, production and validation scope](personal-equipment.en.md).
+
+Version 0.9.25 implements purchase/use/swapping for medicine only. Next are other special tools, persistence/reconnection and danger-rule migration. Dedicated medical art/motion and human quality remain pending.
+
 ## 2026-10-06 — next implementation: personal equipment slots and medicine
 
 Proposed order: personal special slots (1 in co-op, 2 solo), then pre-departure purchasing/equipping and field swapping, then single-use medicine and teammate healing. Cargo, basic baton and radio are separate. Medicine fully heals injured living targets without resetting down counts; concurrent healing consumes only one valid dose. Add no free ship healing. This next slice manages injuries after delivery/settlement and establishes carrying rules for other tools. Not implemented yet; persistence/reconnection and full hazard regression migration remain pending.

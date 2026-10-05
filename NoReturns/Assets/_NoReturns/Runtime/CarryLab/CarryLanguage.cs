@@ -23,6 +23,18 @@ public static class CarryLanguage {
         return english;
     }
     public static readonly Dictionary<string,string> Ko=new Dictionary<string,string>{
+        {"PERSONAL EQUIPMENT","개인 장비"},
+        {"Equip before departure. Heal yourself or aim at a teammate.","출발 전에 장착하세요. 자신을 치료하거나 동료를 바라보세요."},
+        {"MEDICINE","치료품"},
+        {"Use medicine","치료품 사용"},{"Switch special slot","특수 장비 칸 전환"},{"Drop special equipment","특수 장비 내려놓기"},
+        {"SPECIAL {0}/{1}: {2}","특수 장비 {0}/{1}: {2}"},
+        {" heal self / aimed teammate · "," 자신 / 바라보는 동료 치료 · "},{" drop special"," 장비 내려놓기"},{" switch slot"," 칸 전환"},
+        {"BUY & EQUIP MEDICINE / 40 CR","치료품 구매·장착 / 40 CR"},{"WALLET {0} CR / MEDICINE 40 CR","지갑 {0} CR / 치료품 40 CR"},
+        {"One dose fully heals a living injured target. Down count stays. No free ship healing.","1회분으로 부상한 생존자를 완전 치료합니다. 다운 횟수는 유지하며 무료 선내 치료는 없습니다."},
+        {"Medicine equipped","치료품을 장착했습니다"},{"Medicine used / health restored","치료품 사용 / 체력 회복"},
+        {"Purchase blocked / empty slot, ship preparation and 40 CR required","구매 불가 / 빈 장비 칸, 출발 전 선내 준비와 40 CR이 필요합니다"},
+        {"Medicine unavailable / injured living target and empty hands required","치료 불가 / 부상한 생존자와 빈손이 필요합니다"},
+        {"Selected special slot is occupied","선택한 특수 장비 칸이 차 있습니다"},{" PICK UP MEDICINE"," 치료품 집기"},
         {"DELIVERY MANIFEST","배송 목록"},
         {"SHIP TERMINAL","우주선 단말기"},
         {"DELIVERED","배송 완료"},

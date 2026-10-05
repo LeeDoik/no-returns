@@ -22,6 +22,7 @@ public sealed class CarryMission {
     public bool BeaconUnlocked {get;private set;}
     public bool HardContract {get;private set;}
     public int SuccessfulDeliveries {get;private set;}
+    public bool BuyMedicine(bool aboard){if(!cinder||!aboard||(Phase!=0&&Phase!=1&&Phase!=4)||Credits<40)return false;Credits-=40;return true;}
     public bool BuyBeacon(bool host,bool aboard){
         if(!host||!aboard||(Phase!=0&&Phase!=4)||BeaconUnlocked||Credits<120)return false;
         Credits-=120;BeaconUnlocked=true;return true;

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace NoReturns.CarryLab {
 public sealed partial class CarryRoom {
-    sealed class ParcelBody {public Rigidbody body;public Collider collider;public int carrier=-1;}
+    sealed class ParcelBody {public Rigidbody body;public Collider collider;public int carrier=-1;public bool unstowed;}
     readonly List<ParcelBody> parcels=new List<ParcelBody>{new ParcelBody()};
     int parcelIndex,parcelCount=1;
     readonly float[] receiverNoise=new float[3];
@@ -14,7 +14,7 @@ public sealed partial class CarryRoom {
     int ParcelMask {get{int mask=0;for(int i=0;i<parcelCount;i++)if(parcels[i].carrier>=0)mask|=1<<parcels[i].carrier;return mask;}}
     int HeldParcel(int who){for(int i=0;i<parcelCount;i++)if(parcels[i].carrier==who)return i;return -1;}
     bool Carrying(int who)=>HeldParcel(who)>=0;
-    Vector3 ParcelSpawn(int id)=>new Vector3(-20.7f+(id%2==0?-1.02f:1.02f),1.4f,-28-(id/2)*1.0f);
+    Vector3 ParcelSpawn(int id)=>new Vector3(-20.7f+(id%2==0?-1.02f:1.02f),1.325f,-28-(id/2)*1.0f);
     void SelectParcelFor(int who){
         int held=HeldParcel(who);if(held>=0){parcelIndex=held;return;}
         parcelIndex=0;if(!Multi)return;
@@ -28,7 +28,7 @@ public sealed partial class CarryRoom {
         parcelCount=count;
         for(int i=0;i<parcels.Count;i++){
             bool enabled=i<count&&!(Manifest!=null&&i<Manifest.Length&&Manifest[i].collected);parcels[i].body.gameObject.SetActive(enabled);
-            if((reset||changed)&&i<count){parcelIndex=i;Release();cargo.position=Multi?ParcelSpawn(i):CargoSpawn;cargo.rotation=Quaternion.identity;}
+            if((reset||changed)&&i<count){parcelIndex=i;Release();parcels[i].unstowed=false;cargo.position=Multi?ParcelSpawn(i):CargoSpawn;cargo.rotation=Quaternion.identity;}
             var addressLabel=parcels[i].body.transform.Find("Address label");if(addressLabel)addressLabel.gameObject.SetActive(Multi);
             if(Multi&&i<count){
                 var label=parcels[i].body.transform.Find("Address label");

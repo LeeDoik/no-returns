@@ -8,8 +8,8 @@ public sealed class CarryControls : IDisposable {
     readonly bool persist;
     readonly InputActionMap map=new InputActionMap("Employee");
     InputActionRebindingExtensions.RebindingOperation rebind;
-    public readonly string[] Names={"Forward","Back","Left","Right","Use / rescue","Release","Place / baton","Rotate item","Jump","Quiet walk","Call","Field log","Reset lab"};
-    readonly string[] paths={"<Keyboard>/w","<Keyboard>/s","<Keyboard>/a","<Keyboard>/d","<Keyboard>/e","<Keyboard>/q","<Mouse>/leftButton","<Mouse>/rightButton","<Keyboard>/space","<Keyboard>/leftShift","<Keyboard>/c","<Keyboard>/tab","<Keyboard>/r"};
+    public readonly string[] Names={"Forward","Back","Left","Right","Use / rescue","Release","Place / baton","Rotate item","Jump","Quiet walk","Call","Field log","Reset lab","Use medicine","Switch special slot","Drop special equipment"};
+    readonly string[] paths={"<Keyboard>/w","<Keyboard>/s","<Keyboard>/a","<Keyboard>/d","<Keyboard>/e","<Keyboard>/q","<Mouse>/leftButton","<Mouse>/rightButton","<Keyboard>/space","<Keyboard>/leftShift","<Keyboard>/c","<Keyboard>/tab","<Keyboard>/r","<Keyboard>/f","<Keyboard>/x","<Keyboard>/g"};
     public float Sensitivity=.12f,Fov=80;
     public int EscapeConsumedFrame {get;private set;}=-1;
     public bool Rebinding=>rebind!=null;

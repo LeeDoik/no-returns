@@ -2,6 +2,10 @@
 
 [한국어](quick-testing.ko.md)
 
+## Current implementation — personal slots and medicine 0.9.25
+
+Implemented 1 co-op/2 solo slots, pre-departure 40 CR medicine purchase/equipping, field swapping and self/teammate full healing. New Cinder sessions start with 400 CR. Retain unused equipped doses within the session; treatment does not reset downs. Game 0.9.25 / protocol 16 / TCP 27842. [Current specification, production and validation scope](personal-equipment.en.md).
+
 ## Current implementation — multiple deliveries 0.9.24
 
 Implemented 3–6 physical parcels by crew count, independent carrying, verification pause/resume, receipts and district bundles. Game 0.9.24 / protocol 15 / TCP 27842. This supersedes the single 420 CR delivery for normal Cinder sessions. [Current rules, production evidence and remaining work](multiple-deliveries.en.md).

@@ -49,6 +49,7 @@ public sealed class CarryVisit {
     }
     public void Eliminate(int i){if(!Present(i))return;Down[i]=true;Eliminated[i]=true;Health[i]=0;Bleedout[i]=0;}
     public bool Rescue(int i){if(!Present(i)||!Down[i]||Eliminated[i])return false;Down[i]=false;Health[i]=30;Bleedout[i]=0;Protection[i]=4;return true;}
+    public bool Heal(int i){if(!CanAct(i)||Health[i]>=100)return false;Health[i]=100;return true;}
     public bool StartRevival(int actor,int target,int aboardMask){
         if(!Active||!CanAct(actor)||(aboardMask&(1<<actor))==0||!Present(target)||!Eliminated[target]||Reviving>=0||Available<RevivalCost)return false;
         RevivalFees+=RevivalCost;Reviving=target;RevivalLeft=RevivalSeconds;return true;

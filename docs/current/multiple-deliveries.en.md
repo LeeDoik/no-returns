@@ -2,6 +2,10 @@
 
 [한국어](multiple-deliveries.ko.md)
 
+## Current changes at 0.9.25
+
+Current game 0.9.25 / protocol 16 / TCP 27842. New normal Cinder sessions start with 400 CR through the [personal equipment slice](personal-equipment.en.md); settling both WEST contracts without deductions yields 675 CR. Unclaimed parcels stay fixed in their ship stowage positions to prevent employee collisions moving them; once picked up and released they use existing physics. Historical receipts used the former 0 CR starting wallet.
+
 2026-10-05 · Game 0.9.24 / protocol 15 / TCP 27842.
 
 ## Implemented rules
